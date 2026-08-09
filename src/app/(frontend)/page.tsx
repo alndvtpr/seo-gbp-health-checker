@@ -1,7 +1,6 @@
 // @ts-ignore: IDE cache bug with PNPM
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { notFound } from 'next/navigation'
 import React from 'react'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
@@ -17,30 +16,33 @@ export const metadata = generateMetadata({
 export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  const payload = await getPayload({ config })
+  let page: { layout?: unknown[] } | null = null
 
-  const { docs } = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: {
-        equals: 'index',
+  try {
+    const payload = await getPayload({ config })
+    const { docs } = await payload.find({
+      collection: 'pages',
+      where: {
+        slug: {
+          equals: 'index',
+        },
       },
-    },
-  })
-
-  const page = docs[0]
-
-  if (!page) {
-    return notFound()
+    })
+    page = docs[0] ?? null
+  } catch (err) {
+    // DB not ready yet or connection issue — render the static portfolio anyway
+    console.error('Payload DB error on page load:', err)
   }
 
   return (
     <>
       <LivePreviewListener />
       <ScrollHero />
-      <div className="max-w-7xl mx-auto px-8 relative z-20">
-        <RenderBlocks blocks={page.layout} />
-      </div>
+      {page?.layout && page.layout.length > 0 && (
+        <div className="max-w-7xl mx-auto px-8 relative z-20">
+          <RenderBlocks blocks={page.layout as { blockType: string; [key: string]: unknown }[]} />
+        </div>
+      )}
     </>
   )
 }
