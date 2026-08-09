@@ -22,7 +22,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" className={`dark ${inter.variable} ${montserrat.variable}`}>
       <head>
       </head>
-      <body className="bg-background text-on-background min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
+      <body className="bg-background text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
         {/* Placeholder for WebGL Background Canvas (Phase 5) */}
         <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-background"></div>
         <ShaderBackground />
