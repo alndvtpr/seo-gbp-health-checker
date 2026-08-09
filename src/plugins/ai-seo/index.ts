@@ -1,3 +1,4 @@
+// trigger ts reload
 import type { Plugin, Config, CollectionConfig, CollectionBeforeChangeHook } from 'payload'
 
 type AISeoPluginConfig = {
