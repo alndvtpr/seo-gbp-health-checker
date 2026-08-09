@@ -26,9 +26,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
         />
       </head>
-      <body className="bg-background text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
+      <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
         {/* Placeholder for WebGL Background Canvas (Phase 5) */}
-        <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-background"></div>
+        <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent"></div>
         <ShaderBackground />
         
         {/* Placeholder for Hero Canvas (Phase 4) - handled in specific pages, but keeping z-index scale in mind */}

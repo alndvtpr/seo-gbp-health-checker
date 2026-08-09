@@ -36,6 +36,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--color-background);
+  background-color: transparent;
   color: var(--color-on-background);
 }
