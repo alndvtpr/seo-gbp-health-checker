@@ -1,5 +1,6 @@
 // @ts-ignore: IDE cache bug with PNPM
 import { getPayload } from 'payload'
+import type { Page as PayloadPage } from '@/payload-types'
 import config from '@payload-config'
 import React from 'react'
 import { RenderBlocks } from '@/components/RenderBlocks'
@@ -16,7 +17,7 @@ export const metadata = generateMetadata({
 export const dynamic = 'force-dynamic'
 
 export default async function Page() {
-  let page: { layout?: unknown[] } | null = null
+  let page: PayloadPage | null = null
 
   try {
     const payload = await getPayload({ config })
@@ -38,7 +39,7 @@ export default async function Page() {
     <>
       <LivePreviewListener />
       <ScrollHero />
-      {page?.layout && page.layout.length > 0 && (
+      {page?.layout != null && page.layout.length > 0 && (
         <div className="max-w-7xl mx-auto px-8 relative z-20">
           <RenderBlocks blocks={page.layout as { blockType: string; [key: string]: unknown }[]} />
         </div>
