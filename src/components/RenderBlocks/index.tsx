@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RenderBlocks: React.FC<{ blocks: { blockType: string; code?: string; [key: string]: unknown }[] | null | undefined }> = ({ blocks }) => {
+export const RenderBlocks: React.FC<{ blocks: { blockType: string; code?: string | null; [key: string]: unknown }[] | null | undefined }> = ({ blocks }) => {
   if (!blocks || blocks.length === 0) return null
 
   return (
@@ -10,7 +10,7 @@ export const RenderBlocks: React.FC<{ blocks: { blockType: string; code?: string
           return (
             <div
               key={index}
-              dangerouslySetInnerHTML={{ __html: block.code }}
+              dangerouslySetInnerHTML={{ __html: block.code || '' }}
             />
           )
         }
