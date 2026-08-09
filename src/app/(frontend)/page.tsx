@@ -46,7 +46,7 @@ export default async function Page() {
       </section>
 
       {/* 2. TOOLS I USE GRID */}
-      <section className="py-16 bg-[#0f1112]/50 backdrop-blur-sm border-y border-white/5 relative z-20">
+      <section className="py-16 bg-transparent border-y border-white/5 relative z-20">
         <div className="max-w-7xl mx-auto px-6 md:px-16 text-center">
           <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
             Technical Stack
@@ -79,7 +79,7 @@ export default async function Page() {
       </section>
 
       {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
-      <section className="py-24 bg-[#141617]/50 backdrop-blur-sm border-b border-white/5 relative z-20 overflow-hidden">
+      <section className="py-24 bg-transparent border-b border-white/5 relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-16 flex flex-col lg:flex-row items-center gap-16">
           <div className="w-full lg:w-1/2 relative min-h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <Image
@@ -211,7 +211,7 @@ export default async function Page() {
       </section>
 
       {/* 5. FEATURED PROJECTS */}
-      <section className="py-24 bg-[#101212]/50 backdrop-blur-sm border-t border-white/5 relative z-20">
+      <section className="py-24 bg-transparent border-t border-white/5 relative z-20">
         <div className="max-w-7xl mx-auto px-6 md:px-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
             <div>
@@ -310,7 +310,7 @@ export default async function Page() {
 
       {/* 7. CALL TO ACTION */}
       <section id="contact" className="py-24 px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">
-        <div className="p-12 rounded-3xl bg-[#181a1b]/80 border border-primary-container/30 backdrop-blur-2xl shadow-[0_0_50px_rgba(230,126,34,0.1)]">
+        <div className="p-12 rounded-3xl bg-[#181a1b]/40 border border-primary-container/30 shadow-[0_0_50px_rgba(230,126,34,0.1)]">
           <span className="font-heading text-xs text-primary-container uppercase tracking-widest mb-2 block font-bold">
             Get Started
           </span>
