@@ -1,4 +1,4 @@
-import type { Plugin, Config, CollectionConfig } from 'payload'
+import type { Plugin, Config, CollectionConfig, CollectionBeforeChangeHook } from 'payload'
 
 type AISeoPluginConfig = {
   llmProvider: 'openai' | 'gemini' | 'anthropic'
@@ -20,8 +20,8 @@ export const aiSeoPlugin =
               ...collection.hooks,
               beforeChange: [
                 ...(collection.hooks?.beforeChange || []),
-                async (args: any) => {
-                  const { data, req, operation } = args
+                async (args: Parameters<CollectionBeforeChangeHook>[0]) => {
+                  const { data, operation } = args
                   if (operation === 'create' || operation === 'update') {
                     // 1. Fetch AI Memory context (Placeholder)
                     // const memory = await req.payload.find({ collection: 'ai-memory' })
