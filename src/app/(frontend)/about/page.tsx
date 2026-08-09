@@ -1,90 +1,115 @@
 import React from 'react'
-import { Metadata } from 'next'
-
+import Image from 'next/image'
+import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = generateMetadata({
-  title: 'About',
-  description: 'Learn more about Alain Dave Tapiru, a multidisciplinary software engineer.',
-  url: 'https://alaintapiru.com/about'
+export const metadata = generateMetadata({
+  title: 'About Me | Alain Dave Tapiru',
+  description: 'Learn more about Alain Dave Tapiru - Technical SEO Specialist, Web Designer, and BSIT Cybersecurity student.',
+  url: 'https://alaintapiru.com/about',
 })
-
-const competencies = [
-  { category: 'Frontend Architecture', skills: 'React, Next.js, TypeScript, Tailwind CSS, Framer Motion, WebGL' },
-  { category: 'Backend Systems', skills: 'Node.js, Payload CMS, PostgreSQL, MongoDB, RESTful APIs, GraphQL' },
-  { category: 'Infrastructure', skills: 'Vercel, AWS, Docker, CI/CD Pipelines, Microservices' },
-  { category: 'Design & UX', skills: 'Material Design 3 (M3), Figma, Design Systems, Typography, Motion Design' },
-]
 
 export default function AboutPage() {
   return (
-    <div className="pt-32 pb-24 min-h-screen relative z-10">
-      <div className="max-w-7xl mx-auto px-8">
-        
-        {/* Header Section */}
-        <section className="mb-24">
-          <h1 className="text-display-lg font-bold text-on-background mb-8 drop-shadow-md">
-            About <span className="text-primary">Me</span>.
-          </h1>
-          <div className="max-w-3xl">
-            <p className="text-body-lg text-on-surface-variant leading-relaxed mb-6">
-              I am a multidisciplinary software engineer focused on crafting high-performance, visually stunning web applications. I bridge the gap between rigorous engineering and beautiful design.
-            </p>
-            <p className="text-body-lg text-on-surface-variant leading-relaxed">
-              With deep expertise in the React and Next.js ecosystem, alongside a strong foundation in modern CSS and WebGL, I build scalable systems that never compromise on user experience or aesthetic polish.
-            </p>
-          </div>
-        </section>
+    <div className="pt-32 pb-24 px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-20">
+      {/* Header */}
+      <div className="text-center max-w-3xl mx-auto">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+          Biography &amp; Background
+        </span>
+        <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface mb-6">
+          Architecting Search Presence &amp; Secure Digital Systems
+        </h1>
+        <p className="font-sans text-on-surface/70 text-base leading-relaxed">
+          I am an SEO Specialist, Web Designer, and BSIT student specializing in Network &amp; Cybersecurity.
+        </p>
+      </div>
 
-        {/* Core Competencies Section */}
-        <section className="bg-surface-container-low/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-on-surface/5 shadow-2xl mb-24">
-          <h2 className="text-headline-lg font-bold text-on-surface mb-12">
-            Core Competencies
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="lg:col-span-5 relative h-[450px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <Image
+            src="/about_me.jpg"
+            alt="Alain Dave Tapiru"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
+        </div>
+
+        <div className="lg:col-span-7 space-y-6">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-on-surface">
+            The Journey &amp; Philosophy
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-            {competencies.map((comp, i) => (
-              <div key={i} className="group">
-                <h3 className="text-headline-md font-semibold text-primary mb-4 flex items-center gap-4">
-                  <span className="w-8 h-[2px] bg-primary/50 group-hover:w-12 transition-all duration-300"></span>
-                  {comp.category}
-                </h3>
-                <p className="text-body-lg text-on-surface-variant leading-relaxed pl-12">
-                  {comp.skills}
-                </p>
-              </div>
-            ))}
+          <div className="space-y-4 font-sans text-on-surface/80 text-sm leading-relaxed">
+            <p>
+              My professional journey began in client-facing operations, where I mastered human-centric problem solving and clear communication. Transitioning into Search Engine Optimization allowed me to combine analytical strategy with technical execution.
+            </p>
+            <p>
+              Today, I bridge the gap between technical search optimization, modern frontend engineering (Next.js &amp; React), and cybersecurity fundamentals. I believe that an effective website must not only rank on search engines, but also load instantly, look stunning, and operate securely.
+            </p>
           </div>
-        </section>
 
-        {/* Resume / Experience Section Placeholder */}
-        <section>
-          <h2 className="text-headline-lg font-bold text-on-surface mb-12">
-            Experience
-          </h2>
-          <div className="space-y-12">
-            {[
-              { role: 'Senior Frontend Engineer', company: 'Creative Studio', dates: '2023 - Present', desc: 'Spearheaded the development of a next-generation enterprise dashboard using Next.js and Tailwind v4. Improved rendering performance by 40% and implemented a comprehensive M3 design system.' },
-              { role: 'Full Stack Developer', company: 'Tech Agency', dates: '2021 - 2023', desc: 'Architected and delivered high-traffic web applications. Integrated headless CMS solutions (Payload, Sanity) and built custom WebGL interactive marketing sites.' },
-              { role: 'UI/UX Designer & Developer', company: 'Freelance', dates: '2019 - 2021', desc: 'Designed and developed custom portfolio sites, e-commerce platforms, and marketing pages with a heavy focus on animation and typography.' },
-            ].map((item, index) => (
-              <div key={index} className="flex flex-col md:flex-row gap-4 md:gap-12 pb-12 border-b border-on-surface/10 last:border-0 hover:bg-surface/30 p-6 -mx-6 rounded-2xl transition-colors">
-                <div className="md:w-1/4 pt-1">
-                  <span className="text-body-md font-medium text-on-surface-variant uppercase tracking-wider">
-                    {item.dates}
-                  </span>
-                </div>
-                <div className="md:w-3/4">
-                  <h3 className="text-headline-md font-bold text-on-surface mb-1">{item.role}</h3>
-                  <h4 className="text-body-lg text-primary mb-4 font-medium">{item.company}</h4>
-                  <p className="text-body-md text-on-surface-variant leading-relaxed max-w-3xl">
-                    {item.desc}
-                  </p>
-                </div>
+          <div className="pt-4 border-t border-white/10">
+            <h3 className="font-heading text-xs text-primary-container uppercase tracking-widest mb-3 font-bold">
+              Core Competencies
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">Technical &amp; On-Page SEO</h4>
+                <p className="font-sans text-xs text-on-surface/60">Crawl error resolution, schema markup, site speed optimization, and canonical mapping.</p>
               </div>
-            ))}
+              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">Modern Web Design</h4>
+                <p className="font-sans text-xs text-on-surface/60">Next.js, Tailwind CSS, Payload CMS, and responsive glassmorphism interfaces.</p>
+              </div>
+              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">Cybersecurity Fundamentals</h4>
+                <p className="font-sans text-xs text-on-surface/60">Network security, header hardening, secure API integration, and threat awareness.</p>
+              </div>
+              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">AI Workflow Automation</h4>
+                <p className="font-sans text-xs text-on-surface/60">Prompt engineering, custom AI agents, and programmatic content workflows.</p>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
+      </div>
 
+      {/* Certifications & Education Placeholder */}
+      <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+          Credentials
+        </span>
+        <h2 className="font-heading text-2xl font-bold text-on-surface mb-6">
+          Education &amp; Certifications
+        </h2>
+        <div className="space-y-4">
+          <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 className="font-heading text-sm font-bold text-on-surface">Bachelor of Science in Information Technology</h3>
+              <p className="font-sans text-xs text-on-surface/60">Specialization in Network &amp; Cybersecurity</p>
+            </div>
+            <span className="font-heading text-xs text-primary-container font-bold">In Progress</span>
+          </div>
+          <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 className="font-heading text-sm font-bold text-on-surface">[PLACEHOLDER - EDIT LATER] SEO &amp; Technical Certifications</h3>
+              <p className="font-sans text-xs text-on-surface/60">[PLACEHOLDER - Certification Authority &amp; Year]</p>
+            </div>
+            <span className="font-heading text-xs text-on-surface/40">Verified</span>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div className="text-center pt-8">
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all"
+        >
+          Work With Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
+        </Link>
       </div>
     </div>
   )

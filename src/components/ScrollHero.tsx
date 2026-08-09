@@ -1,6 +1,8 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import Link from 'next/link'
 
 const FRAME_COUNT = 121
 const FRAME_PREFIX = '/hero-frames/frame-'
@@ -11,15 +13,14 @@ function getFrameUrl(index: number) {
 }
 
 export const ScrollHero = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [images, setImages] = useState<HTMLImageElement[]>([])
+  const [mounted, setMounted] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
 
-  // 1. Check prefers-reduced-motion
   useEffect(() => {
+    setMounted(true)
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReducedMotion(mediaQuery.matches)
 
     const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
@@ -27,13 +28,13 @@ export const ScrollHero = () => {
     return () => mediaQuery.removeEventListener('change', listener)
   }, [])
 
-  // 2. Progressive Decoding & Caching strategy
+  // Progressive frame decoding & caching
   useEffect(() => {
     if (reducedMotion) return
 
     const imageCache: HTMLImageElement[] = []
 
-    // LCP Critical: Load and draw frame 0 immediately
+    // Critical LCP frame
     const firstImage = new Image()
     firstImage.src = getFrameUrl(0)
     imageCache[0] = firstImage
@@ -42,14 +43,13 @@ export const ScrollHero = () => {
       if (canvasRef.current) {
         const ctx = canvasRef.current.getContext('2d')
         if (ctx) {
-          ctx.drawImage(firstImage, 0, 0, canvasRef.current.width, canvasRef.current.height)
+          drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
         }
       }
     }
 
     let frameIndex = 1
     const loadNextFrame = (idleDeadline: IdleDeadline) => {
-      // Use idle time to load images progressively without freezing the main thread
       while (idleDeadline.timeRemaining() > 0 && frameIndex < FRAME_COUNT) {
         const img = new Image()
         img.src = getFrameUrl(frameIndex)
@@ -64,7 +64,7 @@ export const ScrollHero = () => {
           setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
         }
       } else {
-        setImages([...imageCache]) // Trigger final re-render with all images loaded
+        setImages([...imageCache])
       }
     }
 
@@ -74,99 +74,131 @@ export const ScrollHero = () => {
       setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
     }
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setImages(imageCache)
   }, [reducedMotion])
 
-  // 3. RequestAnimationFrame scroll scrubbing
+  // Helper to draw image using object-fit: cover logic
+  const drawCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, width: number, height: number) => {
+    if (!img || !img.complete || img.naturalWidth === 0) return
+    const imgRatio = img.naturalWidth / img.naturalHeight
+    const canvasRatio = width / height
+    let drawWidth = width
+    let drawHeight = height
+    let offsetX = 0
+    let offsetY = 0
+
+    if (canvasRatio > imgRatio) {
+      drawHeight = width / imgRatio
+      offsetY = (height - drawHeight) / 2
+    } else {
+      drawWidth = height * imgRatio
+      offsetX = (width - drawWidth) / 2
+    }
+
+    ctx.clearRect(0, 0, width, height)
+    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight)
+
+    // Apply dark film-noir overlay gradient directly to canvas
+    const gradient = ctx.createLinearGradient(0, 0, 0, height)
+    gradient.addColorStop(0, 'rgba(18, 20, 20, 0.4)')
+    gradient.addColorStop(0.5, 'rgba(18, 20, 20, 0.25)')
+    gradient.addColorStop(1, 'rgba(18, 20, 20, 0.65)')
+    ctx.fillStyle = gradient
+    ctx.fillRect(0, 0, width, height)
+  }
+
+  // Scroll scrubbing synced to document scroll height down to footer
   useEffect(() => {
     if (reducedMotion || images.length === 0) return
 
     let requestId: number
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d', { alpha: false }) // Optimize for opaque background
+    const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Pre-calculate image dimensions to avoid layout thrashing
+    const handleResize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      canvas.width = window.innerWidth * dpr
+      canvas.height = window.innerHeight * dpr
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
     const render = () => {
-      if (!containerRef.current) return
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+      const progress = Math.max(0, Math.min(1, scrollTop / maxScroll))
 
-      const { top, height } = containerRef.current.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      const scrollableDistance = height - windowHeight
-
-      const scrolled = -top
-      let fraction = 0
-      if (scrollableDistance > 0) {
-        fraction = Math.max(0, Math.min(1, scrolled / scrollableDistance))
-      }
-
-      const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * FRAME_COUNT))
+      const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT))
 
       if (images[frameIndex] && images[frameIndex].complete) {
-        ctx.drawImage(images[frameIndex], 0, 0, canvas.width, canvas.height)
+        drawCover(ctx, images[frameIndex], canvas.width, canvas.height)
+      } else if (images[0] && images[0].complete) {
+        drawCover(ctx, images[0], canvas.width, canvas.height)
       }
 
       requestId = requestAnimationFrame(render)
     }
 
     requestId = requestAnimationFrame(render)
-    return () => cancelAnimationFrame(requestId)
+    return () => {
+      cancelAnimationFrame(requestId)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [images, reducedMotion])
 
+  const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
+
   return (
-    <div ref={containerRef} className="relative w-full h-[300vh] bg-background">
-      {/* Inject preload link for frame 0 so it loads super fast for LCP */}
+    <>
       <link rel="preload" href={getFrameUrl(0)} as="image" />
 
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
-        {/* Overlay a subtle gradient mask for the M3 dark theme aesthetic to ensure text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background z-10 pointer-events-none" />
-
-        {reducedMotion ? (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={getFrameUrl(0)}
-            alt="Hero Animation Frame"
-            className="w-full h-full object-cover"
-          />
-        ) : (
+      {/* Render the scrubbing canvas into the fixed background layer */}
+      {targetContainer &&
+        createPortal(
           <canvas
             ref={canvasRef}
-            width={1920}
-            height={1080}
-            className="w-full h-full object-cover"
-          />
+            className="fixed inset-0 w-full h-full object-cover z-[-3] pointer-events-none"
+          />,
+          targetContainer
         )}
-        
-        {/* Hero Content positioned over the canvas */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
-          <h1 className="text-display-lg text-on-background font-bold tracking-tight mb-4 drop-shadow-2xl">
+
+      {/* Hero Content Section */}
+      <div className="min-h-screen flex flex-col justify-center items-center text-center px-6 md:px-16 pt-28 pb-16 relative z-20">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <span className="font-heading text-xs uppercase tracking-widest text-primary-container font-bold px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-2">
+            SEO Specialist &amp; Technical Web Designer
+          </span>
+
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold text-on-surface tracking-tight leading-[1.1] drop-shadow-2xl">
             Hey, I&apos;m <span className="text-primary-container">Alain Dave Tapiru</span>.
           </h1>
-          <p className="text-headline-md text-on-surface-variant max-w-2xl drop-shadow-lg font-medium">
-            SEO Specialist, Virtual Assistant &amp; Tech Enthusiast.
+
+          <p className="font-sans text-lg sm:text-xl md:text-2xl text-on-surface-variant max-w-3xl mx-auto drop-shadow-lg font-medium leading-relaxed">
+            Data-Driven Search Engine Optimization &amp; High-Performance Web Engineering.
           </p>
-          <p className="text-body-lg text-secondary-fixed-dim max-w-xl mt-3 drop-shadow-md">
-            Adaptable, Secure, and Client-Focused. Delivering high-end digital solutions with cinematic precision and relentless efficiency.
+
+          <p className="font-sans text-sm sm:text-base text-on-surface/70 max-w-2xl mx-auto drop-shadow-md leading-relaxed">
+            Delivering high-converting digital solutions with cinematic film-noir precision and relentless technical efficiency.
           </p>
-          <div className="flex items-center gap-4 mt-8">
-            <a
-              href="#contact"
-              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:bg-primary transition-all flex items-center gap-2"
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               Hire Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-            <a
-              href="#about"
-              className="border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full hover:bg-white/10 transition-colors"
+            </Link>
+            <Link
+              href="/about"
+              className="w-full sm:w-auto border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
             >
               About Me
-            </a>
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

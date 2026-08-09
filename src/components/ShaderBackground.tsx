@@ -203,7 +203,7 @@ export const ShaderBackground = () => {
   if (!targetContainer) return null
   
   return createPortal(
-    <canvas ref={canvasRef} className="w-full h-full block" />,
+    <canvas ref={canvasRef} className="fixed inset-0 w-full h-full block z-[-2] pointer-events-none mix-blend-screen opacity-75" />,
     targetContainer
   )
 }

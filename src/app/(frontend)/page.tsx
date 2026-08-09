@@ -4,14 +4,15 @@ import type { Page as PayloadPage } from '@/payload-types'
 import config from '@payload-config'
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ScrollHero } from '@/components/ScrollHero'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'Alain Dave Tapiru | SEO Specialist & Virtual Assistant',
-  description: 'BSIT Network & Cybersecurity student, SEO Specialist, Virtual Assistant, and AI Tech Enthusiast.',
+  title: 'Alain Dave Tapiru | SEO Specialist & Web Designer',
+  description: 'BSIT Network & Cybersecurity student, Technical SEO Specialist, Web Designer, and AI Tech Enthusiast.',
   url: 'https://alaintapiru.com'
 })
 
@@ -39,87 +40,48 @@ export default async function Page() {
     <>
       <LivePreviewListener />
       
-      {/* 1. HERO SECTION WITH SCROLL SCRUBBING */}
+      {/* 1. HERO SECTION */}
       <section id="home" className="relative">
         <ScrollHero />
       </section>
 
-      {/* 2. CORE COMPETENCIES (BENTO GRID) */}
-      <section id="services" className="px-6 md:px-16 py-24 max-w-7xl mx-auto relative z-20">
-        <div className="mb-16">
+      {/* 2. TOOLS I USE GRID */}
+      <section className="py-16 bg-[#0f1112]/50 backdrop-blur-sm border-y border-white/5 relative z-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-16 text-center">
           <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
-            What I Bring To The Table
+            Technical Stack
           </span>
-          <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface mb-4">
-            Core Competencies
+          <h2 className="font-heading text-2xl md:text-3xl font-extrabold text-on-surface mb-8">
+            Tools &amp; Technologies I Master
           </h2>
-          <div className="w-24 h-1 bg-primary-container rounded-full" />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Card 1: Customer Service */}
-          <div className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group hover:-translate-y-1">
-            <span className="material-symbols-outlined text-4xl text-primary-container mb-6 block group-hover:scale-110 transition-transform">
-              support_agent
-            </span>
-            <h3 className="font-heading text-xl font-bold text-on-surface mb-3">
-              Customer Service
-            </h3>
-            <p className="font-sans text-sm text-on-surface/70 leading-relaxed">
-              Delivering premium, white-glove support experiences tailored to high-end client expectations.
-            </p>
-          </div>
-
-          {/* Card 2: SEO Strategy */}
-          <div className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group hover:-translate-y-1">
-            <span className="material-symbols-outlined text-4xl text-primary-container mb-6 block group-hover:scale-110 transition-transform">
-              query_stats
-            </span>
-            <h3 className="font-heading text-xl font-bold text-on-surface mb-3">
-              SEO Strategy
-            </h3>
-            <p className="font-sans text-sm text-on-surface/70 leading-relaxed">
-              Data-driven optimization engineering to dominate search presence and drive targeted organic acquisition.
-            </p>
-          </div>
-
-          {/* Card 3: AI Web Design */}
-          <div className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group hover:-translate-y-1 lg:col-span-2 relative overflow-hidden">
-            <div className="relative z-10">
-              <span className="material-symbols-outlined text-4xl text-primary-container mb-6 block group-hover:scale-110 transition-transform">
-                web
-              </span>
-              <h3 className="font-heading text-xl font-bold text-on-surface mb-3">
-                AI Web Design &amp; Integration
-              </h3>
-              <p className="font-sans text-sm text-on-surface/70 leading-relaxed max-w-md">
-                Leveraging cutting-edge generative tools to craft immersive, high-performance digital environments with film-noir aesthetics.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 4: Virtual Assistance */}
-          <div className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group hover:-translate-y-1 lg:col-span-2 relative overflow-hidden">
-            <div className="relative z-10">
-              <span className="material-symbols-outlined text-4xl text-primary-container mb-6 block group-hover:scale-110 transition-transform">
-                admin_panel_settings
-              </span>
-              <h3 className="font-heading text-xl font-bold text-on-surface mb-3">
-                Virtual Assistance
-              </h3>
-              <p className="font-sans text-sm text-on-surface/70 leading-relaxed max-w-md">
-                Secure, adaptable, and proactive administrative operations management for fast-paced tech environments.
-              </p>
-            </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {[
+              { name: 'Ahrefs', cat: 'SEO & Audit', icon: 'search' },
+              { name: 'Cloudflare', cat: 'CDN & Security', icon: 'shield' },
+              { name: 'Next.js', cat: 'Web Framework', icon: 'code' },
+              { name: 'WordPress', cat: 'CMS Platform', icon: 'language' },
+              { name: 'Yoast / RankMath', cat: 'On-Page SEO', icon: 'tune' },
+              { name: 'Google Analytics', cat: 'Data Analytics', icon: 'analytics' },
+            ].map((tool) => (
+              <div
+                key={tool.name}
+                className="p-5 rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group flex flex-col items-center justify-center text-center"
+              >
+                <span className="material-symbols-outlined text-3xl text-primary-container mb-2 group-hover:scale-110 transition-transform">
+                  {tool.icon}
+                </span>
+                <h3 className="font-heading text-sm font-bold text-on-surface">{tool.name}</h3>
+                <p className="font-sans text-[10px] text-on-surface/50 mt-1">{tool.cat}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 3. ABOUT ME & THE JOURNEY */}
-      <section id="about" className="py-24 bg-[#141617]/80 border-y border-white/5 relative z-20 overflow-hidden">
+      {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
+      <section className="py-24 bg-[#141617]/50 backdrop-blur-sm border-b border-white/5 relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-16 flex flex-col lg:flex-row items-center gap-16">
-          {/* Portrait Image */}
-          <div className="w-full lg:w-1/2 relative min-h-[420px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <div className="w-full lg:w-1/2 relative min-h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <Image
               src="/about_me.jpg"
               alt="Alain Dave Tapiru Portrait"
@@ -127,121 +89,250 @@ export default async function Page() {
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-[#121414]/80 backdrop-blur-xl border border-white/10">
+            <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-[#121414]/90 backdrop-blur-xl border border-white/10">
               <p className="font-heading text-xs text-primary-container uppercase tracking-widest mb-1 font-bold">
-                The Journey
+                About Alain Dave Tapiru
               </p>
-              <h3 className="font-heading text-lg font-bold text-on-surface">
-                Crafting digital experiences through adaptation.
+              <h3 className="font-heading text-base font-bold text-on-surface">
+                Data-Driven SEO Specialist &amp; Technical Web Designer
               </h3>
             </div>
           </div>
 
-          {/* Narrative Content */}
-          <div className="w-full lg:w-1/2">
-            <span className="font-heading text-xs text-primary-container uppercase tracking-widest mb-2 block font-bold">
-              About Alain
+          <div className="w-full lg:w-1/2 space-y-6">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+              Background &amp; Expertise
             </span>
-            <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface mb-6 leading-tight">
-              From Support to Systems <br />
-              <span className="text-primary-container">An Evolution.</span>
+            <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface leading-tight">
+              Ranking Websites &amp; Building Robust Web Infrastructure.
             </h2>
+            <p className="font-sans text-on-surface/80 text-sm leading-relaxed">
+              Combining technical SEO, modern web development, and cybersecurity principles to deliver end-to-end digital growth for brands and agencies.
+            </p>
 
-            <div className="space-y-4 font-sans text-on-surface/80 text-base leading-relaxed">
-              <p>
-                My professional journey began on the front lines of customer experience as a Customer Service Representative. It was there I learned the invaluable skill of empathy and rapid problem-solving.
-              </p>
-              
-              <blockquote className="p-5 border-l-4 border-primary-container bg-white/5 rounded-r-xl font-heading text-sm text-on-surface italic my-6">
-                &ldquo;Adaptability isn&apos;t just about survival; it&apos;s about finding the optimal path forward when the terrain changes.&rdquo;
-              </blockquote>
-
-              <p>
-                Moving into Search Engine Optimization (SEO) and serving as a Virtual Assistant (VA), I developed a strategic mindset—learning to analyze data, optimize workflows, and anticipate client needs before they arise.
-              </p>
-              <p>
-                Today, I am channeling that drive into my studies as a <strong>BSIT student</strong>, specializing in <strong>Network &amp; Cybersecurity</strong>. Parallel to my formal education, I am deeply immersed in AI expertise, exploring how artificial intelligence automates complex workflows and defends digital assets.
-              </p>
+            {/* Metrics Counters */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-4 border-t border-white/10">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                <span className="font-heading text-3xl font-extrabold text-primary-container block">3+</span>
+                <span className="font-sans text-xs text-on-surface/70">Years Experience</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                <span className="font-heading text-3xl font-extrabold text-primary-container block">50+</span>
+                <span className="font-sans text-xs text-on-surface/70">Websites Optimized</span>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 col-span-2 sm:col-span-1">
+                <span className="font-heading text-3xl font-extrabold text-primary-container block">99%</span>
+                <span className="font-sans text-xs text-on-surface/70">Client Satisfaction</span>
+              </div>
             </div>
 
-            {/* Core Competencies Tech Stack Chips */}
-            <div className="mt-8 pt-6 border-t border-white/10">
-              <p className="font-heading text-xs text-on-surface/50 uppercase tracking-widest mb-3">
-                Technical Focus Areas
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  'Cybersecurity',
-                  'Network Architecture',
-                  'AI Integration',
-                  'SEO Strategy',
-                  'Systems Analysis',
-                  'Virtual Assistance'
-                ].map((chip) => (
-                  <span
-                    key={chip}
-                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-heading font-medium text-on-surface uppercase tracking-wider"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
+            <div className="pt-2">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-widest font-bold text-primary-container hover:underline"
+              >
+                Read Full Biography <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. INDUSTRIES SUPPORTED */}
-      <section id="industries" className="py-16 bg-[#101212] border-b border-white/5 relative z-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-16 text-center">
-          <p className="font-heading text-xs text-on-surface/50 uppercase tracking-widest mb-8 font-semibold">
-            Industries I&apos;ve Supported
+      {/* 4. THE SEO PROCESS CYCLE (6-STEP GRID) */}
+      <section className="py-24 max-w-7xl mx-auto px-6 md:px-16 relative z-20">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+            Methodology
+          </span>
+          <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface mb-4">
+            The 6-Step SEO Process
+          </h2>
+          <p className="font-sans text-sm text-on-surface/70">
+            A systematic engineering approach to search engine ranking and organic traffic expansion.
           </p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center">
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              step: '01',
+              title: 'Website Audit',
+              desc: 'Comprehensive technical review analyzing site health, speed, indexing, crawlability, and schema implementation.',
+              icon: 'find_in_page',
+            },
+            {
+              step: '02',
+              title: 'Keyword Research',
+              desc: 'High-intent search query discovery tailored to target buyer personas and search volume dynamics.',
+              icon: 'key',
+            },
+            {
+              step: '03',
+              title: 'Competitive Analysis',
+              desc: 'Deconstructing top-ranking competitor strategies, backlink profiles, and content gaps.',
+              icon: 'equalizer',
+            },
+            {
+              step: '04',
+              title: 'On-Page SEO',
+              desc: 'Optimizing titles, headers, internal linking structure, metadata, and core web vitals.',
+              icon: 'edit_note',
+            },
+            {
+              step: '05',
+              title: 'Off-Page SEO',
+              desc: 'Authoritative backlink acquisition, brand mention building, and local citations.',
+              icon: 'hub',
+            },
+            {
+              step: '06',
+              title: 'Reporting & Data Analysis',
+              desc: 'Monthly transparent rank tracking, conversion metrics, and continuous performance tuning.',
+              icon: 'monitoring',
+            },
+          ].map((item) => (
+            <div
+              key={item.step}
+              className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group hover:-translate-y-1 relative"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <span className="material-symbols-outlined text-4xl text-primary-container group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </span>
+                <span className="font-heading text-2xl font-black text-white/10 group-hover:text-primary-container/30 transition-colors">
+                  {item.step}
+                </span>
+              </div>
+              <h3 className="font-heading text-xl font-bold text-on-surface mb-3">{item.title}</h3>
+              <p className="font-sans text-sm text-on-surface/70 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. FEATURED PROJECTS */}
+      <section className="py-24 bg-[#101212]/50 backdrop-blur-sm border-t border-white/5 relative z-20">
+        <div className="max-w-7xl mx-auto px-6 md:px-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+              <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+                Portfolio Showcase
+              </span>
+              <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface">
+                Featured SEO &amp; Web Projects
+              </h2>
+            </div>
+            <Link
+              href="/projects"
+              className="font-heading text-xs uppercase tracking-widest font-bold text-primary-container hover:underline flex items-center gap-1"
+            >
+              View All Case Studies <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { icon: 'storefront', label: 'E-Commerce' },
-              { icon: 'memory', label: 'Technology' },
-              { icon: 'real_estate_agent', label: 'Real Estate' },
-              { icon: 'monetization_on', label: 'Finance' },
-            ].map((ind) => (
-              <div key={ind.label} className="flex items-center gap-3 bg-white/5 px-6 py-3 rounded-full border border-white/5">
-                <span className="material-symbols-outlined text-2xl text-primary-container">{ind.icon}</span>
-                <span className="font-heading text-sm font-semibold text-on-surface">{ind.label}</span>
+              {
+                title: 'Executive Optical Local SEO',
+                cat: 'Local Search Optimization',
+                desc: 'Scaled organic search visibility across 100+ retail locations nationwide.',
+                slug: 'executive-optical-local-seo',
+              },
+              {
+                title: 'Claimscale.ai Resume Portfolio',
+                cat: 'AI Web Design & Tech SEO',
+                desc: 'Custom high-performance web architecture built with film-noir aesthetics and AI features.',
+                slug: 'claimscale-ai-portfolio',
+              },
+            ].map((proj) => (
+              <div
+                key={proj.slug}
+                className="p-8 rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-2">
+                    {proj.cat}
+                  </span>
+                  <h3 className="font-heading text-2xl font-bold text-on-surface mb-3">{proj.title}</h3>
+                  <p className="font-sans text-sm text-on-surface/70 leading-relaxed mb-6">{proj.desc}</p>
+                </div>
+                <Link
+                  href={`/projects/${proj.slug}`}
+                  className="inline-flex items-center gap-2 font-heading text-xs uppercase font-bold text-on-surface group-hover:text-primary-container transition-colors"
+                >
+                  Explore Case Study <span className="material-symbols-outlined text-sm">north_east</span>
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. CONTACT / HIRE ME SECTION */}
-      <section id="contact" className="py-24 px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest mb-2 block font-bold">
-          Get In Touch
-        </span>
-        <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface mb-6">
-          Ready to Elevate Your Digital Operations?
-        </h2>
-        <p className="font-sans text-on-surface/70 max-w-xl mx-auto mb-10 leading-relaxed">
-          Whether you need high-impact SEO strategy, virtual assistance, or AI workflow integration, let&apos;s discuss how we can work together.
-        </p>
+      {/* 6. TESTIMONIALS */}
+      <section className="py-24 max-w-7xl mx-auto px-6 md:px-16 relative z-20">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+            Client Feedback
+          </span>
+          <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface mb-4">
+            What Clients &amp; Partners Say
+          </h2>
+        </div>
 
-        <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="mailto:alaindavetapiru@gmail.com"
-            className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center gap-2"
-          >
-            Send An Email <span className="material-symbols-outlined text-sm">mail</span>
-          </a>
-          <a
-            href="#home"
-            className="border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-white/10 transition-colors"
-          >
-            Back to Top
-          </a>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              quote: "[PLACEHOLDER - EDIT LATER] Alain's technical SEO insight transformed our organic reach. His systematic approach to site audits and Keyword strategy brought us to page one.",
+              author: '[PLACEHOLDER - Client Name]',
+              title: '[PLACEHOLDER - Business Title]',
+            },
+            {
+              quote: "[PLACEHOLDER - EDIT LATER] Working with Alain on web design and optimization was effortless. He delivers high-end aesthetics backed by fast, clean code.",
+              author: '[PLACEHOLDER - Partner Name]',
+              title: '[PLACEHOLDER - Agency Director]',
+            },
+          ].map((test, idx) => (
+            <div key={idx} className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 backdrop-blur-xl relative">
+              <span className="material-symbols-outlined text-4xl text-primary-container/30 mb-4 block">
+                format_quote
+              </span>
+              <p className="font-sans text-sm text-on-surface/80 italic leading-relaxed mb-6">
+                &ldquo;{test.quote}&rdquo;
+              </p>
+              <div>
+                <h4 className="font-heading text-sm font-bold text-on-surface">{test.author}</h4>
+                <p className="font-sans text-xs text-on-surface/50">{test.title}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* 6. PAYLOAD CMS BLOCKS FALLBACK (IF BLOCKS ARE ADDED LATER IN ADMIN) */}
+      {/* 7. CALL TO ACTION */}
+      <section id="contact" className="py-24 px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">
+        <div className="p-12 rounded-3xl bg-[#181a1b]/80 border border-primary-container/30 backdrop-blur-2xl shadow-[0_0_50px_rgba(230,126,34,0.1)]">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-widest mb-2 block font-bold">
+            Get Started
+          </span>
+          <h2 className="font-heading text-3xl md:text-5xl font-extrabold text-on-surface mb-6">
+            Ready to Elevate Your Search Rankings?
+          </h2>
+          <p className="font-sans text-on-surface/70 max-w-xl mx-auto mb-10 text-sm leading-relaxed">
+            Whether you need a full technical SEO audit, a custom Next.js web application, or ongoing optimization, let&apos;s talk strategy.
+          </p>
+
+          <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link
+              href="/contact"
+              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center gap-2"
+            >
+              Book A Consultation <span className="material-symbols-outlined text-sm">calendar_month</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* PAYLOAD CMS BLOCKS FALLBACK */}
       {page?.layout != null && page.layout.length > 0 && (
         <section className="max-w-7xl mx-auto px-8 relative z-20 py-12">
           <RenderBlocks blocks={page.layout as { blockType: string; [key: string]: unknown }[]} />
