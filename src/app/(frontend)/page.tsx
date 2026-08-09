@@ -86,6 +86,7 @@ export default async function Page() {
               src="/about_me.jpg"
               alt="Alain Dave Tapiru Portrait"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
