@@ -142,12 +142,29 @@ export const ScrollHero = () => {
         
         {/* Hero Content positioned over the canvas */}
         <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
-          <h1 className="text-display-lg text-on-background font-bold tracking-tight mb-4 drop-shadow-lg">
-            Engineering Digital <span className="text-primary">Masterpieces</span>.
+          <h1 className="text-display-lg text-on-background font-bold tracking-tight mb-4 drop-shadow-2xl">
+            Hey, I&apos;m <span className="text-primary-container">Alain Dave Tapiru</span>.
           </h1>
-          <p className="text-headline-md text-on-surface-variant max-w-2xl drop-shadow-md">
-            Scroll down to explore the journey of Next.js, WebGL, and flawless execution.
+          <p className="text-headline-md text-on-surface-variant max-w-2xl drop-shadow-lg font-medium">
+            SEO Specialist, Virtual Assistant &amp; Tech Enthusiast.
           </p>
+          <p className="text-body-lg text-secondary-fixed-dim max-w-xl mt-3 drop-shadow-md">
+            Adaptable, Secure, and Client-Focused. Delivering high-end digital solutions with cinematic precision and relentless efficiency.
+          </p>
+          <div className="flex items-center gap-4 mt-8">
+            <a
+              href="#contact"
+              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:bg-primary transition-all flex items-center gap-2"
+            >
+              Hire Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+            <a
+              href="#about"
+              className="border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 rounded-full hover:bg-white/10 transition-colors"
+            >
+              About Me
+            </a>
+          </div>
         </div>
       </div>
     </div>

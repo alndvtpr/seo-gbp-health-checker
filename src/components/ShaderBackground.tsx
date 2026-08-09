@@ -4,36 +4,72 @@ import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 const vertexShaderSource = `
-  attribute vec2 position;
-  varying vec2 vUv;
+  attribute vec2 a_position;
+  varying vec2 v_texCoord;
   void main() {
-    vUv = position * 0.5 + 0.5;
-    gl_Position = vec4(position, 0.0, 1.0);
+    v_texCoord = a_position * 0.5 + 0.5;
+    gl_Position = vec4(a_position, 0.0, 1.0);
   }
 `
 
 const fragmentShaderSource = `
-  precision mediump float;
-  varying vec2 vUv;
+  precision highp float;
+  varying vec2 v_texCoord;
   uniform float u_time;
   uniform vec2 u_resolution;
+  uniform vec2 u_mouse;
+
+  vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+  float snoise(vec2 v){
+    const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+             -0.577350269189626, 0.024390243902439);
+    vec2 i  = floor(v + dot(v, C.yy) );
+    vec2 x0 = v -   i + dot(i, C.xx);
+    vec2 i1;
+    i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    vec4 x12 = x0.xyxy + C.xxzz;
+    x12.xy -= i1;
+    i = mod(i, 289.0);
+    vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+    + i.x + vec3(0.0, i1.x, 1.0 ));
+    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+      dot(x12.zw,x12.zw)), 0.0);
+    m = m*m ;
+    m = m*m ;
+    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+    vec3 h = abs(x) - 0.5;
+    vec3 ox = floor(x + 0.5);
+    vec3 a0 = x - ox;
+    m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+    vec3 g;
+    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+    return 130.0 * dot(m, g);
+  }
 
   void main() {
-    vec2 st = gl_FragCoord.xy / u_resolution;
+    vec2 uv = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
     
-    // Subtle fluid / noise gradient
-    // We use a very subtle dark scheme that matches the M3 surface colors
-    float color1 = sin(st.x * 2.0 + u_time * 0.15) * 0.5 + 0.5;
-    float color2 = cos(st.y * 3.0 - u_time * 0.2) * 0.5 + 0.5;
-    float color3 = sin((st.x + st.y) * 2.5 + u_time * 0.1) * 0.5 + 0.5;
+    float noise1 = snoise(uv * 3.0 - u_time * 0.08);
+    float noise2 = snoise(uv * 6.0 + u_time * 0.15);
+    float finalNoise = noise1 * 0.5 + noise2 * 0.25;
     
-    // Very subtle base color (e.g. RGB 10, 10, 15) with slight variations
-    vec3 base = vec3(0.04, 0.04, 0.05); // deep dark background
-    vec3 highlight = vec3(0.06, 0.08, 0.12); // subtle bluish-purple shift
+    vec3 color = vec3(0.02, 0.02, 0.03); 
+    vec3 amber = vec3(0.9, 0.49, 0.13); // #E67E22 Noir Amber Glow
+    float glow = smoothstep(0.1, 0.8, finalNoise);
     
-    vec3 finalColor = mix(base, highlight, (color1 * color2 * color3) * 0.4);
+    float dist = distance(uv, mouse);
+    float mouseGlow = smoothstep(0.35, 0.0, dist) * 0.25;
     
-    gl_FragColor = vec4(finalColor, 1.0);
+    color += amber * glow * 0.25;
+    color += amber * mouseGlow;
+    
+    float vignette = smoothstep(1.3, 0.35, length(uv - 0.5));
+    color *= vignette;
+    
+    gl_FragColor = vec4(color, 0.85);
   }
 `
 
@@ -43,7 +79,6 @@ export const ShaderBackground = () => {
   const [reducedMotion, setReducedMotion] = useState(false)
   
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setReducedMotion(mediaQuery.matches)
@@ -58,8 +93,7 @@ export const ShaderBackground = () => {
     const canvas = canvasRef.current
     if (!canvas) return
     
-    // Request a low-power context since it's just an ambient background
-    const gl = canvas.getContext('webgl', { alpha: false, antialias: false, powerPreference: 'low-power' })
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'low-power' })
     if (!gl) return
 
     const compileShader = (type: number, source: string) => {
@@ -93,13 +127,10 @@ export const ShaderBackground = () => {
     
     gl.useProgram(program)
 
-    // Setup full screen quad
     const vertices = new Float32Array([
       -1, -1,
        1, -1,
       -1,  1,
-      -1,  1,
-       1, -1,
        1,  1,
     ])
     
@@ -107,27 +138,38 @@ export const ShaderBackground = () => {
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
     
-    const positionLocation = gl.getAttribLocation(program, 'position')
-    gl.enableVertexAttribArray(positionLocation)
-    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0)
+    const posLoc = gl.getAttribLocation(program, 'a_position')
+    gl.enableVertexAttribArray(posLoc)
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0)
     
-    const timeLocation = gl.getUniformLocation(program, 'u_time')
-    const resolutionLocation = gl.getUniformLocation(program, 'u_resolution')
+    const timeLoc = gl.getUniformLocation(program, 'u_time')
+    const resLoc = gl.getUniformLocation(program, 'u_resolution')
+    const mouseLoc = gl.getUniformLocation(program, 'u_mouse')
 
-    // Handle high DPI and resizing
+    let mouse = { x: canvas.width / 2, y: canvas.height / 2 }
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      if (rect.width && rect.height) {
+        const nx = (event.clientX - rect.left) / rect.width
+        const ny = 1.0 - (event.clientY - rect.top) / rect.height
+        mouse.x = nx * canvas.width
+        mouse.y = ny * canvas.height
+      }
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const { width, height } = entry.contentRect
-        // Downscale slightly for performance (DPR capped at 1.5 for ambient background)
         const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
         canvas.width = width * dpr
         canvas.height = height * dpr
         gl.viewport(0, 0, canvas.width, canvas.height)
-        gl.uniform2f(resolutionLocation, canvas.width, canvas.height)
       }
     })
     
-    // Note: React 18 strict mode double-invokes effects, but ResizeObserver is safe to re-attach
     resizeObserver.observe(canvas)
 
     const startTime = performance.now()
@@ -135,8 +177,10 @@ export const ShaderBackground = () => {
     
     const render = (time: number) => {
       const elapsedTime = (time - startTime) / 1000
-      gl.uniform1f(timeLocation, elapsedTime)
-      gl.drawArrays(gl.TRIANGLES, 0, 6)
+      gl.uniform1f(timeLoc, elapsedTime)
+      gl.uniform2f(resLoc, canvas.width, canvas.height)
+      gl.uniform2f(mouseLoc, mouse.x, mouse.y)
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       requestId = requestAnimationFrame(render)
     }
     
@@ -144,6 +188,7 @@ export const ShaderBackground = () => {
     
     return () => {
       cancelAnimationFrame(requestId)
+      window.removeEventListener('mousemove', handleMouseMove)
       resizeObserver.disconnect()
       gl.deleteProgram(program)
       gl.deleteShader(vs)
