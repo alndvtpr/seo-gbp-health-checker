@@ -164,9 +164,9 @@ export const ScrollHero = () => {
           targetContainer
         )}
 
-      {/* Hero Content Section */}
-      <div className="min-h-screen flex flex-col justify-center items-center text-center px-6 md:px-16 pt-28 pb-16 relative z-20">
-        <div className="max-w-4xl mx-auto space-y-6">
+      {/* Hero Content Section - Left-aligned to leave right side clear for portrait scroll image */}
+      <div className="min-h-screen flex flex-col justify-center items-start text-left px-6 md:px-16 lg:px-24 pt-28 pb-16 relative z-20 max-w-7xl mx-auto">
+        <div className="max-w-2xl space-y-6">
           <span className="font-heading text-xs uppercase tracking-widest text-primary-container font-bold px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-2">
             SEO Specialist &amp; Technical Web Designer
           </span>
@@ -175,15 +175,15 @@ export const ScrollHero = () => {
             Hey, I&apos;m <span className="text-primary-container">Alain Dave Tapiru</span>.
           </h1>
 
-          <p className="font-sans text-lg sm:text-xl md:text-2xl text-on-surface-variant max-w-3xl mx-auto drop-shadow-lg font-medium leading-relaxed">
+          <p className="font-sans text-lg sm:text-xl md:text-2xl text-on-surface-variant drop-shadow-lg font-medium leading-relaxed">
             Data-Driven Search Engine Optimization &amp; High-Performance Web Engineering.
           </p>
 
-          <p className="font-sans text-sm sm:text-base text-on-surface/70 max-w-2xl mx-auto drop-shadow-md leading-relaxed">
+          <p className="font-sans text-sm sm:text-base text-on-surface/70 max-w-xl drop-shadow-md leading-relaxed">
             Delivering high-converting digital solutions with cinematic film-noir precision and relentless technical efficiency.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+          <div className="flex flex-col sm:flex-row items-center justify-start gap-4 pt-6 w-full">
             <Link
               href="/contact"
               className="w-full sm:w-auto bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
