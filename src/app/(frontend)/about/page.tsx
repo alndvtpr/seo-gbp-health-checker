@@ -11,23 +11,23 @@ export const metadata = generateMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="pt-32 pb-24 px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-20">
+    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-20">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
         <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
           Biography &amp; Background
         </span>
-        <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface mb-6">
+        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6">
           Architecting Search Presence &amp; Secure Digital Systems
         </h1>
-        <p className="font-sans text-on-surface/70 text-base leading-relaxed">
+        <p className="font-sans text-on-surface/70 text-xs sm:text-base leading-relaxed">
           I am an SEO Specialist, Web Designer, and BSIT student specializing in Network &amp; Cybersecurity.
         </p>
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-5 relative h-[450px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+        <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/about_me.jpg"
@@ -37,11 +37,11 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="lg:col-span-7 space-y-6">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-on-surface">
+        <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface">
             The Journey &amp; Philosophy
           </h2>
-          <div className="space-y-4 font-sans text-on-surface/80 text-sm leading-relaxed">
+          <div className="space-y-3 sm:space-y-4 font-sans text-on-surface/80 text-xs sm:text-sm leading-relaxed">
             <p>
               My professional journey began in client-facing operations, where I mastered human-centric problem solving and clear communication. Transitioning into Search Engine Optimization allowed me to combine analytical strategy with technical execution.
             </p>
@@ -54,22 +54,22 @@ export default function AboutPage() {
             <h3 className="font-heading text-xs text-primary-container uppercase tracking-widest mb-3 font-bold">
               Core Competencies
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">Technical &amp; On-Page SEO</h4>
-                <p className="font-sans text-xs text-on-surface/60">Crawl error resolution, schema markup, site speed optimization, and canonical mapping.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Technical &amp; On-Page SEO</h4>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Crawl error resolution, schema markup, site speed optimization, and canonical mapping.</p>
               </div>
-              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">Modern Web Design</h4>
-                <p className="font-sans text-xs text-on-surface/60">Next.js, Tailwind CSS, Payload CMS, and responsive glassmorphism interfaces.</p>
+              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Modern Web Design</h4>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Next.js, Tailwind CSS, Payload CMS, and responsive glassmorphism interfaces.</p>
               </div>
-              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">Cybersecurity Fundamentals</h4>
-                <p className="font-sans text-xs text-on-surface/60">Network security, header hardening, secure API integration, and threat awareness.</p>
+              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Cybersecurity Fundamentals</h4>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Network security, header hardening, secure API integration, and threat awareness.</p>
               </div>
-              <div className="p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-sm font-bold text-on-surface mb-1">AI Workflow Automation</h4>
-                <p className="font-sans text-xs text-on-surface/60">Prompt engineering, custom AI agents, and programmatic content workflows.</p>
+              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
+                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">AI Workflow Automation</h4>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Prompt engineering, custom AI agents, and programmatic content workflows.</p>
               </div>
             </div>
           </div>
@@ -77,25 +77,25 @@ export default function AboutPage() {
       </div>
 
       {/* Certifications & Education Placeholder */}
-      <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10">
+      <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10">
         <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
           Credentials
         </span>
-        <h2 className="font-heading text-2xl font-bold text-on-surface mb-6">
+        <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-4 sm:mb-6">
           Education &amp; Certifications
         </h2>
-        <div className="space-y-4">
-          <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div className="space-y-3 sm:space-y-4">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h3 className="font-heading text-sm font-bold text-on-surface">Bachelor of Science in Information Technology</h3>
-              <p className="font-sans text-xs text-on-surface/60">Specialization in Network &amp; Cybersecurity</p>
+              <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface">Bachelor of Science in Information Technology</h3>
+              <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Specialization in Network &amp; Cybersecurity</p>
             </div>
             <span className="font-heading text-xs text-primary-container font-bold">In Progress</span>
           </div>
-          <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h3 className="font-heading text-sm font-bold text-on-surface">[PLACEHOLDER - EDIT LATER] SEO &amp; Technical Certifications</h3>
-              <p className="font-sans text-xs text-on-surface/60">[PLACEHOLDER - Certification Authority &amp; Year]</p>
+              <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface">[PLACEHOLDER - EDIT LATER] SEO &amp; Technical Certifications</h3>
+              <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">[PLACEHOLDER - Certification Authority &amp; Year]</p>
             </div>
             <span className="font-heading text-xs text-on-surface/40">Verified</span>
           </div>
@@ -103,10 +103,10 @@ export default function AboutPage() {
       </div>
 
       {/* CTA */}
-      <div className="text-center pt-8">
+      <div className="text-center pt-4 sm:pt-8">
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all min-h-[48px]"
         >
           Work With Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
         </Link>

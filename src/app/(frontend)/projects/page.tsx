@@ -34,40 +34,40 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="pt-32 pb-24 px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-16">
+    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-10 sm:space-y-16">
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto">
         <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
           Proven Track Record
         </span>
-        <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface mb-6">
+        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6">
           Projects &amp; SEO Case Studies
         </h1>
-        <p className="font-sans text-on-surface/70 text-base leading-relaxed">
+        <p className="font-sans text-on-surface/70 text-xs sm:text-base leading-relaxed">
           Deep dives into technical search engine optimization, web architecture, and digital growth campaigns.
         </p>
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         {projects.map((proj) => (
           <div
             key={proj.slug}
-            className="p-8 rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
+            className="p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
           >
             <div>
               <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-2 font-semibold">
                 {proj.category}
               </span>
-              <h2 className="font-heading text-xl font-bold text-on-surface mb-3 group-hover:text-primary-container transition-colors">
+              <h2 className="font-heading text-lg sm:text-xl font-bold text-on-surface mb-2 sm:mb-3 group-hover:text-primary-container transition-colors">
                 {proj.title}
               </h2>
-              <p className="font-sans text-xs text-on-surface/70 leading-relaxed mb-6">
+              <p className="font-sans text-xs text-on-surface/70 leading-relaxed mb-4 sm:mb-6">
                 {proj.description}
               </p>
 
               {/* Tech Badges */}
-              <div className="flex flex-wrap gap-1.5 mb-8">
+              <div className="flex flex-wrap gap-1.5 mb-6 sm:mb-8">
                 {proj.tools.map((t) => (
                   <span
                     key={t}
@@ -81,7 +81,7 @@ export default function ProjectsPage() {
 
             <Link
               href={`/projects/${proj.slug}`}
-              className="inline-flex items-center justify-between w-full pt-4 border-t border-white/10 font-heading text-xs uppercase tracking-wider font-bold text-on-surface group-hover:text-primary-container transition-colors"
+              className="inline-flex items-center justify-between w-full pt-4 border-t border-white/10 font-heading text-xs uppercase tracking-wider font-bold text-on-surface group-hover:text-primary-container transition-colors py-1"
             >
               Read Case Study
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
