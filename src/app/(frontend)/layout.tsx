@@ -5,11 +5,10 @@ import './styles.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ShaderBackground } from '@/components/ShaderBackground'
+import { generateMetadata } from '@/lib/seo'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' })
-
-import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
   title: 'Alain Dave Tapiru | Portfolio',

@@ -11,8 +11,16 @@ export const Navbar = () => {
   const pathname = usePathname()
 
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 50
+          setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev))
+          ticking = false
+        })
+        ticking = true
+      }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -63,6 +71,8 @@ export const Navbar = () => {
               <img
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
+                width="48"
+                height={48}
                 className="w-full h-full object-contain p-1"
               />
             </div>

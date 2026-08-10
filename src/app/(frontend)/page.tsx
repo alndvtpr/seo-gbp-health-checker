@@ -110,7 +110,7 @@ export default async function Page() {
                   {tool.icon}
                 </span>
                 <span className="font-headline-md text-xs sm:text-sm font-bold text-on-surface leading-tight">{tool.name}</span>
-                <span className="font-label-sm text-[10px] text-on-surface-variant/70">{tool.category}</span>
+                <span className="font-label-sm text-[10px] text-on-surface/80">{tool.category}</span>
               </div>
             ))}
           </div>
