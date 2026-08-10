@@ -136,19 +136,20 @@ export const ScrollHero = () => {
     window.addEventListener('resize', handleResize)
 
     const render = () => {
-      if (!containerRef.current) {
-        requestId = requestAnimationFrame(render)
-        return
-      }
-
-      const rect = containerRef.current.getBoundingClientRect()
+      const currentScrollY = window.scrollY || window.pageYOffset || 0
       const windowHeight = window.innerHeight
-      const scrollableDistance = rect.height - windowHeight
+      const footerElement = document.querySelector('footer')
 
-      let fraction = 0
-      if (scrollableDistance > 0) {
-        fraction = Math.max(0, Math.min(1, -rect.top / scrollableDistance))
+      let maxScroll = 0
+      if (footerElement) {
+        const footerRect = footerElement.getBoundingClientRect()
+        const footerTopInDoc = footerRect.top + currentScrollY
+        maxScroll = Math.max(1, footerTopInDoc - windowHeight)
+      } else {
+        maxScroll = Math.max(1, document.documentElement.scrollHeight - windowHeight)
       }
+
+      const fraction = Math.max(0, Math.min(1, currentScrollY / maxScroll))
 
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
       const imgs = imagesRef.current
@@ -167,7 +168,7 @@ export const ScrollHero = () => {
         targetImg = imgs[0]
       }
 
-      if (targetImg && targetImg.naturalWidth > 0) {
+      if (targetImg && targetImg.naturalWidth > 0 && ctx) {
         drawCover(ctx, targetImg, canvas.width, canvas.height)
       }
 
@@ -184,10 +185,10 @@ export const ScrollHero = () => {
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
   return (
-    <div ref={containerRef} className="relative w-full h-[250vh] bg-transparent">
+    <div ref={containerRef} className="relative w-full min-h-[90vh] sm:min-h-screen bg-transparent flex flex-col justify-center">
       <link rel="preload" href={getFrameUrl(0)} as="image" />
 
-      {/* Sticky viewport container holding the scrubbing canvas */}
+      {/* Viewport container holding the background canvas */}
       {targetContainer &&
         createPortal(
           <canvas
@@ -197,9 +198,9 @@ export const ScrollHero = () => {
           targetContainer
         )}
 
-      {/* Hero Content Section - Sticky so text stays in viewport while scrolling through hero frames */}
-      <div className="sticky top-0 h-screen flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-16 sm:pt-20 pb-12 relative z-20 max-w-7xl mx-auto pointer-events-none">
-        <div className="max-w-2xl space-y-4 sm:space-y-6 pointer-events-auto">
+      {/* Hero Content Section */}
+      <div className="flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-20 sm:pt-28 pb-12 sm:pb-20 relative z-20 max-w-7xl mx-auto w-full">
+        <div className="max-w-2xl space-y-4 sm:space-y-6">
           <span className="font-heading text-[11px] sm:text-xs uppercase tracking-widest text-primary-container font-bold px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-1 sm:mb-2">
             SEO Specialist &amp; Technical Web Designer
           </span>
