@@ -5,7 +5,7 @@ import { generateMetadata } from '@/lib/seo'
 export const metadata = generateMetadata({
   title: 'About Alain Dave Tapiru – SEO Specialist & Web Designer',
   description:
-    'Learn about Alain Dave Tapiru's background in technical SEO, Next.js web development, cybersecurity, and executive virtual assistance.',
+    "Learn about Alain Dave Tapiru's background in technical SEO, Next.js web development, cybersecurity, and executive virtual assistance.",
   url: 'https://alaintapiru.com/about',
 })
 
