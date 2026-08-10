@@ -111,19 +111,31 @@ export default async function Page() {
               Combining technical SEO, modern web development, and cybersecurity principles to deliver end-to-end digital growth for brands and agencies.
             </p>
 
-            {/* Metrics Counters */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-4 border-t border-white/10">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                <span className="font-heading text-3xl font-extrabold text-primary-container block">3+</span>
-                <span className="font-sans text-xs text-on-surface/70">Years Experience</span>
+            {/* Honest Metrics Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col justify-between">
+                <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
+                  4 Core Disciplines
+                </span>
+                <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                  SEO, Web Dev, Support &amp; Bookkeeping
+                </span>
               </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                <span className="font-heading text-3xl font-extrabold text-primary-container block">50+</span>
-                <span className="font-sans text-xs text-on-surface/70">Websites Optimized</span>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col justify-between">
+                <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
+                  AI-Powered Workflows
+                </span>
+                <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                  Leveraging modern tools for faster, smarter builds.
+                </span>
               </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 col-span-2 sm:col-span-1">
-                <span className="font-heading text-3xl font-extrabold text-primary-container block">99%</span>
-                <span className="font-sans text-xs text-on-surface/70">Client Satisfaction</span>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col justify-between">
+                <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
+                  24hr Response Time
+                </span>
+                <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                  Dedicated, fast communication.
+                </span>
               </div>
             </div>
 
