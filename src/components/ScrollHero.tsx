@@ -28,32 +28,39 @@ export const ScrollHero = () => {
     return () => mediaQuery.removeEventListener('change', listener)
   }, [])
 
-  // Progressive frame decoding & caching using useRef
+  // Preload and decode hero frames efficiently into useRef
   useEffect(() => {
     if (reducedMotion) return
 
     const imageCache: HTMLImageElement[] = imagesRef.current
 
-    // Critical LCP frame
-    const firstImage = new Image()
-    firstImage.src = getFrameUrl(0)
-    imageCache[0] = firstImage
-
-    firstImage.onload = () => {
-      if (canvasRef.current) {
-        const ctx = canvasRef.current.getContext('2d')
-        if (ctx) {
-          drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
+    // Preload frame 0 immediately for instant LCP display
+    if (!imageCache[0]) {
+      const firstImage = new Image()
+      firstImage.src = getFrameUrl(0)
+      imageCache[0] = firstImage
+      firstImage.onload = () => {
+        if (canvasRef.current) {
+          const ctx = canvasRef.current.getContext('2d')
+          if (ctx) {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2)
+            canvasRef.current.width = window.innerWidth * dpr
+            canvasRef.current.height = window.innerHeight * dpr
+            drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
+          }
         }
       }
     }
 
+    // Preload remaining frames progressively using requestIdleCallback / setTimeout
     let frameIndex = 1
-    const loadNextFrame = (idleDeadline: IdleDeadline) => {
-      while (idleDeadline.timeRemaining() > 0 && frameIndex < FRAME_COUNT) {
-        const img = new Image()
-        img.src = getFrameUrl(frameIndex)
-        imageCache[frameIndex] = img
+    const loadNextFrame = (idleDeadline?: IdleDeadline) => {
+      while ((!idleDeadline || idleDeadline.timeRemaining() > 0) && frameIndex < FRAME_COUNT) {
+        if (!imageCache[frameIndex]) {
+          const img = new Image()
+          img.src = getFrameUrl(frameIndex)
+          imageCache[frameIndex] = img
+        }
         frameIndex++
       }
 
@@ -61,7 +68,7 @@ export const ScrollHero = () => {
         if ('requestIdleCallback' in window) {
           requestIdleCallback(loadNextFrame)
         } else {
-          setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
+          setTimeout(() => loadNextFrame(), 40)
         }
       }
     }
@@ -69,13 +76,17 @@ export const ScrollHero = () => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(loadNextFrame)
     } else {
-      setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
+      setTimeout(() => loadNextFrame(), 40)
     }
   }, [reducedMotion])
 
-  // Helper to draw image using object-fit: cover logic
+  // Helper to draw image using crisp object-fit: cover logic
   const drawCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, width: number, height: number) => {
-    if (!img || !img.complete || img.naturalWidth === 0) return
+    if (!img || img.naturalWidth === 0) return
+
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
+
     const imgRatio = img.naturalWidth / img.naturalHeight
     const canvasRatio = width / height
     let drawWidth = width
@@ -103,9 +114,9 @@ export const ScrollHero = () => {
     ctx.fillRect(0, 0, width, height)
   }
 
-  // Scroll scrubbing synced to document scroll height down to footer
+  // Scroll scrubbing synced to document scroll height
   useEffect(() => {
-    if (reducedMotion) return
+    if (!mounted || reducedMotion) return
 
     let requestId: number
     const canvas = canvasRef.current
@@ -114,7 +125,7 @@ export const ScrollHero = () => {
     if (!ctx) return
 
     const handleResize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = window.innerWidth * dpr
       canvas.height = window.innerHeight * dpr
     }
@@ -129,10 +140,22 @@ export const ScrollHero = () => {
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT))
       const imgs = imagesRef.current
 
-      if (imgs[frameIndex] && imgs[frameIndex].complete) {
-        drawCover(ctx, imgs[frameIndex], canvas.width, canvas.height)
-      } else if (imgs[0] && imgs[0].complete) {
-        drawCover(ctx, imgs[0], canvas.width, canvas.height)
+      // Find best target image: exact frame or closest previously loaded frame
+      let targetImg = imgs[frameIndex]
+      if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
+        for (let i = frameIndex - 1; i >= 0; i--) {
+          if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth > 0) {
+            targetImg = imgs[i]
+            break
+          }
+        }
+      }
+      if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
+        targetImg = imgs[0]
+      }
+
+      if (targetImg && targetImg.naturalWidth > 0) {
+        drawCover(ctx, targetImg, canvas.width, canvas.height)
       }
 
       requestId = requestAnimationFrame(render)
@@ -143,7 +166,7 @@ export const ScrollHero = () => {
       cancelAnimationFrame(requestId)
       window.removeEventListener('resize', handleResize)
     }
-  }, [reducedMotion])
+  }, [mounted, reducedMotion])
 
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
