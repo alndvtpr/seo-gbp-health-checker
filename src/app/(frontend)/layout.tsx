@@ -21,12 +21,31 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${montserrat.variable}`}>
       <head>
+        {/* Google Analytics (gtag.js) G-CXKV1T0Z5Y */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-CXKV1T0Z5Y"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-CXKV1T0Z5Y');
+            `,
+          }}
+        />
+
+        {/* Font CDN preconnect hints */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content="#121414" />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
         {/* Placeholder for WebGL Background Canvas (Phase 5) */}
