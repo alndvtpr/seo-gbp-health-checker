@@ -49,7 +49,7 @@ export const Navbar = () => {
         <div
           className={`mx-auto flex items-center justify-between transition-all duration-500 ${
             scrolled
-              ? 'bg-[#121414]/80 backdrop-blur-xl shadow-2xl py-2.5 px-6 rounded-full max-w-6xl border border-white/10'
+              ? 'bg-[#121414]/90 shadow-2xl py-2.5 px-6 rounded-full max-w-6xl border border-white/10'
               : 'px-6 md:px-12 max-w-7xl'
           }`}
         >
@@ -61,12 +61,11 @@ export const Navbar = () => {
           >
             <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full border border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-white/5">
               <Image
-                src="/logo.png"
-                alt="Alain Dave Tapiru"
+                src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
+                alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
                 fill
                 className="object-contain p-1"
                 priority
-                unoptimized
               />
             </div>
             <span className="font-heading font-bold text-lg md:text-xl text-on-surface tracking-tight group-hover:text-primary transition-colors">
@@ -75,7 +74,7 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1 bg-surface-container-low/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/5">
+          <div className="hidden lg:flex items-center gap-1 bg-surface-container-low/60 px-4 py-1.5 rounded-full border border-white/5">
             {navLinks.map((link) => {
               const isActive = pathname === link.href
               return (
@@ -120,11 +119,11 @@ export const Navbar = () => {
 
       {/* Full Screen Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-[#0c0f0f]/95 backdrop-blur-2xl z-[40] flex flex-col justify-center items-center lg:hidden transition-all duration-500 ${
+        className={`fixed inset-0 bg-[#0c0f0f]/95 z-[40] flex flex-col justify-center items-center lg:hidden transition-all duration-500 ${
           menuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
         }`}
       >
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-primary-container/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-primary-container/10 rounded-full pointer-events-none" />
         <nav className="flex flex-col items-center gap-6 relative z-10">
           {navLinks.map((link) => (
             <Link

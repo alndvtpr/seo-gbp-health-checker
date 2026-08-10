@@ -42,7 +42,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       </div>
 
       {/* Metadata Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-[#181a1b]/80 border border-white/10">
         <div>
           <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block">Client / Project</span>
           <span className="font-heading text-sm font-bold text-on-surface capitalize">{formattedTitle}</span>

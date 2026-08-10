@@ -13,12 +13,11 @@ export const Footer = () => {
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/10 flex items-center justify-center bg-white/5">
               <Image
-                src="/logo.png"
-                alt="Alain Dave Tapiru"
+                src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
+                alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
                 width={40}
                 height={40}
                 className="object-contain p-0.5 w-full h-full"
-                unoptimized
               />
             </div>
             <span className="font-heading font-bold text-on-surface text-xl">

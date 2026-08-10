@@ -56,7 +56,7 @@ export default function ServicesPage() {
         {services.map((s) => (
           <div
             key={s.title}
-            className="p-8 md:p-10 rounded-3xl bg-[#181a1b]/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group flex flex-col justify-between"
+            className="p-8 md:p-10 rounded-3xl bg-[#181a1b]/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-6">

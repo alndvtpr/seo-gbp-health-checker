@@ -77,7 +77,7 @@ export default function AboutPage() {
       </div>
 
       {/* Certifications & Education Placeholder */}
-      <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl">
+      <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10">
         <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
           Credentials
         </span>

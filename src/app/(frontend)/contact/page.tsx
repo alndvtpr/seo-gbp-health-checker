@@ -27,7 +27,7 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Contact Info & Status */}
-        <div className="lg:col-span-5 space-y-8 p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl">
+        <div className="lg:col-span-5 space-y-8 p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10">
           {/* Availability Status Badge */}
           <div className="p-4 rounded-2xl bg-white/5 border border-primary-container/30 flex items-center gap-3">
             <span className="relative flex h-3 w-3">
@@ -87,7 +87,7 @@ export default function ContactPage() {
         </div>
 
         {/* Form */}
-        <div className="lg:col-span-7 p-8 md:p-10 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl">
+        <div className="lg:col-span-7 p-8 md:p-10 rounded-3xl bg-[#181a1b]/80 border border-white/10">
           {submitted ? (
             <div className="py-16 text-center space-y-4">
               <span className="material-symbols-outlined text-5xl text-primary-container">

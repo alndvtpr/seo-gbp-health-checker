@@ -65,7 +65,7 @@ export default async function Page() {
             ].map((tool) => (
               <div
                 key={tool.name}
-                className="p-5 rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group flex flex-col items-center justify-center text-center"
+                className="p-5 rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col items-center justify-center text-center"
               >
                 <span className="material-symbols-outlined text-3xl text-primary-container mb-2 group-hover:scale-110 transition-transform">
                   {tool.icon}
@@ -90,7 +90,7 @@ export default async function Page() {
               className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-[#121414]/90 backdrop-blur-xl border border-white/10">
+            <div className="absolute bottom-6 left-6 right-6 p-6 rounded-2xl bg-[#121414]/90 border border-white/10">
               <p className="font-heading text-xs text-primary-container uppercase tracking-widest mb-1 font-bold">
                 About Alain Dave Tapiru
               </p>
@@ -194,7 +194,7 @@ export default async function Page() {
           ].map((item) => (
             <div
               key={item.step}
-              className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group hover:-translate-y-1 relative"
+              className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group hover:-translate-y-1 relative"
             >
               <div className="flex items-center justify-between mb-6">
                 <span className="material-symbols-outlined text-4xl text-primary-container group-hover:scale-110 transition-transform">
@@ -293,7 +293,7 @@ export default async function Page() {
               title: '[PLACEHOLDER - Agency Director]',
             },
           ].map((test, idx) => (
-            <div key={idx} className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 backdrop-blur-xl relative">
+            <div key={idx} className="p-8 rounded-2xl bg-[#181a1b]/70 border border-white/5 relative">
               <span className="material-symbols-outlined text-4xl text-primary-container/30 mb-4 block">
                 format_quote
               </span>

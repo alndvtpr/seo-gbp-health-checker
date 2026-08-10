@@ -53,7 +53,7 @@ export default function ProjectsPage() {
         {projects.map((proj) => (
           <div
             key={proj.slug}
-            className="p-8 rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 backdrop-blur-xl group flex flex-col justify-between"
+            className="p-8 rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
           >
             <div>
               <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-2 font-semibold">

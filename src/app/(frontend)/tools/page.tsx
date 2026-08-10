@@ -39,7 +39,7 @@ export default function ToolsPage() {
       </div>
 
       {/* Tool 1: SEO Specialist Salary Calculator */}
-      <div className="p-8 md:p-12 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl space-y-8">
+      <div className="p-8 md:p-12 rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-8">
         <div className="flex items-center gap-3">
           <span className="material-symbols-outlined text-4xl text-primary-container">
             calculate
@@ -117,7 +117,7 @@ export default function ToolsPage() {
 
       {/* Tool 2: Free Instant Audit Request */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl space-y-6">
+        <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-6">
           <span className="material-symbols-outlined text-4xl text-primary-container">
             travel_explore
           </span>
@@ -151,7 +151,7 @@ export default function ToolsPage() {
         </div>
 
         {/* Tool 3: Local SEO / GBP Auditor Shell */}
-        <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 backdrop-blur-xl space-y-6">
+        <div className="p-8 rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-6">
           <span className="material-symbols-outlined text-4xl text-primary-container">
             distance
           </span>
