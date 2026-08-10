@@ -90,110 +90,127 @@ export const ShaderBackground = () => {
 
   useEffect(() => {
     if (!mounted || reducedMotion) return
-    const canvas = canvasRef.current
-    if (!canvas) return
-    
-    const gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'low-power' })
-    if (!gl) return
 
-    const compileShader = (type: number, source: string) => {
-      const shader = gl.createShader(type)
-      if (!shader) return null
-      gl.shaderSource(shader, source)
-      gl.compileShader(shader)
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error('Shader compile error:', gl.getShaderInfoLog(shader))
-        gl.deleteShader(shader)
-        return null
+    let cleanupFn: (() => void) | undefined
+    let idleId: number | undefined
+    let timeoutId: NodeJS.Timeout | undefined
+
+    const initWebGL = () => {
+      const canvas = canvasRef.current
+      if (!canvas) return
+      
+      const gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'low-power' })
+      if (!gl) return
+
+      const compileShader = (type: number, source: string) => {
+        const shader = gl.createShader(type)
+        if (!shader) return null
+        gl.shaderSource(shader, source)
+        gl.compileShader(shader)
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.error('Shader compile error:', gl.getShaderInfoLog(shader))
+          gl.deleteShader(shader)
+          return null
+        }
+        return shader
       }
-      return shader
-    }
 
-    const vs = compileShader(gl.VERTEX_SHADER, vertexShaderSource)
-    const fs = compileShader(gl.FRAGMENT_SHADER, fragmentShaderSource)
-    
-    if (!vs || !fs) return
+      const vs = compileShader(gl.VERTEX_SHADER, vertexShaderSource)
+      const fs = compileShader(gl.FRAGMENT_SHADER, fragmentShaderSource)
+      
+      if (!vs || !fs) return
 
-    const program = gl.createProgram()
-    if (!program) return
-    gl.attachShader(program, vs)
-    gl.attachShader(program, fs)
-    gl.linkProgram(program)
-    
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error('Program link error:', gl.getProgramInfoLog(program))
-      return
-    }
-    
-    gl.useProgram(program)
-
-    const vertices = new Float32Array([
-      -1, -1,
-       1, -1,
-      -1,  1,
-       1,  1,
-    ])
-    
-    const buffer = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
-    
-    const posLoc = gl.getAttribLocation(program, 'a_position')
-    gl.enableVertexAttribArray(posLoc)
-    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0)
-    
-    const timeLoc = gl.getUniformLocation(program, 'u_time')
-    const resLoc = gl.getUniformLocation(program, 'u_resolution')
-    const mouseLoc = gl.getUniformLocation(program, 'u_mouse')
-
-    let mouse = { x: canvas.width / 2, y: canvas.height / 2 }
-
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
-      if (rect.width && rect.height) {
-        const nx = (event.clientX - rect.left) / rect.width
-        const ny = 1.0 - (event.clientY - rect.top) / rect.height
-        mouse.x = nx * canvas.width
-        mouse.y = ny * canvas.height
+      const program = gl.createProgram()
+      if (!program) return
+      gl.attachShader(program, vs)
+      gl.attachShader(program, fs)
+      gl.linkProgram(program)
+      
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error('Program link error:', gl.getProgramInfoLog(program))
+        return
       }
-    }
+      
+      gl.useProgram(program)
 
-    window.addEventListener('mousemove', handleMouseMove)
+      const vertices = new Float32Array([
+        -1.0, -1.0,
+         1.0, -1.0,
+        -1.0,  1.0,
+         1.0,  1.0,
+      ])
+      
+      const buffer = gl.createBuffer()
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
+      
+      const posLoc = gl.getAttribLocation(program, 'a_position')
+      gl.enableVertexAttribArray(posLoc)
+      gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0)
+      
+      const timeLoc = gl.getUniformLocation(program, 'u_time')
+      const resLoc = gl.getUniformLocation(program, 'u_resolution')
+      const mouseLoc = gl.getUniformLocation(program, 'u_mouse')
+      
+      let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+      const handleMouseMove = (e: MouseEvent) => {
+        mouse.x = e.clientX
+        mouse.y = window.innerHeight - e.clientY
+      }
+      window.addEventListener('mousemove', handleMouseMove, { passive: true })
 
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { width, height } = entry.contentRect
+      const updateSize = () => {
         const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
-        canvas.width = width * dpr
-        canvas.height = height * dpr
+        canvas.width = window.innerWidth * dpr
+        canvas.height = window.innerHeight * dpr
         gl.viewport(0, 0, canvas.width, canvas.height)
       }
-    })
-    
-    resizeObserver.observe(canvas)
+      
+      updateSize()
+      
+      const resizeObserver = new ResizeObserver(() => {
+        updateSize()
+      })
+      
+      resizeObserver.observe(canvas)
 
-    const startTime = performance.now()
-    let requestId: number
-    
-    const render = (time: number) => {
-      const elapsedTime = (time - startTime) / 1000
-      gl.uniform1f(timeLoc, elapsedTime)
-      gl.uniform2f(resLoc, canvas.width, canvas.height)
-      gl.uniform2f(mouseLoc, mouse.x, mouse.y)
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+      const startTime = performance.now()
+      let requestId: number
+      
+      const render = (time: number) => {
+        const elapsedTime = (time - startTime) / 1000
+        gl.uniform1f(timeLoc, elapsedTime)
+        gl.uniform2f(resLoc, canvas.width, canvas.height)
+        gl.uniform2f(mouseLoc, mouse.x, mouse.y)
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+        requestId = requestAnimationFrame(render)
+      }
+      
       requestId = requestAnimationFrame(render)
+
+      cleanupFn = () => {
+        cancelAnimationFrame(requestId)
+        window.removeEventListener('mousemove', handleMouseMove)
+        resizeObserver.disconnect()
+        gl.deleteProgram(program)
+        gl.deleteShader(vs)
+        gl.deleteShader(fs)
+        gl.deleteBuffer(buffer)
+      }
     }
-    
-    requestId = requestAnimationFrame(render)
-    
+
+    if ('requestIdleCallback' in window) {
+      idleId = (window as any).requestIdleCallback(() => initWebGL(), { timeout: 1000 })
+    } else {
+      timeoutId = setTimeout(initWebGL, 200)
+    }
+
     return () => {
-      cancelAnimationFrame(requestId)
-      window.removeEventListener('mousemove', handleMouseMove)
-      resizeObserver.disconnect()
-      gl.deleteProgram(program)
-      gl.deleteShader(vs)
-      gl.deleteShader(fs)
-      gl.deleteBuffer(buffer)
+      if (idleId && 'cancelIdleCallback' in window) {
+        ;(window as any).cancelIdleCallback(idleId)
+      }
+      if (timeoutId) clearTimeout(timeoutId)
+      if (cleanupFn) cleanupFn()
     }
   }, [mounted, reducedMotion])
 

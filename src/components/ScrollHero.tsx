@@ -13,10 +13,12 @@ function getFrameUrl(index: number) {
 }
 
 export const ScrollHero = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [images, setImages] = useState<HTMLImageElement[]>([])
+  const imagesRef = useRef<HTMLImageElement[]>([])
   const [mounted, setMounted] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const maxScrollRef = useRef<number>(1)
 
   useEffect(() => {
     setMounted(true)
@@ -28,58 +30,94 @@ export const ScrollHero = () => {
     return () => mediaQuery.removeEventListener('change', listener)
   }, [])
 
-  // Progressive frame decoding & caching
+  // Preload and decode hero frames into useRef
   useEffect(() => {
     if (reducedMotion) return
 
-    const imageCache: HTMLImageElement[] = []
+    const imageCache: HTMLImageElement[] = imagesRef.current
 
-    // Critical LCP frame
-    const firstImage = new Image()
-    firstImage.src = getFrameUrl(0)
-    imageCache[0] = firstImage
-
-    firstImage.onload = () => {
-      if (canvasRef.current) {
-        const ctx = canvasRef.current.getContext('2d')
-        if (ctx) {
-          drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
+    // Preload frame 0 immediately for LCP
+    if (!imageCache[0]) {
+      const firstImage = new Image()
+      firstImage.src = getFrameUrl(0)
+      imageCache[0] = firstImage
+      firstImage.onload = () => {
+        if (canvasRef.current) {
+          const ctx = canvasRef.current.getContext('2d')
+          if (ctx) {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2)
+            canvasRef.current.width = Math.floor(window.innerWidth * dpr)
+            canvasRef.current.height = Math.floor(window.innerHeight * dpr)
+            drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
+          }
         }
       }
     }
 
-    let frameIndex = 1
-    const loadNextFrame = (idleDeadline: IdleDeadline) => {
-      while (idleDeadline.timeRemaining() > 0 && frameIndex < FRAME_COUNT) {
-        const img = new Image()
-        img.src = getFrameUrl(frameIndex)
-        imageCache[frameIndex] = img
-        frameIndex++
+    // Defer preloading remaining frames until AFTER page load or initial user interaction
+    // to preserve 100% network bandwidth for initial paint (FCP/LCP)
+    let isPreloadStarted = false
+    let preloadTimeout: NodeJS.Timeout
+
+    const startDeferredPreload = () => {
+      if (isPreloadStarted) return
+      isPreloadStarted = true
+
+      let index = 1
+      const loadNextBatch = () => {
+        const batchSize = 4 // Small batch size to keep network queue responsive
+        let loadedInBatch = 0
+        while (index < FRAME_COUNT && loadedInBatch < batchSize) {
+          if (!imageCache[index]) {
+            const img = new Image()
+            img.src = getFrameUrl(index)
+            imageCache[index] = img
+          }
+          index++
+          loadedInBatch++
+        }
+        if (index < FRAME_COUNT) {
+          preloadTimeout = setTimeout(loadNextBatch, 60)
+        }
       }
 
-      if (frameIndex < FRAME_COUNT) {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadNextFrame)
-        } else {
-          setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
-        }
-      } else {
-        setImages([...imageCache])
-      }
+      loadNextBatch()
     }
 
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadNextFrame)
+    // Trigger preload on window load event or on first scroll/user interaction
+    const handleInitialInteraction = () => {
+      startDeferredPreload()
+      window.removeEventListener('scroll', handleInitialInteraction)
+      window.removeEventListener('touchstart', handleInitialInteraction)
+    }
+
+    window.addEventListener('scroll', handleInitialInteraction, { passive: true })
+    window.addEventListener('touchstart', handleInitialInteraction, { passive: true })
+
+    if (document.readyState === 'complete') {
+      preloadTimeout = setTimeout(startDeferredPreload, 1500)
     } else {
-      setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
+      const handleWindowLoad = () => {
+        preloadTimeout = setTimeout(startDeferredPreload, 1000)
+        window.removeEventListener('load', handleWindowLoad)
+      }
+      window.addEventListener('load', handleWindowLoad)
     }
 
-    setImages(imageCache)
+    return () => {
+      window.removeEventListener('scroll', handleInitialInteraction)
+      window.removeEventListener('touchstart', handleInitialInteraction)
+      if (preloadTimeout) clearTimeout(preloadTimeout)
+    }
   }, [reducedMotion])
 
   // Helper to draw image using object-fit: cover logic
   const drawCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, width: number, height: number) => {
-    if (!img || !img.complete || img.naturalWidth === 0) return
+    if (!img || img.naturalWidth === 0) return
+
+    ctx.imageSmoothingEnabled = true
+    ctx.imageSmoothingQuality = 'high'
+
     const imgRatio = img.naturalWidth / img.naturalHeight
     const canvasRatio = width / height
     let drawWidth = width
@@ -98,7 +136,7 @@ export const ScrollHero = () => {
     ctx.clearRect(0, 0, width, height)
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight)
 
-    // Apply dark film-noir overlay gradient directly to canvas
+    // Dark film-noir gradient overlay
     const gradient = ctx.createLinearGradient(0, 0, 0, height)
     gradient.addColorStop(0, 'rgba(18, 20, 20, 0.4)')
     gradient.addColorStop(0.5, 'rgba(18, 20, 20, 0.25)')
@@ -107,35 +145,74 @@ export const ScrollHero = () => {
     ctx.fillRect(0, 0, width, height)
   }
 
-  // Scroll scrubbing synced to document scroll height down to footer
+  // Scroll scrubbing synced to container scroll position
   useEffect(() => {
-    if (reducedMotion || images.length === 0) return
+    if (!mounted || reducedMotion) return
 
     let requestId: number
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
 
-    const handleResize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
-      canvas.width = window.innerWidth * dpr
-      canvas.height = window.innerHeight * dpr
+    const calculateMaxScroll = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight
+      const footerElement = document.querySelector('footer')
+
+      if (footerElement) {
+        const footerRect = footerElement.getBoundingClientRect()
+        const footerTopInDoc = footerRect.top + currentScrollY
+        maxScrollRef.current = Math.max(1, footerTopInDoc - windowHeight)
+      } else {
+        maxScrollRef.current = Math.max(1, document.documentElement.scrollHeight - windowHeight)
+      }
     }
-    handleResize()
-    window.addEventListener('resize', handleResize)
+
+    calculateMaxScroll()
+
+    const handleResizeOrScroll = () => {
+      calculateMaxScroll()
+    }
+
+    window.addEventListener('resize', handleResizeOrScroll, { passive: true })
+    window.addEventListener('orientationchange', handleResizeOrScroll, { passive: true })
 
     const render = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0
-      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
-      const progress = Math.max(0, Math.min(1, scrollTop / maxScroll))
+      const canvas = canvasRef.current
+      if (canvas) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        const targetWidth = Math.floor(window.innerWidth * dpr)
+        const targetHeight = Math.floor(window.innerHeight * dpr)
 
-      const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT))
+        if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+          canvas.width = targetWidth
+          canvas.height = targetHeight
+        }
 
-      if (images[frameIndex] && images[frameIndex].complete) {
-        drawCover(ctx, images[frameIndex], canvas.width, canvas.height)
-      } else if (images[0] && images[0].complete) {
-        drawCover(ctx, images[0], canvas.width, canvas.height)
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+          const maxScroll = maxScrollRef.current || 1
+
+          const fraction = Math.max(0, Math.min(1, currentScrollY / maxScroll))
+          const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
+          const imgs = imagesRef.current
+
+          // Find best target image: exact frame or closest previously loaded frame
+          let targetImg = imgs[frameIndex]
+          if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
+            for (let i = frameIndex - 1; i >= 0; i--) {
+              if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth > 0) {
+                targetImg = imgs[i]
+                break
+              }
+            }
+          }
+          if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
+            targetImg = imgs[0]
+          }
+
+          if (targetImg && targetImg.naturalWidth > 0) {
+            drawCover(ctx, targetImg, canvas.width, canvas.height)
+          }
+        }
       }
 
       requestId = requestAnimationFrame(render)
@@ -144,17 +221,18 @@ export const ScrollHero = () => {
     requestId = requestAnimationFrame(render)
     return () => {
       cancelAnimationFrame(requestId)
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', handleResizeOrScroll)
+      window.removeEventListener('orientationchange', handleResizeOrScroll)
     }
-  }, [images, reducedMotion])
+  }, [mounted, reducedMotion])
 
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
   return (
-    <>
+    <div ref={containerRef} className="relative w-full min-h-[90vh] sm:min-h-screen bg-transparent flex flex-col justify-center">
       <link rel="preload" href={getFrameUrl(0)} as="image" />
 
-      {/* Render the scrubbing canvas into the fixed background layer */}
+      {/* Viewport container holding the background canvas */}
       {targetContainer &&
         createPortal(
           <canvas
@@ -165,49 +243,40 @@ export const ScrollHero = () => {
         )}
 
       {/* Hero Content Section */}
-      <div className="min-h-screen flex flex-col justify-center items-start text-left px-6 md:px-16 pt-32 pb-20 relative z-20 max-w-7xl mx-auto">
-        <div className="absolute top-1/3 left-1/4 -translate-y-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#e67e22]/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
+      <div className="flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-20 sm:pt-28 pb-12 sm:pb-20 relative z-20 max-w-7xl mx-auto w-full">
+        <div className="max-w-2xl space-y-4 sm:space-y-6">
+          <span className="font-heading text-[11px] sm:text-xs uppercase tracking-widest text-primary-container font-bold px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-1 sm:mb-2">
+            SEO Specialist &amp; Technical Web Designer
+          </span>
 
-        <div className="max-w-4xl flex flex-col justify-center gap-6 relative z-10">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#e67e22]/40 bg-[#e67e22]/10 backdrop-blur-md">
-              <span className="text-[#e67e22] text-xs sm:text-sm font-semibold uppercase tracking-widest">
-                SEO SPECIALIST &amp; TECHNICAL WEB DESIGNER
-              </span>
-            </div>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
-            Hey, I&apos;m{' '}
-            <span className="text-[#e67e22] drop-shadow-[0_0_30px_rgba(230,126,34,0.6)]">
-              Alain Dave Tapiru.
-            </span>
+          <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl font-extrabold text-on-surface tracking-tight leading-[1.15] sm:leading-[1.1] drop-shadow-2xl">
+            Hey, I&apos;m <span className="text-primary-container">Alain Dave Tapiru</span>.
           </h1>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-100 max-w-3xl leading-snug">
+          <p className="font-sans text-base sm:text-xl md:text-2xl text-on-surface-variant drop-shadow-lg font-medium leading-relaxed">
             Data-Driven Search Engine Optimization &amp; High-Performance Web Engineering.
-          </h2>
+          </p>
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed">
+          <p className="font-sans text-xs sm:text-base text-on-surface/70 max-w-xl drop-shadow-md leading-relaxed">
             Delivering high-converting digital solutions with cinematic film-noir precision and relentless technical efficiency.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-4 w-full">
+          <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#e67e22] hover:bg-[#ff9436] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:shadow-[0_0_35px_rgba(230,126,34,0.8)] transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-decoration-none"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
-              HIRE AN SEO <span className="text-base">→</span>
+              Hire Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white border border-white/20 hover:border-white/40 font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-decoration-none"
+              className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
             >
-              ABOUT ME
+              About Me
             </Link>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

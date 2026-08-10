@@ -5,11 +5,10 @@ import './styles.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ShaderBackground } from '@/components/ShaderBackground'
+import { generateMetadata } from '@/lib/seo'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' })
-
-import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
   title: 'Alain Dave Tapiru | Portfolio',
@@ -44,7 +43,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#121414" />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
