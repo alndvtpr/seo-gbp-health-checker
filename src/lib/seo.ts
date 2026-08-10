@@ -18,6 +18,13 @@ export const generateMetadata = ({
   return {
     title: fullTitle,
     description: description || defaultDesc,
+    icons: {
+      icon: [
+        { url: '/logo.webp', type: 'image/webp' },
+        { url: '/logo.png', type: 'image/png' },
+      ],
+      apple: [{ url: '/logo.png', type: 'image/png' }],
+    },
     openGraph: {
       title: fullTitle,
       description: description || defaultDesc,

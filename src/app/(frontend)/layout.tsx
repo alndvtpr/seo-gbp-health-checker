@@ -36,6 +36,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
             `,
           }}
         />
+        <link rel="icon" href="/logo.webp" type="image/webp" />
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
