@@ -28,11 +28,11 @@ export default function AboutPage() {
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-5 relative h-[450px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/about_me.jpg"
             alt="Alain Dave Tapiru"
-            fill
-            className="object-cover object-center"
+            className="w-full h-full object-cover object-center absolute inset-0"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
         </div>
