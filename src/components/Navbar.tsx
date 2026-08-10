@@ -60,12 +60,10 @@ export const Navbar = () => {
             className="flex items-center gap-3 group relative z-[60]"
           >
             <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full border border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-white/5">
-              <Image
+              <img
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
-                fill
-                className="object-contain p-1"
-                priority
+                className="w-full h-full object-contain p-1"
               />
             </div>
             <span className="font-heading font-bold text-lg md:text-xl text-on-surface tracking-tight group-hover:text-primary transition-colors">
