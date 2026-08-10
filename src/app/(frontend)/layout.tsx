@@ -21,10 +21,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${montserrat.variable}`}>
       <head>
-        {/* Google Analytics (gtag.js) G-CXKV1T0Z5Y */}
+        {/* Google Analytics (gtag.js) G-41RVF48NJ8 */}
         <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-CXKV1T0Z5Y"
+          src="https://www.googletagmanager.com/gtag/js?id=G-41RVF48NJ8"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -32,7 +32,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-CXKV1T0Z5Y');
+              gtag('config', 'G-41RVF48NJ8');
             `,
           }}
         />
