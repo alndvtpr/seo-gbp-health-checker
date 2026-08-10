@@ -21,6 +21,21 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${montserrat.variable}`}>
       <head>
+        {/* Google Analytics (gtag.js) G-41RVF48NJ8 */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-41RVF48NJ8"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-41RVF48NJ8');
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
