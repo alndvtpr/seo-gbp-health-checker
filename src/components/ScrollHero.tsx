@@ -13,6 +13,7 @@ function getFrameUrl(index: number) {
 }
 
 export const ScrollHero = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [mounted, setMounted] = useState(false)
@@ -28,13 +29,13 @@ export const ScrollHero = () => {
     return () => mediaQuery.removeEventListener('change', listener)
   }, [])
 
-  // Preload and decode hero frames efficiently into useRef
+  // Preload and decode hero frames into useRef
   useEffect(() => {
     if (reducedMotion) return
 
     const imageCache: HTMLImageElement[] = imagesRef.current
 
-    // Preload frame 0 immediately for instant LCP display
+    // Preload frame 0 immediately for LCP
     if (!imageCache[0]) {
       const firstImage = new Image()
       firstImage.src = getFrameUrl(0)
@@ -52,35 +53,37 @@ export const ScrollHero = () => {
       }
     }
 
-    // Preload remaining frames progressively using requestIdleCallback / setTimeout
-    let frameIndex = 1
-    const loadNextFrame = (idleDeadline?: IdleDeadline) => {
-      while ((!idleDeadline || idleDeadline.timeRemaining() > 0) && frameIndex < FRAME_COUNT) {
-        if (!imageCache[frameIndex]) {
+    // Preload remaining frames progressively
+    let index = 1
+    const loadNextBatch = () => {
+      const batchSize = 10
+      let loadedInBatch = 0
+      while (index < FRAME_COUNT && loadedInBatch < batchSize) {
+        if (!imageCache[index]) {
           const img = new Image()
-          img.src = getFrameUrl(frameIndex)
-          imageCache[frameIndex] = img
+          img.src = getFrameUrl(index)
+          imageCache[index] = img
         }
-        frameIndex++
+        index++
+        loadedInBatch++
       }
-
-      if (frameIndex < FRAME_COUNT) {
+      if (index < FRAME_COUNT) {
         if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadNextFrame)
+          requestIdleCallback(() => loadNextBatch())
         } else {
-          setTimeout(() => loadNextFrame(), 40)
+          setTimeout(loadNextBatch, 30)
         }
       }
     }
 
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadNextFrame)
+      requestIdleCallback(() => loadNextBatch())
     } else {
-      setTimeout(() => loadNextFrame(), 40)
+      setTimeout(loadNextBatch, 30)
     }
   }, [reducedMotion])
 
-  // Helper to draw image using crisp object-fit: cover logic
+  // Helper to draw image using object-fit: cover logic
   const drawCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, width: number, height: number) => {
     if (!img || img.naturalWidth === 0) return
 
@@ -105,7 +108,7 @@ export const ScrollHero = () => {
     ctx.clearRect(0, 0, width, height)
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight)
 
-    // Apply dark film-noir overlay gradient directly to canvas
+    // Dark film-noir gradient overlay
     const gradient = ctx.createLinearGradient(0, 0, 0, height)
     gradient.addColorStop(0, 'rgba(18, 20, 20, 0.4)')
     gradient.addColorStop(0.5, 'rgba(18, 20, 20, 0.25)')
@@ -114,7 +117,7 @@ export const ScrollHero = () => {
     ctx.fillRect(0, 0, width, height)
   }
 
-  // Scroll scrubbing synced to document scroll height
+  // Scroll scrubbing synced to container scroll position
   useEffect(() => {
     if (!mounted || reducedMotion) return
 
@@ -133,11 +136,21 @@ export const ScrollHero = () => {
     window.addEventListener('resize', handleResize)
 
     const render = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0
-      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
-      const progress = Math.max(0, Math.min(1, scrollTop / maxScroll))
+      if (!containerRef.current) {
+        requestId = requestAnimationFrame(render)
+        return
+      }
 
-      const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT))
+      const rect = containerRef.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const scrollableDistance = rect.height - windowHeight
+
+      let fraction = 0
+      if (scrollableDistance > 0) {
+        fraction = Math.max(0, Math.min(1, -rect.top / scrollableDistance))
+      }
+
+      const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
       const imgs = imagesRef.current
 
       // Find best target image: exact frame or closest previously loaded frame
@@ -171,10 +184,10 @@ export const ScrollHero = () => {
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
   return (
-    <>
+    <div ref={containerRef} className="relative w-full h-[250vh] bg-transparent">
       <link rel="preload" href={getFrameUrl(0)} as="image" />
 
-      {/* Render the scrubbing canvas into the fixed background layer */}
+      {/* Sticky viewport container holding the scrubbing canvas */}
       {targetContainer &&
         createPortal(
           <canvas
@@ -184,9 +197,9 @@ export const ScrollHero = () => {
           targetContainer
         )}
 
-      {/* Hero Content Section - Left-aligned to leave right side clear for portrait scroll image */}
-      <div className="min-h-[calc(100vh-3.5rem)] sm:min-h-screen flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-24 sm:pt-28 pb-12 sm:pb-16 relative z-20 max-w-7xl mx-auto">
-        <div className="max-w-2xl space-y-4 sm:space-y-6">
+      {/* Hero Content Section - Sticky so text stays in viewport while scrolling through hero frames */}
+      <div className="sticky top-0 h-screen flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-16 sm:pt-20 pb-12 relative z-20 max-w-7xl mx-auto pointer-events-none">
+        <div className="max-w-2xl space-y-4 sm:space-y-6 pointer-events-auto">
           <span className="font-heading text-[11px] sm:text-xs uppercase tracking-widest text-primary-container font-bold px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-1 sm:mb-2">
             SEO Specialist &amp; Technical Web Designer
           </span>
@@ -219,6 +232,6 @@ export const ScrollHero = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
