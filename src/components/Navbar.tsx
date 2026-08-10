@@ -49,8 +49,8 @@ export const Navbar = () => {
         <div
           className={`mx-auto flex items-center justify-between transition-all duration-500 ${
             scrolled
-              ? 'bg-[#121414]/90 shadow-2xl py-2.5 px-6 rounded-full max-w-6xl border border-white/10'
-              : 'px-6 md:px-12 max-w-7xl'
+              ? 'bg-[#121414]/90 shadow-2xl py-2.5 px-6 rounded-full max-w-6xl border border-white/10 scale-95 md:scale-[0.98] translate-y-2 md:translate-y-4'
+              : 'px-6 md:px-12 max-w-7xl scale-100 translate-y-0'
           }`}
         >
           {/* Logo */}
