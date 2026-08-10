@@ -137,15 +137,18 @@ export const ScrollHero = () => {
       const canvas = canvasRef.current
       if (canvas) {
         const dpr = Math.min(window.devicePixelRatio || 1, 2)
-        if (canvas.width !== window.innerWidth * dpr || canvas.height !== window.innerHeight * dpr) {
-          canvas.width = window.innerWidth * dpr
-          canvas.height = window.innerHeight * dpr
+        const targetWidth = Math.floor(window.innerWidth * dpr)
+        const targetHeight = Math.floor(window.innerHeight * dpr)
+        
+        if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+          canvas.width = targetWidth
+          canvas.height = targetHeight
         }
 
         const ctx = canvas.getContext('2d')
         if (ctx) {
-          const currentScrollY = window.scrollY || window.pageYOffset || 0
-          const windowHeight = window.innerHeight
+          const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight
           const footerElement = document.querySelector('footer')
 
           let maxScroll = 0
