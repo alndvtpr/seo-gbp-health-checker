@@ -47,9 +47,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         {/* Async Google Tag Manager Script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-41RVF48NJ8"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

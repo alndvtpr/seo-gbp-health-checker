@@ -14,7 +14,7 @@ function getFrameUrl(index: number) {
 
 export const ScrollHero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [images, setImages] = useState<HTMLImageElement[]>([])
+  const imagesRef = useRef<HTMLImageElement[]>([])
   const [mounted, setMounted] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
 
@@ -28,11 +28,11 @@ export const ScrollHero = () => {
     return () => mediaQuery.removeEventListener('change', listener)
   }, [])
 
-  // Progressive frame decoding & caching
+  // Progressive frame decoding & caching using useRef
   useEffect(() => {
     if (reducedMotion) return
 
-    const imageCache: HTMLImageElement[] = []
+    const imageCache: HTMLImageElement[] = imagesRef.current
 
     // Critical LCP frame
     const firstImage = new Image()
@@ -63,8 +63,6 @@ export const ScrollHero = () => {
         } else {
           setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
         }
-      } else {
-        setImages([...imageCache])
       }
     }
 
@@ -73,8 +71,6 @@ export const ScrollHero = () => {
     } else {
       setTimeout(() => loadNextFrame({ timeRemaining: () => 10, didTimeout: false }), 50)
     }
-
-    setImages(imageCache)
   }, [reducedMotion])
 
   // Helper to draw image using object-fit: cover logic
@@ -109,7 +105,7 @@ export const ScrollHero = () => {
 
   // Scroll scrubbing synced to document scroll height down to footer
   useEffect(() => {
-    if (reducedMotion || images.length === 0) return
+    if (reducedMotion) return
 
     let requestId: number
     const canvas = canvasRef.current
@@ -131,11 +127,12 @@ export const ScrollHero = () => {
       const progress = Math.max(0, Math.min(1, scrollTop / maxScroll))
 
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT))
+      const imgs = imagesRef.current
 
-      if (images[frameIndex] && images[frameIndex].complete) {
-        drawCover(ctx, images[frameIndex], canvas.width, canvas.height)
-      } else if (images[0] && images[0].complete) {
-        drawCover(ctx, images[0], canvas.width, canvas.height)
+      if (imgs[frameIndex] && imgs[frameIndex].complete) {
+        drawCover(ctx, imgs[frameIndex], canvas.width, canvas.height)
+      } else if (imgs[0] && imgs[0].complete) {
+        drawCover(ctx, imgs[0], canvas.width, canvas.height)
       }
 
       requestId = requestAnimationFrame(render)
@@ -146,7 +143,7 @@ export const ScrollHero = () => {
       cancelAnimationFrame(requestId)
       window.removeEventListener('resize', handleResize)
     }
-  }, [images, reducedMotion])
+  }, [reducedMotion])
 
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
