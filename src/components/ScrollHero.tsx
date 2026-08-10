@@ -122,54 +122,64 @@ export const ScrollHero = () => {
     if (!mounted || reducedMotion) return
 
     let requestId: number
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
 
     const handleResize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas.width = window.innerWidth * dpr
-      canvas.height = window.innerHeight * dpr
+      const canvas = canvasRef.current
+      if (canvas) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        canvas.width = window.innerWidth * dpr
+        canvas.height = window.innerHeight * dpr
+      }
     }
-    handleResize()
     window.addEventListener('resize', handleResize)
 
     const render = () => {
-      const currentScrollY = window.scrollY || window.pageYOffset || 0
-      const windowHeight = window.innerHeight
-      const footerElement = document.querySelector('footer')
+      const canvas = canvasRef.current
+      if (canvas) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        if (canvas.width !== window.innerWidth * dpr || canvas.height !== window.innerHeight * dpr) {
+          canvas.width = window.innerWidth * dpr
+          canvas.height = window.innerHeight * dpr
+        }
 
-      let maxScroll = 0
-      if (footerElement) {
-        const footerRect = footerElement.getBoundingClientRect()
-        const footerTopInDoc = footerRect.top + currentScrollY
-        maxScroll = Math.max(1, footerTopInDoc - windowHeight)
-      } else {
-        maxScroll = Math.max(1, document.documentElement.scrollHeight - windowHeight)
-      }
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          const currentScrollY = window.scrollY || window.pageYOffset || 0
+          const windowHeight = window.innerHeight
+          const footerElement = document.querySelector('footer')
 
-      const fraction = Math.max(0, Math.min(1, currentScrollY / maxScroll))
+          let maxScroll = 0
+          if (footerElement) {
+            const footerRect = footerElement.getBoundingClientRect()
+            const footerTopInDoc = footerRect.top + currentScrollY
+            maxScroll = Math.max(1, footerTopInDoc - windowHeight)
+          } else {
+            maxScroll = Math.max(1, document.documentElement.scrollHeight - windowHeight)
+          }
 
-      const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
-      const imgs = imagesRef.current
+          const fraction = Math.max(0, Math.min(1, currentScrollY / maxScroll))
 
-      // Find best target image: exact frame or closest previously loaded frame
-      let targetImg = imgs[frameIndex]
-      if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
-        for (let i = frameIndex - 1; i >= 0; i--) {
-          if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth > 0) {
-            targetImg = imgs[i]
-            break
+          const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
+          const imgs = imagesRef.current
+
+          // Find best target image: exact frame or closest previously loaded frame
+          let targetImg = imgs[frameIndex]
+          if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
+            for (let i = frameIndex - 1; i >= 0; i--) {
+              if (imgs[i] && imgs[i].complete && imgs[i].naturalWidth > 0) {
+                targetImg = imgs[i]
+                break
+              }
+            }
+          }
+          if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
+            targetImg = imgs[0]
+          }
+
+          if (targetImg && targetImg.naturalWidth > 0) {
+            drawCover(ctx, targetImg, canvas.width, canvas.height)
           }
         }
-      }
-      if (!targetImg || !targetImg.complete || targetImg.naturalWidth === 0) {
-        targetImg = imgs[0]
-      }
-
-      if (targetImg && targetImg.naturalWidth > 0 && ctx) {
-        drawCover(ctx, targetImg, canvas.width, canvas.height)
       }
 
       requestId = requestAnimationFrame(render)
