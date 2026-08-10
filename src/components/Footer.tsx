@@ -31,9 +31,9 @@ export const Footer = () => {
 
         {/* Column 2: Navigation */}
         <div className="space-y-3">
-          <h4 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
             Quick Links
-          </h4>
+          </h3>
           <ul className="space-y-2 font-sans text-xs text-on-surface/70">
             <li>
               <Link href="/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Home</Link>
@@ -55,9 +55,9 @@ export const Footer = () => {
 
         {/* Column 3: Tools & Services */}
         <div className="space-y-3">
-          <h4 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
             Tools &amp; Services
-          </h4>
+          </h3>
           <ul className="space-y-2 font-sans text-xs text-on-surface/70">
             <li>
               <Link href="/services" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO Audit</Link>
@@ -79,9 +79,9 @@ export const Footer = () => {
 
         {/* Column 4: Newsletter */}
         <div className="space-y-3">
-          <h4 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
             Stay Updated
-          </h4>
+          </h3>
           <p className="font-sans text-xs text-on-surface/70">
             Subscribe for technical SEO tips, AI workflow guides, and performance optimization insights.
           </p>

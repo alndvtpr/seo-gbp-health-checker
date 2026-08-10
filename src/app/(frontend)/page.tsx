@@ -71,7 +71,7 @@ export default async function Page() {
                   {tool.icon}
                 </span>
                 <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface leading-tight">{tool.name}</h3>
-                <p className="font-sans text-[10px] text-on-surface/50 mt-1">{tool.cat}</p>
+                <p className="font-sans text-[10px] text-on-surface/80 mt-1">{tool.cat}</p>
               </div>
             ))}
           </div>

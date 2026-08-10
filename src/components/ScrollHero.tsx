@@ -18,6 +18,7 @@ export const ScrollHero = () => {
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [mounted, setMounted] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const maxScrollRef = useRef<number>(1)
 
   useEffect(() => {
     setMounted(true)
@@ -45,41 +46,68 @@ export const ScrollHero = () => {
           const ctx = canvasRef.current.getContext('2d')
           if (ctx) {
             const dpr = Math.min(window.devicePixelRatio || 1, 2)
-            canvasRef.current.width = window.innerWidth * dpr
-            canvasRef.current.height = window.innerHeight * dpr
+            canvasRef.current.width = Math.floor(window.innerWidth * dpr)
+            canvasRef.current.height = Math.floor(window.innerHeight * dpr)
             drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
           }
         }
       }
     }
 
-    // Preload remaining frames progressively
-    let index = 1
-    const loadNextBatch = () => {
-      const batchSize = 10
-      let loadedInBatch = 0
-      while (index < FRAME_COUNT && loadedInBatch < batchSize) {
-        if (!imageCache[index]) {
-          const img = new Image()
-          img.src = getFrameUrl(index)
-          imageCache[index] = img
+    // Defer preloading remaining frames until AFTER page load or initial user interaction
+    // to preserve 100% network bandwidth for initial paint (FCP/LCP)
+    let isPreloadStarted = false
+    let preloadTimeout: NodeJS.Timeout
+
+    const startDeferredPreload = () => {
+      if (isPreloadStarted) return
+      isPreloadStarted = true
+
+      let index = 1
+      const loadNextBatch = () => {
+        const batchSize = 4 // Small batch size to keep network queue responsive
+        let loadedInBatch = 0
+        while (index < FRAME_COUNT && loadedInBatch < batchSize) {
+          if (!imageCache[index]) {
+            const img = new Image()
+            img.src = getFrameUrl(index)
+            imageCache[index] = img
+          }
+          index++
+          loadedInBatch++
         }
-        index++
-        loadedInBatch++
-      }
-      if (index < FRAME_COUNT) {
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(() => loadNextBatch())
-        } else {
-          setTimeout(loadNextBatch, 30)
+        if (index < FRAME_COUNT) {
+          preloadTimeout = setTimeout(loadNextBatch, 60)
         }
       }
+
+      loadNextBatch()
     }
 
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => loadNextBatch())
+    // Trigger preload on window load event or on first scroll/user interaction
+    const handleInitialInteraction = () => {
+      startDeferredPreload()
+      window.removeEventListener('scroll', handleInitialInteraction)
+      window.removeEventListener('touchstart', handleInitialInteraction)
+    }
+
+    window.addEventListener('scroll', handleInitialInteraction, { passive: true })
+    window.addEventListener('touchstart', handleInitialInteraction, { passive: true })
+
+    if (document.readyState === 'complete') {
+      preloadTimeout = setTimeout(startDeferredPreload, 1500)
     } else {
-      setTimeout(loadNextBatch, 30)
+      const handleWindowLoad = () => {
+        preloadTimeout = setTimeout(startDeferredPreload, 1000)
+        window.removeEventListener('load', handleWindowLoad)
+      }
+      window.addEventListener('load', handleWindowLoad)
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleInitialInteraction)
+      window.removeEventListener('touchstart', handleInitialInteraction)
+      if (preloadTimeout) clearTimeout(preloadTimeout)
     }
   }, [reducedMotion])
 
@@ -123,15 +151,28 @@ export const ScrollHero = () => {
 
     let requestId: number
 
-    const handleResize = () => {
-      const canvas = canvasRef.current
-      if (canvas) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2)
-        canvas.width = window.innerWidth * dpr
-        canvas.height = window.innerHeight * dpr
+    const calculateMaxScroll = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight
+      const footerElement = document.querySelector('footer')
+
+      if (footerElement) {
+        const footerRect = footerElement.getBoundingClientRect()
+        const footerTopInDoc = footerRect.top + currentScrollY
+        maxScrollRef.current = Math.max(1, footerTopInDoc - windowHeight)
+      } else {
+        maxScrollRef.current = Math.max(1, document.documentElement.scrollHeight - windowHeight)
       }
     }
-    window.addEventListener('resize', handleResize)
+
+    calculateMaxScroll()
+
+    const handleResizeOrScroll = () => {
+      calculateMaxScroll()
+    }
+
+    window.addEventListener('resize', handleResizeOrScroll, { passive: true })
+    window.addEventListener('orientationchange', handleResizeOrScroll, { passive: true })
 
     const render = () => {
       const canvas = canvasRef.current
@@ -139,7 +180,7 @@ export const ScrollHero = () => {
         const dpr = Math.min(window.devicePixelRatio || 1, 2)
         const targetWidth = Math.floor(window.innerWidth * dpr)
         const targetHeight = Math.floor(window.innerHeight * dpr)
-        
+
         if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
           canvas.width = targetWidth
           canvas.height = targetHeight
@@ -148,20 +189,9 @@ export const ScrollHero = () => {
         const ctx = canvas.getContext('2d')
         if (ctx) {
           const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-          const windowHeight = window.innerHeight || document.documentElement.clientHeight
-          const footerElement = document.querySelector('footer')
-
-          let maxScroll = 0
-          if (footerElement) {
-            const footerRect = footerElement.getBoundingClientRect()
-            const footerTopInDoc = footerRect.top + currentScrollY
-            maxScroll = Math.max(1, footerTopInDoc - windowHeight)
-          } else {
-            maxScroll = Math.max(1, document.documentElement.scrollHeight - windowHeight)
-          }
+          const maxScroll = maxScrollRef.current || 1
 
           const fraction = Math.max(0, Math.min(1, currentScrollY / maxScroll))
-
           const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
           const imgs = imagesRef.current
 
@@ -191,7 +221,8 @@ export const ScrollHero = () => {
     requestId = requestAnimationFrame(render)
     return () => {
       cancelAnimationFrame(requestId)
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('resize', handleResizeOrScroll)
+      window.removeEventListener('orientationchange', handleResizeOrScroll)
     }
   }, [mounted, reducedMotion])
 
