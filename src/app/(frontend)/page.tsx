@@ -95,21 +95,21 @@ export default async function Page() {
       </section>
 
 {/* ── 2. Tools I Use Grid ── */}
-      <section className="bg-surface-container-low border-y border-white/5 py-16 px-6 md:px-margin-desktop relative z-10">
+      <section className="bg-surface-container-low border-y border-white/5 py-12 sm:py-16 px-4 sm:px-6 md:px-margin-desktop relative z-10">
         <div className="max-w-7xl mx-auto">
-          <p className="font-label-sm text-xs uppercase tracking-widest text-primary-container text-center mb-8 font-semibold">
+          <p className="font-label-sm text-xs uppercase tracking-widest text-primary-container text-center mb-6 sm:mb-8 font-semibold">
             Industry Standard Tools & Stack
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4">
             {TOOLS_STACK.map((tool, idx) => (
               <div
                 key={idx}
-                className="glass-panel p-4 rounded-xl border border-white/5 hover:border-primary-container/40 transition-all text-center flex flex-col items-center justify-center gap-2 group"
+                className="glass-panel p-3.5 sm:p-5 rounded-xl border border-white/5 hover:border-primary-container/40 transition-all text-center flex flex-col items-center justify-center gap-1.5 sm:gap-2 group"
               >
-                <span className="material-symbols-outlined text-primary-container text-3xl group-hover:scale-110 transition-transform">
+                <span className="material-symbols-outlined text-primary-container text-2xl sm:text-3xl group-hover:scale-110 transition-transform">
                   {tool.icon}
                 </span>
-                <span className="font-headline-md text-sm font-bold text-on-surface">{tool.name}</span>
+                <span className="font-headline-md text-xs sm:text-sm font-bold text-on-surface leading-tight">{tool.name}</span>
                 <span className="font-label-sm text-[10px] text-on-surface-variant/70">{tool.category}</span>
               </div>
             ))}
@@ -118,16 +118,16 @@ export default async function Page() {
       </section>
 
       {/* ── 3. About Me Snapshot & Metric Counters ── */}
-      <section className="py-20 px-6 md:px-margin-desktop bg-surface relative z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-margin-desktop bg-surface relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-6">
             <span className="font-label-sm text-xs text-primary-container uppercase tracking-widest">
               About Alain Dave Tapiru
             </span>
-            <h2 className="font-headline-lg text-3xl md:text-headline-lg text-on-surface font-bold">
+            <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-headline-lg text-on-surface font-bold leading-tight">
               Merging Search Engine Precision with High-Speed Web Development
             </h2>
-            <p className="font-body-lg text-on-surface-variant text-base leading-relaxed">
+            <p className="font-body-lg text-on-surface-variant text-xs sm:text-base leading-relaxed">
               With a background spanning frontline customer relations, executive virtual assistance, and BSIT Network & Cybersecurity studies, I build search strategies and digital platforms that rank #1 and drive measurable ROI.
             </p>
             <div className="pt-2">
@@ -141,36 +141,36 @@ export default async function Page() {
           </div>
 
           {/* Metric Counters */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            <div className="glass-panel p-6 rounded-xl border border-white/10 text-center">
-              <span className="font-display-lg text-4xl md:text-5xl font-extrabold text-primary-container block mb-2">
+          <div className="lg:col-span-5 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="glass-panel p-4 sm:p-6 rounded-xl border border-white/10 text-center">
+              <span className="font-display-lg text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-container block mb-1 sm:mb-2">
                 5+
               </span>
-              <span className="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider block">
+              <span className="font-label-sm text-[10px] sm:text-xs text-on-surface-variant uppercase tracking-wider block">
                 Years Experience
               </span>
             </div>
-            <div className="glass-panel p-6 rounded-xl border border-white/10 text-center">
-              <span className="font-display-lg text-4xl md:text-5xl font-extrabold text-primary-container block mb-2">
+            <div className="glass-panel p-4 sm:p-6 rounded-xl border border-white/10 text-center">
+              <span className="font-display-lg text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-container block mb-1 sm:mb-2">
                 150+
               </span>
-              <span className="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider block">
+              <span className="font-label-sm text-[10px] sm:text-xs text-on-surface-variant uppercase tracking-wider block">
                 Websites Optimized
               </span>
             </div>
-            <div className="glass-panel p-6 rounded-xl border border-white/10 text-center">
-              <span className="font-display-lg text-4xl md:text-5xl font-extrabold text-primary-container block mb-2">
+            <div className="glass-panel p-4 sm:p-6 rounded-xl border border-white/10 text-center">
+              <span className="font-display-lg text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-container block mb-1 sm:mb-2">
                 99/100
               </span>
-              <span className="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider block">
+              <span className="font-label-sm text-[10px] sm:text-xs text-on-surface-variant uppercase tracking-wider block">
                 PageSpeed Score
               </span>
             </div>
-            <div className="glass-panel p-6 rounded-xl border border-white/10 text-center">
-              <span className="font-display-lg text-4xl md:text-5xl font-extrabold text-primary-container block mb-2">
+            <div className="glass-panel p-4 sm:p-6 rounded-xl border border-white/10 text-center">
+              <span className="font-display-lg text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-container block mb-1 sm:mb-2">
                 100%
               </span>
-              <span className="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider block">
+              <span className="font-label-sm text-[10px] sm:text-xs text-on-surface-variant uppercase tracking-wider block">
                 Client Satisfaction
               </span>
             </div>
@@ -179,33 +179,33 @@ export default async function Page() {
       </section>
 
       {/* ── 4. The 6-Step SEO Process Cycle ── */}
-      <section className="py-20 px-6 md:px-margin-desktop bg-surface-container-lowest border-t border-white/5 relative z-10">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-margin-desktop bg-surface-container-lowest border-t border-white/5 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <span className="font-label-sm text-xs text-primary-container uppercase tracking-widest px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20">
               Methodology
             </span>
-            <h2 className="font-headline-lg text-3xl md:text-headline-lg text-on-surface font-bold mt-4 mb-4">
+            <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-headline-lg text-on-surface font-bold mt-4 mb-3 sm:mb-4">
               The 6-Step SEO Growth Cycle
             </h2>
-            <p className="font-body-lg text-on-surface-variant text-base">
+            <p className="font-body-lg text-on-surface-variant text-xs sm:text-base">
               A systematic, data-backed execution framework for long-term search engine dominance.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {SEO_PROCESS_STEPS.map((proc, idx) => (
               <div
                 key={idx}
-                className="glass-panel p-8 rounded-xl border border-white/5 hover:border-primary-container/50 transition-all duration-300 relative group"
+                className="glass-panel p-5 sm:p-8 rounded-xl border border-white/5 hover:border-primary-container/50 transition-all duration-300 relative group"
               >
-                <span className="font-display-lg text-3xl font-extrabold text-primary-container/30 group-hover:text-primary-container transition-colors block mb-4">
+                <span className="font-display-lg text-2xl sm:text-3xl font-extrabold text-primary-container/30 group-hover:text-primary-container transition-colors block mb-3 sm:mb-4">
                   {proc.step}
                 </span>
-                <h3 className="font-headline-md text-xl text-on-surface font-bold mb-3">
+                <h3 className="font-headline-md text-lg sm:text-xl text-on-surface font-bold mb-2 sm:mb-3">
                   {proc.title}
                 </h3>
-                <p className="font-body-md text-secondary-fixed-dim text-sm leading-relaxed">
+                <p className="font-body-md text-secondary-fixed-dim text-xs sm:text-sm leading-relaxed">
                   {proc.desc}
                 </p>
               </div>
@@ -215,14 +215,14 @@ export default async function Page() {
       </section>
 
       {/* ── 5. Featured Projects ── */}
-      <section className="py-20 px-6 md:px-margin-desktop bg-surface relative z-10 border-t border-white/5">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-margin-desktop bg-surface relative z-10 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-12 gap-4">
             <div>
               <span className="font-label-sm text-xs text-primary-container uppercase tracking-widest mb-2 block">
                 Selected Work
               </span>
-              <h2 className="font-headline-lg text-3xl md:text-headline-lg text-on-surface font-bold">
+              <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-headline-lg text-on-surface font-bold">
                 Featured Case Studies
               </h2>
             </div>
@@ -234,25 +234,25 @@ export default async function Page() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {FEATURED_PROJECTS.map((prj, idx) => (
               <div
                 key={idx}
-                className="glass-panel p-8 rounded-xl border border-white/10 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between group"
+                className="glass-panel p-5 sm:p-8 rounded-xl border border-white/10 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex flex-wrap justify-between items-center gap-2 mb-4">
                     <span className="font-label-sm text-xs text-primary-container uppercase tracking-widest px-3 py-1 bg-primary-container/10 rounded-full border border-primary-container/20">
                       {prj.tag}
                     </span>
-                    <span className="font-label-sm text-xs text-on-surface-variant font-semibold">
+                    <span className="font-label-sm text-[11px] sm:text-xs text-on-surface-variant font-semibold">
                       {prj.metrics}
                     </span>
                   </div>
-                  <h3 className="font-headline-md text-xl text-on-surface font-bold mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="font-headline-md text-lg sm:text-xl text-on-surface font-bold mb-2 sm:mb-3 group-hover:text-primary transition-colors">
                     {prj.title}
                   </h3>
-                  <p className="font-body-md text-secondary-fixed-dim text-sm leading-relaxed mb-6">
+                  <p className="font-body-md text-secondary-fixed-dim text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
                     {prj.desc}
                   </p>
                 </div>
@@ -270,29 +270,29 @@ export default async function Page() {
       </section>
 
       {/* ── 6. Client Testimonials ── */}
-      <section className="py-20 px-6 md:px-margin-desktop bg-surface-container-lowest border-t border-white/5 relative z-10">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-margin-desktop bg-surface-container-lowest border-t border-white/5 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
             <span className="font-label-sm text-xs text-primary-container uppercase tracking-widest">
               Endorsements
             </span>
-            <h2 className="font-headline-lg text-3xl md:text-headline-lg text-on-surface font-bold mt-4">
-              What Clients & Partners Say
+            <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-headline-lg text-on-surface font-bold mt-4">
+              What Clients &amp; Partners Say
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {TESTIMONIALS.map((t, idx) => (
-              <div key={idx} className="glass-panel p-8 rounded-xl border border-white/10 relative">
-                <span className="font-display-lg text-5xl text-primary-container/30 font-serif leading-none block mb-4">
+              <div key={idx} className="glass-panel p-5 sm:p-8 rounded-xl border border-white/10 relative">
+                <span className="font-display-lg text-4xl sm:text-5xl text-primary-container/30 font-serif leading-none block mb-3 sm:mb-4">
                   “
                 </span>
-                <p className="font-body-lg text-on-surface-variant text-base leading-relaxed italic mb-6">
+                <p className="font-body-lg text-on-surface-variant text-xs sm:text-base leading-relaxed italic mb-4 sm:mb-6">
                   {t.quote}
                 </p>
                 <div>
-                  <h4 className="font-headline-md text-sm font-bold text-on-surface">{t.author}</h4>
-                  <span className="font-label-sm text-xs text-secondary-fixed-dim">{t.company}</span>
+                  <h4 className="font-headline-md text-xs sm:text-sm font-bold text-on-surface">{t.author}</h4>
+                  <span className="font-label-sm text-[11px] sm:text-xs text-secondary-fixed-dim">{t.company}</span>
                 </div>
               </div>
             ))}
@@ -301,18 +301,18 @@ export default async function Page() {
       </section>
 
       {/* ── 7. Call to Action Banner ── */}
-      <section className="py-20 px-6 md:px-margin-desktop bg-surface relative z-10 border-t border-white/5">
-        <div className="max-w-4xl mx-auto text-center glass-panel p-12 rounded-2xl border border-primary-container/30 relative overflow-hidden">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 md:px-margin-desktop bg-surface relative z-10 border-t border-white/5">
+        <div className="max-w-4xl mx-auto text-center glass-panel p-6 sm:p-8 md:p-12 rounded-2xl border border-primary-container/30 relative overflow-hidden">
           <div className="absolute inset-0 bg-glow-amber pointer-events-none -z-10" />
-          <h2 className="font-headline-lg text-3xl md:text-4xl text-on-surface font-extrabold mb-4">
-            Ready to Dominate Search Rankings & Scale Your Web Infrastructure?
+          <h2 className="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface font-extrabold mb-4">
+            Ready to Dominate Search Rankings &amp; Scale Your Web Infrastructure?
           </h2>
-          <p className="font-body-lg text-on-surface-variant text-base max-w-xl mx-auto mb-8">
+          <p className="font-body-lg text-on-surface-variant text-xs sm:text-base max-w-xl mx-auto mb-6 sm:mb-8">
             Book a technical SEO audit or discuss your next web application project with Alain Dave Tapiru today.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#e67e22] hover:bg-[#ff9436] text-white font-bold text-xs uppercase tracking-wider px-10 py-5 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:shadow-[0_0_35px_rgba(230,126,34,0.8)] transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-decoration-none"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#e67e22] hover:bg-[#ff9436] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 sm:px-10 sm:py-5 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:shadow-[0_0_35px_rgba(230,126,34,0.8)] transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-decoration-none min-h-[48px]"
           >
             HIRE AN SEO NOW <span className="text-base">→</span>
           </Link>

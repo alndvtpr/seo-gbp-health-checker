@@ -43,30 +43,30 @@ export const Navbar = () => {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out ${
-          scrolled ? 'py-3' : 'py-5'
+          scrolled ? 'py-2.5 sm:py-3' : 'py-3.5 sm:py-5'
         }`}
       >
         <div
           className={`mx-auto flex items-center justify-between transition-all duration-500 ${
             scrolled
-              ? 'bg-[#121414]/90 shadow-2xl py-2.5 px-6 rounded-full max-w-6xl border border-white/10 scale-95 md:scale-[0.98] translate-y-2 md:translate-y-4'
-              : 'px-6 md:px-12 max-w-7xl scale-100 translate-y-0'
+              ? 'bg-[#121414]/95 shadow-2xl py-2 px-4 md:py-2.5 md:px-6 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto scale-100 md:scale-[0.98] translate-y-1 md:translate-y-4'
+              : 'px-4 md:px-12 max-w-7xl scale-100 translate-y-0'
           }`}
         >
           {/* Logo */}
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
-            className="flex items-center gap-3 group relative z-[60]"
+            className="flex items-center gap-2.5 sm:gap-3 group relative z-[60]"
           >
-            <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-full border border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-white/5">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 overflow-hidden rounded-full border border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-white/5 shrink-0">
               <img
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
                 className="w-full h-full object-contain p-1"
               />
             </div>
-            <span className="font-heading font-bold text-lg md:text-xl text-on-surface tracking-tight group-hover:text-primary transition-colors">
+            <span className="font-heading font-bold text-base sm:text-lg md:text-xl text-on-surface tracking-tight group-hover:text-primary transition-colors whitespace-nowrap">
               Alain Dave <span className="text-primary-container">Tapiru</span>
             </span>
           </Link>
@@ -104,7 +104,7 @@ export const Navbar = () => {
 
           {/* Hamburger (Mobile & Tablet) */}
           <button
-            className="lg:hidden text-on-surface z-[60] relative p-2 rounded-full hover:bg-white/10 transition-colors"
+            className="lg:hidden text-on-surface z-[60] relative p-2.5 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
           >
@@ -117,26 +117,31 @@ export const Navbar = () => {
 
       {/* Full Screen Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-[#0c0f0f]/95 z-[40] flex flex-col justify-center items-center lg:hidden transition-all duration-500 ${
+        className={`fixed inset-0 bg-[#0c0f0f]/98 z-[55] flex flex-col justify-center items-center lg:hidden transition-all duration-300 ${
           menuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
         }`}
       >
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-primary-container/10 rounded-full pointer-events-none" />
-        <nav className="flex flex-col items-center gap-6 relative z-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="font-heading text-xl font-bold uppercase tracking-widest text-on-surface hover:text-primary-container transition-colors"
-            >
-              {link.name}
-            </Link>
-          ))}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-primary-container/10 rounded-full pointer-events-none blur-2xl" />
+        <nav className="flex flex-col items-center gap-5 sm:gap-6 relative z-10 w-full px-6 max-w-sm">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`font-heading text-lg sm:text-xl font-bold uppercase tracking-widest transition-colors py-1 ${
+                  isActive ? 'text-primary-container border-b-2 border-primary-container' : 'text-on-surface hover:text-primary-container'
+                }`}
+              >
+                {link.name}
+              </Link>
+            )
+          })}
           <Link
             href="/contact"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 bg-primary-container text-on-primary-container font-heading text-sm uppercase tracking-widest font-bold px-8 py-3.5 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:bg-primary transition-colors"
+            className="mt-4 w-full text-center bg-primary-container text-on-primary-container font-heading text-sm uppercase tracking-widest font-bold px-8 py-3.5 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:bg-primary transition-colors"
           >
             Hire Me
           </Link>

@@ -6,19 +6,19 @@ import Link from 'next/link'
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0b0d0d] text-on-surface w-full pt-16 pb-12 px-6 md:px-16 border-t border-white/10 relative z-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-[#0b0d0d] text-on-surface w-full pt-12 sm:pt-16 pb-8 sm:pb-12 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-20">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
         {/* Column 1: Brand */}
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/10 flex items-center justify-center bg-white/5">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/10 flex items-center justify-center bg-white/5 shrink-0">
               <img
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
                 className="w-full h-full object-contain p-0.5"
               />
             </div>
-            <span className="font-heading font-bold text-on-surface text-xl">
+            <span className="font-heading font-bold text-on-surface text-lg sm:text-xl">
               Alain Dave <span className="text-primary-container">Tapiru</span>
             </span>
           </div>
@@ -29,69 +29,69 @@ export const Footer = () => {
 
         {/* Column 2: Navigation */}
         <div className="space-y-3">
-          <h4 className="font-heading text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h4 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
             Quick Links
           </h4>
           <ul className="space-y-2 font-sans text-xs text-on-surface/70">
             <li>
-              <Link href="/" className="hover:text-primary-container transition-colors">Home</Link>
+              <Link href="/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Home</Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-primary-container transition-colors">About Me</Link>
+              <Link href="/about" className="hover:text-primary-container transition-colors py-0.5 inline-block">About Me</Link>
             </li>
             <li>
-              <Link href="/projects" className="hover:text-primary-container transition-colors">Projects &amp; Case Studies</Link>
+              <Link href="/projects" className="hover:text-primary-container transition-colors py-0.5 inline-block">Projects &amp; Case Studies</Link>
             </li>
             <li>
-              <Link href="/blog" className="hover:text-primary-container transition-colors">Blog / SEO News</Link>
+              <Link href="/blog" className="hover:text-primary-container transition-colors py-0.5 inline-block">Blog / SEO News</Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-primary-container transition-colors">Contact / Hire Me</Link>
+              <Link href="/contact" className="hover:text-primary-container transition-colors py-0.5 inline-block">Contact / Hire Me</Link>
             </li>
           </ul>
         </div>
 
         {/* Column 3: Tools & Services */}
         <div className="space-y-3">
-          <h4 className="font-heading text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h4 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
             Tools &amp; Services
           </h4>
           <ul className="space-y-2 font-sans text-xs text-on-surface/70">
             <li>
-              <Link href="/services" className="hover:text-primary-container transition-colors">Technical SEO Audit</Link>
+              <Link href="/services" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO Audit</Link>
             </li>
             <li>
-              <Link href="/services" className="hover:text-primary-container transition-colors">AI Web Design</Link>
+              <Link href="/services" className="hover:text-primary-container transition-colors py-0.5 inline-block">AI Web Design</Link>
             </li>
             <li>
-              <Link href="/tools" className="hover:text-primary-container transition-colors">SEO Specialist Salary Calculator</Link>
+              <Link href="/tools" className="hover:text-primary-container transition-colors py-0.5 inline-block">SEO Specialist Salary Calculator</Link>
             </li>
             <li>
-              <Link href="/tools" className="hover:text-primary-container transition-colors">Website Audit Request</Link>
+              <Link href="/tools" className="hover:text-primary-container transition-colors py-0.5 inline-block">Website Audit Request</Link>
             </li>
             <li>
-              <Link href="/tools" className="hover:text-primary-container transition-colors">Local SEO / GBP Auditor</Link>
+              <Link href="/tools" className="hover:text-primary-container transition-colors py-0.5 inline-block">Local SEO / GBP Auditor</Link>
             </li>
           </ul>
         </div>
 
         {/* Column 4: Newsletter */}
         <div className="space-y-3">
-          <h4 className="font-heading text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h4 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
             Stay Updated
           </h4>
           <p className="font-sans text-xs text-on-surface/70">
             Subscribe for technical SEO tips, AI workflow guides, and performance optimization insights.
           </p>
-          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-2">
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-2.5">
             <input
               type="email"
               placeholder="Enter your email"
-              className="bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-xs text-on-surface focus:outline-none focus:border-primary-container"
+              className="bg-white/5 border border-white/10 rounded-lg px-3.5 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
             />
             <button
               type="submit"
-              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider py-2 rounded-lg hover:bg-primary transition-colors"
+              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider py-2.5 rounded-lg hover:bg-primary transition-colors min-h-[44px] flex items-center justify-center"
             >
               Subscribe
             </button>

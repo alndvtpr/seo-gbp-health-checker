@@ -164,46 +164,37 @@ export const ScrollHero = () => {
           targetContainer
         )}
 
-      {/* Hero Content Section */}
-      <div className="min-h-screen flex flex-col justify-center items-start text-left px-6 md:px-16 pt-32 pb-20 relative z-20 max-w-7xl mx-auto">
-        <div className="absolute top-1/3 left-1/4 -translate-y-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#e67e22]/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
+      {/* Hero Content Section - Left-aligned to leave right side clear for portrait scroll image */}
+      <div className="min-h-[calc(100vh-3.5rem)] sm:min-h-screen flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-24 sm:pt-28 pb-12 sm:pb-16 relative z-20 max-w-7xl mx-auto">
+        <div className="max-w-2xl space-y-4 sm:space-y-6">
+          <span className="font-heading text-[11px] sm:text-xs uppercase tracking-widest text-primary-container font-bold px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-1 sm:mb-2">
+            SEO Specialist &amp; Technical Web Designer
+          </span>
 
-        <div className="max-w-4xl flex flex-col justify-center gap-6 relative z-10">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#e67e22]/40 bg-[#e67e22]/10 backdrop-blur-md">
-              <span className="text-[#e67e22] text-xs sm:text-sm font-semibold uppercase tracking-widest">
-                SEO SPECIALIST &amp; TECHNICAL WEB DESIGNER
-              </span>
-            </div>
-          </div>
-
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
-            Hey, I&apos;m{' '}
-            <span className="text-[#e67e22] drop-shadow-[0_0_30px_rgba(230,126,34,0.6)]">
-              Alain Dave Tapiru.
-            </span>
+          <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl font-extrabold text-on-surface tracking-tight leading-[1.15] sm:leading-[1.1] drop-shadow-2xl">
+            Hey, I&apos;m <span className="text-primary-container">Alain Dave Tapiru</span>.
           </h1>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-100 max-w-3xl leading-snug">
+          <p className="font-sans text-base sm:text-xl md:text-2xl text-on-surface-variant drop-shadow-lg font-medium leading-relaxed">
             Data-Driven Search Engine Optimization &amp; High-Performance Web Engineering.
-          </h2>
+          </p>
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed">
+          <p className="font-sans text-xs sm:text-base text-on-surface/70 max-w-xl drop-shadow-md leading-relaxed">
             Delivering high-converting digital solutions with cinematic film-noir precision and relentless technical efficiency.
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 pt-4 w-full">
+          <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-[#e67e22] hover:bg-[#ff9436] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.5)] hover:shadow-[0_0_35px_rgba(230,126,34,0.8)] transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-decoration-none"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
-              HIRE AN SEO <span className="text-base">→</span>
+              Hire Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 bg-black/50 hover:bg-black/70 text-white border border-white/20 hover:border-white/40 font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-full backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-decoration-none"
+              className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
             >
-              ABOUT ME
+              About Me
             </Link>
           </div>
         </div>
