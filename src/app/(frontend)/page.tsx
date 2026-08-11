@@ -54,24 +54,82 @@ export default async function Page() {
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-extrabold text-on-surface mb-6 sm:mb-8">
             Tools &amp; Technologies I Master
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
             {[
-              { name: 'Ahrefs', cat: 'SEO & Audit', icon: 'search' },
-              { name: 'Cloudflare', cat: 'CDN & Security', icon: 'shield' },
-              { name: 'Next.js', cat: 'Web Framework', icon: 'code' },
-              { name: 'WordPress', cat: 'CMS Platform', icon: 'language' },
-              { name: 'Yoast / RankMath', cat: 'On-Page SEO', icon: 'tune' },
-              { name: 'Google Analytics', cat: 'Data Analytics', icon: 'analytics' },
+              { 
+                name: 'Ahrefs', 
+                cat: 'SEO & Audit', 
+                svg: <><text x="40%" y="52%" dominantBaseline="middle" textAnchor="middle" fontWeight="900" fontFamily="sans-serif" fontSize="22" fill="currentColor">a</text><circle cx="18" cy="16" r="2.5" fill="currentColor" /></> 
+              },
+              { 
+                name: 'Cloudflare', 
+                cat: 'CDN & Security', 
+                svg: <path d="M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727"/> 
+              },
+              { 
+                name: 'Next.js', 
+                cat: 'Web Framework', 
+                svg: <path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/> 
+              },
+              { 
+                name: 'WordPress', 
+                cat: 'CMS Platform', 
+                svg: <path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/> 
+              },
+              { 
+                name: 'Yoast / RankMath', 
+                cat: 'On-Page SEO', 
+                svg: <path d="M16.61 0 11.4 14.477 8.806 6.36H5.941l3.804 9.77a4.017 4.017 0 0 1 0 2.925c-.387.993-1.073 2.158-2.96 2.505V24c1.512-.06 2.692-.562 3.694-1.57 1.032-1.036 1.919-2.655 2.79-5.091L19.739 0ZM5.357 3.274a3.706 3.706 0 0 0-3.695 3.695v10.358a3.706 3.706 0 0 0 3.695 3.694h.817l.26-.034c1.76-.237 2.37-1.224 2.733-2.158a3.4 3.4 0 0 0 0-2.475L5.035 5.738H9.26l2.174 6.81 3.339-9.274Zm13.792.08L13.853 17.55c-.502 1.403-1.015 2.54-1.559 3.47h10.044V6.97a3.706 3.706 0 0 0-3.19-3.616Z"/> 
+              },              { 
+                name: 'Elementor', 
+                cat: 'Page Builder', 
+                svg: <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-3-13.5v7H7v-7h2zm8 0v1.5h-5v-1.5h5zm0 2.75v1.5h-5v-1.5h5zm0 2.75v1.5h-5v-1.5h5z" /> 
+              },
+              { 
+                name: 'Antigravity IDE', 
+                cat: 'AI Engineering', 
+                svg: <path d="M12 2l-9 5v10l9 5 9-5V7l-9-5zM8 10l-2 2 2 2M16 10l2 2-2 2M11 15l2-6" stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              },
+              { 
+                name: 'Claude', 
+                cat: 'AI Assistant', 
+                svg: <path d="M17.304 3.541h-3.672l6.696 16.918H24Zm-10.608 0L0 20.459h3.744l1.369-3.553h7.005l1.37 3.553h3.744L10.536 3.54Zm-.371 10.223 2.291-5.945 2.292 5.945Z" /> 
+              },
+              { 
+                name: 'Google Analytics', 
+                cat: 'Data Analytics', 
+                svg: <path d="M22.84 2.9982v17.9987c.0086 1.6473-1.3197 2.9897-2.967 2.9984a2.9808 2.9808 0 01-.3677-.0208c-1.528-.226-2.6477-1.5558-2.6105-3.1V3.1204c-.0369-1.5458 1.0856-2.8762 2.6157-3.1 1.6361-.1915 3.1178.9796 3.3093 2.6158.014.1201.0208.241.0202.3619zM4.1326 18.0548c-1.6417 0-2.9726 1.331-2.9726 2.9726C1.16 22.6691 2.4909 24 4.1326 24s2.9726-1.3309 2.9726-2.9726-1.331-2.9726-2.9726-2.9726zm7.8728-9.0098c-.0171 0-.0342 0-.0513.0003-1.6495.0904-2.9293 1.474-2.891 3.1256v7.9846c0 2.167.9535 3.4825 2.3505 3.763 1.6118.3266 3.1832-.7152 3.5098-2.327.04-.1974.06-.3983.0593-.5998v-8.9585c.003-1.6474-1.33-2.9852-2.9773-2.9882z" /> 
+              },
+              { 
+                name: 'Ubersuggest', 
+                cat: 'Keyword Research', 
+                svg: <path d="M6 4v8a6 6 0 0 0 12 0V4h-3v8a3 3 0 0 1-6 0V4H6z" /> 
+              },
+              { 
+                name: 'Search Console', 
+                cat: 'Technical SEO', 
+                svg: <path d="M8.548 1.156L6.832 2.872v1.682h1.716zm0 3.398v.035H6.832v-.035H3.386L0 7.844v3.577h2.826V8.94c0-.525.429-.954.954-.954h16.476c.525 0 .954.43.954.954v2.48h2.754V7.844l-3.386-3.29H17.3v.035h-1.717v-.035zm7.035 0H17.3V2.872l-1.717-1.716zM8.679 1.188V2.84h6.773V1.188zm11.471 7.07a.834.834 0 00-.132.01l-.543.002c-5.216.014-10.432-.008-15.648.01-.435-.063-.794.436-.716.883v2.264h17.812c-.016-.888.045-1.782-.034-2.666-.104-.342-.427-.502-.739-.502zm-15.422.634a.689.698 0 01.689.698.689.698 0 01-.689.697.689.698 0 01-.688-.697.689.698 0 01.688-.698zm2.134 0a.689.698 0 01.689.698.689.698 0 01-.689.697.689.698 0 01-.688-.697.689.698 0 01.688-.698zM.036 11.645v9.156c0 1.05.858 1.908 1.907 1.908h.883V11.645zm21.174 0v11.064h.882c1.05 0 1.908-.858 1.908-1.908v-9.156zM4.057 13.133v6.85h6.137v-6.85zm13.243.021v3.777l-1.708.977-1.708-.977v-3.758a4.006 4.006 0 000 7.23v2.441h3.457v-2.442a4.006 4.006 0 00-.041-7.248zm-13.243 8.26v1.43h7.925v-1.43z" /> 
+              },
+              { 
+                name: 'Screaming Frog', 
+                cat: 'Site Auditing', 
+                svg: <path d="M12 2c-3.3 0-6 2.7-6 6v3H4c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h2v1c0 2.2 1.8 4 4 4h4c2.2 0 4-1.8 4-4v-1h2c1.1 0 2-.9 2-2v-2c0-1.1-.9-2-2-2h-2v-3c0-3.3-2.7-6-6-6zm-2 6c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1zm4 0c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1z" /> 
+              },
+              { 
+                name: 'Rich Results', 
+                cat: 'Schema Testing', 
+                svg: <><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/><path d="M16 5l-1.5 3.5L11 10l3.5 1.5L16 15l1.5-3.5L21 10l-3.5-1.5z" /></> 
+              },
             ].map((tool) => (
               <div
                 key={tool.name}
-                className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col items-center justify-center text-center"
+                className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 hover:bg-[#181a1b] transition-all duration-300 group flex flex-col items-center justify-center text-center shadow-sm hover:shadow-lg"
               >
-                <span className="material-symbols-outlined text-2xl sm:text-3xl text-primary-container mb-1.5 sm:mb-2 group-hover:scale-110 transition-transform">
-                  {tool.icon}
-                </span>
-                <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface leading-tight">{tool.name}</h3>
-                <p className="font-sans text-[10px] text-on-surface/80 mt-1">{tool.cat}</p>
+                <svg className="w-7 h-7 sm:w-8 sm:h-8 text-primary-container mb-2 sm:mb-3 group-hover:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(230,126,34,0.3)]" viewBox="0 0 24 24" fill="currentColor">
+                  {tool.svg}
+                </svg>
+                <h3 className="font-heading text-[11px] sm:text-xs font-bold text-on-surface leading-tight">{tool.name}</h3>
+                <p className="font-sans text-[9px] sm:text-[10px] text-on-surface/80 mt-1">{tool.cat}</p>
               </div>
             ))}
           </div>

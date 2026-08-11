@@ -44,7 +44,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
-        <GoogleAnalytics gaId="G-41RVF48NJ8" />
+        <GoogleAnalytics gaId="G-2VK6KQNJGH" />
 
         {/* WebGL Background Canvas Container */}
         <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent">
