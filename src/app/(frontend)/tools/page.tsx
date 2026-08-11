@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { GBPHealthChecker } from '@/components/GBPHealthChecker'
 
 export default function ToolsPage() {
   // Salary Calculator State
@@ -150,7 +151,7 @@ export default function ToolsPage() {
           </form>
         </div>
 
-        {/* Tool 3: Local SEO / GBP Auditor Shell */}
+        {/* Tool 3: Local SEO / GBP Health Checker — fully interactive */}
         <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-4 sm:space-y-6">
           <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary-container">
             distance
@@ -162,26 +163,7 @@ export default function ToolsPage() {
             Assess your Google Business Profile optimization score, NAP consistency, and local map pack rankings.
           </p>
 
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-3.5">
-            <input
-              type="text"
-              placeholder="Business Name (as on Google Maps)"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
-              required
-            />
-            <input
-              type="text"
-              placeholder="Target Location / City (e.g. Manila, Cebu)"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full bg-white/10 text-on-surface border border-white/10 font-heading text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl hover:bg-white/20 transition-colors min-h-[48px] flex items-center justify-center"
-            >
-              Check GBP Score
-            </button>
-          </form>
+          <GBPHealthChecker />
         </div>
       </div>
     </div>
