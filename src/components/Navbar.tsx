@@ -72,7 +72,7 @@ export const Navbar = () => {
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
                 width="48"
-                height={48}
+                height="48"
                 className="w-full h-full object-contain p-1"
               />
             </div>
