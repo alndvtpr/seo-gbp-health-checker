@@ -72,3 +72,24 @@ body {
   animation: brand-ripple 2s infinite cubic-bezier(0.66, 0, 0, 1);
 }
 
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 25s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 25s linear infinite;
+}
+
+.marquee-row:hover {
+  animation-play-state: paused;
+}
