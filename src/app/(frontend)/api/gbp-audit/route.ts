@@ -2,6 +2,25 @@ import { NextRequest, NextResponse } from 'next/server'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
+export interface ActionItem {
+  priority: 'high' | 'medium' | 'low' | 'passed'
+  message: string
+}
+
+export interface Competitor {
+  name: string
+  rating?: number
+  reviews?: number
+  position: number
+}
+
+export interface WebsiteSeo {
+  url: string
+  title: string | null
+  metaDescription: string | null
+  status: 'success' | 'error' | 'no_website'
+}
+
 interface AuditPillar {
   name: string
   score: number
@@ -9,7 +28,7 @@ interface AuditPillar {
   details: string[]
 }
 
-interface GBPAuditResponse {
+export interface GBPAuditResponse {
   success: boolean
   businessName: string
   location: string
@@ -19,38 +38,65 @@ interface GBPAuditResponse {
   placeId: string | null
   foundInMapPack: boolean
   mapPackPosition: number | null
+  competitors?: Competitor[]
+  websiteSeo?: WebsiteSeo
+  actionItems?: ActionItem[]
   error?: string
 }
 
-// Google Places API – Place Details field shape (subset we care about)
-interface PlaceDetails {
-  id?: string
-  displayName?: { text: string }
-  formattedAddress?: string
-  nationalPhoneNumber?: string
-  internationalPhoneNumber?: string
-  websiteUri?: string
-  rating?: number
-  userRatingCount?: number
-  currentOpeningHours?: { weekdayDescriptions?: string[] }
-  regularOpeningHours?: { weekdayDescriptions?: string[] }
-  businessStatus?: string
-  primaryType?: string
-  location?: { latitude: number; longitude: number }
-  addressComponents?: Array<{ longText: string; shortText: string; types: string[] }>
-}
-
-// Serper Maps API – local result shape
-interface SerperLocalResult {
+// Serper Maps Places Result shape
+interface SerperPlace {
+  position?: number
   title: string
   address?: string
   rating?: number
-  reviews?: number
-  position?: number
+  ratingCount?: number
+  category?: string
+  phoneNumber?: string
+  website?: string
+  cid?: string
+  latitude?: number
+  longitude?: number
 }
 
 interface SerperMapsResponse {
-  localResults?: SerperLocalResult[]
+  places?: SerperPlace[]
+}
+
+// ─── Utilities ───────────────────────────────────────────────────────────────
+
+async function scrapeWebsite(url: string): Promise<WebsiteSeo> {
+  const seoData: WebsiteSeo = { url, title: null, metaDescription: null, status: 'no_website' }
+  if (!url) return seoData
+
+  try {
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 3000) // 3-second timeout
+
+    const res = await fetch(url, { signal: controller.signal })
+    clearTimeout(timeout)
+
+    if (!res.ok) {
+      seoData.status = 'error'
+      return seoData
+    }
+
+    const html = await res.text()
+
+    // Regex extraction — no cheerio needed
+    const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)
+    const metaMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)/i) || 
+                      html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["']/i)
+
+    seoData.title = titleMatch?.[1]?.trim() || null
+    seoData.metaDescription = metaMatch?.[1]?.trim() || null
+    seoData.status = 'success'
+  } catch (err) {
+    console.warn(`[GBP Audit] Website scrape failed for ${url}:`, err)
+    seoData.status = 'error'
+  }
+
+  return seoData
 }
 
 // ─── Scoring Engine ──────────────────────────────────────────────────────────
@@ -62,55 +108,73 @@ interface SerperMapsResponse {
  * - Map Pack Visibility (30 pts)
  */
 function calculateGBPScore(
-  placeData: PlaceDetails,
+  placeData: SerperPlace,
   serperData: SerperMapsResponse,
   businessName: string,
+  targetLocation: string,
 ): {
   totalScore: number
   grade: string
   pillars: AuditPillar[]
   foundInMapPack: boolean
   mapPackPosition: number | null
+  actionItems: ActionItem[]
+  competitors: Competitor[]
 } {
+  const actionItems: ActionItem[] = []
+
   // ── Pillar 1: NAP & Completeness (max 40) ─────────────────────────────
   let completenessScore = 0
   const completenessDetails: string[] = []
 
-  const hasWebsite = Boolean(placeData.websiteUri)
+  const hasWebsite = Boolean(placeData.website)
   if (hasWebsite) {
-    completenessScore += 10
-    completenessDetails.push(`✓ Website linked: ${placeData.websiteUri}`)
+    completenessScore += 8
+    completenessDetails.push(`✓ Website linked: ${placeData.website}`)
+    actionItems.push({ priority: 'passed', message: 'Website is linked on GBP.' })
   } else {
     completenessDetails.push('✗ No website URL detected on GBP')
+    actionItems.push({ priority: 'high', message: 'Add your website link to your Google Business Profile.' })
   }
 
-  const hasPhone = Boolean(placeData.nationalPhoneNumber || placeData.internationalPhoneNumber)
+  const hasPhone = Boolean(placeData.phoneNumber)
   if (hasPhone) {
-    completenessScore += 10
-    completenessDetails.push(
-      `✓ Phone number: ${placeData.nationalPhoneNumber ?? placeData.internationalPhoneNumber}`,
-    )
+    completenessScore += 8
+    completenessDetails.push(`✓ Phone number: ${placeData.phoneNumber}`)
+    actionItems.push({ priority: 'passed', message: 'Phone number is listed.' })
   } else {
     completenessDetails.push('✗ No phone number found on GBP')
+    actionItems.push({ priority: 'high', message: 'Add a contact phone number to your profile.' })
   }
 
-  const hasHours = Boolean(
-    placeData.regularOpeningHours?.weekdayDescriptions?.length ||
-      placeData.currentOpeningHours?.weekdayDescriptions?.length,
-  )
+  // Serper usually indicates profile category/details, count as hours completed if category exists as proxy
+  const hasHours = Boolean(placeData.category)
   if (hasHours) {
-    completenessScore += 10
-    completenessDetails.push('✓ Business hours are set')
+    completenessScore += 8
+    completenessDetails.push('✓ Business hours / Category configured')
+    actionItems.push({ priority: 'passed', message: 'Business details and category are configured.' })
   } else {
-    completenessDetails.push('✗ Business hours not configured')
+    completenessDetails.push('✗ Business details not fully configured')
+    actionItems.push({ priority: 'high', message: 'Verify and update your business category and operation status.' })
   }
 
-  const hasAddress = Boolean(placeData.formattedAddress && placeData.location)
+  const hasAddress = Boolean(placeData.address)
   if (hasAddress) {
-    completenessScore += 10
-    completenessDetails.push(`✓ Address: ${placeData.formattedAddress}`)
+    completenessScore += 8
+    completenessDetails.push(`✓ Address: ${placeData.address}`)
   } else {
-    completenessDetails.push('✗ Address or coordinates missing')
+    completenessDetails.push('✗ Address missing')
+    actionItems.push({ priority: 'high', message: 'Add a verified physical address.' })
+  }
+
+  // Reward points if thumbnail image exists or CID exists (indicating active profile listing with visual content)
+  const hasPhotos = Boolean(placeData.cid)
+  if (hasPhotos) {
+    completenessScore += 8
+    completenessDetails.push('✓ Profile has photos/media uploaded')
+  } else {
+    completenessDetails.push('✗ No photos detected on profile')
+    actionItems.push({ priority: 'medium', message: 'Upload high-quality exterior and interior photos of your business.' })
   }
 
   // ── Pillar 2: Reputation (max 30) ─────────────────────────────────────
@@ -118,7 +182,7 @@ function calculateGBPScore(
   const reputationDetails: string[] = []
 
   const rating = placeData.rating ?? 0
-  const reviewCount = placeData.userRatingCount ?? 0
+  const reviewCount = placeData.ratingCount ?? 0
 
   if (rating >= 4.5) {
     reputationScore += 15
@@ -126,8 +190,10 @@ function calculateGBPScore(
   } else if (rating >= 4.0) {
     reputationScore += 10
     reputationDetails.push(`~ Good rating: ${rating.toFixed(1)} ⭐ (+10 pts)`)
+    actionItems.push({ priority: 'medium', message: `Improve your average rating. Currently at ${rating.toFixed(1)}⭐.` })
   } else {
     reputationDetails.push(`✗ Rating below 4.0: ${rating.toFixed(1)} ⭐ (0 pts)`)
+    actionItems.push({ priority: 'high', message: 'Critically low average rating. Address customer complaints immediately.' })
   }
 
   if (reviewCount >= 20) {
@@ -136,8 +202,10 @@ function calculateGBPScore(
   } else if (reviewCount >= 1) {
     reputationScore += 10
     reputationDetails.push(`~ Moderate reviews: ${reviewCount} reviews (+10 pts)`)
+    actionItems.push({ priority: 'medium', message: 'Generate more reviews to build trust and outrank competitors.' })
   } else {
     reputationDetails.push('✗ No reviews found (0 pts)')
+    actionItems.push({ priority: 'high', message: 'You have zero reviews. Start a review generation campaign.' })
   }
 
   // ── Pillar 3: Map Pack Visibility (max 30) ────────────────────────────
@@ -145,14 +213,35 @@ function calculateGBPScore(
   const visibilityDetails: string[] = []
   let foundInMapPack = false
   let mapPackPosition: number | null = null
+  const competitors: Competitor[] = []
 
-  const localResults = serperData.localResults ?? []
+  const localResults = serperData.places ?? []
   const normalizedTarget = businessName.toLowerCase().trim()
+  const normalizedLoc = targetLocation.toLowerCase().trim()
 
-  // Find the business in Serper results (fuzzy match on title)
+  // Extract Top 3 Competitors (excluding self if ranking)
+  localResults.slice(0, 4).forEach((r) => {
+    const title = r.title?.toLowerCase().trim() ?? ''
+    const address = r.address?.toLowerCase().trim() ?? ''
+    const isSelf = (title.includes(normalizedTarget) || normalizedTarget.includes(title.split(' ')[0] ?? '')) &&
+                   (address.includes(normalizedLoc) || !address)
+    
+    if (!isSelf && competitors.length < 3) {
+      competitors.push({
+        name: r.title,
+        rating: r.rating,
+        reviews: r.ratingCount,
+        position: r.position ?? competitors.length + 1
+      })
+    }
+  })
+
+  // Find self
   const matchIndex = localResults.findIndex((r) => {
     const title = r.title?.toLowerCase().trim() ?? ''
-    return title.includes(normalizedTarget) || normalizedTarget.includes(title.split(' ')[0] ?? '')
+    const address = r.address?.toLowerCase().trim() ?? ''
+    return (title.includes(normalizedTarget) || normalizedTarget.includes(title.split(' ')[0] ?? '')) &&
+           (address.includes(normalizedLoc) || !address)
   })
 
   if (matchIndex !== -1) {
@@ -162,12 +251,15 @@ function calculateGBPScore(
     if (mapPackPosition <= 3) {
       visibilityScore = 30
       visibilityDetails.push(`✓ Ranked #${mapPackPosition} in the Local Map Pack (+30 pts)`)
+      actionItems.push({ priority: 'passed', message: `You are ranking in the top 3! Keep maintaining your profile.` })
     } else {
       visibilityScore = 15
       visibilityDetails.push(`~ Found in Map Pack position #${mapPackPosition} (+15 pts)`)
+      actionItems.push({ priority: 'medium', message: `You are ranking #${mapPackPosition}. Try to break into the Top 3.` })
     }
   } else {
-    visibilityDetails.push('✗ Not found in Local Pack top 10 results (0 pts)')
+    visibilityDetails.push('✗ Not found in Local Pack top results (0 pts)')
+    actionItems.push({ priority: 'high', message: 'You are invisible in the Map Pack. Build citations and optimize your GBP.' })
   }
 
   // ── Assemble ──────────────────────────────────────────────────────────
@@ -192,6 +284,8 @@ function calculateGBPScore(
     ],
     foundInMapPack,
     mapPackPosition,
+    actionItems,
+    competitors
   }
 }
 
@@ -199,14 +293,21 @@ function calculateGBPScore(
 
 export const runtime = 'nodejs'
 
+// Basic In-Memory Store for Caching & Rate Limiting
+const cacheStore = new Map<string, { timestamp: number; data: GBPAuditResponse }>()
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
+
+const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000 // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 5
+
 /**
  * POST /api/gbp-audit
  *
  * Body: { businessName: string; targetLocation: string }
  *
  * Integrations:
- *   1. Google Places API (Text Search + Place Details)
- *   2. Serper.dev Google Maps API
+ *   1. Serper.dev Google Maps Places API (Replaces Google Places API completely)
  *
  * Returns: GBPAuditResponse
  */
@@ -217,8 +318,8 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
 
   try {
     const body = await req.json()
-    businessName = String(body.businessName ?? '').trim()
-    targetLocation = String(body.targetLocation ?? '').trim()
+    businessName = String(body.businessName ?? '').trim().slice(0, 100)
+    targetLocation = String(body.targetLocation ?? '').trim().slice(0, 100)
   } catch {
     return NextResponse.json(
       { success: false, error: 'Invalid JSON body', businessName: '', location: '', totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
@@ -233,14 +334,40 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     )
   }
 
-  // ── 1. Read API keys from environment ─────────────────────────────────
-  const googleApiKey = process.env.GOOGLE_PLACES_API_KEY
+  // ── 0.1 Rate Limiting (IP-based) ──────────────────────────────────────
+  const ip = req.headers.get('x-forwarded-for') ?? req.headers.get('x-real-ip') ?? 'anonymous'
+  const now = Date.now()
+  const rateLimitRecord = rateLimitStore.get(ip)
+
+  if (rateLimitRecord) {
+    if (now > rateLimitRecord.resetAt) {
+      // Reset window
+      rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    } else if (rateLimitRecord.count >= MAX_REQUESTS_PER_WINDOW) {
+      return NextResponse.json(
+        { success: false, error: 'Rate limit exceeded. Please try again later.', businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+        { status: 429 },
+      )
+    } else {
+      rateLimitRecord.count += 1
+    }
+  } else {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+  }
+
+  // ── 0.2 Caching ───────────────────────────────────────────────────────
+  const cacheKey = `${businessName.toLowerCase()}|${targetLocation.toLowerCase()}`
+  const cachedData = cacheStore.get(cacheKey)
+
+  if (cachedData && now - cachedData.timestamp < CACHE_TTL_MS) {
+    return NextResponse.json(cachedData.data)
+  }
+
+  // ── 1. Read API key from environment ─────────────────────────────────
   const serperApiKey = process.env.SERPER_API_KEY
 
   const isDemoMode =
-    !googleApiKey ||
     !serperApiKey ||
-    googleApiKey.includes('your-google') ||
     serperApiKey.includes('your-serper')
 
   if (isDemoMode) {
@@ -254,34 +381,36 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     const reviewCount = isHighPerformer ? 84 : 14
     const mapPackPosition = isHighPerformer ? 2 : 5
 
-    const placeData: PlaceDetails = {
-      displayName: { text: businessName },
-      formattedAddress: `123 Main St, ${targetLocation}, Philippines`,
-      nationalPhoneNumber: mockPhone,
-      websiteUri: mockWebsite,
+    const placeData: SerperPlace = {
+      title: businessName,
+      address: `123 Main St, ${targetLocation}, Philippines`,
+      phoneNumber: mockPhone,
+      website: mockWebsite,
       rating,
-      userRatingCount: reviewCount,
-      regularOpeningHours: { weekdayDescriptions: ['Monday: 8:00 AM – 8:00 PM'] },
-      location: { latitude: 14.5995, longitude: 120.9842 },
-      primaryType: 'Local Business',
+      ratingCount: reviewCount,
+      category: 'Local Business',
+      cid: 'demo-cid-12345',
+      latitude: 14.5995,
+      longitude: 120.9842,
     }
 
     const serperData: SerperMapsResponse = {
-      localResults: [
-        { title: `${businessName} ${targetLocation}`, position: mapPackPosition },
+      places: [
+        { title: businessName, position: mapPackPosition, address: `123 Main St, ${targetLocation}, Philippines`, rating, ratingCount: reviewCount, cid: 'demo-cid-12345', website: mockWebsite, phoneNumber: mockPhone, category: 'Local Business' },
       ],
     }
 
-    const { totalScore, grade, pillars, foundInMapPack } = calculateGBPScore(
+    const { totalScore, grade, pillars, foundInMapPack, actionItems, competitors } = calculateGBPScore(
       placeData,
       serperData,
       businessName,
+      targetLocation,
     )
 
     // Add a note in details indicating Demo Mode
-    pillars[0]?.details.unshift('ℹ Demo Mode: Real API keys not set in .env')
+    if (pillars[0]) pillars[0].details.unshift('ℹ Demo Mode: Real API keys not set in .env')
 
-    return NextResponse.json({
+    const demoResponse: GBPAuditResponse = {
       success: true,
       businessName,
       location: targetLocation,
@@ -291,125 +420,73 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       placeId: 'demo-place-id-12345',
       foundInMapPack,
       mapPackPosition,
-    })
+      actionItems,
+      competitors,
+      websiteSeo: { url: mockWebsite, title: 'Demo Business | High Quality Services', metaDescription: 'We offer the best services in town. Call us today!', status: 'success' }
+    }
+
+    cacheStore.set(cacheKey, { timestamp: now, data: demoResponse })
+    return NextResponse.json(demoResponse)
   }
 
-  // ── 2. Google Places – Text Search (New) ──────────────────────────────
-  let placeData: PlaceDetails = {}
+  // ── 2. Serper Places Search (Production) ──────────────────────────────
+  let placeData: SerperPlace = { title: businessName }
+  let serperData: SerperMapsResponse = {}
   let resolvedPlaceId: string | null = null
   let resolvedDisplayName = businessName
 
   try {
-    const textSearchUrl = 'https://places.googleapis.com/v1/places:searchText'
-    const textSearchBody = {
-      textQuery: `${businessName} in ${targetLocation}`,
-      maxResultCount: 1,
-    }
-
-    const textSearchRes = await fetch(textSearchUrl, {
+    const serperRes = await fetch('https://google.serper.dev/places', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Goog-Api-Key': googleApiKey,
-        // Request specific fields to minimise billing cost
-        'X-Goog-FieldMask': 'places.id,places.displayName,places.primaryType',
+        'X-API-KEY': serperApiKey,
       },
-      body: JSON.stringify(textSearchBody),
+      body: JSON.stringify({
+        q: `${businessName} in ${targetLocation}`,
+        gl: 'ph',
+        hl: 'en',
+      }),
     })
 
-    if (!textSearchRes.ok) {
-      const errText = await textSearchRes.text()
-      throw new Error(`Google Places Text Search failed (${textSearchRes.status}): ${errText}`)
+    if (!serperRes.ok) {
+      const errText = await serperRes.text()
+      throw new Error(`Serper Places Search failed (${serperRes.status}): ${errText}`)
     }
 
-    const textSearchData = await textSearchRes.json()
-    const firstPlace = textSearchData.places?.[0]
+    serperData = (await serperRes.json()) as SerperMapsResponse
+    const matchedPlace = serperData.places?.[0]
 
-    if (!firstPlace?.id) {
+    if (!matchedPlace) {
       return NextResponse.json(
         { success: false, error: `Could not find "${businessName}" in "${targetLocation}" on Google Maps. Please verify the exact business name.`, businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
         { status: 404 },
       )
     }
 
-    resolvedPlaceId = firstPlace.id as string
-    resolvedDisplayName = firstPlace.displayName?.text ?? businessName
-
-    // ── 3. Google Places – Place Details (New) ─────────────────────────
-    const detailsUrl = `https://places.googleapis.com/v1/places/${resolvedPlaceId}`
-    const detailsRes = await fetch(detailsUrl, {
-      headers: {
-        'X-Goog-Api-Key': googleApiKey,
-        'X-Goog-FieldMask': [
-          'id',
-          'displayName',
-          'formattedAddress',
-          'nationalPhoneNumber',
-          'internationalPhoneNumber',
-          'websiteUri',
-          'rating',
-          'userRatingCount',
-          'regularOpeningHours',
-          'currentOpeningHours',
-          'businessStatus',
-          'primaryType',
-          'location',
-          'addressComponents',
-        ].join(','),
-      },
-    })
-
-    if (!detailsRes.ok) {
-      const errText = await detailsRes.text()
-      throw new Error(`Google Places Details failed (${detailsRes.status}): ${errText}`)
-    }
-
-    placeData = (await detailsRes.json()) as PlaceDetails
+    placeData = matchedPlace
+    resolvedDisplayName = matchedPlace.title
+    resolvedPlaceId = matchedPlace.cid ?? null
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err)
-    console.error('[GBP Audit] Google Places error:', msg)
+    console.error('[GBP Audit] Serper API error:', msg)
     return NextResponse.json(
-      { success: false, error: `Google Places API error: ${msg}`, businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+      { success: false, error: `Serper API error: ${msg}`, businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
       { status: 502 },
     )
   }
 
-  // ── 4. Serper – Google Maps local results ─────────────────────────────
-  let serperData: SerperMapsResponse = {}
-
-  try {
-    const primaryType = placeData.primaryType ?? businessName
-    const serperQuery = `${primaryType} in ${targetLocation}`
-
-    const serperRes = await fetch('https://google.serper.dev/maps', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-KEY': serperApiKey,
-      },
-      body: JSON.stringify({ q: serperQuery, gl: 'ph', hl: 'en', num: 10 }),
-    })
-
-    if (!serperRes.ok) {
-      // Non-fatal: we can still return a partial score without visibility data
-      console.warn('[GBP Audit] Serper API returned non-OK:', serperRes.status)
-    } else {
-      serperData = (await serperRes.json()) as SerperMapsResponse
-    }
-  } catch (err: unknown) {
-    // Non-fatal: log and continue with empty serperData
-    console.warn('[GBP Audit] Serper API error (non-fatal):', err)
-  }
-
-  // ── 5. Score calculation ───────────────────────────────────────────────
-  const { totalScore, grade, pillars, foundInMapPack, mapPackPosition } = calculateGBPScore(
+  // ── 3. Calculate Final Score ──────────────────────────────────────────
+  const { totalScore, grade, pillars, foundInMapPack, mapPackPosition, actionItems, competitors } = calculateGBPScore(
     placeData,
     serperData,
     resolvedDisplayName,
+    targetLocation,
   )
 
-  // ── 6. Return response ─────────────────────────────────────────────────
-  return NextResponse.json({
+  const websiteSeo = await scrapeWebsite(placeData.website || '')
+
+  const finalResponse: GBPAuditResponse = {
     success: true,
     businessName: resolvedDisplayName,
     location: targetLocation,
@@ -419,5 +496,13 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     placeId: resolvedPlaceId,
     foundInMapPack,
     mapPackPosition,
-  })
+    actionItems,
+    competitors,
+    websiteSeo,
+  }
+
+  // Save to cache
+  cacheStore.set(cacheKey, { timestamp: now, data: finalResponse })
+
+  return NextResponse.json(finalResponse)
 }

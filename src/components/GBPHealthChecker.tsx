@@ -12,6 +12,25 @@ export interface AuditPillar {
   details: string[]
 }
 
+export interface ActionItem {
+  priority: 'high' | 'medium' | 'low' | 'passed'
+  message: string
+}
+
+export interface Competitor {
+  name: string
+  rating?: number
+  reviews?: number
+  position: number
+}
+
+export interface WebsiteSeo {
+  url: string
+  title: string | null
+  metaDescription: string | null
+  status: 'success' | 'error' | 'no_website'
+}
+
 /** Full API response payload from /api/gbp-audit */
 export interface GBPAuditResponse {
   success: boolean
@@ -23,6 +42,9 @@ export interface GBPAuditResponse {
   placeId: string | null
   foundInMapPack: boolean
   mapPackPosition: number | null
+  actionItems?: ActionItem[]
+  competitors?: Competitor[]
+  websiteSeo?: WebsiteSeo
   error?: string
 }
 
@@ -226,6 +248,9 @@ export function GBPHealthChecker() {
       const data: GBPAuditResponse = await res.json()
 
       if (!res.ok || !data.success) {
+        if (res.status === 429) {
+          throw new Error('Rate limit exceeded. Please try again in an hour.')
+        }
         throw new Error(data.error ?? `Server error ${res.status}`)
       }
 
@@ -255,6 +280,7 @@ export function GBPHealthChecker() {
           value={businessName}
           onChange={(e) => setBusinessName(e.target.value)}
           placeholder="Business Name (as on Google Maps)"
+          maxLength={100}
           required
           disabled={isLoading}
           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[44px] disabled:opacity-50"
@@ -267,6 +293,7 @@ export function GBPHealthChecker() {
           value={targetLocation}
           onChange={(e) => setTargetLocation(e.target.value)}
           placeholder="Target Location / City (e.g. Manila, Cebu)"
+          maxLength={100}
           required
           disabled={isLoading}
           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[44px] disabled:opacity-50"
@@ -311,65 +338,163 @@ export function GBPHealthChecker() {
         </button>
       </form>
 
-      {/* ── Results Panel ────────────────────────────────────────────────── */}
+      {/* ── Full Screen Dashboard Modal ────────────────────────────────────── */}
       {result && (
-        <div
-          ref={resultsRef}
-          className="mt-6 space-y-5"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          {/* Score header card */}
-          <div className="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center gap-6">
-            <CircularProgressRing score={result.totalScore} grade={result.grade} />
+        <div className="fixed inset-0 z-[100] flex justify-center bg-[#0d0d0d]/95 backdrop-blur-xl overflow-y-auto">
+          <div className="w-full max-w-5xl px-4 py-8 md:p-10 space-y-8 animate-in fade-in zoom-in-95 duration-300">
+            
+            {/* Modal Header */}
+            <div className="flex items-start justify-between sticky top-0 bg-[#0d0d0d]/80 backdrop-blur-md py-4 z-10 border-b border-white/10">
+              <div>
+                <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-on-surface">
+                  {result.businessName}
+                </h2>
+                <p className="text-on-surface/50 text-sm">{result.location}</p>
+              </div>
+              <button
+                onClick={() => setResult(null)}
+                className="bg-white/10 hover:bg-white/20 text-on-surface rounded-full p-2.5 transition-colors"
+                aria-label="Close dashboard"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-            <div className="flex-1 space-y-1 text-center sm:text-left">
-              <p className="font-heading text-[10px] uppercase tracking-widest text-on-surface/50">
-                GBP Audit Result
-              </p>
-              <p className="font-heading text-base font-bold text-on-surface leading-snug">
-                {result.businessName}
-              </p>
-              <p className="font-sans text-xs text-on-surface/50">{result.location}</p>
-
-              {/* Map Pack status badge */}
-              <div className="pt-2">
-                {result.foundInMapPack ? (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/15 border border-green-500/30 text-green-400 text-[10px] font-bold uppercase tracking-wider">
-                    <span>✓</span>
-                    {result.mapPackPosition && result.mapPackPosition <= 3
-                      ? `Map Pack #${result.mapPackPosition}`
-                      : `Map Pack Position #${result.mapPackPosition ?? '?'}`}
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] font-bold uppercase tracking-wider">
-                    <span>✗</span>
-                    Not in Local Map Pack
-                  </span>
-                )}
+            {/* Score & Badges */}
+            <div className="flex flex-col md:flex-row gap-8 items-center bg-white/5 border border-white/10 rounded-3xl p-8">
+              <CircularProgressRing score={result.totalScore} grade={result.grade} />
+              
+              <div className="space-y-4 text-center md:text-left flex-1">
+                <h3 className="font-heading font-bold text-xl text-on-surface">Overall Health Score</h3>
+                <p className="text-sm text-on-surface/70 leading-relaxed max-w-lg">
+                  {result.grade === 'A+' || result.grade === 'A' ? "Excellent profile! You're following local SEO best practices." : 
+                   result.grade.includes('B') ? "Good profile, but missing a few key local trust signals." : 
+                   "Your profile needs urgent attention to compete in local search."}
+                </p>
+                
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-2">
+                  {result.foundInMapPack ? (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/15 border border-green-500/30 text-green-400 text-xs font-bold uppercase tracking-wider">
+                      <span>✓</span> Ranked #{result.mapPackPosition} in Map Pack
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+                      <span>✗</span> Not Ranking in Top 10
+                    </span>
+                  )}
+                  {result.websiteSeo?.status === 'success' && (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container/20 border border-primary-container/30 text-primary-container text-xs font-bold uppercase tracking-wider">
+                      <span>✓</span> Website Linked
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Audit pillar breakdown */}
-          <div className="grid grid-cols-1 gap-3">
-            {result.pillars.map((pillar) => (
-              <PillarCard key={pillar.name} pillar={pillar} />
-            ))}
-          </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              
+              {/* Column 1: Action Plan */}
+              <div className="lg:col-span-2 space-y-6">
+                <h3 className="font-heading text-lg font-bold text-on-surface">Action Plan</h3>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
+                  {result.actionItems?.map((item, idx) => {
+                    const colors = {
+                      high: 'bg-red-500/10 border-red-500/20 text-red-400',
+                      medium: 'bg-yellow-500/10 border-yellow-500/20 text-yellow-400',
+                      low: 'bg-blue-500/10 border-blue-500/20 text-blue-400',
+                      passed: 'bg-green-500/10 border-green-500/20 text-green-400 opacity-60'
+                    }[item.priority]
 
-          {/* Disclaimer */}
-          <p className="text-center font-sans text-[10px] text-on-surface/30 leading-relaxed">
-            Scores are estimates based on Google Places &amp; Serper API data.
-            For a full audit,{' '}
-            <a
-              href="/contact"
-              className="text-primary-container underline hover:text-primary transition-colors"
-            >
-              contact me
-            </a>
-            .
-          </p>
+                    const icons = {
+                      high: '🔴',
+                      medium: '🟡',
+                      low: '🔵',
+                      passed: '🟢'
+                    }[item.priority]
+
+                    return (
+                      <div key={idx} className={`flex items-start gap-3 p-4 rounded-xl border ${colors}`}>
+                        <span className="text-sm mt-0.5">{icons}</span>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">{item.message}</p>
+                          <p className="text-[10px] uppercase font-bold tracking-widest mt-1 opacity-70">{item.priority} Priority</p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <h3 className="font-heading text-lg font-bold text-on-surface pt-4">Technical Breakdown</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {result.pillars.map((pillar) => (
+                    <PillarCard key={pillar.name} pillar={pillar} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Column 2: Side Panel (Competitors & SEO) */}
+              <div className="space-y-6">
+                {/* Competitors */}
+                {result.competitors && result.competitors.length > 0 && (
+                  <>
+                    <h3 className="font-heading text-lg font-bold text-on-surface">Top Competitors</h3>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                      {result.competitors.map((comp, idx) => (
+                        <div key={idx} className="flex flex-col gap-1 pb-3 border-b border-white/10 last:border-0 last:pb-0">
+                          <span className="text-sm font-bold text-on-surface">#{comp.position} {comp.name}</span>
+                          <span className="text-xs text-on-surface/60">
+                            {comp.rating ? `${comp.rating} ⭐` : 'No rating'} • {comp.reviews || 0} reviews
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {/* Website On-Page SEO Snapshot */}
+                {result.websiteSeo && result.websiteSeo.status !== 'no_website' && (
+                  <>
+                    <h3 className="font-heading text-lg font-bold text-on-surface">Website SEO Snapshot</h3>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                      <p className="text-xs text-primary-container truncate">{result.websiteSeo.url}</p>
+                      
+                      {result.websiteSeo.status === 'error' ? (
+                        <p className="text-xs text-red-400">Failed to fetch website data (might be blocking bots).</p>
+                      ) : (
+                        <>
+                          <div>
+                            <span className="text-[10px] uppercase font-bold text-on-surface/50 tracking-wider">Title Tag</span>
+                            <p className="text-xs text-on-surface mt-1 font-medium leading-relaxed">
+                              {result.websiteSeo.title ? result.websiteSeo.title : <span className="text-red-400">Missing</span>}
+                            </p>
+                          </div>
+                          <div>
+                            <span className="text-[10px] uppercase font-bold text-on-surface/50 tracking-wider">Meta Description</span>
+                            <p className="text-xs text-on-surface mt-1 leading-relaxed line-clamp-3">
+                              {result.websiteSeo.metaDescription ? result.websiteSeo.metaDescription : <span className="text-red-400">Missing</span>}
+                            </p>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                <div className="mt-8 p-5 rounded-2xl bg-primary-container/10 border border-primary-container/20 text-center space-y-3">
+                  <h4 className="font-heading font-bold text-primary-container">Need help fixing these?</h4>
+                  <p className="text-xs text-on-surface/70 leading-relaxed">
+                    I specialize in Local SEO and converting profiles into lead generators.
+                  </p>
+                  <a href="/contact" className="inline-block px-4 py-2 mt-2 bg-primary-container text-on-primary-container font-bold text-xs uppercase tracking-widest rounded-lg hover:brightness-110 transition-all">
+                    Contact Me
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       )}
     </>
