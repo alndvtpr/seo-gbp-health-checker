@@ -1,6 +1,6 @@
 import React from 'react'
 import { Inter, Montserrat } from 'next/font/google'
-import Script from 'next/script'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import dynamic from 'next/dynamic'
 import './styles.css'
 
@@ -29,7 +29,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`dark ${inter.variable} ${montserrat.variable} bg-[#121414]`} style={{ backgroundColor: '#121414' }}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#121414" />
@@ -40,27 +40,16 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
         />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
-        {/* Async Google Tag Manager Script */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-41RVF48NJ8"
-          strategy="lazyOnload"
-        />
-        <Script id="gtag-init" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-41RVF48NJ8');
-          `}
-        </Script>
+        <GoogleAnalytics gaId="G-41RVF48NJ8" />
 
         {/* WebGL Background Canvas Container */}
-        <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent"></div>
-        <ShaderBackground />
+        <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent">
+          <ShaderBackground />
+        </div>
         
         <Navbar />
         

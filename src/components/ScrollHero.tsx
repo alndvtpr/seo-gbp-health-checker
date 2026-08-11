@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const FRAME_COUNT = 121
 const FRAME_PREFIX = '/hero-frames/frame-'
@@ -18,6 +19,7 @@ export const ScrollHero = () => {
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [mounted, setMounted] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const maxScrollRef = useRef<number>(1)
 
   useEffect(() => {
@@ -25,20 +27,30 @@ export const ScrollHero = () => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setReducedMotion(mediaQuery.matches)
 
+    const mobileQuery = window.matchMedia('(max-width: 767px)')
+    setIsMobile(mobileQuery.matches)
+
     const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
+    const mobileListener = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    
     mediaQuery.addEventListener('change', listener)
-    return () => mediaQuery.removeEventListener('change', listener)
+    mobileQuery.addEventListener('change', mobileListener)
+    
+    return () => {
+      mediaQuery.removeEventListener('change', listener)
+      mobileQuery.removeEventListener('change', mobileListener)
+    }
   }, [])
 
   // Preload and decode hero frames into useRef
   useEffect(() => {
-    if (reducedMotion) return
+    if (reducedMotion || isMobile) return
 
     const imageCache: HTMLImageElement[] = imagesRef.current
 
     // Preload frame 0 immediately for LCP
     if (!imageCache[0]) {
-      const firstImage = new Image()
+      const firstImage = new window.Image()
       firstImage.src = getFrameUrl(0)
       imageCache[0] = firstImage
       firstImage.onload = () => {
@@ -69,7 +81,7 @@ export const ScrollHero = () => {
         let loadedInBatch = 0
         while (index < FRAME_COUNT && loadedInBatch < batchSize) {
           if (!imageCache[index]) {
-            const img = new Image()
+            const img = new window.Image()
             img.src = getFrameUrl(index)
             imageCache[index] = img
           }
@@ -109,7 +121,7 @@ export const ScrollHero = () => {
       window.removeEventListener('touchstart', handleInitialInteraction)
       if (preloadTimeout) clearTimeout(preloadTimeout)
     }
-  }, [reducedMotion])
+  }, [reducedMotion, isMobile])
 
   // Helper to draw image using object-fit: cover logic
   const drawCover = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, width: number, height: number) => {
@@ -147,7 +159,7 @@ export const ScrollHero = () => {
 
   // Scroll scrubbing synced to container scroll position
   useEffect(() => {
-    if (!mounted || reducedMotion) return
+    if (!mounted || reducedMotion || isMobile) return
 
     let requestId: number
 
@@ -169,7 +181,20 @@ export const ScrollHero = () => {
 
     const handleResizeOrScroll = () => {
       calculateMaxScroll()
+      const canvas = canvasRef.current
+      if (canvas) {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        const targetWidth = Math.floor(window.innerWidth * dpr)
+        const targetHeight = Math.floor(window.innerHeight * dpr)
+        if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+          canvas.width = targetWidth
+          canvas.height = targetHeight
+        }
+      }
     }
+    
+    // Initial size setup
+    handleResizeOrScroll()
 
     window.addEventListener('resize', handleResizeOrScroll, { passive: true })
     window.addEventListener('orientationchange', handleResizeOrScroll, { passive: true })
@@ -177,14 +202,6 @@ export const ScrollHero = () => {
     const render = () => {
       const canvas = canvasRef.current
       if (canvas) {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2)
-        const targetWidth = Math.floor(window.innerWidth * dpr)
-        const targetHeight = Math.floor(window.innerHeight * dpr)
-
-        if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
-          canvas.width = targetWidth
-          canvas.height = targetHeight
-        }
 
         const ctx = canvas.getContext('2d')
         if (ctx) {
@@ -224,16 +241,32 @@ export const ScrollHero = () => {
       window.removeEventListener('resize', handleResizeOrScroll)
       window.removeEventListener('orientationchange', handleResizeOrScroll)
     }
-  }, [mounted, reducedMotion])
+  }, [mounted, reducedMotion, isMobile])
 
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
   return (
     <div ref={containerRef} className="relative w-full min-h-[90vh] sm:min-h-screen bg-transparent flex flex-col justify-center">
-      <link rel="preload" href={getFrameUrl(0)} as="image" />
+      <link rel="preload" href={getFrameUrl(0)} as="image" fetchPriority="high" />
 
-      {/* Viewport container holding the background canvas */}
-      {targetContainer &&
+      {/* Static Fallback Image - Always rendered on server, hidden on Desktop client UNLESS reduced motion */}
+      <div 
+        className={`fixed inset-0 w-full h-full z-[-4] pointer-events-none ${mounted && !isMobile && !reducedMotion ? 'hidden' : 'block'}`}
+      >
+        <Image 
+          src={getFrameUrl(0)}
+          alt="Hero Background"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        {/* Dark film-noir gradient overlay to match canvas */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,20,0.65)] via-[rgba(18,20,20,0.25)] to-[rgba(18,20,20,0.4)]" />
+      </div>
+
+      {/* Viewport container holding the background canvas (Desktop only) */}
+      {targetContainer && !isMobile && !reducedMotion &&
         createPortal(
           <canvas
             ref={canvasRef}

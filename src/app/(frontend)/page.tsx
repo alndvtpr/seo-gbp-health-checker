@@ -16,7 +16,7 @@ export const metadata = generateMetadata({
   url: 'https://alaintapiru.com'
 })
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // Revalidate every hour
 
 export default async function Page() {
   let page: PayloadPage | null = null

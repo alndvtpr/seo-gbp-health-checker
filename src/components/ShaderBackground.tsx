@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 
 const vertexShaderSource = `
   attribute vec2 a_position;
@@ -214,13 +213,18 @@ export const ShaderBackground = () => {
     }
   }, [mounted, reducedMotion])
 
-  if (!mounted || reducedMotion) return null
+  if (!mounted || reducedMotion) {
+    return (
+      <div 
+        className="fixed inset-0 w-full h-full z-[-2] pointer-events-none opacity-50"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, rgba(230, 126, 34, 0.12) 0%, rgba(18, 20, 20, 0) 60%)'
+        }}
+      />
+    )
+  }
   
-  const targetContainer = document.getElementById('webgl-background-container')
-  if (!targetContainer) return null
-  
-  return createPortal(
-    <canvas ref={canvasRef} className="fixed inset-0 w-full h-full block z-[-2] pointer-events-none mix-blend-screen opacity-75" />,
-    targetContainer
+  return (
+    <canvas ref={canvasRef} className="fixed inset-0 w-full h-full block z-[-2] pointer-events-none mix-blend-screen opacity-75" />
   )
 }
