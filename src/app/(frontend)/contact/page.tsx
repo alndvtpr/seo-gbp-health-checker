@@ -69,7 +69,7 @@ export default function ContactPage() {
               <div className="flex gap-3 sm:gap-4">
                 {/* Gmail */}
                 <a
-                  href="mailto:alaintapiru@gmail.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)]"

@@ -57,7 +57,7 @@ export const Navbar = () => {
         <div
           className={`mx-auto flex items-center justify-between transition-all duration-500 ${
             scrolled
-              ? 'bg-[#121414]/95 shadow-2xl py-2 px-4 md:py-2.5 md:px-6 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto scale-100 md:scale-[0.98] translate-y-1 md:translate-y-4'
+              ? 'bg-[#121414]/95 shadow-2xl py-2 px-5 md:py-3 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto scale-100 md:scale-[0.98] translate-y-1 md:translate-y-4'
               : 'px-4 md:px-12 max-w-7xl scale-100 translate-y-0'
           }`}
         >
@@ -106,7 +106,7 @@ export const Navbar = () => {
             {/* Desktop Socials */}
             <div className="flex items-center gap-3 mr-1 pr-5 border-r border-white/10">
               {/* Gmail */}
-              <a href="mailto:alaintapiru@gmail.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all animate-brand-ripple" title="Gmail">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all animate-brand-ripple" title="Gmail">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
               </a>
               {/* Facebook */}
@@ -124,7 +124,7 @@ export const Navbar = () => {
             </div>
             <Link
               href="/contact"
-              className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-widest font-bold px-6 py-2.5 rounded-full animate-brand-ripple hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2"
+              className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-widest font-bold px-6 py-2.5 rounded-full animate-brand-ripple hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
             >
               Hire Me
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
@@ -177,7 +177,7 @@ export const Navbar = () => {
           
           {/* Mobile Menu Socials */}
           <div className="flex gap-4 mt-6">
-            <a href="mailto:alaintapiru@gmail.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all animate-brand-ripple">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all animate-brand-ripple">
               <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
             </a>
             <a href="https://facebook.com/dcrazedave" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all animate-brand-ripple">
