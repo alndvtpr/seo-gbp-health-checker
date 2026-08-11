@@ -246,12 +246,13 @@ function calculateGBPScore(
 
   if (matchIndex !== -1) {
     foundInMapPack = true
+    // The position is either provided by the API, or based on the index in the array (1-indexed)
     mapPackPosition = localResults[matchIndex]?.position ?? matchIndex + 1
 
     if (mapPackPosition <= 3) {
       visibilityScore = 30
       visibilityDetails.push(`✓ Ranked #${mapPackPosition} in the Local Map Pack (+30 pts)`)
-      actionItems.push({ priority: 'passed', message: `You are ranking in the top 3! Keep maintaining your profile.` })
+      actionItems.push({ priority: 'passed', message: `You are ranking #${mapPackPosition}! Keep maintaining your profile.` })
     } else {
       visibilityScore = 15
       visibilityDetails.push(`~ Found in Map Pack position #${mapPackPosition} (+15 pts)`)

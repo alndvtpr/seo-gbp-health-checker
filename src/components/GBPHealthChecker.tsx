@@ -340,23 +340,24 @@ export function GBPHealthChecker() {
 
       {/* ── Full Screen Dashboard Modal ────────────────────────────────────── */}
       {result && (
-        <div className="fixed inset-0 z-[100] flex justify-center bg-[#0d0d0d]/95 backdrop-blur-xl overflow-y-auto">
-          <div className="w-full max-w-5xl px-4 py-8 md:p-10 space-y-8 animate-in fade-in zoom-in-95 duration-300">
+        <div className="fixed inset-0 z-40 pt-20 md:pt-28 flex justify-center bg-black/60 backdrop-blur-2xl overflow-y-auto">
+          <div className="w-full max-w-5xl px-4 pb-12 space-y-8 animate-in fade-in zoom-in-95 duration-300">
             
             {/* Modal Header */}
-            <div className="flex items-start justify-between sticky top-0 bg-[#0d0d0d]/80 backdrop-blur-md py-4 z-10 border-b border-white/10">
+            <div className="flex items-center justify-between sticky top-4 md:top-8 bg-[#121414]/90 backdrop-blur-2xl px-5 py-4 md:px-8 md:py-5 rounded-2xl md:rounded-3xl z-10 border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
               <div>
-                <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-on-surface">
+                <h2 className="font-heading font-extrabold text-xl md:text-2xl text-on-surface">
                   {result.businessName}
                 </h2>
-                <p className="text-on-surface/50 text-sm">{result.location}</p>
+                <p className="text-on-surface/50 text-[10px] md:text-xs tracking-widest uppercase font-bold mt-0.5">{result.location}</p>
               </div>
               <button
                 onClick={() => setResult(null)}
-                className="bg-white/10 hover:bg-white/20 text-on-surface rounded-full p-2.5 transition-colors"
+                className="flex items-center gap-2 bg-red-500/15 hover:bg-red-500/30 text-red-400 hover:text-red-300 rounded-full pl-5 pr-4 py-2.5 transition-all shadow-[0_0_20px_rgba(239,68,68,0.15)] border border-red-500/30 font-heading font-bold text-xs uppercase tracking-widest group"
                 aria-label="Close dashboard"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                Exit
+                <svg className="group-hover:rotate-90 transition-transform duration-300" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
