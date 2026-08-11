@@ -91,7 +91,7 @@ export default function ProjectsPage() {
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
             <a
-              href="https://github.com/alndvtpr/portfolio-cms"
+              href="https://github.com/alndvtpr/seo-gbp-health-checker"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/5 border border-white/10 text-on-surface hover:bg-white/10 font-heading text-xs uppercase tracking-widest font-bold px-6 py-3.5 rounded-xl transition-all duration-300 flex items-center gap-2"

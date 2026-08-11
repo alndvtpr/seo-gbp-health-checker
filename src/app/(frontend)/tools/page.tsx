@@ -158,7 +158,7 @@ export default function ToolsPage() {
               distance
             </span>
             <a
-              href="https://github.com/alndvtpr/portfolio-cms"
+              href="https://github.com/alndvtpr/seo-gbp-health-checker"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-on-surface/80 hover:text-on-surface hover:bg-white/10 text-xs font-heading font-medium transition-colors"
