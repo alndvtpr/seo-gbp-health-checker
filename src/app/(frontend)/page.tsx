@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ScrollHero } from '@/components/ScrollHero'
+import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
@@ -378,6 +379,8 @@ export default async function Page() {
           ))}
         </div>
       </section>
+
+      <OpenToOpportunities />
 
       {/* 7. CALL TO ACTION */}
       <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">
