@@ -69,8 +69,8 @@ export default async function Page() {
           }}
         >
           {/* TOP ROW (Scroll Left) */}
-          <div className="flex w-[200%] animate-marquee-left marquee-row">
-            <div className="flex flex-nowrap w-1/2 justify-around items-center gap-2.5 sm:gap-3.5 px-2">
+          <div className="flex w-max animate-marquee-left marquee-row">
+            <div className="flex shrink-0 items-center gap-3.5 sm:gap-5 pr-3.5 sm:pr-5">
               {[
                 { name: 'WordPress', svg: <svg viewBox="0 0 24 24" fill="#21759b" className="w-full h-full"><path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg> },
                 { name: 'Next.js', svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-white"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg> },
@@ -87,7 +87,7 @@ export default async function Page() {
                   key={`${tool.name}-badge-${idx}`}
                   className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#161819]/70 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-[#1f2224]/80 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
-                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0 drop-shadow-[0_0_6px_rgba(255,255,255,0.08)] group-hover:drop-shadow-[0_0_10px_currentColor]">
+                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
                   <span className="text-xs sm:text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
@@ -97,7 +97,7 @@ export default async function Page() {
               ))}
             </div>
             {/* DUPLICATE FOR SEAMLESS LOOP */}
-            <div className="flex flex-nowrap w-1/2 justify-around items-center gap-2.5 sm:gap-3.5 px-2">
+            <div className="flex shrink-0 items-center gap-3.5 sm:gap-5 pr-3.5 sm:pr-5">
               {[
                 { name: 'WordPress', svg: <svg viewBox="0 0 24 24" fill="#21759b" className="w-full h-full"><path d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg> },
                 { name: 'Next.js', svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-white"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg> },
@@ -114,7 +114,7 @@ export default async function Page() {
                   key={`${tool.name}-1dup-badge-${idx}`}
                   className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#161819]/70 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-[#1f2224]/80 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
-                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0 drop-shadow-[0_0_6px_rgba(255,255,255,0.08)] group-hover:drop-shadow-[0_0_10px_currentColor]">
+                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
                   <span className="text-xs sm:text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
@@ -126,8 +126,8 @@ export default async function Page() {
           </div>
 
           {/* BOTTOM ROW (Scroll Right) */}
-          <div className="flex w-[200%] animate-marquee-right marquee-row -ml-[100%]">
-            <div className="flex flex-nowrap w-1/2 justify-around items-center gap-2.5 sm:gap-3.5 px-2">
+          <div className="flex w-max animate-marquee-right marquee-row">
+            <div className="flex shrink-0 items-center gap-3.5 sm:gap-5 pr-3.5 sm:pr-5">
               {[
                 { name: 'Ahrefs', svg: <svg viewBox="0 0 128 128" fill="#FF8000" className="w-full h-full"><path d="m24 8v24h64v16l-26.104 0.456c-35.096 3.256-45.896 11.624-45.896 36.504v6.512c0 19.064 14.328 28.528 32 28.528 7.984 0 16.32-1.56 25.04-5.976l14.96-6.024v12h24v-112zm64 76-18.112 7.472c-6.296 3.488-12.832 5.344-17.92 5.344-6.288 0-11.968-1.136-11.968-8.816v-5.12c0.48-8.136 7.376-11.176 26.256-13.032l21.744-1.848z"/></svg> },
                 { name: 'SEMrush', svg: <svg viewBox="0 0 24 24" fill="#FF642D" className="w-full h-full"><path d="M20.698 11.911c0 .444-.226.516-.79.516-.596 0-.706-.1-.77-.554-.118-1.152-.896-2.13-2.201-2.24-.418-.034-.518-.19-.518-.706 0-.48.074-.708.446-.708 2.265.01 3.833 1.832 3.833 3.69v.002zm3.3 0c0-3.456-2.338-7.11-7.74-7.11H5.52c-.218 0-.354.11-.354.31 0 .109.082.209.156.26.388.31.97.654 1.73 1.036.743.372 1.323.616 1.903.852.246.1.336.208.336.344 0 .19-.136.308-.4.308H.372c-.254 0-.372.164-.372.326 0 .136.044.254.162.372.69.726 1.796 1.596 3.4 2.604 1.466.91 2.98 1.74 4.533 2.492.236.11.308.236.308.372-.008.154-.126.28-.4.28H4.1c-.216 0-.344.12-.344.3 0 .1.08.226.19.326.888.808 2.311 1.688 4.207 2.494 2.53 1.08 5.094 1.721 7.98 1.721 5.465 0 7.867-4.087 7.867-7.289l-.002.002zm-7.133 5.104c-2.794 0-5.132-2.276-5.132-5.114 0-2.794 2.33-5.04 5.132-5.04 2.863 0 5.111 2.24 5.111 5.04a5.086 5.086 0 0 1-5.111 5.114z"/></svg> },
@@ -146,7 +146,7 @@ export default async function Page() {
                   key={`${tool.name}-2-badge-${idx}`}
                   className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#161819]/70 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-[#1f2224]/80 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
-                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0 drop-shadow-[0_0_6px_rgba(255,255,255,0.08)] group-hover:drop-shadow-[0_0_10px_currentColor]">
+                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
                   <span className="text-xs sm:text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
@@ -156,7 +156,7 @@ export default async function Page() {
               ))}
             </div>
             {/* DUPLICATE FOR SEAMLESS LOOP */}
-            <div className="flex flex-nowrap w-1/2 justify-around items-center gap-2.5 sm:gap-3.5 px-2">
+            <div className="flex shrink-0 items-center gap-3.5 sm:gap-5 pr-3.5 sm:pr-5">
               {[
                 { name: 'Ahrefs', svg: <svg viewBox="0 0 128 128" fill="#FF8000" className="w-full h-full"><path d="m24 8v24h64v16l-26.104 0.456c-35.096 3.256-45.896 11.624-45.896 36.504v6.512c0 19.064 14.328 28.528 32 28.528 7.984 0 16.32-1.56 25.04-5.976l14.96-6.024v12h24v-112zm64 76-18.112 7.472c-6.296 3.488-12.832 5.344-17.92 5.344-6.288 0-11.968-1.136-11.968-8.816v-5.12c0.48-8.136 7.376-11.176 26.256-13.032l21.744-1.848z"/></svg> },
                 { name: 'SEMrush', svg: <svg viewBox="0 0 24 24" fill="#FF642D" className="w-full h-full"><path d="M20.698 11.911c0 .444-.226.516-.79.516-.596 0-.706-.1-.77-.554-.118-1.152-.896-2.13-2.201-2.24-.418-.034-.518-.19-.518-.706 0-.48.074-.708.446-.708 2.265.01 3.833 1.832 3.833 3.69v.002zm3.3 0c0-3.456-2.338-7.11-7.74-7.11H5.52c-.218 0-.354.11-.354.31 0 .109.082.209.156.26.388.31.97.654 1.73 1.036.743.372 1.323.616 1.903.852.246.1.336.208.336.344 0 .19-.136.308-.4.308H.372c-.254 0-.372.164-.372.326 0 .136.044.254.162.372.69.726 1.796 1.596 3.4 2.604 1.466.91 2.98 1.74 4.533 2.492.236.11.308.236.308.372-.008.154-.126.28-.4.28H4.1c-.216 0-.344.12-.344.3 0 .1.08.226.19.326.888.808 2.311 1.688 4.207 2.494 2.53 1.08 5.094 1.721 7.98 1.721 5.465 0 7.867-4.087 7.867-7.289l-.002.002zm-7.133 5.104c-2.794 0-5.132-2.276-5.132-5.114 0-2.794 2.33-5.04 5.132-5.04 2.863 0 5.111 2.24 5.111 5.04a5.086 5.086 0 0 1-5.111 5.114z"/></svg> },
@@ -175,7 +175,7 @@ export default async function Page() {
                   key={`${tool.name}-2dup-badge-${idx}`}
                   className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#161819]/70 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-[#1f2224]/80 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
-                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0 drop-shadow-[0_0_6px_rgba(255,255,255,0.08)] group-hover:drop-shadow-[0_0_10px_currentColor]">
+                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
                   <span className="text-xs sm:text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
