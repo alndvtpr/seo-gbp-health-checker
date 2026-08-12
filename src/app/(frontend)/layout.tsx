@@ -53,7 +53,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         
         <Navbar />
         
-        <main className="flex-grow relative z-10 w-full">{children}</main>
+        <main className="flex-grow relative z-30 w-full">{children}</main>
         
         <Footer />
       </body>

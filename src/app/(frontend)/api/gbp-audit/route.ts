@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -42,6 +43,7 @@ export interface GBPAuditResponse {
   websiteSeo?: WebsiteSeo
   actionItems?: ActionItem[]
   error?: string
+  aiRecommendations?: string
 }
 
 // Serper Maps Places Result shape
@@ -112,6 +114,7 @@ function calculateGBPScore(
   serperData: SerperMapsResponse,
   businessName: string,
   targetLocation: string,
+  deepCheckAnswers?: boolean[]
 ): {
   totalScore: number
   grade: string
@@ -179,33 +182,43 @@ function calculateGBPScore(
 
   // ── Pillar 2: Reputation (max 30) ─────────────────────────────────────
   let reputationScore = 0
+  let reputationMax = 30
   const reputationDetails: string[] = []
 
-  const rating = placeData.rating ?? 0
-  const reviewCount = placeData.ratingCount ?? 0
+  const rating = placeData.rating
+  const reviewCount = placeData.ratingCount
 
-  if (rating >= 4.5) {
-    reputationScore += 15
-    reputationDetails.push(`✓ Excellent rating: ${rating.toFixed(1)} ⭐ (+15 pts)`)
-  } else if (rating >= 4.0) {
-    reputationScore += 10
-    reputationDetails.push(`~ Good rating: ${rating.toFixed(1)} ⭐ (+10 pts)`)
-    actionItems.push({ priority: 'medium', message: `Improve your average rating. Currently at ${rating.toFixed(1)}⭐.` })
+  if (rating === undefined && reviewCount === undefined) {
+    // Serper failed to fetch rating data, do not penalize the user
+    reputationMax = 0
+    reputationDetails.push('⚠️ Rating data currently unavailable via search API')
   } else {
-    reputationDetails.push(`✗ Rating below 4.0: ${rating.toFixed(1)} ⭐ (0 pts)`)
-    actionItems.push({ priority: 'high', message: 'Critically low average rating. Address customer complaints immediately.' })
-  }
+    const safeRating = rating ?? 0
+    const safeReviewCount = reviewCount ?? 0
 
-  if (reviewCount >= 20) {
-    reputationScore += 15
-    reputationDetails.push(`✓ Strong review count: ${reviewCount} reviews (+15 pts)`)
-  } else if (reviewCount >= 1) {
-    reputationScore += 10
-    reputationDetails.push(`~ Moderate reviews: ${reviewCount} reviews (+10 pts)`)
-    actionItems.push({ priority: 'medium', message: 'Generate more reviews to build trust and outrank competitors.' })
-  } else {
-    reputationDetails.push('✗ No reviews found (0 pts)')
-    actionItems.push({ priority: 'high', message: 'You have zero reviews. Start a review generation campaign.' })
+    if (safeRating >= 4.5) {
+      reputationScore += 15
+      reputationDetails.push(`✓ Excellent rating: ${safeRating.toFixed(1)} ⭐ (+15 pts)`)
+    } else if (safeRating >= 4.0) {
+      reputationScore += 10
+      reputationDetails.push(`~ Good rating: ${safeRating.toFixed(1)} ⭐ (+10 pts)`)
+      actionItems.push({ priority: 'medium', message: `Improve your average rating. Currently at ${safeRating.toFixed(1)}⭐.` })
+    } else {
+      reputationDetails.push(`✗ Rating below 4.0: ${safeRating.toFixed(1)} ⭐ (0 pts)`)
+      actionItems.push({ priority: 'high', message: 'Critically low average rating. Address customer complaints immediately.' })
+    }
+
+    if (safeReviewCount >= 20) {
+      reputationScore += 15
+      reputationDetails.push(`✓ Strong review count: ${safeReviewCount} reviews (+15 pts)`)
+    } else if (safeReviewCount >= 1) {
+      reputationScore += 10
+      reputationDetails.push(`~ Moderate reviews: ${safeReviewCount} reviews (+10 pts)`)
+      actionItems.push({ priority: 'medium', message: 'Generate more reviews to build trust and outrank competitors.' })
+    } else {
+      reputationDetails.push('✗ No reviews found (0 pts)')
+      actionItems.push({ priority: 'high', message: 'You have zero reviews. Start a review generation campaign.' })
+    }
   }
 
   // ── Pillar 3: Map Pack Visibility (max 30) ────────────────────────────
@@ -264,7 +277,49 @@ function calculateGBPScore(
   }
 
   // ── Assemble ──────────────────────────────────────────────────────────
-  const totalScore = completenessScore + reputationScore + visibilityScore
+  let earnedScore = completenessScore + reputationScore + visibilityScore
+  let maxPossible = 40 + reputationMax + 30
+  
+  const pillars: AuditPillar[] = [
+    { name: 'NAP & Completeness', score: completenessScore, maxScore: 40, details: completenessDetails },
+    { name: 'Reputation', score: reputationScore, maxScore: reputationMax, details: reputationDetails },
+    { name: 'Map Pack Visibility', score: visibilityScore, maxScore: 30, details: visibilityDetails },
+  ]
+
+  // ── Pillar 4: Deep Check (if provided) ────────────────────────────────
+  if (deepCheckAnswers && deepCheckAnswers.length === 4) {
+    let deepScore = 0
+    const deepDetails: string[] = []
+    
+    // Q1: Respond to all reviews
+    if (deepCheckAnswers[0]) { deepScore += 5; deepDetails.push('✓ Responds to all reviews (+5 pts)') }
+    else { deepDetails.push('✗ Does not respond to all reviews (0 pts)'); actionItems.push({ priority: 'high', message: 'Reply to all Google reviews to show active management.' }) }
+    
+    // Q2: Services listed
+    if (deepCheckAnswers[1]) { deepScore += 5; deepDetails.push('✓ Services/Products listed with descriptions (+5 pts)') }
+    else { deepDetails.push('✗ Services missing descriptions (0 pts)'); actionItems.push({ priority: 'medium', message: 'Add detailed descriptions to your services and products.' }) }
+    
+    // Q3: Google Update in last 14 days
+    if (deepCheckAnswers[2]) { deepScore += 5; deepDetails.push('✓ Recent Google Post published (+5 pts)') }
+    else { deepDetails.push('✗ No recent Google Posts (0 pts)'); actionItems.push({ priority: 'medium', message: 'Publish a new Google Update/Post to keep your profile fresh.' }) }
+    
+    // Q4: Description filled
+    if (deepCheckAnswers[3]) { deepScore += 5; deepDetails.push('✓ Business description is fully utilized (+5 pts)') }
+    else { deepDetails.push('✗ Description is too short or missing (0 pts)'); actionItems.push({ priority: 'medium', message: 'Expand your business description to use all 750 characters.' }) }
+
+    maxPossible += 20
+    earnedScore += deepScore
+
+    pillars.push({
+      name: 'Deep Check Authenticity',
+      score: deepScore,
+      maxScore: 20,
+      details: deepDetails
+    })
+  }
+
+  // Calculate final normalized percentage score
+  const totalScore = Math.round((earnedScore / maxPossible) * 100)
 
   let grade: string
   if (totalScore >= 85) grade = 'A+'
@@ -278,11 +333,7 @@ function calculateGBPScore(
   return {
     totalScore,
     grade,
-    pillars: [
-      { name: 'NAP & Completeness', score: completenessScore, maxScore: 40, details: completenessDetails },
-      { name: 'Reputation', score: reputationScore, maxScore: 30, details: reputationDetails },
-      { name: 'Map Pack Visibility', score: visibilityScore, maxScore: 30, details: visibilityDetails },
-    ],
+    pillars,
     foundInMapPack,
     mapPackPosition,
     actionItems,
@@ -305,10 +356,11 @@ const MAX_REQUESTS_PER_WINDOW = 5
 /**
  * POST /api/gbp-audit
  *
- * Body: { businessName: string; targetLocation: string }
+ * Body: { businessName: string; targetLocation: string; deepCheckAnswers?: boolean[] }
  *
  * Integrations:
  *   1. Serper.dev Google Maps Places API (Replaces Google Places API completely)
+ *   2. Google Gemini API (For Deep Check Recommendations)
  *
  * Returns: GBPAuditResponse
  */
@@ -316,11 +368,13 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
   // ── 0. Parse & validate request body ──────────────────────────────────
   let businessName: string
   let targetLocation: string
+  let deepCheckAnswers: boolean[] | undefined
 
   try {
     const body = await req.json()
     businessName = String(body.businessName ?? '').trim().slice(0, 100)
     targetLocation = String(body.targetLocation ?? '').trim().slice(0, 100)
+    if (Array.isArray(body.deepCheckAnswers)) { deepCheckAnswers = body.deepCheckAnswers.map(Boolean) }
   } catch {
     return NextResponse.json(
       { success: false, error: 'Invalid JSON body', businessName: '', location: '', totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
@@ -356,11 +410,11 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
   }
 
-  // ── 0.2 Caching ───────────────────────────────────────────────────────
+  // ── 0.2 Caching (Skip cache if requesting deep check score calculation)
   const cacheKey = `${businessName.toLowerCase()}|${targetLocation.toLowerCase()}`
   const cachedData = cacheStore.get(cacheKey)
 
-  if (cachedData && now - cachedData.timestamp < CACHE_TTL_MS) {
+  if (cachedData && now - cachedData.timestamp < CACHE_TTL_MS && !deepCheckAnswers) {
     return NextResponse.json(cachedData.data)
   }
 
@@ -406,6 +460,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       serperData,
       businessName,
       targetLocation,
+      deepCheckAnswers
     )
 
     // Add a note in details indicating Demo Mode
@@ -423,10 +478,11 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       mapPackPosition,
       actionItems,
       competitors,
-      websiteSeo: { url: mockWebsite, title: 'Demo Business | High Quality Services', metaDescription: 'We offer the best services in town. Call us today!', status: 'success' }
+      websiteSeo: { url: mockWebsite, title: 'Demo Business | High Quality Services', metaDescription: 'We offer the best services in town. Call us today!', status: 'success' },
+      aiRecommendations: deepCheckAnswers ? '## 🤖 Demo AI Action Plan\\nSince this is demo mode, the AI did not run. Please add your `GEMINI_API_KEY` to the `.env` file to generate real recommendations.' : undefined
     }
 
-    cacheStore.set(cacheKey, { timestamp: now, data: demoResponse })
+    if (!deepCheckAnswers) cacheStore.set(cacheKey, { timestamp: now, data: demoResponse })
     return NextResponse.json(demoResponse)
   }
 
@@ -435,6 +491,13 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
   let serperData: SerperMapsResponse = {}
   let resolvedPlaceId: string | null = null
   let resolvedDisplayName = businessName
+
+  // Fetch from Serper only if not cached already or if doing deep check but we need the base data
+  if (cachedData) {
+    // If we have cached data, we don't need to re-fetch from Serper, we just need to re-calculate
+    // But since calculateGBPScore needs SerperPlace and SerperMapsResponse, we either store those in cache or re-fetch.
+    // For simplicity, we just re-fetch in production since the cache bypass is rare (only when answering deep check)
+  }
 
   try {
     const serperRes = await fetch('https://google.serper.dev/places', {
@@ -483,9 +546,40 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     serperData,
     resolvedDisplayName,
     targetLocation,
+    deepCheckAnswers
   )
 
   const websiteSeo = await scrapeWebsite(placeData.website || '')
+
+  // ── 4. Gemini AI Recommendations (If Deep Check provided) ───────────
+  let aiRecommendations: string | undefined = undefined;
+  if (deepCheckAnswers && process.env.GEMINI_API_KEY) {
+    try {
+      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+      
+      const prompt = `
+You are an expert Local SEO consultant.
+The user just audited their Google Business Profile for "${resolvedDisplayName}" in "${targetLocation}".
+Their automated score is ${totalScore}/100.
+
+Here are the specific action items they need to fix based on our audit:
+${actionItems.filter(a => a.priority !== 'passed').map(a => '- ' + a.message).join('\n')}
+
+Write a highly encouraging, authoritative, and personalized 30-day action plan for them in Markdown.
+Use headings, bullet points, and bold text. DO NOT start with "Here is your plan" or pleasantries. Jump straight into the action plan.
+Focus strictly on practical Google Business Profile SEO tips based on their failed action items.
+`
+      
+      const aiResult = await model.generateContent(prompt);
+      aiRecommendations = aiResult.response.text();
+    } catch (e) {
+      console.error('[GBP Audit] Gemini API Error:', e);
+      aiRecommendations = '> ⚠️ **Failed to generate AI recommendations** due to an API error. Please check your Gemini API key limits or try again later.';
+    }
+  } else if (deepCheckAnswers && !process.env.GEMINI_API_KEY) {
+    aiRecommendations = '> ⚠️ **GEMINI_API_KEY is missing.** Please add it to your `.env` file to generate AI recommendations.'
+  }
 
   const finalResponse: GBPAuditResponse = {
     success: true,
@@ -500,10 +594,13 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     actionItems,
     competitors,
     websiteSeo,
+    aiRecommendations
   }
 
-  // Save to cache
-  cacheStore.set(cacheKey, { timestamp: now, data: finalResponse })
+  // Save to cache (only base searches, don't cache deep checks to avoid weird state bugs)
+  if (!deepCheckAnswers) {
+    cacheStore.set(cacheKey, { timestamp: now, data: finalResponse })
+  }
 
   return NextResponse.json(finalResponse)
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 // ─── Type Definitions ───────────────────────────────────────────────────────
 
@@ -46,6 +47,7 @@ export interface GBPAuditResponse {
   competitors?: Competitor[]
   websiteSeo?: WebsiteSeo
   error?: string
+  aiRecommendations?: string
 }
 
 // ─── Sub-Components ─────────────────────────────────────────────────────────
@@ -223,26 +225,60 @@ export function GBPHealthChecker() {
   const [businessName, setBusinessName] = useState('')
   const [targetLocation, setTargetLocation] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isDeepChecking, setIsDeepChecking] = useState(false)
   const [result, setResult] = useState<GBPAuditResponse | null>(null)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (result) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [result])
+
+  // Deep Check State
+  const [deepCheckAnswers, setDeepCheckAnswers] = useState<(boolean | null)[]>([null, null, null, null])
+  const deepCheckQuestions = [
+    "Do you actively respond to ALL Google reviews (good and bad)?",
+    "Are all your core services/products listed with descriptions?",
+    "Have you published a Google Update (Post) in the last 14 days?",
+    "Is your business description filled out completely (near 750 chars)?"
+  ]
+
+  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>, isDeepCheckUpdate = false) => {
+    if (e) e.preventDefault()
     if (!businessName.trim() || !targetLocation.trim()) return
 
-    setIsLoading(true)
-    setResult(null)
+    if (isDeepCheckUpdate) {
+      setIsDeepChecking(true)
+    } else {
+      setIsLoading(true)
+      setResult(null)
+      // Reset deep check answers for a new search
+      setDeepCheckAnswers([null, null, null, null])
+    }
     setErrorMsg(null)
 
     try {
+      const payload: any = {
+        businessName: businessName.trim(),
+        targetLocation: targetLocation.trim(),
+      }
+
+      if (isDeepCheckUpdate && !deepCheckAnswers.includes(null)) {
+        payload.deepCheckAnswers = deepCheckAnswers
+      }
+
       const res = await fetch('/api/gbp-audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          businessName: businessName.trim(),
-          targetLocation: targetLocation.trim(),
-        }),
+        body: JSON.stringify(payload),
       })
 
       const data: GBPAuditResponse = await res.json()
@@ -256,23 +292,37 @@ export function GBPHealthChecker() {
 
       setResult(data)
 
-      // Smooth-scroll to results after render
-      setTimeout(() => {
-        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 150)
+      if (!isDeepCheckUpdate) {
+        // Smooth-scroll to results after initial render
+        setTimeout(() => {
+          resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 150)
+      } else {
+        // Scroll to AI recommendations after deep check updates
+        setTimeout(() => {
+          const aiRecs = document.getElementById('ai-recommendations')
+          aiRecs?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 300)
+      }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'An unexpected error occurred.'
       setErrorMsg(msg)
     } finally {
       setIsLoading(false)
+      setIsDeepChecking(false)
     }
+  }
+
+  const handleDeepCheckSubmit = () => {
+    if (deepCheckAnswers.includes(null)) return
+    handleSubmit(undefined, true)
   }
 
   return (
     <>
       {errorMsg && <Toast message={errorMsg} onClose={() => setErrorMsg(null)} />}
 
-      <form onSubmit={handleSubmit} className="space-y-3.5" noValidate>
+      <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-3.5" noValidate>
         {/* Business Name */}
         <input
           id="gbp-business-name"
@@ -433,6 +483,81 @@ export function GBPHealthChecker() {
                     <PillarCard key={pillar.name} pillar={pillar} />
                   ))}
                 </div>
+
+                {/* ── Deep Check Section ── */}
+                <div className="mt-8">
+                  <h3 className="font-heading text-lg font-bold text-white mb-4">Deep Check — Unlock Full Score</h3>
+                  <div className="bg-white/10 border border-white/20 rounded-2xl p-6 space-y-5 shadow-lg">
+                    <p className="text-sm text-white/90 leading-relaxed mb-4 font-medium">
+                      Google doesn't share everything publicly. Answer these 4 questions truthfully to get your final adjusted score and generate a custom AI Action Plan.
+                    </p>
+                    
+                    {deepCheckQuestions.map((q, idx) => (
+                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/20 last:border-0 last:pb-0">
+                        <span className="text-sm text-white font-bold flex-1">{q}</span>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            onClick={() => {
+                              const newAns = [...deepCheckAnswers]
+                              newAns[idx] = true
+                              setDeepCheckAnswers(newAns)
+                            }}
+                            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
+                              deepCheckAnswers[idx] === true 
+                                ? 'bg-green-500/20 border-green-500/50 text-green-400' 
+                                : 'bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40'
+                            }`}
+                          >
+                            Yes
+                          </button>
+                          <button
+                            onClick={() => {
+                              const newAns = [...deepCheckAnswers]
+                              newAns[idx] = false
+                              setDeepCheckAnswers(newAns)
+                            }}
+                            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
+                              deepCheckAnswers[idx] === false 
+                                ? 'bg-red-500/20 border-red-500/50 text-red-400' 
+                                : 'bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40'
+                            }`}
+                          >
+                            No
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="pt-4 flex flex-col items-center gap-3">
+                      <button
+                        onClick={handleDeepCheckSubmit}
+                        disabled={isDeepChecking || deepCheckAnswers.includes(null)}
+                        className="bg-primary-container text-on-primary-container px-6 py-3 rounded-xl font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+                      >
+                        {isDeepChecking ? 'Generating AI Plan...' : 'Update My Score & AI Plan'}
+                      </button>
+                      {deepCheckAnswers.includes(null) && (
+                        <p className="text-[10px] text-on-surface/50 uppercase tracking-widest font-bold">
+                          Answer all questions to unlock
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── AI Recommendations Section ── */}
+                {result.aiRecommendations && (
+                  <div id="ai-recommendations" className="mt-8">
+                    <h3 className="font-heading text-lg font-bold text-on-surface mb-4 flex items-center gap-2">
+                      <span className="text-xl">✨</span> AI Recommendations
+                    </h3>
+                    <div className="bg-primary-container/10 border border-primary-container/20 rounded-2xl p-6 prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-a:text-primary-container">
+                      <ReactMarkdown>
+                        {result.aiRecommendations}
+                      </ReactMarkdown>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Column 2: Side Panel (Competitors & SEO) */}
