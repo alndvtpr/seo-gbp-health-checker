@@ -19,7 +19,7 @@ export default function BlogPage() {
           Insights &amp; Articles
         </span>
         <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface mb-6">
-          SEO, Security, &amp; Web Tech
+          Ideas, Experiments &amp; Things Worth Ranking
         </h1>
         <p className="font-sans text-on-surface/70 text-base leading-relaxed">
           Technical guides, search engine algorithm updates, and modern web development tutorials.
@@ -63,11 +63,14 @@ export default function BlogPage() {
           <span className="material-symbols-outlined text-4xl sm:text-5xl text-on-surface/20 mb-6 block animate-pulse">
             dataset
           </span>
+          <p className="font-heading text-xs text-primary-container uppercase tracking-widest font-bold mb-4">
+            The keywords are cooking.
+          </p>
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-4">
-            Indexing in progress. High-signal technical SEO insights dropping soon.
+            Ideas, Experiments &amp; Things Worth Ranking
           </h2>
           <p className="font-sans text-sm text-on-surface/60 max-w-xl mx-auto leading-relaxed">
-            Quality takes precedence over frequency; I am currently documenting real-world architectures and SEO experiments to share here.
+            Practical SEO, web tech, and experiments are on the way.
           </p>
         </div>
       )}

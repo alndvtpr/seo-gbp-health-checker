@@ -12,8 +12,8 @@ import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'Alain Dave Tapiru | SEO Specialist & Web Designer',
-  description: 'BSIT Network & Cybersecurity student, Technical SEO Specialist, Web Designer, and AI Tech Enthusiast.',
+  title: 'Alain Dave Tapiru | Expert SEO Specialist & Web Designer Philippines',
+  description: 'Boost your online presence with Alain Dave Tapiru, expert SEO specialist and web designer in the Philippines. Drive traffic, improve rankings, and create stunning websites today.',
   url: 'https://alaintapiru.com'
 })
 
@@ -55,9 +55,29 @@ export default async function Page() {
           <span className="font-heading text-[11px] text-primary-container uppercase tracking-widest block mb-1.5 font-bold opacity-90">
             Technical Stack
           </span>
-          <h2 className="font-heading text-xl sm:text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight">
-            Tools &amp; Technologies I Master
+          <h2 className="font-heading text-xl sm:text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight mb-3">
+            Tools I Use to Turn SEO Into Action
           </h2>
+          <p className="font-sans text-xs sm:text-sm text-on-surface/60 max-w-xl mx-auto mb-5">
+            A practical toolkit for research, optimization, analytics, content, and modern web development.
+          </p>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[14px] text-primary-container">search</span>
+              <h3 className="font-heading text-[11px] text-on-surface/50 uppercase tracking-widest">SEO &amp; Analytics</h3>
+              <span className="font-sans text-[11px] text-on-surface/40">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[14px] text-primary-container">code</span>
+              <h3 className="font-heading text-[11px] text-on-surface/50 uppercase tracking-widest">Web &amp; SEO</h3>
+              <span className="font-sans text-[11px] text-on-surface/40">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[14px] text-primary-container">auto_awesome</span>
+              <h3 className="font-heading text-[11px] text-on-surface/50 uppercase tracking-widest">AI &amp; Development</h3>
+              <span className="font-sans text-[11px] text-on-surface/40">AI-Assisted Development &bull; Automation &bull; Modern Web Tools</span>
+            </div>
+          </div>
         </div>
 
         {/* Marquee Container with Gradient Mask */}
@@ -216,10 +236,10 @@ export default async function Page() {
               Background &amp; Expertise
             </span>
             <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface leading-tight">
-              Ranking Websites &amp; Building Robust Web Infrastructure.
+              Where Search Strategy Meets Smarter Execution
             </h2>
             <p className="font-sans text-on-surface/80 text-xs sm:text-sm leading-relaxed">
-              Combining technical SEO, modern web development, and cybersecurity principles to deliver end-to-end digital growth for brands and agencies.
+              I combine SEO strategy, technical optimization, local search, and modern digital tools to create practical solutions that help websites become more visible and useful.
             </p>
 
             {/* Honest Metrics Cards */}
@@ -343,7 +363,7 @@ export default async function Page() {
                 Portfolio Showcase
               </span>
               <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface">
-                Featured SEO &amp; Web Projects
+                SEO Work Built to Be Seen, Tested, and Used
               </h2>
             </div>
             <Link
@@ -357,19 +377,19 @@ export default async function Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
             {[
               {
-                title: 'GBP Health Checker & Local SEO Audit',
-                cat: 'SEO Automation & API Integration',
-                desc: 'A custom-built interactive tool that programmatically audits Google Business Profiles, calculates optimization scores, and generates actionable, AI-driven local SEO strategies in real-time.',
+                title: 'Local SEO & GBP Health Checker',
+                cat: 'LOCAL SEO • PERSONAL PROJECT',
+                desc: 'A self-built tool for analyzing key Google Business Profile and local SEO signals, helping identify practical opportunities for better local search visibility.',
                 link: '/tools',
-                ctaText: 'Try the Live Tool',
+                ctaText: 'View Project',
                 isLive: true
               },
               {
-                title: 'AlainTapiru.com Next.js Architecture',
-                cat: 'Technical SEO & High-Performance Web Design',
-                desc: 'Engineered from the ground up using Next.js 15, featuring strict Core Web Vitals optimization, dynamic SEO metadata, and hardened cybersecurity headers.',
+                title: 'AlainTapiru.com — Technical SEO & Web Project',
+                cat: 'TECHNICAL SEO • PERSONAL PROJECT',
+                desc: 'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance considerations, and AI-assisted development workflows.',
                 link: 'https://github.com/alndvtpr',
-                ctaText: 'View Technical Specs'
+                ctaText: 'View Project'
               },
             ].map((proj) => (
               <div
@@ -420,10 +440,10 @@ export default async function Page() {
             Get Started
           </span>
           <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface mb-4 sm:mb-6">
-            Ready to Elevate Your Search Rankings?
+            Have Something Worth Being Found?
           </h2>
           <p className="font-sans text-on-surface/70 max-w-xl mx-auto mb-8 sm:mb-10 text-xs sm:text-sm leading-relaxed">
-            Whether you need a full technical SEO audit, a custom Next.js web application, or ongoing optimization, let&apos;s talk strategy.
+            Let&apos;s build a stronger search presence with practical SEO, thoughtful strategy, and a website ready for discovery.
           </p>
 
           <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
@@ -431,7 +451,7 @@ export default async function Page() {
               href="/contact"
               className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
-              Book A Consultation <span className="material-symbols-outlined text-sm">calendar_month</span>
+              Let&apos;s Talk SEO <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>
           </div>
         </div>

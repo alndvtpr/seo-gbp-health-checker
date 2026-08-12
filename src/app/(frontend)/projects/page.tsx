@@ -10,21 +10,21 @@ export const metadata = generateMetadata({
 
 const projects = [
   {
-    title: 'GBP Health Checker & Local SEO Audit',
-    category: 'SEO Automation & API Integration',
-    description: 'A custom-built interactive tool that programmatically audits Google Business Profiles, calculates optimization scores, and generates actionable, AI-driven local SEO strategies in real-time.',
+    title: 'Local SEO & GBP Health Checker',
+    category: 'LOCAL SEO • PERSONAL PROJECT',
+    description: 'A self-built tool for analyzing key Google Business Profile and local SEO signals, helping identify practical opportunities for better local search visibility.',
     tools: ['Next.js', 'React', 'Tailwind CSS', 'Local SEO API'],
     link: '/tools',
-    ctaText: 'Try the Live Tool',
+    ctaText: 'View Project',
     isLive: true,
   },
   {
-    title: 'AlainTapiru.com Next.js Architecture',
-    category: 'Technical SEO & High-Performance Web Design',
-    description: 'Engineered from the ground up using Next.js 15, featuring strict Core Web Vitals optimization, dynamic SEO metadata, and hardened cybersecurity headers.',
+    title: 'AlainTapiru.com — Technical SEO & Web Project',
+    category: 'TECHNICAL SEO • PERSONAL PROJECT',
+    description: 'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance considerations, and AI-assisted development workflows.',
     tools: ['Next.js 15', 'Tailwind CSS', 'Vercel', 'SEO Metadata'],
     link: 'https://github.com/alndvtpr',
-    ctaText: 'View Technical Specs',
+    ctaText: 'View Project',
   },
 ]
 
