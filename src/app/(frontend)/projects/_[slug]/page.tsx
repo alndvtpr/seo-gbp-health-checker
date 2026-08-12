@@ -37,7 +37,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           {formattedTitle}
         </h1>
         <p className="font-sans text-on-surface/70 text-base leading-relaxed max-w-3xl">
-          [PLACEHOLDER - EDIT LATER] Overview of the campaign objectives, execution roadmap, technical hurdles, and key results achieved.
         </p>
       </div>
 
@@ -52,8 +51,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <span className="font-heading text-sm font-bold text-on-surface">SEO &amp; Web Architect</span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block">Timeline</span>
-          <span className="font-heading text-sm font-bold text-on-surface">[PLACEHOLDER] 3 Months</span>
+          <span className="font-heading text-sm font-bold text-on-surface"></span>
         </div>
         <div>
           <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block">Core Tech</span>
@@ -67,7 +65,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <section className="space-y-4 p-8 rounded-3xl bg-[#181a1b]/60 border border-white/5">
           <h2 className="font-heading text-2xl font-bold text-on-surface">1. The Challenge &amp; Objective</h2>
           <p>
-            [PLACEHOLDER - EDIT LATER] Document the starting point of the project. Mention initial organic traffic numbers, crawl errors, indexing issues, or poor search positioning.
           </p>
         </section>
 
@@ -75,7 +72,6 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <section className="space-y-4 p-8 rounded-3xl bg-[#181a1b]/60 border border-white/5">
           <h2 className="font-heading text-2xl font-bold text-on-surface">2. Strategy &amp; Tools Applied</h2>
           <p>
-            [PLACEHOLDER - EDIT LATER] Explain the technical approach. For example: Keyword strategy, technical site audit, fixing canonical tags, setting up structured JSON-LD data, and optimizing Core Web Vitals.
           </p>
           <div className="flex flex-wrap gap-2 pt-2">
             {['Ahrefs', 'Cloudflare WAF', 'Next.js', 'Google Search Console', 'PageSpeed'].map((t) => (
@@ -90,11 +86,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <section className="space-y-4 p-8 rounded-3xl bg-[#181a1b]/60 border border-white/5">
           <h2 className="font-heading text-2xl font-bold text-on-surface">3. Key Results &amp; Analytics</h2>
           <p>
-            [PLACEHOLDER - EDIT LATER] Summarize key metrics achieved (e.g. +140% organic impressions, 50+ keywords ranked in top 3, improved Core Web Vitals to 98+ score).
           </p>
           {/* Placeholder Graph UI */}
           <div className="h-48 w-full rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center text-on-surface/40 font-heading text-xs uppercase tracking-widest">
-            [PLACEHOLDER - Analytics Chart / Screenshot]
+            
           </div>
         </section>
       </div>

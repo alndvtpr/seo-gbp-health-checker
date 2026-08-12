@@ -92,13 +92,7 @@ export default function AboutPage() {
             </div>
             <span className="font-heading text-xs text-primary-container font-bold">In Progress</span>
           </div>
-          <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface">[PLACEHOLDER - EDIT LATER] SEO &amp; Technical Certifications</h3>
-              <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">[PLACEHOLDER - Certification Authority &amp; Year]</p>
-            </div>
-            <span className="font-heading text-xs text-on-surface/40">Verified</span>
-          </div>
+
         </div>
       </div>
 

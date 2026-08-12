@@ -357,34 +357,51 @@ export default async function Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
             {[
               {
-                title: 'Executive Optical Local SEO',
-                cat: 'Local Search Optimization',
-                desc: 'Scaled organic search visibility across 100+ retail locations nationwide.',
-                slug: 'executive-optical-local-seo',
+                title: 'GBP Health Checker & Local SEO Audit',
+                cat: 'SEO Automation & API Integration',
+                desc: 'A custom-built interactive tool that programmatically audits Google Business Profiles, calculates optimization scores, and generates actionable, AI-driven local SEO strategies in real-time.',
+                link: '/tools',
+                ctaText: 'Try the Live Tool',
+                isLive: true
               },
               {
-                title: 'Claimscale.ai Resume Portfolio',
-                cat: 'AI Web Design & Tech SEO',
-                desc: 'Custom high-performance web architecture built with film-noir aesthetics and AI features.',
-                slug: 'claimscale-ai-portfolio',
+                title: 'AlainTapiru.com Next.js Architecture',
+                cat: 'Technical SEO & High-Performance Web Design',
+                desc: 'Engineered from the ground up using Next.js 15, featuring strict Core Web Vitals optimization, dynamic SEO metadata, and hardened cybersecurity headers.',
+                link: 'https://github.com/alndvtpr',
+                ctaText: 'View Technical Specs'
               },
             ].map((proj) => (
               <div
-                key={proj.slug}
+                key={proj.title}
                 className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all group flex flex-col justify-between"
               >
                 <div>
-                  <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-2">
-                    {proj.cat}
-                  </span>
+                  {proj.isLive ? (
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="relative flex h-2.5 w-2.5 shrink-0">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                      </span>
+                      <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-bold">
+                        {proj.cat}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-2 font-bold">
+                      {proj.cat}
+                    </span>
+                  )}
                   <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2 sm:mb-3">{proj.title}</h3>
                   <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed mb-4 sm:mb-6">{proj.desc}</p>
                 </div>
                 <Link
-                  href={`/projects/${proj.slug}`}
+                  href={proj.link}
+                  target={proj.link.startsWith('http') ? '_blank' : undefined}
+                  rel={proj.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="inline-flex items-center gap-2 font-heading text-xs uppercase font-bold text-on-surface group-hover:text-primary-container transition-colors py-1"
                 >
-                  Explore Case Study <span className="material-symbols-outlined text-sm">north_east</span>
+                  {proj.ctaText} <span className="material-symbols-outlined text-sm">north_east</span>
                 </Link>
               </div>
             ))}
@@ -392,45 +409,7 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 relative z-20">
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
-            Client Feedback
-          </span>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4">
-            What Clients &amp; Partners Say
-          </h2>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-          {[
-            {
-              quote: "[PLACEHOLDER - EDIT LATER] Alain's technical SEO insight transformed our organic reach. His systematic approach to site audits and Keyword strategy brought us to page one.",
-              author: '[PLACEHOLDER - Client Name]',
-              title: '[PLACEHOLDER - Business Title]',
-            },
-            {
-              quote: "[PLACEHOLDER - EDIT LATER] Working with Alain on web design and optimization was effortless. He delivers high-end aesthetics backed by fast, clean code.",
-              author: '[PLACEHOLDER - Partner Name]',
-              title: '[PLACEHOLDER - Agency Director]',
-            },
-          ].map((test, idx) => (
-            <div key={idx} className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-[#181a1b]/70 border border-white/5 relative">
-              <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary-container/30 mb-3 sm:mb-4 block">
-                format_quote
-              </span>
-              <p className="font-sans text-xs sm:text-sm text-on-surface/80 italic leading-relaxed mb-4 sm:mb-6">
-                &ldquo;{test.quote}&rdquo;
-              </p>
-              <div>
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface">{test.author}</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/50">{test.title}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <OpenToOpportunities />
 

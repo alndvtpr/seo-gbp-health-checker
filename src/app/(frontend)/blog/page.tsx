@@ -8,32 +8,7 @@ export const metadata = generateMetadata({
   url: 'https://alaintapiru.com/blog',
 })
 
-const posts = [
-  {
-    title: 'How to Implement Technical SEO on Next.js 16 App Router',
-    category: 'Technical SEO',
-    date: 'August 2026',
-    readTime: '6 min read',
-    excerpt: '[PLACEHOLDER - EDIT LATER] Step-by-step guide to dynamic sitemap generation, OpenGraph metadata, and structured JSON-LD schema implementation in modern React server components.',
-    slug: 'technical-seo-nextjs-16',
-  },
-  {
-    title: 'Why Cloudflare & Edge Protection Outperform Custom App Firewalls',
-    category: 'Cybersecurity & CDN',
-    date: 'August 2026',
-    readTime: '5 min read',
-    excerpt: '[PLACEHOLDER - EDIT LATER] An analysis of network-layer threat absorption vs. application-level overhead for web performance and security.',
-    slug: 'cloudflare-edge-protection-vs-app-firewall',
-  },
-  {
-    title: 'Local SEO Strategy Blueprint for Philippine Multi-Location Brands',
-    category: 'Local Search',
-    date: 'July 2026',
-    readTime: '8 min read',
-    excerpt: '[PLACEHOLDER - EDIT LATER] How to optimize Google Business Profiles and localized landing pages for nationwide retail chains.',
-    slug: 'local-seo-philippines-blueprint',
-  },
-]
+const posts: any[] = []
 
 export default function BlogPage() {
   return (
@@ -51,37 +26,51 @@ export default function BlogPage() {
         </p>
       </div>
 
-      {/* Blog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post) => (
-          <article
-            key={post.slug}
-            className="p-8 rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between text-[11px] font-sans text-on-surface/50 mb-3">
-                <span className="font-heading text-primary-container uppercase tracking-wider font-semibold">
-                  {post.category}
-                </span>
-                <span>{post.readTime}</span>
+      {/* Blog Content */}
+      {posts.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <article
+              key={post.slug}
+              className="p-8 rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between text-[11px] font-sans text-on-surface/50 mb-3">
+                  <span className="font-heading text-primary-container uppercase tracking-wider font-semibold">
+                    {post.category}
+                  </span>
+                  <span>{post.readTime}</span>
+                </div>
+                <h2 className="font-heading text-xl font-bold text-on-surface mb-3 group-hover:text-primary-container transition-colors">
+                  {post.title}
+                </h2>
+                <p className="font-sans text-xs text-on-surface/70 leading-relaxed mb-6">
+                  {post.excerpt}
+                </p>
               </div>
-              <h2 className="font-heading text-xl font-bold text-on-surface mb-3 group-hover:text-primary-container transition-colors">
-                {post.title}
-              </h2>
-              <p className="font-sans text-xs text-on-surface/70 leading-relaxed mb-6">
-                {post.excerpt}
-              </p>
-            </div>
 
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans text-xs text-on-surface/50">
-              <span>{post.date}</span>
-              <span className="font-heading uppercase tracking-wider text-xs font-bold text-on-surface group-hover:text-primary-container transition-colors flex items-center gap-1">
-                Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </span>
-            </div>
-          </article>
-        ))}
-      </div>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans text-xs text-on-surface/50">
+                <span>{post.date}</span>
+                <span className="font-heading uppercase tracking-wider text-xs font-bold text-on-surface group-hover:text-primary-container transition-colors flex items-center gap-1">
+                  Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-16 sm:py-24 px-6 rounded-3xl bg-[#181a1b]/30 border border-white/5 border-dashed mt-8">
+          <span className="material-symbols-outlined text-4xl sm:text-5xl text-on-surface/20 mb-6 block animate-pulse">
+            dataset
+          </span>
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-4">
+            Indexing in progress. High-signal technical SEO insights dropping soon.
+          </h2>
+          <p className="font-sans text-sm text-on-surface/60 max-w-xl mx-auto leading-relaxed">
+            Quality takes precedence over frequency; I am currently documenting real-world architectures and SEO experiments to share here.
+          </p>
+        </div>
+      )}
     </div>
   )
 }
