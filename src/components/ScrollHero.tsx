@@ -277,7 +277,7 @@ export const ScrollHero = () => {
 
       {/* Hero Content Section */}
       <div className="flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-20 sm:pt-28 pb-12 sm:pb-20 relative z-20 max-w-7xl mx-auto w-full">
-        <div className="max-w-2xl space-y-4 sm:space-y-6">
+        <div className="max-w-md space-y-4 sm:space-y-6">
           <span className="font-heading text-[11px] sm:text-xs uppercase tracking-widest text-primary-container font-bold px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-1 sm:mb-2">
             SEO Specialist &amp; Technical Web Designer
           </span>
