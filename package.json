@@ -18,7 +18,7 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
+    "@google/genai": "^2.16.0",
     "@next/third-parties": "^16.3.0",
     "@payloadcms/db-postgres": "latest",
     "@payloadcms/live-preview-react": "^3.87.1",

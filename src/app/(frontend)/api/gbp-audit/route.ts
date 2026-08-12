@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import { GoogleGenAI } from '@google/genai'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -555,8 +555,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
   let aiRecommendations: string | undefined = undefined;
   if (deepCheckAnswers && process.env.GEMINI_API_KEY) {
     try {
-      const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       
       const prompt = `
 You are an expert Local SEO consultant.
@@ -571,8 +570,11 @@ Use headings, bullet points, and bold text. DO NOT start with "Here is your plan
 Focus strictly on practical Google Business Profile SEO tips based on their failed action items.
 `
       
-      const aiResult = await model.generateContent(prompt);
-      aiRecommendations = aiResult.response.text();
+      const aiResult = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+      });
+      aiRecommendations = aiResult.text ?? '';
     } catch (e) {
       console.error('[GBP Audit] Gemini API Error:', e);
       aiRecommendations = '> ⚠️ **Failed to generate AI recommendations** due to an API error. Please check your Gemini API key limits or try again later.';
