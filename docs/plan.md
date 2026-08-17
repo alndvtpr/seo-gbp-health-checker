@@ -56,6 +56,7 @@
 - [x] Core Web Vitals mobile 95+ optimization: GTM lazyOnload, LCP head preloading, WebGL mobile bypass, GPU compositor brand-ripple animation, immutable static asset caching.
 - [x] AI Agentic Browsing & GEO (Generative Engine Optimization) + Design Asset Shielding (llms.txt, llms-full.txt, JSON-LD Graph, AI crawler permissions, anti-scraping asset shield).
 - [x] Align robots.txt rules for AI search engines, answer bots, and crawler scrapers.
+- [x] Streamline sitemap.ts to modern standard (<loc> and <lastmod> only).
 - [ ] *[Next Task]*: Specify next active development priority here.
 
 ---
@@ -63,9 +64,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
-- **Commit `3a6dfa1` (2026-08-17)**: `feat(seo): update robots.txt with refined ai bots and scraper disallow rules`
+- **Commit `7c22e32` (2026-08-17)**: `feat(seo): streamline sitemap structure to modern url and lastmod only`
+  - Removed obsolete priority and changeFrequency tags from dynamic App Router sitemap.
+- **Commit `fbfd7e8` (2026-08-17)**: `feat(seo): update robots.txt with refined ai bots and scraper disallow rules`
   - Explicitly allowed ChatGPT-User, Claude-SearchBot, Claude-User, and specified crawler bot disallows.
 - **Commit `2ae4b40` (2026-08-17)**: `docs: finalize rolling session log in plan.md`
-  - Synchronized documentation and roadmap milestones.
-- **Commit `e2af306` (2026-08-17)**: `docs: sync plan.md session log for geo commit`
   - Synchronized documentation and roadmap milestones.
