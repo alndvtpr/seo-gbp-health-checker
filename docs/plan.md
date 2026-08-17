@@ -55,6 +55,7 @@
 - [x] Fix contact form submission: default webhook fallback, timeout handling, no-store cache, and URL protocol auto-normalization.
 - [x] Core Web Vitals mobile 95+ optimization: GTM lazyOnload, LCP head preloading, WebGL mobile bypass, GPU compositor brand-ripple animation, immutable static asset caching.
 - [x] AI Agentic Browsing & GEO (Generative Engine Optimization) + Design Asset Shielding (llms.txt, llms-full.txt, JSON-LD Graph, AI crawler permissions, anti-scraping asset shield).
+- [x] Align robots.txt rules for AI search engines, answer bots, and crawler scrapers.
 - [ ] *[Next Task]*: Specify next active development priority here.
 
 ---
@@ -62,9 +63,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `3a6dfa1` (2026-08-17)**: `feat(seo): update robots.txt with refined ai bots and scraper disallow rules`
+  - Explicitly allowed ChatGPT-User, Claude-SearchBot, Claude-User, and specified crawler bot disallows.
+- **Commit `2ae4b40` (2026-08-17)**: `docs: finalize rolling session log in plan.md`
+  - Synchronized documentation and roadmap milestones.
 - **Commit `e2af306` (2026-08-17)**: `docs: sync plan.md session log for geo commit`
   - Synchronized documentation and roadmap milestones.
-- **Commit `dbc0377` (2026-08-17)**: `feat(geo): implement ai agentic browsing, json-ld schema graph, llms specification, and asset armor`
-  - Added /llms-full.txt, enhanced /llms.txt, configured AI bot crawler rules in robots.ts, injected Schema.org graph microdata, and enabled visual asset shields.
-- **Commit `fd5ff1e` (2026-08-17)**: `perf: optimize mobile core web vitals, defer gtm, gpu compositing, and static caching`
-  - Deferred GTM script with lazyOnload, added LCP head preload, bypassed mobile WebGL compilation, converted ripple to transform/opacity, and configured immutable caching.

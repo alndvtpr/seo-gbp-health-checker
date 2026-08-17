@@ -6,26 +6,29 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/', '/private/'],
+        disallow: ['/api/', '/admin/', '/private/'],
       },
       {
-        // 1. Explicitly ALLOW verified AI search engines and answer bots (GEO / AIO)
+        // Explicitly allowed AI Search & Answer Bots
         userAgent: [
           'Googlebot',
           'Google-Extended',
           'Bingbot',
           'GPTBot',
           'OAI-SearchBot',
+          'ChatGPT-User',
           'PerplexityBot',
           'ClaudeBot',
+          'Claude-User',
+          'Claude-SearchBot',
           'Applebot',
           'Applebot-Extended',
         ],
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
+        disallow: ['/api/', '/admin/', '/private/'],
       },
       {
-        // 2. BLOCK aggressive, non-search scraping & cloning bots
+        // Scrapers & Unwanted Training Crawlers
         userAgent: [
           'Bytespider',
           'CCBot',
@@ -34,11 +37,10 @@ export default function robots(): MetadataRoute.Robots {
           'PetalBot',
           'TurnitinBot',
           'Scrapy',
-          'anthropic-ai',
           'FacebookBot',
           'Amazonbot',
         ],
-        disallow: '/',
+        disallow: ['/'],
       },
     ],
     sitemap: 'https://alaintapiru.com/sitemap.xml',
