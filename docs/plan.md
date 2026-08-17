@@ -66,7 +66,7 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
-- **Commit `e817a01` (2026-08-17)**: `fix(mobile): resolve homepage footer visibility and scroll clipping on mobile view`
+- **Commit `7d0e3bd` (2026-08-17)**: `fix(mobile): resolve homepage footer visibility and scroll clipping on mobile view`
   - Fixed `html` overflow clipping, implemented `100dvh` dynamic viewport unit, elevated footer stacking context to `z-30`, and added safe-area padding.
 - **Commit `9fe4df2` (2026-08-17)**: `docs: sync plan.md session log for sitemap commit`
   - Synchronized documentation and roadmap milestones.
