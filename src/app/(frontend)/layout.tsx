@@ -7,6 +7,7 @@ import './styles.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ShaderBackground } from '@/components/ShaderBackground'
+import { JsonLd } from '@/components/JsonLd'
 import { generateMetadata } from '@/lib/seo'
 
 const inter = Inter({
@@ -41,6 +42,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        <JsonLd />
         {/* LCP Discovery Preload */}
         <link
           rel="preload"

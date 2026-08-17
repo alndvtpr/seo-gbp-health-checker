@@ -311,7 +311,7 @@ export const ScrollHero = () => {
 
       {/* Static Fallback / SSR Image (Always rendered on server, active on mobile or reduced motion) */}
       <div
-        className={`fixed inset-0 w-full h-full z-[-4] pointer-events-none ${
+        className={`fixed inset-0 w-full h-full z-[-4] pointer-events-none asset-shield ${
           mounted && !isMobile && !reducedMotion ? 'hidden' : 'block'
         }`}
       >
@@ -331,7 +331,7 @@ export const ScrollHero = () => {
         createPortal(
           <canvas
             ref={canvasRef}
-            className="fixed inset-0 w-full h-full object-cover z-[-3] pointer-events-none"
+            className="fixed inset-0 w-full h-full object-cover z-[-3] pointer-events-none asset-shield"
             style={{ transform: 'translate3d(0,0,0)', willChange: 'transform' }}
           />,
           targetContainer
@@ -356,12 +356,14 @@ export const ScrollHero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full">
             <Link
               href="/projects"
+              data-agent-action="view-portfolio-projects"
               className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               View My Work <Icon name="arrow_forward" size={16} />
             </Link>
             <Link
               href="/contact"
+              data-agent-action="start-seo-inquiry"
               className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
             >
               Let&apos;s Work Together

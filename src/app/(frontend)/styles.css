@@ -92,3 +92,17 @@ body {
 .marquee-row:hover {
   animation-play-state: paused;
 }
+
+/* ── Asset Armor & Design Protection ────────────────────────────────────────── */
+.asset-shield {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+}
+
+/* Watermark & Agent action semantic helper */
+[data-agent-action] {
+  touch-action: manipulation;
+}
+
