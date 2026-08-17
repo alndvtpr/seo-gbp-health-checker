@@ -57,9 +57,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `729d68b` (2026-08-17)**: `feat: implement contact form with google sheet webhook integration`
+  - Added contact form with Zod validation schema, server action posting to Google Sheet webhook, honeypot anti-spam protection, and dark glass card UI.
+- **Commit `caa25a2` (2026-08-17)**: `docs: update plan.md rolling session log`
+  - Synchronized architectural state and milestone completions in `docs/plan.md`.
 - **Commit `1e42988` (2026-08-17)**: `feat(ui,copy): restore refined SEO copy, single-line niche marquee with Elementor, and clean placeholder templates`
-  - Restored single-line infinite glass marquee with 14 specialized SEO/CMS tools (including Elementor with official burgundy SVG); restored full refined SEO copy, headings, and case studies across all pages; purged obsolete placeholder templates.
-- **Commit `5e8adc6` (2026-08-17)**: `feat(ui): restore dual-row infinite glowing glass tools marquee animation`
-  - Restored infinite scrolling glass marquee for technical stack with amber glow aura, hover pause, and seamless looping tracks.
-- **Commit `1bbd1ec` (2026-08-17)**: `feat: replace Material Symbols font with inline SVG icons and update Claude logo`
-  - Removed 2,500+ glyph Google Fonts TTF runtime stylesheet and preconnect tags from `app/layout.tsx`; created `src/components/icons` component map (28 official SVG paths, Apache 2.0); converted all legacy `<span>` tags to `<Icon />`.
+  - Restored single-line infinite glass marquee with 14 specialized tools (with Elementor); restored full refined SEO copy across all pages.
