@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { GBPHealthChecker } from '@/components/GBPHealthChecker'
+import { Icon } from '@/components/icons'
 
 export default function ToolsPage() {
   // Salary Calculator State
@@ -42,9 +43,7 @@ export default function ToolsPage() {
       {/* Tool 1: SEO Specialist Salary Calculator */}
       <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-6 sm:space-y-8">
         <div className="flex items-center gap-3">
-          <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary-container shrink-0">
-            calculate
-          </span>
+          <Icon name="calculate" size={36} className="text-primary-container shrink-0" />
           <div>
             <h2 className="font-heading text-lg sm:text-2xl font-bold text-on-surface">
               SEO Specialist Salary Calculator (PH Market)
@@ -119,9 +118,7 @@ export default function ToolsPage() {
       {/* Tool 2 & Tool 3 Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
         <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-4 sm:space-y-6">
-          <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary-container">
-            travel_explore
-          </span>
+          <Icon name="travel_explore" size={36} className="text-primary-container" />
           <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
             Request an SEO Website Audit
           </h2>
@@ -154,9 +151,7 @@ export default function ToolsPage() {
         {/* Tool 3: Local SEO / GBP Health Checker — fully interactive */}
         <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10 space-y-4 sm:space-y-6">
           <div className="flex items-center justify-between">
-            <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary-container">
-              distance
-            </span>
+            <Icon name="distance" size={36} className="text-primary-container" />
             <a
               href="https://github.com/alndvtpr/seo-gbp-health-checker"
               target="_blank"

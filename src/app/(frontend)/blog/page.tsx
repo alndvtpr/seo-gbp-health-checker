@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
+import { Icon } from '@/components/icons'
 
 export const metadata = generateMetadata({
   title: 'Blog & SEO Insights | Alain Dave Tapiru',
@@ -52,7 +53,7 @@ export default function BlogPage() {
               <div className="pt-4 border-t border-white/10 flex items-center justify-between font-sans text-xs text-on-surface/50">
                 <span>{post.date}</span>
                 <span className="font-heading uppercase tracking-wider text-xs font-bold text-on-surface group-hover:text-primary-container transition-colors flex items-center gap-1">
-                  Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  Read Article <Icon name="arrow_forward" size={16} />
                 </span>
               </div>
             </article>
@@ -60,9 +61,7 @@ export default function BlogPage() {
         </div>
       ) : (
         <div className="text-center py-16 sm:py-24 px-6 rounded-3xl bg-[#181a1b]/30 border border-white/5 border-dashed mt-8">
-          <span className="material-symbols-outlined text-4xl sm:text-5xl text-on-surface/20 mb-6 block animate-pulse">
-            dataset
-          </span>
+          <Icon name="dataset" size={48} className="text-on-surface/20 mb-6 block animate-pulse mx-auto" />
           <p className="font-heading text-xs text-primary-container uppercase tracking-widest font-bold mb-4">
             The keywords are cooking.
           </p>

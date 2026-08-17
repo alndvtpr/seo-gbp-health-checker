@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import { Icon } from '@/components/icons'
 import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -24,7 +25,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           href="/projects"
           className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider text-primary-container font-bold hover:underline"
         >
-          <span className="material-symbols-outlined text-sm">arrow_back</span> Back to Case Studies
+          <Icon name="arrow_back" size={16} /> Back to Case Studies
         </Link>
       </div>
 
@@ -100,7 +101,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           href="/contact"
           className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all"
         >
-          Request A Similar SEO Campaign <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          Request A Similar SEO Campaign <Icon name="arrow_forward" size={16} />
         </Link>
       </div>
     </div>

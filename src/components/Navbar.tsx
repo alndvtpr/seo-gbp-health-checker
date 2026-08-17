@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Icon } from '@/components/icons'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -133,7 +134,7 @@ export const Navbar = () => {
             className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-widest font-bold px-6 py-2.5 rounded-full animate-brand-ripple hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
           >
             Hire Me
-            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            <Icon name="arrow_forward" size={16} />
           </Link>
         </div>
 
@@ -143,9 +144,7 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle Menu"
         >
-          <span className="material-symbols-outlined text-2xl block">
-            {menuOpen ? 'close' : 'menu'}
-          </span>
+          <Icon name={menuOpen ? 'close' : 'menu'} size={24} className="block" />
         </button>
       </div>
     </header>

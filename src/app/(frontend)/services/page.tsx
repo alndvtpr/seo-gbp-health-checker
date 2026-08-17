@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
+import { Icon } from '@/components/icons'
 
 export const metadata = generateMetadata({
   title: 'Services & Consulting | Alain Dave Tapiru',
@@ -60,9 +61,7 @@ export default function ServicesPage() {
           >
             <div>
               <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary-container group-hover:scale-110 transition-transform">
-                  {s.icon}
-                </span>
+                <Icon name={s.icon} size={36} className="text-primary-container group-hover:scale-110 transition-transform" />
               </div>
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2 sm:mb-3">{s.title}</h2>
               <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed mb-6 sm:mb-8">{s.desc}</p>
@@ -74,7 +73,7 @@ export default function ServicesPage() {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs text-on-surface/80">
                   {s.features.map((f) => (
                     <li key={f} className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-primary-container text-base shrink-0">check_circle</span>
+                      <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
                       <span className="leading-tight">{f}</span>
                     </li>
                   ))}
@@ -102,7 +101,7 @@ export default function ServicesPage() {
           href="/contact"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:scale-105 transition-all min-h-[48px]"
         >
-          Schedule A Discovery Call <span className="material-symbols-outlined text-sm">call</span>
+          Schedule A Discovery Call <Icon name="call" size={16} />
         </Link>
       </div>
     </div>

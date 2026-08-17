@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { Icon } from '@/components/icons'
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -131,9 +132,7 @@ export default function ContactPage() {
         <div className="lg:col-span-7 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10">
           {submitted ? (
             <div className="py-12 sm:py-16 text-center space-y-4">
-              <span className="material-symbols-outlined text-4xl sm:text-5xl text-primary-container">
-                check_circle
-              </span>
+              <Icon name="check_circle" size={48} className="text-primary-container" />
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">Message Received!</h2>
               <p className="font-sans text-xs sm:text-sm text-on-surface/70">
                 Thank you for reaching out. I will get back to you within 24 hours.
@@ -196,7 +195,7 @@ export default function ContactPage() {
                 type="submit"
                 className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest py-3.5 sm:py-4 rounded-xl shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:bg-primary transition-colors flex items-center justify-center gap-2 min-h-[48px]"
               >
-                Send Inquiry <span className="material-symbols-outlined text-sm">send</span>
+                Send Inquiry <Icon name="send" size={16} />
               </button>
             </form>
           )}

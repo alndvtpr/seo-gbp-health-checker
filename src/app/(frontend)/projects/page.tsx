@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
+import { Icon } from '@/components/icons'
 
 export const metadata = generateMetadata({
   title: 'Projects & Case Studies | Alain Dave Tapiru',
@@ -95,7 +96,7 @@ export default function ProjectsPage() {
               className="inline-flex items-center justify-between w-full pt-4 border-t border-white/10 font-heading text-xs uppercase tracking-wider font-bold text-on-surface group-hover:text-primary-container transition-colors py-1"
             >
               {proj.ctaText}
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <Icon name="arrow_forward" size={16} />
             </Link>
           </div>
         ))}

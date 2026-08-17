@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
+import { Icon } from '@/components/icons'
 
 export const metadata = generateMetadata({
   title: 'About Me | Alain Dave Tapiru',
@@ -102,7 +103,7 @@ export default function AboutPage() {
           href="/contact"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all min-h-[48px]"
         >
-          Work With Me <span className="material-symbols-outlined text-sm">arrow_forward</span>
+          Work With Me <Icon name="arrow_forward" size={16} />
         </Link>
       </div>
     </div>
