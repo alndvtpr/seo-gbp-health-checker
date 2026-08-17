@@ -57,9 +57,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `5634e8b` (2026-08-17)**: `fix(contact): enhance schema optional fields handling, resilient server action, and robust defaults`
+  - Hardened contact schema for empty/null optional fields, made Google Sheets & Resend dispatches resilient with detailed debug logging.
 - **Commit `729d68b` (2026-08-17)**: `feat: implement contact form with google sheet webhook integration`
   - Added contact form with Zod validation schema, server action posting to Google Sheet webhook, honeypot anti-spam protection, and dark glass card UI.
 - **Commit `caa25a2` (2026-08-17)**: `docs: update plan.md rolling session log`
   - Synchronized architectural state and milestone completions in `docs/plan.md`.
-- **Commit `1e42988` (2026-08-17)**: `feat(ui,copy): restore refined SEO copy, single-line niche marquee with Elementor, and clean placeholder templates`
-  - Restored single-line infinite glass marquee with 14 specialized tools (with Elementor); restored full refined SEO copy across all pages.
