@@ -11,6 +11,7 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
   const result = contactFormSchema.safeParse(data)
 
   if (!result.success) {
+    console.error('Validation error:', result.error)
     const issue = result.error.issues[0]
     return {
       success: false,
@@ -34,16 +35,18 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
     }
   }
 
-  try {
-    const payload = {
-      name,
-      email,
-      website: website || '',
-      service,
-      message,
-      submittedAt: new Date().toISOString(),
-    }
+  let sheetSuccess = false
+  const payload = {
+    name,
+    email,
+    website: website || '',
+    service,
+    message,
+    submittedAt: new Date().toISOString(),
+  }
 
+  // 1. Google Sheets Webhook Dispatch (Properly awaited with redirect: 'follow')
+  try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
@@ -54,15 +57,49 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
     })
 
     if (!response.ok) {
-      throw new Error(`Webhook endpoint returned HTTP status ${response.status}`)
+      console.error(`Google Sheet webhook returned HTTP status ${response.status}`)
+    } else {
+      sheetSuccess = true
     }
-
-    return { success: true }
   } catch (error) {
     console.error('Google Sheet Webhook submission error:', error)
+  }
+
+  // 2. Resend Email Dispatch (Graceful fallback if RESEND_API_KEY is not set or fails)
+  const resendApiKey = process.env.RESEND_API_KEY
+  if (resendApiKey) {
+    try {
+      const resendRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
+      const resendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${resendApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Portfolio Contact <onboarding@resend.dev>',
+          to: resendRecipient,
+          reply_to: email,
+          subject: `New Lead: ${name} (${service})`,
+          text: `Name: ${name}\nEmail: ${email}\nWebsite: ${website || 'N/A'}\nService: ${service}\n\nMessage:\n${message}`,
+        }),
+      })
+
+      if (!resendRes.ok) {
+        console.warn(`Resend API notification returned HTTP status ${resendRes.status}`)
+      }
+    } catch (resendErr) {
+      console.error('Resend notification error (non-fatal):', resendErr)
+    }
+  }
+
+  // Ensure overall delivery succeeded
+  if (!sheetSuccess && !resendApiKey) {
     return {
       success: false,
       error: 'Unable to send message at this moment. Please try again or reach out directly via email.',
     }
   }
+
+  return { success: true }
 }
