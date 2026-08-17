@@ -1,16 +1,14 @@
-'use client'
+import React from 'react'
+import { generateMetadata } from '@/lib/seo'
+import { ContactForm } from '@/components/ContactForm'
 
-import React, { useState } from 'react'
-import { Icon } from '@/components/icons'
+export const metadata = generateMetadata({
+  title: 'Contact | Alain Dave Tapiru — SEO Specialist & Web Designer',
+  description: 'Get in touch with Alain Dave Tapiru for Technical SEO Audits, AI Web Design, Local SEO Optimization, and Full-Service Search Strategy.',
+  url: 'https://alaintapiru.com/contact',
+})
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-10 sm:space-y-16">
       {/* Header */}
@@ -59,7 +57,7 @@ export default function ContactPage() {
                 Primary Focus
               </span>
               <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
-                Comprehensive SEO Packages (Technical, On-Page, & Off-Page), AI-Powered Web Development, Executive Virtual Assistance, and Dedicated Customer Service.
+                Comprehensive SEO Packages (Technical, On-Page, &amp; Off-Page), AI-Powered Web Development, Executive Virtual Assistance, and Dedicated Customer Service.
               </p>
             </div>
 
@@ -128,77 +126,9 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Form */}
-        <div className="lg:col-span-7 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10">
-          {submitted ? (
-            <div className="py-12 sm:py-16 text-center space-y-4">
-              <Icon name="check_circle" size={48} className="text-primary-container" />
-              <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">Message Received!</h2>
-              <p className="font-sans text-xs sm:text-sm text-on-surface/70">
-                Thank you for reaching out. I will get back to you within 24 hours.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2">Send a Message</h2>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-semibold">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="John Doe"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
-                  />
-                </div>
-
-                <div>
-                  <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-semibold">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="john@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-semibold">
-                  Website URL (Optional)
-                </label>
-                <input
-                  type="url"
-                  placeholder="https://yourwebsite.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
-                />
-              </div>
-
-              <div>
-                <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-semibold">
-                  Project Details / Message *
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  placeholder="Describe your SEO goals, technical requirements, or budget..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container resize-none"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest py-3.5 sm:py-4 rounded-xl shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:bg-primary transition-colors flex items-center justify-center gap-2 min-h-[48px]"
-              >
-                Send Inquiry <Icon name="send" size={16} />
-              </button>
-            </form>
-          )}
+        {/* Contact Form Container */}
+        <div className="lg:col-span-7 rounded-3xl border border-neutral-800 bg-neutral-950/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+          <ContactForm />
         </div>
       </div>
     </div>
