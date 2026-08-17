@@ -21,6 +21,8 @@ export const ScrollHero = () => {
   const [reducedMotion, setReducedMotion] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const maxScrollRef = useRef<number>(1)
+  const lastDrawnImgRef = useRef<HTMLImageElement | null>(null)
+  const isTabVisibleRef = useRef<boolean>(true)
 
   useEffect(() => {
     setMounted(true)
@@ -42,15 +44,27 @@ export const ScrollHero = () => {
     }
   }, [])
 
-  // Preload and decode hero frames into useRef
+  // Load a frame asynchronously into image cache
+  const loadFrame = (index: number) => {
+    if (index < 0 || index >= FRAME_COUNT) return
+    const imageCache = imagesRef.current
+    if (!imageCache[index]) {
+      const img = new window.Image()
+      img.decoding = 'async'
+      img.src = getFrameUrl(index)
+      imageCache[index] = img
+    }
+  }
+
+  // Preload frame 0 immediately for LCP
   useEffect(() => {
     if (reducedMotion || isMobile) return
 
     const imageCache: HTMLImageElement[] = imagesRef.current
 
-    // Preload frame 0 immediately for LCP
     if (!imageCache[0]) {
       const firstImage = new window.Image()
+      firstImage.decoding = 'async'
       firstImage.src = getFrameUrl(0)
       imageCache[0] = firstImage
       firstImage.onload = () => {
@@ -61,65 +75,10 @@ export const ScrollHero = () => {
             canvasRef.current.width = Math.floor(window.innerWidth * dpr)
             canvasRef.current.height = Math.floor(window.innerHeight * dpr)
             drawCover(ctx, firstImage, canvasRef.current.width, canvasRef.current.height)
+            lastDrawnImgRef.current = firstImage
           }
         }
       }
-    }
-
-    // Defer preloading remaining frames until AFTER page load or initial user interaction
-    // to preserve 100% network bandwidth for initial paint (FCP/LCP)
-    let isPreloadStarted = false
-    let preloadTimeout: NodeJS.Timeout
-
-    const startDeferredPreload = () => {
-      if (isPreloadStarted) return
-      isPreloadStarted = true
-
-      let index = 1
-      const loadNextBatch = () => {
-        const batchSize = 4 // Small batch size to keep network queue responsive
-        let loadedInBatch = 0
-        while (index < FRAME_COUNT && loadedInBatch < batchSize) {
-          if (!imageCache[index]) {
-            const img = new window.Image()
-            img.src = getFrameUrl(index)
-            imageCache[index] = img
-          }
-          index++
-          loadedInBatch++
-        }
-        if (index < FRAME_COUNT) {
-          preloadTimeout = setTimeout(loadNextBatch, 60)
-        }
-      }
-
-      loadNextBatch()
-    }
-
-    // Trigger preload on window load event or on first scroll/user interaction
-    const handleInitialInteraction = () => {
-      startDeferredPreload()
-      window.removeEventListener('scroll', handleInitialInteraction)
-      window.removeEventListener('touchstart', handleInitialInteraction)
-    }
-
-    window.addEventListener('scroll', handleInitialInteraction, { passive: true })
-    window.addEventListener('touchstart', handleInitialInteraction, { passive: true })
-
-    if (document.readyState === 'complete') {
-      preloadTimeout = setTimeout(startDeferredPreload, 1500)
-    } else {
-      const handleWindowLoad = () => {
-        preloadTimeout = setTimeout(startDeferredPreload, 1000)
-        window.removeEventListener('load', handleWindowLoad)
-      }
-      window.addEventListener('load', handleWindowLoad)
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleInitialInteraction)
-      window.removeEventListener('touchstart', handleInitialInteraction)
-      if (preloadTimeout) clearTimeout(preloadTimeout)
     }
   }, [reducedMotion, isMobile])
 
@@ -163,6 +122,14 @@ export const ScrollHero = () => {
 
     let requestId: number
 
+    const handleVisibilityChange = () => {
+      isTabVisibleRef.current = !document.hidden
+      if (!document.hidden) {
+        lastDrawnImgRef.current = null
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
     const calculateMaxScroll = () => {
       const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
       const windowHeight = window.innerHeight || document.documentElement.clientHeight
@@ -189,6 +156,7 @@ export const ScrollHero = () => {
         if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
           canvas.width = targetWidth
           canvas.height = targetHeight
+          lastDrawnImgRef.current = null
         }
       }
     }
@@ -200,9 +168,13 @@ export const ScrollHero = () => {
     window.addEventListener('orientationchange', handleResizeOrScroll, { passive: true })
 
     const render = () => {
+      if (!isTabVisibleRef.current) {
+        requestId = requestAnimationFrame(render)
+        return
+      }
+
       const canvas = canvasRef.current
       if (canvas) {
-
         const ctx = canvas.getContext('2d')
         if (ctx) {
           const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
@@ -210,6 +182,16 @@ export const ScrollHero = () => {
 
           const fraction = Math.max(0, Math.min(1, currentScrollY / maxScroll))
           const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(fraction * (FRAME_COUNT - 1)))
+
+          // Load sliding window of frames around active index (5 behind, 15 ahead)
+          const WINDOW_PREV = 5
+          const WINDOW_NEXT = 15
+          const windowStart = Math.max(0, frameIndex - WINDOW_PREV)
+          const windowEnd = Math.min(FRAME_COUNT - 1, frameIndex + WINDOW_NEXT)
+          for (let i = windowStart; i <= windowEnd; i++) {
+            loadFrame(i)
+          }
+
           const imgs = imagesRef.current
 
           // Find best target image: exact frame or closest previously loaded frame
@@ -226,8 +208,9 @@ export const ScrollHero = () => {
             targetImg = imgs[0]
           }
 
-          if (targetImg && targetImg.naturalWidth > 0) {
+          if (targetImg && targetImg.naturalWidth > 0 && targetImg !== lastDrawnImgRef.current) {
             drawCover(ctx, targetImg, canvas.width, canvas.height)
+            lastDrawnImgRef.current = targetImg
           }
         }
       }
@@ -238,6 +221,7 @@ export const ScrollHero = () => {
     requestId = requestAnimationFrame(render)
     return () => {
       cancelAnimationFrame(requestId)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
       window.removeEventListener('resize', handleResizeOrScroll)
       window.removeEventListener('orientationchange', handleResizeOrScroll)
     }
