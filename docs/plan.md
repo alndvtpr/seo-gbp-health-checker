@@ -29,6 +29,7 @@
 ## 3. Current Architecture & Route State
 - `payload-website/`: Sole active project repository (Next.js frontend + Payload 3.0 App Router + CMS).
   - `/` (Home): Scroll hero (`max-w-md` text bound), single-line infinite glass tools marquee (14 niche SEO & web platforms), featured live projects, dynamic empty blog state.
+  - `/contact`: Spam-protected contact form with Zod validation, invisible honeypot trap, resilient Google Sheets webhook Server Action, and optional Resend fallback.
   - `/tools` (GBP Health Checker): Serper + Gemini 30-day dynamic scoring/action plan engine.
   - `/projects/_[slug]`: Hidden dynamic routes (prefixed to block crawler indexing).
   - `<ShaderBackground />`: Full-viewport WebGL canvas background with tab visibility pausing, reduced-motion static frame, and 30fps capping.
@@ -50,6 +51,7 @@
 - [x] Streamline Tools marquee to single-line track with niche SEO & web platforms (added Elementor with official burgundy logo SVG).
 - [x] Purge obsolete placeholder quotes/slugs, delete duplicate/stale templates, and restore refined SEO copy, headings, and case studies across all pages.
 - [x] Implement spam-protected contact form with Zod schema, honeypot mitigation, and Google Sheet webhook server action integration.
+- [x] Harden contact form schema for optional/null fields, resilient dual-dispatch error handling, and robust form defaults.
 - [ ] *[Next Task]*: Specify next active development priority here.
 
 ---
@@ -57,9 +59,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `0b6a91f` (2026-08-17)**: `docs: sync plan.md session log for contact form hardening`
+  - Synchronized roadmap milestones and verified zero build errors across the Next.js frontend.
 - **Commit `5634e8b` (2026-08-17)**: `fix(contact): enhance schema optional fields handling, resilient server action, and robust defaults`
   - Hardened contact schema for empty/null optional fields, made Google Sheets & Resend dispatches resilient with detailed debug logging.
 - **Commit `729d68b` (2026-08-17)**: `feat: implement contact form with google sheet webhook integration`
   - Added contact form with Zod validation schema, server action posting to Google Sheet webhook, honeypot anti-spam protection, and dark glass card UI.
-- **Commit `caa25a2` (2026-08-17)**: `docs: update plan.md rolling session log`
-  - Synchronized architectural state and milestone completions in `docs/plan.md`.
