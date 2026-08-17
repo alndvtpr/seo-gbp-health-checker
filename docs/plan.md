@@ -64,5 +64,5 @@
   - Synchronized architectural constraints and documentation for tools and hidden dynamic routes.
 - **Commit `0b6a91f` (2026-08-17)**: `docs: sync plan.md session log for contact form hardening`
   - Synchronized roadmap milestones and verified zero build errors across the Next.js frontend.
-- **Commit `5634e8b` (2026-08-17)**: `fix(contact): enhance schema optional fields handling, resilient server action, and robust defaults`
-  - Hardened contact schema for empty/null optional fields, made Google Sheets & Resend dispatches resilient with detailed debug logging.
+- **Commit `1a527e3` (2026-08-17)**: `fix(contact): resolve webhook dispatch, url normalization, and resilient submission handling`
+  - Added fallback Google Sheet webhook URL, cache no-store, 15s timeout, response status validation, and flexible URL normalization.
