@@ -21,7 +21,8 @@ export const ScrollHero = () => {
   const [reducedMotion, setReducedMotion] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  // Pure memory cache to prevent ANY DOM layout queries during scroll
+  // Pure in-memory cache to guarantee 0 forced reflows
+  const scrollYRef = useRef(0)
   const metricsRef = useRef({
     top: 0,
     height: 1,
@@ -136,7 +137,7 @@ export const ScrollHero = () => {
     }
   }, [reducedMotion, isMobile, drawCover])
 
-  // 5. Zero-Reflow Scroll Scrubbing Engine
+  // 5. Zero-Reflow Scrubbing Engine with Pre-Capture Scroll Sampling
   useEffect(() => {
     if (!mounted || reducedMotion || isMobile) return
 
@@ -157,6 +158,7 @@ export const ScrollHero = () => {
       const winWidth = window.innerWidth || document.documentElement.clientWidth || 0
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
       const currentScrollY = window.pageYOffset || 0
+      scrollYRef.current = currentScrollY
 
       let top = 0
       let height = 1
@@ -193,6 +195,7 @@ export const ScrollHero = () => {
       }
     }
 
+    // Pure memory-driven frame renderer: ZERO DOM/layout queries inside rAF
     const renderFrame = () => {
       if (!isTabVisibleRef.current) {
         isTicking.current = false
@@ -211,8 +214,8 @@ export const ScrollHero = () => {
         return
       }
 
-      // Read current scroll inside the rAF tick (avoids dirty-style layout thrashing in scroll events)
-      const currentScrollY = window.pageYOffset || 0
+      // Read pure in-memory values sampled during capture phase
+      const currentScrollY = scrollYRef.current
       const { top, height, canvasWidth, canvasHeight } = metricsRef.current
       const progress = Math.min(Math.max((currentScrollY - top) / height, 0), 1)
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * (FRAME_COUNT - 1)))
@@ -262,14 +265,12 @@ export const ScrollHero = () => {
       }
     }
 
-    // STRICT ZERO-DOM-READ SCROLL HANDLER:
-    // Does NOT query window.scrollY, window.innerHeight, or any DOM element!
-    // Prevents GTM/GA style-invalidation forced reflows during scroll.
-    const onScroll = () => {
-      if (!isTicking.current) {
-        isTicking.current = true
-        requestAnimationFrame(renderFrame)
-      }
+    // CAPTURE-PHASE SCROLL LISTENER:
+    // Captures window.pageYOffset before any 3rd party scripts (like Google Analytics)
+    // can invalidate styles or dirty DOM state, eliminating forced reflows completely.
+    const onScrollCapture = () => {
+      scrollYRef.current = window.pageYOffset || 0
+      requestTick()
     }
 
     const debouncedResize = () => {
@@ -283,7 +284,7 @@ export const ScrollHero = () => {
     updateMetrics()
     requestTick()
 
-    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('scroll', onScrollCapture, { passive: true, capture: true })
     window.addEventListener('resize', debouncedResize, { passive: true })
     window.addEventListener('orientationchange', debouncedResize, { passive: true })
     window.addEventListener('load', updateMetrics)
@@ -291,7 +292,7 @@ export const ScrollHero = () => {
     return () => {
       if (resizeTimer) clearTimeout(resizeTimer)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', onScrollCapture, { capture: true })
       window.removeEventListener('resize', debouncedResize)
       window.removeEventListener('orientationchange', debouncedResize)
       window.removeEventListener('load', updateMetrics)
