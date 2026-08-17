@@ -186,8 +186,8 @@ export const ContactForm = () => {
           </label>
           <input
             id="contact-website"
-            type="url"
-            placeholder="https://yourwebsite.com"
+            type="text"
+            placeholder="https://yourwebsite.com or example.com"
             disabled={isSubmitting}
             {...register('website')}
             className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${

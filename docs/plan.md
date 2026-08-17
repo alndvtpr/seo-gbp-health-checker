@@ -52,6 +52,7 @@
 - [x] Purge obsolete placeholder quotes/slugs, delete duplicate/stale templates, and restore refined SEO copy, headings, and case studies across all pages.
 - [x] Implement spam-protected contact form with Zod schema, honeypot mitigation, and Google Sheet webhook server action integration.
 - [x] Harden contact form schema for optional/null fields, resilient dual-dispatch error handling, and robust form defaults.
+- [x] Fix contact form submission: default webhook fallback, timeout handling, no-store cache, and URL protocol auto-normalization.
 - [ ] *[Next Task]*: Specify next active development priority here.
 
 ---
@@ -59,9 +60,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `7d372b9` (2026-08-17)**: `docs: sync plan.md architecture and route status`
+  - Synchronized architectural constraints and documentation for tools and hidden dynamic routes.
 - **Commit `0b6a91f` (2026-08-17)**: `docs: sync plan.md session log for contact form hardening`
   - Synchronized roadmap milestones and verified zero build errors across the Next.js frontend.
 - **Commit `5634e8b` (2026-08-17)**: `fix(contact): enhance schema optional fields handling, resilient server action, and robust defaults`
   - Hardened contact schema for empty/null optional fields, made Google Sheets & Resend dispatches resilient with detailed debug logging.
-- **Commit `729d68b` (2026-08-17)**: `feat: implement contact form with google sheet webhook integration`
-  - Added contact form with Zod validation schema, server action posting to Google Sheet webhook, honeypot anti-spam protection, and dark glass card UI.

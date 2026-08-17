@@ -5,7 +5,20 @@ export const contactFormSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   website: z
     .string()
-    .url('Please enter a valid URL')
+    .transform((val) => {
+      if (!val || val.trim() === '') return ''
+      const trimmed = val.trim()
+      if (!/^https?:\/\//i.test(trimmed)) {
+        return `https://${trimmed}`
+      }
+      return trimmed
+    })
+    .pipe(
+      z
+        .string()
+        .url('Please enter a valid website URL (e.g. https://yourwebsite.com or yourwebsite.com)')
+        .or(z.literal(''))
+    )
     .optional()
     .or(z.literal(''))
     .or(z.null()),
@@ -15,3 +28,4 @@ export const contactFormSchema = z.object({
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>
+

@@ -7,6 +7,9 @@ export interface SendContactResponse {
   error?: string
 }
 
+const DEFAULT_GOOGLE_SHEET_WEBHOOK_URL =
+  'https://script.google.com/macros/s/AKfycbx_Dygu47h7ie8prxsSs7d5807jpF7hrHoeAxH-tewPluST6hSYu1eeTn3pQs6OMSeDfQ/exec'
+
 export async function sendContactAction(data: ContactFormData): Promise<SendContactResponse> {
   const result = contactFormSchema.safeParse(data)
 
@@ -26,14 +29,7 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
     return { success: true }
   }
 
-  const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL
-  if (!webhookUrl) {
-    console.error('Missing GOOGLE_SHEET_WEBHOOK_URL in environment configuration.')
-    return {
-      success: false,
-      error: 'Server configuration error: Contact webhook URL is not set.',
-    }
-  }
+  const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
 
   let sheetSuccess = false
   const payload = {
@@ -45,7 +41,7 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
     submittedAt: new Date().toISOString(),
   }
 
-  // 1. Google Sheets Webhook Dispatch (Properly awaited with redirect: 'follow')
+  // 1. Google Sheets Webhook Dispatch (Properly awaited with redirect: 'follow' & cache: 'no-store')
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
@@ -54,18 +50,33 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
       },
       body: JSON.stringify(payload),
       redirect: 'follow',
+      cache: 'no-store',
+      signal: AbortSignal.timeout(15000),
     })
 
-    if (!response.ok) {
-      console.error(`Google Sheet webhook returned HTTP status ${response.status}`)
+    if (response.ok) {
+      try {
+        const resText = await response.text()
+        const parsed = JSON.parse(resText)
+        if (parsed.status === 'success' || parsed.result === 'success') {
+          sheetSuccess = true
+        } else if (parsed.status === 'error') {
+          console.error('Google Sheet script reported error:', parsed.message)
+        } else {
+          sheetSuccess = true
+        }
+      } catch {
+        // Fallback for non-JSON 200 OK responses
+        sheetSuccess = true
+      }
     } else {
-      sheetSuccess = true
+      console.error(`Google Sheet webhook returned HTTP status ${response.status}`)
     }
   } catch (error) {
     console.error('Google Sheet Webhook submission error:', error)
   }
 
-  // 2. Resend Email Dispatch (Graceful fallback if RESEND_API_KEY is not set or fails)
+  // 2. Resend Email Dispatch (Graceful fallback if RESEND_API_KEY is configured)
   const resendApiKey = process.env.RESEND_API_KEY
   if (resendApiKey) {
     try {
@@ -85,7 +96,9 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
         }),
       })
 
-      if (!resendRes.ok) {
+      if (resendRes.ok) {
+        sheetSuccess = true
+      } else {
         console.warn(`Resend API notification returned HTTP status ${resendRes.status}`)
       }
     } catch (resendErr) {
@@ -94,7 +107,7 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
   }
 
   // Ensure overall delivery succeeded
-  if (!sheetSuccess && !resendApiKey) {
+  if (!sheetSuccess) {
     return {
       success: false,
       error: 'Unable to send message at this moment. Please try again or reach out directly via email.',
