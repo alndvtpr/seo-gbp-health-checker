@@ -64,9 +64,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `9fe4df2` (2026-08-17)**: `docs: sync plan.md session log for sitemap commit`
+  - Synchronized documentation and roadmap milestones.
 - **Commit `c8a5463` (2026-08-17)**: `feat(seo): streamline sitemap structure to modern url and lastmod only`
   - Removed obsolete priority and changeFrequency tags from dynamic App Router sitemap.
 - **Commit `fbfd7e8` (2026-08-17)**: `feat(seo): update robots.txt with refined ai bots and scraper disallow rules`
   - Explicitly allowed ChatGPT-User, Claude-SearchBot, Claude-User, and specified crawler bot disallows.
-- **Commit `2ae4b40` (2026-08-17)**: `docs: finalize rolling session log in plan.md`
-  - Synchronized documentation and roadmap milestones.
