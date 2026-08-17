@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0b0d0d] text-on-surface w-full pt-12 sm:pt-16 pb-8 sm:pb-12 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-10">
+    <footer className="bg-[#0b0d0d] text-on-surface w-full pt-12 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-30" style={{ paddingBottom: 'max(3rem, calc(1.5rem + env(safe-area-inset-bottom, 0px)))' }}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
         {/* Column 1: Brand */}
         <div className="space-y-4">
@@ -109,7 +109,7 @@ export const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="bg-white/5 border border-white/10 rounded-lg px-3.5 py-2.5 text-xs text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="bg-white/5 border border-white/10 rounded-lg px-3.5 py-2.5 text-base sm:text-xs text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
             />
             <button
               type="submit"

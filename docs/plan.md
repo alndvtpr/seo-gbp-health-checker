@@ -23,6 +23,7 @@
 5. **Output Terse**: Skip meta-announcements and conversational filler. Return only technical rationale, exact patches, and verification status.
 6. **Plan Maintenance**: Update *only* the Active Tasks & State sections when finishing milestones.
 7. **Mandatory Localhost Verification Link**: After every code change, the agent MUST explicitly provide the clickable localhost preview link (`http://localhost:3000`) for the user to test and verify before commits/deployments.
+8. **No Automated Browser Subagents**: Do not launch automated browser subagents / browser execution tools as they are non-functional in this environment. Delegate visual verification directly to the user with the clickable localhost link or direct testing instructions.
 
 ---
 
@@ -57,6 +58,7 @@
 - [x] AI Agentic Browsing & GEO (Generative Engine Optimization) + Design Asset Shielding (llms.txt, llms-full.txt, JSON-LD Graph, AI crawler permissions, anti-scraping asset shield).
 - [x] Align robots.txt rules for AI search engines, answer bots, and crawler scrapers.
 - [x] Streamline sitemap.ts to modern standard (<loc> and <lastmod> only).
+- [x] Fix mobile viewport scroll and footer visibility (eliminated HTML overflow clipping, updated layout to min-h-[100dvh], elevated footer to z-30 with safe-area padding).
 - [ ] *[Next Task]*: Specify next active development priority here.
 
 ---
@@ -64,9 +66,9 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `e817a01` (2026-08-17)**: `fix(mobile): resolve homepage footer visibility and scroll clipping on mobile view`
+  - Fixed `html` overflow clipping, implemented `100dvh` dynamic viewport unit, elevated footer stacking context to `z-30`, and added safe-area padding.
 - **Commit `9fe4df2` (2026-08-17)**: `docs: sync plan.md session log for sitemap commit`
   - Synchronized documentation and roadmap milestones.
 - **Commit `c8a5463` (2026-08-17)**: `feat(seo): streamline sitemap structure to modern url and lastmod only`
   - Removed obsolete priority and changeFrequency tags from dynamic App Router sitemap.
-- **Commit `fbfd7e8` (2026-08-17)**: `feat(seo): update robots.txt with refined ai bots and scraper disallow rules`
-  - Explicitly allowed ChatGPT-User, Claude-SearchBot, Claude-User, and specified crawler bot disallows.

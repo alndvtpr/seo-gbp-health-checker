@@ -305,7 +305,7 @@ export const ScrollHero = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-[90vh] sm:min-h-screen bg-transparent flex flex-col justify-center"
+      className="relative w-full min-h-[90vh] min-h-[90dvh] sm:min-h-screen bg-transparent flex flex-col justify-center"
     >
       <link rel="preload" href={getFrameUrl(0)} as="image" fetchPriority="high" />
 

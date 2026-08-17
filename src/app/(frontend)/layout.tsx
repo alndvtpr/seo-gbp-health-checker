@@ -53,7 +53,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           fetchpriority="high"
         />
       </head>
-      <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
+      <body className="bg-transparent text-on-background font-sans min-h-screen min-h-[100dvh] flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
         {/* Lazy load GTM to eliminate FCP/TBT main thread contention */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2VK6KQNJGH"
@@ -78,7 +78,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         
         <Navbar />
         
-        <main className="flex-grow relative z-30 w-full">{children}</main>
+        <main className="flex-1 relative z-20 w-full">{children}</main>
         
         <Footer />
       </body>
