@@ -1,6 +1,6 @@
 import React from 'react'
 import { Inter, Montserrat } from 'next/font/google'
-import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import './styles.css'
 
@@ -13,12 +13,17 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
 })
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
   display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
+  weight: ['600', '700', '800'],
 })
 
 export const metadata = generateMetadata({
@@ -36,9 +41,33 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        {/* LCP Discovery Preload */}
+        <link
+          rel="preload"
+          as="image"
+          href="/hero-frames/frame-0000.webp"
+          type="image/webp"
+          // @ts-ignore
+          fetchpriority="high"
+        />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
-        <GoogleAnalytics gaId="G-2VK6KQNJGH" />
+        {/* Lazy load GTM to eliminate FCP/TBT main thread contention */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-2VK6KQNJGH"
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics-init" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2VK6KQNJGH', {
+              page_path: window.location.pathname,
+              send_page_view: true
+            });
+          `}
+        </Script>
 
         {/* WebGL Background Canvas Container */}
         <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent">

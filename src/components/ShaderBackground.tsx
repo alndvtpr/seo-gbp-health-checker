@@ -88,6 +88,11 @@ export const ShaderBackground = () => {
     let timeoutId: NodeJS.Timeout | undefined
 
     const initWebGL = () => {
+      // Completely bypass WebGL on mobile devices (< 768px) to eliminate main-thread long tasks & GPU drain
+      if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return
+      }
+
       const canvas = canvasRef.current
       if (!canvas) return
       

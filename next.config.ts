@@ -7,6 +7,8 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
+  compress: true,
+  poweredByHeader: false,
   productionBrowserSourceMaps: false,
   async headers() {
     return [
@@ -22,14 +24,37 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
             key: 'Content-Security-Policy',
             value: "frame-ancestors 'none';",
+          },
+        ],
+      },
+      {
+        source: '/(hero-frames|_next/static|media)/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
     ]
   },
   images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000,
     localPatterns: [
       {
         pathname: '/**',
