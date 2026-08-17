@@ -61,7 +61,7 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
-- **Commit `pending` (2026-08-17)**: `perf: optimize mobile core web vitals, defer gtm, gpu compositing, and static caching`
+- **Commit `fd5ff1e` (2026-08-17)**: `perf: optimize mobile core web vitals, defer gtm, gpu compositing, and static caching`
   - Deferred GTM script with lazyOnload, added LCP head preload, bypassed mobile WebGL compilation, converted ripple to transform/opacity, and configured immutable caching.
 - **Commit `2fb40d4` (2026-08-17)**: `docs: sync plan.md commit hash for contact fix`
   - Synchronized documentation and roadmap milestones.
