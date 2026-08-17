@@ -353,10 +353,6 @@ export const ScrollHero = () => {
             Helping businesses worldwide grow through smarter SEO, search-ready websites, and effective digital marketing strategies.
           </p>
 
-          <p className="font-sans text-xs sm:text-base text-on-surface/70 max-w-xl drop-shadow-md leading-relaxed">
-            Delivering high-converting digital solutions with cinematic film-noir precision and relentless technical efficiency.
-          </p>
-
           <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full">
             <Link
               href="/projects"
