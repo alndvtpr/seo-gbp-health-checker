@@ -144,17 +144,19 @@ export const ShaderBackground = () => {
       const resLoc = gl.getUniformLocation(program, 'u_resolution')
       const mouseLoc = gl.getUniformLocation(program, 'u_mouse')
       
-      let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+      let windowHeight = window.innerHeight
+      let mouse = { x: window.innerWidth / 2, y: windowHeight / 2 }
       const handleMouseMove = (e: MouseEvent) => {
         mouse.x = e.clientX
-        mouse.y = window.innerHeight - e.clientY
+        mouse.y = windowHeight - e.clientY
       }
       window.addEventListener('mousemove', handleMouseMove, { passive: true })
 
       const updateSize = () => {
+        windowHeight = window.innerHeight
         const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
         canvas.width = window.innerWidth * dpr
-        canvas.height = window.innerHeight * dpr
+        canvas.height = windowHeight * dpr
         gl.viewport(0, 0, canvas.width, canvas.height)
       }
       
