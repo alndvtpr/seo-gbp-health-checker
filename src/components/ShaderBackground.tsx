@@ -75,20 +75,13 @@ const fragmentShaderSource = `
 export const ShaderBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [mounted, setMounted] = useState(false)
-  const [reducedMotion, setReducedMotion] = useState(false)
-  
+
   useEffect(() => {
     setMounted(true)
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReducedMotion(mediaQuery.matches)
-    
-    const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', listener)
-    return () => mediaQuery.removeEventListener('change', listener)
   }, [])
 
   useEffect(() => {
-    if (!mounted || reducedMotion) return
+    if (!mounted) return
 
     let cleanupFn: (() => void) | undefined
     let idleId: number | undefined
@@ -166,29 +159,88 @@ export const ShaderBackground = () => {
       }
       
       updateSize()
-      
-      const resizeObserver = new ResizeObserver(() => {
-        updateSize()
-      })
-      
-      resizeObserver.observe(canvas)
 
       const startTime = performance.now()
-      let requestId: number
-      
-      const render = (time: number) => {
+      let requestId: number | null = null
+      let lastDrawTime = 0
+      const FRAME_INTERVAL = 33 // ~30fps frame capping (~33ms delta threshold)
+
+      const drawFrame = (time: number) => {
         const elapsedTime = (time - startTime) / 1000
         gl.uniform1f(timeLoc, elapsedTime)
         gl.uniform2f(resLoc, canvas.width, canvas.height)
         gl.uniform2f(mouseLoc, mouse.x, mouse.y)
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
-        requestId = requestAnimationFrame(render)
       }
-      
-      requestId = requestAnimationFrame(render)
+
+      // Check prefers-reduced-motion on mount
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      let prefersReducedMotion = motionQuery.matches
+
+      const resizeObserver = new ResizeObserver(() => {
+        updateSize()
+        if (prefersReducedMotion) {
+          drawFrame(performance.now())
+        }
+      })
+      resizeObserver.observe(canvas)
+
+      const render = (time: number) => {
+        requestId = requestAnimationFrame(render)
+        // Skip draw call if less than ~33ms has elapsed since the last draw (cap at ~30fps)
+        if (time - lastDrawTime < FRAME_INTERVAL) {
+          return
+        }
+        lastDrawTime = time
+        drawFrame(time)
+      }
+
+      const stopAnimation = () => {
+        if (requestId !== null) {
+          cancelAnimationFrame(requestId)
+          requestId = null
+        }
+      }
+
+      const startAnimation = () => {
+        if (requestId === null && !document.hidden && !prefersReducedMotion) {
+          lastDrawTime = performance.now()
+          requestId = requestAnimationFrame(render)
+        }
+      }
+
+      // (2) If prefers-reduced-motion matches, skip animation loop and render single static frame
+      if (prefersReducedMotion) {
+        drawFrame(startTime)
+      } else if (!document.hidden) {
+        startAnimation()
+      }
+
+      // (1) Handle visibility change (tab hidden/visible)
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          stopAnimation()
+        } else {
+          startAnimation()
+        }
+      }
+      document.addEventListener('visibilitychange', handleVisibilityChange)
+
+      const handleMotionChange = (e: MediaQueryListEvent) => {
+        prefersReducedMotion = e.matches
+        if (prefersReducedMotion) {
+          stopAnimation()
+          drawFrame(performance.now())
+        } else {
+          startAnimation()
+        }
+      }
+      motionQuery.addEventListener('change', handleMotionChange)
 
       cleanupFn = () => {
-        cancelAnimationFrame(requestId)
+        stopAnimation()
+        document.removeEventListener('visibilitychange', handleVisibilityChange)
+        motionQuery.removeEventListener('change', handleMotionChange)
         window.removeEventListener('mousemove', handleMouseMove)
         resizeObserver.disconnect()
         gl.deleteProgram(program)
@@ -211,9 +263,9 @@ export const ShaderBackground = () => {
       if (timeoutId) clearTimeout(timeoutId)
       if (cleanupFn) cleanupFn()
     }
-  }, [mounted, reducedMotion])
+  }, [mounted])
 
-  if (!mounted || reducedMotion) {
+  if (!mounted) {
     return (
       <div 
         className="fixed inset-0 w-full h-full z-[-2] pointer-events-none opacity-50"
