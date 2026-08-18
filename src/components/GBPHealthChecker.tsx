@@ -1,7 +1,9 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import ReactMarkdown from 'react-markdown'
+import { Download, X, Compass, Globe, CheckCircle, ArrowUpRight } from 'lucide-react'
 
 // ─── Type Definitions ───────────────────────────────────────────────────────
 
@@ -32,6 +34,11 @@ export interface WebsiteSeo {
   status: 'success' | 'error' | 'no_website'
 }
 
+export interface ReviewTemplates {
+  positive: string
+  constructive: string
+}
+
 /** Full API response payload from /api/gbp-audit */
 export interface GBPAuditResponse {
   success: boolean
@@ -48,6 +55,9 @@ export interface GBPAuditResponse {
   websiteSeo?: WebsiteSeo
   error?: string
   aiRecommendations?: string
+  aiDescription?: string
+  aiReviewTemplates?: ReviewTemplates
+  aiKeywords?: string[]
 }
 
 // ─── Sub-Components ─────────────────────────────────────────────────────────
@@ -63,7 +73,7 @@ function CircularProgressRing({
   score: number
   grade: string
 }) {
-  const radius = 70
+  const radius = 68
   const stroke = 8
   const normalizedRadius = radius - stroke / 2
   const circumference = 2 * Math.PI * normalizedRadius
@@ -84,64 +94,72 @@ function CircularProgressRing({
         : '#f87171'
 
   const gradeColor =
-    score >= 70 ? 'text-green-400' : score >= 40 ? 'text-primary' : 'text-red-400'
+    score >= 70 ? 'text-emerald-400' : score >= 40 ? 'text-primary-container' : 'text-rose-400'
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <svg
-        height={radius * 2}
-        width={radius * 2}
-        className="drop-shadow-lg"
-        aria-label={`GBP score: ${score} out of 100`}
-      >
-        <circle
-          stroke="rgba(255,255,255,0.08)"
-          fill="transparent"
-          strokeWidth={stroke}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
-        />
-        <circle
-          stroke={ringColor}
-          fill="transparent"
-          strokeWidth={stroke}
-          strokeLinecap="round"
-          strokeDasharray={`${circumference} ${circumference}`}
-          strokeDashoffset={offset}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
-          transform={`rotate(-90 ${radius} ${radius})`}
-          style={{ transition: 'stroke-dashoffset 1s ease-in-out, stroke 0.5s ease' }}
-        />
-        <text
-          x={radius}
-          y={radius - 6}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fill="white"
-          fontSize="22"
-          fontWeight="800"
-          fontFamily="var(--font-montserrat), sans-serif"
+      <div className="relative flex items-center justify-center">
+        <svg
+          height={radius * 2}
+          width={radius * 2}
+          className="drop-shadow-[0_0_20px_rgba(255,183,131,0.15)]"
+          aria-label={`GBP score: ${score} out of 100`}
         >
-          {score}
-        </text>
-        <text
-          x={radius}
-          y={radius + 16}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fill="rgba(255,255,255,0.5)"
-          fontSize="10"
-          fontFamily="var(--font-inter), sans-serif"
-        >
-          / 100
-        </text>
-      </svg>
-      <span className={`font-heading font-extrabold text-lg tracking-wide ${gradeColor}`}>
-        Grade: {grade}
-      </span>
+          <circle
+            stroke="rgba(255,255,255,0.06)"
+            fill="transparent"
+            strokeWidth={stroke}
+            r={normalizedRadius}
+            cx={radius}
+            cy={radius}
+          />
+          <circle
+            stroke={ringColor}
+            fill="transparent"
+            strokeWidth={stroke}
+            strokeLinecap="round"
+            strokeDasharray={`${circumference} ${circumference}`}
+            strokeDashoffset={offset}
+            r={normalizedRadius}
+            cx={radius}
+            cy={radius}
+            transform={`rotate(-90 ${radius} ${radius})`}
+            style={{ transition: 'stroke-dashoffset 1s ease-in-out, stroke 0.5s ease' }}
+          />
+          <text
+            x={radius}
+            y={radius - 7}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="white"
+            fontSize="24"
+            fontWeight="800"
+            fontFamily="var(--font-montserrat), sans-serif"
+          >
+            {score}
+          </text>
+          <text
+            x={radius}
+            y={radius + 15}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="rgba(255,255,255,0.4)"
+            fontSize="10"
+            fontFamily="var(--font-inter), sans-serif"
+            fontWeight="600"
+          >
+            SCORE / 100
+          </text>
+        </svg>
+      </div>
+      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+        <span className="text-[10px] uppercase font-heading font-bold text-on-surface/50 tracking-wider">
+          Rating
+        </span>
+        <span className={`font-heading font-extrabold text-sm ${gradeColor}`}>
+          {grade}
+        </span>
+      </div>
     </div>
   )
 }
@@ -152,15 +170,15 @@ function CircularProgressRing({
 function PillarCard({ pillar }: { pillar: AuditPillar }) {
   const pct = Math.round((pillar.score / pillar.maxScore) * 100)
   const barColor =
-    pct >= 70 ? 'bg-green-400' : pct >= 40 ? 'bg-primary' : 'bg-red-400'
+    pct >= 70 ? 'bg-emerald-400' : pct >= 40 ? 'bg-primary-container' : 'bg-rose-400'
 
   return (
-    <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
+    <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3 hover:bg-white/[0.05] transition-colors">
       <div className="flex items-center justify-between">
-        <span className="font-heading text-xs font-bold uppercase tracking-wider text-on-surface/80">
+        <span className="font-heading text-xs font-bold uppercase tracking-wider text-on-surface/90">
           {pillar.name}
         </span>
-        <span className="font-heading text-sm font-bold text-on-surface">
+        <span className="font-heading text-xs font-bold text-on-surface">
           {pillar.score}
           <span className="text-on-surface/40 font-normal">/{pillar.maxScore}</span>
         </span>
@@ -175,9 +193,9 @@ function PillarCard({ pillar }: { pillar: AuditPillar }) {
 
       <ul className="space-y-1.5">
         {pillar.details.map((detail, i) => (
-          <li key={i} className="flex items-start gap-2 text-[11px] text-on-surface/60">
-            <span className="mt-0.5 shrink-0 text-primary-container">›</span>
-            {detail}
+          <li key={i} className="flex items-start gap-2 text-[11px] text-on-surface/70 leading-relaxed">
+            <span className="mt-0.5 shrink-0 text-primary-container font-bold">›</span>
+            <span>{detail}</span>
           </li>
         ))}
       </ul>
@@ -186,25 +204,38 @@ function PillarCard({ pillar }: { pillar: AuditPillar }) {
 }
 
 /**
- * Auto-dismissing toast notification for API errors.
+ * Auto-dismissing toast notification.
  */
-function Toast({ message, onClose }: { message: string; onClose: () => void }) {
+function Toast({
+  message,
+  type = 'error',
+  onClose,
+}: {
+  message: string
+  type?: 'error' | 'success'
+  onClose: () => void
+}) {
   useEffect(() => {
-    const t = setTimeout(onClose, 5000)
+    const t = setTimeout(onClose, 3500)
     return () => clearTimeout(t)
   }, [onClose])
+
+  const bgStyle =
+    type === 'success'
+      ? 'bg-emerald-500/95 border-emerald-400/40 text-white'
+      : 'bg-rose-500/95 border-rose-400/40 text-white'
 
   return (
     <div
       role="alert"
-      className="fixed bottom-6 right-6 z-50 max-w-sm flex items-start gap-3 px-4 py-3 rounded-xl bg-red-500/90 border border-red-400/40 text-white text-sm shadow-xl"
+      className={`fixed bottom-6 right-6 z-[1000000] max-w-sm flex items-center gap-3 px-4 py-3 rounded-xl border ${bgStyle} text-xs font-medium shadow-2xl animate-in fade-in slide-in-from-bottom-5`}
     >
-      <span className="text-lg leading-none mt-0.5">⚠</span>
-      <span className="leading-snug">{message}</span>
+      <span className="text-base">{type === 'success' ? '✓' : '⚠'}</span>
+      <span className="flex-1">{message}</span>
       <button
         onClick={onClose}
         aria-label="Dismiss notification"
-        className="ml-auto shrink-0 opacity-70 hover:opacity-100 transition-opacity text-lg leading-none"
+        className="opacity-70 hover:opacity-100 transition-opacity text-base leading-none cursor-pointer"
       >
         ×
       </button>
@@ -214,13 +245,6 @@ function Toast({ message, onClose }: { message: string; onClose: () => void }) {
 
 // ─── Main Component ──────────────────────────────────────────────────────────
 
-/**
- * GBPHealthChecker
- *
- * Interactive Local SEO & Google Business Profile auditor.
- * Posts to /api/gbp-audit and renders a circular score ring
- * plus three audit pillar cards (Completeness, Reputation, Visibility).
- */
 export function GBPHealthChecker() {
   const [businessName, setBusinessName] = useState('')
   const [targetLocation, setTargetLocation] = useState('')
@@ -228,30 +252,69 @@ export function GBPHealthChecker() {
   const [isDeepChecking, setIsDeepChecking] = useState(false)
   const [result, setResult] = useState<GBPAuditResponse | null>(null)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
-  const resultsRef = useRef<HTMLDivElement>(null)
+  const [toastMsg, setToastMsg] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const [activeTab, setActiveTab] = useState<'roadmap' | 'description' | 'templates' | 'keywords'>('roadmap')
 
-  // Prevent body scroll when modal is open
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const closeModal = useCallback(() => {
+    setResult(null)
+  }, [])
+
+  // Keyboard navigation & body scroll lock
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal()
+      }
+    }
+
     if (result) {
+      window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
+
     return () => {
-      document.body.style.overflow = 'unset'
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
-  }, [result])
+  }, [result, closeModal])
 
   // Deep Check State
-  const [deepCheckAnswers, setDeepCheckAnswers] = useState<(boolean | null)[]>([null, null, null, null])
+  const [deepCheckAnswers, setDeepCheckAnswers] = useState<(boolean | null)[]>([
+    null,
+    null,
+    null,
+    null,
+  ])
   const deepCheckQuestions = [
-    "Do you actively respond to ALL Google reviews (good and bad)?",
-    "Are all your core services/products listed with descriptions?",
-    "Have you published a Google Update (Post) in the last 14 days?",
-    "Is your business description filled out completely (near 750 chars)?"
+    'Do you actively respond to ALL Google reviews (good and bad)?',
+    'Are all your core services/products listed with descriptions?',
+    'Have you published a Google Update (Post) in the last 14 days?',
+    'Is your business description filled out completely (near 750 chars)?',
   ]
 
-  const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>, isDeepCheckUpdate = false) => {
+  const copyToClipboard = async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setToastMsg({ message: `Copied ${label} to clipboard!`, type: 'success' })
+    } catch {
+      setToastMsg({ message: 'Failed to copy to clipboard', type: 'error' })
+    }
+  }
+
+  const handleSubmit = async (
+    e?: React.FormEvent<HTMLFormElement>,
+    isDeepCheckUpdate = false,
+  ) => {
     if (e) e.preventDefault()
     if (!businessName.trim() || !targetLocation.trim()) return
 
@@ -260,13 +323,17 @@ export function GBPHealthChecker() {
     } else {
       setIsLoading(true)
       setResult(null)
-      // Reset deep check answers for a new search
       setDeepCheckAnswers([null, null, null, null])
+      setActiveTab('roadmap')
     }
     setErrorMsg(null)
 
     try {
-      const payload: any = {
+      const payload: {
+        businessName: string
+        targetLocation: string
+        deepCheckAnswers?: (boolean | null)[]
+      } = {
         businessName: businessName.trim(),
         targetLocation: targetLocation.trim(),
       }
@@ -292,17 +359,11 @@ export function GBPHealthChecker() {
 
       setResult(data)
 
-      if (!isDeepCheckUpdate) {
-        // Smooth-scroll to results after initial render
+      if (isDeepCheckUpdate) {
         setTimeout(() => {
-          resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }, 150)
-      } else {
-        // Scroll to AI recommendations after deep check updates
-        setTimeout(() => {
-          const aiRecs = document.getElementById('ai-recommendations')
+          const aiRecs = document.getElementById('ai-arsenal-section')
           aiRecs?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }, 300)
+        }, 200)
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'An unexpected error occurred.'
@@ -318,9 +379,640 @@ export function GBPHealthChecker() {
     handleSubmit(undefined, true)
   }
 
+  const renderModal = () => {
+    if (!result || !mounted) return null
+
+    const passedCount = result.actionItems?.filter((a) => a.priority === 'passed').length || 0
+    const totalChecks = result.actionItems?.length || 0
+
+    return createPortal(
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="gbp-modal-title"
+        className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto"
+        style={{ zIndex: 999999 }}
+        onClick={closeModal}
+      >
+        <div
+          className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-[#121414] border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* ── Top Header / Branding Bar ── */}
+          <div className="p-4 sm:p-5 md:p-6 border-b border-white/10 bg-[#161819] z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
+            <div className="space-y-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-primary-container/15 text-primary-container border border-primary-container/30">
+                  <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
+                </span>
+                <span className="text-[11px] font-sans text-on-surface/40">•</span>
+                <span className="text-[11px] font-sans text-on-surface/60 font-medium truncate">
+                  {result.location}
+                </span>
+              </div>
+              <h2
+                id="gbp-modal-title"
+                className="font-heading font-extrabold text-lg sm:text-2xl md:text-3xl text-on-surface truncate"
+              >
+                {result.businessName}
+              </h2>
+            </div>
+
+            <div className="flex items-center flex-wrap gap-2.5 shrink-0">
+              {/* Print / Save PDF Button */}
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface/80 hover:text-white transition-all cursor-pointer shadow-sm"
+                title="Print or Save as PDF"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Export PDF</span>
+              </button>
+
+              {/* Exit / Close Button */}
+              <button
+                type="button"
+                onClick={closeModal}
+                className="inline-flex items-center gap-1.5 bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 hover:text-rose-300 rounded-xl px-4 py-2 transition-all shadow-[0_0_20px_rgba(244,63,94,0.15)] border border-rose-500/30 font-heading font-bold text-xs uppercase tracking-wider group cursor-pointer"
+                aria-label="Close dashboard"
+              >
+                <span>Exit</span>
+                <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+            </div>
+          </div>
+
+          {/* ── Scrollable Dashboard Body ── */}
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 bg-[#0e1010]">
+            
+            {/* ── Bento Row 1: Score Dial & Health Pillars ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+              
+              {/* Score Radar (4 Cols) */}
+              <div className="lg:col-span-4 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col items-center justify-between text-center gap-4 relative overflow-hidden shadow-xl">
+                <div className="space-y-1">
+                  <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                    Profile Health Score
+                  </span>
+                  <h3 className="font-heading font-bold text-base text-on-surface">
+                    Audit Performance
+                  </h3>
+                </div>
+
+                <CircularProgressRing score={result.totalScore} grade={result.grade} />
+
+                <div className="space-y-2 w-full pt-1">
+                  <div className="flex items-center justify-between text-[11px] px-3 py-1.5 rounded-lg bg-white/5 border border-white/5">
+                    <span className="text-on-surface/60">Checks Passed:</span>
+                    <span className="font-heading font-bold text-emerald-400">
+                      {passedCount} / {totalChecks}
+                    </span>
+                  </div>
+
+                  {result.foundInMapPack ? (
+                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-heading font-bold">
+                      <span>✓</span> Ranked #{result.mapPackPosition} in Local Map Pack
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-400 text-xs font-heading font-bold">
+                      <span>✗</span> Not Ranking in Top 10 Map Pack
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* 3 Pillars Breakdown (8 Cols) */}
+              <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col justify-between gap-4 shadow-xl">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                      Core Signal Breakdown
+                    </span>
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
+                      Local Trust &amp; Ranking Pillars
+                    </h3>
+                  </div>
+                  <span className="text-xs font-sans text-on-surface/50">
+                    Weights out of 100 pts
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                  {result.pillars.map((pillar) => (
+                    <PillarCard key={pillar.name} pillar={pillar} />
+                  ))}
+                </div>
+
+                <p className="text-[11px] font-sans text-on-surface/60 leading-relaxed bg-white/[0.02] p-3 rounded-xl border border-white/5">
+                  💡 <strong className="text-on-surface/90">Strategic Takeaway:</strong> Google ranks profiles based on <span className="text-primary-container font-semibold">Relevance</span> (NAP & categories), <span className="text-primary-container font-semibold">Prominence</span> (reviews & velocity), and <span className="text-primary-container font-semibold">Distance</span> (location signals).
+                </p>
+              </div>
+            </div>
+
+            {/* ── Bento Row 2: Competitor Radar & Website Snapshot ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+              
+              {/* Competitor Gap Radar (7 Cols) */}
+              <div className="lg:col-span-7 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                      Competitive Intelligence
+                    </span>
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
+                      Top Local Competitors in {result.location}
+                    </h3>
+                  </div>
+                  <Compass className="w-5 h-5 text-primary-container/80" />
+                </div>
+
+                {result.competitors && result.competitors.length > 0 ? (
+                  <div className="space-y-2.5">
+                    {result.competitors.map((comp, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between gap-3 hover:bg-white/[0.06] transition-colors"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-heading text-xs font-bold text-primary-container shrink-0">
+                            #{comp.position}
+                          </span>
+                          <span className="font-heading text-xs sm:text-sm font-bold text-on-surface truncate">
+                            {comp.name}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-heading font-bold">
+                            {comp.rating ? `${comp.rating} ⭐` : 'Unrated'}
+                          </span>
+                          <span className="text-[11px] font-sans text-on-surface/50">
+                            {comp.reviews || 0} reviews
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-on-surface/60 py-4 text-center">
+                    No immediate local map pack competitors detected for this specific search term.
+                  </p>
+                )}
+
+                <div className="p-3.5 rounded-xl bg-primary-container/10 border border-primary-container/20 text-xs text-on-surface/80">
+                  🎯 <strong className="text-primary-container font-semibold">Growth Strategy:</strong> Steady weekly review acquisition and weekly Google Posts are the fastest leverage points to outrank these competitors.
+                </div>
+              </div>
+
+              {/* Website & Semantic SEO Snapshot (5 Cols) */}
+              <div className="lg:col-span-5 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                      On-Page Synergy
+                    </span>
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
+                      Website SEO Signal
+                    </h3>
+                  </div>
+                  <Globe className="w-5 h-5 text-primary-container/80" />
+                </div>
+
+                {result.websiteSeo && result.websiteSeo.status !== 'no_website' ? (
+                  <div className="space-y-3 text-xs">
+                    <div className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-between gap-2">
+                      <span className="text-on-surface/50 text-[11px]">Linked URL:</span>
+                      <a
+                        href={result.websiteSeo.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-container hover:underline truncate max-w-[200px]"
+                      >
+                        {result.websiteSeo.url}
+                      </a>
+                    </div>
+
+                    {result.websiteSeo.status === 'error' ? (
+                      <p className="text-xs text-rose-400 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                        ⚠ Website responded with an error or blocked the audit bot.
+                      </p>
+                    ) : (
+                      <div className="space-y-2.5">
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-on-surface/50">
+                            Title Tag
+                          </span>
+                          <p className="text-xs text-on-surface font-medium leading-relaxed bg-white/[0.02] p-2.5 rounded-lg border border-white/5">
+                            {result.websiteSeo.title ? result.websiteSeo.title : <span className="text-rose-400">Missing Title Tag</span>}
+                          </p>
+                        </div>
+
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-on-surface/50">
+                            Meta Description
+                          </span>
+                          <p className="text-xs text-on-surface/70 leading-relaxed line-clamp-2 bg-white/[0.02] p-2.5 rounded-lg border border-white/5">
+                            {result.websiteSeo.metaDescription ? result.websiteSeo.metaDescription : <span className="text-rose-400">Missing Meta Description</span>}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 space-y-1">
+                    <p className="font-bold">No Website Linked on GBP</p>
+                    <p className="opacity-80">
+                      Linking a verified website or high-converting landing page is critical for local authority.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* ── Bento Row 3: Action Plan Priority Matrix ── */}
+            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                    Action Plan
+                  </span>
+                  <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
+                    Prioritized Optimization Roadmap
+                  </h3>
+                </div>
+                <span className="text-xs font-sans text-on-surface/50">
+                  {result.actionItems?.length || 0} Key Observations
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {result.actionItems?.map((item, idx) => {
+                  const colors = {
+                    high: 'bg-rose-500/10 border-rose-500/25 text-rose-300',
+                    medium: 'bg-amber-500/10 border-amber-500/25 text-amber-300',
+                    low: 'bg-sky-500/10 border-sky-500/25 text-sky-300',
+                    passed: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300 opacity-70',
+                  }[item.priority]
+
+                  const icons = {
+                    high: '🔴',
+                    medium: '🟡',
+                    low: '🔵',
+                    passed: '🟢',
+                  }[item.priority]
+
+                  return (
+                    <div
+                      key={idx}
+                      className={`flex items-start gap-3 p-3.5 rounded-xl border ${colors} transition-all`}
+                    >
+                      <span className="text-xs mt-0.5 shrink-0">{icons}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium leading-relaxed">{item.message}</p>
+                        <p className="text-[10px] uppercase font-bold tracking-widest mt-1 opacity-70">
+                          {item.priority} Priority
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* ── Bento Row 4: ✨ Alain Dave Tapiru's AI Growth Arsenal ── */}
+            <div id="ai-arsenal-section" className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#1c1f20] via-[#161819] to-[#121414] border border-primary-container/30 space-y-6 shadow-2xl relative overflow-hidden">
+              
+              {/* Header with Tab Navigation */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-white/10">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">✨</span>
+                    <h3 className="font-heading font-extrabold text-lg sm:text-xl text-on-surface">
+                      Alain&apos;s AI Strategic Growth Arsenal
+                    </h3>
+                  </div>
+                  <p className="text-xs text-on-surface/60">
+                    Personalized 1-click deliverables customized for {result.businessName}.
+                  </p>
+                </div>
+
+                {/* Tab Switcher */}
+                <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('roadmap')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                      activeTab === 'roadmap'
+                        ? 'bg-primary-container text-on-primary-container shadow-md'
+                        : 'text-on-surface/70 hover:text-white'
+                    }`}
+                  >
+                    30-Day Sprint
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('description')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                      activeTab === 'description'
+                        ? 'bg-primary-container text-on-primary-container shadow-md'
+                        : 'text-on-surface/70 hover:text-white'
+                    }`}
+                  >
+                    750-Char Bio
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('templates')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                      activeTab === 'templates'
+                        ? 'bg-primary-container text-on-primary-container shadow-md'
+                        : 'text-on-surface/70 hover:text-white'
+                    }`}
+                  >
+                    Review Playbook
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('keywords')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                      activeTab === 'keywords'
+                        ? 'bg-primary-container text-on-primary-container shadow-md'
+                        : 'text-on-surface/70 hover:text-white'
+                    }`}
+                  >
+                    Local Keywords
+                  </button>
+                </div>
+              </div>
+
+              {/* Tab 1: 30-Day Sprint Roadmap */}
+              {activeTab === 'roadmap' && (
+                <div className="space-y-4 animate-in fade-in duration-200">
+                  <div className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-lg prose-h4:text-sm prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-white prose-a:text-primary-container bg-white/[0.02] p-5 sm:p-7 rounded-2xl border border-white/5 shadow-inner">
+                    <ReactMarkdown>
+                      {result.aiRecommendations || 'Generating custom 30-day strategic plan...'}
+                    </ReactMarkdown>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: 750-Char SEO Optimized Business Description */}
+              {activeTab === 'description' && (
+                <div className="space-y-4 animate-in fade-in duration-200">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="font-heading text-xs font-bold text-on-surface">
+                        Keyword-Optimized Description
+                      </span>
+                      <span className="text-[11px] font-sans text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                        {result.aiDescription?.length || 0} / 750 Characters
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        copyToClipboard(result.aiDescription || '', 'Business Description')
+                      }
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold hover:brightness-110 active:scale-95 transition-all cursor-pointer shadow-md"
+                    >
+                      <CheckCircle className="w-3.5 h-3.5" />
+                      <span>Copy Description</span>
+                    </button>
+                  </div>
+
+                  <div className="p-4 sm:p-5 rounded-xl bg-black/50 border border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all">
+                    {result.aiDescription}
+                  </div>
+                  <p className="text-[11px] text-on-surface/50 italic">
+                    Paste this directly into your Google Business Profile &gt; Edit Profile &gt; Description field.
+                  </p>
+                </div>
+              )}
+
+              {/* Tab 3: Review Response Playbook */}
+              {activeTab === 'templates' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in duration-200">
+                  {/* Positive Template */}
+                  <div className="p-5 rounded-2xl bg-black/40 border border-emerald-500/20 space-y-3 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                          5-Star Review Response
+                        </span>
+                      </div>
+                      <p className="text-xs text-on-surface/80 leading-relaxed select-all">
+                        {result.aiReviewTemplates?.positive}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        copyToClipboard(
+                          result.aiReviewTemplates?.positive || '',
+                          '5-Star Template',
+                        )
+                      }
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
+                    >
+                      <span>Copy 5-Star Template</span>
+                    </button>
+                  </div>
+
+                  {/* Constructive Template */}
+                  <div className="p-5 rounded-2xl bg-black/40 border border-amber-500/20 space-y-3 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                          Constructive Review Response
+                        </span>
+                      </div>
+                      <p className="text-xs text-on-surface/80 leading-relaxed select-all">
+                        {result.aiReviewTemplates?.constructive}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        copyToClipboard(
+                          result.aiReviewTemplates?.constructive || '',
+                          'Constructive Template',
+                        )
+                      }
+                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
+                    >
+                      <span>Copy Constructive Template</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 4: High-Intent Local Keywords */}
+              {activeTab === 'keywords' && (
+                <div className="space-y-4 animate-in fade-in duration-200">
+                  <span className="text-xs text-on-surface/70 block">
+                    Click any keyword tag below to copy it for your Google Posts, FAQ section, or website meta tags:
+                  </span>
+                  <div className="flex flex-wrap gap-2.5">
+                    {result.aiKeywords?.map((kw, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => copyToClipboard(kw, `Keyword: "${kw}"`)}
+                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/40 text-xs font-heading font-medium text-on-surface hover:text-primary-container transition-all cursor-pointer group"
+                      >
+                        <span>{kw}</span>
+                        <ArrowUpRight className="w-3 h-3 opacity-40 group-hover:opacity-100" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* ── Bento Row 5: Deep Check Validator ── */}
+            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+              <div className="space-y-1">
+                <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                  Recalculate &amp; Unlock
+                </span>
+                <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
+                  Deep Check — 4 Verification Questions
+                </h3>
+                <p className="text-xs text-on-surface/60 leading-relaxed">
+                  Google hides specific internal signals. Answer these 4 checks to calibrate your final score.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-2">
+                {deepCheckQuestions.map((q, idx) => (
+                  <div
+                    key={idx}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/5"
+                  >
+                    <span className="text-xs font-medium text-on-surface/90 flex-1">{q}</span>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newAns = [...deepCheckAnswers]
+                          newAns[idx] = true
+                          setDeepCheckAnswers(newAns)
+                        }}
+                        className={`px-4 py-1.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                          deepCheckAnswers[idx] === true
+                            ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400'
+                            : 'bg-white/5 border-white/20 text-white/70 hover:bg-white/10'
+                        }`}
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const newAns = [...deepCheckAnswers]
+                          newAns[idx] = false
+                          setDeepCheckAnswers(newAns)
+                        }}
+                        className={`px-4 py-1.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
+                          deepCheckAnswers[idx] === false
+                            ? 'bg-rose-500/20 border-rose-500/50 text-rose-400'
+                            : 'bg-white/5 border-white/20 text-white/70 hover:bg-white/10'
+                        }`}
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-2 flex flex-col items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleDeepCheckSubmit}
+                  disabled={isDeepChecking || deepCheckAnswers.includes(null)}
+                  className="bg-primary-container text-on-primary-container px-6 py-3 rounded-xl font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer shadow-lg"
+                >
+                  {isDeepChecking ? (
+                    <>
+                      <svg
+                        className="animate-spin h-3.5 w-3.5 shrink-0"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        />
+                      </svg>
+                      <span>Recalculating Score &amp; Strategy…</span>
+                    </>
+                  ) : (
+                    'Update My Score & AI Plan'
+                  )}
+                </button>
+                {deepCheckAnswers.includes(null) && (
+                  <p className="text-[10px] text-on-surface/50 uppercase tracking-widest font-bold">
+                    Answer all 4 questions to unlock final score
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* ── Bento Row 6: Conversion & Consultation Banner ── */}
+            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/20 via-primary/15 to-transparent border border-primary-container/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+              <div className="space-y-1.5 text-center md:text-left">
+                <h4 className="font-heading font-extrabold text-lg sm:text-xl text-on-surface">
+                  Want Alain to execute this Local SEO sprint for you?
+                </h4>
+                <p className="text-xs sm:text-sm text-on-surface/70 max-w-xl leading-relaxed">
+                  I specialize in turning Google Business Profiles into consistent revenue drivers with complete citation cleanup, review velocity systems, and Map Pack dominance.
+                </p>
+              </div>
+
+              <div className="flex items-center flex-wrap gap-3 shrink-0">
+                <a
+                  href="/contact"
+                  className="px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)]"
+                >
+                  Book Strategy Call
+                </a>
+                <a
+                  href={`mailto:alaintapiru@gmail.com?subject=Local%20SEO%20Inquiry%20for%20${encodeURIComponent(result.businessName)}&body=Hi%20Alain,%0A%0AI%20just%20audited%20my%20business%20(${encodeURIComponent(result.businessName)}%20in%20${encodeURIComponent(result.location)})%20on%20your%20GBP%20tool%20and%20got%20a%20score%20of%20${result.totalScore}/100.%0A%0AI%20would%20like%20to%20discuss%20working%20together.`}
+                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-widest transition-all"
+                >
+                  Email Audit Summary
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>,
+      document.body,
+    )
+  }
+
   return (
     <>
-      {errorMsg && <Toast message={errorMsg} onClose={() => setErrorMsg(null)} />}
+      {errorMsg && <Toast message={errorMsg} type="error" onClose={() => setErrorMsg(null)} />}
+      {toastMsg && (
+        <Toast
+          message={toastMsg.message}
+          type={toastMsg.type}
+          onClose={() => setToastMsg(null)}
+        />
+      )}
 
       <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-3.5" noValidate>
         {/* Business Name */}
@@ -342,7 +1034,7 @@ export function GBPHealthChecker() {
           type="text"
           value={targetLocation}
           onChange={(e) => setTargetLocation(e.target.value)}
-          placeholder="Target Location / City (e.g. Manila, Cebu)"
+          placeholder="Target Location / City (e.g. Manila, Cebu, Bayombong)"
           maxLength={100}
           required
           disabled={isLoading}
@@ -355,7 +1047,7 @@ export function GBPHealthChecker() {
           id="gbp-submit-btn"
           disabled={isLoading || !businessName.trim() || !targetLocation.trim()}
           aria-label="Check GBP Score"
-          className="w-full bg-white/10 text-on-surface border border-white/10 font-heading text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl hover:bg-white/20 active:scale-[0.98] transition-all min-h-[48px] flex items-center justify-center gap-2.5 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all min-h-[48px] flex items-center justify-center gap-2.5 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-[0_0_20px_rgba(230,126,34,0.3)]"
         >
           {isLoading ? (
             <>
@@ -380,249 +1072,17 @@ export function GBPHealthChecker() {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                 />
               </svg>
-              Auditing…
+              Auditing Local Signals…
             </>
           ) : (
-            'Check GBP Score'
+            'Audit Google Business Profile'
           )}
         </button>
       </form>
 
-      {/* ── Full Screen Dashboard Modal ────────────────────────────────────── */}
-      {result && (
-        <div className="fixed inset-0 z-40 pt-20 md:pt-28 flex justify-center bg-black/60 backdrop-blur-2xl overflow-y-auto">
-          <div className="w-full max-w-5xl px-4 pb-12 space-y-8 animate-in fade-in zoom-in-95 duration-300">
-            
-            {/* Modal Header */}
-            <div className="flex items-center justify-between sticky top-4 md:top-8 bg-[#121414]/90 backdrop-blur-2xl px-5 py-4 md:px-8 md:py-5 rounded-2xl md:rounded-3xl z-10 border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
-              <div>
-                <h2 className="font-heading font-extrabold text-xl md:text-2xl text-on-surface">
-                  {result.businessName}
-                </h2>
-                <p className="text-on-surface/50 text-[10px] md:text-xs tracking-widest uppercase font-bold mt-0.5">{result.location}</p>
-              </div>
-              <button
-                onClick={() => setResult(null)}
-                className="flex items-center gap-2 bg-red-500/15 hover:bg-red-500/30 text-red-400 hover:text-red-300 rounded-full pl-5 pr-4 py-2.5 transition-all shadow-[0_0_20px_rgba(239,68,68,0.15)] border border-red-500/30 font-heading font-bold text-xs uppercase tracking-widest group"
-                aria-label="Close dashboard"
-              >
-                Exit
-                <svg className="group-hover:rotate-90 transition-transform duration-300" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Score & Badges */}
-            <div className="flex flex-col md:flex-row gap-8 items-center bg-white/5 border border-white/10 rounded-3xl p-8">
-              <CircularProgressRing score={result.totalScore} grade={result.grade} />
-              
-              <div className="space-y-4 text-center md:text-left flex-1">
-                <h3 className="font-heading font-bold text-xl text-on-surface">Overall Health Score</h3>
-                <p className="text-sm text-on-surface/70 leading-relaxed max-w-lg">
-                  {result.grade === 'A+' || result.grade === 'A' ? "Excellent profile! You're following local SEO best practices." : 
-                   result.grade.includes('B') ? "Good profile, but missing a few key local trust signals." : 
-                   "Your profile needs urgent attention to compete in local search."}
-                </p>
-                
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-2">
-                  {result.foundInMapPack ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/15 border border-green-500/30 text-green-400 text-xs font-bold uppercase tracking-wider">
-                      <span>✓</span> Ranked #{result.mapPackPosition} in Map Pack
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/15 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
-                      <span>✗</span> Not Ranking in Top 10
-                    </span>
-                  )}
-                  {result.websiteSeo?.status === 'success' && (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container/20 border border-primary-container/30 text-primary-container text-xs font-bold uppercase tracking-wider">
-                      <span>✓</span> Website Linked
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              
-              {/* Column 1: Action Plan */}
-              <div className="lg:col-span-2 space-y-6">
-                <h3 className="font-heading text-lg font-bold text-on-surface">Action Plan</h3>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">
-                  {result.actionItems?.map((item, idx) => {
-                    const colors = {
-                      high: 'bg-red-500/10 border-red-500/20 text-red-400',
-                      medium: 'bg-yellow-500/10 border-yellow-500/20 text-yellow-400',
-                      low: 'bg-blue-500/10 border-blue-500/20 text-blue-400',
-                      passed: 'bg-green-500/10 border-green-500/20 text-green-400 opacity-60'
-                    }[item.priority]
-
-                    const icons = {
-                      high: '🔴',
-                      medium: '🟡',
-                      low: '🔵',
-                      passed: '🟢'
-                    }[item.priority]
-
-                    return (
-                      <div key={idx} className={`flex items-start gap-3 p-4 rounded-xl border ${colors}`}>
-                        <span className="text-sm mt-0.5">{icons}</span>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium">{item.message}</p>
-                          <p className="text-[10px] uppercase font-bold tracking-widest mt-1 opacity-70">{item.priority} Priority</p>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                <h3 className="font-heading text-lg font-bold text-on-surface pt-4">Technical Breakdown</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {result.pillars.map((pillar) => (
-                    <PillarCard key={pillar.name} pillar={pillar} />
-                  ))}
-                </div>
-
-                {/* ── Deep Check Section ── */}
-                <div className="mt-8">
-                  <h3 className="font-heading text-lg font-bold text-white mb-4">Deep Check — Unlock Full Score</h3>
-                  <div className="bg-white/10 border border-white/20 rounded-2xl p-6 space-y-5 shadow-lg">
-                    <p className="text-sm text-white/90 leading-relaxed mb-4 font-medium">
-                      Google doesn't share everything publicly. Answer these 4 questions truthfully to get your final adjusted score and generate a custom AI Action Plan.
-                    </p>
-                    
-                    {deepCheckQuestions.map((q, idx) => (
-                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/20 last:border-0 last:pb-0">
-                        <span className="text-sm text-white font-bold flex-1">{q}</span>
-                        <div className="flex items-center gap-2 shrink-0">
-                          <button
-                            onClick={() => {
-                              const newAns = [...deepCheckAnswers]
-                              newAns[idx] = true
-                              setDeepCheckAnswers(newAns)
-                            }}
-                            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
-                              deepCheckAnswers[idx] === true 
-                                ? 'bg-green-500/20 border-green-500/50 text-green-400' 
-                                : 'bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40'
-                            }`}
-                          >
-                            Yes
-                          </button>
-                          <button
-                            onClick={() => {
-                              const newAns = [...deepCheckAnswers]
-                              newAns[idx] = false
-                              setDeepCheckAnswers(newAns)
-                            }}
-                            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
-                              deepCheckAnswers[idx] === false 
-                                ? 'bg-red-500/20 border-red-500/50 text-red-400' 
-                                : 'bg-white/5 border-white/20 text-white/80 hover:bg-white/10 hover:border-white/40'
-                            }`}
-                          >
-                            No
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className="pt-4 flex flex-col items-center gap-3">
-                      <button
-                        onClick={handleDeepCheckSubmit}
-                        disabled={isDeepChecking || deepCheckAnswers.includes(null)}
-                        className="bg-primary-container text-on-primary-container px-6 py-3 rounded-xl font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
-                      >
-                        {isDeepChecking ? 'Generating AI Plan...' : 'Update My Score & AI Plan'}
-                      </button>
-                      {deepCheckAnswers.includes(null) && (
-                        <p className="text-[10px] text-on-surface/50 uppercase tracking-widest font-bold">
-                          Answer all questions to unlock
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* ── AI Recommendations Section ── */}
-                {result.aiRecommendations && (
-                  <div id="ai-recommendations" className="mt-8">
-                    <h3 className="font-heading text-lg font-bold text-on-surface mb-4 flex items-center gap-2">
-                      <span className="text-xl">✨</span> AI Recommendations
-                    </h3>
-                    <div className="bg-primary-container/10 border border-primary-container/20 rounded-2xl p-6 prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-a:text-primary-container">
-                      <ReactMarkdown>
-                        {result.aiRecommendations}
-                      </ReactMarkdown>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Column 2: Side Panel (Competitors & SEO) */}
-              <div className="space-y-6">
-                {/* Competitors */}
-                {result.competitors && result.competitors.length > 0 && (
-                  <>
-                    <h3 className="font-heading text-lg font-bold text-on-surface">Top Competitors</h3>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
-                      {result.competitors.map((comp, idx) => (
-                        <div key={idx} className="flex flex-col gap-1 pb-3 border-b border-white/10 last:border-0 last:pb-0">
-                          <span className="text-sm font-bold text-on-surface">#{comp.position} {comp.name}</span>
-                          <span className="text-xs text-on-surface/60">
-                            {comp.rating ? `${comp.rating} ⭐` : 'No rating'} • {comp.reviews || 0} reviews
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </>
-                )}
-
-                {/* Website On-Page SEO Snapshot */}
-                {result.websiteSeo && result.websiteSeo.status !== 'no_website' && (
-                  <>
-                    <h3 className="font-heading text-lg font-bold text-on-surface">Website SEO Snapshot</h3>
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
-                      <p className="text-xs text-primary-container truncate">{result.websiteSeo.url}</p>
-                      
-                      {result.websiteSeo.status === 'error' ? (
-                        <p className="text-xs text-red-400">Failed to fetch website data (might be blocking bots).</p>
-                      ) : (
-                        <>
-                          <div>
-                            <span className="text-[10px] uppercase font-bold text-on-surface/50 tracking-wider">Title Tag</span>
-                            <p className="text-xs text-on-surface mt-1 font-medium leading-relaxed">
-                              {result.websiteSeo.title ? result.websiteSeo.title : <span className="text-red-400">Missing</span>}
-                            </p>
-                          </div>
-                          <div>
-                            <span className="text-[10px] uppercase font-bold text-on-surface/50 tracking-wider">Meta Description</span>
-                            <p className="text-xs text-on-surface mt-1 leading-relaxed line-clamp-3">
-                              {result.websiteSeo.metaDescription ? result.websiteSeo.metaDescription : <span className="text-red-400">Missing</span>}
-                            </p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </>
-                )}
-
-                <div className="mt-8 p-5 rounded-2xl bg-primary-container/10 border border-primary-container/20 text-center space-y-3">
-                  <h4 className="font-heading font-bold text-primary-container">Need help fixing these?</h4>
-                  <p className="text-xs text-on-surface/70 leading-relaxed">
-                    I specialize in Local SEO and converting profiles into lead generators.
-                  </p>
-                  <a href="/contact" className="inline-block px-4 py-2 mt-2 bg-primary-container text-on-primary-container font-bold text-xs uppercase tracking-widest rounded-lg hover:brightness-110 transition-all">
-                    Contact Me
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Render React Portal Modal */}
+      {renderModal()}
     </>
   )
 }
+

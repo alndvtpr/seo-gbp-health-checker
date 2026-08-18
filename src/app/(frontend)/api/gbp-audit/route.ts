@@ -29,6 +29,11 @@ interface AuditPillar {
   details: string[]
 }
 
+export interface ReviewTemplates {
+  positive: string
+  constructive: string
+}
+
 export interface GBPAuditResponse {
   success: boolean
   businessName: string
@@ -44,6 +49,9 @@ export interface GBPAuditResponse {
   actionItems?: ActionItem[]
   error?: string
   aiRecommendations?: string
+  aiDescription?: string
+  aiReviewTemplates?: ReviewTemplates
+  aiKeywords?: string[]
 }
 
 // Serper Maps Places Result shape
@@ -341,6 +349,132 @@ function calculateGBPScore(
   }
 }
 
+// ─── Local SEO Action Plan Intelligence Generator ───────────────────────────
+
+function generateOptimizedBusinessDescription(
+  businessName: string,
+  targetLocation: string,
+  category?: string
+): string {
+  const niche = category || 'trusted local establishment'
+  return `Welcome to ${businessName}, your premier ${niche} in ${targetLocation}. We specialize in delivering exceptional service, top-rated facilities, and dedicated customer care crafted to exceed expectations. Conveniently situated in ${targetLocation}, ${businessName} provides easy access, modern amenities, and a relaxing ambiance for families, tourists, and private events. Whether you are planning a visit, organizing group celebrations, or looking for reliable local solutions, our team is committed to unmatched quality. Browse our services, check customer reviews, or reach out today for rates and reservations!`
+}
+
+function generateReviewResponseTemplates(
+  businessName: string,
+  targetLocation: string
+): ReviewTemplates {
+  return {
+    positive: `Hi [Customer Name]! Thank you so much for the 5-star review and kind words about your experience with ${businessName} in ${targetLocation}. Our entire team takes immense pride in delivering top-tier service and memorable customer satisfaction. We truly appreciate your patronage and look forward to welcoming you back soon!`,
+    constructive: `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${businessName} in ${targetLocation}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right—please contact our management directly so we can address your concerns immediately.`,
+  }
+}
+
+function generateHighIntentKeywords(
+  businessName: string,
+  targetLocation: string,
+  category?: string
+): string[] {
+  const cat = category?.toLowerCase() || 'local services'
+  return [
+    `${businessName} ${targetLocation}`,
+    `best ${cat} in ${targetLocation}`,
+    `${businessName} rates and reviews`,
+    `top rated ${cat} near me`,
+    `${targetLocation} ${cat} contact and booking`,
+  ]
+}
+
+function generateLocalSeoActionPlan(
+  businessName: string,
+  targetLocation: string,
+  totalScore: number,
+  grade: string,
+  pillars: AuditPillar[],
+  actionItems: ActionItem[],
+  competitors?: Competitor[],
+  websiteSeo?: WebsiteSeo,
+  deepCheckAnswers?: boolean[]
+): string {
+  const failedItems = actionItems.filter((a) => a.priority !== 'passed')
+
+  let plan = `### 🎯 30-Day Local SEO Action Plan for ${businessName}\n\n`
+  plan += `**Location:** ${targetLocation} | **Audit Score:** ${totalScore}/100 (**Grade: ${grade}**)\n\n`
+
+  // Summary / Diagnosis
+  plan += `#### 📊 Executive Diagnosis\n`
+  if (totalScore >= 75) {
+    plan += `${businessName} possesses a solid foundational Google Business Profile with strong local signals in ${targetLocation}. However, implementing high-intent local optimization and proactive review acquisition will help solidify top Map Pack placements against local rivals.\n\n`
+  } else if (totalScore >= 50) {
+    plan += `${businessName} has an active local presence, but critical ranking trust factors are currently missing or under-optimized. Addressing high-priority gaps will yield immediate ranking and lead conversion gains in ${targetLocation}.\n\n`
+  } else {
+    plan += `${businessName} is currently underperforming in local search visibility in ${targetLocation}. By executing this structured 4-week optimization sprint, you can fix critical NAP & visibility gaps and start competing for high-value Map Pack traffic.\n\n`
+  }
+
+  // Week 1: Foundation & NAP Alignment
+  plan += `#### 🗓️ Week 1: Core Foundation & NAP Integrity (Days 1–7)\n`
+  if (failedItems.some((i) => i.message.toLowerCase().includes('website'))) {
+    plan += `- **Add Official Website URL**: Link your verified domain or high-converting local landing page to your Google Business Profile to unlock organic authority transference.\n`
+  }
+  if (failedItems.some((i) => i.message.toLowerCase().includes('phone'))) {
+    plan += `- **Configure Primary Local Phone Number**: Add a direct local telephone or mobile contact line to enhance Google trust validation and mobile click-to-call conversions.\n`
+  }
+  if (failedItems.some((i) => i.message.toLowerCase().includes('category') || i.message.toLowerCase().includes('details'))) {
+    plan += `- **Primary & Secondary Categories**: Verify your primary business category perfectly matches customer search intent, and add 2–3 relevant secondary categories.\n`
+  }
+  if (failedItems.some((i) => i.message.toLowerCase().includes('photo'))) {
+    plan += `- **High-Resolution Geo-Tagged Photos**: Upload at least 10–15 high-quality photos (exterior entrance, interior amenities, team, and branding) to boost user engagement.\n`
+  }
+  if (deepCheckAnswers && !deepCheckAnswers[3]) {
+    plan += `- **750-Character Description Optimization**: Write a rich business description incorporating primary local keywords (e.g., "${businessName} in ${targetLocation}") and your core value proposition within the 750-character limit.\n`
+  }
+  if (failedItems.length === 0) {
+    plan += `- **Audit Baseline Details**: Double-check holiday hours, service areas, and attribute tags (e.g., Wi-Fi, parking, payment options) for complete accuracy.\n`
+  }
+  plan += `\n`
+
+  // Week 2: Reputation Engine & Review Velocity
+  plan += `#### 🗓️ Week 2: Review Velocity & Social Proof (Days 8–14)\n`
+  if (deepCheckAnswers && !deepCheckAnswers[0]) {
+    plan += `- **Respond to 100% of Past Reviews**: Reply professionally to all existing Google reviews (both positive and negative), weaving in relevant service and location keywords naturally.\n`
+  }
+  plan += `- **Automated Review Request Flow**: Generate a direct Google review shortlink and set up an automated follow-up for recent clients.\n`
+  if (competitors && competitors.length > 0) {
+    const topComp = competitors[0]
+    plan += `- **Outpace Competitor Review Velocity**: Your top competitor (**${topComp.name}**) has **${topComp.reviews || 0} reviews** (${topComp.rating ? `${topComp.rating}⭐` : 'unrated'}). Target acquiring 5–10 new 5-star reviews every month to close the gap.\n`
+  }
+  plan += `\n`
+
+  // Week 3: Service Catalog & Local Content
+  plan += `#### 🗓️ Week 3: Service Catalog & Google Posts (Days 15–21)\n`
+  if (deepCheckAnswers && !deepCheckAnswers[1]) {
+    plan += `- **Itemized Service & Product Menu**: Populate the GBP Services section with clear descriptions, pricing brackets, and benefits for every service offering.\n`
+  }
+  if (deepCheckAnswers && !deepCheckAnswers[2]) {
+    plan += `- **Publish Weekly Google Updates**: Create weekly Google Posts featuring current promotions, case studies, or seasonal announcements with a clear Call-To-Action button.\n`
+  } else {
+    plan += `- **Maintain Regular Google Posts**: Keep publishing weekly Google Updates (Offers, Events, or What's New) to maintain a fresh activity signal for Google's local algorithm.\n`
+  }
+  plan += `- **Seed Local Q&A Section**: Pre-populate 3–5 Frequently Asked Questions and authoritative answers directly on your Google Business Profile.\n\n`
+
+  // Week 4: Local Landing Page & Citation Authority
+  plan += `#### 🗓️ Week 4: Website Synergy & Local Citation Sync (Days 22–30)\n`
+  if (websiteSeo && websiteSeo.status === 'success') {
+    if (!websiteSeo.title || !websiteSeo.title.toLowerCase().includes(targetLocation.toLowerCase())) {
+      plan += `- **Targeted Title Tag Optimization**: Update your homepage/landing page title tag to include "${targetLocation}" and primary service terms for stronger geo-relevance.\n`
+    }
+    if (!websiteSeo.metaDescription) {
+      plan += `- **Engaging Meta Description**: Write a compelling meta description highlighting local availability, key services, and contact details.\n`
+    }
+  }
+  plan += `- **Top Local & Industry Citations**: Ensure consistent Name, Address, and Phone (NAP) across major local directories, social profiles, and industry listings.\n`
+  plan += `- **Embed Google Map & Schema Markup**: Add a responsive Google Maps embed and \`LocalBusiness\` JSON-LD structured data to your website's contact page.\n\n`
+
+  plan += `> 💡 **Next Steps**: Focus on High Priority items first to trigger faster ranking recalculations on Google Maps!`
+
+  return plan
+}
+
 // ─── Route Handler ───────────────────────────────────────────────────────────
 
 export const runtime = 'nodejs'
@@ -351,7 +485,7 @@ const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
 
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000 // 24 hours
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000 // 1 hour
-const MAX_REQUESTS_PER_WINDOW = 5
+const MAX_REQUESTS_PER_WINDOW = 20
 
 /**
  * POST /api/gbp-audit
@@ -360,7 +494,7 @@ const MAX_REQUESTS_PER_WINDOW = 5
  *
  * Integrations:
  *   1. Serper.dev Google Maps Places API (Replaces Google Places API completely)
- *   2. Google Gemini API (For Deep Check Recommendations)
+ *   2. Google Gemini API (with Local SEO Intelligence Engine fallback)
  *
  * Returns: GBPAuditResponse
  */
@@ -374,17 +508,41 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     const body = await req.json()
     businessName = String(body.businessName ?? '').trim().slice(0, 100)
     targetLocation = String(body.targetLocation ?? '').trim().slice(0, 100)
-    if (Array.isArray(body.deepCheckAnswers)) { deepCheckAnswers = body.deepCheckAnswers.map(Boolean) }
+    if (Array.isArray(body.deepCheckAnswers)) {
+      deepCheckAnswers = body.deepCheckAnswers.map(Boolean)
+    }
   } catch {
     return NextResponse.json(
-      { success: false, error: 'Invalid JSON body', businessName: '', location: '', totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+      {
+        success: false,
+        error: 'Invalid JSON body',
+        businessName: '',
+        location: '',
+        totalScore: 0,
+        grade: 'F',
+        pillars: [],
+        placeId: null,
+        foundInMapPack: false,
+        mapPackPosition: null,
+      },
       { status: 400 },
     )
   }
 
   if (!businessName || !targetLocation) {
     return NextResponse.json(
-      { success: false, error: 'Both businessName and targetLocation are required.', businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+      {
+        success: false,
+        error: 'Both businessName and targetLocation are required.',
+        businessName,
+        location: targetLocation,
+        totalScore: 0,
+        grade: 'F',
+        pillars: [],
+        placeId: null,
+        foundInMapPack: false,
+        mapPackPosition: null,
+      },
       { status: 400 },
     )
   }
@@ -400,7 +558,18 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
     } else if (rateLimitRecord.count >= MAX_REQUESTS_PER_WINDOW) {
       return NextResponse.json(
-        { success: false, error: 'Rate limit exceeded. Please try again later.', businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+        {
+          success: false,
+          error: 'Rate limit exceeded. Please try again later.',
+          businessName,
+          location: targetLocation,
+          totalScore: 0,
+          grade: 'F',
+          pillars: [],
+          placeId: null,
+          foundInMapPack: false,
+          mapPackPosition: null,
+        },
         { status: 429 },
       )
     } else {
@@ -451,20 +620,44 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
 
     const serperData: SerperMapsResponse = {
       places: [
-        { title: businessName, position: mapPackPosition, address: `123 Main St, ${targetLocation}, Philippines`, rating, ratingCount: reviewCount, cid: 'demo-cid-12345', website: mockWebsite, phoneNumber: mockPhone, category: 'Local Business' },
+        {
+          title: businessName,
+          position: mapPackPosition,
+          address: `123 Main St, ${targetLocation}, Philippines`,
+          rating,
+          ratingCount: reviewCount,
+          cid: 'demo-cid-12345',
+          website: mockWebsite,
+          phoneNumber: mockPhone,
+          category: 'Local Business',
+        },
       ],
     }
 
-    const { totalScore, grade, pillars, foundInMapPack, actionItems, competitors } = calculateGBPScore(
-      placeData,
-      serperData,
-      businessName,
-      targetLocation,
-      deepCheckAnswers
-    )
+    const { totalScore, grade, pillars, foundInMapPack, actionItems, competitors } =
+      calculateGBPScore(placeData, serperData, businessName, targetLocation, deepCheckAnswers)
 
     // Add a note in details indicating Demo Mode
     if (pillars[0]) pillars[0].details.unshift('ℹ Demo Mode: Real API keys not set in .env')
+
+    const demoSeo: WebsiteSeo = {
+      url: mockWebsite,
+      title: 'Demo Business | High Quality Services',
+      metaDescription: 'We offer the best services in town. Call us today!',
+      status: 'success',
+    }
+
+    const demoRecommendations = generateLocalSeoActionPlan(
+      businessName,
+      targetLocation,
+      totalScore,
+      grade,
+      pillars,
+      actionItems,
+      competitors,
+      demoSeo,
+      deepCheckAnswers
+    )
 
     const demoResponse: GBPAuditResponse = {
       success: true,
@@ -478,8 +671,11 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       mapPackPosition,
       actionItems,
       competitors,
-      websiteSeo: { url: mockWebsite, title: 'Demo Business | High Quality Services', metaDescription: 'We offer the best services in town. Call us today!', status: 'success' },
-      aiRecommendations: deepCheckAnswers ? '## 🤖 Demo AI Action Plan\\nSince this is demo mode, the AI did not run. Please add your `GEMINI_API_KEY` to the `.env` file to generate real recommendations.' : undefined
+      websiteSeo: demoSeo,
+      aiRecommendations: demoRecommendations,
+      aiDescription: generateOptimizedBusinessDescription(businessName, targetLocation, placeData.category),
+      aiReviewTemplates: generateReviewResponseTemplates(businessName, targetLocation),
+      aiKeywords: generateHighIntentKeywords(businessName, targetLocation, placeData.category),
     }
 
     if (!deepCheckAnswers) cacheStore.set(cacheKey, { timestamp: now, data: demoResponse })
@@ -491,13 +687,6 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
   let serperData: SerperMapsResponse = {}
   let resolvedPlaceId: string | null = null
   let resolvedDisplayName = businessName
-
-  // Fetch from Serper only if not cached already or if doing deep check but we need the base data
-  if (cachedData) {
-    // If we have cached data, we don't need to re-fetch from Serper, we just need to re-calculate
-    // But since calculateGBPScore needs SerperPlace and SerperMapsResponse, we either store those in cache or re-fetch.
-    // For simplicity, we just re-fetch in production since the cache bypass is rare (only when answering deep check)
-  }
 
   try {
     const serperRes = await fetch('https://google.serper.dev/places', {
@@ -523,7 +712,18 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
 
     if (!matchedPlace) {
       return NextResponse.json(
-        { success: false, error: `Could not find "${businessName}" in "${targetLocation}" on Google Maps. Please verify the exact business name.`, businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+        {
+          success: false,
+          error: `Could not find "${businessName}" in "${targetLocation}" on Google Maps. Please verify the exact business name.`,
+          businessName,
+          location: targetLocation,
+          totalScore: 0,
+          grade: 'F',
+          pillars: [],
+          placeId: null,
+          foundInMapPack: false,
+          mapPackPosition: null,
+        },
         { status: 404 },
       )
     }
@@ -535,52 +735,121 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     const msg = err instanceof Error ? err.message : String(err)
     console.error('[GBP Audit] Serper API error:', msg)
     return NextResponse.json(
-      { success: false, error: `Serper API error: ${msg}`, businessName, location: targetLocation, totalScore: 0, grade: 'F', pillars: [], placeId: null, foundInMapPack: false, mapPackPosition: null },
+      {
+        success: false,
+        error: `Serper API error: ${msg}`,
+        businessName,
+        location: targetLocation,
+        totalScore: 0,
+        grade: 'F',
+        pillars: [],
+        placeId: null,
+        foundInMapPack: false,
+        mapPackPosition: null,
+      },
       { status: 502 },
     )
   }
 
   // ── 3. Calculate Final Score ──────────────────────────────────────────
-  const { totalScore, grade, pillars, foundInMapPack, mapPackPosition, actionItems, competitors } = calculateGBPScore(
-    placeData,
-    serperData,
-    resolvedDisplayName,
-    targetLocation,
-    deepCheckAnswers
-  )
+  const { totalScore, grade, pillars, foundInMapPack, mapPackPosition, actionItems, competitors } =
+    calculateGBPScore(
+      placeData,
+      serperData,
+      resolvedDisplayName,
+      targetLocation,
+      deepCheckAnswers
+    )
 
   const websiteSeo = await scrapeWebsite(placeData.website || '')
 
-  // ── 4. Gemini AI Recommendations (If Deep Check provided) ───────────
-  let aiRecommendations: string | undefined = undefined;
-  if (deepCheckAnswers && process.env.GEMINI_API_KEY) {
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      
-      const prompt = `
-You are an expert Local SEO consultant.
-The user just audited their Google Business Profile for "${resolvedDisplayName}" in "${targetLocation}".
-Their automated score is ${totalScore}/100.
+  // ── 4. Gemini AI Recommendations (with Local SEO Intelligence Engine fallback) ──
+  let aiRecommendations: string | undefined = undefined
 
-Here are the specific action items they need to fix based on our audit:
-${actionItems.filter(a => a.priority !== 'passed').map(a => '- ' + a.message).join('\n')}
+  if (process.env.GEMINI_API_KEY) {
+    const prompt = `You are an expert Local SEO consultant.
+The user just audited their Google Business Profile for "${resolvedDisplayName}" in "${targetLocation}".
+Their automated audit score is ${totalScore}/100 (Grade: ${grade}).
+
+Here are the specific action items from our audit:
+${actionItems.map((a) => `- [${a.priority.toUpperCase()}] ${a.message}`).join('\n')}
+
+${competitors && competitors.length > 0 ? `Top Competitors:\n${competitors.map((c) => `- #${c.position} ${c.name} (${c.rating || 0}★, ${c.reviews || 0} reviews)`).join('\n')}` : ''}
+
+${deepCheckAnswers ? `Deep Check Answers:\n- Responds to reviews: ${deepCheckAnswers[0] ? 'Yes' : 'No'}\n- Services descriptions: ${deepCheckAnswers[1] ? 'Yes' : 'No'}\n- Recent Google Post: ${deepCheckAnswers[2] ? 'Yes' : 'No'}\n- Description filled: ${deepCheckAnswers[3] ? 'Yes' : 'No'}` : ''}
 
 Write a highly encouraging, authoritative, and personalized 30-day action plan for them in Markdown.
-Use headings, bullet points, and bold text. DO NOT start with "Here is your plan" or pleasantries. Jump straight into the action plan.
-Focus strictly on practical Google Business Profile SEO tips based on their failed action items.
-`
-      
-      const aiResult = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: prompt,
-      });
-      aiRecommendations = aiResult.text ?? '';
+Break it into Week 1 (Foundation & NAP), Week 2 (Reputation & Reviews), Week 3 (Services & Google Updates), and Week 4 (Website Synergy & Citations).
+Jump straight into the action plan without pleasantries.`
+
+    const candidateModels = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-2.5-flash']
+
+    // Try @google/genai SDK
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
+      for (const model of candidateModels) {
+        try {
+          const aiResult = await ai.models.generateContent({
+            model,
+            contents: prompt,
+          })
+          if (aiResult.text) {
+            aiRecommendations = aiResult.text
+            break
+          }
+        } catch {
+          // try next model
+        }
+      }
     } catch (e) {
-      console.error('[GBP Audit] Gemini API Error:', e);
-      aiRecommendations = '> ⚠️ **Failed to generate AI recommendations** due to an API error. Please check your Gemini API key limits or try again later.';
+      console.warn('[GBP Audit] Gemini SDK invocation failed, attempting REST/fallback:', e)
     }
-  } else if (deepCheckAnswers && !process.env.GEMINI_API_KEY) {
-    aiRecommendations = '> ⚠️ **GEMINI_API_KEY is missing.** Please add it to your `.env` file to generate AI recommendations.'
+
+    // Direct REST attempt if SDK failed
+    if (!aiRecommendations) {
+      for (const model of candidateModels) {
+        try {
+          const restRes = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-goog-api-key': process.env.GEMINI_API_KEY,
+              },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+              }),
+            },
+          )
+          if (restRes.ok) {
+            const json = await restRes.json()
+            const candidateText = json.candidates?.[0]?.content?.parts?.[0]?.text
+            if (candidateText) {
+              aiRecommendations = candidateText
+              break
+            }
+          }
+        } catch {
+          // continue
+        }
+      }
+    }
+  }
+
+  // If Gemini was unavailable or failed, use our comprehensive Local SEO Intelligence Engine
+  if (!aiRecommendations) {
+    aiRecommendations = generateLocalSeoActionPlan(
+      resolvedDisplayName,
+      targetLocation,
+      totalScore,
+      grade,
+      pillars,
+      actionItems,
+      competitors,
+      websiteSeo,
+      deepCheckAnswers
+    )
   }
 
   const finalResponse: GBPAuditResponse = {
@@ -596,13 +865,17 @@ Focus strictly on practical Google Business Profile SEO tips based on their fail
     actionItems,
     competitors,
     websiteSeo,
-    aiRecommendations
+    aiRecommendations,
+    aiDescription: generateOptimizedBusinessDescription(resolvedDisplayName, targetLocation, placeData.category),
+    aiReviewTemplates: generateReviewResponseTemplates(resolvedDisplayName, targetLocation),
+    aiKeywords: generateHighIntentKeywords(resolvedDisplayName, targetLocation, placeData.category),
   }
 
-  // Save to cache (only base searches, don't cache deep checks to avoid weird state bugs)
+  // Save to cache (only base searches, don't cache deep checks to avoid state bugs)
   if (!deepCheckAnswers) {
     cacheStore.set(cacheKey, { timestamp: now, data: finalResponse })
   }
 
   return NextResponse.json(finalResponse)
 }
+
