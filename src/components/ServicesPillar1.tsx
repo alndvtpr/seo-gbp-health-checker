@@ -106,7 +106,7 @@ export function ServicesPillar1() {
 
             {/* Action Link */}
             <Link
-              href="/contact"
+              href="/contact/"
               aria-label={`${service.ctaText} for ${service.title}`}
               className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[44px] group-hover:bg-primary-container group-hover:text-on-primary-container"
             >

@@ -152,7 +152,7 @@ export function ServicesPackages() {
 
             {/* Action CTA Button */}
             <Link
-              href="/contact"
+              href="/contact/"
               aria-label={`${pkg.ctaText} - ${pkg.name}`}
               className={`inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl font-heading text-xs sm:text-sm font-bold uppercase tracking-wider transition-all min-h-[48px] text-center leading-normal ${
                 pkg.isFeatured

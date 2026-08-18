@@ -51,7 +51,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           href="/hero-frames/frame-0000.webp"
           type="image/webp"
           // @ts-ignore
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen min-h-[100dvh] flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">

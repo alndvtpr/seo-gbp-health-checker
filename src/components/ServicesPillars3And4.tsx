@@ -66,7 +66,7 @@ export function ServicesPillars3And4() {
           </div>
 
           <Link
-            href="/contact"
+            href="/contact/"
             aria-label="Build a high-performance website"
             className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[44px] group-hover:bg-primary-container group-hover:text-on-primary-container"
           >
@@ -117,7 +117,7 @@ export function ServicesPillars3And4() {
           </div>
 
           <Link
-            href="/contact"
+            href="/contact/"
             aria-label="Build search authority and backlinks"
             className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[44px] group-hover:bg-primary-container group-hover:text-on-primary-container"
           >
@@ -160,7 +160,7 @@ export function ServicesPillars3And4() {
 
           <div className="shrink-0 lg:w-72">
             <Link
-              href="/contact"
+              href="/contact/"
               aria-label="Set up custom SEO analytics and dashboards"
               className="inline-flex items-center justify-center w-full py-4 px-6 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(230,126,34,0.35)] hover:shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[48px]"
             >

@@ -24,14 +24,14 @@ export async function generateMetadata({
     return buildSeoMetadata({
       title: 'Project Not Found | Alain Dave Tapiru',
       description: 'The requested project case study could not be found.',
-      url: `https://alaintapiru.com/projects/${resolvedParams.slug}`,
+      url: `https://alaintapiru.com/projects/${resolvedParams.slug}/`,
     })
   }
 
   return buildSeoMetadata({
     title: `${project.title} — ${project.category} Project | Alain Dave Tapiru`,
     description: project.shortDescription,
-    url: `https://alaintapiru.com/projects/${project.slug}`,
+    url: `https://alaintapiru.com/projects/${project.slug}/`,
   })
 }
 
@@ -47,12 +47,69 @@ export default async function ProjectDetailPage({
     notFound()
   }
 
+  const projectJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${project.title} — ${project.category} Case Study`,
+    description: project.shortDescription,
+    image: `https://alaintapiru.com${project.image}`,
+    author: {
+      '@type': 'Person',
+      name: 'Alain Dave G. Tapiru',
+      url: 'https://alaintapiru.com',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Alain Dave G. Tapiru',
+      url: 'https://alaintapiru.com',
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://alaintapiru.com/projects/${project.slug}/`,
+    },
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://alaintapiru.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: 'https://alaintapiru.com/projects/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+        item: `https://alaintapiru.com/projects/${project.slug}/`,
+      },
+    ],
+  }
+
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto relative z-20 space-y-10 sm:space-y-16">
+      {/* Dynamic JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Back Navigation */}
       <div>
         <Link
-          href="/projects"
+          href="/projects/"
           className="inline-flex items-center gap-1.5 font-heading text-xs uppercase tracking-wider text-primary-container font-bold hover:underline"
         >
           <Icon name="arrow_back" size={16} /> Back to Projects Directory
@@ -281,7 +338,7 @@ export default async function ProjectDetailPage({
           </a>
 
           <Link
-            href="/contact"
+            href="/contact/"
             className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full transition-all"
           >
             <span>Discuss A Project</span>

@@ -14,7 +14,7 @@ import { generateMetadata } from '@/lib/seo'
 export const metadata = generateMetadata({
   title: 'SEO Specialist Philippines | SEO & Local Search Expert | Alain Tapiru',
   description: 'Alain Tapiru is an SEO Specialist in the Philippines focused on technical SEO, local SEO, and search-ready websites that help businesses grow their online visibility.',
-  url: 'https://alaintapiru.com'
+  url: 'https://alaintapiru.com/',
 })
 
 const TECHNICAL_TOOLS = [
@@ -204,7 +204,7 @@ export default async function Page() {
 
             <div className="pt-2">
               <Link
-                href="/about"
+                href="/about/"
                 className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-widest font-bold text-primary-container hover:underline"
               >
                 Read Full Biography <Icon name="arrow_forward" size={16} />
@@ -297,7 +297,7 @@ export default async function Page() {
               </h2>
             </div>
             <Link
-              href="/projects"
+              href="/projects/"
               className="font-heading text-xs uppercase tracking-widest font-bold text-primary-container hover:underline flex items-center gap-1"
             >
               View All Case Studies <Icon name="arrow_forward" size={16} />
@@ -362,7 +362,7 @@ export default async function Page() {
 
               <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
                 <Link
-                  href="/projects/angat-sikat-studio"
+                  href="/projects/angat-sikat-studio/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
                   <span>Case Study</span>
@@ -438,7 +438,7 @@ export default async function Page() {
 
               <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
                 <Link
-                  href="/projects/local-seo-gbp-checker"
+                  href="/projects/local-seo-gbp-checker/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
                   <span>Case Study</span>
@@ -446,7 +446,7 @@ export default async function Page() {
                 </Link>
 
                 <Link
-                  href="/tools"
+                  href="/tools/"
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
                 >
                   <span>Launch Tool</span>
@@ -512,7 +512,7 @@ export default async function Page() {
 
               <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
                 <Link
-                  href="/projects/alaintapiru-portfolio"
+                  href="/projects/alaintapiru-portfolio/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
                   <span>Case Study</span>
@@ -551,7 +551,7 @@ export default async function Page() {
 
           <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
             <Link
-              href="/contact"
+              href="/contact/"
               className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               Let&apos;s Talk SEO <Icon name="arrow_forward" size={16} />

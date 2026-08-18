@@ -11,7 +11,7 @@ import { ServicesFinalCta } from '@/components/ServicesFinalCta'
 export const metadata = generateMetadata({
   title: 'Data-Driven SEO, AEO, GEO & Web Development Services | Alain Tapiru',
   description: 'Rank on Google and get cited by AI engines like ChatGPT & Perplexity. Fast static/WordPress sites, technical audits, Schema markup, and analytics.',
-  url: 'https://alaintapiru.com/services',
+  url: 'https://alaintapiru.com/services/',
 })
 
 export default function ServicesPage() {

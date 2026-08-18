@@ -7,14 +7,14 @@ const SERVICES_JSON_LD = {
   '@graph': [
     {
       '@type': 'ProfessionalService',
-      '@id': 'https://www.alaintapiru.com/#service',
+      '@id': 'https://alaintapiru.com/#service',
       name: 'Alain Tapiru — Data-Driven SEO, AEO, GEO & Web Development Services',
-      url: 'https://www.alaintapiru.com/services',
+      url: 'https://alaintapiru.com/services/',
       provider: {
         '@type': 'Person',
-        '@id': 'https://www.alaintapiru.com/#person',
+        '@id': 'https://alaintapiru.com/#person',
         name: 'Alain Tapiru',
-        url: 'https://www.alaintapiru.com',
+        url: 'https://alaintapiru.com',
       },
       description:
         'Rank on Google and get cited by AI engines like ChatGPT & Perplexity. Fast static/WordPress sites, technical audits, Schema markup, and analytics.',
@@ -167,7 +167,7 @@ export function ServicesFinalCta() {
           {/* Action Row */}
           <div className="pt-2">
             <Link
-              href="/contact"
+              href="/contact/"
               aria-label="Schedule a Discovery Call"
               className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-wider px-9 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:shadow-[0_0_40px_rgba(230,126,34,0.7)] hover:scale-105 active:scale-95 transition-all min-h-[48px]"
             >

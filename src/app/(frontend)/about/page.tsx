@@ -8,7 +8,7 @@ import { AboutCredentials } from '@/components/AboutCredentials'
 export const metadata = generateMetadata({
   title: 'About Me | Alain Dave Tapiru',
   description: 'Learn more about Alain Dave Tapiru - Technical SEO Specialist, Web Designer, and BSIT Cybersecurity student.',
-  url: 'https://alaintapiru.com/about',
+  url: 'https://alaintapiru.com/about/',
 })
 
 export default function AboutPage() {
@@ -84,7 +84,7 @@ export default function AboutPage() {
       {/* CTA */}
       <div className="text-center pt-4 sm:pt-8">
         <Link
-          href="/contact"
+          href="/contact/"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all min-h-[48px]"
         >
           Work With Me <Icon name="arrow_forward" size={16} />

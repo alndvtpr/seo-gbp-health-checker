@@ -357,14 +357,14 @@ export const ScrollHero = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full">
             <Link
-              href="/projects"
+              href="/projects/"
               data-agent-action="view-portfolio-projects"
               className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               View My Work <Icon name="arrow_forward" size={16} />
             </Link>
             <Link
-              href="/contact"
+              href="/contact/"
               data-agent-action="start-seo-inquiry"
               className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
             >
@@ -386,7 +386,7 @@ export const ScrollHero = () => {
               </svg>
             </a>
             <a
-              href="https://facebook.com/dcrazedave"
+              href="https://www.facebook.com/dcrazedave"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"

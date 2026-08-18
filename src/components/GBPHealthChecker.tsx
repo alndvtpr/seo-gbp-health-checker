@@ -982,7 +982,7 @@ export function GBPHealthChecker() {
 
               <div className="flex items-center flex-wrap gap-3 shrink-0">
                 <a
-                  href="/contact"
+                  href="/contact/"
                   className="px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)]"
                 >
                   Book Strategy Call

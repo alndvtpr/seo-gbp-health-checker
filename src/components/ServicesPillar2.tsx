@@ -142,7 +142,7 @@ export function ServicesPillar2() {
 
             {/* Action CTA */}
             <Link
-              href="/contact"
+              href="/contact/"
               aria-label={`${service.ctaText} for ${service.title}`}
               className={`inline-flex items-center justify-center w-full py-3 px-5 rounded-xl font-heading text-xs font-bold uppercase tracking-wider transition-all min-h-[44px] ${
                 service.isFeatured

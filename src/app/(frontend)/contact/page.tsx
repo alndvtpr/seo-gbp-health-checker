@@ -5,7 +5,7 @@ import { ContactForm } from '@/components/ContactForm'
 export const metadata = generateMetadata({
   title: 'Contact | Alain Dave Tapiru — SEO Specialist & Web Designer',
   description: 'Get in touch with Alain Dave Tapiru for Technical SEO Audits, AI Web Design, Local SEO Optimization, and Full-Service Search Strategy.',
-  url: 'https://alaintapiru.com/contact',
+  url: 'https://alaintapiru.com/contact/',
 })
 
 export default function ContactPage() {
@@ -62,11 +62,11 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-3 font-semibold">
-                Connect Online
+              <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-1 font-semibold">
+                Connect on Socials
               </span>
-              <div className="flex gap-3 sm:gap-4">
-                {/* Gmail */}
+              <div className="flex gap-4 pt-2">
+                {/* Gmail Direct */}
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
                   target="_blank"
@@ -82,7 +82,7 @@ export default function ContactPage() {
                 
                 {/* Facebook */}
                 <a
-                  href="https://facebook.com/dcrazedave"
+                  href="https://www.facebook.com/dcrazedave"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)]"

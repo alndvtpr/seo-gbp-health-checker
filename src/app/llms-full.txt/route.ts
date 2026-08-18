@@ -14,7 +14,7 @@ export async function GET() {
 - **Verified Entity Profiles:**
   - LinkedIn: https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/
   - GitHub: https://github.com/alndvtpr
-  - Facebook: https://facebook.com/dcrazedave
+  - Facebook: https://www.facebook.com/dcrazedave
 
 ## 2. Technical Specializations & Methodology
 Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
@@ -26,7 +26,7 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
 6. **Reporting & Data Analysis:** GA4 conversion tracking, Google Search Console performance monitoring, transparent monthly ROI metrics.
 
 ## 3. Technology Stack & Development Standards
-- **Frontend / Frameworks:** Next.js 16 (App Router, Turbopack, React 19), Tailwind CSS v4, TypeScript.
+- **Frontend / Frameworks:** Next.js 15 (App Router, Turbopack, React 19), Tailwind CSS, TypeScript.
 - **Content Management:** Payload CMS 3.0, PostgreSQL (Supabase).
 - **Core Web Vitals Benchmarks:**
   - Largest Contentful Paint (LCP): ≤ 2.0s
@@ -36,8 +36,9 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
 - **AI & Automation Tools:** Google AI Studio (@google/genai, Gemini 2.5 Flash), Serper API, Claude AI, OpenAI API.
 
 ## 4. Proprietary Tools & Featured Builds
-- **AngatSikat Studio (https://angat-sikat.freedev.app/):** An ongoing custom WordPress theme build ('angatsikat-studio') and web design studio platform unifying modern web architecture with technical crawlability and search visibility (Angat, Makita, Masikat 3-pillar framework).
-- **GBP Health Checker (/tools):** A dynamic scoring algorithm analyzing Google Business Profile metrics (Ratings, Reviews, Photos, Working Hours, Website Linking) with actionable 30-day AI roadmaps.
+- **AngatSikat Studio (https://angat-sikat.freedev.app/):** An ongoing custom WordPress theme build ('angatsikat-studio') and web design studio platform unifying modern web architecture with technical crawlability and search visibility (Angat, Makita, Masikat 3-pillar framework). Canonical case study: https://alaintapiru.com/projects/angat-sikat-studio/
+- **Local SEO & GBP Health Checker (/tools/):** A dynamic scoring algorithm analyzing Google Business Profile metrics (Ratings, Reviews, Photos, Working Hours, Website Linking) with actionable 30-day AI roadmaps. Canonical case study: https://alaintapiru.com/projects/local-seo-gbp-checker/
+- **AlainTapiru.com Portfolio:** High-performance web architecture combining Next.js, Payload CMS, and zero-DOM-thrashing scroll performance. Canonical case study: https://alaintapiru.com/projects/alaintapiru-portfolio/
 
 ## 5. Copyright & Licensing
 Copyright © 2026 Alain Dave Tapiru. All rights reserved. Proprietary design system, visual layouts, and source code are protected against unauthorized automated cloning.

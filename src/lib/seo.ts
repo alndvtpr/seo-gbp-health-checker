@@ -1,5 +1,19 @@
 import type { Metadata } from 'next'
 
+export const normalizeCanonicalUrl = (rawUrl?: string): string => {
+  if (!rawUrl) return 'https://alaintapiru.com/'
+  try {
+    const parsed = new URL(rawUrl, 'https://alaintapiru.com')
+    let pathname = parsed.pathname.toLowerCase()
+    if (!pathname.endsWith('/')) {
+      pathname += '/'
+    }
+    return `https://alaintapiru.com${pathname}`
+  } catch {
+    return 'https://alaintapiru.com/'
+  }
+}
+
 export const generateMetadata = ({
   title,
   description,
@@ -14,10 +28,15 @@ export const generateMetadata = ({
   const siteName = 'Alain Dave Tapiru | Portfolio'
   const fullTitle = title === siteName ? title : `${title} | ${siteName}`
   const defaultDesc = 'Multidisciplinary software engineer specializing in Next.js, React, and high-performance WebGL experiences.'
+  const canonicalUrl = normalizeCanonicalUrl(url)
 
   return {
+    metadataBase: new URL('https://alaintapiru.com'),
     title: fullTitle,
     description: description || defaultDesc,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     icons: {
       icon: [
         { url: '/logo.webp', type: 'image/webp' },
@@ -28,7 +47,7 @@ export const generateMetadata = ({
     openGraph: {
       title: fullTitle,
       description: description || defaultDesc,
-      url: url || 'https://alaintapiru.com',
+      url: canonicalUrl,
       siteName,
       images: [
         {
@@ -59,3 +78,4 @@ export const generateMetadata = ({
     },
   }
 }
+

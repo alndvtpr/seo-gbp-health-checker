@@ -35,7 +35,7 @@ export const Footer = () => {
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
             </a>
             {/* Facebook */}
-            <a href="https://facebook.com/dcrazedave" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]" aria-label="Facebook">
+            <a href="https://www.facebook.com/dcrazedave" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]" aria-label="Facebook">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.04c-5.5 0-10 4.48-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.54-4.5-10.02-10-10.02z" /></svg>
             </a>
             {/* LinkedIn */}
@@ -59,16 +59,16 @@ export const Footer = () => {
               <Link href="/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Home</Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-primary-container transition-colors py-0.5 inline-block">About Me</Link>
+              <Link href="/about/" className="hover:text-primary-container transition-colors py-0.5 inline-block">About Me</Link>
             </li>
             <li>
-              <Link href="/projects" className="hover:text-primary-container transition-colors py-0.5 inline-block">Projects &amp; Case Studies</Link>
+              <Link href="/projects/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Projects &amp; Case Studies</Link>
             </li>
             <li>
-              <Link href="/blog" className="hover:text-primary-container transition-colors py-0.5 inline-block">Blog / SEO News</Link>
+              <Link href="/blog/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Blog / SEO News</Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-primary-container transition-colors py-0.5 inline-block">Contact / Hire Me</Link>
+              <Link href="/contact/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Contact / Hire Me</Link>
             </li>
           </ul>
         </div>
@@ -80,19 +80,19 @@ export const Footer = () => {
           </h3>
           <ul className="space-y-2 font-sans text-xs text-on-surface/70">
             <li>
-              <Link href="/services" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO Audit</Link>
+              <Link href="/services/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO Audit</Link>
             </li>
             <li>
-              <Link href="/services" className="hover:text-primary-container transition-colors py-0.5 inline-block">AI Web Design</Link>
+              <Link href="/services/" className="hover:text-primary-container transition-colors py-0.5 inline-block">AI Web Design</Link>
             </li>
             <li>
-              <Link href="/tools" className="hover:text-primary-container transition-colors py-0.5 inline-block">SEO Specialist Salary Calculator</Link>
+              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">SEO Specialist Salary Calculator</Link>
             </li>
             <li>
-              <Link href="/tools" className="hover:text-primary-container transition-colors py-0.5 inline-block">Website Audit Request</Link>
+              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Website Audit Request</Link>
             </li>
             <li>
-              <Link href="/tools" className="hover:text-primary-container transition-colors py-0.5 inline-block">Local SEO / GBP Auditor</Link>
+              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Local SEO / GBP Auditor</Link>
             </li>
           </ul>
         </div>

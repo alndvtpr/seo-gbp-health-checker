@@ -6,7 +6,7 @@ export const metadata = generateMetadata({
   title: 'Projects & SEO Case Studies | Alain Dave Tapiru',
   description:
     'Explore technical SEO case studies, custom WordPress builds, web architecture, and live projects by Alain Dave Tapiru.',
-  url: 'https://alaintapiru.com/projects',
+  url: 'https://alaintapiru.com/projects/',
 })
 
 export default function ProjectsPage() {

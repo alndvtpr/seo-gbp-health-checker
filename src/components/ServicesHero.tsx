@@ -36,7 +36,7 @@ export function ServicesHero() {
       {/* Action Row */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-16 w-full sm:w-auto">
         <Link
-          href="/contact"
+          href="/contact/"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:shadow-[0_0_35px_rgba(230,126,34,0.6)] hover:scale-105 active:scale-95 transition-all min-h-[48px]"
         >
           Book a Free Strategy Call

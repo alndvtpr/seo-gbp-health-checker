@@ -6,7 +6,7 @@ import { Icon } from '@/components/icons'
 export const metadata = generateMetadata({
   title: 'Blog & SEO Insights | Alain Dave Tapiru',
   description: 'Articles on Technical SEO, Next.js optimization, cybersecurity headers, and AI workflow automation.',
-  url: 'https://alaintapiru.com/blog',
+  url: 'https://alaintapiru.com/blog/',
 })
 
 const posts: any[] = []

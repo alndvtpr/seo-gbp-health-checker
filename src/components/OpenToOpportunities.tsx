@@ -26,7 +26,7 @@ export function OpenToOpportunities() {
 
         <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
           <Link
-            href="/contact"
+            href="/contact/"
             className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
           >
             Let&apos;s Talk <Icon name="handshake" size={16} />

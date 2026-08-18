@@ -5,16 +5,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date()
 
   const routes = [
-    '',
-    '/about',
-    '/projects',
-    '/projects/angat-sikat-studio',
-    '/projects/local-seo-gbp-checker',
-    '/projects/alaintapiru-portfolio',
-    '/tools',
-    '/services',
-    '/blog',
-    '/contact',
+    '/',
+    '/about/',
+    '/projects/',
+    '/projects/angat-sikat-studio/',
+    '/projects/local-seo-gbp-checker/',
+    '/projects/alaintapiru-portfolio/',
+    '/tools/',
+    '/services/',
+    '/blog/',
+    '/contact/',
   ]
 
   return routes.map((route) => ({
