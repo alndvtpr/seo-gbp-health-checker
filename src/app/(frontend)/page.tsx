@@ -304,57 +304,232 @@ export default async function Page() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-            {[
-              {
-                title: 'Local SEO & GBP Health Checker',
-                cat: 'LOCAL SEO • PERSONAL PROJECT',
-                desc: 'A self-built tool for analyzing key Google Business Profile and local SEO signals, helping identify practical opportunities for better local search visibility.',
-                link: '/tools',
-                ctaText: 'View Project',
-                isLive: true
-              },
-              {
-                title: 'AlainTapiru.com — Technical SEO & Web Project',
-                cat: 'TECHNICAL SEO • PERSONAL PROJECT',
-                desc: 'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance considerations, and AI-assisted development workflows.',
-                link: 'https://github.com/alndvtpr',
-                ctaText: 'View Project'
-              },
-            ].map((proj) => (
-              <div
-                key={proj.title}
-                className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-[#181a1b]/60 border border-white/5 hover:border-primary-container/40 transition-all group flex flex-col justify-between"
-              >
-                <div>
-                  {proj.isLive ? (
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="relative flex h-2.5 w-2.5 shrink-0">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                      </span>
-                      <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-bold">
-                        {proj.cat}
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-2 font-bold">
-                      {proj.cat}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* Primary Featured Project: AngatSikat Studio */}
+            <div className="rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-amber-500/20 hover:border-primary-container/60 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+              <div>
+                <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
+                  <Image
+                    src="/images/projects/angat-sikat-homepage-preview.webp"
+                    alt="AngatSikat Studio Live Build Preview"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#121414]/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                      Ongoing
                     </span>
-                  )}
-                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2 sm:mb-3">{proj.title}</h3>
-                  <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed mb-4 sm:mb-6">{proj.desc}</p>
+                  </div>
                 </div>
+
+                <div className="p-5 sm:p-6 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-bold">
+                      WordPress • Custom Theme
+                    </span>
+                    <span className="text-[11px] font-sans text-on-surface/40">
+                      Web Developer &amp; Designer
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface group-hover:text-primary transition-colors">
+                    AngatSikat Studio
+                  </h3>
+
+                  <p className="font-sans text-xs text-primary-container/90 italic font-medium">
+                    &ldquo;Websites Built to Be Found.&rdquo;
+                  </p>
+
+                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                    A WordPress and web design studio platform built to unify modern website creation with technical crawlability and search visibility.
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {['WordPress', 'Technical SEO', 'Custom Theme'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
                 <Link
-                  href={proj.link}
-                  target={proj.link.startsWith('http') ? '_blank' : undefined}
-                  rel={proj.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="inline-flex items-center gap-2 font-heading text-xs uppercase font-bold text-on-surface group-hover:text-primary-container transition-colors py-1"
+                  href="/projects/angat-sikat-studio"
+                  className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
-                  {proj.ctaText} <Icon name="north_east" size={16} />
+                  <span>Case Study</span>
+                  <Icon name="arrow_forward" size={14} />
+                </Link>
+
+                <a
+                  href="https://angat-sikat.freedev.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold shadow-[0_0_15px_rgba(230,126,34,0.3)] hover:bg-primary transition-all"
+                >
+                  <span>View Live Build</span>
+                  <Icon name="north_east" size={13} />
+                </a>
+              </div>
+            </div>
+
+            {/* Featured Project 2: Local SEO & GBP Checker */}
+            <div className="rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+              <div>
+                <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
+                  <Image
+                    src="/images/projects/local-seo-gbp-checker-preview.webp"
+                    alt="Local SEO & GBP Health Checker Preview"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#121414]/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      Live Tool
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-5 sm:p-6 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-bold">
+                      Local SEO • Diagnostic Tool
+                    </span>
+                    <span className="text-[11px] font-sans text-on-surface/40">
+                      Full Stack &amp; SEO
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface group-hover:text-primary transition-colors">
+                    Local SEO &amp; GBP Health Checker
+                  </h3>
+
+                  <p className="font-sans text-xs text-primary-container/90 italic font-medium">
+                    &ldquo;Interactive Google Business Profile Signal Analyzer.&rdquo;
+                  </p>
+
+                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                    A self-built tool for analyzing key Google Business Profile and local SEO signals, helping identify practical opportunities for better local search visibility.
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {['Next.js', 'React', 'Local SEO', 'AI Scoring'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
+                <Link
+                  href="/projects/local-seo-gbp-checker"
+                  className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
+                >
+                  <span>Case Study</span>
+                  <Icon name="arrow_forward" size={14} />
+                </Link>
+
+                <Link
+                  href="/tools"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
+                >
+                  <span>Launch Tool</span>
+                  <Icon name="north_east" size={13} />
                 </Link>
               </div>
-            ))}
+            </div>
+
+            {/* Featured Project 3: AlainTapiru.com Web Architecture */}
+            <div className="rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+              <div>
+                <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
+                  <Image
+                    src="/images/projects/alaintapiru-website-preview.webp"
+                    alt="AlainTapiru.com Architecture Preview"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#121414]/90 text-primary-container border border-primary-container/30 backdrop-blur-md shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
+                      Production
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-5 sm:p-6 space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-bold">
+                      Technical SEO • Modern Web
+                    </span>
+                    <span className="text-[11px] font-sans text-on-surface/40">
+                      Lead Architect
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface group-hover:text-primary transition-colors">
+                    AlainTapiru.com
+                  </h3>
+
+                  <p className="font-sans text-xs text-primary-container/90 italic font-medium">
+                    &ldquo;High-Performance Portfolio &amp; Technical Architecture.&rdquo;
+                  </p>
+
+                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                    My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance considerations, and AI-assisted development workflows.
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {['Next.js 15', 'Tailwind CSS', 'Payload CMS', 'SEO'].map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
+                <Link
+                  href="/projects/alaintapiru-portfolio"
+                  className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
+                >
+                  <span>Case Study</span>
+                  <Icon name="arrow_forward" size={14} />
+                </Link>
+
+                <a
+                  href="https://github.com/alndvtpr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
+                >
+                  <span>Repository</span>
+                  <Icon name="north_east" size={13} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

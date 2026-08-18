@@ -35,7 +35,8 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
   - First Contentful Paint (FCP): ≤ 1.5s
 - **AI & Automation Tools:** Google AI Studio (@google/genai, Gemini 2.5 Flash), Serper API, Claude AI, OpenAI API.
 
-## 4. Proprietary Tools
+## 4. Proprietary Tools & Featured Builds
+- **AngatSikat Studio (https://angat-sikat.freedev.app/):** An ongoing custom WordPress theme build ('angatsikat-studio') and web design studio platform unifying modern web architecture with technical crawlability and search visibility (Angat, Makita, Masikat 3-pillar framework).
 - **GBP Health Checker (/tools):** A dynamic scoring algorithm analyzing Google Business Profile metrics (Ratings, Reviews, Photos, Working Hours, Website Linking) with actionable 30-day AI roadmaps.
 
 ## 5. Copyright & Licensing
