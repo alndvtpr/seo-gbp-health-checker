@@ -222,13 +222,15 @@ export const ScrollHero = () => {
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.floor(progress * (FRAME_COUNT - 1)))
       metricsRef.current.targetFrameIndex = frameIndex
 
-      // Preload sliding window (5 frames behind, 15 frames ahead)
-      const WINDOW_PREV = 5
-      const WINDOW_NEXT = 15
-      const windowStart = Math.max(0, frameIndex - WINDOW_PREV)
-      const windowEnd = Math.min(FRAME_COUNT - 1, frameIndex + WINDOW_NEXT)
-      for (let i = windowStart; i <= windowEnd; i++) {
-        loadFrame(i, handleAsyncFrameLoaded)
+      // Preload sliding window only after user initiates scrolling (scrollY > 0), preventing 15 concurrent frame decodes on initial load
+      if (currentScrollY > 0 || frameIndex > 0) {
+        const WINDOW_PREV = 4
+        const WINDOW_NEXT = 12
+        const windowStart = Math.max(0, frameIndex - WINDOW_PREV)
+        const windowEnd = Math.min(FRAME_COUNT - 1, frameIndex + WINDOW_NEXT)
+        for (let i = windowStart; i <= windowEnd; i++) {
+          loadFrame(i, handleAsyncFrameLoaded)
+        }
       }
 
       const imgs = imagesRef.current

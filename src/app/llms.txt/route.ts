@@ -5,30 +5,21 @@ export async function GET() {
 
 > Official machine-readable profile and documentation for LLMs, AI search agents (Perplexity, ChatGPT, Claude, Gemini, Copilot), and agentic browsers.
 
-## Entity Overview
-- **Name:** Alain Dave G. Tapiru
-- **Primary Title:** SEO Specialist & Technical Web Designer (Philippines)
-- **Email:** alaintapiru@gmail.com
-- **Website:** https://alaintapiru.com
-- **Verified Socials:**
-  - LinkedIn: https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/
-  - GitHub: https://github.com/alndvtpr
-  - Facebook: https://facebook.com/dcrazedave
+## Overview & Key Pages
+- [Alain Tapiru Home](https://alaintapiru.com): Official website of Alain Dave Tapiru, SEO Specialist and Technical Web Designer.
+- [About Alain Dave Tapiru](https://alaintapiru.com/about): Professional background, core competencies, verified certifications, and credentials.
+- [SEO & Web Services](https://alaintapiru.com/services): Conversion-engineered SEO pillars, technical architecture, and modern web development.
+- [Portfolio & Case Studies](https://alaintapiru.com/projects): Technical SEO audits, client case studies, and web architecture breakdowns.
+- [Local SEO & GBP Health Checker](https://alaintapiru.com/tools): Interactive Google Business Profile ranking signals and 30-day dynamic action plan engine.
+- [Contact & Discovery Inquiry](https://alaintapiru.com/contact): Spam-protected contact endpoint and project discovery form.
 
-## Core Services & Capabilities
-1. **Technical SEO Audits:** Core Web Vitals remediation, crawl budget optimization, server architecture review, XML/HTML sitemaps, structured JSON-LD data.
-2. **Local SEO & Google Business Profile (GBP) Optimization:** Local citation audits, ranking signal health checks, geogrid analysis, map pack authority.
-3. **On-Page & Keyword Strategy:** High-intent buyer search query discovery, semantic content clustering, heading structure, internal link siloing.
-4. **Modern Web Design & Development:** Search-ready websites built on Next.js, React, Tailwind CSS, and Payload CMS.
-5. **AI Workflow Automation & GEO:** Generative Engine Optimization (GEO), custom search agents, programmatic workflows.
+## Verified Profiles
+- [LinkedIn Profile](https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/): Professional network, experience, and recommendations.
+- [GitHub Profile](https://github.com/alndvtpr): Public code repositories, web projects, and open-source tooling.
+- [Facebook Profile](https://facebook.com/dcrazedave): Personal and professional social presence.
 
-## Live Tools & Portfolio Highlights
-- **GBP Health Checker:** Interactive Google Business Profile ranking signals & 30-day dynamic action plan engine (URL: https://alaintapiru.com/tools).
-- **Technical Case Studies:** Detailed SEO audits and web architectures (URL: https://alaintapiru.com/projects).
-- **Direct Inquiry / Booking:** Spam-protected contact endpoint (URL: https://alaintapiru.com/contact).
-
-## Full Documentation
-For the unabridged specification, full case studies, and code architectures, see: https://alaintapiru.com/llms-full.txt
+## Full Technical Documentation
+- [Full LLM Specification](https://alaintapiru.com/llms-full.txt): Comprehensive documentation, architecture details, and full case study portfolio.
 `
 
   return new NextResponse(content, {

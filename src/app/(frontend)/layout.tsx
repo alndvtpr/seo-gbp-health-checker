@@ -4,6 +4,7 @@ import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import './styles.css'
 
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ShaderBackground } from '@/components/ShaderBackground'
@@ -54,22 +55,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         />
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen min-h-[100dvh] flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
-        {/* Lazy load GTM to eliminate FCP/TBT main thread contention */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-2VK6KQNJGH"
-          strategy="lazyOnload"
-        />
-        <Script id="google-analytics-init" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-2VK6KQNJGH', {
-              page_path: window.location.pathname,
-              send_page_view: true
-            });
-          `}
-        </Script>
+        {/* Interaction and idle-deferred Google Analytics (Zero TBT impact) */}
+        <GoogleAnalytics />
 
         {/* WebGL Background Canvas Container */}
         <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent">

@@ -257,33 +257,62 @@ export const ShaderBackground = () => {
       }
     }
 
+    let initialized = false
+    let idleTimeoutId: NodeJS.Timeout | undefined
+
+    const triggerInit = () => {
+      if (initialized) return
+      initialized = true
+      cleanupTriggerListeners()
+      initWebGL()
+    }
+
+    const triggerEvents = ['mousemove', 'scroll', 'pointerdown', 'touchstart', 'keydown']
+    const onUserInteraction = () => triggerInit()
+
+    const addTriggerListeners = () => {
+      triggerEvents.forEach((ev) => {
+        window.addEventListener(ev, onUserInteraction, { passive: true, once: true })
+      })
+    }
+
+    const cleanupTriggerListeners = () => {
+      triggerEvents.forEach((ev) => {
+        window.removeEventListener(ev, onUserInteraction)
+      })
+      if (idleTimeoutId) clearTimeout(idleTimeoutId)
+    }
+
+    // Add interaction triggers and 4000ms idle fallback
+    addTriggerListeners()
     if ('requestIdleCallback' in window) {
-      idleId = (window as any).requestIdleCallback(() => initWebGL(), { timeout: 1000 })
+      idleId = (window as any).requestIdleCallback(() => triggerInit(), { timeout: 4000 })
     } else {
-      timeoutId = setTimeout(initWebGL, 200)
+      idleTimeoutId = setTimeout(triggerInit, 4000)
     }
 
     return () => {
+      cleanupTriggerListeners()
       if (idleId && 'cancelIdleCallback' in window) {
         ;(window as any).cancelIdleCallback(idleId)
       }
-      if (timeoutId) clearTimeout(timeoutId)
       if (cleanupFn) cleanupFn()
     }
   }, [mounted])
 
-  if (!mounted) {
-    return (
+  return (
+    <>
+      {/* Zero-CPU instant CSS ambient glow */}
       <div 
         className="fixed inset-0 w-full h-full z-[-2] pointer-events-none opacity-50"
         style={{
           background: 'radial-gradient(circle at 50% 50%, rgba(230, 126, 34, 0.12) 0%, rgba(18, 20, 20, 0) 60%)'
         }}
       />
-    )
-  }
-  
-  return (
-    <canvas ref={canvasRef} className="fixed inset-0 w-full h-full block z-[-2] pointer-events-none mix-blend-screen opacity-75" />
+      <canvas 
+        ref={canvasRef} 
+        className="fixed inset-0 w-full h-full block z-[-2] pointer-events-none mix-blend-screen opacity-75" 
+      />
+    </>
   )
 }

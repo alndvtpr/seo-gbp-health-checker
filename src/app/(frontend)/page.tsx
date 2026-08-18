@@ -146,7 +146,7 @@ export default async function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
           <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <Image
-              src="/about_me.jpg"
+              src="/about_me.webp"
               alt="Alain Dave Tapiru Portrait"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
