@@ -30,6 +30,7 @@ export type IconName =
   | 'code'
   | 'auto_awesome'
   | 'claude'
+  | 'download'
 
 interface IconData {
   path: string
@@ -37,6 +38,9 @@ interface IconData {
 }
 
 export const ICON_MAP: Record<IconName, IconData> = {
+  download: {
+    path: 'M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-280 280ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T760-160H240Z',
+  },
   arrow_forward: {
     path: 'M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z',
   },

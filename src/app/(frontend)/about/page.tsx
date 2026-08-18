@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
+import { AboutCredentials } from '@/components/AboutCredentials'
 
 export const metadata = generateMetadata({
   title: 'About Me | Alain Dave Tapiru',
@@ -57,16 +58,16 @@ export default function AboutPage() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Technical &amp; On-Page SEO</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Crawl error resolution, schema markup, site speed optimization, and canonical mapping.</p>
+                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Technical, On-Page, Off-Page &amp; Local SEO</h4>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Crawl error resolution, schema markup, site speed optimization, local SEO presence, content optimization, and off-page link building strategies.</p>
               </div>
               <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
                 <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Modern Web Design</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Next.js, Tailwind CSS, Payload CMS, and responsive glassmorphism interfaces.</p>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Next.js, Tailwind CSS, Payload CMS, WordPress, Elementor, and responsive glassmorphism interfaces.</p>
               </div>
               <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Cybersecurity Fundamentals</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Network security, header hardening, secure API integration, and threat awareness.</p>
+                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">AI Web Design &amp; Development</h4>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">AI-assisted UI/UX prototyping, intelligent web application development, automated asset generation, and rapid full-stack delivery.</p>
               </div>
               <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
                 <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">AI Workflow Automation</h4>
@@ -78,24 +79,7 @@ export default function AboutPage() {
       </div>
 
       {/* Credentials & Education */}
-      <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
-          Credentials
-        </span>
-        <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-4 sm:mb-6">
-          Education &amp; Certifications
-        </h2>
-        <div className="space-y-3 sm:space-y-4">
-          <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface">Bachelor of Science in Information Technology</h3>
-              <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Specialization in Network &amp; Cybersecurity</p>
-            </div>
-            <span className="font-heading text-xs text-primary-container font-bold">In Progress</span>
-          </div>
-
-        </div>
-      </div>
+      <AboutCredentials />
 
       {/* CTA */}
       <div className="text-center pt-4 sm:pt-8">
