@@ -98,7 +98,7 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
-- **Commit `pending` (2026-08-19)**: `fix(seo, links): harden external linking with nofollow on staging, ugc on tools, and canonical coursera verification`
+- **Commit `3bbda61` (2026-08-19)**: `fix(seo, links): harden external linking with nofollow on staging, ugc on tools, and canonical coursera verification`
   - Added `rel` attribute support to `Project` interface in `projects.ts` and set `noopener noreferrer nofollow` on `angatSikatProject` (`angat-sikat.freedev.app`).
   - Added `rel="noopener noreferrer nofollow ugc"` to scanned website links in `GBPHealthChecker.tsx`.
   - Canonicalized Coursera credential link to `https://www.coursera.org/verify/D48TRWWUSJJZ` in `AboutCredentials.tsx`.
