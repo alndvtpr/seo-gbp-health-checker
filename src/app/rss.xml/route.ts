@@ -4,7 +4,7 @@ import { PROJECTS } from '@/data/projects'
 export const dynamic = 'force-dynamic'
 export const revalidate = 3600
 
-const BASE_URL = 'https://alaintapiru.com'
+const BASE_URL = 'https://www.alaintapiru.com'
 
 interface FeedItem {
   title: string

@@ -7,7 +7,7 @@ export const metadata = generateMetadata({
   title: 'Contact Alain Dave Tapiru | SEO & Web Development Expert Philippines',
   description:
     'Your next customer is searching. Contact Alain Dave Tapiru for SEO, web design and development services in the Philippines built to create opportunities.',
-  url: 'https://alaintapiru.com/contact/',
+  url: 'https://www.alaintapiru.com/contact/',
 })
 
 export default function ContactPage() {

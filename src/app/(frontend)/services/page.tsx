@@ -12,7 +12,7 @@ export const metadata = generateMetadata({
   title: 'SEO, Web Design & Development Services | Alain Dave Tapiru',
   description:
     'Your website should attract customers, not just look good. Explore SEO, web design and development services built to increase visibility and drive growth.',
-  url: 'https://alaintapiru.com/services/',
+  url: 'https://www.alaintapiru.com/services/',
 })
 
 export default function ServicesPage() {

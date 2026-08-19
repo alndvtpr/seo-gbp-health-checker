@@ -8,7 +8,7 @@
  */
 
 export const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'a8f9c1b2d3e4f5061728394a5b6c7d8e'
-export const DEFAULT_HOST = 'alaintapiru.com'
+export const DEFAULT_HOST = 'www.alaintapiru.com'
 export const DEFAULT_BASE_URL = `https://${DEFAULT_HOST}`
 
 export interface IndexNowPayload {

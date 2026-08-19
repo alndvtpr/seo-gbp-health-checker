@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 
 export const normalizeCanonicalUrl = (rawUrl?: string): string => {
-  if (!rawUrl) return 'https://alaintapiru.com/'
+  if (!rawUrl) return 'https://www.alaintapiru.com/'
   try {
-    const parsed = new URL(rawUrl, 'https://alaintapiru.com')
+    const parsed = new URL(rawUrl, 'https://www.alaintapiru.com')
     let pathname = parsed.pathname.toLowerCase()
     if (!pathname.endsWith('/')) {
       pathname += '/'
     }
-    return `https://alaintapiru.com${pathname}`
+    return `https://www.alaintapiru.com${pathname}`
   } catch {
-    return 'https://alaintapiru.com/'
+    return 'https://www.alaintapiru.com/'
   }
 }
 
@@ -32,13 +32,13 @@ export const generateMetadata = ({
   const canonicalUrl = normalizeCanonicalUrl(url)
 
   return {
-    metadataBase: new URL('https://alaintapiru.com'),
+    metadataBase: new URL('https://www.alaintapiru.com'),
     title: fullTitle,
     description: description || defaultDesc,
     alternates: {
       canonical: canonicalUrl,
       types: {
-        'application/rss+xml': 'https://alaintapiru.com/rss.xml',
+        'application/rss+xml': 'https://www.alaintapiru.com/rss.xml',
       },
     },
     icons: {

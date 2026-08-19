@@ -25,14 +25,14 @@ export async function generateMetadata({
     return buildSeoMetadata({
       title: 'Project Not Found | Alain Dave Tapiru',
       description: 'The requested project case study could not be found.',
-      url: `https://alaintapiru.com/projects/${resolvedParams.slug}/`,
+      url: `https://www.alaintapiru.com/projects/${resolvedParams.slug}/`,
     })
   }
 
   return buildSeoMetadata({
     title: `${project.title} — ${project.category} Project | Alain Dave Tapiru`,
     description: project.shortDescription,
-    url: `https://alaintapiru.com/projects/${project.slug}/`,
+    url: `https://www.alaintapiru.com/projects/${project.slug}/`,
   })
 }
 
@@ -53,20 +53,20 @@ export default async function ProjectDetailPage({
     '@type': 'Article',
     headline: `${project.title} — ${project.category} Case Study`,
     description: project.shortDescription,
-    image: `https://alaintapiru.com${project.image}`,
+    image: `https://www.alaintapiru.com${project.image}`,
     author: {
       '@type': 'Person',
       name: 'Alain Dave G. Tapiru',
-      url: 'https://alaintapiru.com',
+      url: 'https://www.alaintapiru.com',
     },
     publisher: {
       '@type': 'Person',
       name: 'Alain Dave G. Tapiru',
-      url: 'https://alaintapiru.com',
+      url: 'https://www.alaintapiru.com',
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://alaintapiru.com/projects/${project.slug}/`,
+      '@id': `https://www.alaintapiru.com/projects/${project.slug}/`,
     },
   }
 

@@ -10,7 +10,7 @@ export const metadata = generateMetadata({
   title: 'About Alain Dave Tapiru | SEO Specialist in the Philippines',
   description:
     'Meet Alain Dave Tapiru, an SEO Specialist in the Philippines helping businesses earn search visibility, attract qualified traffic and turn searches into growth.',
-  url: 'https://alaintapiru.com/about/',
+  url: 'https://www.alaintapiru.com/about/',
 })
 
 export default function AboutPage() {

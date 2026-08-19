@@ -7,14 +7,14 @@ const SERVICES_JSON_LD = {
   '@graph': [
     {
       '@type': 'ProfessionalService',
-      '@id': 'https://alaintapiru.com/#service',
+      '@id': 'https://www.alaintapiru.com/#service',
       name: 'Alain Tapiru — Data-Driven SEO, AEO, GEO & Web Development Services',
-      url: 'https://alaintapiru.com/services/',
-      image: 'https://alaintapiru.com/about_me.jpg',
+      url: 'https://www.alaintapiru.com/services/',
+      image: 'https://www.alaintapiru.com/about_me.jpg',
       priceRange: '$$',
       provider: {
         '@type': 'Person',
-        '@id': 'https://alaintapiru.com/#person',
+        '@id': 'https://www.alaintapiru.com/#person',
       },
       address: {
         '@type': 'PostalAddress',
@@ -148,7 +148,7 @@ const SERVICES_JSON_LD = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://alaintapiru.com/services/#faq',
+      '@id': 'https://www.alaintapiru.com/services/#faq',
       mainEntity: [
         {
           '@type': 'Question',

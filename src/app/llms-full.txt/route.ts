@@ -36,9 +36,9 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
 - **AI & Automation Tools:** Google AI Studio (@google/genai, Gemini 2.5 Flash), Serper API, Claude AI, OpenAI API.
 
 ## 4. Proprietary Tools & Featured Builds
-- **AngatSikat Studio (https://angat-sikat.freedev.app/):** An ongoing custom WordPress theme build ('angatsikat-studio') and web design studio platform unifying modern web architecture with technical crawlability and search visibility (Angat, Makita, Masikat 3-pillar framework). Canonical case study: https://alaintapiru.com/projects/angat-sikat-studio/
-- **Local SEO & GBP Health Checker (/tools/):** A dynamic scoring algorithm analyzing Google Business Profile metrics (Ratings, Reviews, Photos, Working Hours, Website Linking) with actionable 30-day AI roadmaps. Canonical case study: https://alaintapiru.com/projects/local-seo-gbp-checker/
-- **AlainTapiru.com Portfolio:** High-performance web architecture combining Next.js, Payload CMS, and zero-DOM-thrashing scroll performance. Canonical case study: https://alaintapiru.com/projects/alaintapiru-portfolio/
+- **AngatSikat Studio (https://angat-sikat.freedev.app/):** An ongoing custom WordPress theme build ('angatsikat-studio') and web design studio platform unifying modern web architecture with technical crawlability and search visibility (Angat, Makita, Masikat 3-pillar framework). Canonical case study: https://www.alaintapiru.com/projects/angat-sikat-studio/
+- **Local SEO & GBP Health Checker (/tools/):** A dynamic scoring algorithm analyzing Google Business Profile metrics (Ratings, Reviews, Photos, Working Hours, Website Linking) with actionable 30-day AI roadmaps. Canonical case study: https://www.alaintapiru.com/projects/local-seo-gbp-checker/
+- **AlainTapiru.com Portfolio:** High-performance web architecture combining Next.js, Payload CMS, and zero-DOM-thrashing scroll performance. Canonical case study: https://www.alaintapiru.com/projects/alaintapiru-portfolio/
 
 ## 5. Copyright & Licensing
 Copyright © 2026 Alain Dave Tapiru. All rights reserved. Proprietary design system, visual layouts, and source code are protected against unauthorized automated cloning.

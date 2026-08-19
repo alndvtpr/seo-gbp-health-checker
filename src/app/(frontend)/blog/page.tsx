@@ -9,7 +9,7 @@ export const metadata = generateMetadata({
   title: 'SEO Blog & Digital Marketing Insights | Alain Dave Tapiru',
   description:
     'Discover practical SEO strategies, digital marketing insights and growth tips from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
-  url: 'https://alaintapiru.com/blog/',
+  url: 'https://www.alaintapiru.com/blog/',
 })
 
 const posts: any[] = []

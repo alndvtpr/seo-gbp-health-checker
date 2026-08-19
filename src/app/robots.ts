@@ -44,10 +44,10 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: [
-      'https://alaintapiru.com/sitemap.xml',
-      'https://alaintapiru.com/rss.xml',
+      'https://www.alaintapiru.com/sitemap.xml',
+      'https://www.alaintapiru.com/rss.xml',
     ],
-    host: 'https://alaintapiru.com',
+    host: 'https://www.alaintapiru.com',
   }
 }
 

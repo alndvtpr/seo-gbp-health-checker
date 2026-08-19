@@ -4,14 +4,14 @@ export const JsonLd = () => {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    url: 'https://alaintapiru.com/',
+    url: 'https://www.alaintapiru.com/',
     mainEntity: {
       '@type': 'Person',
-      '@id': 'https://alaintapiru.com/#person',
+      '@id': 'https://www.alaintapiru.com/#person',
       name: 'Alain Dave G. Tapiru',
       alternateName: 'Alain Tapiru',
-      url: 'https://alaintapiru.com/',
-      image: 'https://alaintapiru.com/about_me.jpg',
+      url: 'https://www.alaintapiru.com/',
+      image: 'https://www.alaintapiru.com/about_me.jpg',
       jobTitle: 'SEO Specialist & Web Designer & Developer',
       description:
         'Data-driven SEO Specialist and Technical Web Designer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',
