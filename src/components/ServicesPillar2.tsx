@@ -73,7 +73,10 @@ export function ServicesPillar2() {
           Engineered for Traditional Search &amp; Generative AI
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Dominate classic Google search results while ensuring your brand is cited in ChatGPT, Perplexity, and AI Overviews.
+          Dominate classic Google search results while ensuring your brand is cited in ChatGPT, Perplexity, and AI Overviews. Discover our full on-page execution in the{' '}
+          <Link href="/projects/angat-sikat-studio/" className="text-primary-container font-semibold hover:underline">
+            AngatSikat Studio Case Study
+          </Link>.
         </p>
       </div>
 

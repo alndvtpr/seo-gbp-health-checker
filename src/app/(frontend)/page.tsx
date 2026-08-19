@@ -77,21 +77,21 @@ export default async function Page() {
             A practical toolkit for research, optimization, analytics, content, and modern web development.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <div className="flex items-center gap-2">
-              <Icon name="search" size={14} className="text-primary-container" />
-              <h3 className="font-heading text-[11px] text-on-surface/50 uppercase tracking-widest">SEO &amp; Analytics</h3>
+            <Link href="/services/#pillar-foundation" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
+              <Icon name="search" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
+              <h3 className="font-heading text-[11px] text-on-surface/70 group-hover:text-primary-container uppercase tracking-widest transition-colors">SEO &amp; Analytics</h3>
               <span className="font-sans text-[11px] text-on-surface/40">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Icon name="code" size={14} className="text-primary-container" />
-              <h3 className="font-heading text-[11px] text-on-surface/50 uppercase tracking-widest">Web &amp; SEO</h3>
+            </Link>
+            <Link href="/services/#pillar-execution" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
+              <Icon name="code" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
+              <h3 className="font-heading text-[11px] text-on-surface/70 group-hover:text-primary-container uppercase tracking-widest transition-colors">Web &amp; SEO</h3>
               <span className="font-sans text-[11px] text-on-surface/40">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Icon name="auto_awesome" size={14} className="text-primary-container" />
-              <h3 className="font-heading text-[11px] text-on-surface/50 uppercase tracking-widest">AI &amp; Development</h3>
-              <span className="font-sans text-[11px] text-on-surface/40">AI-Assisted Development &bull; Automation &bull; Modern Web Tools</span>
-            </div>
+            </Link>
+            <Link href="/tools/" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
+              <Icon name="auto_awesome" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
+              <h3 className="font-heading text-[11px] text-on-surface/70 group-hover:text-primary-container uppercase tracking-widest transition-colors">AI &amp; Diagnostics</h3>
+              <span className="font-sans text-[11px] text-on-surface/40">Interactive GBP Auditor &bull; Gemini AI Sprints</span>
+            </Link>
           </div>
         </div>
 
@@ -235,50 +235,74 @@ export default async function Page() {
               title: 'Website Audit',
               desc: 'Comprehensive technical review analyzing site health, speed, indexing, crawlability, and schema implementation.',
               icon: 'find_in_page',
+              href: '/services/#pillar-foundation',
+              linkLabel: 'Explore Technical Audit Services',
             },
             {
               step: '02',
               title: 'Keyword Research',
               desc: 'High-intent search query discovery tailored to target buyer personas and search volume dynamics.',
               icon: 'key',
+              href: '/services/#pillar-visibility',
+              linkLabel: 'Explore Keyword Intelligence',
             },
             {
               step: '03',
               title: 'Competitive Analysis',
               desc: 'Deconstructing top-ranking competitor strategies, backlink profiles, and content gaps.',
               icon: 'equalizer',
+              href: '/services/#pillar-visibility',
+              linkLabel: 'Explore Competitor Benchmarking',
             },
             {
               step: '04',
               title: 'On-Page SEO',
               desc: 'Optimizing titles, headers, internal linking structure, metadata, and core web vitals.',
               icon: 'edit_note',
+              href: '/services/#pillar-visibility',
+              linkLabel: 'Explore On-Page Optimization',
             },
             {
               step: '05',
               title: 'Off-Page SEO',
               desc: 'Authoritative backlink acquisition, brand mention building, and local citations.',
               icon: 'hub',
+              href: '/services/#pillar-execution',
+              linkLabel: 'Explore Authority Link Building',
             },
             {
               step: '06',
               title: 'Reporting & Data Analysis',
               desc: 'Monthly transparent rank tracking, conversion metrics, and continuous performance tuning.',
               icon: 'monitoring',
+              href: '/services/#pillar-execution',
+              linkLabel: 'Explore Analytics & Reporting',
             },
           ].map((item) => (
             <div
               key={item.step}
-              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group hover:-translate-y-1 relative"
+              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group hover:-translate-y-1 relative flex flex-col justify-between"
             >
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <Icon name={item.icon} size={36} className="text-primary-container group-hover:scale-110 transition-transform" />
-                <span className="font-heading text-xl sm:text-2xl font-black text-white/10 group-hover:text-primary-container/30 transition-colors">
-                  {item.step}
-                </span>
+              <div>
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
+                  <Icon name={item.icon} size={36} className="text-primary-container group-hover:scale-110 transition-transform" />
+                  <span className="font-heading text-xl sm:text-2xl font-black text-white/10 group-hover:text-primary-container/30 transition-colors">
+                    {item.step}
+                  </span>
+                </div>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface mb-2 sm:mb-3">{item.title}</h3>
+                <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed mb-4">{item.desc}</p>
               </div>
-              <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface mb-2 sm:mb-3">{item.title}</h3>
-              <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">{item.desc}</p>
+              <div className="pt-3 border-t border-white/5">
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-1.5 font-heading text-xs font-bold text-primary-container hover:text-primary transition-colors py-1 group/link"
+                  title={item.linkLabel}
+                >
+                  <span>{item.linkLabel}</span>
+                  <Icon name="arrow_forward" size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                </Link>
+              </div>
             </div>
           ))}
         </div>

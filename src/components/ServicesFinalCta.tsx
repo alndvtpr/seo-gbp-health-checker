@@ -10,25 +10,43 @@ const SERVICES_JSON_LD = {
       '@id': 'https://alaintapiru.com/#service',
       name: 'Alain Tapiru — Data-Driven SEO, AEO, GEO & Web Development Services',
       url: 'https://alaintapiru.com/services/',
+      image: 'https://alaintapiru.com/about_me.jpg',
+      priceRange: '$$',
       provider: {
         '@type': 'Person',
         '@id': 'https://alaintapiru.com/#person',
-        name: 'Alain Tapiru',
-        url: 'https://alaintapiru.com',
       },
-      description:
-        'Rank on Google and get cited by AI engines like ChatGPT & Perplexity. Fast static/WordPress sites, technical audits, Schema markup, and analytics.',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '10231 Everlasting Street, Dau',
+        addressLocality: 'Mabalacat City',
+        addressRegion: 'Pampanga',
+        postalCode: '2010',
+        addressCountry: 'PH',
+      },
+      areaServed: [
+        {
+          '@type': 'Country',
+          name: 'Philippines',
+        },
+        {
+          '@type': 'AdministrativeArea',
+          name: 'Worldwide',
+        },
+      ],
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'SEO & Web Engineering Offerings',
+        name: 'SEO, AEO, GEO & Web Development Service Catalog',
         itemListElement: [
           {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
               name: 'Technical SEO Audit',
+              serviceType: 'Technical Search Engine Optimization',
               description:
-                'Crawlability, indexability, Core Web Vitals, speed profiling, and prioritized technical action roadmaps.',
+                'Comprehensive crawlability, indexability, Core Web Vitals, and server speed profiling.',
+              sameAs: 'https://en.wikipedia.org/wiki/Search_engine_optimization',
             },
           },
           {
@@ -36,8 +54,10 @@ const SERVICES_JSON_LD = {
             itemOffered: {
               '@type': 'Service',
               name: 'Advanced Schema & Entity Structuring',
+              serviceType: 'Semantic Web & Schema Architecture',
               description:
-                'Custom JSON-LD schema architectures, Knowledge Graph entity linking, and rich snippet validation.',
+                'Custom JSON-LD architecture, semantic web modeling, and Knowledge Graph linking.',
+              sameAs: 'https://en.wikipedia.org/wiki/JSON-LD',
             },
           },
           {
@@ -45,8 +65,9 @@ const SERVICES_JSON_LD = {
             itemOffered: {
               '@type': 'Service',
               name: 'Keyword Research & Competitor Benchmarking',
+              serviceType: 'Search Intent & Topic Modeling',
               description:
-                'Commercial vs. informational search intent mapping, topic clustering, and competitor gap analysis.',
+                'Granular search intent mapping, semantic topic clustering, and competitor gap discovery.',
             },
           },
           {
@@ -54,8 +75,9 @@ const SERVICES_JSON_LD = {
             itemOffered: {
               '@type': 'Service',
               name: 'On-Page SEO',
+              serviceType: 'On-Page SEO Optimization',
               description:
-                'CTR-engineered titles and metas, semantic heading structures, internal linking, and image optimization.',
+                'Semantic heading hierarchy, CTR-engineered metadata, and contextual internal linking frameworks.',
             },
           },
           {
@@ -63,8 +85,10 @@ const SERVICES_JSON_LD = {
             itemOffered: {
               '@type': 'Service',
               name: 'AEO & GEO Optimization',
+              serviceType: 'Answer Engine & Generative Engine Optimization',
               description:
-                'Direct answer formatting for Featured Snippets and source-citable content structuring for AI models.',
+                'Featured snippet formatting, zero-click answer engineering, and AI citation structure for LLM search engines.',
+              sameAs: 'https://en.wikipedia.org/wiki/Generative_artificial_intelligence',
             },
           },
           {
@@ -72,8 +96,10 @@ const SERVICES_JSON_LD = {
             itemOffered: {
               '@type': 'Service',
               name: 'WordPress & Static Website Development',
+              serviceType: 'Web Design & Next.js Development',
               description:
-                'Ultra-fast, lightweight static sites and clean custom WordPress theme builds.',
+                'Lightweight static Next.js builds, headless WordPress architectures, and high-performance custom themes.',
+              sameAs: 'https://en.wikipedia.org/wiki/WordPress',
             },
           },
           {
@@ -81,8 +107,40 @@ const SERVICES_JSON_LD = {
             itemOffered: {
               '@type': 'Service',
               name: 'SEO Analytics & Reporting',
+              serviceType: 'SEO Analytics & Performance Tracking',
               description:
-                'Custom GA4/GSC conversion setups, 24/7 Looker Studio dashboards, and monthly video walkthroughs.',
+                'Custom GA4/GSC setups, conversion tracking, real-time performance dashboards, and automated Google Docs reporting.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Off-Page SEO & Authority Building',
+              serviceType: 'Off-Page SEO & Link Acquisition',
+              description:
+                'High-authority link acquisition, digital PR, backlink profile disavow audits, and domain authority acceleration.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Local SEO & Google Business Profile (GBP) Optimization',
+              serviceType: 'Local SEO Optimization',
+              description:
+                'Local map pack rankings, Google Business Profile optimization, local citation cleanup, and geo-targeted landing page structuring.',
+              sameAs: 'https://en.wikipedia.org/wiki/Local_search_(Internet)',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Competitive Analysis SEO',
+              serviceType: 'Competitive SEO Intelligence',
+              description:
+                'Comprehensive market share analysis, competitor backlink profiling, and SERP visibility gap analysis.',
             },
           },
         ],
@@ -90,7 +148,7 @@ const SERVICES_JSON_LD = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://www.alaintapiru.com/services#faq',
+      '@id': 'https://alaintapiru.com/services/#faq',
       mainEntity: [
         {
           '@type': 'Question',

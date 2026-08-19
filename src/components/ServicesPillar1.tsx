@@ -59,7 +59,14 @@ export function ServicesPillar1() {
           Technical Health &amp; Semantic Architecture
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Ensuring your site is easily crawled, indexed, and understood by search bots and LLMs alike.
+          Ensuring your site is easily crawled, indexed, and understood by search bots and LLMs alike. See this implemented in the{' '}
+          <Link href="/projects/alaintapiru-portfolio/" className="text-primary-container font-semibold hover:underline">
+            AlainTapiru.com Architecture Case Study
+          </Link>{' '}
+          or test your local search health with our{' '}
+          <Link href="/tools/" className="text-primary-container font-semibold hover:underline">
+            Free GBP Diagnostic Tool
+          </Link>.
         </p>
       </div>
 

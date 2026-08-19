@@ -313,6 +313,73 @@ export default async function ProjectDetailPage({
         )}
       </div>
 
+      {/* Semantic Cross-Linking: Related Case Studies & Interactive Tools */}
+      <section className="space-y-6 pt-4 border-t border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-1 font-bold">
+              Explore More Work
+            </span>
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+              Related Case Studies &amp; Tools
+            </h2>
+          </div>
+          <Link
+            href="/projects/"
+            className="font-heading text-xs uppercase tracking-wider font-bold text-primary-container hover:underline inline-flex items-center gap-1"
+          >
+            All Case Studies <Icon name="arrow_forward" size={14} />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {PROJECTS.filter((p) => p.slug !== project.slug).map((rel) => (
+            <Link
+              key={rel.slug}
+              href={`/projects/${rel.slug}/`}
+              className="p-5 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
+            >
+              <div>
+                <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest block mb-1 font-bold">
+                  {rel.category}
+                </span>
+                <h3 className="font-heading text-base font-bold text-on-surface group-hover:text-primary transition-colors mb-2">
+                  {rel.title}
+                </h3>
+                <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-2">
+                  {rel.shortDescription}
+                </p>
+              </div>
+              <div className="pt-3 border-t border-white/5 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
+                <span>View Case Study</span>
+                <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+          ))}
+          {/* Interactive Tool Card */}
+          <Link
+            href="/tools/"
+            className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-[#181a1b] to-[#181a1b] border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between"
+          >
+            <div>
+              <span className="font-heading text-[10px] text-emerald-400 uppercase tracking-widest block mb-1 font-bold">
+                Live Diagnostic Suite
+              </span>
+              <h3 className="font-heading text-base font-bold text-on-surface group-hover:text-primary transition-colors mb-2">
+                Local SEO &amp; GBP Health Checker
+              </h3>
+              <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-2">
+                Run an instant AI-powered audit on your Google Business Profile and local search signals.
+              </p>
+            </div>
+            <div className="pt-3 border-t border-white/5 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
+              <span>Launch Diagnostic Tool</span>
+              <Icon name="north_east" size={14} className="group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* Bottom CTA Banner */}
       <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-primary-container/30 shadow-[0_0_40px_rgba(230,126,34,0.15)] text-center space-y-6">
         <h2 className="font-heading text-xl sm:text-3xl font-extrabold text-on-surface">

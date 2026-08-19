@@ -57,22 +57,62 @@ export default function AboutPage() {
               Core Competencies
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Technical, On-Page, Off-Page &amp; Local SEO</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Crawl error resolution, schema markup, site speed optimization, local SEO presence, content optimization, and off-page link building strategies.</p>
-              </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">Modern Web Design</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Next.js, Tailwind CSS, Payload CMS, WordPress, Elementor, and responsive glassmorphism interfaces.</p>
-              </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">AI Web Design &amp; Development</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">AI-assisted UI/UX prototyping, intelligent web application development, automated asset generation, and rapid full-stack delivery.</p>
-              </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 border border-white/5">
-                <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface mb-1">AI Workflow Automation</h4>
-                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">Prompt engineering, custom AI agents, and programmatic content workflows.</p>
-              </div>
+              <Link
+                href="/services/#pillar-foundation"
+                className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 hover:bg-[#181a1b] border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+              >
+                <div className="flex items-center justify-between gap-1 mb-1">
+                  <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                    Technical, On-Page, Off-Page &amp; Local SEO
+                  </h4>
+                  <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
+                  Crawl error resolution, schema markup, site speed optimization, local SEO presence, content optimization, and off-page link building strategies.
+                </p>
+              </Link>
+              <Link
+                href="/services/#pillar-execution"
+                className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 hover:bg-[#181a1b] border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+              >
+                <div className="flex items-center justify-between gap-1 mb-1">
+                  <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                    Modern Web Design
+                  </h4>
+                  <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
+                  Next.js, Tailwind CSS, Payload CMS, WordPress, Elementor, and responsive glassmorphism interfaces.
+                </p>
+              </Link>
+              <Link
+                href="/projects/angat-sikat-studio/"
+                className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 hover:bg-[#181a1b] border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+              >
+                <div className="flex items-center justify-between gap-1 mb-1">
+                  <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                    AI Web Design &amp; Development
+                  </h4>
+                  <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
+                  AI-assisted UI/UX prototyping, intelligent web application development, automated asset generation, and rapid full-stack delivery.
+                </p>
+              </Link>
+              <Link
+                href="/tools/"
+                className="p-3.5 sm:p-4 rounded-xl bg-[#181a1b]/60 hover:bg-[#181a1b] border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+              >
+                <div className="flex items-center justify-between gap-1 mb-1">
+                  <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                    AI Workflow Automation &amp; Diagnostics
+                  </h4>
+                  <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                </div>
+                <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
+                  Interactive GBP Health Checker, Gemini AI local scoring engines, and programmatic content workflows.
+                </p>
+              </Link>
             </div>
           </div>
         </div>

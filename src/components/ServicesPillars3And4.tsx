@@ -20,6 +20,12 @@ export function ServicesPillars3And4() {
         >
           High-Performance Builds &amp; Transparent Data
         </h2>
+        <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
+          Clean Next.js architectures, custom WordPress themes, and high-impact authority building. Browse all live implementations in our{' '}
+          <Link href="/projects/" className="text-primary-container font-semibold hover:underline">
+            Featured Projects Directory
+          </Link>.
+        </p>
       </div>
 
       {/* Bento Grid Layout */}

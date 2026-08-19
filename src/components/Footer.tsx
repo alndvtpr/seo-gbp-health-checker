@@ -80,19 +80,19 @@ export const Footer = () => {
           </h3>
           <ul className="space-y-2 font-sans text-xs text-on-surface/70">
             <li>
-              <Link href="/services/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO Audit</Link>
+              <Link href="/services/#pillar-foundation" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO &amp; Schema</Link>
             </li>
             <li>
-              <Link href="/services/" className="hover:text-primary-container transition-colors py-0.5 inline-block">AI Web Design</Link>
+              <Link href="/services/#pillar-visibility" className="hover:text-primary-container transition-colors py-0.5 inline-block">AEO, GEO &amp; On-Page SEO</Link>
             </li>
             <li>
-              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">SEO Specialist Salary Calculator</Link>
+              <Link href="/services/#pillar-execution" className="hover:text-primary-container transition-colors py-0.5 inline-block">Web Design &amp; Development</Link>
             </li>
             <li>
-              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Website Audit Request</Link>
+              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Local SEO &amp; GBP Auditor</Link>
             </li>
             <li>
-              <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Local SEO / GBP Auditor</Link>
+              <Link href="/projects/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Case Studies &amp; Live Builds</Link>
             </li>
           </ul>
         </div>
