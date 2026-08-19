@@ -15,6 +15,7 @@ export interface Project {
   tags: string[]
   role: string
   liveUrl: string
+  rel?: string
   featured: boolean
   coreServices: string[]
   pillars: ProjectPillar[]
@@ -43,6 +44,7 @@ export const angatSikatProject: Project = {
   ],
   role: 'Web Developer & Designer',
   liveUrl: 'https://angat-sikat.freedev.app/',
+  rel: 'noopener noreferrer nofollow',
   featured: true,
   coreServices: [
     'SEO-Ready Website Design',

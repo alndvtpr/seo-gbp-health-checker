@@ -252,10 +252,12 @@ export function ProjectsDirectory() {
                 href={activeModalProject.liveUrl}
                 target={activeModalProject.liveUrl.startsWith('http') ? '_blank' : undefined}
                 rel={
-                  activeModalProject.liveUrl.startsWith('http')
+                  activeModalProject.rel ||
+                  (activeModalProject.liveUrl.startsWith('http')
                     ? 'noopener noreferrer'
-                    : undefined
+                    : undefined)
                 }
+                aria-label={`Open ${activeModalProject.title} external build (opens in new tab)`}
                 className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-primary-container bg-primary-container hover:bg-primary px-4 py-2.5 rounded-xl shadow-[0_0_20px_rgba(230,126,34,0.4)] transition-all cursor-pointer"
               >
                 <span>{activeModalProject.ctaText || 'View Live Build'}</span>
@@ -385,10 +387,12 @@ export function ProjectsDirectory() {
                 href={proj.liveUrl}
                 target={proj.liveUrl.startsWith('http') ? '_blank' : undefined}
                 rel={
-                  proj.liveUrl.startsWith('http')
+                  proj.rel ||
+                  (proj.liveUrl.startsWith('http')
                     ? 'noopener noreferrer'
-                    : undefined
+                    : undefined)
                 }
+                aria-label={`Open ${proj.title} external build (opens in new tab)`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/30 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
               >
                 <span>{proj.ctaText || 'Live Build'}</span>

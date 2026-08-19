@@ -372,10 +372,12 @@ export default async function ProjectDetailPage({
             href={project.liveUrl}
             target={project.liveUrl.startsWith('http') ? '_blank' : undefined}
             rel={
-              project.liveUrl.startsWith('http')
+              project.rel ||
+              (project.liveUrl.startsWith('http')
                 ? 'noopener noreferrer'
-                : undefined
+                : undefined)
             }
+            aria-label={`Open ${project.title} external live build (opens in new tab)`}
             className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.4)] hover:bg-primary hover:scale-105 transition-all cursor-pointer"
           >
             <span>{project.ctaText || 'View Live Build'}</span>

@@ -35,6 +35,8 @@ const CERTIFICATIONS: Certification[] = [
     imageSrc: '/assets/certificates/Alain Dave Tapiru -SEO Specialist Philippines Certificate.webp',
     downloadUrl: '/assets/certificates/Alain Dave Tapiru -SEO Specialist Philippines Certificate.webp',
     downloadFilename: 'Alain Dave Tapiru - SEO Specialist Philippines Certificate.webp',
+    verifyUrl:
+      'https://www.sova.ph/search-engine-optimization-bootcamp-graduates/search-engine-optimization-graduates-batch-32/#:~:text=Alain%20Dave%20Tapiru',
     buttonText: 'View Certificate',
   },
   {
@@ -46,7 +48,7 @@ const CERTIFICATIONS: Certification[] = [
     imageSrc: '/assets/certificates/Introduction to Social Media Marketing.webp',
     downloadUrl: '/assets/certificates/Introduction to Social Media Marketing.pdf',
     downloadFilename: 'Introduction to Social Media Marketing - Alain Dave Tapiru.pdf',
-    verifyUrl: 'https://coursera.org/verify/D48TRWWUSJJZ',
+    verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',
     buttonText: 'View / Verify',
   },
 ]
@@ -120,10 +122,23 @@ export function AboutCredentials() {
           <div className="p-4 sm:p-5 border-b border-white/10 bg-[#181818] z-10 flex items-center justify-between gap-4 shrink-0">
             <div className="space-y-1 pr-2 min-w-0">
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                  <Icon name="check_circle" size={11} className="text-emerald-400" />
-                  {selectedCert.badge}
-                </span>
+                {selectedCert.verifyUrl ? (
+                  <a
+                    href={selectedCert.verifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Verify Alain Dave Tapiru's ${selectedCert.title} credential on official registry (opens in new tab)`}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                  >
+                    <Icon name="check_circle" size={11} className="text-emerald-400" />
+                    {selectedCert.badge}
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <Icon name="check_circle" size={11} className="text-emerald-400" />
+                    {selectedCert.badge}
+                  </span>
+                )}
                 <span className="text-[11px] font-sans text-on-surface/50">
                   {selectedCert.issuedDate}
                 </span>
@@ -170,6 +185,7 @@ export function AboutCredentials() {
                 download={selectedCert.downloadFilename}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Download ${selectedCert.title} certificate`}
                 className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-2 rounded-lg transition-colors cursor-pointer shadow-sm"
                 title="Download certificate"
               >
@@ -177,12 +193,13 @@ export function AboutCredentials() {
                 <span>Download</span>
               </a>
 
-              {/* Direct Verification Link (Meta / Coursera) */}
+              {/* Direct Verification Link (SOVA / Meta) */}
               {selectedCert.verifyUrl && (
                 <a
                   href={selectedCert.verifyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Verify Alain Dave Tapiru's ${selectedCert.title} on official registry (opens in new tab)`}
                   className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-primary-container bg-primary-container hover:bg-primary px-3.5 py-2 rounded-lg transition-colors cursor-pointer shadow-md"
                 >
                   <span>Verify Online</span>
@@ -242,10 +259,23 @@ export function AboutCredentials() {
                     <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
                       {cert.title}
                     </h4>
-                    <span className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                      <Icon name="check_circle" size={12} className="text-emerald-400" />
-                      {cert.badge}
-                    </span>
+                    {cert.verifyUrl ? (
+                      <a
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Verify Alain Dave Tapiru's ${cert.title} certification (opens in new tab)`}
+                        className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                      >
+                        <Icon name="check_circle" size={12} className="text-emerald-400" />
+                        {cert.badge}
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <Icon name="check_circle" size={12} className="text-emerald-400" />
+                        {cert.badge}
+                      </span>
+                    )}
                   </div>
                   <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
                     {cert.issuer} • {cert.issuedDate}
@@ -256,6 +286,7 @@ export function AboutCredentials() {
                   <button
                     type="button"
                     onClick={() => setSelectedCert(cert)}
+                    aria-label={`View ${cert.title} certificate image preview`}
                     className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-primary-container hover:text-primary transition-colors py-1 px-2.5 rounded-lg bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/20 cursor-pointer"
                   >
                     <span>{cert.buttonText}</span>
@@ -267,9 +298,11 @@ export function AboutCredentials() {
                       href={cert.verifyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] font-sans text-on-surface/50 hover:text-on-surface/80 underline underline-offset-2 transition-colors"
+                      aria-label={`Verify Alain Dave Tapiru's ${cert.title} on official registry (opens in new tab)`}
+                      className="text-[11px] font-sans text-on-surface/50 hover:text-primary-container underline underline-offset-2 transition-colors inline-flex items-center gap-1"
                     >
-                      Direct Verification Link
+                      <span>Direct Verification Link</span>
+                      <Icon name="north_east" size={11} />
                     </a>
                   )}
                 </div>

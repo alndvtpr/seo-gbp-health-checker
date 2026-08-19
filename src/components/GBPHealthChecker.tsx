@@ -814,7 +814,8 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                       <a
                         href={result.websiteSeo.url}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow ugc"
+                        aria-label={`Open audited business website ${result.websiteSeo.url} (opens in new tab)`}
                         className="text-primary-container hover:underline truncate max-w-[200px]"
                       >
                         {result.websiteSeo.url}

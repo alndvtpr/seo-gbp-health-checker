@@ -89,7 +89,8 @@
 - [x] Modern 3-Tier Search Indexing Acceleration Pipeline: engineered automated delta RSS 2.0 endpoint (`/rss.xml` with `/feed.xml` redirect) with WebSub Hub (`pubsubhubbub.appspot.com`), RFC 822 timestamps, and canonical permalinks; implemented IndexNow dispatch utility (`src/lib/indexnow.ts`) with static key verification (`/a8f9c1b2d3e4f5061728394a5b6c7d8e.txt`), on-demand trigger API (`/api/indexnow/`), CMS mutation hooks on `Pages` collection; added global RSS autodiscovery in `<head>` and updated `robots.txt` with dual sitemap indexing directives.
 - [x] Cross-Site RSS Feed Integration & Visibility Suite: built reusable accessible `<RssButton />` with `icon`, `button`, and `chip` variants; integrated clickable RSS subscription icon buttons across Desktop Header, Full-screen Mobile Menu, and Footer social links; added direct RSS Quick Link in Footer navigation and prominent "Subscribe via RSS Feed" CTA in the Blog index; configured `alternates.types` metadata auto-discovery.
 - [x] Global SEO Meta Titles, Descriptions, OpenGraph & Twitter Card Synchronization: aligned 7 core routes (`/`, `/about/`, `/projects/`, `/services/`, `/tools/`, `/blog/`, `/contact/`) to targeted high-intent SEO meta titles and comprehensive meta descriptions with synced OG/Twitter tags, preserved canonicals, RSS autodiscovery, and structured JSON-LD schemas.
-- [x] Screaming Frog SEO Audit Remediation & Canonical Alignment: unified all canonical URLs, `metadataBase`, sitemaps, robots.txt, delta RSS, IndexNow, `llms.txt`, `llms-full.txt`, and JSON-LD schemas to `https://www.alaintapiru.com/`, eliminating 10 Non-Indexable Canonical errors and 371 redirect chain loops; optimized `about_me.jpg` (<80 KB); added accessible `aria-label` to brand logo and navigation links.
+- [x] Integrate SOVA SEO Bootcamp (Batch 32) external verification links on About page (`/about/`): added target URL with text fragment matching to `CERTIFICATIONS` dataset, linked "Verified Credential" badge and "Direct Verification Link" / "Verify Online" CTA anchors with `target="_blank"`, `rel="noopener noreferrer"`, and accessible `aria-label` tags.
+- [x] 2026 SEO External Linking & Security Hardening Suite: enforced `rel="noopener noreferrer nofollow"` on staging demo builds (`angat-sikat.freedev.app`), applied `rel="noopener noreferrer nofollow ugc"` to dynamic tool audit outputs in GBP Health Checker, canonicalized Coursera verification URL (`www.coursera.org`), and added `nofollow` bot hygiene directives to Gmail compose links across Navbar, Hero, and Footer.
 - [ ] *[Next Task]*: Specify next active development priority here.
 
 ---
@@ -97,16 +98,15 @@
 ## 5. Rolling Session Log (Keep Last 3 Commits Only)
 *Older entries must be pruned or compressed into Section 3.*
 
+- **Commit `pending` (2026-08-19)**: `fix(seo, links): harden external linking with nofollow on staging, ugc on tools, and canonical coursera verification`
+  - Added `rel` attribute support to `Project` interface in `projects.ts` and set `noopener noreferrer nofollow` on `angatSikatProject` (`angat-sikat.freedev.app`).
+  - Added `rel="noopener noreferrer nofollow ugc"` to scanned website links in `GBPHealthChecker.tsx`.
+  - Canonicalized Coursera credential link to `https://www.coursera.org/verify/D48TRWWUSJJZ` in `AboutCredentials.tsx`.
+  - Added `rel="noopener noreferrer nofollow"` to webmail compose links in `ScrollHero.tsx`, `Navbar.tsx`, and `Footer.tsx`.
+  - Verified static site generation and zero TypeScript errors with `npm run build`.
 - **Commit `743de5d` (2026-08-19)**: `fix(seo, canonical): resolve screaming frog audit non-indexable canonicals and domain normalization`
   - Unified canonical origin to `https://www.alaintapiru.com/` across `seo.ts`, `sitemap.ts`, `robots.ts`, `rss.xml`, `indexnow.ts`, `llms.txt`, `llms-full.txt`, `JsonLd.tsx`, `ServicesFinalCta.tsx`, and all route metadata.
   - Compressed `public/about_me.jpg` (from 216 KB down to 77 KB) and `public/about_me.webp` (87 KB).
   - Added accessible `aria-label` to Navbar brand logo link.
-  - Validated local dev server (all routes HTTP 200) and `npm run build` static generation.
 - **Commit `47589b1` (2026-08-19)**: `feat(seo, metadata): synchronize high-intent seo meta titles, descriptions, and og cards across all core routes`
   - Updated `<title>`, `<meta name="description">`, `og:title`, `og:description`, `twitter:title`, and `twitter:description` across Home (`/`), About (`/about/`), Projects (`/projects/`), Services (`/services/`), Tools (`/tools/`), Blog (`/blog/`), and Contact (`/contact/`).
-  - Refactored `src/lib/seo.ts` `generateMetadata` helper to preserve exact page titles without redundant suffixes.
-  - Verified local dev server response HTTP 200 and static build output.
-- **Commit `2a1cc1b` (2026-08-19)**: `feat(ui, rss): expose cross-site rss feed integration across navbar, footer, blog, and metadata`
-  - Created reusable accessible `<RssButton />` supporting standard RSS orange `#EE802F` accent, focus rings, and `rel="noopener noreferrer alternate"`.
-  - Injected RSS icon buttons into desktop navigation utility bar and full-screen mobile menu.
-  - Added RSS subscription icon and navigation text link into global footer.

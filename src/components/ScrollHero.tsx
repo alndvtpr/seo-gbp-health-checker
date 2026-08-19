@@ -390,7 +390,7 @@ export const ScrollHero = () => {
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="w-10 h-10 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="Gmail"
             >
