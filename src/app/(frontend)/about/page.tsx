@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { AboutCredentials } from '@/components/AboutCredentials'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
   title: 'About Me | Alain Dave Tapiru',
@@ -14,6 +15,9 @@ export const metadata = generateMetadata({
 export default function AboutPage() {
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-20">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs items={[{ name: 'About', url: '/about/' }]} />
+
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
         <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">

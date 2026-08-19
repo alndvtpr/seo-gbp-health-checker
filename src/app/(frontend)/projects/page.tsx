@@ -1,6 +1,7 @@
 import React from 'react'
 import { generateMetadata } from '@/lib/seo'
 import { ProjectsDirectory } from '@/components/ProjectsDirectory'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
   title: 'Projects & SEO Case Studies | Alain Dave Tapiru',
@@ -12,6 +13,9 @@ export const metadata = generateMetadata({
 export default function ProjectsPage() {
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-10 sm:space-y-16">
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs items={[{ name: 'Projects', url: '/projects/' }]} />
+
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto">
         <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">

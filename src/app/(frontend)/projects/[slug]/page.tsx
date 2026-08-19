@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Icon } from '@/components/icons'
 import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
 import { getProjectBySlug, PROJECTS } from '@/data/projects'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export async function generateStaticParams() {
   return PROJECTS.map((proj) => ({
@@ -69,31 +70,6 @@ export default async function ProjectDetailPage({
     },
   }
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://alaintapiru.com/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Projects',
-        item: 'https://alaintapiru.com/projects/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: project.title,
-        item: `https://alaintapiru.com/projects/${project.slug}/`,
-      },
-    ],
-  }
-
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto relative z-20 space-y-10 sm:space-y-16">
       {/* Dynamic JSON-LD Structured Data */}
@@ -101,16 +77,18 @@ export default async function ProjectDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
 
-      {/* Back Navigation */}
-      <div>
+      {/* Breadcrumb Navigation & Back Link */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <Breadcrumbs
+          items={[
+            { name: 'Projects', url: '/projects/' },
+            { name: project.title, url: `/projects/${project.slug}/` },
+          ]}
+        />
         <Link
           href="/projects/"
-          className="inline-flex items-center gap-1.5 font-heading text-xs uppercase tracking-wider text-primary-container font-bold hover:underline"
+          className="inline-flex items-center gap-1.5 font-heading text-xs uppercase tracking-wider text-primary-container font-bold hover:underline shrink-0"
         >
           <Icon name="arrow_back" size={16} /> Back to Projects Directory
         </Link>

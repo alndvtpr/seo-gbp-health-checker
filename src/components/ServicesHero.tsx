@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Icon } from '@/components/icons'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 const TRUST_POINTS = [
   'Google & AI-Engine Optimized',
@@ -14,6 +15,9 @@ export function ServicesHero() {
       aria-labelledby="services-hero-heading"
       className="relative z-20 pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto text-center"
     >
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs items={[{ name: 'Services', url: '/services/' }]} align="center" className="mb-6" />
+
       {/* Eyebrow Badge */}
       <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container font-heading text-xs font-semibold uppercase tracking-wider mb-6">
         <Icon name="auto_awesome" size={14} className="text-primary-container" />

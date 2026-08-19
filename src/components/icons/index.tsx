@@ -31,6 +31,8 @@ export type IconName =
   | 'auto_awesome'
   | 'claude'
   | 'download'
+  | 'chevron_right'
+  | 'home'
 
 interface IconData {
   path: string
@@ -38,6 +40,12 @@ interface IconData {
 }
 
 export const ICON_MAP: Record<IconName, IconData> = {
+  chevron_right: {
+    path: 'M376-280 320-336l184-184-184-184 56-56 240 240-240 240Z',
+  },
+  home: {
+    path: 'M240-200h120v-240h240v240h120v-360L480-740 240-440v240Zm-80 80v-360l320-240 320 240v360H520v-240h-80v240H160Zm320-350Z',
+  },
   download: {
     path: 'M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-280 280ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T760-160H240Z',
   },
