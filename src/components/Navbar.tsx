@@ -132,10 +132,10 @@ export const Navbar = () => {
               </a>
             </div>
             <Link
-              href="/contact"
+              href="/contact/"
               className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-widest font-bold px-6 py-2.5 rounded-full animate-brand-ripple hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
             >
-              Hire Me
+              Outrank Rivals
               <Icon name="arrow_forward" size={16} />
             </Link>
           </div>
@@ -175,11 +175,12 @@ export const Navbar = () => {
             )
           })}
           <Link
-            href="/contact"
+            href="/contact/"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 w-full text-center bg-primary-container text-on-primary-container font-heading text-sm uppercase tracking-widest font-bold px-8 py-3.5 rounded-full animate-brand-ripple hover:bg-primary transition-colors"
+            className="mt-4 w-full text-center bg-primary-container text-on-primary-container font-heading text-sm uppercase tracking-widest font-bold px-8 py-3.5 rounded-full animate-brand-ripple hover:bg-primary transition-colors flex items-center justify-center gap-2"
           >
-            Hire Me
+            <span>Outrank Rivals</span>
+            <Icon name="arrow_forward" size={16} />
           </Link>
           
           {/* Mobile Menu Socials */}

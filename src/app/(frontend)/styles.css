@@ -114,3 +114,147 @@ body {
   touch-action: manipulation;
 }
 
+/* ── Print Architecture for GBP Audit Executive Reports ─────────────────────── */
+@media print {
+  /* Isolate GBP Audit Modal & hide background page, navbar, footer, and canvases */
+  body > *:not(#gbp-audit-modal-portal) {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background-color: #0e1010 !important;
+    background: #0e1010 !important;
+    color: #e2e2e2 !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 10mm 8mm;
+  }
+
+  #gbp-audit-modal-portal {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    z-index: auto !important;
+  }
+
+  #gbp-audit-modal-container {
+    position: static !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #0e1010 !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  #gbp-modal-scrollable-body {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  /* Force side-by-side Bento grids in print */
+  .print-grid-row-1 {
+    display: grid !important;
+    grid-template-columns: 3.8fr 8.2fr !important;
+    gap: 12px !important;
+  }
+
+  .print-grid-row-2 {
+    display: grid !important;
+    grid-template-columns: 6.8fr 5.2fr !important;
+    gap: 12px !important;
+  }
+
+  .print-grid-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .print-grid-pillars {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .print-grid-templates {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Hide interactive actions and control buttons in printed PDF */
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  /* Compact typography & spacing for print */
+  .prose {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+  }
+
+  .prose h3 {
+    margin-top: 8px !important;
+    margin-bottom: 4px !important;
+    font-size: 13px !important;
+  }
+
+  .prose p, .prose li {
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+  }
+
+  /* Page break rules for clean presentation */
+  .print-break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Clean start for major deliverable sections */
+  .print-page-break-before {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* Force links to render without automatic URL footnotes */
+  a[href]::after {
+    content: none !important;
+  }
+
+  /* Disable transitions and force immediate state in print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

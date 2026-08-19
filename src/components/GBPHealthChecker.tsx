@@ -173,12 +173,12 @@ function PillarCard({ pillar }: { pillar: AuditPillar }) {
     pct >= 70 ? 'bg-emerald-400' : pct >= 40 ? 'bg-primary-container' : 'bg-rose-400'
 
   return (
-    <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3 hover:bg-white/[0.05] transition-colors">
+    <div className="p-4 sm:p-5 print:p-3 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3 print:space-y-1.5 hover:bg-white/[0.05] transition-colors print-break-inside-avoid">
       <div className="flex items-center justify-between">
-        <span className="font-heading text-xs font-bold uppercase tracking-wider text-on-surface/90">
+        <span className="font-heading text-xs print:text-[11px] font-bold uppercase tracking-wider text-on-surface/90">
           {pillar.name}
         </span>
-        <span className="font-heading text-xs font-bold text-on-surface">
+        <span className="font-heading text-xs print:text-[11px] font-bold text-on-surface">
           {pillar.score}
           <span className="text-on-surface/40 font-normal">/{pillar.maxScore}</span>
         </span>
@@ -191,9 +191,9 @@ function PillarCard({ pillar }: { pillar: AuditPillar }) {
         />
       </div>
 
-      <ul className="space-y-1.5">
+      <ul className="space-y-1.5 print:space-y-1">
         {pillar.details.map((detail, i) => (
-          <li key={i} className="flex items-start gap-2 text-[11px] text-on-surface/70 leading-relaxed">
+          <li key={i} className="flex items-start gap-2 text-[11px] print:text-[10px] text-on-surface/70 leading-relaxed print:leading-tight">
             <span className="mt-0.5 shrink-0 text-primary-container font-bold">›</span>
             <span>{detail}</span>
           </li>
@@ -384,9 +384,15 @@ export function GBPHealthChecker() {
 
     const passedCount = result.actionItems?.filter((a) => a.priority === 'passed').length || 0
     const totalChecks = result.actionItems?.length || 0
+    const auditDateStr = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
 
     return createPortal(
       <div
+        id="gbp-audit-modal-portal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="gbp-modal-title"
@@ -395,11 +401,12 @@ export function GBPHealthChecker() {
         onClick={closeModal}
       >
         <div
+          id="gbp-audit-modal-container"
           className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-[#121414] border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* ── Top Header / Branding Bar ── */}
-          <div className="p-4 sm:p-5 md:p-6 border-b border-white/10 bg-[#161819] z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
+          <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-white/10 bg-[#161819] z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
             <div className="space-y-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-primary-container/15 text-primary-container border border-primary-container/30">
@@ -408,6 +415,10 @@ export function GBPHealthChecker() {
                 <span className="text-[11px] font-sans text-on-surface/40">•</span>
                 <span className="text-[11px] font-sans text-on-surface/60 font-medium truncate">
                   {result.location}
+                </span>
+                <span className="hidden print:inline-block text-[11px] font-sans text-on-surface/40">•</span>
+                <span className="hidden print:inline-block text-[11px] font-sans text-primary-container font-semibold">
+                  Audited on {auditDateStr}
                 </span>
               </div>
               <h2
@@ -418,7 +429,7 @@ export function GBPHealthChecker() {
               </h2>
             </div>
 
-            <div className="flex items-center flex-wrap gap-2.5 shrink-0">
+            <div className="no-print flex items-center flex-wrap gap-2.5 shrink-0">
               {/* Print / Save PDF Button */}
               <button
                 type="button"
@@ -444,13 +455,13 @@ export function GBPHealthChecker() {
           </div>
 
           {/* ── Scrollable Dashboard Body ── */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 bg-[#0e1010]">
+          <div id="gbp-modal-scrollable-body" className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-[#0e1010]">
             
             {/* ── Bento Row 1: Score Dial & Health Pillars ── */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-1 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
               {/* Score Radar (4 Cols) */}
-              <div className="lg:col-span-4 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col items-center justify-between text-center gap-4 relative overflow-hidden shadow-xl">
+              <div className="lg:col-span-4 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col items-center justify-between text-center gap-4 print:gap-2 relative overflow-hidden shadow-xl print-break-inside-avoid">
                 <div className="space-y-1">
                   <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
                     Profile Health Score
@@ -483,7 +494,7 @@ export function GBPHealthChecker() {
               </div>
 
               {/* 3 Pillars Breakdown (8 Cols) */}
-              <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col justify-between gap-4 shadow-xl">
+              <div className="lg:col-span-8 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col justify-between gap-4 print:gap-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
@@ -498,23 +509,23 @@ export function GBPHealthChecker() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                <div className="grid grid-cols-1 md:grid-cols-3 print-grid-pillars gap-3.5 print:gap-2">
                   {result.pillars.map((pillar) => (
                     <PillarCard key={pillar.name} pillar={pillar} />
                   ))}
                 </div>
 
-                <p className="text-[11px] font-sans text-on-surface/60 leading-relaxed bg-white/[0.02] p-3 rounded-xl border border-white/5">
-                  💡 <strong className="text-on-surface/90">Strategic Takeaway:</strong> Google ranks profiles based on <span className="text-primary-container font-semibold">Relevance</span> (NAP & categories), <span className="text-primary-container font-semibold">Prominence</span> (reviews & velocity), and <span className="text-primary-container font-semibold">Distance</span> (location signals).
+                <p className="text-[11px] font-sans text-on-surface/60 leading-relaxed bg-white/[0.02] p-3 print:p-2 rounded-xl border border-white/5">
+                  💡 <strong className="text-on-surface/90">Strategic Takeaway:</strong> Google ranks profiles based on <span className="text-primary-container font-semibold">Relevance</span> (NAP &amp; categories), <span className="text-primary-container font-semibold">Prominence</span> (reviews &amp; velocity), and <span className="text-primary-container font-semibold">Distance</span> (location signals).
                 </p>
               </div>
             </div>
 
             {/* ── Bento Row 2: Competitor Radar & Website Snapshot ── */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-2 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
               {/* Competitor Gap Radar (7 Cols) */}
-              <div className="lg:col-span-7 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+              <div className="lg:col-span-7 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
@@ -528,11 +539,11 @@ export function GBPHealthChecker() {
                 </div>
 
                 {result.competitors && result.competitors.length > 0 ? (
-                  <div className="space-y-2.5">
+                  <div className="space-y-2.5 print:space-y-1.5">
                     {result.competitors.map((comp, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between gap-3 hover:bg-white/[0.06] transition-colors"
+                        className="p-3.5 print:p-2 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between gap-3 hover:bg-white/[0.06] transition-colors print-break-inside-avoid"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <span className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-heading text-xs font-bold text-primary-container shrink-0">
@@ -559,13 +570,13 @@ export function GBPHealthChecker() {
                   </p>
                 )}
 
-                <div className="p-3.5 rounded-xl bg-primary-container/10 border border-primary-container/20 text-xs text-on-surface/80">
+                <div className="p-3.5 print:p-2 rounded-xl bg-primary-container/10 border border-primary-container/20 text-xs text-on-surface/80">
                   🎯 <strong className="text-primary-container font-semibold">Growth Strategy:</strong> Steady weekly review acquisition and weekly Google Posts are the fastest leverage points to outrank these competitors.
                 </div>
               </div>
 
               {/* Website & Semantic SEO Snapshot (5 Cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+              <div className="lg:col-span-5 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
@@ -579,8 +590,8 @@ export function GBPHealthChecker() {
                 </div>
 
                 {result.websiteSeo && result.websiteSeo.status !== 'no_website' ? (
-                  <div className="space-y-3 text-xs">
-                    <div className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-between gap-2">
+                  <div className="space-y-3 print:space-y-2 text-xs">
+                    <div className="p-2.5 print:p-2 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-between gap-2">
                       <span className="text-on-surface/50 text-[11px]">Linked URL:</span>
                       <a
                         href={result.websiteSeo.url}
@@ -597,12 +608,12 @@ export function GBPHealthChecker() {
                         ⚠ Website responded with an error or blocked the audit bot.
                       </p>
                     ) : (
-                      <div className="space-y-2.5">
+                      <div className="space-y-2.5 print:space-y-1.5">
                         <div className="space-y-1">
                           <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-on-surface/50">
                             Title Tag
                           </span>
-                          <p className="text-xs text-on-surface font-medium leading-relaxed bg-white/[0.02] p-2.5 rounded-lg border border-white/5">
+                          <p className="text-xs text-on-surface font-medium leading-relaxed bg-white/[0.02] p-2.5 print:p-2 rounded-lg border border-white/5">
                             {result.websiteSeo.title ? result.websiteSeo.title : <span className="text-rose-400">Missing Title Tag</span>}
                           </p>
                         </div>
@@ -611,7 +622,7 @@ export function GBPHealthChecker() {
                           <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-on-surface/50">
                             Meta Description
                           </span>
-                          <p className="text-xs text-on-surface/70 leading-relaxed line-clamp-2 bg-white/[0.02] p-2.5 rounded-lg border border-white/5">
+                          <p className="text-xs text-on-surface/70 leading-relaxed line-clamp-2 bg-white/[0.02] p-2.5 print:p-2 rounded-lg border border-white/5">
                             {result.websiteSeo.metaDescription ? result.websiteSeo.metaDescription : <span className="text-rose-400">Missing Meta Description</span>}
                           </p>
                         </div>
@@ -619,7 +630,7 @@ export function GBPHealthChecker() {
                     )}
                   </div>
                 ) : (
-                  <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 space-y-1">
+                  <div className="p-4 print:p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 space-y-1">
                     <p className="font-bold">No Website Linked on GBP</p>
                     <p className="opacity-80">
                       Linking a verified website or high-converting landing page is critical for local authority.
@@ -630,7 +641,7 @@ export function GBPHealthChecker() {
             </div>
 
             {/* ── Bento Row 3: Action Plan Priority Matrix ── */}
-            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2.5 shadow-xl print-break-inside-avoid">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
@@ -645,7 +656,7 @@ export function GBPHealthChecker() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 print-grid-actions gap-3 print:gap-2">
                 {result.actionItems?.map((item, idx) => {
                   const colors = {
                     high: 'bg-rose-500/10 border-rose-500/25 text-rose-300',
@@ -664,11 +675,11 @@ export function GBPHealthChecker() {
                   return (
                     <div
                       key={idx}
-                      className={`flex items-start gap-3 p-3.5 rounded-xl border ${colors} transition-all`}
+                      className={`flex items-start gap-2.5 p-3.5 print:p-2.5 rounded-xl border ${colors} transition-all print-break-inside-avoid`}
                     >
                       <span className="text-xs mt-0.5 shrink-0">{icons}</span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium leading-relaxed">{item.message}</p>
+                        <p className="text-xs font-medium leading-relaxed print:leading-snug">{item.message}</p>
                         <p className="text-[10px] uppercase font-bold tracking-widest mt-1 opacity-70">
                           {item.priority} Priority
                         </p>
@@ -680,10 +691,10 @@ export function GBPHealthChecker() {
             </div>
 
             {/* ── Bento Row 4: ✨ Alain Dave Tapiru's AI Growth Arsenal ── */}
-            <div id="ai-arsenal-section" className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#1c1f20] via-[#161819] to-[#121414] border border-primary-container/30 space-y-6 shadow-2xl relative overflow-hidden">
+            <div id="ai-arsenal-section" className="p-6 sm:p-8 print:p-4 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#1c1f20] via-[#161819] to-[#121414] border border-primary-container/30 space-y-6 print:space-y-4 shadow-2xl relative overflow-hidden print-page-break-before">
               
               {/* Header with Tab Navigation */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-white/10">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 print:gap-1 pb-2 border-b border-white/10 print-break-inside-avoid">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">✨</span>
@@ -692,12 +703,12 @@ export function GBPHealthChecker() {
                     </h3>
                   </div>
                   <p className="text-xs text-on-surface/60">
-                    Personalized 1-click deliverables customized for {result.businessName}.
+                    Personalized deliverables &amp; local ranking assets generated for {result.businessName}.
                   </p>
                 </div>
 
-                {/* Tab Switcher */}
-                <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10">
+                {/* Tab Switcher (Screen Only) */}
+                <div className="no-print flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10">
                   <button
                     type="button"
                     onClick={() => setActiveTab('roadmap')}
@@ -746,61 +757,69 @@ export function GBPHealthChecker() {
               </div>
 
               {/* Tab 1: 30-Day Sprint Roadmap */}
-              {activeTab === 'roadmap' && (
-                <div className="space-y-4 animate-in fade-in duration-200">
-                  <div className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-lg prose-h4:text-sm prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-white prose-a:text-primary-container bg-white/[0.02] p-5 sm:p-7 rounded-2xl border border-white/5 shadow-inner">
-                    <ReactMarkdown>
-                      {result.aiRecommendations || 'Generating custom 30-day strategic plan...'}
-                    </ReactMarkdown>
-                  </div>
+              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'roadmap' ? 'block' : 'hidden print:block'} print:mt-3`}>
+                <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
+                  <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 01</span>
+                  <span className="text-on-surface/40 text-xs">•</span>
+                  <h4 className="font-heading font-bold text-sm text-on-surface">30-Day Sprint Roadmap &amp; Strategic Milestones</h4>
                 </div>
-              )}
+                <div className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-sm prose-h4:text-xs prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-white prose-a:text-primary-container bg-white/[0.02] p-5 sm:p-7 print:p-4 rounded-2xl border border-white/5 shadow-inner">
+                  <ReactMarkdown>
+                    {result.aiRecommendations || 'Generating custom 30-day strategic plan...'}
+                  </ReactMarkdown>
+                </div>
+              </div>
 
               {/* Tab 2: 750-Char SEO Optimized Business Description */}
-              {activeTab === 'description' && (
-                <div className="space-y-4 animate-in fade-in duration-200">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="font-heading text-xs font-bold text-on-surface">
-                        Keyword-Optimized Description
-                      </span>
-                      <span className="text-[11px] font-sans text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                        {result.aiDescription?.length || 0} / 750 Characters
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        copyToClipboard(result.aiDescription || '', 'Business Description')
-                      }
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold hover:brightness-110 active:scale-95 transition-all cursor-pointer shadow-md"
-                    >
-                      <CheckCircle className="w-3.5 h-3.5" />
-                      <span>Copy Description</span>
-                    </button>
+              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'description' ? 'block' : 'hidden print:block'} print-break-inside-avoid print:mt-4`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 02 •</span>
+                    <span className="font-heading text-xs font-bold text-on-surface">
+                      Keyword-Optimized Google Business Description
+                    </span>
+                    <span className="text-[11px] font-sans text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                      {result.aiDescription?.length || 0} / 750 Characters
+                    </span>
                   </div>
-
-                  <div className="p-4 sm:p-5 rounded-xl bg-black/50 border border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all">
-                    {result.aiDescription}
-                  </div>
-                  <p className="text-[11px] text-on-surface/50 italic">
-                    Paste this directly into your Google Business Profile &gt; Edit Profile &gt; Description field.
-                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      copyToClipboard(result.aiDescription || '', 'Business Description')
+                    }
+                    className="no-print inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold hover:brightness-110 active:scale-95 transition-all cursor-pointer shadow-md"
+                  >
+                    <CheckCircle className="w-3.5 h-3.5" />
+                    <span>Copy Description</span>
+                  </button>
                 </div>
-              )}
+
+                <div className="p-4 sm:p-5 print:p-3 rounded-xl bg-black/50 border border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all whitespace-pre-wrap">
+                  {result.aiDescription}
+                </div>
+                <p className="text-[11px] text-on-surface/50 italic">
+                  Paste this directly into your Google Business Profile &gt; Edit Profile &gt; Description field.
+                </p>
+              </div>
 
               {/* Tab 3: Review Response Playbook */}
-              {activeTab === 'templates' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in duration-200">
+              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'templates' ? 'block' : 'hidden print:block'} print-break-inside-avoid print:mt-4`}>
+                <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
+                  <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 03</span>
+                  <span className="text-on-surface/40 text-xs">•</span>
+                  <h4 className="font-heading font-bold text-sm text-on-surface">AI Review Response Playbook</h4>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 print-grid-templates gap-4 print:gap-3">
                   {/* Positive Template */}
-                  <div className="p-5 rounded-2xl bg-black/40 border border-emerald-500/20 space-y-3 flex flex-col justify-between">
+                  <div className="p-5 print:p-3.5 rounded-2xl bg-black/40 border border-emerald-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                          5-Star Review Response
+                          5-Star Review Response (Keyword-Optimized)
                         </span>
                       </div>
-                      <p className="text-xs text-on-surface/80 leading-relaxed select-all">
+                      <p className="text-xs text-on-surface/80 leading-relaxed print:leading-snug select-all">
                         {result.aiReviewTemplates?.positive}
                       </p>
                     </div>
@@ -812,21 +831,21 @@ export function GBPHealthChecker() {
                           '5-Star Template',
                         )
                       }
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
+                      className="no-print inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
                     >
                       <span>Copy 5-Star Template</span>
                     </button>
                   </div>
 
                   {/* Constructive Template */}
-                  <div className="p-5 rounded-2xl bg-black/40 border border-amber-500/20 space-y-3 flex flex-col justify-between">
+                  <div className="p-5 print:p-3.5 rounded-2xl bg-black/40 border border-amber-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
-                          Constructive Review Response
+                          Constructive Review Response (Trust Recovery)
                         </span>
                       </div>
-                      <p className="text-xs text-on-surface/80 leading-relaxed select-all">
+                      <p className="text-xs text-on-surface/80 leading-relaxed print:leading-snug select-all">
                         {result.aiReviewTemplates?.constructive}
                       </p>
                     </div>
@@ -838,59 +857,71 @@ export function GBPHealthChecker() {
                           'Constructive Template',
                         )
                       }
-                      className="inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
+                      className="no-print inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
                     >
                       <span>Copy Constructive Template</span>
                     </button>
                   </div>
                 </div>
-              )}
+              </div>
 
               {/* Tab 4: High-Intent Local Keywords */}
-              {activeTab === 'keywords' && (
-                <div className="space-y-4 animate-in fade-in duration-200">
-                  <span className="text-xs text-on-surface/70 block">
-                    Click any keyword tag below to copy it for your Google Posts, FAQ section, or website meta tags:
-                  </span>
-                  <div className="flex flex-wrap gap-2.5">
-                    {result.aiKeywords?.map((kw, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => copyToClipboard(kw, `Keyword: "${kw}"`)}
-                        className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/40 text-xs font-heading font-medium text-on-surface hover:text-primary-container transition-all cursor-pointer group"
-                      >
-                        <span>{kw}</span>
-                        <ArrowUpRight className="w-3 h-3 opacity-40 group-hover:opacity-100" />
-                      </button>
-                    ))}
+              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'keywords' ? 'block' : 'hidden print:block'} print-break-inside-avoid print:mt-4`}>
+                <div className="flex items-center justify-between pb-1 border-b border-white/5">
+                  <div className="flex items-center gap-2">
+                    <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 04 •</span>
+                    <h4 className="font-heading font-bold text-xs sm:text-sm text-on-surface">
+                      High-Intent Local Keywords Arsenal
+                    </h4>
                   </div>
+                  <span className="text-[11px] font-sans text-on-surface/50">
+                    {result.aiKeywords?.length || 0} Recommended Search Queries
+                  </span>
                 </div>
-              )}
+
+                <span className="text-xs text-on-surface/70 block">
+                  Target local search queries to incorporate into Google Posts, service descriptions, FAQ answers, photo metadata, and website meta tags:
+                </span>
+                <div className="flex flex-wrap gap-2.5 print:gap-1.5">
+                  {result.aiKeywords?.map((kw, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => copyToClipboard(kw, `Keyword: "${kw}"`)}
+                      className="inline-flex items-center gap-2 px-3.5 py-2 print:px-2.5 print:py-1 rounded-xl bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/40 text-xs font-heading font-medium text-on-surface hover:text-primary-container transition-all cursor-pointer group print-break-inside-avoid"
+                    >
+                      <span>{kw}</span>
+                      <ArrowUpRight className="no-print w-3 h-3 opacity-40 group-hover:opacity-100" />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* ── Bento Row 5: Deep Check Validator ── */}
-            <div className="p-6 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 shadow-xl">
+            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid print:mt-3">
               <div className="space-y-1">
                 <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
-                  Recalculate &amp; Unlock
+                  Internal Verification Signals
                 </span>
                 <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
-                  Deep Check — 4 Verification Questions
+                  Signal Calibration &amp; Checklist
                 </h3>
                 <p className="text-xs text-on-surface/60 leading-relaxed">
-                  Google hides specific internal signals. Answer these 4 checks to calibrate your final score.
+                  Internal Google ranking factors that require active profile management.
                 </p>
               </div>
 
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 print:space-y-1.5 pt-2 print:pt-1">
                 {deepCheckQuestions.map((q, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/5"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 print:gap-2 p-3.5 print:p-2.5 rounded-xl bg-white/[0.02] border border-white/5 print-break-inside-avoid"
                   >
                     <span className="text-xs font-medium text-on-surface/90 flex-1">{q}</span>
-                    <div className="flex items-center gap-2 shrink-0">
+                    
+                    {/* Screen View: Interactive Yes/No buttons */}
+                    <div className="no-print flex items-center gap-2 shrink-0">
                       <button
                         type="button"
                         onClick={() => {
@@ -922,11 +953,28 @@ export function GBPHealthChecker() {
                         No
                       </button>
                     </div>
+
+                    {/* Print View: Clean status indicator */}
+                    <div className="hidden print:flex items-center gap-2 shrink-0">
+                      {deepCheckAnswers[idx] === true ? (
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                          ✓ Verified
+                        </span>
+                      ) : deepCheckAnswers[idx] === false ? (
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                          ✗ Needs Action
+                        </span>
+                      ) : (
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-white/10 text-white/70 border border-white/15">
+                          Pending Audit
+                        </span>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 flex flex-col items-center gap-2">
+              <div className="no-print pt-2 flex flex-col items-center gap-2">
                 <button
                   type="button"
                   onClick={handleDeepCheckSubmit}
@@ -970,7 +1018,7 @@ export function GBPHealthChecker() {
             </div>
 
             {/* ── Bento Row 6: Conversion & Consultation Banner ── */}
-            <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/20 via-primary/15 to-transparent border border-primary-container/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div className="p-6 sm:p-8 print:p-4 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/20 via-primary/15 to-transparent border border-primary-container/30 flex flex-col md:flex-row items-center justify-between gap-6 print:gap-3 shadow-xl print-break-inside-avoid print:mt-3">
               <div className="space-y-1.5 text-center md:text-left">
                 <h4 className="font-heading font-extrabold text-lg sm:text-xl text-on-surface">
                   Want Alain to execute this Local SEO sprint for you?
@@ -978,9 +1026,12 @@ export function GBPHealthChecker() {
                 <p className="text-xs sm:text-sm text-on-surface/70 max-w-xl leading-relaxed">
                   I specialize in turning Google Business Profiles into consistent revenue drivers with complete citation cleanup, review velocity systems, and Map Pack dominance.
                 </p>
+                <p className="hidden print:block text-xs text-primary-container font-semibold pt-1">
+                  Contact: alaintapiru@gmail.com • Web: alaintapiru.com • Book: alaintapiru.com/contact/
+                </p>
               </div>
 
-              <div className="flex items-center flex-wrap gap-3 shrink-0">
+              <div className="no-print flex items-center flex-wrap gap-3 shrink-0">
                 <a
                   href="/contact/"
                   className="px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)]"
