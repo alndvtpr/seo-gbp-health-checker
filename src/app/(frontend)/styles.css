@@ -183,30 +183,63 @@ body {
     display: grid !important;
     grid-template-columns: 3.8fr 8.2fr !important;
     gap: 12px !important;
+    width: 100% !important;
+  }
+  .print-grid-row-1 > :first-child {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
+  }
+  .print-grid-row-1 > :last-child {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
   }
 
   .print-grid-row-2 {
     display: grid !important;
     grid-template-columns: 6.8fr 5.2fr !important;
     gap: 12px !important;
+    width: 100% !important;
+  }
+  .print-grid-row-2 > :first-child {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
+  }
+  .print-grid-row-2 > :last-child {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
   }
 
   .print-grid-actions {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 8px !important;
+    width: 100% !important;
+  }
+  .print-grid-actions > * {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
   }
 
   .print-grid-pillars {
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr !important;
     gap: 8px !important;
+    width: 100% !important;
+  }
+  .print-grid-pillars > * {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
   }
 
   .print-grid-templates {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 10px !important;
+    width: 100% !important;
+  }
+  .print-grid-templates > * {
+    grid-column: span 1 / span 1 !important;
+    width: 100% !important;
   }
 
   /* Hide interactive actions and control buttons in printed PDF */

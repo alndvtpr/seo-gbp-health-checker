@@ -160,7 +160,9 @@ export const Navbar = () => {
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-primary-container/10 rounded-full pointer-events-none blur-2xl" />
         <nav className="flex flex-col items-center gap-5 sm:gap-6 relative z-10 w-full px-6 max-w-sm">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href
+            const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
+            const targetPath = (link.href || '/').replace(/\/$/, '') || '/'
+            const isActive = currentPath === targetPath
             return (
               <Link
                 key={link.name}

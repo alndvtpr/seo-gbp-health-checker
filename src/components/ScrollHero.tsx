@@ -20,7 +20,6 @@ export const ScrollHero = () => {
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [mounted, setMounted] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
   // Pure in-memory cache to guarantee 0 forced reflows
   const scrollYRef = useRef(0)
@@ -41,18 +40,11 @@ export const ScrollHero = () => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setReducedMotion(mediaQuery.matches)
 
-    const mobileQuery = window.matchMedia('(max-width: 767px)')
-    setIsMobile(mobileQuery.matches)
-
     const listener = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
-    const mobileListener = (e: MediaQueryListEvent) => setIsMobile(e.matches)
-
     mediaQuery.addEventListener('change', listener)
-    mobileQuery.addEventListener('change', mobileListener)
 
     return () => {
       mediaQuery.removeEventListener('change', listener)
-      mobileQuery.removeEventListener('change', mobileListener)
     }
   }, [])
 
@@ -110,7 +102,7 @@ export const ScrollHero = () => {
 
   // 4. Initial Frame 0 Preload for Instant LCP
   useEffect(() => {
-    if (reducedMotion || isMobile) return
+    if (reducedMotion) return
 
     const imageCache = imagesRef.current
     if (!imageCache[0]) {
@@ -123,9 +115,10 @@ export const ScrollHero = () => {
         if (canvas) {
           const ctx = canvas.getContext('2d')
           if (ctx) {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2)
-            const w = Math.floor(window.innerWidth * dpr)
-            const h = Math.floor(window.innerHeight * dpr)
+            const isMobileView = (window.innerWidth || document.documentElement.clientWidth || 0) <= 768
+            const dpr = Math.min(window.devicePixelRatio || 1, isMobileView ? 1.5 : 2)
+            const w = Math.floor((window.innerWidth || document.documentElement.clientWidth || 0) * dpr)
+            const h = Math.floor((window.innerHeight || document.documentElement.clientHeight || 0) * dpr)
             canvas.width = w
             canvas.height = h
             metricsRef.current.canvasWidth = w
@@ -136,11 +129,11 @@ export const ScrollHero = () => {
         }
       }
     }
-  }, [reducedMotion, isMobile, drawCover])
+  }, [reducedMotion, drawCover])
 
   // 5. Zero-Reflow Scrubbing Engine with Pre-Capture Scroll Sampling
   useEffect(() => {
-    if (!mounted || reducedMotion || isMobile) return
+    if (!mounted || reducedMotion) return
 
     let resizeTimer: ReturnType<typeof setTimeout> | null = null
 
@@ -157,7 +150,8 @@ export const ScrollHero = () => {
     const updateMetrics = () => {
       const winHeight = window.innerHeight || document.documentElement.clientHeight || 0
       const winWidth = window.innerWidth || document.documentElement.clientWidth || 0
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const isMobileView = winWidth <= 768
+      const dpr = Math.min(window.devicePixelRatio || 1, isMobileView ? 1.5 : 2)
       const currentScrollY = window.pageYOffset || 0
       scrollYRef.current = currentScrollY
 
@@ -300,7 +294,7 @@ export const ScrollHero = () => {
       window.removeEventListener('orientationchange', debouncedResize)
       window.removeEventListener('load', updateMetrics)
     }
-  }, [mounted, reducedMotion, isMobile, loadFrame, drawCover])
+  }, [mounted, reducedMotion, loadFrame, drawCover])
 
   const targetContainer = mounted ? document.getElementById('webgl-background-container') : null
 
@@ -311,10 +305,10 @@ export const ScrollHero = () => {
     >
       <link rel="preload" href={getFrameUrl(0)} as="image" fetchPriority="high" />
 
-      {/* Static Fallback / SSR Image (Always rendered on server, active on mobile or reduced motion) */}
+      {/* Static Fallback / SSR Image (Always rendered on server, active before canvas mount or on reduced motion) */}
       <div
         className={`fixed inset-0 w-full h-full z-[-4] pointer-events-none asset-shield ${
-          mounted && !isMobile && !reducedMotion ? 'hidden' : 'block'
+          mounted && !reducedMotion ? 'hidden' : 'block'
         }`}
       >
         <Image
@@ -328,8 +322,8 @@ export const ScrollHero = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,20,0.65)] via-[rgba(18,20,20,0.25)] to-[rgba(18,20,20,0.4)]" />
       </div>
 
-      {/* Background Canvas (Portaled to background container on desktop) */}
-      {targetContainer && !isMobile && !reducedMotion &&
+      {/* Background Canvas (Portaled to background container across desktop and mobile) */}
+      {targetContainer && !reducedMotion &&
         createPortal(
           <canvas
             ref={canvasRef}

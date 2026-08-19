@@ -136,7 +136,7 @@ export const ContactForm = () => {
           placeholder="e.g. John Doe"
           disabled={isSubmitting}
           {...register('name')}
-          className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+          className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
             errors.name
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
               : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
@@ -164,7 +164,7 @@ export const ContactForm = () => {
             placeholder="john@example.com"
             disabled={isSubmitting}
             {...register('email')}
-            className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+            className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
               errors.email
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
                 : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
@@ -190,7 +190,7 @@ export const ContactForm = () => {
             placeholder="https://yourwebsite.com or example.com"
             disabled={isSubmitting}
             {...register('website')}
-            className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+            className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
               errors.website
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
                 : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
@@ -217,7 +217,7 @@ export const ContactForm = () => {
             id="contact-service"
             disabled={isSubmitting}
             {...register('service')}
-            className={`w-full bg-neutral-900/90 border rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 appearance-none cursor-pointer ${
+            className={`w-full bg-neutral-900/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 appearance-none cursor-pointer ${
               errors.service
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
                 : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
@@ -259,7 +259,7 @@ export const ContactForm = () => {
           placeholder="Describe your SEO goals, technical requirements, timeline, or budget..."
           disabled={isSubmitting}
           {...register('message')}
-          className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all resize-none disabled:opacity-50 ${
+          className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all resize-none disabled:opacity-50 ${
             errors.message
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
               : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'

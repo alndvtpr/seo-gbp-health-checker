@@ -455,7 +455,11 @@ export function GBPHealthChecker() {
           </div>
 
           {/* ── Scrollable Dashboard Body ── */}
-          <div id="gbp-modal-scrollable-body" className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-[#0e1010]">
+          <div
+            id="gbp-modal-scrollable-body"
+            className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-[#0e1010] overscroll-contain"
+            style={{ paddingBottom: 'max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)))' }}
+          >
             
             {/* ── Bento Row 1: Score Dial & Health Pillars ── */}
             <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-1 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
@@ -708,11 +712,11 @@ export function GBPHealthChecker() {
                 </div>
 
                 {/* Tab Switcher (Screen Only) */}
-                <div className="no-print flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10">
+                <div className="no-print flex items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 overflow-x-auto max-w-full py-1.5 px-1.5 scrollbar-none">
                   <button
                     type="button"
                     onClick={() => setActiveTab('roadmap')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'roadmap'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-white'
@@ -723,7 +727,7 @@ export function GBPHealthChecker() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('description')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'description'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-white'
@@ -734,7 +738,7 @@ export function GBPHealthChecker() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('templates')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'templates'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-white'
@@ -745,7 +749,7 @@ export function GBPHealthChecker() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('keywords')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'keywords'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-white'
@@ -1031,16 +1035,16 @@ export function GBPHealthChecker() {
                 </p>
               </div>
 
-              <div className="no-print flex items-center flex-wrap gap-3 shrink-0">
+              <div className="no-print flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
                 <a
                   href="/contact/"
-                  className="px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)]"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)] text-center flex items-center justify-center min-h-[44px]"
                 >
                   Book Strategy Call
                 </a>
                 <a
                   href={`mailto:alaintapiru@gmail.com?subject=Local%20SEO%20Inquiry%20for%20${encodeURIComponent(result.businessName)}&body=Hi%20Alain,%0A%0AI%20just%20audited%20my%20business%20(${encodeURIComponent(result.businessName)}%20in%20${encodeURIComponent(result.location)})%20on%20your%20GBP%20tool%20and%20got%20a%20score%20of%20${result.totalScore}/100.%0A%0AI%20would%20like%20to%20discuss%20working%20together.`}
-                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-widest transition-all"
+                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-widest transition-all text-center flex items-center justify-center min-h-[44px]"
                 >
                   Email Audit Summary
                 </a>
@@ -1076,7 +1080,7 @@ export function GBPHealthChecker() {
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[44px] disabled:opacity-50"
+          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Target Location */}
@@ -1089,7 +1093,7 @@ export function GBPHealthChecker() {
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[44px] disabled:opacity-50"
+          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Submit */}

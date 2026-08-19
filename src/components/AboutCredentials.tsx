@@ -90,16 +90,13 @@ export function AboutCredentials() {
     if (selectedCert) {
       window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
     }
   }, [selectedCert, closeModal])
 

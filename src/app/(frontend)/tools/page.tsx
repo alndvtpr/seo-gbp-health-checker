@@ -66,7 +66,7 @@ export default function ToolsPage() {
             <select
               value={exp}
               onChange={(e) => setExp(e.target.value)}
-              className="w-full bg-[#181a1b] border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="w-full bg-[#181a1b] border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             >
               <option value="junior" className="bg-[#181a1b]">Junior (1-2 Years)</option>
               <option value="mid" className="bg-[#181a1b]">Mid-Level (3-4 Years)</option>
@@ -82,7 +82,7 @@ export default function ToolsPage() {
             <select
               value={employment}
               onChange={(e) => setEmployment(e.target.value)}
-              className="w-full bg-[#181a1b] border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="w-full bg-[#181a1b] border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             >
               <option value="fulltime" className="bg-[#181a1b]">Full-time Remote</option>
               <option value="agency" className="bg-[#181a1b]">Local Agency</option>
@@ -97,7 +97,7 @@ export default function ToolsPage() {
             <select
               value={skill}
               onChange={(e) => setSkill(e.target.value)}
-              className="w-full bg-[#181a1b] border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="w-full bg-[#181a1b] border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             >
               <option value="content" className="bg-[#181a1b]">Content &amp; On-Page SEO</option>
               <option value="tech" className="bg-[#181a1b]">Technical SEO &amp; Auditing</option>
@@ -134,13 +134,13 @@ export default function ToolsPage() {
             <input
               type="url"
               placeholder="https://yourwebsite.com"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
               required
             />
             <input
               type="email"
               placeholder="Your Email Address"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
               required
             />
             <button
