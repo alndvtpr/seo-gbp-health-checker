@@ -2,9 +2,9 @@ import React from 'react'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'Free SEO & Digital Growth Calculators | Alain Dave Tapiru',
+  title: 'Free SEO Tools for Website Growth | Alain Dave Tapiru',
   description:
-    'Interactive SEO and local search diagnostic tools for website owners, hiring managers, and SEO specialists in the Philippines.',
+    'Find the SEO opportunities your competitors may miss. Use Alain Dave Tapiru’s free tools to audit, analyze and optimize your site for organic growth.',
   url: 'https://alaintapiru.com/tools/',
 })
 

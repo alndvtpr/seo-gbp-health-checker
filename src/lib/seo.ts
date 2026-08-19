@@ -25,9 +25,10 @@ export const generateMetadata = ({
   url?: string
   image?: string
 }): Metadata => {
-  const siteName = 'Alain Dave Tapiru | Portfolio'
-  const fullTitle = title === siteName ? title : `${title} | ${siteName}`
-  const defaultDesc = 'Multidisciplinary software engineer specializing in Next.js, React, and high-performance WebGL experiences.'
+  const siteName = 'Alain Dave Tapiru'
+  const fullTitle = title
+  const defaultDesc =
+    'Get found by customers searching for what you offer. Alain Dave Tapiru helps businesses in the Philippines grow with technical, on-page and local SEO.'
   const canonicalUrl = normalizeCanonicalUrl(url)
 
   return {

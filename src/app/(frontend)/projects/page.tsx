@@ -4,9 +4,9 @@ import { ProjectsDirectory } from '@/components/ProjectsDirectory'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'Projects & SEO Case Studies | Alain Dave Tapiru',
+  title: 'SEO, Web Design & Development Projects | Alain Dave Tapiru',
   description:
-    'Explore technical SEO case studies, custom WordPress builds, web architecture, and live projects by Alain Dave Tapiru.',
+    'See SEO, web design and development in action. Explore Alain Dave Tapiru’s projects in technical SEO, WordPress, performance and website optimization.',
   url: 'https://alaintapiru.com/projects/',
 })
 

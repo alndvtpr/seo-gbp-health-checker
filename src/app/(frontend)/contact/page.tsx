@@ -4,8 +4,9 @@ import { ContactForm } from '@/components/ContactForm'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'Contact | Alain Dave Tapiru — SEO Specialist & Web Designer',
-  description: 'Get in touch with Alain Dave Tapiru for Technical SEO Audits, AI Web Design, Local SEO Optimization, and Full-Service Search Strategy.',
+  title: 'Contact Alain Dave Tapiru | SEO & Web Development Expert Philippines',
+  description:
+    'Your next customer is searching. Contact Alain Dave Tapiru for SEO, web design and development services in the Philippines built to create opportunities.',
   url: 'https://alaintapiru.com/contact/',
 })
 

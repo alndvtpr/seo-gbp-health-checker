@@ -13,8 +13,9 @@ import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'SEO Specialist Philippines | SEO & Local Search Expert | Alain Tapiru',
-  description: 'Alain Tapiru is an SEO Specialist in the Philippines focused on technical SEO, local SEO, and search-ready websites that help businesses grow their online visibility.',
+  title: 'SEO Specialist Philippines | Technical SEO Expert – Alain Dave Tapiru',
+  description:
+    'Get found by customers searching for what you offer. Alain Dave Tapiru helps businesses in the Philippines grow with technical, on-page and local SEO.',
   url: 'https://alaintapiru.com/',
 })
 

@@ -7,8 +7,9 @@ import { AboutCredentials } from '@/components/AboutCredentials'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'About Me | Alain Dave Tapiru',
-  description: 'Learn more about Alain Dave Tapiru - Technical SEO Specialist, Web Designer, and BSIT Cybersecurity student.',
+  title: 'About Alain Dave Tapiru | SEO Specialist in the Philippines',
+  description:
+    'Meet Alain Dave Tapiru, an SEO Specialist in the Philippines helping businesses earn search visibility, attract qualified traffic and turn searches into growth.',
   url: 'https://alaintapiru.com/about/',
 })
 

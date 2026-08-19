@@ -6,8 +6,9 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { RssButton } from '@/components/RssButton'
 
 export const metadata = generateMetadata({
-  title: 'Blog & SEO Insights | Alain Dave Tapiru',
-  description: 'Articles on Technical SEO, Next.js optimization, cybersecurity headers, and AI workflow automation.',
+  title: 'SEO Blog & Digital Marketing Insights | Alain Dave Tapiru',
+  description:
+    'Discover practical SEO strategies, digital marketing insights and growth tips from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
   url: 'https://alaintapiru.com/blog/',
 })
 

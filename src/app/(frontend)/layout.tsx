@@ -29,7 +29,9 @@ const montserrat = Montserrat({
 })
 
 export const metadata = generateMetadata({
-  title: 'Alain Dave Tapiru | Portfolio',
+  title: 'SEO Specialist Philippines | Technical SEO Expert – Alain Dave Tapiru',
+  description:
+    'Get found by customers searching for what you offer. Alain Dave Tapiru helps businesses in the Philippines grow with technical, on-page and local SEO.',
 })
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

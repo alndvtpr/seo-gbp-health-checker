@@ -9,8 +9,9 @@ import { ServicesWorkflowAndFAQ } from '@/components/ServicesWorkflowAndFAQ'
 import { ServicesFinalCta } from '@/components/ServicesFinalCta'
 
 export const metadata = generateMetadata({
-  title: 'Data-Driven SEO, AEO, GEO & Web Development Services | Alain Tapiru',
-  description: 'Rank on Google and get cited by AI engines like ChatGPT & Perplexity. Fast static/WordPress sites, technical audits, Schema markup, and analytics.',
+  title: 'SEO, Web Design & Development Services | Alain Dave Tapiru',
+  description:
+    'Your website should attract customers, not just look good. Explore SEO, web design and development services built to increase visibility and drive growth.',
   url: 'https://alaintapiru.com/services/',
 })
 
