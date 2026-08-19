@@ -426,6 +426,44 @@ export function GBPHealthChecker() {
       day: 'numeric',
     })
 
+    const defaultActionPlan = `### 🎯 30-Day Local SEO Action Plan for ${result.businessName}
+
+**Location:** ${result.location} | **Audit Score:** ${result.totalScore}/100 (**Grade: ${result.grade}**)
+
+#### 📊 Executive Diagnosis
+${result.businessName} has an active local presence in ${result.location}. Executing this 4-week structured sprint will resolve high-priority ranking gaps, establish consistent review velocity, and drive Map Pack dominance.
+
+#### 🗓️ Week 1: Core Foundation & NAP Integrity (Days 1–7)
+- **Primary & Secondary Categories**: Align primary category to high-intent search volume and add 2–3 relevant subcategories.
+- **Geo-Tagged High-Resolution Media**: Upload 10–15 verified exterior, interior, and team photos.
+- **750-Character Description**: Deploy the keyword-optimized description generated in Deliverable 02.
+
+#### 🗓️ Week 2: Review Velocity & Social Proof (Days 8–14)
+- **100% Review Response Coverage**: Reply to all customer reviews using the tailored response templates in Deliverable 03.
+- **Automated Review Link Flow**: Send direct review shortlinks to recent satisfied customers.
+
+#### 🗓️ Week 3: Service Menu & Google Updates (Days 15–21)
+- **Detailed Service Catalog**: Populate every service with itemized descriptions and pricing indicators.
+- **Weekly Google Posts**: Publish weekly updates and offers featuring the high-intent keywords in Deliverable 04.
+
+#### 🗓️ Week 4: Website Authority & Local Sync (Days 22–30)
+- **Geo-Targeted Meta Tags**: Ensure website title tags and headers mention ${result.location}.
+- **Local Citations & Schema**: Validate NAP consistency across key business directories and verify LocalBusiness JSON-LD markup.`
+
+    const defaultDescription = `Welcome to ${result.businessName}, your premier local business in ${result.location}. We deliver top-rated services, exceptional quality, and dedicated customer care crafted to exceed expectations. Conveniently situated in ${result.location}, our team is committed to unmatched quality. Browse our services, check customer reviews, or contact us today for rates, bookings, and inquiries!`
+
+    const defaultPositiveTemplate = `Hi [Customer Name]! Thank you so much for the 5-star review and kind words about your experience with ${result.businessName} in ${result.location}. Our entire team takes immense pride in delivering top-tier service and memorable customer satisfaction. We truly appreciate your patronage and look forward to welcoming you back soon!`
+
+    const defaultConstructiveTemplate = `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${result.businessName} in ${result.location}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right—please contact our management directly so we can address your concerns immediately.`
+
+    const defaultKeywords = [
+      `${result.businessName} ${result.location}`,
+      `best services in ${result.location}`,
+      `${result.businessName} rates and reviews`,
+      `top rated near me`,
+      `${result.location} contact and booking`,
+    ]
+
     return createPortal(
       <div
         id="gbp-audit-modal-portal"
@@ -797,7 +835,7 @@ export function GBPHealthChecker() {
               </div>
 
               {/* Tab 1: 30-Day Sprint Roadmap */}
-              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'roadmap' ? 'block' : 'hidden print:block'} print:mt-3`}>
+              <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'roadmap' ? 'block' : 'hidden'} print:mt-3`}>
                 <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
                   <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 01</span>
                   <span className="text-on-surface/40 text-xs">•</span>
@@ -805,13 +843,13 @@ export function GBPHealthChecker() {
                 </div>
                 <div className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-sm prose-h4:text-xs prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-white prose-a:text-primary-container bg-white/[0.02] p-5 sm:p-7 print:p-4 rounded-2xl border border-white/5 shadow-inner">
                   <ReactMarkdown>
-                    {result.aiRecommendations || 'Generating custom 30-day strategic plan...'}
+                    {result.aiRecommendations || defaultActionPlan}
                   </ReactMarkdown>
                 </div>
               </div>
 
               {/* Tab 2: 750-Char SEO Optimized Business Description */}
-              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'description' ? 'block' : 'hidden print:block'} print-break-inside-avoid print:mt-4`}>
+              <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'description' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-4`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 02 •</span>
@@ -819,13 +857,13 @@ export function GBPHealthChecker() {
                       Keyword-Optimized Google Business Description
                     </span>
                     <span className="text-[11px] font-sans text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                      {result.aiDescription?.length || 0} / 750 Characters
+                      {(result.aiDescription || defaultDescription).length} / 750 Characters
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() =>
-                      copyToClipboard(result.aiDescription || '', 'Business Description')
+                      copyToClipboard(result.aiDescription || defaultDescription, 'Business Description')
                     }
                     className="no-print inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold hover:brightness-110 active:scale-95 transition-all cursor-pointer shadow-md"
                   >
@@ -835,7 +873,7 @@ export function GBPHealthChecker() {
                 </div>
 
                 <div className="p-4 sm:p-5 print:p-3 rounded-xl bg-black/50 border border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all whitespace-pre-wrap">
-                  {result.aiDescription}
+                  {result.aiDescription || defaultDescription}
                 </div>
                 <p className="text-[11px] text-on-surface/50 italic">
                   Paste this directly into your Google Business Profile &gt; Edit Profile &gt; Description field.
@@ -843,7 +881,7 @@ export function GBPHealthChecker() {
               </div>
 
               {/* Tab 3: Review Response Playbook */}
-              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'templates' ? 'block' : 'hidden print:block'} print-break-inside-avoid print:mt-4`}>
+              <div className={`space-y-3 print:space-y-1.5 print-deliverable-card print-page-break-before ${activeTab === 'templates' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-0`}>
                 <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
                   <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 03</span>
                   <span className="text-on-surface/40 text-xs">•</span>
@@ -860,14 +898,14 @@ export function GBPHealthChecker() {
                         </span>
                       </div>
                       <p className="text-xs text-on-surface/80 leading-relaxed print:leading-snug select-all">
-                        {result.aiReviewTemplates?.positive}
+                        {result.aiReviewTemplates?.positive || defaultPositiveTemplate}
                       </p>
                     </div>
                     <button
                       type="button"
                       onClick={() =>
                         copyToClipboard(
-                          result.aiReviewTemplates?.positive || '',
+                          result.aiReviewTemplates?.positive || defaultPositiveTemplate,
                           '5-Star Template',
                         )
                       }
@@ -886,14 +924,14 @@ export function GBPHealthChecker() {
                         </span>
                       </div>
                       <p className="text-xs text-on-surface/80 leading-relaxed print:leading-snug select-all">
-                        {result.aiReviewTemplates?.constructive}
+                        {result.aiReviewTemplates?.constructive || defaultConstructiveTemplate}
                       </p>
                     </div>
                     <button
                       type="button"
                       onClick={() =>
                         copyToClipboard(
-                          result.aiReviewTemplates?.constructive || '',
+                          result.aiReviewTemplates?.constructive || defaultConstructiveTemplate,
                           'Constructive Template',
                         )
                       }
@@ -906,7 +944,7 @@ export function GBPHealthChecker() {
               </div>
 
               {/* Tab 4: High-Intent Local Keywords */}
-              <div className={`space-y-3 print:space-y-1.5 ${activeTab === 'keywords' ? 'block' : 'hidden print:block'} print-break-inside-avoid print:mt-4`}>
+              <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'keywords' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-4`}>
                 <div className="flex items-center justify-between pb-1 border-b border-white/5">
                   <div className="flex items-center gap-2">
                     <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 04 •</span>
@@ -915,7 +953,7 @@ export function GBPHealthChecker() {
                     </h4>
                   </div>
                   <span className="text-[11px] font-sans text-on-surface/50">
-                    {result.aiKeywords?.length || 0} Recommended Search Queries
+                    {(result.aiKeywords && result.aiKeywords.length > 0 ? result.aiKeywords : defaultKeywords).length} Recommended Search Queries
                   </span>
                 </div>
 
@@ -923,7 +961,7 @@ export function GBPHealthChecker() {
                   Target local search queries to incorporate into Google Posts, service descriptions, FAQ answers, photo metadata, and website meta tags:
                 </span>
                 <div className="flex flex-wrap gap-2.5 print:gap-1.5">
-                  {result.aiKeywords?.map((kw, i) => (
+                  {(result.aiKeywords && result.aiKeywords.length > 0 ? result.aiKeywords : defaultKeywords).map((kw, i) => (
                     <button
                       key={i}
                       type="button"
@@ -1005,8 +1043,8 @@ export function GBPHealthChecker() {
                           ✗ Needs Action
                         </span>
                       ) : (
-                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-white/10 text-white/70 border border-white/15">
-                          Pending Audit
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                          ⚡ Recommended Signal
                         </span>
                       )}
                     </div>

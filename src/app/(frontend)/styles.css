@@ -242,6 +242,16 @@ body {
     width: 100% !important;
   }
 
+  /* Force all deliverable tabs to render in print regardless of screen active state */
+  .print-deliverable-card {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
   /* Hide interactive actions and control buttons in printed PDF */
   .no-print,
   .no-print * {
