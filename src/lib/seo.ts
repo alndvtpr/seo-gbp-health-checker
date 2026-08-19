@@ -36,6 +36,9 @@ export const generateMetadata = ({
     description: description || defaultDesc,
     alternates: {
       canonical: canonicalUrl,
+      types: {
+        'application/rss+xml': 'https://alaintapiru.com/rss.xml',
+      },
     },
     icons: {
       icon: [

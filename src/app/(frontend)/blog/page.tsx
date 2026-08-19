@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { RssButton } from '@/components/RssButton'
 
 export const metadata = generateMetadata({
   title: 'Blog & SEO Insights | Alain Dave Tapiru',
@@ -19,16 +20,19 @@ export default function BlogPage() {
       <Breadcrumbs items={[{ name: 'Blog', url: '/blog/' }]} />
 
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+      <div className="text-center max-w-3xl mx-auto space-y-4">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
           Insights &amp; Articles
         </span>
-        <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface mb-6">
+        <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface">
           Ideas, Experiments &amp; Things Worth Ranking
         </h1>
-        <p className="font-sans text-on-surface/70 text-base leading-relaxed">
+        <p className="font-sans text-on-surface/70 text-base leading-relaxed max-w-2xl mx-auto">
           Technical guides, search engine algorithm updates, and modern web development tutorials.
         </p>
+        <div className="flex justify-center items-center pt-2">
+          <RssButton variant="button" label="Subscribe via RSS Feed" iconSize={16} />
+        </div>
       </div>
 
       {/* Blog Content */}
