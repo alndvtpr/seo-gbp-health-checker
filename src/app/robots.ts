@@ -43,7 +43,10 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/'],
       },
     ],
-    sitemap: 'https://alaintapiru.com/sitemap.xml',
+    sitemap: [
+      'https://alaintapiru.com/sitemap.xml',
+      'https://alaintapiru.com/rss.xml',
+    ],
     host: 'https://alaintapiru.com',
   }
 }

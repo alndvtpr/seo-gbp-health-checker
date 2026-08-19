@@ -43,6 +43,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        {/* RSS 2.0 Delta Feed Autodiscovery */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Alain Dave Tapiru | RSS Feed"
+          href="/rss.xml"
+        />
         <JsonLd />
         {/* LCP Discovery Preload */}
         <link
