@@ -71,7 +71,7 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto relative z-20 space-y-10 sm:space-y-16">
+    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto relative z-20 space-y-10 sm:space-y-16">
       {/* Dynamic JSON-LD Structured Data */}
       <script
         type="application/ld+json"

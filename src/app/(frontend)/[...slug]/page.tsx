@@ -41,7 +41,7 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
   return (
     <main>
       {breadcrumbItems.length > 0 && (
-        <div className="pt-24 sm:pt-32 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20">
+        <div className="pt-28 sm:pt-36 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20">
           <Breadcrumbs items={breadcrumbItems} />
         </div>
       )}

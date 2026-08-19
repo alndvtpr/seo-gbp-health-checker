@@ -13,7 +13,7 @@ export function ServicesHero() {
   return (
     <section
       aria-labelledby="services-hero-heading"
-      className="relative z-20 pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto text-center"
+      className="relative z-20 pt-28 sm:pt-36 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto text-center"
     >
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={[{ name: 'Services', url: '/services/' }]} align="center" className="mb-6" />

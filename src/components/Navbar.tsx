@@ -4,42 +4,20 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Icon } from '@/components/icons'
+import { AnnouncementBanner } from '@/components/AnnouncementBanner'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
-  // Zero-cost scroll detection via IntersectionObserver (Zero JS execution on scroll)
   useEffect(() => {
-    // 1. Create a lightweight invisible 40px sentinel at the top of the body
-    const sentinel = document.createElement('div')
-    sentinel.setAttribute('aria-hidden', 'true')
-    sentinel.style.position = 'absolute'
-    sentinel.style.top = '0'
-    sentinel.style.left = '0'
-    sentinel.style.width = '1px'
-    sentinel.style.height = '40px'
-    sentinel.style.pointerEvents = 'none'
-    sentinel.style.visibility = 'hidden'
-    sentinel.style.zIndex = '-9999'
-    document.body.prepend(sentinel)
-
-    // 2. Observe when the top 40px exits the viewport
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Scrolled is true when the top 40px has left the viewport
-        setScrolled(!entry.isIntersecting)
-      },
-      { root: null, threshold: 0 }
-    )
-
-    observer.observe(sentinel)
-
-    return () => {
-      observer.disconnect()
-      sentinel.remove()
+    const handleScroll = () => {
+      setScrolled((window.pageYOffset || document.documentElement.scrollTop || 0) > 30)
     }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navLinks = [
@@ -65,14 +43,22 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 py-3 sm:py-4 pointer-events-none transition-[padding] duration-300">
-        <div
-          className={`mx-auto flex items-center justify-between pointer-events-auto transition-all duration-300 will-change-transform ${
-            scrolled
-              ? 'bg-[#121414]/95 shadow-2xl py-2 px-5 md:py-2.5 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto translate-y-1 md:translate-y-2'
-              : 'px-4 md:px-12 max-w-7xl bg-transparent border-transparent translate-y-0'
-          }`}
-        >
+      <header className="fixed top-0 left-0 w-full z-50 pointer-events-none flex flex-col">
+        
+        {/* Row 1: Top Announcement Banner (Permanently pinned at top across all scroll depths) */}
+        <div className="w-full pointer-events-auto">
+          <AnnouncementBanner />
+        </div>
+
+        {/* Row 2: Navigation Bar (transforms into floating glass pill when scrolled) */}
+        <div className={`w-full transition-[padding] duration-300 ${scrolled ? 'py-1.5 sm:py-2' : 'py-2.5 sm:py-3.5'}`}>
+          <div
+            className={`mx-auto flex items-center justify-between pointer-events-auto transition-[background-color,box-shadow,padding,border-color,border-radius,max-width,margin] duration-300 ${
+              scrolled
+                ? 'bg-[#121414]/95 shadow-2xl py-2 px-5 md:py-2.5 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto'
+                : 'px-4 md:px-12 max-w-7xl bg-transparent border-transparent'
+            }`}
+          >
           {/* Logo */}
           <Link
             href="/"
@@ -148,6 +134,7 @@ export const Navbar = () => {
           >
             <Icon name={menuOpen ? 'close' : 'menu'} size={24} className="block" />
           </button>
+        </div>
         </div>
       </header>
 

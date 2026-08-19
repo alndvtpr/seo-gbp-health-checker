@@ -27,7 +27,7 @@ export default function ToolsPage() {
   }
 
   return (
-    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-20">
+    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-20">
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={[{ name: 'Tools', url: '/tools/' }]} />
 

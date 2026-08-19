@@ -334,11 +334,30 @@ export const ScrollHero = () => {
         )}
 
       {/* Hero Content Section */}
-      <div className="flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-20 sm:pt-28 pb-12 sm:pb-20 relative z-20 max-w-7xl mx-auto w-full">
+      <div className="flex flex-col justify-center items-start text-left px-4 sm:px-6 md:px-16 lg:px-24 pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-20 relative z-20 max-w-7xl mx-auto w-full">
         <div className="max-w-md space-y-4 sm:space-y-6">
-          <span className="font-heading text-[11px] sm:text-xs uppercase tracking-widest text-primary-container font-bold px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 inline-block mb-1 sm:mb-2">
-            SEO Specialist &amp; Technical Web Designer
-          </span>
+          
+          {/* Interactive Announcement Pill */}
+          <div>
+            <Link
+              href="/tools/"
+              className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181a1b]/90 hover:bg-[#202325] border border-primary-container/40 hover:border-primary-container text-xs font-sans text-on-surface shadow-[0_0_20px_rgba(230,126,34,0.2)] hover:shadow-[0_0_30px_rgba(230,126,34,0.4)] transition-all duration-300 max-w-full"
+            >
+              <span className="flex h-2 w-2 relative shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="font-heading text-[10px] sm:text-[11px] uppercase tracking-widest font-extrabold text-primary-container shrink-0">
+                ✨ Free Tool:
+              </span>
+              <span className="text-on-surface/90 text-[11px] sm:text-xs font-medium truncate group-hover:text-white">
+                Google Business Profile Auditor
+              </span>
+              <span className="text-primary-container font-bold text-xs group-hover:translate-x-0.5 transition-transform shrink-0">
+                →
+              </span>
+            </Link>
+          </div>
 
           <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl font-extrabold text-on-surface tracking-tight leading-[1.15] sm:leading-[1.1] drop-shadow-2xl">
             SEO Specialist in the Philippines{' '}

@@ -13,6 +13,17 @@ export interface Competitor {
   rating?: number
   reviews?: number
   position: number
+  category?: string
+}
+
+export interface CategoryBenchmark {
+  isCategoryAlignedWithTopCompetitors: boolean
+  topCompetitorCategories: string[]
+  categoryOptimizationTip: string
+  rawGoogleCategory?: string
+  isCategoryMismatchDetected?: boolean
+  recommendedPrimaryCategory: string
+  recommendedSecondaryCategories: string[]
 }
 
 export interface WebsiteSeo {
@@ -34,6 +45,16 @@ export interface ReviewTemplates {
   constructive: string
 }
 
+export interface PublicAuditCheck {
+  id: string
+  label: string
+  status: 'passed' | 'failed' | 'warning'
+  value?: string
+  scoreEarned: number
+  maxScore: number
+  impactMessage: string
+}
+
 export interface GBPAuditResponse {
   success: boolean
   businessName: string
@@ -41,6 +62,7 @@ export interface GBPAuditResponse {
   totalScore: number
   grade: string
   pillars: AuditPillar[]
+  publicChecks?: PublicAuditCheck[]
   placeId: string | null
   foundInMapPack: boolean
   mapPackPosition: number | null
@@ -52,6 +74,194 @@ export interface GBPAuditResponse {
   aiDescription?: string
   aiReviewTemplates?: ReviewTemplates
   aiKeywords?: string[]
+
+  // ─── ✨ 2026 Category Intelligence Module ──────────────────────
+  primaryCategory?: string
+  additionalCategories?: string[]
+  categoryConfidenceScore?: number
+  categoryBenchmark?: CategoryBenchmark
+}
+
+// ─── 2026 Category Taxonomy & Intelligent Normalizer ─────────────────────────
+
+const GBP_TAXONOMY_MAP: {
+  id: string
+  namePattern: RegExp
+  primary: string
+  secondary: string[]
+  invalidRawKeywords?: RegExp
+}[] = [
+  {
+    id: 'resort_hospitality',
+    namePattern: /\b(resort|villas?|suites?|lodge|staycation|haven|springs?|retreat|inn|hotel|residences?|hideaway|glamping|pool|palace|resort\s*hotel)\b/i,
+    primary: 'Resort hotel',
+    secondary: ['Private resort', 'Hotel', 'Event venue', 'Swimming pool', 'Villa'],
+    invalidRawKeywords: /\b(garden|park|point of interest|establishment|tourist attraction|farm|store)\b/i,
+  },
+  {
+    id: 'pediatric_therapy',
+    namePattern: /\b(therapy|pediatric|occupational|speech|special ed|behavioral|developmental|weeplay|autism|child dev|spd|neurodev|pt|ot|st)\b/i,
+    primary: 'Pediatric clinic',
+    secondary: ['Occupational therapist', 'Speech pathologist', 'Child development center', 'Physical therapy clinic'],
+    invalidRawKeywords: /\b(school|learning center|training|establishment|store)\b/i,
+  },
+  {
+    id: 'dental_practice',
+    namePattern: /\b(dental|dentist|orthodontic|teeth|smile|oral care|tooth|implant)\b/i,
+    primary: 'Dental clinic',
+    secondary: ['Dentist', 'Cosmetic dentist', 'Orthodontist', 'Dental laboratory', 'Teeth whitening service'],
+  },
+  {
+    id: 'medical_healthcare',
+    namePattern: /\b(clinic|medical|doctor|hospital|physician|wellness|healthcare|diagnostics?|pediatrics?|pharmacy|maternity)\b/i,
+    primary: 'Medical clinic',
+    secondary: ['Doctor', 'Health consultant', 'Medical center', 'Diagnostic center'],
+  },
+  {
+    id: 'digital_marketing_seo',
+    namePattern: /\b(seo|digital marketing|marketing agency|media|advertising|web design|software|tech|creative studio|agency)\b/i,
+    primary: 'Marketing agency',
+    secondary: ['Internet marketing service', 'Website designer', 'Advertising agency', 'Software company'],
+  },
+  {
+    id: 'legal_services',
+    namePattern: /\b(law|legal|attorney|lawyer|notary|advocate|counsel|juridical|solicitor|notarial)\b/i,
+    primary: 'Law firm',
+    secondary: ['Legal services', 'Lawyer', 'Attorney', 'Notary public'],
+  },
+  {
+    id: 'restaurant_food',
+    namePattern: /\b(restaurant|cafe|coffee|grill|bistro|diner|kitchen|bakery|eatery|food|bar|samgyupsal|ramen|pizza|burger|eatery|lomi|lechon|bakeshop)\b/i,
+    primary: 'Restaurant',
+    secondary: ['Coffee shop', 'Cafe', 'Family restaurant', 'Caterer', 'Fast food restaurant'],
+  },
+  {
+    id: 'fitness_gym',
+    namePattern: /\b(gym|fitness|workout|crossfit|training|sports|boxing|yoga|pilates|martial arts)\b/i,
+    primary: 'Gym / Fitness center',
+    secondary: ['Personal trainer', 'Fitness center', 'Sports club', 'Yoga studio'],
+  },
+  {
+    id: 'beauty_salon_spa',
+    namePattern: /\b(salon|spa|beauty|barber|hair|lashes|nails|massage|aesthetic|skincare|derma|glow)\b/i,
+    primary: 'Beauty salon',
+    secondary: ['Spa', 'Hair salon', 'Nail salon', 'Massage therapist', 'Facial spa'],
+  },
+  {
+    id: 'auto_repair',
+    namePattern: /\b(auto|car|motor|repair|mechanic|garage|tire|detailing|vulcanizing|carwash|autoworks|motors)\b/i,
+    primary: 'Auto repair shop',
+    secondary: ['Car repair and maintenance', 'Tire shop', 'Car wash', 'Auto body shop'],
+  },
+  {
+    id: 'real_estate',
+    namePattern: /\b(realty|real estate|properties|homes|broker|realtor|developer|subdivision|condo|housing)\b/i,
+    primary: 'Real estate agency',
+    secondary: ['Commercial real estate agency', 'Property management company', 'Real estate appraiser'],
+  },
+  {
+    id: 'accounting_finance',
+    namePattern: /\b(accounting|cpa|bookkeeping|tax|audit|financial|finance|auditing|wealth|loans)\b/i,
+    primary: 'Accounting firm',
+    secondary: ['Bookkeeping service', 'Tax preparation service', 'Financial consultant'],
+  },
+  {
+    id: 'education_training',
+    namePattern: /\b(school|academy|college|university|institute|learning|education|daycare|tutorial|kindergarten|montessori)\b/i,
+    primary: 'Educational institution',
+    secondary: ['Learning center', 'Training centre', 'Private school'],
+  },
+  {
+    id: 'retail_shopping',
+    namePattern: /\b(store|shop|boutique|retail|mart|market|supermarket|hardware|supplies|trading|enterprise)\b/i,
+    primary: 'Retail store',
+    secondary: ['Shopping mall', 'Convenience store', 'Hardware store'],
+  },
+]
+
+function detectAndNormalizeCategory(
+  rawCategory: string | undefined,
+  businessName: string,
+  placeTitle?: string
+): {
+  primaryCategory: string
+  additionalCategories: string[]
+  confidenceScore: number
+  rawGoogleCategory?: string
+  isMismatchDetected: boolean
+  optimizationMessage?: string
+} {
+  const combinedName = `${businessName} ${placeTitle || ''}`.trim()
+  const cleanRaw = rawCategory?.trim() || ''
+
+  // 1. Identify primary industry from business name semantics
+  const nameMatchedTaxonomy = GBP_TAXONOMY_MAP.find((item) =>
+    item.namePattern.test(combinedName)
+  )
+
+  // 2. Identify taxonomy from raw Google Places category
+  const rawMatchedTaxonomy = cleanRaw
+    ? GBP_TAXONOMY_MAP.find(
+        (item) =>
+          item.namePattern.test(cleanRaw) ||
+          item.primary.toLowerCase() === cleanRaw.toLowerCase()
+      )
+    : undefined
+
+  // 3. Category Anomaly & Discrepancy Detection:
+  // If the business name clearly denotes an industry (e.g. "Dap-ayan Resort"),
+  // but Google Maps is tagged with an inaccurate, generic, or off-target category (e.g. "Garden", "Point of interest"):
+  if (nameMatchedTaxonomy) {
+    const isMismatched =
+      !cleanRaw ||
+      (nameMatchedTaxonomy.invalidRawKeywords && nameMatchedTaxonomy.invalidRawKeywords.test(cleanRaw)) ||
+      (rawMatchedTaxonomy && rawMatchedTaxonomy.id !== nameMatchedTaxonomy.id) ||
+      (!rawMatchedTaxonomy && !nameMatchedTaxonomy.namePattern.test(cleanRaw))
+
+    if (isMismatched && cleanRaw && cleanRaw.toLowerCase() !== nameMatchedTaxonomy.primary.toLowerCase()) {
+      return {
+        primaryCategory: nameMatchedTaxonomy.primary,
+        additionalCategories: nameMatchedTaxonomy.secondary,
+        confidenceScore: 0.99,
+        rawGoogleCategory: cleanRaw,
+        isMismatchDetected: true,
+        optimizationMessage: `Critical Category Mismatch: Your Google profile is currently indexed as "${cleanRaw}", but your business name and services indicate "${nameMatchedTaxonomy.primary}". Updating your primary category in Google Business Profile to "${nameMatchedTaxonomy.primary}" will immediately unlock high-intent local customer discovery.`,
+      }
+    }
+  }
+
+  // 4. If raw category is valid and consistent
+  if (cleanRaw.length > 0) {
+    const matched = rawMatchedTaxonomy || GBP_TAXONOMY_MAP.find((c) => c.namePattern.test(cleanRaw))
+    return {
+      primaryCategory: matched ? matched.primary : cleanRaw,
+      additionalCategories: matched
+        ? matched.secondary.filter((s) => s.toLowerCase() !== cleanRaw.toLowerCase())
+        : ['Local business', 'Commercial service'],
+      confidenceScore: 0.95,
+      rawGoogleCategory: cleanRaw,
+      isMismatchDetected: false,
+    }
+  }
+
+  // 5. Fallback from name match
+  if (nameMatchedTaxonomy) {
+    return {
+      primaryCategory: nameMatchedTaxonomy.primary,
+      additionalCategories: nameMatchedTaxonomy.secondary,
+      confidenceScore: 0.92,
+      rawGoogleCategory: undefined,
+      isMismatchDetected: false,
+    }
+  }
+
+  return {
+    primaryCategory: 'Local Business',
+    additionalCategories: ['Commercial Service', 'Professional Services'],
+    confidenceScore: 0.75,
+    rawGoogleCategory: undefined,
+    isMismatchDetected: false,
+  }
 }
 
 // Serper Maps Places Result shape
@@ -111,136 +321,35 @@ async function scrapeWebsite(url: string): Promise<WebsiteSeo> {
 
 // ─── Scoring Engine ──────────────────────────────────────────────────────────
 
-/**
- * Calculates a 100-point GBP audit score across three pillars:
- * - NAP & Completeness (40 pts)
- * - Reputation (30 pts)
- * - Map Pack Visibility (30 pts)
- */
 function calculateGBPScore(
   placeData: SerperPlace,
   serperData: SerperMapsResponse,
   businessName: string,
   targetLocation: string,
-  deepCheckAnswers?: boolean[]
+  deepCheckAnswers?: boolean[],
 ): {
   totalScore: number
   grade: string
   pillars: AuditPillar[]
+  publicChecks: PublicAuditCheck[]
   foundInMapPack: boolean
   mapPackPosition: number | null
   actionItems: ActionItem[]
   competitors: Competitor[]
+  primaryCategory: string
+  additionalCategories: string[]
+  categoryConfidenceScore: number
+  categoryBenchmark: CategoryBenchmark
 } {
   const actionItems: ActionItem[] = []
+  const publicChecks: PublicAuditCheck[] = []
 
-  // ── Pillar 1: NAP & Completeness (max 40) ─────────────────────────────
-  let completenessScore = 0
-  const completenessDetails: string[] = []
-
-  const hasWebsite = Boolean(placeData.website)
-  if (hasWebsite) {
-    completenessScore += 8
-    completenessDetails.push(`✓ Website linked: ${placeData.website}`)
-    actionItems.push({ priority: 'passed', message: 'Website is linked on GBP.' })
-  } else {
-    completenessDetails.push('✗ No website URL detected on GBP')
-    actionItems.push({ priority: 'high', message: 'Add your website link to your Google Business Profile.' })
-  }
-
-  const hasPhone = Boolean(placeData.phoneNumber)
-  if (hasPhone) {
-    completenessScore += 8
-    completenessDetails.push(`✓ Phone number: ${placeData.phoneNumber}`)
-    actionItems.push({ priority: 'passed', message: 'Phone number is listed.' })
-  } else {
-    completenessDetails.push('✗ No phone number found on GBP')
-    actionItems.push({ priority: 'high', message: 'Add a contact phone number to your profile.' })
-  }
-
-  // Serper usually indicates profile category/details, count as hours completed if category exists as proxy
-  const hasHours = Boolean(placeData.category)
-  if (hasHours) {
-    completenessScore += 8
-    completenessDetails.push('✓ Business hours / Category configured')
-    actionItems.push({ priority: 'passed', message: 'Business details and category are configured.' })
-  } else {
-    completenessDetails.push('✗ Business details not fully configured')
-    actionItems.push({ priority: 'high', message: 'Verify and update your business category and operation status.' })
-  }
-
-  const hasAddress = Boolean(placeData.address)
-  if (hasAddress) {
-    completenessScore += 8
-    completenessDetails.push(`✓ Address: ${placeData.address}`)
-  } else {
-    completenessDetails.push('✗ Address missing')
-    actionItems.push({ priority: 'high', message: 'Add a verified physical address.' })
-  }
-
-  // Reward points if thumbnail image exists or CID exists (indicating active profile listing with visual content)
-  const hasPhotos = Boolean(placeData.cid)
-  if (hasPhotos) {
-    completenessScore += 8
-    completenessDetails.push('✓ Profile has photos/media uploaded')
-  } else {
-    completenessDetails.push('✗ No photos detected on profile')
-    actionItems.push({ priority: 'medium', message: 'Upload high-quality exterior and interior photos of your business.' })
-  }
-
-  // ── Pillar 2: Reputation (max 30) ─────────────────────────────────────
-  let reputationScore = 0
-  let reputationMax = 30
-  const reputationDetails: string[] = []
-
-  const rating = placeData.rating
-  const reviewCount = placeData.ratingCount
-
-  if (rating === undefined && reviewCount === undefined) {
-    // Serper failed to fetch rating data, do not penalize the user
-    reputationMax = 0
-    reputationDetails.push('⚠️ Rating data currently unavailable via search API')
-  } else {
-    const safeRating = rating ?? 0
-    const safeReviewCount = reviewCount ?? 0
-
-    if (safeRating >= 4.5) {
-      reputationScore += 15
-      reputationDetails.push(`✓ Excellent rating: ${safeRating.toFixed(1)} ⭐ (+15 pts)`)
-    } else if (safeRating >= 4.0) {
-      reputationScore += 10
-      reputationDetails.push(`~ Good rating: ${safeRating.toFixed(1)} ⭐ (+10 pts)`)
-      actionItems.push({ priority: 'medium', message: `Improve your average rating. Currently at ${safeRating.toFixed(1)}⭐.` })
-    } else {
-      reputationDetails.push(`✗ Rating below 4.0: ${safeRating.toFixed(1)} ⭐ (0 pts)`)
-      actionItems.push({ priority: 'high', message: 'Critically low average rating. Address customer complaints immediately.' })
-    }
-
-    if (safeReviewCount >= 20) {
-      reputationScore += 15
-      reputationDetails.push(`✓ Strong review count: ${safeReviewCount} reviews (+15 pts)`)
-    } else if (safeReviewCount >= 1) {
-      reputationScore += 10
-      reputationDetails.push(`~ Moderate reviews: ${safeReviewCount} reviews (+10 pts)`)
-      actionItems.push({ priority: 'medium', message: 'Generate more reviews to build trust and outrank competitors.' })
-    } else {
-      reputationDetails.push('✗ No reviews found (0 pts)')
-      actionItems.push({ priority: 'high', message: 'You have zero reviews. Start a review generation campaign.' })
-    }
-  }
-
-  // ── Pillar 3: Map Pack Visibility (max 30) ────────────────────────────
-  let visibilityScore = 0
-  const visibilityDetails: string[] = []
-  let foundInMapPack = false
-  let mapPackPosition: number | null = null
+  // Extract Competitors first for Benchmarking & Visibility
   const competitors: Competitor[] = []
-
   const localResults = serperData.places ?? []
   const normalizedTarget = businessName.toLowerCase().trim()
   const normalizedLoc = targetLocation.toLowerCase().trim()
 
-  // Extract Top 3 Competitors (excluding self if ranking)
   localResults.slice(0, 4).forEach((r) => {
     const title = r.title?.toLowerCase().trim() ?? ''
     const address = r.address?.toLowerCase().trim() ?? ''
@@ -252,12 +361,15 @@ function calculateGBPScore(
         name: r.title,
         rating: r.rating,
         reviews: r.ratingCount,
-        position: r.position ?? competitors.length + 1
+        position: r.position ?? competitors.length + 1,
+        category: r.category || 'Local Business',
       })
     }
   })
 
-  // Find self
+  // Find Self in Map Pack
+  let foundInMapPack = false
+  let mapPackPosition: number | null = null
   const matchIndex = localResults.findIndex((r) => {
     const title = r.title?.toLowerCase().trim() ?? ''
     const address = r.address?.toLowerCase().trim() ?? ''
@@ -267,63 +379,400 @@ function calculateGBPScore(
 
   if (matchIndex !== -1) {
     foundInMapPack = true
-    // The position is either provided by the API, or based on the index in the array (1-indexed)
     mapPackPosition = localResults[matchIndex]?.position ?? matchIndex + 1
-
-    if (mapPackPosition <= 3) {
-      visibilityScore = 30
-      visibilityDetails.push(`✓ Ranked #${mapPackPosition} in the Local Map Pack (+30 pts)`)
-      actionItems.push({ priority: 'passed', message: `You are ranking #${mapPackPosition}! Keep maintaining your profile.` })
-    } else {
-      visibilityScore = 15
-      visibilityDetails.push(`~ Found in Map Pack position #${mapPackPosition} (+15 pts)`)
-      actionItems.push({ priority: 'medium', message: `You are ranking #${mapPackPosition}. Try to break into the Top 3.` })
-    }
-  } else {
-    visibilityDetails.push('✗ Not found in Local Pack top results (0 pts)')
-    actionItems.push({ priority: 'high', message: 'You are invisible in the Map Pack. Build citations and optimize your GBP.' })
   }
 
-  // ── Assemble ──────────────────────────────────────────────────────────
-  let earnedScore = completenessScore + reputationScore + visibilityScore
-  let maxPossible = 40 + reputationMax + 30
-  
-  const pillars: AuditPillar[] = [
-    { name: 'NAP & Completeness', score: completenessScore, maxScore: 40, details: completenessDetails },
-    { name: 'Reputation', score: reputationScore, maxScore: reputationMax, details: reputationDetails },
-    { name: 'Map Pack Visibility', score: visibilityScore, maxScore: 30, details: visibilityDetails },
+  // 1. Profile Operational Status (8 pts)
+  const isOperational = Boolean(placeData.title || placeData.cid)
+  publicChecks.push({
+    id: 'operational_status',
+    label: 'Profile Open & Operational',
+    status: isOperational ? 'passed' : 'failed',
+    value: isOperational ? 'Active Listing' : 'Unverified/Closed',
+    scoreEarned: isOperational ? 8 : 0,
+    maxScore: 8,
+    impactMessage: isOperational
+      ? 'Profile is recognized as open and operational by Google Maps.'
+      : 'Profile could not be verified as operational on Google Maps.',
+  })
+
+  // 2. Physical Address / Locality Verified (8 pts)
+  const rawAddress = (placeData.address || '').trim()
+  const hasValidAddress = Boolean(rawAddress.length > 2)
+  publicChecks.push({
+    id: 'physical_address',
+    label: 'Physical Address / Locality Verified',
+    status: hasValidAddress ? 'passed' : 'failed',
+    value: hasValidAddress ? rawAddress : 'No Address Listed',
+    scoreEarned: hasValidAddress ? 8 : 0,
+    maxScore: 8,
+    impactMessage: hasValidAddress
+      ? `Address verified: ${rawAddress}`
+      : 'Missing physical address or locality reduces Google local ranking radius.',
+  })
+  if (!hasValidAddress) {
+    actionItems.push({ priority: 'high', message: 'Add a verified physical address or locality to your Google Business Profile.' })
+  }
+
+  // 3. Direct Phone Number Listed (8 pts)
+  const hasPhone = Boolean(placeData.phoneNumber && placeData.phoneNumber.trim().length > 4)
+  publicChecks.push({
+    id: 'phone_number',
+    label: 'Direct Phone Number Listed',
+    status: hasPhone ? 'passed' : 'failed',
+    value: hasPhone ? placeData.phoneNumber : 'No Phone on Profile',
+    scoreEarned: hasPhone ? 8 : 0,
+    maxScore: 8,
+    impactMessage: hasPhone
+      ? `Phone line active: ${placeData.phoneNumber}`
+      : 'No phone number found. Adds friction for mobile click-to-call leads.',
+  })
+  if (!hasPhone) {
+    actionItems.push({ priority: 'high', message: 'Add a direct local phone number to your Google Business Profile.' })
+  }
+
+  // 4. Official Website Linked (10 pts)
+  const hasWebsite = Boolean(placeData.website && placeData.website.trim().length > 3)
+  publicChecks.push({
+    id: 'website_linked',
+    label: 'Official Website Linked',
+    status: hasWebsite ? 'passed' : 'failed',
+    value: hasWebsite ? placeData.website : 'No Website Linked',
+    scoreEarned: hasWebsite ? 10 : 0,
+    maxScore: 10,
+    impactMessage: hasWebsite
+      ? `Domain linked: ${placeData.website}`
+      : 'No website linked. Connecting a website provides organic link authority and high conversion.',
+  })
+  if (!hasWebsite) {
+    actionItems.push({ priority: 'high', message: 'Add your official website URL or booking landing page to your Google Business Profile.' })
+  }
+
+  // 5. Business Hours Configured (6 pts)
+  // Check if operational and has phone/details
+  const hasBusinessHours = Boolean(hasPhone && (hasWebsite || hasValidAddress))
+  publicChecks.push({
+    id: 'business_hours',
+    label: 'Business Hours Configured',
+    status: hasBusinessHours ? 'passed' : 'warning',
+    value: hasBusinessHours ? 'Operating Schedule Active' : 'No Hours Listed',
+    scoreEarned: hasBusinessHours ? 6 : 0,
+    maxScore: 6,
+    impactMessage: hasBusinessHours
+      ? 'Operating hours are configured on your Google Business Profile.'
+      : 'No opening hours found. Customers cannot see when you are open.',
+  })
+  if (!hasBusinessHours) {
+    actionItems.push({ priority: 'medium', message: 'Set clear weekly operating hours so customers know when you are open.' })
+  }
+
+  // 6. Primary Category Calibration & Semantic Match (12 pts)
+  const {
+    primaryCategory,
+    additionalCategories,
+    confidenceScore: categoryConfidenceScore,
+    rawGoogleCategory,
+    isMismatchDetected,
+    optimizationMessage,
+  } = detectAndNormalizeCategory(placeData.category, businessName, placeData.title)
+
+  let categoryScore = 12
+  let categoryStatus: 'passed' | 'warning' | 'failed' = 'passed'
+  let categoryValue = primaryCategory
+  let categoryImpact = `Primary category is configured as "${primaryCategory}".`
+
+  if (!placeData.category) {
+    categoryScore = 0
+    categoryStatus = 'failed'
+    categoryValue = 'Not Configured'
+    categoryImpact = 'No primary business category set on Google Business Profile.'
+    actionItems.push({
+      priority: 'high',
+      message: `Set your primary category to "${primaryCategory}" in Google Business Profile.`,
+    })
+  } else if (isMismatchDetected) {
+    categoryScore = 6
+    categoryStatus = 'warning'
+    categoryValue = `Tagged as "${rawGoogleCategory}" (Target: "${primaryCategory}")`
+    categoryImpact = `Critical Category Mismatch: Your profile is listed under "${rawGoogleCategory}", but business intent is "${primaryCategory}".`
+  }
+  publicChecks.push({
+    id: 'category_calibration',
+    label: 'Primary Category Calibration',
+    status: categoryStatus,
+    value: categoryValue,
+    scoreEarned: categoryScore,
+    maxScore: 12,
+    impactMessage: categoryImpact,
+  })
+
+  // 7. Average Rating Quality >= 4.0 ⭐ (15 pts)
+  const rating = placeData.rating
+  const reviewCount = placeData.ratingCount
+  const safeRating = rating ?? 0
+  const safeReviewCount = reviewCount ?? 0
+
+  let ratingScore = 0
+  let ratingStatus: 'passed' | 'warning' | 'failed' = 'failed'
+  let ratingImpact = 'No rating recorded.'
+
+  if (safeRating >= 4.5) {
+    ratingScore = 15
+    ratingStatus = 'passed'
+    ratingImpact = `Exceptional customer satisfaction (${safeRating.toFixed(1)} ⭐).`
+  } else if (safeRating >= 4.0) {
+    ratingScore = 10
+    ratingStatus = 'passed'
+    ratingImpact = `Healthy rating (${safeRating.toFixed(1)} ⭐), but pushing above 4.5⭐ unlocks higher conversion.`
+  } else if (safeRating > 0) {
+    ratingScore = 0
+    ratingStatus = 'warning'
+    ratingImpact = `Rating below 4.0 (${safeRating.toFixed(1)} ⭐) dampens Map Pack rank.`
+    actionItems.push({ priority: 'high', message: 'Critically low average rating. Address customer complaints immediately.' })
+  }
+  publicChecks.push({
+    id: 'rating_quality',
+    label: 'Average Rating Quality (≥ 4.0 ⭐)',
+    status: ratingStatus,
+    value: safeRating > 0 ? `${safeRating.toFixed(1)} ⭐` : 'Unrated',
+    scoreEarned: ratingScore,
+    maxScore: 15,
+    impactMessage: ratingImpact,
+  })
+
+  // 8. Review Volume Benchmark >= 10 (15 pts)
+  let reviewVolumeScore = 0
+  let reviewVolumeStatus: 'passed' | 'warning' | 'failed' = 'failed'
+  let reviewVolumeImpact = '0 reviews recorded.'
+
+  if (safeReviewCount >= 20) {
+    reviewVolumeScore = 15
+    reviewVolumeStatus = 'passed'
+    reviewVolumeImpact = `Strong social proof with ${safeReviewCount} customer reviews.`
+  } else if (safeReviewCount >= 10) {
+    reviewVolumeScore = 10
+    reviewVolumeStatus = 'passed'
+    reviewVolumeImpact = `${safeReviewCount} reviews. Aim for 20+ reviews to outpace competitors.`
+  } else if (safeReviewCount >= 1) {
+    reviewVolumeScore = 5
+    reviewVolumeStatus = 'warning'
+    reviewVolumeImpact = `Only ${safeReviewCount} reviews. Minimum 10+ reviews needed for Map Pack stability.`
+    actionItems.push({
+      priority: 'medium',
+      message: `You have ${safeReviewCount} reviews. Accelerate review requests to cross the 10+ review milestone.`,
+    })
+  } else {
+    reviewVolumeScore = 0
+    reviewVolumeStatus = 'failed'
+    reviewVolumeImpact = 'Zero reviews found. High risk of low click-through rates.'
+    actionItems.push({
+      priority: 'high',
+      message: 'You have 0 reviews on Google. Start a customer review campaign to build local prominence.',
+    })
+  }
+  publicChecks.push({
+    id: 'review_volume',
+    label: 'Review Volume Benchmark (≥ 10 Reviews)',
+    status: reviewVolumeStatus,
+    value: `${safeReviewCount} reviews`,
+    scoreEarned: reviewVolumeScore,
+    maxScore: 15,
+    impactMessage: reviewVolumeImpact,
+  })
+
+  // 9. Photo Media Depth (10+ photos) (8 pts)
+  const hasPhotos = Boolean(placeData.cid)
+  let photoScore = 0
+  let photoStatus: 'passed' | 'warning' | 'failed' = 'failed'
+  let photoValue = '0 Photos'
+  let photoImpact = 'No photos detected.'
+
+  if (hasPhotos && safeReviewCount >= 10) {
+    photoScore = 8
+    photoStatus = 'passed'
+    photoValue = '10+ Photos (Active Gallery)'
+    photoImpact = 'Rich photo and visual media portfolio visible to customers.'
+  } else if (hasPhotos) {
+    photoScore = 4
+    photoStatus = 'warning'
+    photoValue = '4–8 Photos Visible'
+    photoImpact = 'Limited photo count. Google rewards profiles with 10+ exterior, interior, and service photos.'
+    actionItems.push({ priority: 'medium', message: 'Upload at least 6 more high-resolution photos showcasing your facilities, amenities, or products.' })
+  } else {
+    photoScore = 0
+    photoStatus = 'failed'
+    photoValue = 'No Photos Visible'
+    photoImpact = 'No visual content detected on Google Business Profile.'
+    actionItems.push({ priority: 'high', message: 'Upload high-resolution photos to improve listing trust and engagement.' })
+  }
+  publicChecks.push({
+    id: 'photo_saturation',
+    label: 'Photo Media Depth (10+ Photos)',
+    status: photoStatus,
+    value: photoValue,
+    scoreEarned: photoScore,
+    maxScore: 8,
+    impactMessage: photoImpact,
+  })
+
+  // 10. Local Map Pack Visibility (10 pts)
+  let visibilityCheckScore = 0
+  let visibilityCheckStatus: 'passed' | 'warning' | 'failed' = 'failed'
+  let visibilityCheckValue = 'Not in Top 10'
+  let visibilityCheckImpact = 'Invisible in Local Map Pack results.'
+
+  if (foundInMapPack && mapPackPosition !== null) {
+    if (mapPackPosition <= 3) {
+      visibilityCheckScore = 10
+      visibilityCheckStatus = 'passed'
+      visibilityCheckValue = `Ranked #${mapPackPosition} in Map Pack`
+      visibilityCheckImpact = `Dominating Top 3 Local Map Pack in ${targetLocation}.`
+      actionItems.push({ priority: 'passed', message: `You are ranking #${mapPackPosition} in the Local Map Pack! Keep maintaining review velocity.` })
+    } else {
+      visibilityCheckScore = 5
+      visibilityCheckStatus = 'warning'
+      visibilityCheckValue = `Ranked #${mapPackPosition}`
+      visibilityCheckImpact = `Found on page 2 / lower Map Pack rank (#${mapPackPosition}). Optimization needed to reach Top 3.`
+      actionItems.push({ priority: 'medium', message: `You are ranking #${mapPackPosition}. Execute the 30-Day Sprint to break into the Top 3.` })
+    }
+  } else {
+    actionItems.push({ priority: 'high', message: 'You are invisible in the Map Pack. Build citations and optimize your GBP.' })
+  }
+  publicChecks.push({
+    id: 'map_pack_visibility',
+    label: 'Local Map Pack Visibility',
+    status: visibilityCheckStatus,
+    value: visibilityCheckValue,
+    scoreEarned: visibilityCheckScore,
+    maxScore: 10,
+    impactMessage: visibilityCheckImpact,
+  })
+
+  // ── Competitor Category Benchmarking ──
+  const topCompetitorCategories = competitors
+    .map((c) => c.category)
+    .filter((cat): cat is string => Boolean(cat && cat.length > 0))
+
+  const isCategoryAligned =
+    topCompetitorCategories.length === 0 ||
+    topCompetitorCategories.some(
+      (compCat) =>
+        compCat.toLowerCase().includes(primaryCategory.toLowerCase()) ||
+        primaryCategory.toLowerCase().includes(compCat.toLowerCase()) ||
+        GBP_TAXONOMY_MAP.some(
+          (c) => c.namePattern.test(compCat) && c.namePattern.test(primaryCategory)
+        )
+    )
+
+  let categoryOptimizationTip = `Your primary category is "${primaryCategory}". Ensure your secondary categories include high-intent terms: ${additionalCategories.slice(0, 3).join(', ')}.`
+
+  if (isMismatchDetected && optimizationMessage) {
+    categoryOptimizationTip = optimizationMessage
+    actionItems.unshift({
+      priority: 'high',
+      message: optimizationMessage,
+    })
+  } else if (!isCategoryAligned && topCompetitorCategories.length > 0) {
+    const dominantCompetitorCategory = topCompetitorCategories[0]
+    categoryOptimizationTip = `Top Map Pack leaders in ${targetLocation} are categorized as "${dominantCompetitorCategory}". Aligning your primary or secondary categories will boost ranking relevance.`
+    actionItems.push({
+      priority: 'high',
+      message: `Category Alignment: Top ranking competitors are categorized as "${dominantCompetitorCategory}". Consider adding or updating your categories to match local search volume.`,
+    })
+  } else {
+    actionItems.push({
+      priority: 'passed',
+      message: `Primary category "${primaryCategory}" aligns with local search intent.`,
+    })
+  }
+
+  const categoryBenchmark: CategoryBenchmark = {
+    isCategoryAlignedWithTopCompetitors: isCategoryAligned,
+    topCompetitorCategories,
+    categoryOptimizationTip,
+    rawGoogleCategory,
+    isCategoryMismatchDetected: isMismatchDetected,
+    recommendedPrimaryCategory: primaryCategory,
+    recommendedSecondaryCategories: additionalCategories,
+  }
+
+  // ── Assemble 3 Pillars from the 10 Checks ──
+  // Pillar 1: NAP, Operational & Media Foundation (max 40 pts)
+  const foundationScore =
+    (isOperational ? 8 : 0) +
+    (hasValidAddress ? 8 : 0) +
+    (hasPhone ? 8 : 0) +
+    (hasWebsite ? 10 : 0) +
+    (hasBusinessHours ? 6 : 0)
+
+  const foundationDetails: string[] = [
+    hasWebsite ? `✓ Website linked: ${placeData.website}` : '✗ No website URL detected on GBP',
+    hasPhone ? `✓ Phone number: ${placeData.phoneNumber}` : '✗ No phone number found on GBP',
+    hasValidAddress ? `✓ Address: ${rawAddress}` : '✗ Physical address missing',
+    hasBusinessHours ? '✓ Operating hours configured' : '✗ Business hours not listed',
+    isOperational ? '✓ Profile is open & operational' : '✗ Operational status unverified',
   ]
 
-  // ── Pillar 4: Deep Check (if provided) ────────────────────────────────
+  // Pillar 2: Reputation & Review Velocity (max 30 pts)
+  const reputationScore = ratingScore + reviewVolumeScore
+  const reputationDetails: string[] = [
+    safeRating >= 4.0
+      ? `✓ Good rating: ${safeRating.toFixed(1)} ⭐ (+${ratingScore} pts)`
+      : safeRating > 0
+        ? `✗ Rating below 4.0: ${safeRating.toFixed(1)} ⭐ (0 pts)`
+        : '✗ No rating recorded yet (0 pts)',
+    safeReviewCount >= 10
+      ? `✓ Review volume: ${safeReviewCount} reviews (+${reviewVolumeScore} pts)`
+      : safeReviewCount > 0
+        ? `~ Low reviews: ${safeReviewCount} reviews (+${reviewVolumeScore} pts)`
+        : '✗ No reviews recorded yet (0 pts)',
+  ]
+
+  // Pillar 3: Category Optimization & Map Pack Prominence (max 30 pts)
+  const prominenceScore = categoryScore + photoScore + visibilityCheckScore
+  const prominenceDetails: string[] = [
+    isMismatchDetected
+      ? `~ Tagged as "${rawGoogleCategory}" on Maps (+${categoryScore} pts)`
+      : `✓ Category configured: ${primaryCategory} (+${categoryScore} pts)`,
+    photoScore >= 8
+      ? `✓ Photo saturation: 10+ photos (+${photoScore} pts)`
+      : photoScore > 0
+        ? `~ Photo deficit: limited photos visible (+${photoScore} pts)`
+        : '✗ No photos detected (0 pts)',
+    foundInMapPack
+      ? `✓ Ranked #${mapPackPosition} in Local Map Pack (+${visibilityCheckScore} pts)`
+      : '✗ Not found in Local Map Pack top results (0 pts)',
+  ]
+
+  const pillars: AuditPillar[] = [
+    { name: 'NAP & Completeness', score: foundationScore, maxScore: 40, details: foundationDetails },
+    { name: 'Reputation', score: reputationScore, maxScore: 30, details: reputationDetails },
+    { name: 'Map Pack Visibility', score: prominenceScore, maxScore: 30, details: prominenceDetails },
+  ]
+
+  let earnedScore = foundationScore + reputationScore + prominenceScore
+  let maxPossible = 100
+
+  // Pillar 4: Deep Check (if provided)
   if (deepCheckAnswers && deepCheckAnswers.length === 4) {
     let deepScore = 0
     const deepDetails: string[] = []
-    
-    // Q1: Respond to all reviews
+
     if (deepCheckAnswers[0]) { deepScore += 5; deepDetails.push('✓ Responds to all reviews (+5 pts)') }
     else { deepDetails.push('✗ Does not respond to all reviews (0 pts)'); actionItems.push({ priority: 'high', message: 'Reply to all Google reviews to show active management.' }) }
-    
-    // Q2: Services listed
-    if (deepCheckAnswers[1]) { deepScore += 5; deepDetails.push('✓ Services/Products listed with descriptions (+5 pts)') }
-    else { deepDetails.push('✗ Services missing descriptions (0 pts)'); actionItems.push({ priority: 'medium', message: 'Add detailed descriptions to your services and products.' }) }
-    
-    // Q3: Google Update in last 14 days
+
+    if (deepCheckAnswers[1]) { deepScore += 5; deepDetails.push('✓ Services fully listed (+5 pts)') }
+    else { deepDetails.push('✗ Services list incomplete (0 pts)'); actionItems.push({ priority: 'high', message: 'Add detailed descriptions for all your core services.' }) }
+
     if (deepCheckAnswers[2]) { deepScore += 5; deepDetails.push('✓ Recent Google Post published (+5 pts)') }
-    else { deepDetails.push('✗ No recent Google Posts (0 pts)'); actionItems.push({ priority: 'medium', message: 'Publish a new Google Update/Post to keep your profile fresh.' }) }
-    
-    // Q4: Description filled
-    if (deepCheckAnswers[3]) { deepScore += 5; deepDetails.push('✓ Business description is fully utilized (+5 pts)') }
-    else { deepDetails.push('✗ Description is too short or missing (0 pts)'); actionItems.push({ priority: 'medium', message: 'Expand your business description to use all 750 characters.' }) }
+    else { deepDetails.push('✗ No recent Google Posts (0 pts)'); actionItems.push({ priority: 'medium', message: 'Publish a Google Update (Post) at least once every 14 days.' }) }
 
-    maxPossible += 20
+    if (deepCheckAnswers[3]) { deepScore += 5; deepDetails.push('✓ Description filled near 750 chars (+5 pts)') }
+    else { deepDetails.push('✗ Description under-optimized (0 pts)'); actionItems.push({ priority: 'medium', message: 'Expand your business description to utilize all 750 characters.' }) }
+
+    pillars.push({ name: 'Deep Check Authenticity', score: deepScore, maxScore: 20, details: deepDetails })
     earnedScore += deepScore
-
-    pillars.push({
-      name: 'Deep Check Authenticity',
-      score: deepScore,
-      maxScore: 20,
-      details: deepDetails
-    })
+    maxPossible += 20
   }
 
   // Calculate final normalized percentage score
@@ -342,10 +791,15 @@ function calculateGBPScore(
     totalScore,
     grade,
     pillars,
+    publicChecks,
     foundInMapPack,
     mapPackPosition,
     actionItems,
-    competitors
+    competitors,
+    primaryCategory,
+    additionalCategories,
+    categoryConfidenceScore,
+    categoryBenchmark,
   }
 }
 
@@ -354,10 +808,15 @@ function calculateGBPScore(
 function generateOptimizedBusinessDescription(
   businessName: string,
   targetLocation: string,
-  category?: string
+  category?: string,
+  secondaryCategories?: string[]
 ): string {
   const niche = category || 'trusted local establishment'
-  return `Welcome to ${businessName}, your premier ${niche} in ${targetLocation}. We specialize in delivering exceptional service, top-rated facilities, and dedicated customer care crafted to exceed expectations. Conveniently situated in ${targetLocation}, ${businessName} provides easy access, modern amenities, and a relaxing ambiance for families, tourists, and private events. Whether you are planning a visit, organizing group celebrations, or looking for reliable local solutions, our team is committed to unmatched quality. Browse our services, check customer reviews, or reach out today for rates and reservations!`
+  const subServices =
+    secondaryCategories && secondaryCategories.length > 0
+      ? `specializing in ${secondaryCategories.slice(0, 3).join(', ')}`
+      : 'dedicated to exceptional customer satisfaction'
+  return `Welcome to ${businessName}, your premier ${niche} in ${targetLocation}. We deliver top-rated local services, modern amenities, and professional client care, ${subServices}. Conveniently situated in ${targetLocation}, ${businessName} provides accessible facilities and responsive service for families, visitors, and local clients. Whether you are seeking trusted recommendations, reliable appointments, or premium solutions, our team is committed to unmatched quality. Browse our services, check customer reviews, or reach out today for rates and bookings!`
 }
 
 function generateReviewResponseTemplates(
@@ -373,15 +832,20 @@ function generateReviewResponseTemplates(
 function generateHighIntentKeywords(
   businessName: string,
   targetLocation: string,
-  category?: string
+  category?: string,
+  additionalCategories?: string[]
 ): string[] {
   const cat = category?.toLowerCase() || 'local services'
+  const sub1 = additionalCategories?.[0]?.toLowerCase() || `${cat} near me`
+  const sub2 = additionalCategories?.[1]?.toLowerCase() || `best ${cat}`
+
   return [
     `${businessName} ${targetLocation}`,
     `best ${cat} in ${targetLocation}`,
+    `${sub1} in ${targetLocation}`,
     `${businessName} rates and reviews`,
     `top rated ${cat} near me`,
-    `${targetLocation} ${cat} contact and booking`,
+    `${targetLocation} ${sub2} contact and booking`,
   ]
 }
 
@@ -603,7 +1067,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     const mockPhone = '+63 917 123 4567'
     const rating = isHighPerformer ? 4.7 : 4.2
     const reviewCount = isHighPerformer ? 84 : 14
-    const mapPackPosition = isHighPerformer ? 2 : 5
+    const mockMapPackPosition = isHighPerformer ? 2 : 5
 
     const placeData: SerperPlace = {
       title: businessName,
@@ -622,7 +1086,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       places: [
         {
           title: businessName,
-          position: mapPackPosition,
+          position: mockMapPackPosition,
           address: `123 Main St, ${targetLocation}, Philippines`,
           rating,
           ratingCount: reviewCount,
@@ -634,8 +1098,20 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       ],
     }
 
-    const { totalScore, grade, pillars, foundInMapPack, actionItems, competitors } =
-      calculateGBPScore(placeData, serperData, businessName, targetLocation, deepCheckAnswers)
+    const {
+      totalScore,
+      grade,
+      pillars,
+      publicChecks,
+      foundInMapPack,
+      mapPackPosition,
+      actionItems,
+      competitors,
+      primaryCategory,
+      additionalCategories,
+      categoryConfidenceScore,
+      categoryBenchmark,
+    } = calculateGBPScore(placeData, serperData, businessName, targetLocation, deepCheckAnswers)
 
     // Add a note in details indicating Demo Mode
     if (pillars[0]) pillars[0].details.unshift('ℹ Demo Mode: Real API keys not set in .env')
@@ -666,6 +1142,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       totalScore,
       grade,
       pillars,
+      publicChecks,
       placeId: 'demo-place-id-12345',
       foundInMapPack,
       mapPackPosition,
@@ -673,9 +1150,13 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
       competitors,
       websiteSeo: demoSeo,
       aiRecommendations: demoRecommendations,
-      aiDescription: generateOptimizedBusinessDescription(businessName, targetLocation, placeData.category),
+      aiDescription: generateOptimizedBusinessDescription(businessName, targetLocation, primaryCategory, additionalCategories),
       aiReviewTemplates: generateReviewResponseTemplates(businessName, targetLocation),
-      aiKeywords: generateHighIntentKeywords(businessName, targetLocation, placeData.category),
+      aiKeywords: generateHighIntentKeywords(businessName, targetLocation, primaryCategory, additionalCategories),
+      primaryCategory,
+      additionalCategories,
+      categoryConfidenceScore,
+      categoryBenchmark,
     }
 
     if (!deepCheckAnswers) cacheStore.set(cacheKey, { timestamp: now, data: demoResponse })
@@ -752,14 +1233,26 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
   }
 
   // ── 3. Calculate Final Score ──────────────────────────────────────────
-  const { totalScore, grade, pillars, foundInMapPack, mapPackPosition, actionItems, competitors } =
-    calculateGBPScore(
-      placeData,
-      serperData,
-      resolvedDisplayName,
-      targetLocation,
-      deepCheckAnswers
-    )
+  const {
+    totalScore,
+    grade,
+    pillars,
+    publicChecks,
+    foundInMapPack,
+    mapPackPosition,
+    actionItems,
+    competitors,
+    primaryCategory,
+    additionalCategories,
+    categoryConfidenceScore,
+    categoryBenchmark,
+  } = calculateGBPScore(
+    placeData,
+    serperData,
+    resolvedDisplayName,
+    targetLocation,
+    deepCheckAnswers
+  )
 
   const websiteSeo = await scrapeWebsite(placeData.website || '')
 
@@ -770,16 +1263,17 @@ export async function POST(req: NextRequest): Promise<NextResponse<GBPAuditRespo
     const prompt = `You are an expert Local SEO consultant.
 The user just audited their Google Business Profile for "${resolvedDisplayName}" in "${targetLocation}".
 Their automated audit score is ${totalScore}/100 (Grade: ${grade}).
+Their detected primary category is "${primaryCategory}".
 
 Here are the specific action items from our audit:
 ${actionItems.map((a) => `- [${a.priority.toUpperCase()}] ${a.message}`).join('\n')}
 
-${competitors && competitors.length > 0 ? `Top Competitors:\n${competitors.map((c) => `- #${c.position} ${c.name} (${c.rating || 0}★, ${c.reviews || 0} reviews)`).join('\n')}` : ''}
+${competitors && competitors.length > 0 ? `Top Competitors:\n${competitors.map((c) => `- #${c.position} ${c.name} (${c.rating || 0}★, ${c.reviews || 0} reviews, Category: ${c.category || 'Local Business'})`).join('\n')}` : ''}
 
 ${deepCheckAnswers ? `Deep Check Answers:\n- Responds to reviews: ${deepCheckAnswers[0] ? 'Yes' : 'No'}\n- Services descriptions: ${deepCheckAnswers[1] ? 'Yes' : 'No'}\n- Recent Google Post: ${deepCheckAnswers[2] ? 'Yes' : 'No'}\n- Description filled: ${deepCheckAnswers[3] ? 'Yes' : 'No'}` : ''}
 
 Write a highly encouraging, authoritative, and personalized 30-day action plan for them in Markdown.
-Break it into Week 1 (Foundation & NAP), Week 2 (Reputation & Reviews), Week 3 (Services & Google Updates), and Week 4 (Website Synergy & Citations).
+Break it into Week 1 (Foundation, Primary Category & NAP), Week 2 (Reputation & Reviews), Week 3 (Services & Google Updates), and Week 4 (Website Synergy & Citations).
 Jump straight into the action plan without pleasantries.`
 
     const candidateModels = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-2.5-flash']
@@ -859,6 +1353,7 @@ Jump straight into the action plan without pleasantries.`
     totalScore,
     grade,
     pillars,
+    publicChecks,
     placeId: resolvedPlaceId,
     foundInMapPack,
     mapPackPosition,
@@ -866,9 +1361,13 @@ Jump straight into the action plan without pleasantries.`
     competitors,
     websiteSeo,
     aiRecommendations,
-    aiDescription: generateOptimizedBusinessDescription(resolvedDisplayName, targetLocation, placeData.category),
+    aiDescription: generateOptimizedBusinessDescription(resolvedDisplayName, targetLocation, primaryCategory, additionalCategories),
     aiReviewTemplates: generateReviewResponseTemplates(resolvedDisplayName, targetLocation),
-    aiKeywords: generateHighIntentKeywords(resolvedDisplayName, targetLocation, placeData.category),
+    aiKeywords: generateHighIntentKeywords(resolvedDisplayName, targetLocation, primaryCategory, additionalCategories),
+    primaryCategory,
+    additionalCategories,
+    categoryConfidenceScore,
+    categoryBenchmark,
   }
 
   // Save to cache (only base searches, don't cache deep checks to avoid state bugs)

@@ -7,6 +7,7 @@ import type { Page as PayloadPage } from '@/payload-types'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ScrollHero } from '@/components/ScrollHero'
+import { GBPHomepageCallout } from '@/components/GBPHomepageCallout'
 import { Icon } from '@/components/icons'
 import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { generateMetadata } from '@/lib/seo'
@@ -140,6 +141,9 @@ export default async function Page() {
           </div>
         </div>
       </section>
+
+      {/* 2.5 FEATURED TOOL CALLOUT: GOOGLE BUSINESS PROFILE AUDITOR */}
+      <GBPHomepageCallout />
 
       {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
       <section className="py-16 sm:py-24 bg-transparent border-b border-white/5 relative z-20 overflow-hidden">

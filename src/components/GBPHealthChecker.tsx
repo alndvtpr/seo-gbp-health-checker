@@ -25,6 +25,27 @@ export interface Competitor {
   rating?: number
   reviews?: number
   position: number
+  category?: string
+}
+
+export interface CategoryBenchmark {
+  isCategoryAlignedWithTopCompetitors: boolean
+  topCompetitorCategories: string[]
+  categoryOptimizationTip: string
+  rawGoogleCategory?: string
+  isCategoryMismatchDetected?: boolean
+  recommendedPrimaryCategory?: string
+  recommendedSecondaryCategories?: string[]
+}
+
+export interface PublicAuditCheck {
+  id: string
+  label: string
+  status: 'passed' | 'failed' | 'warning'
+  value?: string
+  scoreEarned: number
+  maxScore: number
+  impactMessage: string
 }
 
 export interface WebsiteSeo {
@@ -47,6 +68,7 @@ export interface GBPAuditResponse {
   totalScore: number
   grade: string
   pillars: AuditPillar[]
+  publicChecks?: PublicAuditCheck[]
   placeId: string | null
   foundInMapPack: boolean
   mapPackPosition: number | null
@@ -58,6 +80,12 @@ export interface GBPAuditResponse {
   aiDescription?: string
   aiReviewTemplates?: ReviewTemplates
   aiKeywords?: string[]
+
+  // ─── ✨ 2026 Category Intelligence Module ──────────────────────
+  primaryCategory?: string
+  additionalCategories?: string[]
+  categoryConfidenceScore?: number
+  categoryBenchmark?: CategoryBenchmark
 }
 
 // ─── Sub-Components ─────────────────────────────────────────────────────────
@@ -168,7 +196,8 @@ function CircularProgressRing({
  * Single audit pillar card showing name, score bar, and detail bullets.
  */
 function PillarCard({ pillar }: { pillar: AuditPillar }) {
-  const pct = Math.round((pillar.score / pillar.maxScore) * 100)
+  const max = pillar.maxScore > 0 ? pillar.maxScore : 30
+  const pct = Math.min(100, Math.max(0, Math.round((pillar.score / max) * 100)))
   const barColor =
     pct >= 70 ? 'bg-emerald-400' : pct >= 40 ? 'bg-primary-container' : 'bg-rose-400'
 
@@ -180,7 +209,7 @@ function PillarCard({ pillar }: { pillar: AuditPillar }) {
         </span>
         <span className="font-heading text-xs print:text-[11px] font-bold text-on-surface">
           {pillar.score}
-          <span className="text-on-surface/40 font-normal">/{pillar.maxScore}</span>
+          <span className="text-on-surface/40 font-normal">/{max}</span>
         </span>
       </div>
 
@@ -450,19 +479,24 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 - **Geo-Targeted Meta Tags**: Ensure website title tags and headers mention ${result.location}.
 - **Local Citations & Schema**: Validate NAP consistency across key business directories and verify LocalBusiness JSON-LD markup.`
 
-    const defaultDescription = `Welcome to ${result.businessName}, your premier local business in ${result.location}. We deliver top-rated services, exceptional quality, and dedicated customer care crafted to exceed expectations. Conveniently situated in ${result.location}, our team is committed to unmatched quality. Browse our services, check customer reviews, or contact us today for rates, bookings, and inquiries!`
+    const defaultDescription =
+      result.aiDescription ||
+      `Welcome to ${result.businessName}, your premier ${result.primaryCategory || 'local business'} in ${result.location}. We deliver top-rated services, exceptional quality, and dedicated customer care crafted to exceed expectations. Conveniently situated in ${result.location}, our team is committed to unmatched quality. Browse our services, check customer reviews, or contact us today for rates, bookings, and inquiries!`
 
     const defaultPositiveTemplate = `Hi [Customer Name]! Thank you so much for the 5-star review and kind words about your experience with ${result.businessName} in ${result.location}. Our entire team takes immense pride in delivering top-tier service and memorable customer satisfaction. We truly appreciate your patronage and look forward to welcoming you back soon!`
 
     const defaultConstructiveTemplate = `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${result.businessName} in ${result.location}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right—please contact our management directly so we can address your concerns immediately.`
 
-    const defaultKeywords = [
-      `${result.businessName} ${result.location}`,
-      `best services in ${result.location}`,
-      `${result.businessName} rates and reviews`,
-      `top rated near me`,
-      `${result.location} contact and booking`,
-    ]
+    const defaultKeywords =
+      result.aiKeywords && result.aiKeywords.length > 0
+        ? result.aiKeywords
+        : [
+            `${result.businessName} ${result.location}`,
+            `best ${result.primaryCategory?.toLowerCase() || 'services'} in ${result.location}`,
+            `${result.businessName} rates and reviews`,
+            `top rated ${result.primaryCategory?.toLowerCase() || 'services'} near me`,
+            `${result.location} contact and booking`,
+          ]
 
     return createPortal(
       <div
@@ -486,6 +520,16 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-primary-container/15 text-primary-container border border-primary-container/30">
                   <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
                 </span>
+                {result.primaryCategory && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                    🏷️ {result.primaryCategory}
+                  </span>
+                )}
+                {result.categoryBenchmark?.isCategoryMismatchDetected && result.categoryBenchmark.rawGoogleCategory && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                    ⚠️ Tagged as &quot;{result.categoryBenchmark.rawGoogleCategory}&quot; on Maps
+                  </span>
+                )}
                 <span className="text-[11px] font-sans text-on-surface/40">•</span>
                 <span className="text-[11px] font-sans text-on-surface/60 font-medium truncate">
                   {result.location}
@@ -599,6 +643,72 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               </div>
             </div>
 
+            {/* ── 10-Point Public Audit Diagnostic Grid ── */}
+            {result.publicChecks && result.publicChecks.length > 0 && (
+              <div className="p-6 sm:p-7 print:p-3.5 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                      Public Signal Transparency
+                    </span>
+                    <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
+                      10-Point Public Diagnostic Breakdown
+                    </h3>
+                  </div>
+                  <span className="text-xs font-sans text-on-surface/50">
+                    {result.publicChecks.filter((c) => c.status === 'passed').length} / {result.publicChecks.length} Verified
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 print:grid-cols-2 gap-2.5 print:gap-1.5">
+                  {result.publicChecks.map((chk) => (
+                    <div
+                      key={chk.id}
+                      className="p-3 print:p-2 rounded-xl bg-white/[0.02] border border-white/5 flex items-start gap-2.5 print-break-inside-avoid"
+                    >
+                      <span
+                        className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+                          chk.status === 'passed'
+                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                            : chk.status === 'warning'
+                              ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                              : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                        }`}
+                      >
+                        {chk.status === 'passed' ? '✓' : chk.status === 'warning' ? '⚠️' : '✗'}
+                      </span>
+                      <div className="min-w-0 flex-1 space-y-0.5">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-heading font-bold text-xs text-on-surface truncate">
+                            {chk.label}
+                          </span>
+                          <span
+                            className={`text-[10px] font-heading font-bold px-1.5 py-0.5 rounded shrink-0 ${
+                              chk.status === 'passed'
+                                ? 'text-emerald-400 bg-emerald-500/10'
+                                : chk.status === 'warning'
+                                  ? 'text-amber-400 bg-amber-500/10'
+                                  : 'text-rose-400 bg-rose-500/10'
+                            }`}
+                          >
+                            {chk.scoreEarned}/{chk.maxScore} pts
+                          </span>
+                        </div>
+                        {chk.value && (
+                          <p className="text-[11px] font-mono text-on-surface/70 truncate">
+                            {chk.value}
+                          </p>
+                        )}
+                        <p className="text-[10px] font-sans text-on-surface/50 leading-tight">
+                          {chk.impactMessage}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* ── Bento Row 2: Competitor Radar & Website Snapshot ── */}
             <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-2 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
@@ -627,9 +737,16 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                           <span className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-heading text-xs font-bold text-primary-container shrink-0">
                             #{comp.position}
                           </span>
-                          <span className="font-heading text-xs sm:text-sm font-bold text-on-surface truncate">
-                            {comp.name}
-                          </span>
+                          <div className="min-w-0">
+                            <span className="font-heading text-xs sm:text-sm font-bold text-on-surface truncate block">
+                              {comp.name}
+                            </span>
+                            {comp.category && (
+                              <span className="text-[10px] font-sans text-on-surface/50 truncate block">
+                                🏷️ {comp.category}
+                              </span>
+                            )}
+                          </div>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
                           <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-heading font-bold">
@@ -648,9 +765,32 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   </p>
                 )}
 
-                <div className="p-3.5 print:p-2 rounded-xl bg-primary-container/10 border border-primary-container/20 text-xs text-on-surface/80">
-                  🎯 <strong className="text-primary-container font-semibold">Growth Strategy:</strong> Steady weekly review acquisition and weekly Google Posts are the fastest leverage points to outrank these competitors.
-                </div>
+                {result.categoryBenchmark && (
+                  <div
+                    className={`p-3.5 sm:p-4 print:p-2.5 rounded-xl border text-xs print-break-inside-avoid shadow-inner ${
+                      result.categoryBenchmark.isCategoryMismatchDetected
+                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-100'
+                        : 'bg-primary-container/10 border-primary-container/20 text-on-surface/90'
+                    }`}
+                  >
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      <span className="font-heading font-bold uppercase tracking-wider text-[10px] text-primary-container">
+                        {result.categoryBenchmark.isCategoryMismatchDetected
+                          ? '🚨 Critical Category Anomaly Detected'
+                          : '🏷️ Category Intelligence Strategy'}
+                      </span>
+                      {result.categoryBenchmark.rawGoogleCategory &&
+                        result.categoryBenchmark.isCategoryMismatchDetected && (
+                          <span className="text-[10px] text-amber-400 font-medium bg-amber-500/20 px-2 py-0.5 rounded-md border border-amber-500/30">
+                            Current Google Tag: &quot;{result.categoryBenchmark.rawGoogleCategory}&quot;
+                          </span>
+                        )}
+                    </div>
+                    <p className="leading-relaxed text-on-surface/80">
+                      {result.categoryBenchmark.categoryOptimizationTip}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Website & Semantic SEO Snapshot (5 Cols) */}
@@ -973,6 +1113,24 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     </button>
                   ))}
                 </div>
+
+                {result.additionalCategories && result.additionalCategories.length > 0 && (
+                  <div className="pt-2 border-t border-white/5 space-y-1.5 print:space-y-1">
+                    <span className="text-[11px] font-sans text-on-surface/50 block">
+                      Recommended Secondary Categories for Google Business Profile:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {result.additionalCategories.map((subCat, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-heading font-medium"
+                        >
+                          + {subCat}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
