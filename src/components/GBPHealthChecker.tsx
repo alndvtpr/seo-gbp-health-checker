@@ -275,18 +275,54 @@ export function GBPHealthChecker() {
     if (result) {
       window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
-      document.documentElement.style.overflow = ''
     }
   }, [result, closeModal])
+
+  /**
+   * 2026 Executive PDF Export Engine.
+   * Dynamically formats and sanitizes document.title to: "[Business_Name]_Audit"
+   * ensuring standard browser print-to-PDF dialogs automatically suggest the exact customer-friendly file name.
+   */
+  const handleExportPdf = useCallback(() => {
+    if (!result) return
+
+    const rawName = result.businessName || 'Business'
+    const sanitizedName = rawName
+      .trim()
+      .replace(/[^\w\s-]/g, '') // strip emoji / illegal filesystem characters
+      .replace(/\s+/g, '_')     // replace whitespace with underscore
+      .replace(/_+/g, '_')      // collapse multiple underscores
+      .replace(/^_+|_+$/g, '')  // trim leading/trailing underscores
+      .substring(0, 50)
+
+    const exportFileName = `${sanitizedName || 'Business'}_Audit`
+    const originalTitle = document.title
+
+    // Temporarily set document.title for browser print/PDF naming
+    document.title = exportFileName
+
+    const restoreTitle = () => {
+      document.title = originalTitle
+      window.removeEventListener('afterprint', restoreTitle)
+    }
+
+    window.addEventListener('afterprint', restoreTitle)
+
+    // Trigger native browser print dialog
+    window.print()
+
+    // Fallback timer in case afterprint event is delayed or unsupported
+    setTimeout(() => {
+      document.title = originalTitle
+    }, 2500)
+  }, [result])
 
   // Deep Check State
   const [deepCheckAnswers, setDeepCheckAnswers] = useState<(boolean | null)[]>([
@@ -433,9 +469,9 @@ export function GBPHealthChecker() {
               {/* Print / Save PDF Button */}
               <button
                 type="button"
-                onClick={() => window.print()}
+                onClick={handleExportPdf}
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface/80 hover:text-white transition-all cursor-pointer shadow-sm"
-                title="Print or Save as PDF"
+                title={`Export as ${((result.businessName || 'Business').trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '') || 'Business')}_Audit.pdf`}
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Export PDF</span>
