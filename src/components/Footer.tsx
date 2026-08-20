@@ -82,9 +82,9 @@ export const Footer = () => {
                 href="/rss.xml"
                 target="_blank"
                 rel="noopener noreferrer alternate"
-                className="hover:text-[#EE802F] text-on-surface/70 transition-colors py-0.5 inline-flex items-center gap-1.5"
+                className="hover:text-primary-container text-on-surface/70 transition-colors py-0.5 inline-flex items-center gap-1.5"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#EE802F]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
                 RSS Delta Feed
               </a>
             </li>

@@ -115,11 +115,11 @@ export function AboutCredentials() {
         onClick={closeModal}
       >
         <div
-          className="relative w-full max-w-2xl max-h-[88vh] flex flex-col bg-[#141414] border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-2xl max-h-[88vh] flex flex-col bg-surface-1 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
-          <div className="p-4 sm:p-5 border-b border-white/10 bg-[#181818] z-10 flex items-center justify-between gap-4 shrink-0">
+          <div className="p-4 sm:p-5 border-b border-white/10 bg-surface-2 z-10 flex items-center justify-between gap-4 shrink-0">
             <div className="space-y-1 pr-2 min-w-0">
               <div className="flex items-center gap-2">
                 {selectedCert.verifyUrl ? (
@@ -173,7 +173,7 @@ export function AboutCredentials() {
           </div>
 
           {/* Modal Footer */}
-          <div className="p-3.5 sm:p-4 border-t border-white/10 bg-[#181818] flex flex-wrap items-center justify-between gap-2.5 shrink-0 z-10">
+          <div className="p-3.5 sm:p-4 border-t border-white/10 bg-surface-2 flex flex-wrap items-center justify-between gap-2.5 shrink-0 z-10">
             <div className="text-[11px] font-sans text-on-surface/50">
               Official credential issued to <span className="text-on-surface/80 font-medium">Alain Dave Tapiru</span>
             </div>

@@ -65,11 +65,11 @@ export function ProjectsDirectory() {
         onClick={closeModal}
       >
         <div
-          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-[#141414] border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-surface-1 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
-          <div className="p-4 sm:p-6 border-b border-white/10 bg-[#181818] z-10 flex items-start justify-between gap-4 shrink-0">
+          <div className="p-4 sm:p-6 border-b border-white/10 bg-surface-2 z-10 flex items-start justify-between gap-4 shrink-0">
             <div className="space-y-1.5 pr-2 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 {activeModalProject.status === 'Ongoing' ? (

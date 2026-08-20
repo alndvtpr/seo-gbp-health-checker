@@ -26,7 +26,7 @@ export function PerformanceAuditProof({
   return (
     <section
       aria-labelledby="audit-proof-heading"
-      className={`relative rounded-2xl sm:rounded-3xl bg-[#141617]/90 border border-amber-500/25 p-5 sm:p-8 md:p-10 shadow-[0_0_50px_rgba(230,126,34,0.12)] backdrop-blur-sm overflow-hidden ${className}`}
+      className={`relative rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-amber-500/25 p-5 sm:p-8 md:p-10 shadow-[0_0_50px_rgba(230,126,34,0.12)] backdrop-blur-sm overflow-hidden ${className}`}
     >
       {/* Ambient background glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(ellipse_at_top_right,rgba(230,126,34,0.12)_0%,transparent_70%)] pointer-events-none" />
@@ -104,7 +104,7 @@ export function PerformanceAuditProof({
 
       {/* Interactive Responsive Tab Switcher */}
       <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
-        <div className="inline-flex p-1 rounded-xl bg-[#0e1010] border border-white/10 w-full sm:w-auto justify-center sm:justify-start">
+        <div className="inline-flex p-1 rounded-xl bg-surface-2 border border-white/10 w-full sm:w-auto justify-center sm:justify-start">
           <button
             type="button"
             onClick={() => setActiveTab('compare')}
@@ -195,7 +195,7 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Fixed Aspect-Ratio Image Container for Zero CLS */}
-            <div className="relative w-full aspect-[953/826] bg-[#0d0f0f] p-2 sm:p-3 flex items-center justify-center">
+            <div className="relative w-full aspect-[953/826] bg-black/40 p-2 sm:p-3 flex items-center justify-center">
               <Image
                 src="/images/projects/alaintapiru-pagespeed-desktop-audit-scores.avif"
                 alt="PageSpeed Insights desktop audit report for alaintapiru.com showing 99 Performance, 96 Accessibility, 100 Best Practices, and 100 SEO scores."
@@ -209,7 +209,7 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Card Footer Breakdown */}
-            <div className="p-4 sm:p-5 border-t border-white/5 bg-[#141617] flex items-center justify-between text-xs font-sans">
+            <div className="p-4 sm:p-5 border-t border-white/5 bg-surface-2 flex items-center justify-between text-xs font-sans">
               <div className="flex items-center gap-2">
                 <Icon name="check_circle" size={16} className="text-emerald-400" />
                 <span className="text-on-surface/80 font-medium">Desktop Speed Index: &lt; 0.9s</span>
@@ -239,7 +239,7 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Scoreboard Badges */}
-            <div className="p-4 sm:p-5 bg-gradient-to-b from-[#1b1e1f] to-[#181a1b] border-b border-white/5 grid grid-cols-4 gap-2 text-center">
+            <div className="p-4 sm:p-5 bg-gradient-to-b from-surface-3 to-surface-2 border-b border-white/5 grid grid-cols-4 gap-2 text-center">
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
                 <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">96</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Performance</div>
@@ -259,7 +259,7 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Fixed Aspect-Ratio Image Container for Zero CLS */}
-            <div className="relative w-full aspect-[935/854] bg-[#0d0f0f] p-2 sm:p-3 flex items-center justify-center">
+            <div className="relative w-full aspect-[935/854] bg-black/40 p-2 sm:p-3 flex items-center justify-center">
               <Image
                 src="/images/projects/alaintapiru-pagespeed-mobile-audit-scores.avif"
                 alt="PageSpeed Insights mobile audit report for alaintapiru.com showing 96 Performance, 96 Accessibility, 100 Best Practices, and 100 SEO scores."
@@ -273,7 +273,7 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Card Footer Breakdown */}
-            <div className="p-4 sm:p-5 border-t border-white/5 bg-[#141617] flex items-center justify-between text-xs font-sans">
+            <div className="p-4 sm:p-5 border-t border-white/5 bg-surface-2 flex items-center justify-between text-xs font-sans">
               <div className="flex items-center gap-2">
                 <Icon name="check_circle" size={16} className="text-emerald-400" />
                 <span className="text-on-surface/80 font-medium">Mobile Simulated Slow 4G</span>
