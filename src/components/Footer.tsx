@@ -140,13 +140,13 @@ export const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-on-surface/50">
+      <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-on-surface/70">
         <div>
           © {new Date().getFullYear()} Alain Dave Tapiru. All rights reserved.
         </div>
         <div className="flex gap-6">
-          <span className="hover:text-on-surface/80 cursor-pointer">Privacy Policy</span>
-          <span className="hover:text-on-surface/80 cursor-pointer">Terms of Service</span>
+          <span className="hover:text-on-surface cursor-pointer transition-colors">Privacy Policy</span>
+          <span className="hover:text-on-surface cursor-pointer transition-colors">Terms of Service</span>
         </div>
       </div>
     </footer>

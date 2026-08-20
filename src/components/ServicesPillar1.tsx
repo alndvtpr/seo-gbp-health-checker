@@ -49,12 +49,12 @@ export function ServicesPillar1() {
     >
       {/* Section Header */}
       <div className="max-w-3xl">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           PILLAR 01: FOUNDATION
         </span>
         <h2
           id="pillar-1-heading"
-          className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4 tracking-tight"
+          className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
           Technical Health &amp; Semantic Architecture
         </h2>
@@ -75,7 +75,7 @@ export function ServicesPillar1() {
         {PILLAR_1_SERVICES.map((service) => (
           <article
             key={service.id}
-            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-[#181a1b]/90 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
           >
             <div>
               {/* Card Icon Header */}
@@ -93,10 +93,10 @@ export function ServicesPillar1() {
 
               {/* Deliverables List */}
               <div className="space-y-3 pt-6 border-t border-white/10 mb-8">
-                <span className="font-heading text-xs text-primary-container uppercase tracking-wider block font-semibold">
+                <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
                   Key Deliverables
                 </span>
-                <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-on-surface/85">
+                <ul className="space-y-2.5 font-sans text-sm text-on-surface/85">
                   {service.deliverables.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
                       <Icon
@@ -115,7 +115,7 @@ export function ServicesPillar1() {
             <Link
               href="/contact/"
               aria-label={`${service.ctaText} for ${service.title}`}
-              className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[44px] group-hover:bg-primary-container group-hover:text-on-primary-container"
+              className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               <span>{service.ctaText}</span>
               <Icon name="arrow_forward" size={14} className="ml-2" />

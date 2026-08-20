@@ -86,8 +86,8 @@ export function ProjectsDirectory() {
                 <span className="font-heading text-[11px] text-primary-container uppercase tracking-wider font-bold">
                   {activeModalProject.category}
                 </span>
-                <span className="text-[11px] font-sans text-on-surface/40">•</span>
-                <span className="text-[11px] font-sans text-on-surface/60">
+                <span className="text-[11px] font-sans text-on-surface/60">•</span>
+                <span className="text-[11px] font-sans text-on-surface/75">
                   {activeModalProject.role}
                 </span>
               </div>
@@ -370,7 +370,7 @@ export function ProjectsDirectory() {
                   <span className="font-heading text-[11px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                     {proj.category}
                   </span>
-                  <span className="text-xs font-sans text-on-surface/40">
+                  <span className="text-xs font-sans text-on-surface/70">
                     {proj.role}
                   </span>
                 </div>

@@ -182,7 +182,7 @@ export const ContactForm = () => {
             htmlFor="contact-website"
             className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-semibold"
           >
-            Website URL <span className="text-on-surface/40 lowercase font-normal">(optional)</span>
+            Website URL <span className="text-on-surface/60 lowercase font-normal">(optional)</span>
           </label>
           <input
             id="contact-website"

@@ -83,17 +83,17 @@ export default async function Page() {
             <Link href="/services/#pillar-foundation" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="search" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
               <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">SEO &amp; Analytics</h3>
-              <span className="font-sans text-xs text-on-surface/50">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
+              <span className="font-sans text-xs text-on-surface/65">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
             </Link>
             <Link href="/services/#pillar-execution" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="code" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
               <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">Web &amp; SEO</h3>
-              <span className="font-sans text-xs text-on-surface/50">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
+              <span className="font-sans text-xs text-on-surface/65">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
             </Link>
             <Link href="/tools/" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="auto_awesome" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
               <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">AI &amp; Diagnostics</h3>
-              <span className="font-sans text-xs text-on-surface/50">Interactive GBP Auditor &bull; Gemini AI Sprints</span>
+              <span className="font-sans text-xs text-on-surface/65">Interactive GBP Auditor &bull; Gemini AI Sprints</span>
             </Link>
           </div>
         </div>
@@ -360,7 +360,7 @@ export default async function Page() {
                     <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-semibold">
                       WordPress • Custom Theme
                     </span>
-                    <span className="text-xs font-sans text-on-surface/40">
+                    <span className="text-xs font-sans text-on-surface/70">
                       Web Developer &amp; Designer
                     </span>
                   </div>
@@ -436,7 +436,7 @@ export default async function Page() {
                     <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-semibold">
                       Local SEO • Diagnostic Tool
                     </span>
-                    <span className="text-xs font-sans text-on-surface/40">
+                    <span className="text-xs font-sans text-on-surface/70">
                       Full Stack &amp; SEO
                     </span>
                   </div>
@@ -510,7 +510,7 @@ export default async function Page() {
                     <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-semibold">
                       Technical SEO • Modern Web
                     </span>
-                    <span className="text-xs font-sans text-on-surface/40">
+                    <span className="text-xs font-sans text-on-surface/70">
                       Lead Architect
                     </span>
                   </div>

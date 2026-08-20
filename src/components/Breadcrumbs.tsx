@@ -90,7 +90,7 @@ export function Breadcrumbs({
                     <Icon
                       name="home"
                       size={13}
-                      className="text-on-surface/40 group-hover:text-primary-container transition-colors"
+                      className="text-on-surface/60 group-hover:text-primary-container transition-colors"
                       aria-hidden="true"
                     />
                   )}

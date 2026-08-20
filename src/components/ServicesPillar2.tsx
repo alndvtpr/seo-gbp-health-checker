@@ -63,12 +63,12 @@ export function ServicesPillar2() {
     >
       {/* Section Header */}
       <div className="max-w-3xl">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           PILLAR 02: VISIBILITY
         </span>
         <h2
           id="pillar-2-heading"
-          className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4 tracking-tight"
+          className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
           Engineered for Traditional Search &amp; Generative AI
         </h2>
@@ -87,8 +87,8 @@ export function ServicesPillar2() {
             key={service.id}
             className={`p-6 sm:p-8 rounded-2xl sm:rounded-3xl border transition-all duration-300 group flex flex-col justify-between shadow-lg ${
               service.isFeatured
-                ? 'bg-gradient-to-b from-primary-container/15 via-[#181a1b] to-[#181a1b] border-primary-container/50 hover:border-primary-container shadow-[0_0_30px_rgba(230,126,34,0.15)]'
-                : 'bg-[#181a1b]/90 border-white/5 hover:border-primary-container/40'
+                ? 'bg-gradient-to-b from-primary-container/15 via-surface-1 to-surface-1 border-primary-container/50 hover:border-primary-container shadow-[0_0_30px_rgba(224,123,32,0.15)]'
+                : 'bg-surface-1/90 border-white/10 hover:border-primary-container/40'
             }`}
           >
             <div>
@@ -97,7 +97,7 @@ export function ServicesPillar2() {
                 <div
                   className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all ${
                     service.isFeatured
-                      ? 'bg-primary-container/20 border-primary-container/40 text-primary-container shadow-[0_0_15px_rgba(230,126,34,0.3)]'
+                      ? 'bg-primary-container/20 border-primary-container/40 text-primary-container shadow-[0_0_15px_rgba(224,123,32,0.3)]'
                       : 'bg-primary-container/10 border-primary-container/20 text-primary-container group-hover:scale-105'
                   }`}
                 >
@@ -105,7 +105,7 @@ export function ServicesPillar2() {
                 </div>
 
                 {service.badge && (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-[11px] font-bold uppercase tracking-wider shadow-sm">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-[11px] font-bold uppercase tracking-[0.06em] shadow-sm">
                     <Icon name="auto_awesome" size={12} />
                     {service.badge}
                   </span>
@@ -125,10 +125,10 @@ export function ServicesPillar2() {
 
               {/* Deliverables List */}
               <div className="space-y-3 pt-6 border-t border-white/10 mb-8">
-                <span className="font-heading text-xs text-primary-container uppercase tracking-wider block font-semibold">
+                <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
                   Key Deliverables
                 </span>
-                <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-on-surface/85">
+                <ul className="space-y-2.5 font-sans text-sm text-on-surface/85">
                   {service.deliverables.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
                       <Icon
@@ -147,9 +147,9 @@ export function ServicesPillar2() {
             <Link
               href="/contact/"
               aria-label={`${service.ctaText} for ${service.title}`}
-              className={`inline-flex items-center justify-center w-full py-3 px-5 rounded-xl font-heading text-xs font-bold uppercase tracking-wider transition-all min-h-[44px] ${
+              className={`inline-flex items-center justify-center w-full py-3 px-5 rounded-xl font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] transition-all min-h-[46px] focus-visible:ring-2 focus-visible:ring-primary-container ${
                 service.isFeatured
-                  ? 'bg-primary-container text-on-primary-container hover:scale-[1.02] shadow-[0_0_20px_rgba(230,126,34,0.35)]'
+                  ? 'bg-primary-container text-on-primary-container hover:scale-[1.02] shadow-[0_0_20px_rgba(224,123,32,0.35)]'
                   : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent group-hover:bg-primary-container group-hover:text-on-primary-container'
               }`}
             >

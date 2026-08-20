@@ -1313,7 +1313,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
+          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Target Location */}
@@ -1326,7 +1326,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
+          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Submit */}

@@ -78,12 +78,12 @@ export function ServicesWorkflowAndFAQ() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12"
       >
         <div className="max-w-3xl">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             HOW WE WORK
           </span>
           <h2
             id="workflow-heading"
-            className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4 tracking-tight"
+            className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
             4-Step Delivery Workflow
           </h2>
@@ -97,7 +97,7 @@ export function ServicesWorkflowAndFAQ() {
           {WORKFLOW_STEPS.map((step, idx) => (
             <div
               key={step.step}
-              className="p-6 sm:p-7 rounded-2xl bg-[#181a1b]/90 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between relative shadow-lg"
+              className="p-6 sm:p-7 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between relative shadow-lg"
             >
               <div>
                 {/* Step Number Badge */}
@@ -105,7 +105,7 @@ export function ServicesWorkflowAndFAQ() {
                   <span className="font-heading text-2xl sm:text-3xl font-black text-primary-container/90 group-hover:text-primary transition-colors">
                     {step.step}
                   </span>
-                  <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/50 px-2.5 py-0.5 rounded-full bg-white/5">
+                  <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-2.5 py-0.5 rounded-full bg-white/5">
                     Phase 0{idx + 1}
                   </span>
                 </div>
@@ -116,7 +116,7 @@ export function ServicesWorkflowAndFAQ() {
                 </h3>
 
                 {/* Step Description */}
-                <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
+                <p className="font-sans text-sm text-on-surface/70 leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -140,12 +140,12 @@ export function ServicesWorkflowAndFAQ() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto space-y-8 sm:space-y-12"
       >
         <div className="text-center max-w-3xl mx-auto">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             FREQUENTLY ASKED QUESTIONS
           </span>
           <h2
             id="faq-heading"
-            className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4 tracking-tight"
+            className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
             Clear Answers to Common Questions
           </h2>
@@ -166,8 +166,8 @@ export function ServicesWorkflowAndFAQ() {
                 key={faq.question}
                 className={`rounded-2xl border transition-all duration-300 ${
                   isOpen
-                    ? 'bg-[#181a1b] border-primary-container/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
-                    : 'bg-[#181a1b]/70 border-white/5 hover:border-white/15'
+                    ? 'bg-surface-1 border-primary-container/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
+                    : 'bg-surface-1/70 border-white/10 hover:border-white/20'
                 }`}
               >
                 <button
@@ -176,7 +176,7 @@ export function ServicesWorkflowAndFAQ() {
                   aria-expanded={isOpen}
                   aria-controls={answerId}
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container rounded-2xl"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container rounded-2xl cursor-pointer"
                 >
                   <span className="font-heading text-base sm:text-lg font-bold text-on-surface leading-snug">
                     {faq.question}
@@ -209,7 +209,7 @@ export function ServicesWorkflowAndFAQ() {
                     id={answerId}
                     role="region"
                     aria-labelledby={questionId}
-                    className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-on-surface/80 font-sans text-xs sm:text-sm leading-relaxed border-t border-white/5 mt-1"
+                    className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-on-surface/80 font-sans text-sm sm:text-base leading-relaxed border-t border-white/5 mt-1"
                   >
                     {faq.answer}
                   </div>

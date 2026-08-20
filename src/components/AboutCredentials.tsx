@@ -333,7 +333,7 @@ export function AboutCredentials() {
                   <p className="font-sans text-xs text-on-surface/60">
                     {edu.details}
                     {edu.timeline && (
-                      <span className="text-on-surface/40"> • {edu.timeline}</span>
+                      <span className="text-on-surface/65"> • {edu.timeline}</span>
                     )}
                   </p>
                 </div>
