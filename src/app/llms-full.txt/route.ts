@@ -40,7 +40,13 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
 - **Local SEO & GBP Health Checker (/tools/):** A dynamic scoring algorithm analyzing Google Business Profile metrics (Ratings, Reviews, Photos, Working Hours, Website Linking) with actionable 30-day AI roadmaps. Canonical case study: https://www.alaintapiru.com/projects/local-seo-gbp-checker/
 - **AlainTapiru.com Portfolio:** High-performance web architecture combining Next.js, Payload CMS, and zero-DOM-thrashing scroll performance. Canonical case study: https://www.alaintapiru.com/projects/alaintapiru-portfolio/
 
-## 5. Copyright & Licensing
+## 5. Published Technical Guides & Knowledge Base
+- **How I Engineered a 99/100 Core Web Vitals Score on Next.js 15 (https://www.alaintapiru.com/blog/how-to-achieve-99-pagespeed-nextjs/):** Technical blueprint covering main-thread render-blocking elimination, zero-CLS AVIF image containers, and idle-callback script hydration.
+- **The 2026 Google Business Profile Optimization Blueprint (https://www.alaintapiru.com/blog/local-seo-google-business-profile-blueprint/):** Local algorithm analysis covering primary category alignment, review velocity and sentiment analysis, and LocalBusiness entity linking.
+- **Next.js vs. WordPress for Enterprise SEO (https://www.alaintapiru.com/blog/nextjs-vs-wordpress-enterprise-seo/):** Architectural comparison of static HTML crawl efficiency, TTFB reduction from 800ms to sub-100ms, tree-shaken JavaScript bundles, and hybrid platform selection criteria.
+- **How to Engineer Schema Entity Graphs for Generative Engine Optimization / AEO & GEO (https://www.alaintapiru.com/blog/generative-engine-optimization-aeo-geo-blueprint/):** Multi-type linked Schema.org knowledge graphs (@graph), verifiable author sameAs arrays, and structured GEO content architecture for search LLM citation.
+
+## 6. Copyright & Licensing
 Copyright © 2026 Alain Dave Tapiru. All rights reserved. Proprietary design system, visual layouts, and source code are protected against unauthorized automated cloning.
 `
 

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { PROJECTS } from '@/data/projects'
+import { BLOG_POSTS } from '@/data/posts'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 3600
@@ -28,9 +29,20 @@ function escapeXml(unsafe: string): string {
 function getFeedItems(): FeedItem[] {
   const items: FeedItem[] = []
 
-  // 1. Featured and Active Case Studies (Highest delta update priority)
+  // 1. Technical Guides & In-Depth Articles
+  BLOG_POSTS.forEach((post) => {
+    items.push({
+      title: post.title,
+      link: `${BASE_URL}/blog/${post.slug}/`,
+      pubDate: new Date(`${post.datePublished}T10:00:00Z`),
+      description: post.excerpt,
+      category: post.category,
+      author: 'Alain Dave Tapiru',
+    })
+  })
+
+  // 2. Featured and Active Case Studies
   PROJECTS.forEach((project) => {
-    // Calibrate recent modification timestamps based on active build status
     const updateDate = project.slug === 'angat-sikat-studio'
       ? new Date('2026-08-19T08:00:00Z')
       : project.slug === 'local-seo-gbp-checker'

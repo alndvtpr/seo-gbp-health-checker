@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { pingIndexNow, DEFAULT_BASE_URL } from '@/lib/indexnow'
 import { PROJECTS } from '@/data/projects'
+import { BLOG_POSTS } from '@/data/posts'
 
 export const dynamic = 'force-dynamic'
 
@@ -16,7 +17,8 @@ const DEFAULT_CORE_ROUTES = [
 
 function getAllKnownCanonicalUrls(): string[] {
   const projectUrls = PROJECTS.map((p) => `/projects/${p.slug}/`)
-  const allRoutes = [...DEFAULT_CORE_ROUTES, ...projectUrls]
+  const blogUrls = BLOG_POSTS.map((b) => `/blog/${b.slug}/`)
+  const allRoutes = [...DEFAULT_CORE_ROUTES, ...projectUrls, ...blogUrls]
   return allRoutes.map((route) => `${DEFAULT_BASE_URL}${route}`)
 }
 
