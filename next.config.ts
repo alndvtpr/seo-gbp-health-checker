@@ -14,6 +14,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'alaintapiru.com',
+          },
+        ],
+        destination: 'https://www.alaintapiru.com/:path*',
+        permanent: true,
+      },
+      {
         source: '/facebook.com',
         destination: 'https://www.facebook.com/dcrazedave',
         permanent: true,
