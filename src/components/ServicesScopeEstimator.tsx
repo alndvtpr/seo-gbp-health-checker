@@ -139,7 +139,7 @@ export function ServicesScopeEstimator() {
       {/* Main Estimator Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Requirements Configuration (7 Cols) */}
-        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl">
+        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-xl">
           {/* Step 1: Select Project Type */}
           <div className="space-y-3">
             <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
@@ -248,7 +248,7 @@ export function ServicesScopeEstimator() {
         </div>
 
         {/* Right Column: Dynamic Estimate Output Card (5 Cols) */}
-        <div className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-2 via-surface-1 to-background border-2 border-primary-container/60 shadow-[0_0_50px_rgba(224,123,32,0.18)]">
+        <div className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-2/85 via-surface-1/80 to-surface-1/75 backdrop-blur-md border-2 border-primary-container/60 shadow-[0_0_50px_rgba(224,123,32,0.18)]">
           <div className="space-y-1">
             <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
               Estimated Sprint Scope

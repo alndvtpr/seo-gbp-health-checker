@@ -75,7 +75,7 @@ export function ServicesPillar1() {
         {PILLAR_1_SERVICES.map((service) => (
           <article
             key={service.id}
-            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
           >
             <div>
               {/* Card Icon Header */}

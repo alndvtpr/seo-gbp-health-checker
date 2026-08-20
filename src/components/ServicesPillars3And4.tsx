@@ -31,7 +31,7 @@ export function ServicesPillars3And4() {
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
         {/* Block A: Web Development (7 cols on lg) */}
-        <article className="lg:col-span-7 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg">
+        <article className="lg:col-span-7 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center group-hover:scale-105 transition-all">
@@ -48,20 +48,20 @@ export function ServicesPillars3And4() {
 
             <div className="space-y-3 pt-6 border-t border-white/10 mb-8">
               <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-                Highlights
+                Core Deliverables
               </span>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans text-sm text-on-surface/85">
+              <ul className="space-y-2.5 font-sans text-sm text-on-surface/85">
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>Lightweight WordPress themes (no bloat)</span>
+                  <span>Custom theme development from scratch</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>Ultra-fast static builds</span>
+                  <span>Perfect 100/100 Core Web Vitals performance</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>SEO-first semantic code</span>
+                  <span>Integrated on-page schema markup</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
@@ -82,7 +82,7 @@ export function ServicesPillars3And4() {
         </article>
 
         {/* Block B: Authority Link Building (5 cols on lg) */}
-        <article className="lg:col-span-5 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg">
+        <article className="lg:col-span-5 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center group-hover:scale-105 transition-all">
@@ -112,11 +112,7 @@ export function ServicesPillars3And4() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>NAP/local citations</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>Unlinked brand mention reclamation</span>
+                  <span>Brand mentions &amp; citations</span>
                 </li>
               </ul>
             </div>
@@ -124,7 +120,7 @@ export function ServicesPillars3And4() {
 
           <Link
             href="/contact/"
-            aria-label="Build search authority and backlinks"
+            aria-label="Grow your website backlink authority"
             className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Scale Backlink Authority</span>
@@ -133,7 +129,7 @@ export function ServicesPillars3And4() {
         </article>
 
         {/* Block C: Analytics & Reporting (Full 12 cols on lg) */}
-        <article className="md:col-span-2 lg:col-span-12 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/10 via-surface-1 to-surface-1 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 shadow-lg">
+        <article className="md:col-span-2 lg:col-span-12 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/10 via-surface-1/80 to-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 shadow-lg">
           <div className="lg:max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center group-hover:scale-105 transition-all">
