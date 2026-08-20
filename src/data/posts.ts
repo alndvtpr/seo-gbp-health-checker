@@ -125,4 +125,109 @@ export const BLOG_POSTS: BlogPost[] = [
       ],
     },
   },
+  {
+    slug: 'nextjs-vs-wordpress-enterprise-seo',
+    title: 'Next.js vs. WordPress for Enterprise SEO: A Technical Architecture Guide',
+    category: 'Technical SEO & Architecture',
+    date: 'August 2026',
+    datePublished: '2026-08-18',
+    readTime: '7 min read',
+    excerpt:
+      'An architectural comparison evaluating static HTML crawl efficiency, render-blocking JavaScript, database overhead, and editorial velocity for enterprise scale.',
+    content: {
+      lead:
+        'Choosing between a modern headless Next.js architecture and a customized WordPress setup is one of the most critical structural decisions for modern search performance. While WordPress powers over 40% of the web, Next.js static site generation (SSG) delivers unrivaled raw speed and zero-CLS rendering.',
+      sections: [
+        {
+          heading: '1. Crawl Efficiency & Static HTML Prerendering',
+          body: [
+            'Search engine crawlers operate under strict per-domain crawl budgets. Traditional dynamic CMS architectures require server-side database lookups and template compilation for every bot request, which can increase Time to First Byte (TTFB) to 800ms or higher.',
+            'With Next.js App Router static site generation (SSG), every route is pre-compiled into lightweight static HTML, CSS, and minimal JSON payloads. Bots receive complete rendered DOM structures in under 90ms, drastically maximizing crawl coverage across large catalogs.',
+          ],
+          highlight: {
+            title: 'Architectural Principle',
+            text:
+              'Fast TTFB and pure static HTML ensure Googlebot and Bingbot can crawl 10x more pages per minute without exhausting your server’s CPU capacity.',
+          },
+          takeaways: [
+            'Static HTML delivery reduces TTFB from 800ms to sub-100ms.',
+            'Eliminates database connection pool bottlenecks during peak traffic and crawler surges.',
+            'Guarantees 100% crawl accessibility even if headless backend databases experience downtime.',
+          ],
+        },
+        {
+          heading: '2. Plugin Bloat vs. Granular Bundle Control',
+          body: [
+            'WordPress sites frequently accumulate dozens of third-party plugins for analytics, sliders, forms, and SEO tags. Each plugin injects render-blocking CSS stylesheets and external scripts, which degrades Total Blocking Time (TBT) and Interaction to Next Paint (INP).',
+            'In Next.js, every dependency is strictly bundled and tree-shaken. Critical path styling is injected inline, while third-party scripts utilize next/script with lazyOnload or worker threads to ensure zero main-thread interference.',
+          ],
+          takeaways: [
+            'Avoid generic page-builder DOM nesting (15+ div wrappers per text node).',
+            'Enforce strict JavaScript bundle budgets under 150KB per route.',
+            'Use native Web APIs rather than bloated monolithic libraries.',
+          ],
+        },
+        {
+          heading: '3. The Hybrid Verdict: When to Use Which Platform',
+          body: [
+            'WordPress remains unmatched for rapid blog authoring, non-technical editorial workflows, and small local business websites. When paired with custom PHP themes, it achieves exceptional performance without high engineering costs.',
+            'Next.js is the ideal platform for high-traffic SaaS applications, enterprise portfolios, interactive tools, and platforms where sub-second Core Web Vitals directly dictate competitive organic dominance.',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    slug: 'generative-engine-optimization-aeo-geo-blueprint',
+    title: 'How to Engineer Schema Entity Graphs for Generative Engine Optimization (AEO & GEO)',
+    category: 'AEO & GEO',
+    date: 'August 2026',
+    datePublished: '2026-08-20',
+    readTime: '9 min read',
+    excerpt:
+      'Structuring interconnected Schema.org JSON-LD entity graphs, knowledge vectors, and llms.txt endpoints to secure primary citations in Google AI Overviews, Perplexity, and ChatGPT Search.',
+    content: {
+      lead:
+        'Generative AI search engines have transformed organic discovery from keyword matching into multidimensional entity resolution. Google AI Overviews, Perplexity, and ChatGPT Search do not merely scan text—they parse semantic relationships, citation veracity, and structured knowledge graphs.',
+      sections: [
+        {
+          heading: '1. The Evolution from Keywords to Entity Authority',
+          body: [
+            'Traditional SEO focused on optimizing keyword density and backlink volume. In contrast, Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) evaluate whether a website represents an unambiguous, authoritative entity within Google’s Knowledge Graph.',
+            'Search LLMs evaluate entities using three core axes: Topical Coverage, Factual Density, and Structured Semantic Linking.',
+          ],
+          highlight: {
+            title: 'GEO Paradigm',
+            text:
+              'AI search engines cite sources that present clear, unambiguous entity definitions, verifiable author credentials, and machine-readable structured markup.',
+          },
+          takeaways: [
+            'Define distinct entity IDs (@id URIs) for your brand, author, and service catalogs.',
+            'Structure content into direct, factual answer blocks before deep analysis.',
+            'Maintain public machine-readable /llms.txt and /llms-full.txt endpoints.',
+          ],
+        },
+        {
+          heading: '2. Structuring Interconnected Multi-Type Schema Graphs',
+          body: [
+            'Isolated, fragmented schema tags (e.g. standalone WebPage or Article markup) fail to communicate relationship hierarchy. A truly optimized entity architecture uses a single unified JSON-LD graph connecting Person, WebSite, Organization, Service, and FAQPage nodes.',
+            'By linking author credentials to verified social profiles via sameAs arrays and defining primary service offerings through Provider properties, you create an unbreakable entity fingerprint.',
+          ],
+          takeaways: [
+            'Use @graph arrays to bundle multiple Schema.org types in a single script tag.',
+            'Connect authors to external verified profiles (LinkedIn, GitHub, Crunchbase).',
+            'Cross-reference services to specific geographical service areas.',
+          ],
+        },
+        {
+          heading: '3. Actionable GEO Content Layout Architecture',
+          body: [
+            'Generative models prioritize content formatted with semantic headers, clear lists, concise takeaway boxes, and structured statistical metrics. Embedding explicit numerical data points dramatically increases citation retrieval during LLM synthesis.',
+            'By pairing comprehensive schema markup with clean editorial prose, your digital platform becomes the authoritative source cited across both traditional and AI-driven search engines.',
+          ],
+        },
+      ],
+    },
+  },
 ]
+

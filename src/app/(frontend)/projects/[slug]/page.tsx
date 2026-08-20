@@ -186,6 +186,30 @@ export default async function ProjectDetailPage({
           <p className="leading-relaxed">{project.fullDescription}</p>
         </section>
 
+        {/* Verified Impact & Performance Metrics */}
+        {project.metrics && project.metrics.length > 0 && (
+          <section className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-lg space-y-4">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
+              Key Metrics &amp; Verified Benchmarks
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {project.metrics.map((m, idx) => (
+                <div key={idx} className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                  <span className="font-heading text-xs text-on-surface/70 uppercase tracking-wider block">
+                    {m.label}
+                  </span>
+                  <p className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
+                    {m.value}
+                  </p>
+                  <p className="font-sans text-xs text-on-surface/65 leading-relaxed">
+                    {m.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Empirical PageSpeed & Technical SEO Audit Proof */}
         {project.slug === 'alaintapiru-portfolio' && (
           <PerformanceAuditProof

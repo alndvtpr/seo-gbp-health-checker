@@ -3,6 +3,12 @@ export interface ProjectPillar {
   meaning: string
 }
 
+export interface ProjectMetric {
+  label: string
+  value: string
+  detail: string
+}
+
 export interface Project {
   id: string
   slug: string
@@ -19,6 +25,7 @@ export interface Project {
   featured: boolean
   coreServices: string[]
   pillars: ProjectPillar[]
+  metrics?: ProjectMetric[]
   techStack: string[]
   image: string
   gallery?: string[]
@@ -75,6 +82,11 @@ export const angatSikatProject: Project = {
     'CSS3 (Flexbox/Grid)',
     'Elementor Compatible',
   ],
+  metrics: [
+    { label: 'Mobile Speed', value: '98+', detail: 'Lightweight PHP theme build' },
+    { label: 'Crawl Cleanliness', value: '100%', detail: 'Semantic HTML5 outline' },
+    { label: 'Load Duration', value: '<1.2s', detail: 'Zero template bloat' },
+  ],
   image: '/images/projects/angat-sikat-homepage-preview.webp',
   gallery: [
     '/images/projects/angat-sikat-homepage-preview.webp',
@@ -120,6 +132,11 @@ export const localSeoGbpProject: Project = {
       meaning: 'Deliver concrete weekly milestones to elevate local pack presence.',
     },
   ],
+  metrics: [
+    { label: 'Audit Speed', value: '3.2s', detail: 'Instant multi-signal scan' },
+    { label: 'Signal Vector', value: '10 Points', detail: 'Category, NAP, hours, rating, photos' },
+    { label: 'Report Format', value: '3 Pages', detail: 'Printable executive PDF roadmap' },
+  ],
   techStack: ['Next.js', 'React', 'Tailwind CSS', 'Serper Places API', 'Google AI Studio'],
   image: '/images/projects/local-seo-gbp-checker-preview.webp',
   ctaText: 'Launch Tool',
@@ -159,6 +176,11 @@ export const portfolioProject: Project = {
       name: 'SECURITY',
       meaning: 'Strict CSP headers, anti-scraping shields, and isolated server actions.',
     },
+  ],
+  metrics: [
+    { label: 'Desktop PageSpeed', value: '99', detail: 'Verified Google PageSpeed Insights' },
+    { label: 'Mobile PageSpeed', value: '96', detail: 'Verified Google PageSpeed Insights' },
+    { label: 'SEO & Best Practices', value: '100/100', detail: 'Zero audit violations' },
   ],
   techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Payload CMS 3.0', 'Supabase'],
   image: '/images/projects/alaintapiru-website-preview.webp',
