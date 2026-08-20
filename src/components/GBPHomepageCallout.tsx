@@ -8,7 +8,7 @@ export const GBPHomepageCallout = () => {
   return (
     <section className="py-12 sm:py-20 bg-transparent relative z-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16">
-        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-1/80 via-surface-2/75 to-surface-1/80 backdrop-blur-md border border-primary-container/30 p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(230,126,34,0.15)] overflow-hidden">
+        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#181a1b] via-[#141617] to-[#121414] border border-primary-container/30 p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(230,126,34,0.15)] overflow-hidden">
           
           {/* Subtle Ambient Radial Glow */}
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none animate-glow-pulse" />
@@ -60,7 +60,7 @@ export const GBPHomepageCallout = () => {
             </div>
 
             {/* Right Action Card / Interactive Preview */}
-            <div className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-2xl text-center max-w-sm card-interactive-glow">
+            <div className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/90 border border-white/10 shadow-2xl text-center max-w-sm card-interactive-glow">
               <div className="space-y-1">
                 <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-primary-container font-semibold">
                   Zero Cost • Instant Execution

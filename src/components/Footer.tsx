@@ -8,17 +8,20 @@ import { RssButton } from '@/components/RssButton'
 export const Footer = () => {
   return (
     <footer
-      className="bg-[#0b0d0d]/40 backdrop-blur-md text-on-surface w-full pt-12 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-30 overflow-hidden"
+      className="bg-[#070b12]/50 backdrop-blur-xl text-on-surface w-full pt-12 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-30 overflow-hidden shadow-[0_-10px_40px_rgba(7,11,18,0.6)]"
       style={{ paddingBottom: 'max(3rem, calc(1.5rem + env(safe-area-inset-bottom, 0px)))' }}
     >
-      {/* Top Border Dual Ambient Gradient Line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-primary-container/50 via-white/10 to-emerald-500/40 pointer-events-none" />
+      {/* Top Border Neon Gradient Line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-orange-500/70 via-cyan-500/20 to-emerald-400/70 shadow-[0_0_15px_rgba(249,115,22,0.4)] pointer-events-none" />
 
-      {/* Left Ambient Radial Glow (Orange / Amber) */}
-      <div className="absolute -top-24 -left-24 w-80 sm:w-[32rem] h-80 sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(230,126,34,0.16)_0%,transparent_70%)] pointer-events-none blur-3xl animate-glow-pulse" />
+      {/* Central Deep Obsidian Blue Atmospheric Base */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,25,47,0.35)_0%,transparent_80%)] pointer-events-none" />
 
-      {/* Right Ambient Radial Glow (Emerald / Green) */}
-      <div className="absolute -bottom-24 -right-24 w-80 sm:w-[32rem] h-80 sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.13)_0%,transparent_70%)] pointer-events-none blur-3xl animate-glow-pulse" />
+      {/* Left Neon Light Gradient Reflection (Vibrant Neon Orange / Amber) */}
+      <div className="absolute -top-28 -left-28 w-[28rem] sm:w-[36rem] h-[28rem] sm:h-[36rem] bg-[radial-gradient(circle,rgba(249,115,22,0.22)_0%,rgba(230,126,34,0.08)_45%,transparent_70%)] pointer-events-none blur-3xl animate-glow-pulse" />
+
+      {/* Right Neon Light Gradient Reflection (Vibrant Neon Emerald / Green) */}
+      <div className="absolute -bottom-28 -right-28 w-[28rem] sm:w-[36rem] h-[28rem] sm:h-[36rem] bg-[radial-gradient(circle,rgba(16,185,129,0.20)_0%,rgba(52,211,153,0.08)_45%,transparent_70%)] pointer-events-none blur-3xl animate-glow-pulse" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12 relative z-10">
         {/* Column 1: Brand */}

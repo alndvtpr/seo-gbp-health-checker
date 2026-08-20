@@ -26,7 +26,7 @@ export function PerformanceAuditProof({
   return (
     <section
       aria-labelledby="audit-proof-heading"
-      className={`relative rounded-2xl sm:rounded-3xl bg-surface-1/80 border border-amber-500/25 p-5 sm:p-8 md:p-10 shadow-[0_0_50px_rgba(230,126,34,0.12)] backdrop-blur-md overflow-hidden ${className}`}
+      className={`relative rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-amber-500/25 p-5 sm:p-8 md:p-10 shadow-[0_0_50px_rgba(230,126,34,0.12)] backdrop-blur-sm overflow-hidden ${className}`}
     >
       {/* Ambient background glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(ellipse_at_top_right,rgba(230,126,34,0.12)_0%,transparent_70%)] pointer-events-none" />
@@ -58,7 +58,7 @@ export function PerformanceAuditProof({
 
       {/* Metric Highlight Pills */}
       <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-6 sm:mb-8">
-        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-amber-500/20 hover:border-amber-500/40 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-amber-500/20 hover:border-amber-500/40 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
             ⚡ Desktop Score
           </span>
@@ -69,7 +69,7 @@ export function PerformanceAuditProof({
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0ms Total Blocking Time</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
             📱 Mobile Score
           </span>
@@ -80,7 +80,7 @@ export function PerformanceAuditProof({
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">Moto G Power Emulation</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-primary-container uppercase tracking-wider flex items-center gap-1">
             🟢 Core Web Vitals
           </span>
@@ -91,7 +91,7 @@ export function PerformanceAuditProof({
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0.000 CLS &bull; Sub-1.2s LCP</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1">
             🛡️ SEO &amp; Best Practices
           </span>
