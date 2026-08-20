@@ -162,6 +162,11 @@ export const portfolioProject: Project = {
   ],
   techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Payload CMS 3.0', 'Supabase'],
   image: '/images/projects/alaintapiru-website-preview.webp',
+  gallery: [
+    '/images/projects/alaintapiru-website-preview.webp',
+    '/images/projects/alaintapiru-pagespeed-desktop-audit-scores.avif',
+    '/images/projects/alaintapiru-pagespeed-mobile-audit-scores.avif',
+  ],
   ctaText: 'View Repository',
 }
 

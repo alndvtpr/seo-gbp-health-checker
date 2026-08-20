@@ -6,6 +6,7 @@ import { Icon } from '@/components/icons'
 import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
 import { getProjectBySlug, PROJECTS } from '@/data/projects'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { PerformanceAuditProof } from '@/components/PerformanceAuditProof'
 
 export async function generateStaticParams() {
   return PROJECTS.map((proj) => ({
@@ -185,11 +186,20 @@ export default async function ProjectDetailPage({
           <p className="leading-relaxed">{project.fullDescription}</p>
         </section>
 
-        {/* Section 2: 3-Pillar Methodology */}
+        {/* Empirical PageSpeed & Technical SEO Audit Proof */}
+        {project.slug === 'alaintapiru-portfolio' && (
+          <PerformanceAuditProof
+            eyebrow="02. Empirical Validation & Audit Proof"
+            title="Google PageSpeed Insights Audit Scores"
+            subtitle="Verified Core Web Vitals and Lighthouse technical audit scores for alaintapiru.com across Desktop and Mobile devices, demonstrating sub-second load velocity, 0ms Total Blocking Time, and flawless 100/100 SEO health."
+          />
+        )}
+
+        {/* Section 2/3: 3-Pillar Methodology */}
         {project.pillars && project.pillars.length > 0 && (
           <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
             <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
-              02. Core Methodology
+              {project.slug === 'alaintapiru-portfolio' ? '03. Core Methodology' : '02. Core Methodology'}
             </span>
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
               The 3-Pillar Strategic Framework
@@ -217,11 +227,11 @@ export default async function ProjectDetailPage({
           </section>
         )}
 
-        {/* Section 3: Core Service Offerings */}
+        {/* Section 3/4: Core Service Offerings */}
         {project.coreServices && project.coreServices.length > 0 && (
           <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
             <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
-              03. Core Capabilities
+              {project.slug === 'alaintapiru-portfolio' ? '04. Core Capabilities' : '03. Core Capabilities'}
             </span>
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
               Structured Service Offerings
@@ -242,10 +252,10 @@ export default async function ProjectDetailPage({
           </section>
         )}
 
-        {/* Section 4: Technology Stack */}
+        {/* Section 4/5: Technology Stack */}
         <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
           <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
-            04. Development Stack
+            {project.slug === 'alaintapiru-portfolio' ? '05. Development Stack' : '04. Development Stack'}
           </span>
           <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
             Technologies Applied
@@ -262,11 +272,11 @@ export default async function ProjectDetailPage({
           </div>
         </section>
 
-        {/* Section 5: Image Showcase / Gallery */}
+        {/* Section 5/6: Image Showcase / Gallery */}
         {project.gallery && project.gallery.length > 1 && (
           <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
             <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
-              05. Visual Gallery
+              {project.slug === 'alaintapiru-portfolio' ? '06. Visual Gallery' : '05. Visual Gallery'}
             </span>
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
               Staging &amp; Design Captures
@@ -282,7 +292,7 @@ export default async function ProjectDetailPage({
                     alt={`${project.title} Preview ${idx + 1}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
+                    className="object-contain bg-black/60"
                   />
                 </div>
               ))}
