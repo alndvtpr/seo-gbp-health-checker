@@ -224,7 +224,7 @@ export function AboutCredentials() {
   }
 
   return (
-    <section className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10 relative overflow-hidden shadow-2xl">
+    <section className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 relative overflow-hidden shadow-2xl">
       {/* Background Accent Glow */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary-container/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
 

@@ -140,7 +140,7 @@ export default async function ProjectDetailPage({
       {/* Metadata Bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/90 border border-white/10 shadow-lg">
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
+          <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Project / Entity
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
@@ -148,7 +148,7 @@ export default async function ProjectDetailPage({
           </span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
+          <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Role
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
@@ -156,7 +156,7 @@ export default async function ProjectDetailPage({
           </span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
+          <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Status
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-amber-400">
@@ -164,7 +164,7 @@ export default async function ProjectDetailPage({
           </span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
+          <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Primary Stack
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-primary-container">

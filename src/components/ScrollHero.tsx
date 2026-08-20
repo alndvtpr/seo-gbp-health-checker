@@ -341,7 +341,7 @@ export const ScrollHero = () => {
           <div>
             <Link
               href="/tools/"
-              className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181a1b]/90 hover:bg-[#202325] border border-primary-container/40 hover:border-primary-container text-xs font-sans text-on-surface shadow-[0_0_20px_rgba(230,126,34,0.2)] hover:shadow-[0_0_30px_rgba(230,126,34,0.4)] transition-all duration-300 max-w-full"
+              className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-1/90 hover:bg-surface-2 border border-primary-container/40 hover:border-primary-container text-xs font-sans text-on-surface shadow-[0_0_20px_rgba(230,126,34,0.2)] hover:shadow-[0_0_30px_rgba(230,126,34,0.4)] transition-all duration-300 max-w-full"
             >
               <span className="flex h-2 w-2 relative shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>

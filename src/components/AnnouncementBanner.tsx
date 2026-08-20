@@ -34,7 +34,7 @@ export const AnnouncementBanner = () => {
   return (
     <aside
       aria-label="New Feature Announcement"
-      className="relative z-50 w-full bg-[#121414] bg-gradient-to-r from-[#141210] via-[#1f1812] to-[#141210] border-b border-primary-container/30 shadow-[0_4px_25px_rgba(230,126,34,0.15)] text-on-surface py-2 sm:py-2.5 px-3 sm:px-6"
+      className="relative z-50 w-full bg-background bg-gradient-to-r from-surface-1 via-surface-2 to-surface-1 border-b border-primary-container/30 shadow-[0_4px_25px_rgba(230,126,34,0.15)] text-on-surface py-2 sm:py-2.5 px-3 sm:px-6"
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 justify-start">

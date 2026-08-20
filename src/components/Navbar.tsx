@@ -56,7 +56,7 @@ export const Navbar = () => {
           <div
             className={`mx-auto flex items-center justify-between pointer-events-auto transition-[background-color,box-shadow,padding,border-color,border-radius,max-width,margin] duration-300 ${
               scrolled
-                ? 'bg-[#121414]/95 shadow-2xl py-2 px-5 md:py-2.5 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto'
+                ? 'bg-background/95 shadow-2xl py-2 px-5 md:py-2.5 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto'
                 : 'px-4 md:px-12 max-w-7xl bg-transparent border-transparent'
             }`}
           >

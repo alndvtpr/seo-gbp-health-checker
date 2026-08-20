@@ -62,7 +62,7 @@ export const GBPHomepageCallout = () => {
             {/* Right Action Card / Interactive Preview */}
             <div className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/90 border border-white/10 shadow-2xl text-center max-w-sm">
               <div className="space-y-1">
-                <span className="font-heading text-[10px] uppercase tracking-widest text-primary-container font-bold">
+                <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-primary-container font-semibold">
                   Zero Cost • Instant Execution
                 </span>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface">

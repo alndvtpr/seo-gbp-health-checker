@@ -113,7 +113,7 @@ export function ProjectsDirectory() {
           </div>
 
           {/* Modal Body */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8 bg-[#121414]/90">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8 bg-background/90">
             {/* Primary Visual Preview */}
             <div className="relative w-full h-[220px] sm:h-[340px] md:h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-xl">
               <Image
@@ -128,7 +128,7 @@ export function ProjectsDirectory() {
             {/* Gallery Thumbnails if Available */}
             {activeModalProject.gallery && activeModalProject.gallery.length > 1 && (
               <div className="space-y-2">
-                <span className="font-heading text-[10px] sm:text-xs text-on-surface/50 uppercase tracking-widest block font-bold">
+                <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">
                   Preview Screenshots ({activeModalProject.gallery.length})
                 </span>
                 <div className="grid grid-cols-4 gap-2 sm:gap-3">
@@ -158,7 +158,7 @@ export function ProjectsDirectory() {
 
             {/* Project Overview */}
             <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5">
-              <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-widest">
+              <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-[0.08em]">
                 Project Architecture &amp; Overview
               </h3>
               <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
@@ -168,7 +168,7 @@ export function ProjectsDirectory() {
 
             {/* PageSpeed Performance Highlight for alaintapiru-portfolio */}
             {activeModalProject.slug === 'alaintapiru-portfolio' && (
-              <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-500/10 via-[#181a1b] to-emerald-500/10 border border-amber-500/30 space-y-3">
+              <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-500/10 via-surface-1 to-emerald-500/10 border border-amber-500/30 space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="font-heading text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
                     <span>⚡</span> Google PageSpeed Insights Benchmark
@@ -201,7 +201,7 @@ export function ProjectsDirectory() {
             {/* 3-Pillar Methodology (ANGAT, MAKITA, MASIKAT) */}
             {activeModalProject.pillars && activeModalProject.pillars.length > 0 && (
               <div className="space-y-3">
-                <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-widest block font-bold">
+                <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
                   Core Methodology &amp; Execution Framework
                 </span>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
@@ -230,7 +230,7 @@ export function ProjectsDirectory() {
             {/* Core Services & Capabilities */}
             {activeModalProject.coreServices && activeModalProject.coreServices.length > 0 && (
               <div className="space-y-3">
-                <span className="font-heading text-[10px] sm:text-xs text-on-surface/50 uppercase tracking-widest block font-bold">
+                <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">
                   Structured Service Capabilities
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
@@ -249,7 +249,7 @@ export function ProjectsDirectory() {
 
             {/* Tech Stack */}
             <div className="space-y-2.5">
-              <span className="font-heading text-[10px] sm:text-xs text-on-surface/50 uppercase tracking-widest block font-bold">
+              <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">
                 Technologies &amp; Platform Stack
               </span>
               <div className="flex flex-wrap gap-2">
@@ -266,9 +266,9 @@ export function ProjectsDirectory() {
           </div>
 
           {/* Modal Footer */}
-          <div className="p-4 sm:p-5 border-t border-white/10 bg-[#181818] flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
-            <div className="text-[11px] font-sans text-on-surface/50">
-              Role: <span className="text-on-surface/80 font-medium">{activeModalProject.role}</span>
+          <div className="p-4 sm:p-5 border-t border-white/10 bg-surface-1 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+            <div className="text-[11px] font-sans text-on-surface/70">
+              Role: <span className="text-on-surface/90 font-medium">{activeModalProject.role}</span>
             </div>
 
             <div className="flex items-center flex-wrap gap-2.5">
@@ -351,12 +351,12 @@ export function ProjectsDirectory() {
                 {/* Floating Status Badge */}
                 <div className="absolute top-3 left-3 z-10">
                   {proj.status === 'Ongoing' ? (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-[#121414]/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-background/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                       Ongoing Build
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-[#121414]/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-background/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       Live Project
                     </span>

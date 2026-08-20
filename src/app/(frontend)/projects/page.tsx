@@ -18,13 +18,13 @@ export default function ProjectsPage() {
 
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Proven Track Record &amp; Active Builds
         </span>
-        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6">
+        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-[-0.025em]">
           Projects &amp; SEO Case Studies
         </h1>
-        <p className="font-sans text-on-surface/70 text-xs sm:text-base leading-relaxed">
+        <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
           Deep dives into custom WordPress development, technical search engine optimization, web architecture, and digital growth platforms.
         </p>
       </div>

@@ -510,31 +510,31 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
       >
         <div
           id="gbp-audit-modal-container"
-          className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-[#121414] border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-background border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* ── Top Header / Branding Bar ── */}
-          <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-white/10 bg-[#161819] z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
+          <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-white/10 bg-surface-1 z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
             <div className="space-y-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-primary-container/15 text-primary-container border border-primary-container/30">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-primary-container/15 text-primary-container border border-primary-container/30">
                   <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
                 </span>
                 {result.primaryCategory && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                     🏷️ {result.primaryCategory}
                   </span>
                 )}
                 {result.categoryBenchmark?.isCategoryMismatchDetected && result.categoryBenchmark.rawGoogleCategory && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-widest bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-400 border border-amber-500/30">
                     ⚠️ Tagged as &quot;{result.categoryBenchmark.rawGoogleCategory}&quot; on Maps
                   </span>
                 )}
-                <span className="text-[11px] font-sans text-on-surface/40">•</span>
-                <span className="text-[11px] font-sans text-on-surface/60 font-medium truncate">
+                <span className="text-[11px] font-sans text-on-surface/60">•</span>
+                <span className="text-[11px] font-sans text-on-surface/70 font-medium truncate">
                   {result.location}
                 </span>
-                <span className="hidden print:inline-block text-[11px] font-sans text-on-surface/40">•</span>
+                <span className="hidden print:inline-block text-[11px] font-sans text-on-surface/60">•</span>
                 <span className="hidden print:inline-block text-[11px] font-sans text-primary-container font-semibold">
                   Audited on {auditDateStr}
                 </span>
@@ -575,7 +575,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           {/* ── Scrollable Dashboard Body ── */}
           <div
             id="gbp-modal-scrollable-body"
-            className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-[#0e1010] overscroll-contain"
+            className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-[#000] overscroll-contain"
             style={{ paddingBottom: 'max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)))' }}
           >
             
@@ -583,9 +583,9 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
             <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-1 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
               {/* Score Radar (4 Cols) */}
-              <div className="lg:col-span-4 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col items-center justify-between text-center gap-4 print:gap-2 relative overflow-hidden shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-4 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 flex flex-col items-center justify-between text-center gap-4 print:gap-2 relative overflow-hidden shadow-xl print-break-inside-avoid">
                 <div className="space-y-1">
-                  <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                  <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                     Profile Health Score
                   </span>
                   <h3 className="font-heading font-bold text-base text-on-surface">
@@ -597,18 +597,18 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
                 <div className="space-y-2 w-full pt-1">
                   <div className="flex items-center justify-between text-[11px] px-3 py-1.5 rounded-lg bg-white/5 border border-white/5">
-                    <span className="text-on-surface/60">Checks Passed:</span>
+                    <span className="text-on-surface/70">Checks Passed:</span>
                     <span className="font-heading font-bold text-emerald-400">
                       {passedCount} / {totalChecks}
                     </span>
                   </div>
 
                   {result.foundInMapPack ? (
-                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-heading font-bold">
+                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-heading font-bold tracking-[0.06em]">
                       <span>✓</span> Ranked #{result.mapPackPosition} in Local Map Pack
                     </div>
                   ) : (
-                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-400 text-xs font-heading font-bold">
+                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-400 text-xs font-heading font-bold tracking-[0.06em]">
                       <span>✗</span> Not Ranking in Top 10 Map Pack
                     </div>
                   )}
@@ -616,17 +616,17 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               </div>
 
               {/* 3 Pillars Breakdown (8 Cols) */}
-              <div className="lg:col-span-8 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 flex flex-col justify-between gap-4 print:gap-2 shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-8 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 flex flex-col justify-between gap-4 print:gap-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                       Core Signal Breakdown
                     </span>
                     <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
                       Local Trust &amp; Ranking Pillars
                     </h3>
                   </div>
-                  <span className="text-xs font-sans text-on-surface/50">
+                  <span className="text-xs font-sans text-on-surface/70">
                     Weights out of 100 pts
                   </span>
                 </div>
@@ -637,7 +637,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   ))}
                 </div>
 
-                <p className="text-[11px] font-sans text-on-surface/60 leading-relaxed bg-white/[0.02] p-3 print:p-2 rounded-xl border border-white/5">
+                <p className="text-[11px] font-sans text-on-surface/70 leading-relaxed bg-white/[0.02] p-3 print:p-2 rounded-xl border border-white/5">
                   💡 <strong className="text-on-surface/90">Strategic Takeaway:</strong> Google ranks profiles based on <span className="text-primary-container font-semibold">Relevance</span> (NAP &amp; categories), <span className="text-primary-container font-semibold">Prominence</span> (reviews &amp; velocity), and <span className="text-primary-container font-semibold">Distance</span> (location signals).
                 </p>
               </div>
@@ -645,17 +645,17 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
             {/* ── 10-Point Public Audit Diagnostic Grid ── */}
             {result.publicChecks && result.publicChecks.length > 0 && (
-              <div className="p-6 sm:p-7 print:p-3.5 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+              <div className="p-6 sm:p-7 print:p-3.5 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                       Public Signal Transparency
                     </span>
                     <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
                       10-Point Public Diagnostic Breakdown
                     </h3>
                   </div>
-                  <span className="text-xs font-sans text-on-surface/50">
+                  <span className="text-xs font-sans text-on-surface/70">
                     {result.publicChecks.filter((c) => c.status === 'passed').length} / {result.publicChecks.length} Verified
                   </span>
                 </div>
@@ -699,7 +699,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                             {chk.value}
                           </p>
                         )}
-                        <p className="text-[10px] font-sans text-on-surface/50 leading-tight">
+                        <p className="text-[10px] font-sans text-on-surface/70 leading-tight">
                           {chk.impactMessage}
                         </p>
                       </div>
@@ -713,10 +713,10 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
             <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-2 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
               {/* Competitor Gap Radar (7 Cols) */}
-              <div className="lg:col-span-7 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-7 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                       Competitive Intelligence
                     </span>
                     <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
@@ -742,17 +742,17 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                               {comp.name}
                             </span>
                             {comp.category && (
-                              <span className="text-[10px] font-sans text-on-surface/50 truncate block">
+                              <span className="text-[10px] font-sans text-on-surface/70 truncate block">
                                 🏷️ {comp.category}
                               </span>
                             )}
                           </div>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-heading font-bold">
+                          <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-heading font-bold tracking-[0.06em]">
                             {comp.rating ? `${comp.rating} ⭐` : 'Unrated'}
                           </span>
-                          <span className="text-[11px] font-sans text-on-surface/50">
+                          <span className="text-[11px] font-sans text-on-surface/70">
                             {comp.reviews || 0} reviews
                           </span>
                         </div>
@@ -760,7 +760,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     ))}
                   </div>
                 ) : (
-                  <p className="text-xs text-on-surface/60 py-4 text-center">
+                  <p className="text-xs text-on-surface/70 py-4 text-center">
                     No immediate local map pack competitors detected for this specific search term.
                   </p>
                 )}
@@ -774,7 +774,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     }`}
                   >
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="font-heading font-bold uppercase tracking-wider text-[10px] text-primary-container">
+                      <span className="font-heading font-bold uppercase tracking-[0.08em] text-[10px] text-primary-container">
                         {result.categoryBenchmark.isCategoryMismatchDetected
                           ? '🚨 Critical Category Anomaly Detected'
                           : '🏷️ Category Intelligence Strategy'}
@@ -794,10 +794,10 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               </div>
 
               {/* Website & Semantic SEO Snapshot (5 Cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-5 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                    <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                       On-Page Synergy
                     </span>
                     <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
@@ -860,17 +860,17 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
             </div>
 
             {/* ── Bento Row 3: Action Plan Priority Matrix ── */}
-            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2.5 shadow-xl print-break-inside-avoid">
+            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2.5 shadow-xl print-break-inside-avoid">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                  <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                     Action Plan
                   </span>
                   <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
                     Prioritized Optimization Roadmap
                   </h3>
                 </div>
-                <span className="text-xs font-sans text-on-surface/50">
+                <span className="text-xs font-sans text-on-surface/70">
                   {result.actionItems?.length || 0} Key Observations
                 </span>
               </div>
@@ -899,7 +899,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                       <span className="text-xs mt-0.5 shrink-0">{icons}</span>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium leading-relaxed print:leading-snug">{item.message}</p>
-                        <p className="text-[10px] uppercase font-bold tracking-widest mt-1 opacity-70">
+                        <p className="text-[10px] uppercase font-semibold tracking-[0.08em] mt-1 opacity-80">
                           {item.priority} Priority
                         </p>
                       </div>
@@ -978,8 +978,8 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               {/* Tab 1: 30-Day Sprint Roadmap */}
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'roadmap' ? 'block' : 'hidden'} print:mt-3`}>
                 <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
-                  <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 01</span>
-                  <span className="text-on-surface/40 text-xs">•</span>
+                  <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 01</span>
+                  <span className="text-on-surface/60 text-xs">•</span>
                   <h4 className="font-heading font-bold text-sm text-on-surface">30-Day Sprint Roadmap &amp; Strategic Milestones</h4>
                 </div>
                 <div className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-sm prose-h4:text-xs prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-white prose-a:text-primary-container bg-white/[0.02] p-5 sm:p-7 print:p-4 rounded-2xl border border-white/5 shadow-inner">
@@ -993,7 +993,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'description' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-4`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 02 •</span>
+                    <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 02 •</span>
                     <span className="font-heading text-xs font-bold text-on-surface">
                       Keyword-Optimized Google Business Description
                     </span>
@@ -1016,7 +1016,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 <div className="p-4 sm:p-5 print:p-3 rounded-xl bg-black/50 border border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all whitespace-pre-wrap">
                   {result.aiDescription || defaultDescription}
                 </div>
-                <p className="text-[11px] text-on-surface/50 italic">
+                <p className="text-[11px] text-on-surface/70 italic">
                   Paste this directly into your Google Business Profile &gt; Edit Profile &gt; Description field.
                 </p>
               </div>
@@ -1024,8 +1024,8 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               {/* Tab 3: Review Response Playbook */}
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card print-page-break-before ${activeTab === 'templates' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-0`}>
                 <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
-                  <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 03</span>
-                  <span className="text-on-surface/40 text-xs">•</span>
+                  <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 03</span>
+                  <span className="text-on-surface/60 text-xs">•</span>
                   <h4 className="font-heading font-bold text-sm text-on-surface">AI Review Response Playbook</h4>
                 </div>
 
@@ -1088,12 +1088,12 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'keywords' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-4`}>
                 <div className="flex items-center justify-between pb-1 border-b border-white/5">
                   <div className="flex items-center gap-2">
-                    <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-widest">Deliverable 04 •</span>
+                    <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 04 •</span>
                     <h4 className="font-heading font-bold text-xs sm:text-sm text-on-surface">
                       High-Intent Local Keywords Arsenal
                     </h4>
                   </div>
-                  <span className="text-[11px] font-sans text-on-surface/50">
+                  <span className="text-[11px] font-sans text-on-surface/70">
                     {(result.aiKeywords && result.aiKeywords.length > 0 ? result.aiKeywords : defaultKeywords).length} Recommended Search Queries
                   </span>
                 </div>
@@ -1136,9 +1136,9 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
             </div>
 
             {/* ── Bento Row 5: Deep Check Validator ── */}
-            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-[#161819]/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid print:mt-3">
+            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid print:mt-3">
               <div className="space-y-1">
-                <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest font-bold">
+                <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                   Internal Verification Signals
                 </span>
                 <h3 className="font-heading font-bold text-base sm:text-lg text-on-surface">
@@ -1216,7 +1216,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   type="button"
                   onClick={handleDeepCheckSubmit}
                   disabled={isDeepChecking || deepCheckAnswers.includes(null)}
-                  className="bg-primary-container text-on-primary-container px-6 py-3 rounded-xl font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer shadow-lg"
+                  className="bg-primary-container text-on-primary-container px-6 py-3 rounded-xl font-heading text-xs font-bold uppercase tracking-[0.06em] hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer shadow-lg"
                 >
                   {isDeepChecking ? (
                     <>
@@ -1247,7 +1247,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   )}
                 </button>
                 {deepCheckAnswers.includes(null) && (
-                  <p className="text-[10px] text-on-surface/50 uppercase tracking-widest font-bold">
+                  <p className="text-[10px] text-on-surface/70 uppercase tracking-[0.08em] font-semibold">
                     Answer all 4 questions to unlock final score
                   </p>
                 )}
@@ -1260,7 +1260,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 <h4 className="font-heading font-extrabold text-lg sm:text-xl text-on-surface">
                   Want Alain to execute this Local SEO sprint for you?
                 </h4>
-                <p className="text-xs sm:text-sm text-on-surface/70 max-w-xl leading-relaxed">
+                <p className="text-xs sm:text-sm text-on-surface/80 max-w-xl leading-relaxed">
                   I specialize in turning Google Business Profiles into consistent revenue drivers with complete citation cleanup, review velocity systems, and Map Pack dominance.
                 </p>
                 <p className="hidden print:block text-xs text-primary-container font-semibold pt-1">
@@ -1271,13 +1271,13 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               <div className="no-print flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
                 <a
                   href="/contact/"
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)] text-center flex items-center justify-center min-h-[44px]"
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)] text-center flex items-center justify-center min-h-[44px]"
                 >
                   Book Strategy Call
                 </a>
                 <a
                   href={`mailto:alaintapiru@gmail.com?subject=Local%20SEO%20Inquiry%20for%20${encodeURIComponent(result.businessName)}&body=Hi%20Alain,%0A%0AI%20just%20audited%20my%20business%20(${encodeURIComponent(result.businessName)}%20in%20${encodeURIComponent(result.location)})%20on%20your%20GBP%20tool%20and%20got%20a%20score%20of%20${result.totalScore}/100.%0A%0AI%20would%20like%20to%20discuss%20working%20together.`}
-                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-widest transition-all text-center flex items-center justify-center min-h-[44px]"
+                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all text-center flex items-center justify-center min-h-[44px]"
                 >
                   Email Audit Summary
                 </a>
@@ -1313,7 +1313,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
+          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/60 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Target Location */}
@@ -1326,7 +1326,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
+          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/60 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Submit */}
@@ -1335,7 +1335,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           id="gbp-submit-btn"
           disabled={isLoading || !businessName.trim() || !targetLocation.trim()}
           aria-label="Check GBP Score"
-          className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all min-h-[48px] flex items-center justify-center gap-2.5 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-[0_0_20px_rgba(230,126,34,0.3)]"
+          className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-3.5 rounded-xl hover:brightness-110 active:scale-[0.98] transition-all min-h-[48px] flex items-center justify-center gap-2.5 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-[0_0_20px_rgba(230,126,34,0.3)]"
         >
           {isLoading ? (
             <>

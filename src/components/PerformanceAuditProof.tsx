@@ -157,9 +157,9 @@ export function PerformanceAuditProof({
       >
         {/* Desktop Audit Card */}
         {(activeTab === 'compare' || activeTab === 'desktop') && (
-          <div className="rounded-2xl bg-[#181a1b] border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
+          <div className="rounded-2xl bg-surface-1 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
             {/* Mockup Top Window Bar */}
-            <div className="px-4 py-3 bg-[#111313] border-b border-white/10 flex items-center justify-between gap-3">
+            <div className="px-4 py-3 bg-surface-2 border-b border-white/10 flex items-center justify-between gap-3">
               <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
@@ -221,9 +221,9 @@ export function PerformanceAuditProof({
 
         {/* Mobile Audit Card */}
         {(activeTab === 'compare' || activeTab === 'mobile') && (
-          <div className="rounded-2xl bg-[#181a1b] border border-white/10 hover:border-emerald-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
+          <div className="rounded-2xl bg-surface-1 border border-white/10 hover:border-emerald-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
             {/* Mockup Top Window Bar */}
-            <div className="px-4 py-3 bg-[#111313] border-b border-white/10 flex items-center justify-between gap-3">
+            <div className="px-4 py-3 bg-surface-2 border-b border-white/10 flex items-center justify-between gap-3">
               <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
@@ -287,7 +287,7 @@ export function PerformanceAuditProof({
       {/* Technical Optimizations Bento Bar */}
       {!compact && (
         <div className="relative z-10 mt-8 pt-6 border-t border-white/10 space-y-4">
-          <span className="font-heading text-[11px] text-primary-container uppercase tracking-widest font-bold block">
+          <span className="font-heading text-[11px] text-primary-container uppercase tracking-[0.08em] font-semibold block">
             How These Scores Were Engineered
           </span>
 
