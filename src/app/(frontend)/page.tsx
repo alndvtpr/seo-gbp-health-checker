@@ -187,7 +187,7 @@ export default async function Page() {
 
             {/* Honest Metrics Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-white/10">
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1 border border-white/5 flex flex-col justify-between">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   4 Core Disciplines
                 </span>
@@ -195,7 +195,7 @@ export default async function Page() {
                   SEO, Web Dev, Support &amp; Bookkeeping
                 </span>
               </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1 border border-white/5 flex flex-col justify-between">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   AI-Powered Workflows
                 </span>
@@ -203,7 +203,7 @@ export default async function Page() {
                   Leveraging modern tools for faster, smarter builds.
                 </span>
               </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1 border border-white/5 flex flex-col justify-between">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   24hr Response Time
                 </span>
@@ -351,7 +351,7 @@ export default async function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Primary Featured Project: AngatSikat Studio */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1 border border-amber-500/20 hover:border-primary-container/60 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-amber-500/20 hover:border-primary-container/60 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -427,7 +427,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 2: Local SEO & GBP Checker */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -501,7 +501,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 3: AlainTapiru.com Web Architecture */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image

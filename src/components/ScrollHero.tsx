@@ -91,9 +91,10 @@ export const ScrollHero = () => {
 
       // Dark film-noir gradient overlay
       const gradient = ctx.createLinearGradient(0, 0, 0, height)
-      gradient.addColorStop(0, 'rgba(18, 20, 20, 0.4)')
-      gradient.addColorStop(0.5, 'rgba(18, 20, 20, 0.25)')
-      gradient.addColorStop(1, 'rgba(18, 20, 20, 0.65)')
+      gradient.addColorStop(0, 'rgba(18, 20, 20, 0.22)')
+      gradient.addColorStop(0.4, 'rgba(18, 20, 20, 0.08)')
+      gradient.addColorStop(0.8, 'rgba(18, 20, 20, 0.28)')
+      gradient.addColorStop(1, 'rgba(18, 20, 20, 0.55)')
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, width, height)
     },
@@ -319,7 +320,7 @@ export const ScrollHero = () => {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,20,0.65)] via-[rgba(18,20,20,0.25)] to-[rgba(18,20,20,0.4)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,20,0.55)] via-[rgba(18,20,20,0.12)] to-[rgba(18,20,20,0.22)]" />
       </div>
 
       {/* Background Canvas (Portaled to background container across desktop and mobile) */}

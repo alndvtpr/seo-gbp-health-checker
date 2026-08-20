@@ -92,10 +92,10 @@ export function ServicesPackages() {
         {PACKAGES.map((pkg) => (
           <article
             key={pkg.id}
-            className={`rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-300 relative ${
+            className={`rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-300 relative backdrop-blur-md ${
               pkg.isFeatured
-                ? 'bg-gradient-to-b from-primary-container/20 via-surface-2 to-surface-1 border-2 border-primary-container/80 shadow-[0_0_50px_rgba(224,123,32,0.22)] lg:-translate-y-2 z-10 pt-10 sm:pt-12'
-                : 'bg-surface-1/90 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 shadow-lg'
+                ? 'bg-gradient-to-b from-primary-container/20 via-surface-2/85 to-surface-1/80 border-2 border-primary-container/80 shadow-[0_0_50px_rgba(224,123,32,0.22)] lg:-translate-y-2 z-10 pt-10 sm:pt-12'
+                : 'bg-surface-1/80 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 shadow-lg'
             }`}
           >
             {/* Floating Featured Badge */}

@@ -40,7 +40,7 @@ export default function BlogPage() {
         {BLOG_POSTS.map((post) => (
           <article
             key={post.slug}
-            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl card-interactive-glow"
+            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl card-interactive-glow"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs font-sans text-on-surface/70">
@@ -79,7 +79,7 @@ export default function BlogPage() {
       </div>
 
       {/* Free GBP Health Checker Callout */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/90 border border-primary-container/30 text-center space-y-6 shadow-[0_0_50px_rgba(224,123,32,0.12)]">
+      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/80 backdrop-blur-md border border-primary-container/30 text-center space-y-6 shadow-[0_0_50px_rgba(224,123,32,0.12)]">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Interactive Diagnostic Tool
         </span>

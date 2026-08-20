@@ -252,7 +252,7 @@ export function AboutCredentials() {
             {CERTIFICATIONS.map((cert) => (
               <div
                 key={cert.id}
-                className="group p-4 sm:p-5 rounded-xl bg-surface-1/70 hover:bg-surface-1 border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4"
+                className="group p-4 sm:p-5 rounded-xl bg-surface-1/70 hover:bg-surface-1/85 backdrop-blur-sm border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
@@ -324,7 +324,7 @@ export function AboutCredentials() {
             {EDUCATION_HISTORY.map((edu, idx) => (
               <div
                 key={idx}
-                className="p-4 sm:p-5 rounded-xl bg-surface-1/70 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-1 transition-colors"
+                className="p-4 sm:p-5 rounded-xl bg-surface-1/70 backdrop-blur-sm border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-1/85 transition-colors"
               >
                 <div className="space-y-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface">

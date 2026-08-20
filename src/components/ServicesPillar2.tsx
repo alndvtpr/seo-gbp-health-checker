@@ -85,10 +85,10 @@ export function ServicesPillar2() {
         {PILLAR_2_SERVICES.map((service) => (
           <article
             key={service.id}
-            className={`p-6 sm:p-8 rounded-2xl sm:rounded-3xl border transition-all duration-300 group flex flex-col justify-between shadow-lg ${
+            className={`p-6 sm:p-8 rounded-2xl sm:rounded-3xl border transition-all duration-300 group flex flex-col justify-between shadow-lg backdrop-blur-md ${
               service.isFeatured
-                ? 'bg-gradient-to-b from-primary-container/15 via-surface-1 to-surface-1 border-primary-container/50 hover:border-primary-container shadow-[0_0_30px_rgba(224,123,32,0.15)]'
-                : 'bg-surface-1/90 border-white/10 hover:border-primary-container/40'
+                ? 'bg-gradient-to-b from-primary-container/15 via-surface-1/80 to-surface-1/80 border-primary-container/50 hover:border-primary-container shadow-[0_0_30px_rgba(224,123,32,0.15)]'
+                : 'bg-surface-1/80 border-white/10 hover:border-primary-container/40'
             }`}
           >
             <div>
