@@ -172,8 +172,9 @@ export function Icon({
       width={size}
       height={size}
       fill="currentColor"
-      className={`inline-block shrink-0 ${className}`}
+      className={`inline-block shrink-0 align-middle ${className}`}
       aria-hidden="true"
+      focusable="false"
       {...props}
     >
       <path d={icon.path} />
@@ -182,3 +183,4 @@ export function Icon({
 }
 
 export default Icon
+

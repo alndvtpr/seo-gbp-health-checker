@@ -25,6 +25,9 @@ html {
   overflow-x: clip;
   color: var(--color-on-background);
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -49,6 +52,8 @@ body {
   padding: 0;
   overflow-x: hidden;
   color: var(--color-on-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Optimize backdrop-filter for low-end mobile viewports while preserving desktop glass aesthetics */

@@ -39,7 +39,7 @@ export const AnnouncementBanner = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1 justify-start">
           <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-heading font-extrabold uppercase tracking-wider bg-primary-container text-on-primary-container shadow-[0_0_12px_rgba(230,126,34,0.6)] shrink-0">
-            <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 animate-spin duration-1000" />
+            <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 animate-spin duration-1000" aria-hidden="true" />
             <span>New Feature</span>
           </span>
 
@@ -55,20 +55,20 @@ export const AnnouncementBanner = () => {
 
           <Link
             href="/tools/"
-            className="inline-flex items-center gap-1 font-heading font-bold text-[11px] sm:text-xs text-primary-container hover:text-primary hover:underline transition-colors shrink-0 ml-auto sm:ml-1 group whitespace-nowrap"
+            className="inline-flex items-center gap-1 font-heading font-bold text-[11px] sm:text-xs text-primary-container hover:text-primary hover:underline transition-colors shrink-0 ml-auto sm:ml-1 group whitespace-nowrap min-h-[36px] sm:min-h-auto py-1 px-1.5"
           >
             <span>Try Free</span>
-            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
           </Link>
         </div>
 
         <button
           type="button"
           onClick={handleDismiss}
-          className="p-1 rounded-lg text-on-surface/50 hover:text-on-surface hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+          className="p-1.5 rounded-lg text-on-surface/60 hover:text-on-surface hover:bg-white/10 transition-colors shrink-0 cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           aria-label="Dismiss announcement banner"
         >
-          <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+          <X className="w-4 h-4" aria-hidden="true" />
         </button>
       </div>
     </aside>
