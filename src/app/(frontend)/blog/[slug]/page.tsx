@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { TableOfContents } from '@/components/TableOfContents'
 import { BLOG_POSTS, BlogPost } from '@/data/posts'
 
 export async function generateStaticParams() {
@@ -32,6 +33,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound()
   }
 
+  // Generate TOC items from sections
+  const tocItems = post.content.sections.map((section, idx) => ({
+    id: `section-${idx + 1}`,
+    title: section.heading,
+  }))
+
   // Schema Graph for Google & AI Search Engines
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -58,7 +65,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <article className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-4xl mx-auto relative z-20 space-y-12 sm:space-y-16">
+    <article className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-6xl mx-auto relative z-20 space-y-10 sm:space-y-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -73,7 +80,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
 
       {/* Article Header */}
-      <header className="space-y-6 text-left border-b border-white/10 pb-8 sm:pb-12">
+      <header className="space-y-6 text-left border-b border-white/10 pb-8 sm:pb-12 max-w-4xl">
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-heading text-primary-container uppercase tracking-[0.08em] font-semibold text-xs px-3.5 py-1 rounded-full bg-primary-container/10 border border-primary-container/30">
             {post.category}
@@ -108,52 +115,88 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </header>
 
-      {/* Article Body Content */}
-      <div className="space-y-12 sm:space-y-16 font-sans text-on-surface/85 text-base sm:text-lg leading-relaxed max-w-prose mx-auto">
-        {post.content.sections.map((section, idx) => (
-          <section key={idx} className="space-y-6">
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-on-surface tracking-tight leading-snug">
-              {section.heading}
-            </h2>
+      {/* Main 2-Column Layout (Content + Sticky Table of Contents Sidebar) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Left Column: Article Body Content */}
+        <div className="lg:col-span-8 space-y-12 sm:space-y-16 font-sans text-on-surface/85 text-base sm:text-lg leading-relaxed">
+          {/* Mobile Table of Contents */}
+          <TableOfContents items={tocItems} className="lg:hidden mb-8" />
 
-            {section.body.map((para, pIdx) => (
-              <p key={pIdx} className="leading-relaxed">
-                {para}
-              </p>
-            ))}
+          {post.content.sections.map((section, idx) => (
+            <section
+              key={idx}
+              id={`section-${idx + 1}`}
+              className="space-y-6 scroll-mt-28"
+            >
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-on-surface tracking-tight leading-snug">
+                {section.heading}
+              </h2>
 
-            {section.highlight && (
-              <div className="p-6 rounded-2xl bg-surface-1/90 border border-primary-container/30 border-l-4 border-l-primary-container my-6 space-y-2 shadow-lg">
-                <span className="font-heading text-xs uppercase tracking-[0.08em] text-primary-container font-semibold block">
-                  {section.highlight.title}
-                </span>
-                <p className="text-sm sm:text-base text-on-surface/90 italic font-medium leading-relaxed">
-                  &ldquo;{section.highlight.text}&rdquo;
+              {section.body.map((para, pIdx) => (
+                <p key={pIdx} className="leading-relaxed">
+                  {para}
                 </p>
-              </div>
-            )}
+              ))}
 
-            {section.takeaways && section.takeaways.length > 0 && (
-              <div className="p-6 rounded-2xl bg-surface-1 border border-white/10 space-y-3 my-6">
-                <span className="font-heading text-xs uppercase tracking-[0.08em] text-on-surface/70 font-semibold block">
-                  Key Takeaways
-                </span>
-                <ul className="space-y-2.5 text-sm sm:text-base">
-                  {section.takeaways.map((item, tIdx) => (
-                    <li key={tIdx} className="flex items-start gap-2.5">
-                      <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-1" />
-                      <span className="text-on-surface/85">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </section>
-        ))}
+              {section.highlight && (
+                <div className="p-6 rounded-2xl bg-surface-1/90 border border-primary-container/30 border-l-4 border-l-primary-container my-6 space-y-2 shadow-lg">
+                  <span className="font-heading text-xs uppercase tracking-[0.08em] text-primary-container font-semibold block">
+                    {section.highlight.title}
+                  </span>
+                  <p className="text-sm sm:text-base text-on-surface/90 italic font-medium leading-relaxed">
+                    &ldquo;{section.highlight.text}&rdquo;
+                  </p>
+                </div>
+              )}
+
+              {section.takeaways && section.takeaways.length > 0 && (
+                <div className="p-6 rounded-2xl bg-surface-1 border border-white/10 space-y-3 my-6">
+                  <span className="font-heading text-xs uppercase tracking-[0.08em] text-on-surface/70 font-semibold block">
+                    Key Takeaways
+                  </span>
+                  <ul className="space-y-2.5 text-sm sm:text-base">
+                    {section.takeaways.map((item, tIdx) => (
+                      <li key={tIdx} className="flex items-start gap-2.5">
+                        <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-1" />
+                        <span className="text-on-surface/85">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
+
+        {/* Right Column: Desktop Sticky Table of Contents & Quick Action Sidebar */}
+        <aside className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
+          <TableOfContents items={tocItems} />
+
+          {/* Quick Tool Diagnostic Card */}
+          <div className="p-5 rounded-2xl bg-surface-1/90 border border-primary-container/30 space-y-3 shadow-lg">
+            <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-emerald-400 font-semibold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Live Diagnostic
+            </span>
+            <h3 className="font-heading text-sm font-bold text-on-surface leading-snug">
+              Audit Your Google Business Profile
+            </h3>
+            <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+              Test 10 ranking signals and generate a 30-day AI SEO roadmap in 30 seconds.
+            </p>
+            <Link
+              href="/tools/"
+              className="inline-flex items-center justify-between w-full p-2.5 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-primary transition-all shadow-md"
+            >
+              <span>Launch Free Audit</span>
+              <Icon name="north_east" size={14} />
+            </Link>
+          </div>
+        </aside>
       </div>
 
       {/* Ambient Section Divider */}
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/25 to-transparent" />
       </div>
 

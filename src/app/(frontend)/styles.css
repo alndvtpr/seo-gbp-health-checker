@@ -24,6 +24,22 @@ html {
   padding: 0;
   overflow-x: clip;
   color: var(--color-on-background);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
@@ -96,6 +112,51 @@ body {
 
 .marquee-row:hover {
   animation-play-state: paused;
+}
+
+/* ── GPU-Accelerated Micro-Animations ───────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Interactive Card Glow Effect */
+.card-interactive-glow {
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-interactive-glow:hover {
+  border-color: rgba(224, 123, 32, 0.4);
+  box-shadow: 0 0 35px rgba(224, 123, 32, 0.15);
+  transform: translateY(-2px);
 }
 
 /* ── Asset Armor & Design Protection ────────────────────────────────────────── */

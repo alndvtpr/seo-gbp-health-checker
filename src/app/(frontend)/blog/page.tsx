@@ -40,7 +40,7 @@ export default function BlogPage() {
         {BLOG_POSTS.map((post) => (
           <article
             key={post.slug}
-            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl"
+            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl card-interactive-glow"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs font-sans text-on-surface/70">

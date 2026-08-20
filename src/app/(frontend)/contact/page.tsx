@@ -132,7 +132,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form Container */}
-        <div className="lg:col-span-7 rounded-3xl border border-neutral-800 bg-neutral-950/60 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+        <div className="lg:col-span-7 rounded-3xl border border-white/10 bg-surface-1/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
           <ContactForm />
         </div>
       </div>

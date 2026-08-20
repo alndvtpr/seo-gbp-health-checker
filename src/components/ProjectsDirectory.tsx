@@ -331,7 +331,7 @@ export function ProjectsDirectory() {
         {filteredProjects.map((proj) => (
           <div
             key={proj.id}
-            className="group rounded-2xl sm:rounded-3xl bg-surface-1/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+            className="group rounded-2xl sm:rounded-3xl bg-surface-1/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] card-interactive-glow"
           >
             <div>
               {/* Project Card Image Preview */}
