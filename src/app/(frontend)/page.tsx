@@ -50,8 +50,9 @@ export default async function Page() {
       },
     })
     page = docs[0] ?? null
-  } catch (err) {
-    console.error('Payload DB check:', err)
+  } catch {
+    // Graceful offline/paused DB fallback: core portfolio sections are statically hardcoded React components
+    page = null
   }
 
   return (

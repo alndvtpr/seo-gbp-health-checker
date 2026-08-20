@@ -10,19 +10,24 @@ export const dynamic = 'force-dynamic'
 
 export default async function Page(props: { params: Promise<{ slug?: string[] }> }) {
   const { slug } = await props.params
-  const payload = await getPayload({ config })
-  const urlSlug = slug ? slug.join('/') : 'index'
+  let page = null
+  try {
+    const payload = await getPayload({ config })
+    const urlSlug = slug ? slug.join('/') : 'index'
 
-  const { docs } = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: {
-        equals: urlSlug,
+    const { docs } = await payload.find({
+      collection: 'pages',
+      where: {
+        slug: {
+          equals: urlSlug,
+        },
       },
-    },
-  })
+    })
 
-  const page = docs[0]
+    page = docs[0] ?? null
+  } catch {
+    return notFound()
+  }
 
   if (!page) {
     return notFound()
