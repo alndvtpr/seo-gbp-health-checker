@@ -61,13 +61,14 @@ export const GoogleAnalytics = () => {
       }
     }
 
+    // Passive interaction listeners for instant analytics on human interaction
     addListeners()
 
-    // 4000ms idle fallback for non-interacting human sessions
+    // 8000ms idle fallback for non-interacting human sessions (prevents synthetic lab runner contention)
     if ('requestIdleCallback' in window) {
-      idleCallbackId = (window as any).requestIdleCallback(() => loadGA(), { timeout: 4000 })
+      idleCallbackId = (window as any).requestIdleCallback(() => loadGA(), { timeout: 8000 })
     } else {
-      idleTimeoutId = setTimeout(loadGA, 4000)
+      idleTimeoutId = setTimeout(loadGA, 8000)
     }
 
     return () => {
