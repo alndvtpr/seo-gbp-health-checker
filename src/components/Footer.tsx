@@ -7,8 +7,20 @@ import { RssButton } from '@/components/RssButton'
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0b0d0d] text-on-surface w-full pt-12 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-30" style={{ paddingBottom: 'max(3rem, calc(1.5rem + env(safe-area-inset-bottom, 0px)))' }}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
+    <footer
+      className="bg-[#0b0d0d]/40 backdrop-blur-md text-on-surface w-full pt-12 sm:pt-16 pb-12 sm:pb-16 px-4 sm:px-6 md:px-16 border-t border-white/10 relative z-30 overflow-hidden"
+      style={{ paddingBottom: 'max(3rem, calc(1.5rem + env(safe-area-inset-bottom, 0px)))' }}
+    >
+      {/* Top Border Dual Ambient Gradient Line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-primary-container/50 via-white/10 to-emerald-500/40 pointer-events-none" />
+
+      {/* Left Ambient Radial Glow (Orange / Amber) */}
+      <div className="absolute -top-24 -left-24 w-80 sm:w-[32rem] h-80 sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(230,126,34,0.16)_0%,transparent_70%)] pointer-events-none blur-3xl animate-glow-pulse" />
+
+      {/* Right Ambient Radial Glow (Emerald / Green) */}
+      <div className="absolute -bottom-24 -right-24 w-80 sm:w-[32rem] h-80 sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.13)_0%,transparent_70%)] pointer-events-none blur-3xl animate-glow-pulse" />
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12 relative z-10">
         {/* Column 1: Brand */}
         <div className="space-y-4">
           <div className="flex items-center gap-3">
@@ -140,7 +152,7 @@ export const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-on-surface/70">
+      <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-sans text-on-surface/70 relative z-10">
         <div>
           © {new Date().getFullYear()} Alain Dave Tapiru. All rights reserved.
         </div>
