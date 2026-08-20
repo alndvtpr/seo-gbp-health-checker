@@ -1,5 +1,5 @@
 import React from 'react'
-import { Inter, Montserrat } from 'next/font/google'
+import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import './styles.css'
@@ -19,13 +19,13 @@ const inter = Inter({
   adjustFontFallback: true,
 })
 
-const montserrat = Montserrat({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-montserrat',
+  variable: '--font-jakarta',
   display: 'swap',
   preload: true,
   adjustFontFallback: true,
-  weight: ['600', '700', '800'],
+  weight: ['500', '600', '700', '800'],
 })
 
 export const metadata = generateMetadata({
@@ -38,7 +38,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en" className={`dark ${inter.variable} ${montserrat.variable} bg-[#121414]`} style={{ backgroundColor: '#121414' }}>
+    <html lang="en" className={`dark ${inter.variable} ${jakarta.variable} bg-[#0f1111]`} style={{ backgroundColor: '#0f1111' }}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#121414" />

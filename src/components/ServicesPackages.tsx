@@ -73,12 +73,12 @@ export function ServicesPackages() {
     >
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           ENGAGEMENT MODELS
         </span>
         <h2
           id="packages-heading"
-          className="font-heading text-2xl sm:text-4xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4 tracking-tight"
+          className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
           Choose Your Path to Search Dominance
         </h2>
@@ -94,14 +94,14 @@ export function ServicesPackages() {
             key={pkg.id}
             className={`rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-300 relative ${
               pkg.isFeatured
-                ? 'bg-gradient-to-b from-primary-container/20 via-[#1a1c1d] to-[#141617] border-2 border-primary-container shadow-[0_0_40px_rgba(230,126,34,0.25)] lg:-translate-y-2 z-10 pt-10 sm:pt-12'
-                : 'bg-[#181a1b]/90 border border-white/10 hover:border-primary-container/40'
+                ? 'bg-gradient-to-b from-primary-container/20 via-[#1a1c1d] to-[#141617] border-2 border-primary-container shadow-[0_0_40px_rgba(224,123,32,0.25)] lg:-translate-y-2 z-10 pt-10 sm:pt-12'
+                : 'bg-surface-1/90 border border-white/10 hover:border-primary-container/40'
             }`}
           >
             {/* Floating Featured Badge */}
             {pkg.isFeatured && pkg.popularBadge && (
               <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-                <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-xs font-extrabold uppercase tracking-wider shadow-md whitespace-nowrap">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-xs font-extrabold uppercase tracking-[0.06em] shadow-md whitespace-nowrap">
                   <Icon name="auto_awesome" size={13} />
                   {pkg.popularBadge}
                 </span>
@@ -125,7 +125,7 @@ export function ServicesPackages() {
               </h3>
 
               {/* Target Audience Description */}
-              <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed mb-6 sm:mb-8 min-h-[44px]">
+              <p className="font-sans text-sm text-on-surface/75 leading-relaxed mb-6 sm:mb-8 min-h-[44px]">
                 <strong className="text-on-surface font-semibold">Best For: </strong>
                 {pkg.targetAudience}
               </p>
@@ -135,7 +135,7 @@ export function ServicesPackages() {
                 <span className="font-heading text-xs text-primary-container uppercase tracking-wider block font-semibold">
                   What&apos;s Included:
                 </span>
-                <ul className="space-y-3 font-sans text-xs sm:text-sm text-on-surface/85">
+                <ul className="space-y-3 font-sans text-sm text-on-surface/85">
                   {pkg.includes.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
                       <Icon
@@ -154,9 +154,9 @@ export function ServicesPackages() {
             <Link
               href="/contact/"
               aria-label={`${pkg.ctaText} - ${pkg.name}`}
-              className={`inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl font-heading text-xs sm:text-sm font-bold uppercase tracking-wider transition-all min-h-[48px] text-center leading-normal ${
+              className={`inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] transition-all min-h-[48px] text-center leading-normal ${
                 pkg.isFeatured
-                  ? 'bg-primary-container text-on-primary-container shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:shadow-[0_0_35px_rgba(230,126,34,0.6)] hover:scale-[1.02] active:scale-[0.98]'
+                  ? 'bg-primary-container text-on-primary-container shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] hover:scale-[1.02] active:scale-[0.98]'
                   : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent hover:scale-[1.02] active:scale-[0.98]'
               }`}
             >

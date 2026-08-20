@@ -25,7 +25,7 @@ export const Footer = () => {
               Alain Dave <span className="text-primary-container">Tapiru</span>
             </span>
           </div>
-          <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+          <p className="font-sans text-sm text-on-surface/75 leading-relaxed">
             SEO Specialist, Web Designer, &amp; Cybersecurity Enthusiast. Crafting high-converting digital experiences through data-driven search strategies.
           </p>
           
@@ -58,10 +58,10 @@ export const Footer = () => {
 
         {/* Column 2: Navigation */}
         <div className="space-y-3">
-          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-[0.06em]">
             Quick Links
           </h3>
-          <ul className="space-y-2 font-sans text-xs text-on-surface/70">
+          <ul className="space-y-2 font-sans text-sm text-on-surface/70">
             <li>
               <Link href="/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Home</Link>
             </li>
@@ -93,10 +93,10 @@ export const Footer = () => {
 
         {/* Column 3: Tools & Services */}
         <div className="space-y-3">
-          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-[0.06em]">
             Tools &amp; Services
           </h3>
-          <ul className="space-y-2 font-sans text-xs text-on-surface/70">
+          <ul className="space-y-2 font-sans text-sm text-on-surface/70">
             <li>
               <Link href="/services/#pillar-foundation" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO &amp; Schema</Link>
             </li>
@@ -117,21 +117,21 @@ export const Footer = () => {
 
         {/* Column 4: Newsletter */}
         <div className="space-y-3">
-          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-wider">
+          <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-[0.06em]">
             Stay Updated
           </h3>
-          <p className="font-sans text-xs text-on-surface/70">
+          <p className="font-sans text-sm text-on-surface/70 leading-relaxed">
             Subscribe for technical SEO tips, AI workflow guides, and performance optimization insights.
           </p>
           <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-2.5">
             <input
               type="email"
               placeholder="Enter your email"
-              className="bg-white/5 border border-white/10 rounded-lg px-3.5 py-2.5 text-base sm:text-xs text-on-surface focus:outline-none focus:border-primary-container min-h-[44px]"
+              className="bg-white/5 border border-white/10 rounded-lg px-3.5 py-2.5 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             />
             <button
               type="submit"
-              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-wider py-2.5 rounded-lg hover:bg-primary transition-colors min-h-[44px] flex items-center justify-center"
+              className="bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-2.5 rounded-lg hover:bg-primary transition-colors min-h-[46px] flex items-center justify-center cursor-pointer"
             >
               Subscribe
             </button>

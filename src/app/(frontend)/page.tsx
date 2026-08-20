@@ -70,30 +70,30 @@ export default async function Page() {
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(230,126,34,0.12)_0%,transparent_60%)]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-7 sm:mb-9 relative z-10">
-          <span className="font-heading text-[11px] text-primary-container uppercase tracking-widest block mb-1.5 font-bold opacity-90">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             Technical Stack
           </span>
-          <h2 className="font-heading text-xl sm:text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight mb-3">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface tracking-tight mb-3">
             Tools I Use to Turn SEO Into Action
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-on-surface/60 max-w-xl mx-auto mb-5">
+          <p className="font-sans text-sm sm:text-base text-on-surface/70 max-w-xl mx-auto mb-5 leading-relaxed">
             A practical toolkit for research, optimization, analytics, content, and modern web development.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link href="/services/#pillar-foundation" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="search" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
-              <h3 className="font-heading text-[11px] text-on-surface/70 group-hover:text-primary-container uppercase tracking-widest transition-colors">SEO &amp; Analytics</h3>
-              <span className="font-sans text-[11px] text-on-surface/40">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
+              <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">SEO &amp; Analytics</h3>
+              <span className="font-sans text-xs text-on-surface/50">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
             </Link>
             <Link href="/services/#pillar-execution" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="code" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
-              <h3 className="font-heading text-[11px] text-on-surface/70 group-hover:text-primary-container uppercase tracking-widest transition-colors">Web &amp; SEO</h3>
-              <span className="font-sans text-[11px] text-on-surface/40">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
+              <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">Web &amp; SEO</h3>
+              <span className="font-sans text-xs text-on-surface/50">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
             </Link>
             <Link href="/tools/" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="auto_awesome" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
-              <h3 className="font-heading text-[11px] text-on-surface/70 group-hover:text-primary-container uppercase tracking-widest transition-colors">AI &amp; Diagnostics</h3>
-              <span className="font-sans text-[11px] text-on-surface/40">Interactive GBP Auditor &bull; Gemini AI Sprints</span>
+              <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">AI &amp; Diagnostics</h3>
+              <span className="font-sans text-xs text-on-surface/50">Interactive GBP Auditor &bull; Gemini AI Sprints</span>
             </Link>
           </div>
         </div>
@@ -113,12 +113,12 @@ export default async function Page() {
               {TECHNICAL_TOOLS.map((tool, idx) => (
                 <div
                   key={`${tool.name}-badge-${idx}`}
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#161819]/70 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-[#1f2224]/80 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
                   <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
-                  <span className="text-xs sm:text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
+                  <span className="text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
                     {tool.name}
                   </span>
                 </div>
@@ -129,12 +129,12 @@ export default async function Page() {
               {TECHNICAL_TOOLS.map((tool, idx) => (
                 <div
                   key={`${tool.name}-dup-badge-${idx}`}
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#161819]/70 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-[#1f2224]/80 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
                   <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
-                  <span className="text-xs sm:text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
+                  <span className="text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
                     {tool.name}
                   </span>
                 </div>
@@ -158,51 +158,51 @@ export default async function Page() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121414] via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-[#121414]/90 border border-white/10">
-              <p className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-widest mb-1 font-bold">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-[#0f1111]/90 border border-white/10">
+              <p className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-1 font-bold">
                 About Alain Dave Tapiru
               </p>
-              <h3 className="font-heading text-xs sm:text-base font-bold text-on-surface">
+              <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
                 Data-Driven SEO Specialist &amp; Technical Web Designer
               </h3>
             </div>
           </div>
 
           <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
-            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               Background &amp; Expertise
             </span>
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface leading-tight">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-on-surface leading-tight tracking-tight">
               Where Search Strategy Meets Smarter Execution
             </h2>
-            <p className="font-sans text-on-surface/80 text-xs sm:text-sm leading-relaxed">
+            <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed max-w-prose">
               I combine SEO strategy, technical optimization, local search, and modern digital tools to create practical solutions that help websites become more visible and useful.
             </p>
 
             {/* Honest Metrics Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-white/10">
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col justify-between">
-                <span className="font-heading text-sm sm:text-base md:text-lg font-bold text-primary-container block mb-1">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1 border border-white/5 flex flex-col justify-between">
+                <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   4 Core Disciplines
                 </span>
-                <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
                   SEO, Web Dev, Support &amp; Bookkeeping
                 </span>
               </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col justify-between">
-                <span className="font-heading text-sm sm:text-base md:text-lg font-bold text-primary-container block mb-1">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1 border border-white/5 flex flex-col justify-between">
+                <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   AI-Powered Workflows
                 </span>
-                <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
                   Leveraging modern tools for faster, smarter builds.
                 </span>
               </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 flex flex-col justify-between">
-                <span className="font-heading text-sm sm:text-base md:text-lg font-bold text-primary-container block mb-1">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1 border border-white/5 flex flex-col justify-between">
+                <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   24hr Response Time
                 </span>
-                <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
                   Dedicated, fast communication.
                 </span>
               </div>
@@ -211,7 +211,7 @@ export default async function Page() {
             <div className="pt-2">
               <Link
                 href="/about/"
-                className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-widest font-bold text-primary-container hover:underline"
+                className="inline-flex items-center gap-2 font-heading text-xs uppercase tracking-[0.06em] font-bold text-primary-container hover:underline"
               >
                 Read Full Biography <Icon name="arrow_forward" size={16} />
               </Link>
@@ -223,13 +223,13 @@ export default async function Page() {
       {/* 4. THE SEO PROCESS CYCLE (6-STEP GRID) */}
       <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 relative z-20">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             Methodology
           </span>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface mb-3 sm:mb-4">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight">
             The 6-Step SEO Process
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-on-surface/70">
+          <p className="font-sans text-sm sm:text-base text-on-surface/70 leading-relaxed">
             A systematic approach to understanding, improving, and growing your search visibility.
           </p>
         </div>
@@ -287,17 +287,17 @@ export default async function Page() {
           ].map((item) => (
             <div
               key={item.step}
-              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group hover:-translate-y-1 relative flex flex-col justify-between"
+              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group hover:-translate-y-1 relative flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-4 sm:mb-6">
                   <Icon name={item.icon} size={36} className="text-primary-container group-hover:scale-110 transition-transform" />
-                  <span className="font-heading text-xl sm:text-2xl font-black text-white/10 group-hover:text-primary-container/30 transition-colors">
+                  <span className="font-heading text-2xl sm:text-3xl font-black text-white/10 group-hover:text-primary-container/30 transition-colors">
                     {item.step}
                   </span>
                 </div>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface mb-2 sm:mb-3">{item.title}</h3>
-                <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed mb-4">{item.desc}</p>
+                <p className="font-sans text-sm text-on-surface/75 leading-relaxed mb-4">{item.desc}</p>
               </div>
               <div className="pt-3 border-t border-white/5">
                 <Link
@@ -319,16 +319,16 @@ export default async function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-4">
             <div>
-              <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+              <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
                 Portfolio Showcase
               </span>
-              <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-on-surface tracking-tight">
                 SEO Work Built to Be Seen, Tested, and Used
               </h2>
             </div>
             <Link
               href="/projects/"
-              className="font-heading text-xs uppercase tracking-widest font-bold text-primary-container hover:underline flex items-center gap-1"
+              className="font-heading text-xs uppercase tracking-[0.06em] font-bold text-primary-container hover:underline flex items-center gap-1"
             >
               View All Case Studies <Icon name="arrow_forward" size={16} />
             </Link>
@@ -336,7 +336,7 @@ export default async function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Primary Featured Project: AngatSikat Studio */}
-            <div className="rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-amber-500/20 hover:border-primary-container/60 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1 border border-amber-500/20 hover:border-primary-container/60 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -346,9 +346,9 @@ export default async function Page() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#121414]/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#0f1111]/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                       Ongoing
                     </span>
@@ -357,10 +357,10 @@ export default async function Page() {
 
                 <div className="p-5 sm:p-6 space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-bold">
+                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-semibold">
                       WordPress • Custom Theme
                     </span>
-                    <span className="text-[11px] font-sans text-on-surface/40">
+                    <span className="text-xs font-sans text-on-surface/40">
                       Web Developer &amp; Designer
                     </span>
                   </div>
@@ -369,11 +369,11 @@ export default async function Page() {
                     AngatSikat Studio
                   </h3>
 
-                  <p className="font-sans text-xs text-primary-container/90 italic font-medium">
+                  <p className="font-sans text-xs sm:text-sm text-primary-container/90 italic font-medium">
                     &ldquo;Websites Built to Be Found.&rdquo;
                   </p>
 
-                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                  <p className="font-sans text-sm text-on-surface/75 leading-relaxed line-clamp-3">
                     A WordPress and web design studio platform built to unify modern website creation with technical crawlability and search visibility.
                   </p>
 
@@ -381,7 +381,7 @@ export default async function Page() {
                     {['WordPress', 'Technical SEO', 'Custom Theme'].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
                       >
                         {tag}
                       </span>
@@ -403,7 +403,7 @@ export default async function Page() {
                   href="https://angat-sikat.freedev.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold shadow-[0_0_15px_rgba(230,126,34,0.3)] hover:bg-primary transition-all"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-primary-container text-on-primary-container text-xs font-heading font-bold shadow-[0_0_15px_rgba(224,123,32,0.3)] hover:bg-primary transition-all"
                 >
                   <span>View Live Build</span>
                   <Icon name="north_east" size={13} />
@@ -412,7 +412,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 2: Local SEO & GBP Checker */}
-            <div className="rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -422,9 +422,9 @@ export default async function Page() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#121414]/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#0f1111]/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       Live Tool
                     </span>
@@ -433,10 +433,10 @@ export default async function Page() {
 
                 <div className="p-5 sm:p-6 space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-bold">
+                    <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-semibold">
                       Local SEO • Diagnostic Tool
                     </span>
-                    <span className="text-[11px] font-sans text-on-surface/40">
+                    <span className="text-xs font-sans text-on-surface/40">
                       Full Stack &amp; SEO
                     </span>
                   </div>
@@ -445,11 +445,11 @@ export default async function Page() {
                     Local SEO &amp; GBP Health Checker
                   </h3>
 
-                  <p className="font-sans text-xs text-primary-container/90 italic font-medium">
+                  <p className="font-sans text-xs sm:text-sm text-primary-container/90 italic font-medium">
                     &ldquo;Interactive Google Business Profile Signal Analyzer.&rdquo;
                   </p>
 
-                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                  <p className="font-sans text-sm text-on-surface/75 leading-relaxed line-clamp-3">
                     A self-built tool for analyzing key Google Business Profile and local SEO signals, helping identify practical opportunities for better local search visibility.
                   </p>
 
@@ -457,7 +457,7 @@ export default async function Page() {
                     {['Next.js', 'React', 'Local SEO', 'AI Scoring'].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
                       >
                         {tag}
                       </span>
@@ -486,7 +486,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 3: AlainTapiru.com Web Architecture */}
-            <div className="rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -496,9 +496,9 @@ export default async function Page() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#121414]/90 text-primary-container border border-primary-container/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#0f1111]/90 text-primary-container border border-primary-container/30 backdrop-blur-md shadow-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
                       Production
                     </span>
@@ -507,10 +507,10 @@ export default async function Page() {
 
                 <div className="p-5 sm:p-6 space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-bold">
+                    <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-semibold">
                       Technical SEO • Modern Web
                     </span>
-                    <span className="text-[11px] font-sans text-on-surface/40">
+                    <span className="text-xs font-sans text-on-surface/40">
                       Lead Architect
                     </span>
                   </div>
@@ -519,11 +519,11 @@ export default async function Page() {
                     AlainTapiru.com
                   </h3>
 
-                  <p className="font-sans text-xs text-primary-container/90 italic font-medium">
+                  <p className="font-sans text-xs sm:text-sm text-primary-container/90 italic font-medium">
                     &ldquo;High-Performance Portfolio &amp; Technical Architecture.&rdquo;
                   </p>
 
-                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                  <p className="font-sans text-sm text-on-surface/75 leading-relaxed line-clamp-3">
                     My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance considerations, and AI-assisted development workflows.
                   </p>
 
@@ -531,7 +531,7 @@ export default async function Page() {
                     {['Next.js 15', 'Tailwind CSS', 'Payload CMS', 'SEO'].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
                       >
                         {tag}
                       </span>
@@ -568,21 +568,21 @@ export default async function Page() {
 
       {/* 6. CALL TO ACTION */}
       <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">
-        <div className="p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-[#181a1b]/40 border border-primary-container/30 shadow-[0_0_50px_rgba(230,126,34,0.1)]">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest mb-2 block font-bold">
+        <div className="p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_50px_rgba(224,123,32,0.1)]">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-2 block font-semibold">
             Get Started
           </span>
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-extrabold text-on-surface mb-4 sm:mb-6">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-on-surface mb-4 sm:mb-6 tracking-tight">
             Have Something Worth Being Found?
           </h2>
-          <p className="font-sans text-on-surface/70 max-w-xl mx-auto mb-8 sm:mb-10 text-xs sm:text-sm leading-relaxed">
+          <p className="font-sans text-on-surface/80 max-w-xl mx-auto mb-8 sm:mb-10 text-sm sm:text-base leading-relaxed">
             Let&apos;s build a stronger search presence with practical SEO, thoughtful strategy, and a website ready for discovery.
           </p>
 
           <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
             <Link
               href="/contact/"
-              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               Let&apos;s Talk SEO <Icon name="arrow_forward" size={16} />
             </Link>

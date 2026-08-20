@@ -347,7 +347,7 @@ export const ScrollHero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="font-heading text-[10px] sm:text-[11px] uppercase tracking-widest font-extrabold text-primary-container shrink-0">
+              <span className="font-heading text-[10px] sm:text-[11px] uppercase tracking-[0.08em] font-extrabold text-primary-container shrink-0">
                 ✨ Free Tool:
               </span>
               <span className="text-on-surface/90 text-[11px] sm:text-xs font-medium truncate group-hover:text-white">
@@ -359,12 +359,12 @@ export const ScrollHero = () => {
             </Link>
           </div>
 
-          <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl font-extrabold text-on-surface tracking-tight leading-[1.15] sm:leading-[1.1] drop-shadow-2xl">
+          <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl font-extrabold text-on-surface tracking-[-0.025em] leading-[1.12] sm:leading-[1.08] drop-shadow-2xl">
             SEO Specialist in the Philippines{' '}
             <span className="text-primary-container">Building Search-Ready Websites</span>
           </h1>
 
-          <p className="font-sans text-base sm:text-xl md:text-2xl text-on-surface-variant drop-shadow-lg font-medium leading-relaxed">
+          <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface-variant drop-shadow-lg font-normal leading-relaxed max-w-2xl">
             Helping businesses worldwide grow through smarter SEO, search-ready websites, and effective digital marketing strategies.
           </p>
 
@@ -372,14 +372,14 @@ export const ScrollHero = () => {
             <Link
               href="/projects/"
               data-agent-action="view-portfolio-projects"
-              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.5)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
             >
               View My Work <Icon name="arrow_forward" size={16} />
             </Link>
             <Link
               href="/contact/"
               data-agent-action="start-seo-inquiry"
-              className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
+              className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
             >
               Let&apos;s Work Together
             </Link>

@@ -136,10 +136,10 @@ export const ContactForm = () => {
           placeholder="e.g. John Doe"
           disabled={isSubmitting}
           {...register('name')}
-          className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+          className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
             errors.name
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-              : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
+              : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
           }`}
         />
         {errors.name && (
@@ -164,10 +164,10 @@ export const ContactForm = () => {
             placeholder="john@example.com"
             disabled={isSubmitting}
             {...register('email')}
-            className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+            className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
               errors.email
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-                : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
+                : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
             }`}
           />
           {errors.email && (
@@ -190,10 +190,10 @@ export const ContactForm = () => {
             placeholder="https://yourwebsite.com or example.com"
             disabled={isSubmitting}
             {...register('website')}
-            className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+            className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
               errors.website
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-                : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
+                : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
             }`}
           />
           {errors.website && (
@@ -217,17 +217,17 @@ export const ContactForm = () => {
             id="contact-service"
             disabled={isSubmitting}
             {...register('service')}
-            className={`w-full bg-neutral-900/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 appearance-none cursor-pointer ${
+            className={`w-full bg-surface-1 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 appearance-none cursor-pointer ${
               errors.service
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-                : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
+                : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
             }`}
           >
-            <option value="" disabled className="bg-[#181a1b] text-on-surface/50">
+            <option value="" disabled className="bg-surface-1 text-on-surface/50">
               Select a service or project type...
             </option>
             {SERVICE_OPTIONS.map((opt) => (
-              <option key={opt} value={opt} className="bg-[#181a1b] text-on-surface py-1">
+              <option key={opt} value={opt} className="bg-surface-1 text-on-surface py-1">
                 {opt}
               </option>
             ))}
@@ -259,10 +259,10 @@ export const ContactForm = () => {
           placeholder="Describe your SEO goals, technical requirements, timeline, or budget..."
           disabled={isSubmitting}
           {...register('message')}
-          className={`w-full bg-neutral-900/80 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all resize-none disabled:opacity-50 ${
+          className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all resize-none disabled:opacity-50 ${
             errors.message
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-              : 'border-neutral-800 focus:border-primary-container focus:ring-primary-container/30'
+              : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
           }`}
         />
         {errors.message && (
@@ -276,7 +276,7 @@ export const ContactForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest py-3.5 sm:py-4 rounded-xl shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:bg-primary hover:shadow-[0_0_35px_rgba(230,126,34,0.6)] active:scale-[0.99] transition-all flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+        className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-3.5 sm:py-4 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] active:scale-[0.99] transition-all flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
       >
         {isSubmitting ? (
           <>

@@ -91,10 +91,10 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`font-heading text-xs uppercase tracking-wider px-3.5 py-2 rounded-full transition-colors duration-200 ${
+                  className={`font-heading text-[13px] uppercase tracking-[0.04em] px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
                     isActive
                       ? 'text-primary-container bg-white/10 font-bold'
-                      : 'text-on-surface/80 hover:text-primary-container hover:bg-white/5'
+                      : 'text-on-surface/80 hover:text-primary-container hover:bg-white/5 font-medium'
                   }`}
                 >
                   {link.name}
@@ -122,7 +122,7 @@ export const Navbar = () => {
             </div>
             <Link
               href="/contact/"
-              className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-widest font-bold px-6 py-2.5 rounded-full animate-brand-ripple hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
+              className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-[0.06em] font-bold px-6 py-2.5 rounded-full animate-brand-ripple hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
             >
               Outrank Rivals
               <Icon name="arrow_forward" size={16} />
@@ -158,7 +158,7 @@ export const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`font-heading text-lg sm:text-xl font-bold uppercase tracking-widest transition-colors py-1 ${
+                className={`font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors py-1 ${
                   isActive ? 'text-primary-container border-b-2 border-primary-container' : 'text-on-surface hover:text-primary-container'
                 }`}
               >
@@ -169,7 +169,7 @@ export const Navbar = () => {
           <Link
             href="/contact/"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 w-full text-center bg-primary-container text-on-primary-container font-heading text-sm uppercase tracking-widest font-bold px-8 py-3.5 rounded-full animate-brand-ripple hover:bg-primary transition-colors flex items-center justify-center gap-2"
+            className="mt-4 w-full text-center bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm uppercase tracking-[0.06em] font-bold px-8 py-3.5 rounded-full animate-brand-ripple hover:bg-primary transition-colors flex items-center justify-center gap-2"
           >
             <span>Outrank Rivals</span>
             <Icon name="arrow_forward" size={16} />

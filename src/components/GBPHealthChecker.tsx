@@ -162,7 +162,7 @@ function CircularProgressRing({
             fill="white"
             fontSize="24"
             fontWeight="800"
-            fontFamily="var(--font-montserrat), sans-serif"
+            fontFamily="var(--font-jakarta), sans-serif"
           >
             {score}
           </text>
