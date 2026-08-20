@@ -314,10 +314,10 @@ export function ProjectsDirectory() {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-heading tracking-wide transition-all cursor-pointer ${
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-heading tracking-[0.04em] transition-all cursor-pointer ${
                 isActive
-                  ? 'bg-primary-container text-on-primary-container font-bold shadow-[0_0_25px_rgba(230,126,34,0.4)] scale-105'
-                  : 'bg-[#181a1b]/80 text-on-surface/70 hover:text-white hover:bg-[#202324] border border-white/10'
+                  ? 'bg-primary-container text-on-primary-container font-bold shadow-[0_0_25px_rgba(224,123,32,0.35)] scale-105'
+                  : 'bg-surface-1/90 text-on-surface/70 hover:text-white hover:bg-surface-2 border border-white/10'
               }`}
             >
               {cat}
@@ -331,7 +331,7 @@ export function ProjectsDirectory() {
         {filteredProjects.map((proj) => (
           <div
             key={proj.id}
-            className="group rounded-2xl sm:rounded-3xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+            className="group rounded-2xl sm:rounded-3xl bg-surface-1/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
           >
             <div>
               {/* Project Card Image Preview */}
@@ -346,7 +346,7 @@ export function ProjectsDirectory() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#181a1b] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface-1 via-transparent to-transparent opacity-80" />
 
                 {/* Floating Status Badge */}
                 <div className="absolute top-3 left-3 z-10">
@@ -367,10 +367,10 @@ export function ProjectsDirectory() {
               {/* Project Card Content */}
               <div className="p-5 sm:p-6 space-y-3">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-heading text-[11px] text-primary-container uppercase tracking-wider font-bold">
+                  <span className="font-heading text-[11px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                     {proj.category}
                   </span>
-                  <span className="text-[11px] font-sans text-on-surface/40">
+                  <span className="text-xs font-sans text-on-surface/40">
                     {proj.role}
                   </span>
                 </div>
@@ -382,11 +382,11 @@ export function ProjectsDirectory() {
                   {proj.title}
                 </h2>
 
-                <p className="font-sans text-xs text-primary-container/90 italic">
+                <p className="font-sans text-xs sm:text-sm text-primary-container/90 italic">
                   &ldquo;{proj.tagline}&rdquo;
                 </p>
 
-                <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-3">
+                <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed line-clamp-3">
                   {proj.shortDescription}
                 </p>
 
@@ -395,7 +395,7 @@ export function ProjectsDirectory() {
                   {proj.tags.slice(0, 4).map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 rounded-md bg-white/5 border border-white/5 text-[10px] font-heading text-on-surface/60 uppercase tracking-wider"
+                      className="px-2 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
                     >
                       {t}
                     </span>
@@ -409,7 +409,7 @@ export function ProjectsDirectory() {
               <button
                 type="button"
                 onClick={() => setActiveModalProject(proj)}
-                className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1 cursor-pointer"
+                className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-[0.06em] font-bold text-on-surface hover:text-primary-container transition-colors py-1 cursor-pointer"
               >
                 <span>Details &amp; Framework</span>
                 <Icon name="arrow_forward" size={14} />
@@ -421,8 +421,8 @@ export function ProjectsDirectory() {
                 rel={
                   proj.rel ||
                   (proj.liveUrl.startsWith('http')
-                    ? 'noopener noreferrer'
-                    : undefined)
+                     ? 'noopener noreferrer'
+                     : undefined)
                 }
                 aria-label={`Open ${proj.title} external build (opens in new tab)`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/30 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"

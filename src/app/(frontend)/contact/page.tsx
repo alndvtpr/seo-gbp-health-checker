@@ -18,20 +18,20 @@ export default function ContactPage() {
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Get In Touch
         </span>
-        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6">
+        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-tight">
           Let&apos;s Build &amp; Rank Together
         </h1>
-        <p className="font-sans text-on-surface/70 text-xs sm:text-base leading-relaxed">
+        <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
           Have an SEO project, web design inquiry, or consultation request? Send a message below.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
         {/* Contact Info & Status */}
-        <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-white/10">
+        <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl">
           {/* Availability Status Badge */}
           <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-primary-container/30 flex items-center gap-3">
             <span className="relative flex h-3 w-3 shrink-0">
@@ -40,13 +40,13 @@ export default function ContactPage() {
             </span>
             <div>
               <span className="font-heading text-xs font-bold text-on-surface block">Current Availability</span>
-              <span className="font-sans text-[11px] sm:text-xs text-on-surface/70">Open for freelance SEO audits &amp; full-time roles</span>
+              <span className="font-sans text-xs text-on-surface/70">Open for freelance SEO audits &amp; full-time roles</span>
             </div>
           </div>
 
           <div className="space-y-4 sm:space-y-6">
             <div>
-              <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-1 font-semibold">
+              <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
                 Direct Email
               </span>
               <a
@@ -58,10 +58,10 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <span className="font-heading text-xs text-primary-container uppercase tracking-wider block mb-1 font-semibold">
+              <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
                 Primary Focus
               </span>
-              <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+              <p className="font-sans text-sm text-on-surface/75 leading-relaxed">
                 Comprehensive SEO Packages (Technical, On-Page, &amp; Off-Page), AI-Powered Web Development, Executive Virtual Assistance, and Dedicated Customer Service.
               </p>
             </div>

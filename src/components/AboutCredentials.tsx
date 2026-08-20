@@ -230,10 +230,10 @@ export function AboutCredentials() {
 
       {/* Section Header */}
       <div className="relative z-10 mb-8 sm:mb-10">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-2 font-bold">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Credentials &amp; Background
         </span>
-        <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface">
+        <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface tracking-tight">
           Education &amp; Verified Certifications
         </h2>
       </div>
@@ -243,7 +243,7 @@ export function AboutCredentials() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-primary-container inline-block" />
-            <h3 className="font-heading text-xs uppercase tracking-widest font-bold text-on-surface/90">
+            <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
               Professional Certifications
             </h3>
           </div>
@@ -252,11 +252,11 @@ export function AboutCredentials() {
             {CERTIFICATIONS.map((cert) => (
               <div
                 key={cert.id}
-                className="group p-4 sm:p-5 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4"
+                className="group p-4 sm:p-5 rounded-xl bg-surface-1/70 hover:bg-surface-1 border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
-                    <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                    <h4 className="font-heading text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors">
                       {cert.title}
                     </h4>
                     {cert.verifyUrl ? (
@@ -277,7 +277,7 @@ export function AboutCredentials() {
                       </span>
                     )}
                   </div>
-                  <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
+                  <p className="font-sans text-xs text-on-surface/60">
                     {cert.issuer} • {cert.issuedDate}
                   </p>
                 </div>
@@ -299,7 +299,7 @@ export function AboutCredentials() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Verify Alain Dave Tapiru's ${cert.title} on official registry (opens in new tab)`}
-                      className="text-[11px] font-sans text-on-surface/50 hover:text-primary-container underline underline-offset-2 transition-colors inline-flex items-center gap-1"
+                      className="text-xs font-sans text-on-surface/50 hover:text-primary-container underline underline-offset-2 transition-colors inline-flex items-center gap-1"
                     >
                       <span>Direct Verification Link</span>
                       <Icon name="north_east" size={11} />
@@ -315,7 +315,7 @@ export function AboutCredentials() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-white/40 inline-block" />
-            <h3 className="font-heading text-xs uppercase tracking-widest font-bold text-on-surface/90">
+            <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
               Formal Education &amp; Academic Background
             </h3>
           </div>
@@ -324,13 +324,13 @@ export function AboutCredentials() {
             {EDUCATION_HISTORY.map((edu, idx) => (
               <div
                 key={idx}
-                className="p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white/[0.05] transition-colors"
+                className="p-4 sm:p-5 rounded-xl bg-surface-1/70 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-1 transition-colors"
               >
                 <div className="space-y-1">
-                  <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface">
+                  <h4 className="font-heading text-sm font-bold text-on-surface">
                     {edu.degree}
                   </h4>
-                  <p className="font-sans text-[11px] sm:text-xs text-on-surface/60">
+                  <p className="font-sans text-xs text-on-surface/60">
                     {edu.details}
                     {edu.timeline && (
                       <span className="text-on-surface/40"> • {edu.timeline}</span>

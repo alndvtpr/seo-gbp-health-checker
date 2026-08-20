@@ -109,12 +109,12 @@ export default async function ProjectDetailPage({
               Live Project
             </span>
           )}
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest font-bold">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
             {project.category}
           </span>
         </div>
 
-        <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-on-surface">
+        <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-on-surface tracking-[-0.025em]">
           {project.title}
         </h1>
         <p className="font-sans text-primary-container text-sm sm:text-base italic font-medium">
@@ -138,9 +138,9 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Metadata Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-[#181a1b]/80 border border-white/10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/90 border border-white/10 shadow-lg">
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1">
+          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
             Project / Entity
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
@@ -148,7 +148,7 @@ export default async function ProjectDetailPage({
           </span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1">
+          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
             Role
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
@@ -156,7 +156,7 @@ export default async function ProjectDetailPage({
           </span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1">
+          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
             Status
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-amber-400">
@@ -164,7 +164,7 @@ export default async function ProjectDetailPage({
           </span>
         </div>
         <div>
-          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1">
+          <span className="font-heading text-[10px] text-on-surface/50 uppercase tracking-widest block mb-1 font-semibold">
             Primary Stack
           </span>
           <span className="font-heading text-xs sm:text-sm font-bold text-primary-container">
@@ -174,13 +174,13 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Detailed Content Sections */}
-      <div className="space-y-8 sm:space-y-12 font-sans text-on-surface/80 text-xs sm:text-sm leading-relaxed">
+      <div className="space-y-8 sm:space-y-12 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
         {/* Section 1: Overview & Architecture */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
             01. Structural Overview
           </span>
-          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
             Platform Purpose &amp; Architecture
           </h2>
           <p className="leading-relaxed">{project.fullDescription}</p>
@@ -197,11 +197,11 @@ export default async function ProjectDetailPage({
 
         {/* Section 2/3: 3-Pillar Methodology */}
         {project.pillars && project.pillars.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
-            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '03. Core Methodology' : '02. Core Methodology'}
             </span>
-            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
               The 3-Pillar Strategic Framework
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -211,14 +211,14 @@ export default async function ProjectDetailPage({
                   className="p-5 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col justify-between"
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-heading text-base font-black text-on-surface tracking-wider">
+                    <span className="font-heading text-base font-bold text-on-surface tracking-wider">
                       {pillar.name}
                     </span>
                     <span className="font-heading text-xs font-bold text-primary-container">
                       Pillar 0{idx + 1}
                     </span>
                   </div>
-                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
                     {pillar.meaning}
                   </p>
                 </div>
@@ -229,11 +229,11 @@ export default async function ProjectDetailPage({
 
         {/* Section 3/4: Core Service Offerings */}
         {project.coreServices && project.coreServices.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
-            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '04. Core Capabilities' : '03. Core Capabilities'}
             </span>
-            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
               Structured Service Offerings
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -243,7 +243,7 @@ export default async function ProjectDetailPage({
                   className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/5"
                 >
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
-                  <span className="font-sans text-xs font-medium text-on-surface">
+                  <span className="font-sans text-xs sm:text-sm font-medium text-on-surface">
                     {service}
                   </span>
                 </div>
@@ -253,11 +253,11 @@ export default async function ProjectDetailPage({
         )}
 
         {/* Section 4/5: Technology Stack */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
             {project.slug === 'alaintapiru-portfolio' ? '05. Development Stack' : '04. Development Stack'}
           </span>
-          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
             Technologies Applied
           </h2>
           <div className="flex flex-wrap gap-2 pt-2">
@@ -274,11 +274,11 @@ export default async function ProjectDetailPage({
 
         {/* Section 5/6: Image Showcase / Gallery */}
         {project.gallery && project.gallery.length > 1 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#181a1b]/60 border border-white/5">
-            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block font-bold">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '06. Visual Gallery' : '05. Visual Gallery'}
             </span>
-            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
               Staging &amp; Design Captures
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -305,16 +305,16 @@ export default async function ProjectDetailPage({
       <section className="space-y-6 pt-4 border-t border-white/10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
-            <span className="font-heading text-xs text-primary-container uppercase tracking-widest block mb-1 font-bold">
+            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
               Explore More Work
             </span>
-            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
               Related Case Studies &amp; Tools
             </h2>
           </div>
           <Link
             href="/projects/"
-            className="font-heading text-xs uppercase tracking-wider font-bold text-primary-container hover:underline inline-flex items-center gap-1"
+            className="font-heading text-xs uppercase tracking-[0.06em] font-bold text-primary-container hover:underline inline-flex items-center gap-1"
           >
             All Case Studies <Icon name="arrow_forward" size={14} />
           </Link>
@@ -325,16 +325,16 @@ export default async function ProjectDetailPage({
             <Link
               key={rel.slug}
               href={`/projects/${rel.slug}/`}
-              className="p-5 rounded-2xl bg-[#181a1b]/70 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-surface-1/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
-                <span className="font-heading text-[10px] text-primary-container uppercase tracking-widest block mb-1 font-bold">
+                <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
                   {rel.category}
                 </span>
                 <h3 className="font-heading text-base font-bold text-on-surface group-hover:text-primary transition-colors mb-2">
                   {rel.title}
                 </h3>
-                <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-2">
+                <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed line-clamp-2">
                   {rel.shortDescription}
                 </p>
               </div>
@@ -347,16 +347,16 @@ export default async function ProjectDetailPage({
           {/* Interactive Tool Card */}
           <Link
             href="/tools/"
-            className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-[#181a1b] to-[#181a1b] border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between"
+            className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-surface-1 to-surface-1 border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between"
           >
             <div>
-              <span className="font-heading text-[10px] text-emerald-400 uppercase tracking-widest block mb-1 font-bold">
+              <span className="font-heading text-[10px] text-emerald-400 uppercase tracking-[0.08em] block mb-1 font-semibold">
                 Live Diagnostic Suite
               </span>
               <h3 className="font-heading text-base font-bold text-on-surface group-hover:text-primary transition-colors mb-2">
                 Local SEO &amp; GBP Health Checker
               </h3>
-              <p className="font-sans text-xs text-on-surface/70 leading-relaxed line-clamp-2">
+              <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed line-clamp-2">
                 Run an instant AI-powered audit on your Google Business Profile and local search signals.
               </p>
             </div>
@@ -369,8 +369,8 @@ export default async function ProjectDetailPage({
       </section>
 
       {/* Bottom CTA Banner */}
-      <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-[#181a1b]/80 border border-primary-container/30 shadow-[0_0_40px_rgba(230,126,34,0.15)] text-center space-y-6">
-        <h2 className="font-heading text-xl sm:text-3xl font-extrabold text-on-surface">
+      <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_40px_rgba(224,123,32,0.15)] text-center space-y-6">
+        <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
           Explore the Live {project.title} Build
         </h2>
         <p className="font-sans text-xs sm:text-sm text-on-surface/70 max-w-xl mx-auto leading-relaxed">
@@ -388,7 +388,7 @@ export default async function ProjectDetailPage({
                 : undefined)
             }
             aria-label={`Open ${project.title} external live build (opens in new tab)`}
-            className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-[0_0_30px_rgba(230,126,34,0.4)] hover:bg-primary hover:scale-105 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-105 transition-all cursor-pointer min-h-[48px]"
           >
             <span>{project.ctaText || 'View Live Build'}</span>
             <Icon name="north_east" size={16} />
@@ -396,7 +396,7 @@ export default async function ProjectDetailPage({
 
           <Link
             href="/contact/"
-            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full transition-all"
+            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full transition-all min-h-[48px]"
           >
             <span>Discuss A Project</span>
             <Icon name="arrow_forward" size={16} />

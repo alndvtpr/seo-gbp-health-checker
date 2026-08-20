@@ -35,7 +35,7 @@ export function PerformanceAuditProof({
       {/* Header Section */}
       <div className="relative z-10 space-y-3 mb-6 sm:mb-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-widest font-bold inline-flex items-center gap-1.5">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold inline-flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             {eyebrow}
           </span>
@@ -47,18 +47,18 @@ export function PerformanceAuditProof({
 
         <h2
           id="audit-proof-heading"
-          className="font-heading text-xl sm:text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight"
+          className="font-heading text-xl sm:text-2xl md:text-4xl font-bold text-on-surface tracking-tight"
         >
           {title}
         </h2>
-        <p className="font-sans text-xs sm:text-sm md:text-base text-on-surface/75 max-w-3xl leading-relaxed">
+        <p className="font-sans text-sm sm:text-base text-on-surface/75 max-w-3xl leading-relaxed">
           {subtitle}
         </p>
       </div>
 
       {/* Metric Highlight Pills */}
       <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-6 sm:mb-8">
-        <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-amber-500/20 hover:border-amber-500/40 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-amber-500/20 hover:border-amber-500/40 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
             ⚡ Desktop Score
           </span>
@@ -69,7 +69,7 @@ export function PerformanceAuditProof({
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0ms Total Blocking Time</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
             📱 Mobile Score
           </span>
@@ -80,7 +80,7 @@ export function PerformanceAuditProof({
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">Moto G Power Emulation</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-primary-container uppercase tracking-wider flex items-center gap-1">
             🟢 Core Web Vitals
           </span>
@@ -91,7 +91,7 @@ export function PerformanceAuditProof({
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0.000 CLS &bull; Sub-1.2s LCP</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/70 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1">
             🛡️ SEO &amp; Best Practices
           </span>
@@ -108,7 +108,7 @@ export function PerformanceAuditProof({
           <button
             type="button"
             onClick={() => setActiveTab('compare')}
-            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-[0.06em] transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'compare'
                 ? 'bg-primary-container text-on-primary-container shadow-md'
                 : 'text-on-surface/70 hover:text-white hover:bg-white/5'
@@ -120,7 +120,7 @@ export function PerformanceAuditProof({
           <button
             type="button"
             onClick={() => setActiveTab('desktop')}
-            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-[0.06em] transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'desktop'
                 ? 'bg-primary-container text-on-primary-container shadow-md'
                 : 'text-on-surface/70 hover:text-white hover:bg-white/5'
@@ -131,7 +131,7 @@ export function PerformanceAuditProof({
           <button
             type="button"
             onClick={() => setActiveTab('mobile')}
-            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-[0.06em] transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'mobile'
                 ? 'bg-primary-container text-on-primary-container shadow-md'
                 : 'text-on-surface/70 hover:text-white hover:bg-white/5'
@@ -141,7 +141,7 @@ export function PerformanceAuditProof({
           </button>
         </div>
 
-        <div className="text-[11px] font-sans text-on-surface/50 flex items-center gap-2">
+        <div className="text-xs font-sans text-on-surface/50 flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
           <span>Audit Engine: Lighthouse 12.2.0</span>
         </div>
