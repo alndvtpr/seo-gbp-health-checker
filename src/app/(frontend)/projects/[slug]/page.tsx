@@ -368,14 +368,27 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* Bottom CTA Banner */}
+      {/* Bottom CTA Banner with Contextual Lead Magnet */}
       <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_40px_rgba(224,123,32,0.15)] text-center space-y-6">
-        <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
-          Explore the Live {project.title} Build
-        </h2>
-        <p className="font-sans text-xs sm:text-sm text-on-surface/70 max-w-xl mx-auto leading-relaxed">
-          Inspect the live site, responsive layouts, technical markup, and SEO-first hierarchy.
-        </p>
+        <div className="space-y-2">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
+            {project.slug === 'alaintapiru-portfolio'
+              ? '⚡ High-Performance Engineering'
+              : project.slug === 'local-seo-gbp-checker'
+              ? '🔍 Local Search Diagnostic'
+              : '🚀 Custom Web Architecture'}
+          </span>
+          <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
+            Ready to Build a High-Converting Platform Like {project.title}?
+          </h2>
+          <p className="font-sans text-xs sm:text-sm text-on-surface/70 max-w-xl mx-auto leading-relaxed">
+            {project.slug === 'alaintapiru-portfolio'
+              ? 'Achieve sub-second load times, zero Cumulative Layout Shift, and verified 99+ PageSpeed scores on Next.js.'
+              : project.slug === 'local-seo-gbp-checker'
+              ? 'Diagnose ranking misalignments, fix Google categories, and outrank local competitors in the Map Pack.'
+              : 'From bespoke AI-assisted web development to technical SEO migrations, let’s design your next growth vehicle.'}
+          </p>
+        </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
@@ -395,10 +408,18 @@ export default async function ProjectDetailPage({
           </a>
 
           <Link
-            href="/contact/"
+            href="/services/#scope-estimator"
             className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full transition-all min-h-[48px]"
           >
-            <span>Discuss A Project</span>
+            <span>Estimate Sprint Scope</span>
+            <Icon name="calculate" size={16} />
+          </Link>
+
+          <Link
+            href="/contact/"
+            className="inline-flex items-center gap-2 bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/30 text-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full transition-all min-h-[48px]"
+          >
+            <span>Work With Me</span>
             <Icon name="arrow_forward" size={16} />
           </Link>
         </div>

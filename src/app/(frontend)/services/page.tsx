@@ -4,6 +4,7 @@ import { ServicesHero } from '@/components/ServicesHero'
 import { ServicesPillar1 } from '@/components/ServicesPillar1'
 import { ServicesPillar2 } from '@/components/ServicesPillar2'
 import { ServicesPillars3And4 } from '@/components/ServicesPillars3And4'
+import { ServicesScopeEstimator } from '@/components/ServicesScopeEstimator'
 import { ServicesPackages } from '@/components/ServicesPackages'
 import { ServicesWorkflowAndFAQ } from '@/components/ServicesWorkflowAndFAQ'
 import { ServicesFinalCta } from '@/components/ServicesFinalCta'
@@ -50,7 +51,15 @@ export default function ServicesPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 5. 3-Tier Engagement Pricing / Packaging Grid */}
+      {/* 5. Interactive Scope & Timeline Estimator */}
+      <ServicesScopeEstimator />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
+      {/* 6. 3-Tier Engagement Pricing / Packaging Grid */}
       <ServicesPackages />
 
       {/* Ambient Section Divider */}

@@ -1,0 +1,321 @@
+'use client'
+
+import React, { useState, useMemo } from 'react'
+import Link from 'next/link'
+import { Icon } from '@/components/icons'
+
+interface ProjectType {
+  id: string
+  name: string
+  baseWeeks: number
+  description: string
+  recommendedPackage: string
+  serviceParam: string
+}
+
+interface CapabilityAddon {
+  id: string
+  name: string
+  weeksDelta: number
+  description: string
+}
+
+const PROJECT_TYPES: ProjectType[] = [
+  {
+    id: 'nextjs-custom',
+    name: 'Custom Next.js & React Build',
+    baseWeeks: 3,
+    description: 'Bespoke high-performance static architecture engineered for sub-second load times and zero CLS.',
+    recommendedPackage: 'High-Performance Website + SEO Launch',
+    serviceParam: 'AI Web Design & Dev',
+  },
+  {
+    id: 'wordpress-launch',
+    name: 'WordPress / Elementor Redesign',
+    baseWeeks: 2.5,
+    description: 'Custom responsive WordPress layout paired with technical speed optimization and schema integration.',
+    recommendedPackage: 'High-Performance Website + SEO Launch',
+    serviceParam: 'AI Web Design & Dev',
+  },
+  {
+    id: 'technical-audit',
+    name: 'Technical SEO Audit & Roadmap',
+    baseWeeks: 1.5,
+    description: 'Comprehensive crawl analysis, Core Web Vitals audit, schema verification, and prioritized 30-day action sprint.',
+    recommendedPackage: 'SEO & AI Readiness Sprint',
+    serviceParam: 'Technical SEO Audit',
+  },
+  {
+    id: 'monthly-retainer',
+    name: 'Total Search Growth Retainer',
+    baseWeeks: 4,
+    description: 'Continuous monthly on-page sprints, link acquisition, AEO/GEO generative search, and live reporting.',
+    recommendedPackage: 'Total Search Growth Retainer',
+    serviceParam: 'Full-Service Monthly SEO',
+  },
+]
+
+const CAPABILITIES: CapabilityAddon[] = [
+  {
+    id: 'web-vitals',
+    name: 'Sub-Second Core Web Vitals Guarantee (<1s)',
+    weeksDelta: 0.5,
+    description: 'Image compression, render-blocking deferral, and 95+ PageSpeed benchmark guarantee.',
+  },
+  {
+    id: 'schema-graph',
+    name: 'Custom Schema.org Entity Graph',
+    weeksDelta: 0.5,
+    description: 'Multi-type JSON-LD structured data linking local business, author, service, and organization entities.',
+  },
+  {
+    id: 'map-pack',
+    name: 'Google Map Pack 3-Pack Local Strategy',
+    weeksDelta: 0.5,
+    description: 'Primary/secondary category normalization, geo-citation sync, and review generation strategy.',
+  },
+  {
+    id: 'analytics-dashboard',
+    name: 'Looker Studio & GA4 Analytics Suite',
+    weeksDelta: 0.5,
+    description: 'Live automated reporting dashboard tracking organic conversions, keyword clicks, and engagement.',
+  },
+]
+
+export function ServicesScopeEstimator() {
+  const [selectedType, setSelectedType] = useState<string>('nextjs-custom')
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([
+    'web-vitals',
+    'schema-graph',
+  ])
+  const [isAccelerated, setIsAccelerated] = useState<boolean>(false)
+
+  const activeProject = useMemo(() => {
+    return PROJECT_TYPES.find((t) => t.id === selectedType) || PROJECT_TYPES[0]
+  }, [selectedType])
+
+  const toggleAddon = (id: string) => {
+    setSelectedAddons((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    )
+  }
+
+  const estimatedWeeks = useMemo(() => {
+    let total = activeProject.baseWeeks
+    selectedAddons.forEach((addonId) => {
+      const addon = CAPABILITIES.find((c) => c.id === addonId)
+      if (addon) total += addon.weeksDelta
+    })
+
+    if (isAccelerated) {
+      total = Math.max(1.5, total * 0.65)
+    }
+
+    return Math.round(total * 10) / 10
+  }, [activeProject, selectedAddons, isAccelerated])
+
+  return (
+    <section
+      id="scope-estimator"
+      aria-labelledby="scope-estimator-heading"
+      className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12 scroll-mt-24"
+    >
+      {/* Section Header */}
+      <div className="text-center max-w-3xl mx-auto space-y-3">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
+          Interactive Scope Planner
+        </span>
+        <h2
+          id="scope-estimator-heading"
+          className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface tracking-tight"
+        >
+          Project Scope &amp; Timeline Estimator
+        </h2>
+        <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
+          Configure your technical requirements to calculate estimated sprint delivery timelines and find your optimal engagement model.
+        </p>
+      </div>
+
+      {/* Main Estimator Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left Column: Requirements Configuration (7 Cols) */}
+        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl">
+          {/* Step 1: Select Project Type */}
+          <div className="space-y-3">
+            <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
+              1. Choose Core Project Type
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {PROJECT_TYPES.map((type) => {
+                const isSelected = selectedType === type.id
+                return (
+                  <button
+                    key={type.id}
+                    type="button"
+                    onClick={() => setSelectedType(type.id)}
+                    className={`p-4 rounded-xl text-left transition-all duration-200 cursor-pointer border ${
+                      isSelected
+                        ? 'bg-primary-container/15 border-primary-container text-on-surface shadow-md ring-1 ring-primary-container/50'
+                        : 'bg-white/[0.03] border-white/5 text-on-surface/80 hover:bg-white/5 hover:border-white/20'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                      <span className="font-heading text-sm font-bold text-on-surface">
+                        {type.name}
+                      </span>
+                      {isSelected && (
+                        <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
+                      )}
+                    </div>
+                    <p className="font-sans text-xs text-on-surface/65 leading-relaxed">
+                      {type.description}
+                    </p>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Step 2: Capability Add-ons */}
+          <div className="space-y-3 pt-4 border-t border-white/10">
+            <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
+              2. Select Specialized Add-on Capabilities
+            </label>
+            <div className="space-y-2.5">
+              {CAPABILITIES.map((addon) => {
+                const isChecked = selectedAddons.includes(addon.id)
+                return (
+                  <div
+                    key={addon.id}
+                    onClick={() => toggleAddon(addon.id)}
+                    className={`p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-start gap-3 ${
+                      isChecked
+                        ? 'bg-primary-container/10 border-primary-container/60 text-on-surface'
+                        : 'bg-white/[0.02] border-white/5 text-on-surface/75 hover:bg-white/5 hover:border-white/15'
+                    }`}
+                  >
+                    <div
+                      className={`w-5 h-5 rounded-md flex items-center justify-center border mt-0.5 shrink-0 transition-colors ${
+                        isChecked
+                          ? 'bg-primary-container border-primary-container text-on-primary-container'
+                          : 'border-white/20 bg-white/5'
+                      }`}
+                    >
+                      {isChecked && <Icon name="check_circle" size={14} />}
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
+                          {addon.name}
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs text-on-surface/65 leading-relaxed">
+                        {addon.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Step 3: Timeline Urgency Toggle */}
+          <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-4">
+            <div>
+              <span className="font-heading text-xs font-bold text-on-surface block">
+                Accelerated Delivery Sprint
+              </span>
+              <span className="font-sans text-xs text-on-surface/65">
+                Priority scheduling for rapid launch requirements.
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsAccelerated(!isAccelerated)}
+              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                isAccelerated ? 'bg-primary-container' : 'bg-white/15'
+              }`}
+              role="switch"
+              aria-checked={isAccelerated}
+            >
+              <span
+                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                  isAccelerated ? 'translate-x-5' : 'translate-x-0'
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+
+        {/* Right Column: Dynamic Estimate Output Card (5 Cols) */}
+        <div className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-2 via-surface-1 to-background border-2 border-primary-container/60 shadow-[0_0_50px_rgba(224,123,32,0.18)]">
+          <div className="space-y-1">
+            <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
+              Estimated Sprint Scope
+            </span>
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+              Project Delivery Summary
+            </h3>
+          </div>
+
+          {/* Metrics Highlight Box */}
+          <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+            <div>
+              <span className="font-heading text-[10px] text-on-surface/60 uppercase tracking-wider block font-semibold">
+                Est. Duration
+              </span>
+              <span className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
+                {estimatedWeeks} {estimatedWeeks === 1 ? 'Week' : 'Weeks'}
+              </span>
+            </div>
+            <div>
+              <span className="font-heading text-[10px] text-on-surface/60 uppercase tracking-wider block font-semibold">
+                Delivery Mode
+              </span>
+              <span className="font-heading text-base sm:text-lg font-bold text-emerald-400">
+                {isAccelerated ? '⚡ Priority Sprint' : 'Standard Sprint'}
+              </span>
+            </div>
+          </div>
+
+          {/* Recommended Engagement Model */}
+          <div className="space-y-2 p-4 rounded-xl bg-surface-1 border border-white/10">
+            <span className="font-heading text-[11px] text-on-surface/70 uppercase tracking-wider block font-semibold">
+              Recommended Package:
+            </span>
+            <p className="font-heading text-base font-bold text-on-surface flex items-center gap-2">
+              <Icon name="auto_awesome" size={16} className="text-primary-container" />
+              <span>{activeProject.recommendedPackage}</span>
+            </p>
+            <p className="font-sans text-xs text-on-surface/65 leading-relaxed pt-1">
+              Includes core execution, QA testing, verified schema integration, and technical handoff.
+            </p>
+          </div>
+
+          {/* Selected Add-ons Pill Count */}
+          <div className="flex items-center justify-between text-xs font-sans text-on-surface/70 px-1">
+            <span>Configured Add-ons:</span>
+            <span className="font-heading font-bold text-on-surface">
+              {selectedAddons.length} of {CAPABILITIES.length} Selected
+            </span>
+          </div>
+
+          {/* Action CTA Button */}
+          <Link
+            href={`/contact/?service=${encodeURIComponent(activeProject.serviceParam)}`}
+            className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-4 px-6 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-[1.02] transition-all flex items-center justify-center gap-2 min-h-[48px] cursor-pointer"
+          >
+            <span>Lock in This Project Scope</span>
+            <Icon name="arrow_forward" size={16} />
+          </Link>
+
+          <p className="text-[11px] font-sans text-on-surface/50 text-center leading-relaxed">
+            Free discovery call included. All projects include guaranteed direct communication and milestone-based sign-offs.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default ServicesScopeEstimator
