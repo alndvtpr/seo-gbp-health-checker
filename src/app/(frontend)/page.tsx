@@ -147,8 +147,13 @@ export default async function Page() {
       {/* 2.5 FEATURED TOOL CALLOUT: GOOGLE BUSINESS PROFILE AUDITOR */}
       <GBPHomepageCallout />
 
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
       {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
-      <section className="py-16 sm:py-24 bg-transparent border-b border-white/5 relative z-20 overflow-hidden">
+      <section className="py-16 sm:py-24 bg-transparent relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
           <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <Image
@@ -219,6 +224,11 @@ export default async function Page() {
           </div>
         </div>
       </section>
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
 
       {/* 4. THE SEO PROCESS CYCLE (6-STEP GRID) */}
       <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 relative z-20">
@@ -314,8 +324,13 @@ export default async function Page() {
         </div>
       </section>
 
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
       {/* 5. FEATURED PROJECTS */}
-      <section className="py-16 sm:py-24 bg-transparent border-t border-white/5 relative z-20">
+      <section className="py-16 sm:py-24 bg-transparent relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-4">
             <div>
@@ -564,7 +579,17 @@ export default async function Page() {
         </div>
       </section>
 
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
       <OpenToOpportunities />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
 
       {/* 6. CALL TO ACTION */}
       <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">

@@ -17,21 +17,46 @@ export const metadata = generateMetadata({
 
 export default function ServicesPage() {
   return (
-    <div className="relative z-20 space-y-16 sm:space-y-28 pb-20 sm:pb-32">
+    <div className="relative z-20 space-y-16 sm:space-y-24 pb-20 sm:pb-32">
       {/* 1. Hero Section */}
       <ServicesHero />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
 
       {/* 2. Pillar 01: Technical & Semantic Foundation */}
       <ServicesPillar1 />
 
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
       {/* 3. Pillar 02: Visibility (SEO, AEO & GEO) */}
       <ServicesPillar2 />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
 
       {/* 4. Pillars 03 & 04: Execution & Measurement */}
       <ServicesPillars3And4 />
 
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
       {/* 5. 3-Tier Engagement Pricing / Packaging Grid */}
       <ServicesPackages />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
 
       {/* 6. 4-Step Delivery Workflow & FAQ Accordion */}
       <ServicesWorkflowAndFAQ />

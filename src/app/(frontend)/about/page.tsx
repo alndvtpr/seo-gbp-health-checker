@@ -123,8 +123,18 @@ export default function AboutPage() {
         </div>
       </div>
 
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
       {/* Credentials & Education */}
       <AboutCredentials />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
 
       {/* CTA */}
       <div className="text-center pt-4 sm:pt-8">

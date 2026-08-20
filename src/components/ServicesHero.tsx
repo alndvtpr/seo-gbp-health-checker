@@ -24,12 +24,12 @@ export function ServicesHero() {
         <span>SEARCH ENGINE OPTIMIZATION • AEO &amp; GEO • WEB DEVELOPMENT</span>
       </div>
 
-      {/* Headline (H1) */}
       <h1
         id="services-hero-heading"
-        className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-on-surface tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-6"
+        className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-6"
       >
-        Get Found on Google, Bing, and AI Search Engines.
+        <span className="font-extrabold text-on-surface">Get Found on Google, Bing,</span>{' '}
+        <span className="font-medium text-on-surface/85">and AI Search Engines.</span>
       </h1>
 
       {/* Subheadline */}
