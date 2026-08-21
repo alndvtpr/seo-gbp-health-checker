@@ -1,6 +1,7 @@
 import React from 'react'
 import { generateMetadata } from '@/lib/seo'
 import { ContactForm } from '@/components/ContactForm'
+import { CalendlyScheduler } from '@/components/CalendlyScheduler'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
@@ -12,7 +13,7 @@ export const metadata = generateMetadata({
 
 export default function ContactPage() {
   return (
-    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-10 sm:space-y-16">
+    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-16">
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={[{ name: 'Contact', url: '/contact/' }]} />
 
@@ -25,10 +26,22 @@ export default function ContactPage() {
           Let&apos;s Build &amp; Rank Together
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Have an SEO project, web design inquiry, or consultation request? Send a message below.
+          Book a 1-on-1 discovery call directly on my calendar below, or send a detailed project inquiry.
         </p>
       </div>
 
+      {/* 1. Calendly Inline Scheduler Section (Positioned Above Inquiry Form) */}
+      <CalendlyScheduler />
+
+      {/* Ambient Section Separator */}
+      <div className="relative py-4 sm:py-6 flex items-center justify-center" aria-hidden="true">
+        <div className="w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <span className="absolute px-4 py-1 rounded-full bg-surface-1 border border-white/10 text-[11px] font-heading font-semibold uppercase tracking-[0.08em] text-on-surface/60">
+          Or Send a Direct Message
+        </span>
+      </div>
+
+      {/* 2. Direct Contact Info & Inquiry Form Grid (Positioned Below) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
         {/* Contact Info & Status */}
         <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl">

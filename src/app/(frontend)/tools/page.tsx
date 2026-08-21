@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { GBPHealthChecker } from '@/components/GBPHealthChecker'
+import { WebsiteAuditRequestForm } from '@/components/WebsiteAuditRequestForm'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
@@ -121,35 +122,18 @@ export default function ToolsPage() {
 
       {/* Tool 2 & Tool 3 Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6">
-          <Icon name="travel_explore" size={36} className="text-primary-container" />
-          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
-            Request an SEO Website Audit
-          </h2>
-          <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
-            Enter your domain below for a manual preliminary audit checking indexation status, mobile speed, security headers, and meta tags.
-          </p>
+        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between">
+          <div className="space-y-3">
+            <Icon name="travel_explore" size={36} className="text-primary-container" />
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+              Request an SEO Website Audit
+            </h2>
+            <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
+              Enter your domain below for a manual preliminary audit inspecting indexation status, Core Web Vitals speed, security headers, metadata, and AI search entity readiness.
+            </p>
+          </div>
 
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-3.5">
-            <input
-              type="url"
-              placeholder="https://yourwebsite.com"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
-              required
-            />
-            <input
-              type="email"
-              placeholder="Your Email Address"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-3.5 rounded-xl hover:bg-primary transition-colors min-h-[48px] flex items-center justify-center cursor-pointer shadow-[0_0_20px_rgba(224,123,32,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
-            >
-              Submit Audit Request
-            </button>
-          </form>
+          <WebsiteAuditRequestForm />
         </div>
 
         {/* Tool 3: Local SEO / GBP Health Checker — fully interactive */}
