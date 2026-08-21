@@ -192,7 +192,7 @@ export default async function Page() {
                   4 Core Disciplines
                 </span>
                 <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-                  SEO, Web Dev, Support &amp; Bookkeeping
+                  SEO, Web Dev, Support &amp; Executive / General VA
                 </span>
               </div>
               <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">

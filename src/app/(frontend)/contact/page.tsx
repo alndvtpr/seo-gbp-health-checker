@@ -59,10 +59,46 @@ export default function ContactPage() {
 
             <div>
               <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
+                Direct Phone / WhatsApp
+              </span>
+              <div className="flex flex-wrap items-center gap-2.5">
+                <a
+                  href="tel:+639063249560"
+                  className="font-heading text-base sm:text-lg font-bold text-on-surface hover:text-primary-container transition-colors tracking-tight flex items-center gap-2"
+                >
+                  <span>+63 906 324 9560</span>
+                </a>
+                <a
+                  href="https://wa.me/639063249560"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.06em] bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors"
+                  title="Message on WhatsApp"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  WhatsApp
+                </a>
+              </div>
+              <p className="font-sans text-xs text-on-surface/60 mt-1">
+                Philippines (GMT+8) • Voice Call, SMS &amp; WhatsApp
+              </p>
+            </div>
+
+            <div>
+              <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
+                Location &amp; Timezone
+              </span>
+              <p className="font-sans text-sm text-on-surface/75">
+                Mabalacat City, Pampanga, Philippines (GMT+8)
+              </p>
+            </div>
+
+            <div>
+              <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
                 Primary Focus
               </span>
               <p className="font-sans text-sm text-on-surface/75 leading-relaxed">
-                Comprehensive SEO Packages (Technical, On-Page, &amp; Off-Page), AI-Powered Web Development, Executive Virtual Assistance, and Dedicated Customer Service.
+                Comprehensive SEO Packages (Technical, On-Page, &amp; Off-Page), React &amp; WordPress Web Development, Executive &amp; General Virtual Assistance, and Dedicated Customer Service.
               </p>
             </div>
 
@@ -82,6 +118,20 @@ export default function ContactPage() {
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                </a>
+                
+                {/* WhatsApp */}
+                <a
+                  href="https://wa.me/639063249560"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)]"
+                  title="WhatsApp"
+                  aria-label="WhatsApp"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08s.89 2.42 1.01 2.59c.13.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.59.21-1.09.15-1.19-.06-.1-.23-.16-.48-.29z" />
                   </svg>
                 </a>
                 

@@ -313,9 +313,19 @@ export function GBPHealthChecker() {
         totalScore: result.totalScore,
         grade: result.grade,
         primaryCategory: result.primaryCategory,
-        topActionItems: (result.actionItems || [])
-          .filter((a) => a.priority === 'high')
-          .map((a) => a.message),
+        additionalCategories: result.additionalCategories,
+        foundInMapPack: result.foundInMapPack,
+        mapPackPosition: result.mapPackPosition,
+        pillars: result.pillars,
+        publicChecks: result.publicChecks,
+        actionItems: result.actionItems,
+        competitors: result.competitors,
+        websiteSeo: result.websiteSeo,
+        aiRecommendations: result.aiRecommendations,
+        aiDescription: result.aiDescription,
+        aiReviewTemplates: result.aiReviewTemplates,
+        aiKeywords: result.aiKeywords,
+        categoryBenchmark: result.categoryBenchmark,
       })
 
       if (res.success) {
@@ -1407,12 +1417,14 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 >
                   Book Strategy Call
                 </a>
-                <a
-                  href={`mailto:alaintapiru@gmail.com?subject=Local%20SEO%20Inquiry%20for%20${encodeURIComponent(result.businessName)}&body=Hi%20Alain,%0A%0AI%20just%20audited%20my%20business%20(${encodeURIComponent(result.businessName)}%20in%20${encodeURIComponent(result.location)})%20on%20your%20GBP%20tool%20and%20got%20a%20score%20of%20${result.totalScore}/100.%0A%0AI%20would%20like%20to%20discuss%20working%20together.`}
-                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all text-center flex items-center justify-center min-h-[44px]"
+                <button
+                  type="button"
+                  onClick={() => setIsEmailModalOpen(true)}
+                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all text-center flex items-center justify-center gap-2 min-h-[44px] cursor-pointer"
                 >
-                  Email Audit Summary
-                </a>
+                  <Mail className="w-3.5 h-3.5 text-primary-container" />
+                  <span>Email Audit Summary</span>
+                </button>
               </div>
             </div>
 

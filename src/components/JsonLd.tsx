@@ -16,6 +16,7 @@ export const JsonLd = () => {
       description:
         'Data-driven SEO Specialist and Technical Web Designer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',
       email: 'mailto:alaintapiru@gmail.com',
+      telephone: '+63-906-324-9560',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '10231 Everlasting Street, Dau',
