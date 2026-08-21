@@ -205,16 +205,16 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
           <span>BOOK A CONVERSATION</span>
         </div>
         <h2 className="font-heading text-xl sm:text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">
-          Free 20-Minute SEO Strategy Call
+          Schedule a 20-Minute Conversation
         </h2>
         <p className="font-sans text-xs sm:text-sm md:text-base text-on-surface/75 leading-relaxed max-w-xl mx-auto">
-          Choose a time that works for you. We&apos;ll use the call to understand your goals, identify the most practical opportunities, and decide what makes sense next.
+          Choose a time that works for you. Let&apos;s discuss your website, explore practical search opportunities, and see how we can work together.
         </p>
 
         {/* Feature Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1 text-[11px] font-sans text-on-surface/80">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" aria-hidden="true" /> 20-Min Strategy Call
+            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" aria-hidden="true" /> 20-Min Conversation
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" /> Practical Action Items

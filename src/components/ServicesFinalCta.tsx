@@ -53,10 +53,10 @@ const SERVICES_JSON_LD = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Advanced Schema & Entity Structuring',
+              name: 'Schema Markup & Structured Data Implementation',
               serviceType: 'Semantic Web & Schema Architecture',
               description:
-                'Custom JSON-LD architecture, semantic web modeling, and Knowledge Graph linking.',
+                'Custom JSON-LD implementation, schema validation, and structured data testing.',
               sameAs: 'https://en.wikipedia.org/wiki/JSON-LD',
             },
           },
@@ -77,7 +77,7 @@ const SERVICES_JSON_LD = {
               name: 'On-Page SEO',
               serviceType: 'On-Page SEO Optimization',
               description:
-                'Semantic heading hierarchy, CTR-engineered metadata, and contextual internal linking frameworks.',
+                'Semantic heading hierarchy, click-optimized metadata, and strategic internal linking frameworks.',
             },
           },
           {
@@ -87,7 +87,7 @@ const SERVICES_JSON_LD = {
               name: 'AEO & GEO Optimization',
               serviceType: 'Answer Engine & Generative Engine Optimization',
               description:
-                'Featured snippet formatting, zero-click answer engineering, and AI citation structure for LLM search engines.',
+                'Structuring content and semantic data for search snippets and emerging AI search engines.',
               sameAs: 'https://en.wikipedia.org/wiki/Generative_artificial_intelligence',
             },
           },
@@ -98,7 +98,7 @@ const SERVICES_JSON_LD = {
               name: 'WordPress & React Website Development',
               serviceType: 'Web Design & Next.js Development',
               description:
-                'High-performance React & Next.js builds, headless WordPress architectures, and custom speed-optimized themes.',
+                'High-performance React & Next.js builds, responsive WordPress architectures, and custom speed-optimized themes.',
               sameAs: 'https://en.wikipedia.org/wiki/WordPress',
             },
           },
@@ -109,7 +109,7 @@ const SERVICES_JSON_LD = {
               name: 'SEO Analytics & Reporting',
               serviceType: 'SEO Analytics & Performance Tracking',
               description:
-                'Custom GA4/GSC setups, conversion tracking, real-time performance dashboards, and automated Google Docs reporting.',
+                'Custom GA4/GSC setups, conversion tracking, real-time performance dashboards, and automated reporting.',
             },
           },
           {
@@ -119,7 +119,7 @@ const SERVICES_JSON_LD = {
               name: 'Off-Page SEO & Authority Building',
               serviceType: 'Off-Page SEO & Link Acquisition',
               description:
-                'High-authority link acquisition, digital PR, backlink profile disavow audits, and domain authority acceleration.',
+                'Quality backlink acquisition strategies, local citation building, and backlink profile analysis.',
             },
           },
           {
@@ -129,7 +129,7 @@ const SERVICES_JSON_LD = {
               name: 'Local SEO & Google Business Profile (GBP) Optimization',
               serviceType: 'Local SEO Optimization',
               description:
-                'Local map pack rankings, Google Business Profile optimization, local citation cleanup, and geo-targeted landing page structuring.',
+                'Local search optimization, Google Business Profile setup, local citation consistency, and geo-targeted landing page structuring.',
               sameAs: 'https://en.wikipedia.org/wiki/Local_search_(Internet)',
             },
           },
@@ -155,7 +155,7 @@ const SERVICES_JSON_LD = {
           name: 'What is the difference between traditional SEO, AEO, and GEO?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Traditional SEO ranks your links on Google search result pages. AEO (Answer Engine Optimization) structures content to win Featured Snippets and voice answers. GEO (Generative Engine Optimization) optimizes facts, entities, and citations so AI models (ChatGPT, Perplexity, Google AI Overviews) mention and recommend your brand in generated answers.',
+            text: 'Traditional SEO optimizes your web pages to rank in search engine results. AEO (Answer Engine Optimization) structures content for quick, direct answers like Featured Snippets. GEO (Generative Engine Optimization) organizes facts, entities, and structured data so AI models (such as ChatGPT, Perplexity, and Google AI Overviews) can easily understand and reference your brand.',
           },
         },
         {
@@ -163,15 +163,15 @@ const SERVICES_JSON_LD = {
           name: 'Can you optimize my existing website, or do I need a new build?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'We can audit and optimize your existing site directly. If your current CMS is severely bloated or slow, we will provide specific recommendations on whether a rebuild or technical refactor is most cost-effective.',
+            text: 'I can audit and optimize your existing site directly. If your current CMS is severely bloated or slow, I will provide specific recommendations on whether a rebuild or technical refactor is most practical.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Why choose a static site over WordPress (or vice versa)?',
+          name: 'Why choose a React / Next.js site over WordPress (or vice versa)?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Static sites offer unmatched speed, bulletproof security, and zero maintenance overhead. WordPress offers unmatched flexibility and an easy content management dashboard for non-technical teams. We build both cleanly.',
+            text: 'React & Next.js sites offer fast loading speeds, zero layout shift, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both cleanly.',
           },
         },
         {
@@ -179,7 +179,7 @@ const SERVICES_JSON_LD = {
           name: 'How do you track and report progress?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'You get 24/7 access to a custom Looker Studio dashboard tracking organic traffic, keyword movement, and conversions, supported by monthly video walkthroughs.',
+            text: 'You get access to a structured Looker Studio dashboard tracking organic search performance, impressions, clicks, and ranking movements, supported by regular update walkthroughs.',
           },
         },
       ],
@@ -206,7 +206,7 @@ export function ServicesFinalCta() {
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
-            <span>Free 20-minute strategy call • No pressure</span>
+            <span>Free 20-minute discovery call • No pressure</span>
           </div>
 
           {/* Headline */}
@@ -214,22 +214,22 @@ export function ServicesFinalCta() {
             id="final-cta-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface tracking-tight max-w-3xl mx-auto leading-tight"
           >
-            Ready to Dominate Search and Get Cited by AI?
+            Ready to Build a Stronger, Search-Ready Web Presence?
           </h2>
 
           {/* Subheadline */}
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface/80 max-w-2xl mx-auto leading-relaxed">
-            Let&apos;s diagnose your technical bottlenecks and build a search strategy that drives real business growth.
+            Let&apos;s diagnose technical bottlenecks, implement clean SEO fundamentals, and prepare your site for discovery.
           </p>
 
           {/* Action Row */}
           <div className="pt-2">
             <Link
               href="/contact/"
-              aria-label="Book a Free 20-Minute Strategy Call"
+              aria-label="Book a Free 20-Minute Discovery Call"
               className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-9 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.4)] hover:shadow-[0_0_40px_rgba(224,123,32,0.6)] hover:scale-105 active:scale-95 transition-all min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Book a Free Strategy Call</span>
+              <span>Book a Free Discovery Call</span>
               <Icon name="calendar_month" size={16} />
             </Link>
           </div>

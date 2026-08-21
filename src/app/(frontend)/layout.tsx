@@ -29,9 +29,9 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata = generateMetadata({
-  title: 'SEO Specialist Philippines | Technical SEO Expert – Alain Dave Tapiru',
+  title: 'SEO Specialist Philippines | Technical & Local SEO – Alain Dave Tapiru',
   description:
-    'Get found by customers searching for what you offer. Alain Dave Tapiru helps businesses in the Philippines grow with technical, on-page and local SEO.',
+    'Build search-ready websites that get discovered. Alain Dave Tapiru provides practical technical, on-page, and local SEO solutions tailored for modern search.',
 })
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

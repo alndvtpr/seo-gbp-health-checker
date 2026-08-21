@@ -31,7 +31,7 @@ const PROJECT_TYPES: ProjectType[] = [
     baseWeeks: 3,
     basePriceUsd: 850,
     basePricePhp: 48000,
-    description: 'Code-first static React/Next.js architecture engineered for 99 PageSpeed, sub-second load times, and zero CLS.',
+    description: 'Code-first React/Next.js architecture built for fast Core Web Vitals, clean crawlability, and zero layout shift.',
     recommendedPackage: 'Custom Next.js Full-Stack Architecture',
     serviceParam: 'AI Web Design & Dev',
   },
@@ -57,12 +57,12 @@ const PROJECT_TYPES: ProjectType[] = [
   },
   {
     id: 'monthly-retainer',
-    name: 'Total Search Growth Retainer',
+    name: 'Ongoing Monthly SEO Support',
     baseWeeks: 4,
     basePriceUsd: 450,
     basePricePhp: 25000,
-    description: 'Dedicated ongoing on-page sprints, link acquisition, AEO/GEO generative search, and live reporting (~25 hrs/month).',
-    recommendedPackage: 'Total Search Growth Retainer',
+    description: 'Ongoing technical and on-page optimization, local search support, and transparent reporting (~20-25 hrs/month).',
+    recommendedPackage: 'Ongoing Monthly SEO Support',
     serviceParam: 'Full-Service Monthly SEO',
   },
 ]
@@ -70,27 +70,27 @@ const PROJECT_TYPES: ProjectType[] = [
 const CAPABILITIES: CapabilityAddon[] = [
   {
     id: 'web-vitals',
-    name: 'Sub-Second Core Web Vitals Guarantee (<1s)',
+    name: 'Core Web Vitals Speed Optimization',
     weeksDelta: 0.5,
     priceUsd: 120,
     pricePhp: 6800,
-    description: 'Image compression, render-blocking deferral, and 95+ PageSpeed benchmark guarantee.',
+    description: 'Image optimization, asset compression, render-blocking deferral, and performance tuning.',
   },
   {
     id: 'schema-graph',
-    name: 'Custom Schema.org Entity Graph',
+    name: 'Schema Markup & Structured Data',
     weeksDelta: 0.5,
     priceUsd: 90,
     pricePhp: 5000,
-    description: 'Multi-type JSON-LD structured data linking local business, author, service, and organization entities.',
+    description: 'Custom JSON-LD structured data implementation for Organization, LocalBusiness, Breadcrumbs, and FAQs.',
   },
   {
     id: 'map-pack',
-    name: 'Google Map Pack 3-Pack Local Strategy',
+    name: 'Local SEO & Google Business Profile Setup',
     weeksDelta: 0.5,
     priceUsd: 90,
     pricePhp: 5000,
-    description: 'Primary/secondary category normalization, geo-citation sync, and review generation strategy.',
+    description: 'Category alignment, NAP consistency checks, and local optimization strategy.',
   },
   {
     id: 'analytics-dashboard',
@@ -393,7 +393,7 @@ export function ServicesScopeEstimator() {
             href={`/contact/?service=${encodeURIComponent(activeProject.serviceParam)}`}
             className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-4 px-6 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-[1.02] transition-all flex items-center justify-center gap-2 min-h-[48px] cursor-pointer"
           >
-            <span>Lock in This Project Scope</span>
+            <span>Discuss This Project Scope</span>
             <Icon name="arrow_forward" size={16} />
           </Link>
 
@@ -401,15 +401,15 @@ export function ServicesScopeEstimator() {
           <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-1">
             <span className="font-heading text-[11px] font-bold text-emerald-400 flex items-center justify-center gap-1">
               <Icon name="handshake" size={14} className="text-emerald-400" />
-              <span>Small Business &amp; Flexible Budget Guarantee</span>
+              <span>Flexible Budget &amp; Phased Options</span>
             </span>
             <p className="font-sans text-[11px] text-on-surface/75 leading-relaxed">
-              Have a custom budget or tighter constraints? We can negotiate and tailor scope sprint-by-sprint to fit your exact business phase.
+              Have specific constraints or a custom scope? We can tailor deliverables sprint-by-sprint to fit your exact needs.
             </p>
           </div>
 
           <p className="text-[11px] font-sans text-on-surface/50 text-center leading-relaxed">
-            Free discovery call included. All projects include guaranteed direct communication and milestone-based sign-offs.
+            Free discovery call included. All projects include direct communication, regular updates, and milestone-based reviews.
           </p>
         </div>
       </div>

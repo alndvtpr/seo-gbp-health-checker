@@ -25,7 +25,7 @@ export async function generateMetadata({
   if (!project) {
     return buildSeoMetadata({
       title: 'Project Not Found | Alain Dave Tapiru',
-      description: 'The requested project case study could not be found.',
+      description: 'The requested project could not be found.',
       url: `https://www.alaintapiru.com/projects/${resolvedParams.slug}/`,
     })
   }
@@ -52,7 +52,7 @@ export default async function ProjectDetailPage({
   const projectJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${project.title} — ${project.category} Case Study`,
+    headline: `${project.title} — ${project.category} Project Breakdown`,
     description: project.shortDescription,
     image: `https://www.alaintapiru.com${project.image}`,
     author: {
@@ -333,14 +333,14 @@ export default async function ProjectDetailPage({
               Explore More Work
             </span>
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
-              Related Case Studies &amp; Tools
+              Related Projects &amp; Diagnostic Tools
             </h2>
           </div>
           <Link
             href="/projects/"
             className="font-heading text-xs uppercase tracking-[0.06em] font-bold text-primary-container hover:underline inline-flex items-center gap-1"
           >
-            All Case Studies <Icon name="arrow_forward" size={14} />
+            All Projects <Icon name="arrow_forward" size={14} />
           </Link>
         </div>
 
@@ -363,7 +363,7 @@ export default async function ProjectDetailPage({
                 </p>
               </div>
               <div className="pt-3 border-t border-white/5 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
-                <span>View Case Study</span>
+                <span>View Project Details</span>
                 <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
@@ -381,7 +381,7 @@ export default async function ProjectDetailPage({
                 Local SEO &amp; GBP Health Checker
               </h3>
               <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed line-clamp-2">
-                Run an instant AI-powered audit on your Google Business Profile and local search signals.
+                Run an instant diagnostic on Google Business Profile and local search signals.
               </p>
             </div>
             <div className="pt-3 border-t border-white/5 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
@@ -397,20 +397,20 @@ export default async function ProjectDetailPage({
         <div className="space-y-2">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
             {project.slug === 'alaintapiru-portfolio'
-              ? '⚡ High-Performance Engineering'
+              ? '⚡ High-Performance Web'
               : project.slug === 'local-seo-gbp-checker'
               ? '🔍 Local Search Diagnostic'
               : '🚀 Custom Web Architecture'}
           </span>
           <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
-            Ready to Build a High-Converting Platform Like {project.title}?
+            Interested in Building a Project Like {project.title}?
           </h2>
           <p className="font-sans text-xs sm:text-sm text-on-surface/70 max-w-xl mx-auto leading-relaxed">
             {project.slug === 'alaintapiru-portfolio'
-              ? 'Achieve sub-second load times, zero Cumulative Layout Shift, and verified 99+ PageSpeed scores on Next.js.'
+              ? 'Achieve fast loading speeds, clean semantic HTML, and verified 99+ PageSpeed scores on Next.js.'
               : project.slug === 'local-seo-gbp-checker'
-              ? 'Diagnose ranking misalignments, fix Google categories, and outrank local competitors in the Map Pack.'
-              : 'From bespoke AI-assisted web development to technical SEO migrations, let’s design your next growth vehicle.'}
+              ? 'Diagnose ranking signals, optimize Google Business Profile categories, and improve local search visibility.'
+              : 'From custom WordPress development to technical SEO implementations, let’s build search-ready digital foundations.'}
           </p>
         </div>
 
@@ -443,7 +443,7 @@ export default async function ProjectDetailPage({
             href="/contact/"
             className="inline-flex items-center gap-2 bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/30 text-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full transition-all min-h-[48px]"
           >
-            <span>Work With Me</span>
+            <span>Get in Touch</span>
             <Icon name="arrow_forward" size={16} />
           </Link>
         </div>

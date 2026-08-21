@@ -94,7 +94,7 @@ function getFeedItems(): FeedItem[] {
 
   // 5. Professional Credentials & Biography
   items.push({
-    title: 'About Alain Dave Tapiru — Senior SEO Specialist & Technical Web Designer',
+    title: 'About Alain Dave Tapiru — SEO Specialist & Technical Web Designer',
     link: `${BASE_URL}/about/`,
     pubDate: new Date('2026-08-17T16:00:00Z'),
     description:
@@ -105,11 +105,11 @@ function getFeedItems(): FeedItem[] {
 
   // 6. Homepage / Master Profile
   items.push({
-    title: 'Alain Dave Tapiru — Technical SEO Specialist & Web Architect',
+    title: 'Alain Dave Tapiru — SEO Specialist & Web Developer',
     link: `${BASE_URL}/`,
     pubDate: new Date('2026-08-19T08:30:00Z'),
     description:
-      'Official portfolio of Alain Dave Tapiru. Senior SEO Specialist and Technical Web Designer specializing in Core Web Vitals, JSON-LD semantic architecture, and AI search visibility.',
+      'Official portfolio of Alain Dave Tapiru. SEO Specialist and Technical Web Designer specializing in Core Web Vitals, JSON-LD semantic architecture, and search visibility.',
     category: 'Homepage',
     author: 'Alain Dave Tapiru',
   })

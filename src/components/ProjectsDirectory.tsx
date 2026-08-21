@@ -276,7 +276,7 @@ export function ProjectsDirectory() {
                 href={`/projects/${activeModalProject.slug}/`}
                 className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-4 py-2.5 rounded-xl transition-colors cursor-pointer"
               >
-                <span>Full Case Study</span>
+                <span>Project Breakdown</span>
                 <Icon name="arrow_forward" size={14} />
               </Link>
 

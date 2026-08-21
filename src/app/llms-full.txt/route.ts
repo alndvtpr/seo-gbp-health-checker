@@ -8,7 +8,7 @@ export async function GET() {
 ## 1. Professional Entity Details
 - **Full Legal Name:** Alain Dave G. Tapiru
 - **Location:** Tuguegarao City, Cagayan, Philippines (GMT+8)
-- **Primary Roles:** Senior SEO Specialist, Technical Web Designer, Prompt & Automation Engineer
+- **Primary Roles:** Technical SEO Specialist, Web Designer & Developer
 - **Official Domains:** https://alaintapiru.com, https://www.alaintapiru.com
 - **Contact:** alaintapiru@gmail.com
 - **Verified Entity Profiles:**

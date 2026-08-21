@@ -7,9 +7,9 @@ import { RssButton } from '@/components/RssButton'
 import { BLOG_POSTS } from '@/data/posts'
 
 export const metadata = generateMetadata({
-  title: 'SEO Blog & Digital Marketing Insights | Alain Dave Tapiru',
+  title: 'SEO Blog & Practical Web Insights | Alain Dave Tapiru',
   description:
-    'Discover practical SEO strategies, Core Web Vitals optimization guides, and local search growth tips from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
+    'Discover practical SEO notes, Core Web Vitals optimization experiments, and local search guides from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
   url: 'https://www.alaintapiru.com/blog/',
 })
 
@@ -22,13 +22,13 @@ export default function BlogPage() {
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-          Insights &amp; Technical Architecture
+          Insights &amp; Technical Notes
         </span>
         <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface tracking-[-0.025em]">
-          Ideas, Experiments &amp; Things Worth Ranking
+          Ideas, Experiments &amp; Technical Notes
         </h1>
         <p className="font-sans text-on-surface/80 text-base leading-relaxed max-w-2xl mx-auto">
-          Practical technical breakdowns, search engine algorithm analyses, and modern web performance architecture.
+          Practical technical breakdowns, SEO research notes, and modern web performance experiments.
         </p>
         <div className="flex justify-center items-center pt-2">
           <RssButton variant="button" label="Subscribe via RSS Feed" iconSize={16} />
@@ -87,7 +87,7 @@ export default function BlogPage() {
           Want to Audit Your Own Local Search Signals?
         </h2>
         <p className="font-sans text-on-surface/80 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-          Run our free instant Google Business Profile diagnostic engine to inspect 10 ranking signals and generate an AI-powered 30-day sprint roadmap.
+          Run the free Google Business Profile diagnostic tool to inspect key local ranking signals and generate an actionable 30-day roadmap.
         </p>
         <Link
           href="/tools/"

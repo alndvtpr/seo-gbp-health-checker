@@ -231,20 +231,20 @@ export function AboutCredentials() {
       {/* Section Header */}
       <div className="relative z-10 mb-8 sm:mb-10">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
-          Credentials &amp; Background
+          Training &amp; Credentials
         </span>
         <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface tracking-tight">
-          Education &amp; Verified Certifications
+          SEO Training, Credentials &amp; Education
         </h2>
       </div>
 
       <div className="space-y-8 sm:space-y-10 relative z-10">
-        {/* Category 1: Professional Certifications */}
+        {/* Category 1: SEO Training & Verified Credentials */}
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-primary-container inline-block" />
             <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
-              Professional Certifications
+              SEO Training &amp; Verified Credentials
             </h3>
           </div>
 

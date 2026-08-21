@@ -4,9 +4,9 @@ import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 const TRUST_POINTS = [
-  'Google & AI-Engine Optimized',
-  'Core Web Vitals Ready (<1s Load)',
-  'Zero Vanity Metrics / Pure ROI',
+  'Search Engine & AI-Ready',
+  'Performance-Focused (<1s Load Target)',
+  'Practical SEO Measurement',
 ] as const
 
 export function ServicesHero() {
@@ -34,7 +34,7 @@ export function ServicesHero() {
 
       {/* Subheadline */}
       <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal">
-        I build lightning-fast websites and deploy modern SEO, AEO, and GEO strategies that capture top search rankings, trigger AI citations, and turn organic traffic into paying clients.
+        I build fast, responsive websites and deploy practical SEO, AEO, and GEO strategies designed to improve search visibility, support organic traffic, and optimize content for modern search.
       </p>
 
       {/* Action Row */}

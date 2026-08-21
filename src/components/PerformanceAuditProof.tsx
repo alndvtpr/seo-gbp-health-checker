@@ -18,7 +18,7 @@ export function PerformanceAuditProof({
   className = '',
   eyebrow = '02. Empirical Validation & Audit Proof',
   title = 'Google PageSpeed Insights Audit Scores',
-  subtitle = 'Empirical Lighthouse and Core Web Vitals benchmarks for alaintapiru.com demonstrating sub-second load velocity, 0ms Total Blocking Time, and flawless 100/100 SEO health.',
+  subtitle = 'Empirical Lighthouse and Core Web Vitals benchmarks for alaintapiru.com demonstrating fast load velocity, 0ms Total Blocking Time, and 100/100 SEO health.',
   compact = false,
 }: PerformanceAuditProofProps) {
   const [activeTab, setActiveTab] = useState<TabType>('compare')

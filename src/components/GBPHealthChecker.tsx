@@ -513,7 +513,7 @@ export function GBPHealthChecker() {
 **Location:** ${result.location} | **Audit Score:** ${result.totalScore}/100 (**Grade: ${result.grade}**)
 
 #### 📊 Executive Diagnosis
-${result.businessName} has an active local presence in ${result.location}. Executing this 4-week structured sprint will resolve high-priority ranking gaps, establish consistent review velocity, and drive Map Pack dominance.
+${result.businessName} has an active local presence in ${result.location}. Executing this 4-week structured sprint will resolve high-priority ranking gaps, establish consistent review velocity, and improve local Map Pack visibility.
 
 #### 🗓️ Week 1: Core Foundation & NAP Integrity (Days 1–7)
 - **Primary & Secondary Categories**: Align primary category to high-intent search volume and add 2–3 relevant subcategories.
@@ -1403,7 +1403,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   Want Alain to execute this Local SEO sprint for you?
                 </h4>
                 <p className="text-xs sm:text-sm text-on-surface/80 max-w-xl leading-relaxed">
-                  I specialize in turning Google Business Profiles into consistent revenue drivers with complete citation cleanup, review velocity systems, and Map Pack dominance.
+                  I help local businesses optimize Google Business Profiles with accurate categorization, citation cleanup, review management systems, and improved Map Pack visibility.
                 </p>
                 <p className="hidden print:block text-xs text-primary-container font-semibold pt-1">
                   Contact: alaintapiru@gmail.com • Web: alaintapiru.com • Book: alaintapiru.com/contact/

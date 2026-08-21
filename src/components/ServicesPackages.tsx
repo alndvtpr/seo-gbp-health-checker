@@ -22,11 +22,11 @@ const PACKAGES: PackageTier[] = [
     cadence: 'Technical Audit & Strategy',
     startingPrice: '$280 USD (₱15,500)',
     badge: 'Search Foundation',
-    targetAudience: 'Existing website owners seeking technical crawl fixes, schema graphs, and AEO action plans.',
+    targetAudience: 'Website owners seeking technical crawl fixes, structured data implementation, and search readiness.',
     includes: [
       'Full Technical SEO & Crawl Audit',
-      'Custom JSON-LD Entity Graph Architecture',
-      'AEO/GEO Generative Search Gap Analysis',
+      'Structured JSON-LD Schema Implementation',
+      'Search Intent & AI Search Readiness Review',
       'Keyword Mapping & Content Strategy',
       'Prioritized 30-Day Fix Blueprint + Video Walkthrough',
     ],
@@ -46,7 +46,7 @@ const PACKAGES: PackageTier[] = [
       'Built-in Technical SEO & Schema Integration',
       'Core Web Vitals Speed & Security Hardening',
       'GA4 / Google Search Console Integration',
-      'Client CMS Hand-off & Video Tutorial',
+      'CMS Hand-off & Guided Walkthrough',
     ],
     ctaText: 'Start WordPress Project',
   },
@@ -55,32 +55,32 @@ const PACKAGES: PackageTier[] = [
     name: 'Custom Next.js & React Architecture',
     cadence: 'Code-First Engineering',
     startingPrice: '$850 USD (₱48,000)',
-    badge: 'Enterprise Performance',
-    targetAudience: 'Brands, SaaS, and startups requiring bespoke code, sub-second load times, and 99+ PageSpeed scores.',
+    badge: 'Code-First Web',
+    targetAudience: 'Brands and projects requiring modern code-first development, fast Core Web Vitals, and clean web architecture.',
     includes: [
       'Bespoke Next.js 15 App Router & React Build',
       'Zero-CLS Image Pipelines & Tailwind / M3 Design',
-      'Sub-Second Core Web Vitals Guarantee (<1s)',
-      'Advanced Multi-Type Schema Entity Graph',
-      'Enterprise Scalability & Zero Technical Debt',
+      'Performance-focused build targeting fast Core Web Vitals',
+      'Custom Schema Markup & JSON-LD Integration',
+      'Scalable component architecture & clean code standards',
     ],
     ctaText: 'Build Custom Next.js Site',
   },
   {
     id: 'tier-4-retainer',
-    name: 'Dedicated Search Growth Retainer',
+    name: 'Ongoing Monthly SEO Support',
     cadence: 'Ongoing Monthly Sprint',
     startingPrice: '$450 USD / mo (₱25,000 / mo)',
     badge: 'Ongoing Retainer',
-    targetAudience: 'Established businesses seeking continuous ranking gains and search engine dominance.',
+    targetAudience: 'Businesses looking for consistent monthly optimization, technical maintenance, and ongoing search improvements.',
     includes: [
-      'Dedicated 25 Hours / Month Focused Execution',
-      'Continuous On-Page & Content Optimization Sprints',
-      'Google Business Profile (GBP) & Local Map Pack Sync',
+      'Dedicated 20–25 Hours / Month Focused Execution',
+      'Ongoing Technical & On-Page SEO Sprints',
+      'Google Business Profile (GBP) & Local Search Maintenance',
       'Monthly Strategy Call & Live Reporting Dashboard',
       'Transparent Hour-by-Hour Activity Log',
     ],
-    ctaText: 'Apply for Monthly Retainer',
+    ctaText: 'Inquire About Monthly Retainer',
   },
 ]
 
@@ -100,10 +100,10 @@ export function ServicesPackages() {
           id="packages-heading"
           className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
-          Engineered for Tangible Search &amp; Business Growth
+          Engineered for Practical Search &amp; Web Visibility
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Transparent, ROI-focused solutions differentiated by technical stack—from specialized SEO sprints and fast WordPress launches to bespoke Next.js engineering.
+          Structured, process-driven solutions differentiated by technical stack—from specialized SEO sprints and responsive WordPress sites to custom Next.js builds.
         </p>
       </div>
 
@@ -204,7 +204,7 @@ export function ServicesPackages() {
               Need a flexible scope tailored to your current budget?
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
-              If your business is just starting out or has specific financial constraints, don&apos;t let package prices hold you back. We can negotiate custom milestone deliverables or sprint-based payments according to your exact needs to build mutual trust and sustainable momentum.
+              If you have specific budget constraints or unique requirements, we can tailor custom milestone deliverables or sprint-based phases according to your exact needs.
             </p>
           </div>
 

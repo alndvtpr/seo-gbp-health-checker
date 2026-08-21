@@ -11,7 +11,7 @@ const SERVICE_OPTIONS = [
   'Technical SEO Audit & Architecture',
   'Search & AI Engine Optimization (AEO/GEO)',
   'React & WordPress Web Development',
-  'Full-Service Monthly SEO Retainer',
+  'Ongoing Monthly SEO Support',
   'Consultation / General Inquiry',
 ] as const
 

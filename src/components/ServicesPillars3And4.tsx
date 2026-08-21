@@ -57,7 +57,7 @@ export function ServicesPillars3And4() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>Perfect 100/100 Core Web Vitals performance</span>
+                  <span>Performance-focused builds targeting fast Core Web Vitals</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
@@ -104,7 +104,7 @@ export function ServicesPillars3And4() {
               <ul className="space-y-2.5 font-sans text-sm text-on-surface/85">
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>Toxic link cleanup</span>
+                  <span>Toxic link cleanup &amp; disavow review</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
@@ -112,7 +112,7 @@ export function ServicesPillars3And4() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
-                  <span>Brand mentions &amp; citations</span>
+                  <span>Brand mentions &amp; local citations</span>
                 </li>
               </ul>
             </div>
@@ -123,7 +123,7 @@ export function ServicesPillars3And4() {
             aria-label="Grow your website backlink authority"
             className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
           >
-            <span>Scale Backlink Authority</span>
+            <span>Explore Link Strategy</span>
             <Icon name="arrow_forward" size={14} className="ml-2" />
           </Link>
         </article>

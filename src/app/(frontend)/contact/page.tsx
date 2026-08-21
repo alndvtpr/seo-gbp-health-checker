@@ -5,9 +5,9 @@ import { CalendlyScheduler } from '@/components/CalendlyScheduler'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'Contact Alain Dave Tapiru | Free SEO Strategy Call & Inquiries',
+  title: 'Contact Alain Tapiru | SEO & Web Development Philippines',
   description:
-    'Book a free 20-minute SEO strategy call with Alain Dave Tapiru or send a direct inquiry to discuss technical SEO, search visibility, and web development.',
+    'Get in touch with Alain Dave Tapiru or book a 20-minute discussion on technical SEO, local search optimization, and search-ready web development.',
   url: 'https://www.alaintapiru.com/contact/',
 })
 
@@ -18,9 +18,9 @@ const jsonLd = {
       '@type': 'ContactPage',
       '@id': 'https://www.alaintapiru.com/contact/#webpage',
       url: 'https://www.alaintapiru.com/contact/',
-      name: 'Contact Alain Dave Tapiru | Free SEO Strategy Call & Inquiries',
+      name: 'Contact Alain Tapiru | SEO & Web Development Philippines',
       description:
-        'Book a free 20-minute SEO strategy call with Alain Dave Tapiru or send a direct inquiry to discuss technical SEO, search visibility, and web development.',
+        'Get in touch with Alain Dave Tapiru or book a 20-minute discussion on technical SEO, local search optimization, and search-ready web development.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://www.alaintapiru.com/#website',
@@ -78,15 +78,16 @@ export default function ContactPage() {
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-3 font-semibold">
-          CONTACT — FREE STRATEGY CALL
+          GET IN TOUCH — LET&apos;S CONNECT
         </span>
         <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-4 sm:mb-6">
-          <span className="font-extrabold text-on-surface">Your SEO </span>
-          <span className="font-extrabold text-primary-container">strategy.</span>
-          <span className="block font-medium text-on-surface/85 mt-1 sm:mt-2">Built for better search.</span>
+          <span className="font-extrabold text-on-surface">Let&apos;s talk </span>
+          <span className="font-extrabold text-primary-container">SEO</span>
+          <span className="font-extrabold text-on-surface"> &amp; web development.</span>
+          <span className="block font-medium text-on-surface/85 mt-1 sm:mt-2 text-2xl sm:text-4xl md:text-5xl">Building search-ready digital foundations.</span>
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Book a free 20-minute strategy call and let&apos;s look at the opportunities hiding in your current search presence, from technical issues and content gaps to the next moves worth prioritizing.
+          Schedule a 20-minute conversation or send a direct inquiry to discuss your website, technical SEO needs, or upcoming web development project.
         </p>
       </div>
 
@@ -121,7 +122,7 @@ export default function ContactPage() {
             </span>
             <div>
               <span className="font-heading text-xs font-bold text-on-surface block">Current Availability</span>
-              <span className="font-sans text-xs text-on-surface/70">Open for freelance SEO audits &amp; full-time roles</span>
+              <span className="font-sans text-xs text-on-surface/70">Open for project collaborations &amp; full-time opportunities</span>
             </div>
           </div>
 
@@ -180,7 +181,7 @@ export default function ContactPage() {
                 Primary Focus
               </span>
               <p className="font-sans text-sm text-on-surface/75 leading-relaxed">
-                Technical SEO Audits, Search &amp; AI Engine Optimization (AEO/GEO), and Modern React &amp; WordPress Development.
+                Technical SEO, Local Search &amp; Google Business Profile optimization, and search-friendly React &amp; WordPress web builds.
               </p>
             </div>
 

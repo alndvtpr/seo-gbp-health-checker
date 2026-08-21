@@ -31,7 +31,7 @@ export const GBPHomepageCallout = () => {
 
               <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-on-surface tracking-tight leading-[1.12]">
                 Audit Your Google Business Profile &amp;{' '}
-                <span className="text-primary-container">Outrank Local Rivals</span>
+                <span className="text-primary-container">Uncover Local Ranking Gaps</span>
               </h2>
 
               <p className="font-sans text-sm sm:text-base text-on-surface/80 leading-relaxed">

@@ -9,7 +9,7 @@ export async function GET() {
 - [Alain Tapiru Home](https://www.alaintapiru.com/): Official website of Alain Dave Tapiru, SEO Specialist and Technical Web Designer.
 - [About Alain Dave Tapiru](https://www.alaintapiru.com/about/): Professional background, core competencies, verified certifications, and credentials.
 - [SEO & Web Services](https://www.alaintapiru.com/services/): Conversion-engineered SEO pillars, technical architecture, and modern web development.
-- [Portfolio & Case Studies](https://www.alaintapiru.com/projects/): Technical SEO audits, client case studies, and web architecture breakdowns.
+- [Portfolio & Case Studies](https://www.alaintapiru.com/projects/): Technical SEO audits, project case studies, and web architecture breakdowns.
 - [Local SEO & GBP Health Checker](https://www.alaintapiru.com/tools/): Interactive Google Business Profile ranking signals and 30-day dynamic action plan engine.
 - [Technical Blog & SEO Insights](https://www.alaintapiru.com/blog/): Editorial search performance, algorithm analysis, and architecture tutorials.
 - [Contact & Discovery Inquiry](https://www.alaintapiru.com/contact/): Spam-protected contact endpoint and project discovery form.

@@ -367,7 +367,7 @@ export const ScrollHero = () => {
           </h1>
 
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface-variant drop-shadow-lg font-normal leading-relaxed max-w-2xl">
-            Helping businesses worldwide grow through smarter SEO, search-ready websites, and effective digital marketing strategies.
+            Building search-ready websites and practical SEO solutions while developing hands-on experience in technical and local search optimization.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full">

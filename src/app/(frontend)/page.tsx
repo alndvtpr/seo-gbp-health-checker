@@ -13,9 +13,9 @@ import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'SEO Specialist Philippines | Technical SEO Expert – Alain Dave Tapiru',
+  title: 'SEO Specialist Philippines | Technical & Local SEO – Alain Dave Tapiru',
   description:
-    'Get found by customers searching for what you offer. Alain Dave Tapiru helps businesses in the Philippines grow with technical, on-page and local SEO.',
+    'Build search-ready websites that get discovered. Alain Dave Tapiru provides practical technical, on-page, and local SEO solutions tailored for modern search.',
   url: 'https://www.alaintapiru.com/',
 })
 
@@ -176,7 +176,7 @@ export default async function Page() {
 
           <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-              Background &amp; Expertise
+              Background &amp; Approach
             </span>
             <h2 className="font-heading text-2xl sm:text-3xl md:text-5xl font-bold text-on-surface leading-tight tracking-tight">
               Where Search Strategy Meets Smarter Execution
@@ -345,7 +345,7 @@ export default async function Page() {
               href="/projects/"
               className="font-heading text-xs uppercase tracking-[0.06em] font-bold text-primary-container hover:underline flex items-center gap-1"
             >
-              View All Case Studies <Icon name="arrow_forward" size={16} />
+              View All Projects <Icon name="arrow_forward" size={16} />
             </Link>
           </div>
 
@@ -410,7 +410,7 @@ export default async function Page() {
                   href="/projects/angat-sikat-studio/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
-                  <span>Case Study</span>
+                  <span>Project Details</span>
                   <Icon name="arrow_forward" size={14} />
                 </Link>
 
@@ -486,7 +486,7 @@ export default async function Page() {
                   href="/projects/local-seo-gbp-checker/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
-                  <span>Case Study</span>
+                  <span>Project Details</span>
                   <Icon name="arrow_forward" size={14} />
                 </Link>
 
@@ -526,7 +526,7 @@ export default async function Page() {
                       Technical SEO • Modern Web
                     </span>
                     <span className="text-xs font-sans text-on-surface/70">
-                      Lead Architect
+                      Developer &amp; SEO Specialist
                     </span>
                   </div>
 
@@ -560,7 +560,7 @@ export default async function Page() {
                   href="/projects/alaintapiru-portfolio/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
                 >
-                  <span>Case Study</span>
+                  <span>Project Details</span>
                   <Icon name="arrow_forward" size={14} />
                 </Link>
 

@@ -32,24 +32,24 @@ const PILLAR_2_SERVICES: Pillar2Service[] = [
     icon: 'edit_note',
     ctaText: 'Optimize My Content',
     deliverables: [
-      'CTR-engineered titles/metas',
+      'Click-optimized title tags & meta descriptions',
       'Semantic heading hierarchy (H1–H3)',
-      'Image SEO & alt text',
-      'Internal link authority sculpting',
+      'Image SEO, compression & alt text',
+      'Strategic internal linking structure',
     ],
   },
   {
     id: 'aeo-geo-optimization',
     title: 'AEO & GEO (Answer & Generative Engine Optimization)',
-    subhead: 'Capture Position Zero and direct citations in AI-generated answers.',
+    subhead: 'Structure content for search snippets and emerging AI search responses.',
     badge: 'Next-Gen Search',
     isFeatured: true,
     icon: 'auto_awesome',
-    ctaText: 'Get AI-Engine Ready',
+    ctaText: 'Optimize for AI Search',
     deliverables: [
       'Direct answer formatting for Featured Snippets & "People Also Ask"',
       'Information-dense, source-citable content structuring for LLMs',
-      'Brand entity footprint optimization across key AI training sources',
+      'Brand entity footprint optimization across key digital touchpoints',
     ],
   },
 ]
@@ -73,7 +73,7 @@ export function ServicesPillar2() {
           Engineered for Traditional Search &amp; Generative AI
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Dominate classic Google search results while ensuring your brand is cited in ChatGPT, Perplexity, and AI Overviews. Discover our full on-page execution in the{' '}
+          Improve search visibility across classic Google search results while structuring content for emerging AI search experiences in ChatGPT, Perplexity, and AI Overviews. Discover our full on-page execution in the{' '}
           <Link href="/projects/angat-sikat-studio/" className="text-primary-container font-semibold hover:underline">
             AngatSikat Studio Case Study
           </Link>.

@@ -18,7 +18,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
   {
     step: '02',
     title: 'Baseline Benchmarking',
-    desc: 'Capturing organic rankings, AI citations & Core Web Vitals',
+    desc: 'Auditing current indexation, site speed & ranking signals',
   },
   {
     step: '03',
@@ -41,22 +41,22 @@ const FAQS: FAQItem[] = [
   {
     question: 'What is the difference between traditional SEO, AEO, and GEO?',
     answer:
-      'Traditional SEO ranks your links on Google search result pages. AEO (Answer Engine Optimization) structures content to win Featured Snippets and voice answers. GEO (Generative Engine Optimization) optimizes facts, entities, and citations so AI models (ChatGPT, Perplexity, Google AI Overviews) mention and recommend your brand in generated answers.',
+      'Traditional SEO optimizes your web pages to rank in search engine results. AEO (Answer Engine Optimization) structures content for quick, direct answers like Featured Snippets. GEO (Generative Engine Optimization) organizes facts, entities, and structured data so AI models (such as ChatGPT, Perplexity, and Google AI Overviews) can easily understand and reference your brand.',
   },
   {
     question: 'Can you optimize my existing website, or do I need a new build?',
     answer:
-      'We can audit and optimize your existing site directly. If your current CMS is severely bloated or slow, we will provide specific recommendations on whether a rebuild or technical refactor is most cost-effective.',
+      'I can audit and optimize your existing site directly. If your current CMS is severely bloated or slow, I will provide specific recommendations on whether a rebuild or technical refactor is most practical.',
   },
   {
     question: 'Why choose a React / Next.js site over WordPress (or vice versa)?',
     answer:
-      'React & Next.js sites offer unmatched sub-second speed, zero-CLS rendering, and code-first scalability. WordPress offers unmatched flexibility and an easy content management dashboard for non-technical teams. We build both cleanly.',
+      'React & Next.js sites offer fast loading speeds, zero layout shift, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both cleanly.',
   },
   {
     question: 'How do you track and report progress?',
     answer:
-      'You get 24/7 access to a custom Looker Studio dashboard tracking organic traffic, keyword movement, and conversions, supported by monthly video walkthroughs.',
+      'You get access to a structured Looker Studio dashboard tracking organic search performance, impressions, clicks, and ranking movements, supported by regular update walkthroughs.',
   },
 ]
 
@@ -79,7 +79,7 @@ export function ServicesWorkflowAndFAQ() {
       >
         <div className="max-w-3xl">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
-            HOW WE WORK
+            HOW I WORK
           </span>
           <h2
             id="workflow-heading"
@@ -88,7 +88,7 @@ export function ServicesWorkflowAndFAQ() {
             4-Step Delivery Workflow
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            A structured, agile sprint process designed for rapid momentum, zero guesswork, and measurable ROI.
+            A structured, sprint-based process designed for steady momentum, clear deliverables, and transparent progress tracking.
           </p>
         </div>
 
@@ -150,7 +150,7 @@ export function ServicesWorkflowAndFAQ() {
             Clear Answers to Common Questions
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            Everything you need to know about our SEO, AEO, GEO, and web development process.
+            Everything you need to know about my SEO, web development, and diagnostic process.
           </p>
         </div>
 

@@ -49,10 +49,10 @@ export default function ToolsPage() {
           Free Resources &amp; Tools
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-[-0.025em]">
-          SEO &amp; Digital Growth Calculators
+          SEO &amp; Practical Web Tools
         </h1>
         <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
-          Interactive tools designed for website owners, hiring managers, and SEO professionals in the Philippines.
+          Interactive tools designed for website owners, teams, and SEO practitioners.
         </p>
       </div>
 

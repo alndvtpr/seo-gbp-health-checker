@@ -9,7 +9,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 export const metadata = generateMetadata({
   title: 'About Alain Dave Tapiru | SEO Specialist in the Philippines',
   description:
-    'Meet Alain Dave Tapiru, an SEO Specialist in the Philippines helping businesses earn search visibility, attract qualified traffic and turn searches into growth.',
+    'Meet Alain Dave Tapiru, an SEO Specialist and Technical Web Designer in the Philippines with hands-on experience in technical SEO, local search, and modern web builds.',
   url: 'https://www.alaintapiru.com/about/',
 })
 
@@ -25,10 +25,10 @@ export default function AboutPage() {
           Biography &amp; Background
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-tight">
-          Architecting Search Presence &amp; Secure Digital Systems
+          Building Search-Ready Websites &amp; Practical SEO Solutions
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          I am an SEO Specialist, Web Designer, and BSIT student specializing in Network &amp; Cybersecurity.
+          I am an SEO Specialist, Technical Web Designer, and BSIT student specializing in Network &amp; Cybersecurity.
         </p>
       </div>
 
@@ -46,20 +46,23 @@ export default function AboutPage() {
 
         <div className="lg:col-span-7 space-y-4 sm:space-y-6">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface tracking-tight">
-            The Journey &amp; Philosophy
+            My SEO Journey &amp; Philosophy
           </h2>
           <div className="space-y-3 sm:space-y-4 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
             <p>
-              My professional journey began in client-facing operations, where I mastered human-centric problem solving and clear communication. Transitioning into Search Engine Optimization allowed me to combine analytical strategy with technical execution.
+              My professional background began in client-facing support and operations, where I developed strong problem-solving habits, attention to detail, and clear communication. Transitioning into Search Engine Optimization gave me a dedicated path to connect analytical research with hands-on web development.
             </p>
             <p>
-              Today, I bridge the gap between technical search optimization, modern frontend engineering (Next.js &amp; React), and cybersecurity fundamentals. I believe that an effective website must not only rank on search engines, but also load instantly, look stunning, and operate securely.
+              Over the past year, I have built practical, independent SEO experience through intensive upskilling, real project experimentation, and structured training—including completing the Pinoy SEO Bootcamp led by Rene Leandro Padilla. Rather than focusing purely on theory, I practice SEO by actively building search-ready websites, testing technical crawlability, optimizing local search signals, and developing custom tools.
+            </p>
+            <p>
+              As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frontend frameworks like Next.js and WordPress. I believe an effective website should be easy for search engines to crawl, fast for users to navigate, and built on reliable, secure foundations.
             </p>
           </div>
 
           <div className="pt-4 border-t border-white/10">
             <h3 className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-3 font-semibold">
-              Core Competencies
+              Skills &amp; Areas of Practice
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Link
@@ -68,12 +71,12 @@ export default function AboutPage() {
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    Technical, On-Page, Off-Page &amp; Local SEO
+                    Technical, On-Page &amp; Local SEO
                   </h4>
                   <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Crawl error resolution, schema markup, site speed optimization, local SEO presence, content optimization, and off-page link building strategies.
+                  Crawl error resolution, schema markup, Core Web Vitals speed optimization, local SEO presence, content optimization, and search engine best practices.
                 </p>
               </Link>
               <Link
@@ -82,12 +85,12 @@ export default function AboutPage() {
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    Modern Web Design
+                    Search-Ready Web Development
                   </h4>
                   <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Next.js, Tailwind CSS, Payload CMS, WordPress, Elementor, and responsive glassmorphism interfaces.
+                  Next.js, React, Tailwind CSS, Payload CMS, WordPress, Elementor, and responsive glassmorphism interfaces.
                 </p>
               </Link>
               <Link
@@ -96,12 +99,12 @@ export default function AboutPage() {
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    AI Web Design &amp; Development
+                    Practical SEO Tools &amp; Builds
                   </h4>
                   <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  AI-assisted UI/UX prototyping, intelligent web application development, automated asset generation, and rapid full-stack delivery.
+                  Building live, functional projects like the Local SEO &amp; GBP Health Checker, AngatSikat Studio theme, and custom portfolio architecture.
                 </p>
               </Link>
               <Link
@@ -110,12 +113,12 @@ export default function AboutPage() {
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    AI Workflow Automation &amp; Diagnostics
+                    AI-Assisted Workflows &amp; Diagnostics
                   </h4>
                   <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Interactive GBP Health Checker, Gemini AI local scoring engines, and programmatic content workflows.
+                  Leveraging modern AI tooling for diagnostic roadmaps, structured data generation, and rapid development workflows.
                 </p>
               </Link>
             </div>
@@ -142,7 +145,7 @@ export default function AboutPage() {
           href="/contact/"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:scale-105 transition-all min-h-[48px]"
         >
-          Work With Me <Icon name="arrow_forward" size={16} />
+          Get in Touch <Icon name="arrow_forward" size={16} />
         </Link>
       </div>
     </div>

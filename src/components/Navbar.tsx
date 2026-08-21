@@ -152,7 +152,7 @@ export const Navbar = () => {
               href="/contact/"
               className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-[0.06em] font-bold px-6 py-2.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
             >
-              Get a Free Quote
+              Get in Touch
               <Icon name="arrow_forward" size={16} />
             </Link>
           </div>
@@ -203,7 +203,7 @@ export const Navbar = () => {
             onClick={() => setMenuOpen(false)}
             className="mt-2 w-full text-center bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm uppercase tracking-[0.06em] font-bold px-8 py-3.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary transition-colors flex items-center justify-center gap-2 min-h-[48px]"
           >
-            <span>Get a Free Quote</span>
+            <span>Get in Touch</span>
             <Icon name="arrow_forward" size={16} />
           </Link>
           

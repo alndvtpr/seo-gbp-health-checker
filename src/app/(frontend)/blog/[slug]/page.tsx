@@ -213,7 +213,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <section className="space-y-6 max-w-6xl mx-auto">
         <div className="flex items-center justify-between">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
-            Explore Related Guides &amp; Case Studies
+            Explore Related Guides &amp; Notes
           </span>
           <Link
             href="/blog/"
@@ -252,7 +252,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
 
                 <div className="pt-3 mt-4 border-t border-white/5 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
-                  <span>Read Full Guide</span>
+                  <span>Read Article</span>
                   <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
@@ -263,20 +263,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {/* Author Footer & Next Steps CTA */}
       <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/90 border border-primary-container/30 space-y-6 text-center shadow-[0_0_50px_rgba(224,123,32,0.15)]">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-          Technical Growth Consulting
+          Technical Collaboration
         </span>
         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface tracking-tight">
-          Need Expert Help Implementing These Strategies?
+          Need Practical Help Implementing These Strategies?
         </h2>
         <p className="font-sans text-on-surface/80 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-          From Core Web Vitals optimization to full-stack SEO migrations and Google Business Profile management, let&apos;s engineer results for your platform.
+          From Core Web Vitals speed tuning to structured data implementation and local SEO diagnostics, let&apos;s build search-ready digital foundations.
         </p>
         <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
           <Link
             href="/contact/"
             className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:scale-105 transition-all min-h-[48px]"
           >
-            <span>Request Technical Discovery</span>
+            <span>Get in Touch</span>
             <Icon name="arrow_forward" size={16} />
           </Link>
           <Link

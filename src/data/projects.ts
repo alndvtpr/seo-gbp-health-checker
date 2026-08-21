@@ -41,7 +41,7 @@ export const angatSikatProject: Project = {
   shortDescription:
     'A WordPress and web design studio platform built to unify modern website creation with technical crawlability and search visibility.',
   fullDescription:
-    "AngatSikat Studio is an ongoing development build created as a dedicated platform for SEO-ready websites. Built using a custom WordPress theme ('angatsikat-studio'), the platform structures distinct offerings across custom WordPress builds, responsive design, and core technical SEO implementations without relying on bloated templates.",
+    "AngatSikat Studio is a self-directed, ongoing development build created as a dedicated platform for SEO-ready websites. Built using a custom WordPress theme ('angatsikat-studio'), the platform structures distinct offerings across custom WordPress builds, responsive design, and core technical SEO implementations without relying on bloated templates.",
   category: 'WordPress',
   tags: [
     'WordPress',
@@ -72,7 +72,7 @@ export const angatSikatProject: Project = {
     },
     {
       name: 'MASIKAT',
-      meaning: 'Turn search visibility into real client and business reach.',
+      meaning: 'Turn search visibility into genuine business inquiries and engagement.',
     },
   ],
   techStack: [
@@ -106,10 +106,10 @@ export const localSeoGbpProject: Project = {
   shortDescription:
     'A self-built tool for analyzing key Google Business Profile and local SEO signals, helping identify practical opportunities for better local search visibility.',
   fullDescription:
-    'An interactive Google Business Profile and local search diagnostic tool. Analyzes NAP consistency, rating metrics, review momentum, operating hours integrity, and outputs tailored 30-day dynamic SEO roadmaps.',
+    'An interactive, self-built Google Business Profile and local search diagnostic tool. Analyzes NAP consistency, rating metrics, review momentum, operating hours integrity, and outputs tailored 30-day dynamic SEO roadmaps.',
   category: 'Local SEO',
   tags: ['Local SEO', 'GBP Audit', 'Interactive Tool', 'Next.js', 'AI Insights'],
-  role: 'Full Stack Developer & SEO Specialist',
+  role: 'Developer & Local SEO Practitioner',
   liveUrl: '/tools',
   featured: true,
   coreServices: [
@@ -151,10 +151,10 @@ export const portfolioProject: Project = {
   shortDescription:
     'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance considerations, and AI-assisted development workflows.',
   fullDescription:
-    'A performance-first personal portfolio combining Next.js 15, Tailwind CSS, and Payload CMS 3.0. Features zero-DOM layout thrashing, interaction-deferred WebGL canvas rendering, schema microdata injection, and LLM-friendly content endpoints.',
+    'A performance-focused personal portfolio combining Next.js 15, Tailwind CSS, and Payload CMS 3.0. Features zero layout shift, interaction-deferred WebGL canvas rendering, JSON-LD structured data implementation, and LLM-friendly content endpoints.',
   category: 'Technical SEO',
   tags: ['Technical SEO', 'Next.js 15', 'Tailwind CSS', 'Payload CMS', 'Core Web Vitals'],
-  role: 'Lead Architect & Designer',
+  role: 'Technical SEO & Web Architecture',
   liveUrl: 'https://github.com/alndvtpr',
   featured: true,
   coreServices: [
