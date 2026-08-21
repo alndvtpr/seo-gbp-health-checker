@@ -191,35 +191,35 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
       aria-label="Direct Calendar Booking"
     >
       {/* Scheduler Header & Trust Badges */}
-      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-2.5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs font-heading font-semibold uppercase tracking-[0.08em]">
-          <Calendar className="w-3.5 h-3.5" />
-          <span>Direct 1-on-1 Scheduling</span>
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-3">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs font-heading font-semibold uppercase tracking-[0.08em]">
+          <Calendar className="w-3.5 h-3.5 shrink-0" />
+          <span>BOOK A CONVERSATION</span>
         </div>
         <h2 className="font-heading text-xl sm:text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">
-          Book a Free Discovery Call
+          Free 20-Minute SEO Strategy Call
         </h2>
-        <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed">
-          Select a date and time that works best for your schedule. We&apos;ll discuss your SEO audit signals, web dev goals, or project scope.
+        <p className="font-sans text-xs sm:text-sm md:text-base text-on-surface/75 leading-relaxed max-w-xl mx-auto">
+          Choose a time that works for you. We&apos;ll use the call to understand your goals, identify the most practical opportunities, and decide what makes sense next.
         </p>
 
         {/* Feature Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-[11px] font-sans text-on-surface/70">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10">
-            <Clock className="w-3 h-3 text-primary" /> 30-Min Strategy Call
+        <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1 text-[11px] font-sans text-on-surface/80">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
+            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" /> 20-Min Strategy Call
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10">
-            <Sparkles className="w-3 h-3 text-emerald-400" /> Free 10-Pt Audit Review
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Practical Action Items
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10">
-            <ShieldCheck className="w-3 h-3 text-sky-400" /> No Obligation
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
+            <ShieldCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" /> No Sales Pressure
           </span>
         </div>
       </div>
 
       {/* Main Glass Card Wrapper */}
-      <div className="rounded-3xl border border-white/10 bg-surface-1/90 p-3.5 sm:p-6 md:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
-        {/* Subtle Ambient Radial Glow */}
+      <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-surface-1/90 p-2.5 sm:p-5 md:p-6 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden">
+        {/* Ambient Radial Glows (Amber + Sky) */}
         <div
           className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"
           aria-hidden="true"
@@ -229,57 +229,57 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
           aria-hidden="true"
         />
 
-        {/* Fixed Height Scheduler Container (Guarantees 0 CLS) */}
-        <div className="relative w-full h-[700px] min-h-[700px] min-w-[320px] rounded-2xl overflow-hidden bg-[#f8fafc] border border-slate-200/80 shadow-inner">
+        {/* Fixed Height Scheduler Container (Guarantees 0 CLS & Matches Native Theme) */}
+        <div className="relative w-full h-[680px] sm:h-[700px] min-h-[680px] sm:min-h-[700px] min-w-[320px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#F8FAFC] border border-slate-200/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.04)]">
           {/* Skeleton Loader State */}
           {(!isLoaded && !hasError) && (
             <div
-              className="absolute inset-0 z-10 flex flex-col justify-between p-6 sm:p-8 bg-slate-50 text-slate-800 transition-opacity duration-500"
+              className="absolute inset-0 z-10 flex flex-col justify-between p-5 sm:p-8 bg-[#F8FAFC] text-[#111827] transition-opacity duration-500"
               aria-busy="true"
               aria-label="Loading calendar scheduler"
             >
               {/* Skeleton Top Bar */}
-              <div className="flex items-center justify-between border-b border-slate-200/70 pb-4">
+              <div className="flex items-center justify-between border-b border-slate-200/80 pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 animate-pulse" />
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-200/80 animate-pulse" />
                   <div className="space-y-2">
-                    <div className="w-32 h-4 rounded bg-slate-200 animate-pulse" />
-                    <div className="w-48 h-3 rounded bg-slate-200 animate-pulse" />
+                    <div className="w-28 sm:w-36 h-4 rounded bg-slate-200/80 animate-pulse" />
+                    <div className="w-40 sm:w-48 h-3 rounded bg-slate-200/60 animate-pulse" />
                   </div>
                 </div>
                 <div className="hidden sm:flex items-center gap-2">
-                  <div className="w-20 h-6 rounded-full bg-slate-200 animate-pulse" />
+                  <div className="w-24 h-7 rounded-full bg-slate-200/80 animate-pulse" />
                 </div>
               </div>
 
               {/* Skeleton Center Calendar Grid */}
-              <div className="flex-1 my-6 flex flex-col sm:flex-row items-center justify-center gap-8">
+              <div className="flex-1 my-5 sm:my-6 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
                 {/* Left Side: Mock details */}
-                <div className="w-full sm:w-1/3 space-y-4">
-                  <div className="w-3/4 h-5 rounded bg-slate-200 animate-pulse" />
-                  <div className="w-full h-3 rounded bg-slate-200 animate-pulse" />
-                  <div className="w-5/6 h-3 rounded bg-slate-200 animate-pulse" />
-                  <div className="pt-4 space-y-2">
-                    <div className="w-1/2 h-3 rounded bg-slate-200 animate-pulse" />
-                    <div className="w-2/3 h-3 rounded bg-slate-200 animate-pulse" />
+                <div className="w-full sm:w-1/3 space-y-3 sm:space-y-4">
+                  <div className="w-3/4 h-5 rounded bg-slate-200/80 animate-pulse" />
+                  <div className="w-full h-3 rounded bg-slate-200/60 animate-pulse" />
+                  <div className="w-5/6 h-3 rounded bg-slate-200/60 animate-pulse" />
+                  <div className="pt-3 space-y-2">
+                    <div className="w-1/2 h-3 rounded bg-slate-200/60 animate-pulse" />
+                    <div className="w-2/3 h-3 rounded bg-slate-200/60 animate-pulse" />
                   </div>
                 </div>
 
                 {/* Right Side: Mock Calendar Grid */}
-                <div className="w-full sm:w-2/3 max-w-sm space-y-3 bg-white p-5 rounded-xl border border-slate-200/60 shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-24 h-4 rounded bg-slate-200 animate-pulse" />
+                <div className="w-full sm:w-2/3 max-w-sm space-y-3 bg-white p-4 sm:p-5 rounded-xl border border-slate-200/80 shadow-sm">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-24 h-4 rounded bg-slate-200/80 animate-pulse" />
                     <div className="flex gap-2">
-                      <div className="w-6 h-6 rounded bg-slate-200 animate-pulse" />
-                      <div className="w-6 h-6 rounded bg-slate-200 animate-pulse" />
+                      <div className="w-6 h-6 rounded bg-slate-200/80 animate-pulse" />
+                      <div className="w-6 h-6 rounded bg-slate-200/80 animate-pulse" />
                     </div>
                   </div>
-                  <div className="grid grid-cols-7 gap-2">
+                  <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
                     {Array.from({ length: 28 }).map((_, i) => (
                       <div
                         key={i}
-                        className={`h-8 rounded-lg ${
-                          i % 5 === 0 ? 'bg-sky-100' : 'bg-slate-100'
+                        className={`h-7 sm:h-8 rounded-lg ${
+                          i % 4 === 0 ? 'bg-sky-100/90' : 'bg-slate-100'
                         } animate-pulse`}
                       />
                     ))}
@@ -288,8 +288,8 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
               </div>
 
               {/* Skeleton Bottom Loader Status */}
-              <div className="flex items-center justify-center gap-2.5 py-3 border-t border-slate-200/70 text-slate-500 text-xs font-medium">
-                <Loader2 className="w-4 h-4 animate-spin text-sky-600" />
+              <div className="flex items-center justify-center gap-2.5 py-3 border-t border-slate-200/80 text-slate-600 text-xs font-medium">
+                <Loader2 className="w-4 h-4 animate-spin text-[#38BDF8]" />
                 <span>Connecting to live Calendly schedule...</span>
               </div>
             </div>
@@ -298,16 +298,16 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
           {/* Ad Blocker / Network Error Fallback Card */}
           {hasError && (
             <div
-              className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center bg-slate-900/95 text-slate-200"
+              className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center bg-surface-1/95 text-on-surface"
               role="alert"
             >
               <div className="w-16 h-16 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(230,126,34,0.25)]">
                 <Calendar className="w-8 h-8 text-primary-container" />
               </div>
-              <h3 className="font-heading text-xl font-bold text-white mb-2">
+              <h3 className="font-heading text-xl font-bold text-on-surface mb-2">
                 Calendar Embed Blocked or Unavailable
               </h3>
-              <p className="font-sans text-xs sm:text-sm text-slate-300 max-w-md mb-6 leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-on-surface/75 max-w-md mb-6 leading-relaxed">
                 An ad blocker or privacy extension may be preventing the Calendly widget from loading. You can book directly on Calendly or retry loading.
               </p>
 
@@ -337,14 +337,14 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
           {/* The Actual Calendly Inline Widget Container */}
           <div
             ref={widgetParentRef}
-            className="calendly-inline-widget w-full h-[700px] min-h-[700px] min-w-[320px]"
+            className="calendly-inline-widget w-full h-[680px] sm:h-[700px] min-h-[680px] sm:min-h-[700px] min-w-[320px]"
             data-url={url}
-            style={{ minWidth: '320px', height: '700px' }}
+            style={{ minWidth: '320px', height: '100%' }}
           />
         </div>
 
         {/* Fallback Secondary CTA & Timezone Guidance */}
-        <div className="mt-4 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 text-center sm:text-left">
           <p className="font-sans text-xs sm:text-sm text-on-surface/75">
             Having trouble loading the calendar?{' '}
             <a
@@ -357,7 +357,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
               <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
             </a>
           </p>
-          <span className="font-sans text-[11px] text-on-surface/50">
+          <span className="font-sans text-[11px] text-on-surface/50 font-medium">
             Philippines (GMT+8) • Real-Time Timezone Detection
           </span>
         </div>

@@ -43,7 +43,7 @@ export function ServicesPillars3And4() {
             </div>
 
             <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">
-              Static &amp; WordPress Web Design &amp; Development
+              React &amp; WordPress Web Design &amp; Development
             </h3>
 
             <div className="space-y-3 pt-6 border-t border-white/10 mb-8">

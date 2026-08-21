@@ -95,10 +95,10 @@ const SERVICES_JSON_LD = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'WordPress & Static Website Development',
+              name: 'WordPress & React Website Development',
               serviceType: 'Web Design & Next.js Development',
               description:
-                'Lightweight static Next.js builds, headless WordPress architectures, and high-performance custom themes.',
+                'High-performance React & Next.js builds, headless WordPress architectures, and custom speed-optimized themes.',
               sameAs: 'https://en.wikipedia.org/wiki/WordPress',
             },
           },
@@ -206,7 +206,7 @@ export function ServicesFinalCta() {
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
-            <span>Free 20-minute audit review • No pressure</span>
+            <span>Free 20-minute strategy call • No pressure</span>
           </div>
 
           {/* Headline */}
@@ -226,10 +226,10 @@ export function ServicesFinalCta() {
           <div className="pt-2">
             <Link
               href="/contact/"
-              aria-label="Schedule a Discovery Call"
+              aria-label="Book a Free 20-Minute Strategy Call"
               className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-9 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.4)] hover:shadow-[0_0_40px_rgba(224,123,32,0.6)] hover:scale-105 active:scale-95 transition-all min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Schedule a Discovery Call</span>
+              <span>Book a Free Strategy Call</span>
               <Icon name="calendar_month" size={16} />
             </Link>
           </div>

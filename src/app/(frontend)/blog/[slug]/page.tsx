@@ -5,6 +5,7 @@ import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { TableOfContents } from '@/components/TableOfContents'
+import { CodeBlock } from '@/components/CodeBlock'
 import { BLOG_POSTS, BlogPost } from '@/data/posts'
 
 export async function generateStaticParams() {
@@ -137,6 +138,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   {para}
                 </p>
               ))}
+
+              {section.codeBlock && (
+                <CodeBlock
+                  code={section.codeBlock.code}
+                  language={section.codeBlock.language}
+                  filename={section.codeBlock.filename}
+                />
+              )}
 
               {section.highlight && (
                 <div className="p-6 rounded-2xl bg-surface-1/90 border border-primary-container/30 border-l-4 border-l-primary-container my-6 space-y-2 shadow-lg">

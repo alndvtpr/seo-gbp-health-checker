@@ -19,14 +19,16 @@ export default function ContactPage() {
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
-          Get In Touch
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-3 font-semibold">
+          CONTACT — FREE STRATEGY CALL
         </span>
-        <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-tight">
-          Let&apos;s Build &amp; Rank Together
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-4 sm:mb-6">
+          <span className="font-extrabold text-on-surface">Your SEO </span>
+          <span className="font-extrabold text-primary-container">strategy.</span>
+          <span className="block font-medium text-on-surface/85 mt-1 sm:mt-2">Built for better search.</span>
         </h1>
-        <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Book a 1-on-1 discovery call directly on my calendar below, or send a detailed project inquiry.
+        <p className="font-sans text-on-surface/75 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+          Book a free 20-minute strategy call and let&apos;s look at the opportunities hiding in your current search presence, from technical issues and content gaps to the next moves worth prioritizing.
         </p>
       </div>
 
@@ -34,14 +36,22 @@ export default function ContactPage() {
       <CalendlyScheduler />
 
       {/* Ambient Section Separator */}
-      <div className="relative py-4 sm:py-6 flex items-center justify-center" aria-hidden="true">
-        <div className="w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        <span className="absolute px-4 py-1 rounded-full bg-surface-1 border border-white/10 text-[11px] font-heading font-semibold uppercase tracking-[0.08em] text-on-surface/60">
-          Or Send a Direct Message
+      <div className="w-full max-w-3xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden="true" />
+
+      {/* 2. Low-Pressure Direct Message Section (Positioned Below Calendly) */}
+      <div className="text-center max-w-2xl mx-auto space-y-2.5">
+        <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
+          NOT READY TO BOOK A CALL?
         </span>
+        <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
+          That&apos;s completely fine.
+        </h2>
+        <p className="font-sans text-xs sm:text-sm md:text-base text-on-surface/75 leading-relaxed max-w-xl mx-auto">
+          Send me a quick note about your website, SEO goals, or project. You don&apos;t need to have everything figured out yet.
+        </p>
       </div>
 
-      {/* 2. Direct Contact Info & Inquiry Form Grid (Positioned Below) */}
+      {/* Direct Contact Info & Inquiry Form Grid (Positioned Below) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
         {/* Contact Info & Status */}
         <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl">

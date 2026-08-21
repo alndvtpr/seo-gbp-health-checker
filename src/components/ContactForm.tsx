@@ -100,9 +100,9 @@ export const ContactForm = () => {
       />
 
       <div>
-        <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-1">
+        <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface mb-1">
           Send a Message
-        </h2>
+        </h3>
         <p className="font-sans text-xs sm:text-sm text-on-surface/60">
           Fill out the details below to start a conversation.
         </p>
@@ -281,11 +281,11 @@ export const ContactForm = () => {
         {isSubmitting ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span>Sending Message...</span>
+            <span>Sending Request...</span>
           </>
         ) : (
           <>
-            <span>Send Inquiry</span>
+            <span>Send My Request</span>
             <Send className="w-4 h-4" />
           </>
         )}

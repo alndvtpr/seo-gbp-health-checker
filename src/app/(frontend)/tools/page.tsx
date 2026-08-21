@@ -8,23 +8,34 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export default function ToolsPage() {
   // Salary Calculator State
+  const [currency, setCurrency] = useState<'PHP' | 'USD'>('PHP')
   const [exp, setExp] = useState('mid')
   const [employment, setEmployment] = useState('fulltime')
   const [skill, setSkill] = useState('tech')
 
   const calculateSalary = () => {
-    let base = 40000
-    if (exp === 'junior') base = 25000
-    if (exp === 'senior') base = 75000
-    if (exp === 'lead') base = 110000
+    // Calibrated baseline for SEO / Web Virtual Assistant & Specialist (PH Market):
+    // Junior ($6-10/hr): ~₱20,000 - ₱28,000/mo ($350 - $500/mo)
+    // Mid ($10-14/hr): ~₱35,000 - ₱42,000/mo ($600 - $750/mo)
+    // Senior: ~₱55,000 - ₱70,000/mo
+    let base = 25000
+    if (exp === 'junior') base = 20000
+    if (exp === 'mid') base = 32000
+    if (exp === 'senior') base = 55000
+    if (exp === 'lead') base = 80000
 
-    if (employment === 'freelance') base *= 1.2
+    if (employment === 'freelance') base *= 1.15
     if (employment === 'agency') base *= 0.9
 
-    if (skill === 'tech') base += 10000
-    if (skill === 'fullstack') base += 20000
+    if (skill === 'tech') base += 5000
+    if (skill === 'fullstack') base += 10000
 
-    return base.toLocaleString()
+    if (currency === 'USD') {
+      // Benchmark exchange rate: ~57.5 PHP/USD
+      return Math.round(base / 57.5).toLocaleString()
+    }
+
+    return Math.round(base).toLocaleString()
   }
 
   return (
@@ -47,15 +58,43 @@ export default function ToolsPage() {
 
       {/* Tool 1: SEO Specialist Salary Calculator */}
       <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-6 sm:space-y-8">
-        <div className="flex items-center gap-3">
-          <Icon name="calculate" size={36} className="text-primary-container shrink-0" />
-          <div>
-            <h2 className="font-heading text-lg sm:text-2xl font-bold text-on-surface">
-              SEO Specialist Salary Calculator (PH Market)
-            </h2>
-            <p className="font-sans text-xs sm:text-sm text-on-surface/70">
-              Estimate average monthly compensation based on experience, skill domain, and employment model.
-            </p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <Icon name="calculate" size={36} className="text-primary-container shrink-0" />
+            <div>
+              <h2 className="font-heading text-lg sm:text-2xl font-bold text-on-surface">
+                SEO Specialist Compensation Calculator
+              </h2>
+              <p className="font-sans text-xs sm:text-sm text-on-surface/70">
+                Estimate average monthly compensation based on experience, skill domain, and employment model.
+              </p>
+            </div>
+          </div>
+
+          {/* Currency Toggle */}
+          <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-white/10 text-xs shrink-0 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setCurrency('PHP')}
+              className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
+                currency === 'PHP'
+                  ? 'bg-primary-container text-on-primary-container shadow-sm'
+                  : 'text-on-surface/70 hover:text-on-surface'
+              }`}
+            >
+              PHP (₱)
+            </button>
+            <button
+              type="button"
+              onClick={() => setCurrency('USD')}
+              className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
+                currency === 'USD'
+                  ? 'bg-primary-container text-on-primary-container shadow-sm'
+                  : 'text-on-surface/70 hover:text-on-surface'
+              }`}
+            >
+              USD ($)
+            </button>
           </div>
         </div>
 
@@ -111,11 +150,12 @@ export default function ToolsPage() {
           <div>
             <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">Estimated Monthly Compensation</span>
             <span className="font-heading text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-container">
-              ₱{calculateSalary()} <span className="text-xs text-on-surface/70 font-sans font-normal">/ month (PHP)</span>
+              {currency === 'PHP' ? `₱${calculateSalary()}` : `$${calculateSalary()}`}{' '}
+              <span className="text-xs text-on-surface/70 font-sans font-normal">/ month ({currency})</span>
             </span>
           </div>
           <span className="font-sans text-xs text-on-surface/70 max-w-xs text-left md:text-right leading-relaxed">
-            Based on current industry averages for remote and local SEO professionals.
+            Based on current industry averages for remote and local SEO professionals in the Philippine and global offshore market.
           </span>
         </div>
       </div>

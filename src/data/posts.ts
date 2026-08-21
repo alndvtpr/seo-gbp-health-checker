@@ -11,6 +11,11 @@ export interface BlogPost {
     sections: {
       heading: string
       body: string[]
+      codeBlock?: {
+        code: string
+        language: string
+        filename?: string
+      }
       highlight?: {
         title: string
         text: string
@@ -69,6 +74,18 @@ export const BLOG_POSTS: BlogPost[] = [
             'Analytics trackers, chatbots, and non-critical tracking tags should never execute during critical path rendering. We implemented requestIdleCallback listeners with 8,000ms idle fallbacks, ensuring user interactions receive immediate main-thread priority.',
             'The result is a website that loads in under 0.9 seconds on desktop and sub-1.4 seconds on mobile connections.',
           ],
+          codeBlock: {
+            language: 'typescript',
+            filename: 'src/lib/deferred-analytics.ts',
+            code: `// Intelligent requestIdleCallback loader for non-critical analytics
+export function scheduleIdleTask(callback: () => void, timeout = 8000) {
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(callback, { timeout })
+  } else {
+    setTimeout(callback, 2500)
+  }
+}`,
+          },
         },
       ],
     },
@@ -121,6 +138,23 @@ export const BLOG_POSTS: BlogPost[] = [
             'A Google Business Profile is only as strong as the website backing it. By embedding LocalBusiness JSON-LD schemas linking your profile URL, service catalog, and exact geo-coordinates, you reinforce entity validation across search ecosystems.',
             'This bridges the gap between your local map presence and organic search indexing.',
           ],
+          codeBlock: {
+            language: 'json',
+            filename: 'schema-local-business.json',
+            code: `{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Alain Dave Tapiru - Technical SEO",
+  "url": "https://www.alaintapiru.com/",
+  "telephone": "+639063249560",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Tuguegarao City",
+    "addressRegion": "Cagayan",
+    "addressCountry": "PH"
+  }
+}`,
+          },
         },
       ],
     },
@@ -213,6 +247,27 @@ export const BLOG_POSTS: BlogPost[] = [
             'Isolated, fragmented schema tags (e.g. standalone WebPage or Article markup) fail to communicate relationship hierarchy. A truly optimized entity architecture uses a single unified JSON-LD graph connecting Person, WebSite, Organization, Service, and FAQPage nodes.',
             'By linking author credentials to verified social profiles via sameAs arrays and defining primary service offerings through Provider properties, you create an unbreakable entity fingerprint.',
           ],
+          codeBlock: {
+            language: 'json',
+            filename: 'unified-entity-graph.json',
+            code: `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.alaintapiru.com/#person",
+      "name": "Alain Dave Tapiru",
+      "jobTitle": "Technical SEO Specialist"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.alaintapiru.com/#website",
+      "name": "Alain Dave Tapiru",
+      "publisher": { "@id": "https://www.alaintapiru.com/#person" }
+    }
+  ]
+}`,
+          },
           takeaways: [
             'Use @graph arrays to bundle multiple Schema.org types in a single script tag.',
             'Connect authors to external verified profiles (LinkedIn, GitHub, Crunchbase).',

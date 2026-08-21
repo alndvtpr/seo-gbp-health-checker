@@ -49,9 +49,9 @@ const FAQS: FAQItem[] = [
       'We can audit and optimize your existing site directly. If your current CMS is severely bloated or slow, we will provide specific recommendations on whether a rebuild or technical refactor is most cost-effective.',
   },
   {
-    question: 'Why choose a static site over WordPress (or vice versa)?',
+    question: 'Why choose a React / Next.js site over WordPress (or vice versa)?',
     answer:
-      'Static sites offer unmatched speed, bulletproof security, and zero maintenance overhead. WordPress offers unmatched flexibility and an easy content management dashboard for non-technical teams. We build both cleanly.',
+      'React & Next.js sites offer unmatched sub-second speed, zero-CLS rendering, and code-first scalability. WordPress offers unmatched flexibility and an easy content management dashboard for non-technical teams. We build both cleanly.',
   },
   {
     question: 'How do you track and report progress?',
