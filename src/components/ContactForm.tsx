@@ -294,7 +294,7 @@ export const ContactForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-3.5 sm:py-4 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] active:scale-[0.99] transition-all flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+        className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-3.5 sm:py-4 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] btn-motion flex items-center justify-center gap-2 min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
       >
         {isSubmitting ? (
           <>
@@ -304,7 +304,7 @@ export const ContactForm = () => {
         ) : (
           <>
             <span>Send My Request</span>
-            <Send className="w-4 h-4" aria-hidden="true" />
+            <Send className="w-4 h-4 btn-icon" aria-hidden="true" />
           </>
         )}
       </button>

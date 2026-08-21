@@ -92,7 +92,7 @@ export function ServicesPackages() {
       className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12 scroll-mt-24"
     >
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           TRANSPARENT ENGAGEMENT MODELS
         </span>
@@ -109,10 +109,11 @@ export function ServicesPackages() {
 
       {/* 4-Tier Comparison Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-4">
-        {PACKAGES.map((pkg) => (
+        {PACKAGES.map((pkg, idx) => (
           <article
             key={pkg.id}
-            className={`rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative backdrop-blur-md ${
+            style={{ transitionDelay: `${idx * 80}ms` }}
+            className={`rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative backdrop-blur-md motion-reveal ${
               pkg.isFeatured
                 ? 'bg-gradient-to-b from-primary-container/20 via-surface-2/85 to-surface-1/80 border-2 border-primary-container/80 shadow-[0_0_50px_rgba(224,123,32,0.22)] lg:-translate-y-1 z-10 pt-9 sm:pt-10'
                 : 'bg-surface-1/80 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 shadow-lg'
@@ -179,21 +180,21 @@ export function ServicesPackages() {
             <Link
               href="/contact/"
               aria-label={`${pkg.ctaText} - ${pkg.name}`}
-              className={`inline-flex items-center justify-center w-full py-3 px-4 rounded-xl font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all min-h-[44px] text-center leading-normal ${
+              className={`inline-flex items-center justify-center w-full py-3 px-4 rounded-xl font-heading text-xs font-bold uppercase tracking-[0.06em] btn-motion min-h-[44px] text-center leading-normal focus-visible:ring-2 focus-visible:ring-primary-container ${
                 pkg.isFeatured
-                  ? 'bg-primary-container text-on-primary-container shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] hover:scale-[1.02] active:scale-[0.98]'
-                  : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent hover:scale-[1.02] active:scale-[0.98]'
+                  ? 'bg-primary-container text-on-primary-container shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)]'
+                  : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent'
               }`}
             >
               <span>{pkg.ctaText}</span>
-              <Icon name="arrow_forward" size={14} className="ml-1.5 shrink-0" />
+              <Icon name="arrow_forward" size={14} className="ml-1.5 shrink-0 btn-icon" />
             </Link>
           </article>
         ))}
       </div>
 
       {/* Small Business & Flexible Negotiation Trust Banner */}
-      <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-surface-1/95 via-surface-2/90 to-surface-1/95 border border-primary-container/35 shadow-xl relative overflow-hidden">
+      <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-surface-1/95 via-surface-2/90 to-surface-1/95 border border-primary-container/35 shadow-xl relative overflow-hidden motion-reveal">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-heading text-xs font-bold uppercase tracking-[0.06em]">
@@ -210,10 +211,10 @@ export function ServicesPackages() {
 
           <Link
             href="/contact/?service=Flexible%20Small%20Business%20Scope"
-            className="inline-flex items-center gap-2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl transition-all whitespace-nowrap min-h-[46px] shadow-md"
+            className="inline-flex items-center gap-2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl btn-motion whitespace-nowrap min-h-[46px] shadow-md focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Discuss Custom Plan</span>
-            <Icon name="arrow_forward" size={14} />
+            <Icon name="arrow_forward" size={14} className="btn-icon" />
           </Link>
         </div>
       </div>

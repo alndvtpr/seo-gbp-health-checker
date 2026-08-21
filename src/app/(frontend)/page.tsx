@@ -69,7 +69,7 @@ export default async function Page() {
         {/* Mild Orange Glow Ambient Visual Accent */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(230,126,34,0.12)_0%,transparent_60%)]" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-7 sm:mb-9 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center mb-7 sm:mb-9 relative z-10 motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             Technical Stack
           </span>
@@ -113,7 +113,7 @@ export default async function Page() {
               {TECHNICAL_TOOLS.map((tool, idx) => (
                 <div
                   key={`${tool.name}-badge-${idx}`}
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-[border-color,background-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex items-center gap-2.5 shrink-0"
                 >
                   <div className="w-5 h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
@@ -129,7 +129,7 @@ export default async function Page() {
               {TECHNICAL_TOOLS.map((tool, idx) => (
                 <div
                   key={`${tool.name}-dup-badge-${idx}`}
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-[border-color,background-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex items-center gap-2.5 shrink-0"
                 >
                   <div className="w-5 h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
@@ -155,7 +155,7 @@ export default async function Page() {
       {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
       <section className="py-16 sm:py-24 bg-transparent relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
-          <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+          <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl motion-reveal">
             <Image
               src="/about_me.webp"
               alt="Alain Dave Tapiru Portrait"
@@ -174,7 +174,7 @@ export default async function Page() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
+          <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6 motion-reveal">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               Background &amp; Approach
             </span>
@@ -187,7 +187,7 @@ export default async function Page() {
 
             {/* Honest Metrics Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-white/10">
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   4 Core Disciplines
                 </span>
@@ -195,7 +195,7 @@ export default async function Page() {
                   SEO, Web Dev, Support &amp; Executive / General VA
                 </span>
               </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">
+              <div style={{ transitionDelay: '80ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   AI-Powered Workflows
                 </span>
@@ -203,7 +203,7 @@ export default async function Page() {
                   Leveraging modern tools for faster, smarter builds.
                 </span>
               </div>
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between">
+              <div style={{ transitionDelay: '160ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   24hr Response Time
                 </span>
@@ -232,7 +232,7 @@ export default async function Page() {
 
       {/* 4. THE SEO PROCESS CYCLE (6-STEP GRID) */}
       <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 md:px-16 relative z-20">
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16 motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             Methodology
           </span>
@@ -294,10 +294,11 @@ export default async function Page() {
               href: '/services/#pillar-execution',
               linkLabel: 'Explore Analytics & Reporting',
             },
-          ].map((item) => (
+          ].map((item, idx) => (
             <div
               key={item.step}
-              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group hover:-translate-y-1 relative flex flex-col justify-between"
+              style={{ transitionDelay: `${(idx % 3) * 80}ms` }}
+              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group hover:-translate-y-[3px] relative flex flex-col justify-between motion-reveal"
             >
               <div>
                 <div className="flex items-center justify-between mb-4 sm:mb-6">
@@ -332,7 +333,7 @@ export default async function Page() {
       {/* 5. FEATURED PROJECTS */}
       <section className="py-16 sm:py-24 bg-transparent relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-16 gap-4 motion-reveal">
             <div>
               <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
                 Portfolio Showcase
@@ -351,7 +352,7 @@ export default async function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Primary Featured Project: AngatSikat Studio */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-amber-500/20 hover:border-primary-container/60 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-amber-500/20 hover:border-primary-container/60 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-[3px] card-image-zoom motion-reveal">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -359,7 +360,7 @@ export default async function Page() {
                     alt="AngatSikat Studio Live Build Preview"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
@@ -427,7 +428,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 2: Local SEO & GBP Checker */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div style={{ transitionDelay: '80ms' }} className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-[3px] card-image-zoom motion-reveal">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -435,7 +436,7 @@ export default async function Page() {
                     alt="Local SEO & GBP Health Checker Preview"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
@@ -501,7 +502,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 3: AlainTapiru.com Web Architecture */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <div style={{ transitionDelay: '160ms' }} className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-[3px] card-image-zoom motion-reveal">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -509,7 +510,7 @@ export default async function Page() {
                     alt="AlainTapiru.com Architecture Preview"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
@@ -593,7 +594,7 @@ export default async function Page() {
 
       {/* 6. CALL TO ACTION */}
       <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto text-center relative z-20">
-        <div className="p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_50px_rgba(224,123,32,0.1)]">
+        <div className="p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_50px_rgba(224,123,32,0.1)] motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-2 block font-semibold">
             Get Started
           </span>
@@ -607,9 +608,9 @@ export default async function Page() {
           <div className="inline-flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
             <Link
               href="/contact/"
-              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-105 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              Let&apos;s Talk SEO <Icon name="arrow_forward" size={16} />
+              Let&apos;s Talk SEO <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           </div>
         </div>

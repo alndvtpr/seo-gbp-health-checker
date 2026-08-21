@@ -260,7 +260,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-3.5 rounded-xl hover:bg-primary transition-all min-h-[48px] flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(224,123,32,0.25)] hover:shadow-[0_0_30px_rgba(224,123,32,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+        className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-3.5 rounded-xl hover:bg-primary btn-motion min-h-[48px] flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(224,123,32,0.25)] hover:shadow-[0_0_30px_rgba(224,123,32,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container disabled:opacity-60 disabled:cursor-not-allowed mt-2"
       >
         {isSubmitting ? (
           <>
@@ -270,7 +270,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
         ) : (
           <>
             <span>Submit Audit Request</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 btn-icon" />
           </>
         )}
       </button>

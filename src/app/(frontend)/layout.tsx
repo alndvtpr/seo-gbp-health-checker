@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import './styles.css'
 
 import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { ScrollRevealInit } from '@/components/ScrollRevealInit'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ShaderBackground } from '@/components/ShaderBackground'
@@ -62,10 +63,16 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           // @ts-ignore
           fetchPriority="high"
         />
+        {/* No-JS Accessibility Fallback for Scroll Reveal */}
+        <noscript>
+          <style>{`.motion-reveal, .motion-reveal-fast { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen min-h-[100dvh] flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
         {/* Interaction and idle-deferred Google Analytics (Zero TBT impact) */}
         <GoogleAnalytics />
+        {/* Global Scroll Reveal Initializer (Zero TBT impact) */}
+        <ScrollRevealInit />
 
         {/* WebGL Background Canvas Container */}
         <div id="webgl-background-container" className="fixed inset-0 z-[-2] pointer-events-none bg-transparent">

@@ -10,7 +10,7 @@ export function ServicesPillars3And4() {
       className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12"
     >
       {/* Section Header */}
-      <div className="max-w-3xl">
+      <div className="max-w-3xl motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           PILLAR 03 &amp; 04: EXECUTION &amp; MEASUREMENT
         </span>
@@ -31,10 +31,10 @@ export function ServicesPillars3And4() {
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
         {/* Block A: Web Development (7 cols on lg) */}
-        <article className="lg:col-span-7 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg">
+        <article className="lg:col-span-7 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 group flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center group-hover:scale-105 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center">
                 <Icon name="code_blocks" size={26} className="text-primary-container" />
               </div>
               <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-3 py-1 rounded-full bg-white/5 border border-white/10">
@@ -74,18 +74,18 @@ export function ServicesPillars3And4() {
           <Link
             href="/contact/"
             aria-label="Build a high-performance website"
-            className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent btn-motion min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Start Web Build Project</span>
-            <Icon name="arrow_forward" size={14} className="ml-2" />
+            <Icon name="arrow_forward" size={14} className="ml-2 btn-icon" />
           </Link>
         </article>
 
         {/* Block B: Authority Link Building (5 cols on lg) */}
-        <article className="lg:col-span-5 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg">
+        <article style={{ transitionDelay: '80ms' }} className="lg:col-span-5 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 group flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal">
           <div>
             <div className="flex items-center justify-between gap-2 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center group-hover:scale-105 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center">
                 <Icon name="hub" size={26} className="text-primary-container" />
               </div>
               <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-3 py-1 rounded-full bg-white/5 border border-white/10">
@@ -121,18 +121,18 @@ export function ServicesPillars3And4() {
           <Link
             href="/contact/"
             aria-label="Grow your website backlink authority"
-            className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent btn-motion min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Explore Link Strategy</span>
-            <Icon name="arrow_forward" size={14} className="ml-2" />
+            <Icon name="arrow_forward" size={14} className="ml-2 btn-icon" />
           </Link>
         </article>
 
         {/* Block C: Analytics & Reporting (Full 12 cols on lg) */}
-        <article className="md:col-span-2 lg:col-span-12 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/10 via-surface-1/80 to-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 shadow-lg">
+        <article style={{ transitionDelay: '120ms' }} className="md:col-span-2 lg:col-span-12 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-primary-container/10 via-surface-1/80 to-surface-1/80 backdrop-blur-md border border-white/10 group flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 shadow-lg card-interactive-glow motion-reveal">
           <div className="lg:max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center group-hover:scale-105 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center">
                 <Icon name="monitoring" size={26} className="text-primary-container" />
               </div>
               <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-3 py-1 rounded-full bg-white/5 border border-white/10">
@@ -164,10 +164,10 @@ export function ServicesPillars3And4() {
             <Link
               href="/contact/"
               aria-label="Set up custom SEO analytics and dashboards"
-              className="inline-flex items-center justify-center w-full py-4 px-6 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] shadow-[0_0_20px_rgba(224,123,32,0.35)] hover:shadow-[0_0_30px_rgba(224,123,32,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="inline-flex items-center justify-center w-full py-4 px-6 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] shadow-[0_0_20px_rgba(224,123,32,0.35)] hover:shadow-[0_0_30px_rgba(224,123,32,0.5)] btn-motion min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               <span>Setup Analytics Dashboard</span>
-              <Icon name="arrow_forward" size={14} className="ml-2" />
+              <Icon name="arrow_forward" size={14} className="ml-2 btn-icon" />
             </Link>
           </div>
         </article>

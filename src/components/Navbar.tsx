@@ -91,9 +91,9 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`font-heading text-[13px] uppercase tracking-[0.04em] px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
+                  className={`font-heading text-[13px] uppercase tracking-[0.04em] px-3.5 py-1.5 rounded-full transition-colors duration-200 nav-link-animated ${
                     isActive
-                      ? 'text-primary-container bg-white/10 font-bold'
+                      ? 'text-primary-container bg-white/10 font-bold is-active'
                       : 'text-on-surface/80 hover:text-primary-container hover:bg-white/5 font-medium'
                   }`}
                 >
@@ -150,10 +150,10 @@ export const Navbar = () => {
             </div>
             <Link
               href="/contact/"
-              className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-[0.06em] font-bold px-6 py-2.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary hover:scale-105 transition-all duration-300 flex items-center gap-2 whitespace-nowrap shrink-0"
+              className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-[0.06em] font-bold px-6 py-2.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary btn-motion flex items-center gap-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               Get in Touch
-              <Icon name="arrow_forward" size={16} />
+              <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           </div>
 
@@ -172,16 +172,18 @@ export const Navbar = () => {
       {/* Full Screen Mobile Menu */}
       <div
         className={`fixed inset-0 bg-[#0c0f0f]/98 z-[55] flex flex-col justify-center items-center lg:hidden transition-all duration-300 ${
-          menuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
+          menuOpen ? 'opacity-100 pointer-events-auto translate-y-0 mobile-menu-active' : 'opacity-0 pointer-events-none -translate-y-4'
         }`}
         style={{
           paddingTop: 'max(2rem, env(safe-area-inset-top, 2rem))',
           paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 2rem))',
         }}
       >
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-primary-container/10 rounded-full pointer-events-none blur-2xl" />
-        <nav className="flex flex-col items-center gap-4 sm:gap-6 relative z-10 w-full px-6 max-w-sm max-h-[85vh] max-h-[85dvh] overflow-y-auto">
-          {navLinks.map((link) => {
+        <div className="absolute top-1/4 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl pointer-events-none" />
+
+        <nav className="flex flex-col items-center gap-4 text-center z-10 w-full px-6 max-w-sm">
+          {navLinks.map((link, idx) => {
             const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
             const targetPath = (link.href || '/').replace(/\/$/, '') || '/'
             const isActive = currentPath === targetPath
@@ -190,7 +192,8 @@ export const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors py-2 px-4 rounded-full min-h-[44px] flex items-center justify-center ${
+                style={{ transitionDelay: `${idx * 30}ms` }}
+                className={`mobile-nav-item font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors py-2 px-4 rounded-full min-h-[44px] flex items-center justify-center ${
                   isActive ? 'text-primary-container bg-primary-container/10 border border-primary-container/30' : 'text-on-surface hover:text-primary-container hover:bg-white/5'
                 }`}
               >
@@ -201,14 +204,18 @@ export const Navbar = () => {
           <Link
             href="/contact/"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 w-full text-center bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm uppercase tracking-[0.06em] font-bold px-8 py-3.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary transition-colors flex items-center justify-center gap-2 min-h-[48px]"
+            style={{ transitionDelay: `${navLinks.length * 30}ms` }}
+            className="mobile-nav-item mt-2 w-full text-center bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm uppercase tracking-[0.06em] font-bold px-8 py-3.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary btn-motion flex items-center justify-center gap-2 min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Get in Touch</span>
-            <Icon name="arrow_forward" size={16} />
+            <Icon name="arrow_forward" size={16} className="btn-icon" />
           </Link>
           
           {/* Mobile Menu Socials */}
-          <div className="flex gap-3 sm:gap-4 mt-5 items-center justify-center">
+          <div
+            style={{ transitionDelay: `${(navLinks.length + 1) * 30}ms` }}
+            className="mobile-nav-item flex gap-3 sm:gap-4 mt-5 items-center justify-center"
+          >
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"

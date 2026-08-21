@@ -229,7 +229,7 @@ export function AboutCredentials() {
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary-container/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
 
       {/* Section Header */}
-      <div className="relative z-10 mb-8 sm:mb-10">
+      <div className="relative z-10 mb-8 sm:mb-10 motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Training &amp; Credentials
         </span>
@@ -240,7 +240,7 @@ export function AboutCredentials() {
 
       <div className="space-y-8 sm:space-y-10 relative z-10">
         {/* Category 1: SEO Training & Verified Credentials */}
-        <div>
+        <div className="motion-reveal">
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-primary-container inline-block" />
             <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
@@ -249,10 +249,11 @@ export function AboutCredentials() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
-            {CERTIFICATIONS.map((cert) => (
+            {CERTIFICATIONS.map((cert, idx) => (
               <div
                 key={cert.id}
-                className="group p-4 sm:p-5 rounded-xl bg-surface-1/65 backdrop-blur-sm hover:bg-surface-1/85 border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4"
+                style={{ transitionDelay: `${idx * 80}ms` }}
+                className="group p-4 sm:p-5 rounded-xl bg-surface-1/65 backdrop-blur-sm hover:bg-surface-1/85 border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4 motion-reveal"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
@@ -312,7 +313,7 @@ export function AboutCredentials() {
         </div>
 
         {/* Category 2: Formal Education & Academic Background */}
-        <div>
+        <div className="motion-reveal">
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-white/40 inline-block" />
             <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
@@ -324,7 +325,8 @@ export function AboutCredentials() {
             {EDUCATION_HISTORY.map((edu, idx) => (
               <div
                 key={idx}
-                className="p-4 sm:p-5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-1/85 transition-colors"
+                style={{ transitionDelay: `${idx * 80}ms` }}
+                className="p-4 sm:p-5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-1/85 transition-colors motion-reveal"
               >
                 <div className="space-y-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface">

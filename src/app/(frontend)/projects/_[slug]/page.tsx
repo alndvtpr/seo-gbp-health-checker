@@ -109,10 +109,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         </p>
         <Link
           href="/contact/"
-          className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] hover:scale-105 transition-all min-h-[48px]"
+          className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(230,126,34,0.4)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
           <span>Request Technical Discovery</span>
-          <Icon name="arrow_forward" size={16} />
+          <Icon name="arrow_forward" size={16} className="btn-icon" />
         </Link>
       </div>
     </div>

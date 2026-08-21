@@ -20,7 +20,7 @@ export default function AboutPage() {
       <Breadcrumbs items={[{ name: 'About', url: '/about/' }]} />
 
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Biography &amp; Background
         </span>
@@ -34,7 +34,7 @@ export default function AboutPage() {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-        <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+        <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl motion-reveal">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/about_me.jpg"
@@ -44,7 +44,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
         </div>
 
-        <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+        <div className="lg:col-span-7 space-y-4 sm:space-y-6 motion-reveal">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface tracking-tight">
             My SEO Journey &amp; Philosophy
           </h2>
@@ -140,12 +140,12 @@ export default function AboutPage() {
       </div>
 
       {/* CTA */}
-      <div className="text-center pt-4 sm:pt-8">
+      <div className="text-center pt-4 sm:pt-8 motion-reveal">
         <Link
           href="/contact/"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:scale-105 transition-all min-h-[48px]"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          Get in Touch <Icon name="arrow_forward" size={16} />
+          Get in Touch <Icon name="arrow_forward" size={16} className="btn-icon" />
         </Link>
       </div>
     </div>

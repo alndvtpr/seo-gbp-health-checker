@@ -62,7 +62,7 @@ export function ServicesPillar2() {
       className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12"
     >
       {/* Section Header */}
-      <div className="max-w-3xl">
+      <div className="max-w-3xl motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           PILLAR 02: VISIBILITY
         </span>
@@ -82,10 +82,11 @@ export function ServicesPillar2() {
 
       {/* 3-Card Responsive Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {PILLAR_2_SERVICES.map((service) => (
+        {PILLAR_2_SERVICES.map((service, idx) => (
           <article
             key={service.id}
-            className={`p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)] relative backdrop-blur-md ${
+            style={{ transitionDelay: `${idx * 80}ms` }}
+            className={`p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border group flex flex-col justify-between shadow-lg relative backdrop-blur-md card-interactive-glow motion-reveal ${
               service.isFeatured
                 ? 'bg-gradient-to-b from-primary-container/15 via-surface-1/80 to-surface-1/80 border-primary-container/50 hover:border-primary-container shadow-[0_0_30px_rgba(224,123,32,0.15)]'
                 : 'bg-surface-1/80 border-white/10 hover:border-primary-container/40'
@@ -95,10 +96,10 @@ export function ServicesPillar2() {
               {/* Card Header: Icon + Optional Badge */}
               <div className="flex items-center justify-between gap-2 mb-6">
                 <div
-                  className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all ${
+                  className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-colors ${
                     service.isFeatured
                       ? 'bg-primary-container/20 border-primary-container/40 text-primary-container shadow-[0_0_15px_rgba(224,123,32,0.3)]'
-                      : 'bg-primary-container/10 border-primary-container/20 text-primary-container group-hover:scale-105'
+                      : 'bg-primary-container/10 border-primary-container/20 text-primary-container'
                   }`}
                 >
                   <Icon name={service.icon} size={24} className="text-primary-container" />
@@ -147,10 +148,10 @@ export function ServicesPillar2() {
             <Link
               href="/contact/"
               aria-label={`${service.ctaText} for ${service.title}`}
-              className={`inline-flex items-center justify-center w-full py-3 px-5 rounded-xl font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] transition-all min-h-[46px] focus-visible:ring-2 focus-visible:ring-primary-container ${
+              className={`inline-flex items-center justify-center w-full py-3 px-5 rounded-xl font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] min-h-[46px] focus-visible:ring-2 focus-visible:ring-primary-container ${
                 service.isFeatured
-                  ? 'bg-primary-container text-on-primary-container hover:scale-[1.02] shadow-[0_0_20px_rgba(224,123,32,0.35)]'
-                  : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent group-hover:bg-primary-container group-hover:text-on-primary-container'
+                  ? 'bg-primary-container text-on-primary-container btn-motion shadow-[0_0_20px_rgba(224,123,32,0.35)]'
+                  : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent transition-all group-hover:bg-primary-container group-hover:text-on-primary-container'
               }`}
             >
               <span>{service.ctaText}</span>

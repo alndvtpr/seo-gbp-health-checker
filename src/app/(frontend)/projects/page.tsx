@@ -17,7 +17,7 @@ export default function ProjectsPage() {
       <Breadcrumbs items={[{ name: 'Projects', url: '/projects/' }]} />
 
       {/* Page Header */}
-      <div className="text-center max-w-3xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Practical Projects &amp; Active Builds
         </span>

@@ -77,7 +77,7 @@ export function ServicesWorkflowAndFAQ() {
         aria-labelledby="workflow-heading"
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12"
       >
-        <div className="max-w-3xl">
+        <div className="max-w-3xl motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             HOW I WORK
           </span>
@@ -97,7 +97,8 @@ export function ServicesWorkflowAndFAQ() {
           {WORKFLOW_STEPS.map((step, idx) => (
             <div
               key={step.step}
-              className="p-6 sm:p-7 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between relative shadow-lg"
+              style={{ transitionDelay: `${idx * 80}ms` }}
+              className="p-6 sm:p-7 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between relative shadow-lg motion-reveal"
             >
               <div>
                 {/* Step Number Badge */}
@@ -139,7 +140,7 @@ export function ServicesWorkflowAndFAQ() {
         aria-labelledby="faq-heading"
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto space-y-8 sm:space-y-12"
       >
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
             FREQUENTLY ASKED QUESTIONS
           </span>
@@ -164,7 +165,8 @@ export function ServicesWorkflowAndFAQ() {
             return (
               <div
                 key={faq.question}
-                className={`rounded-2xl border transition-all duration-300 ${
+                style={{ transitionDelay: `${index * 60}ms` }}
+                className={`rounded-2xl border transition-all duration-300 motion-reveal ${
                   isOpen
                     ? 'bg-surface-1 border-primary-container/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
                     : 'bg-surface-1/70 border-white/10 hover:border-white/20'
@@ -204,16 +206,18 @@ export function ServicesWorkflowAndFAQ() {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div
-                    id={answerId}
-                    role="region"
-                    aria-labelledby={questionId}
-                    className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-on-surface/80 font-sans text-sm sm:text-base leading-relaxed border-t border-white/5 mt-1"
-                  >
-                    {faq.answer}
+                <div
+                  id={answerId}
+                  role="region"
+                  aria-labelledby={questionId}
+                  className={`faq-content-grid ${isOpen ? 'is-open' : ''}`}
+                >
+                  <div className="faq-content-inner">
+                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-on-surface/80 font-sans text-sm sm:text-base leading-relaxed border-t border-white/5 mt-1">
+                      {faq.answer}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             )
           })}

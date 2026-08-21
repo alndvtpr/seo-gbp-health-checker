@@ -20,7 +20,7 @@ export default function BlogPage() {
       <Breadcrumbs items={[{ name: 'Blog', url: '/blog/' }]} />
 
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
+      <div className="text-center max-w-3xl mx-auto space-y-4 motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Insights &amp; Technical Notes
         </span>
@@ -37,10 +37,11 @@ export default function BlogPage() {
 
       {/* Blog Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-        {BLOG_POSTS.map((post) => (
+        {BLOG_POSTS.map((post, idx) => (
           <article
             key={post.slug}
-            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl card-interactive-glow"
+            style={{ transitionDelay: `${(idx % 2) * 80}ms` }}
+            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl card-interactive-glow motion-reveal"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs font-sans text-on-surface/70">
@@ -79,7 +80,7 @@ export default function BlogPage() {
       </div>
 
       {/* Free GBP Health Checker Callout */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/80 backdrop-blur-md border border-primary-container/30 text-center space-y-6 shadow-[0_0_50px_rgba(224,123,32,0.12)]">
+      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/80 backdrop-blur-md border border-primary-container/30 text-center space-y-6 shadow-[0_0_50px_rgba(224,123,32,0.12)] motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Interactive Diagnostic Tool
         </span>
@@ -91,10 +92,10 @@ export default function BlogPage() {
         </p>
         <Link
           href="/tools/"
-          className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:scale-105 transition-all min-h-[48px]"
+          className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
           <span>Run Free Profile Audit</span>
-          <Icon name="auto_awesome" size={16} />
+          <Icon name="auto_awesome" size={16} className="btn-icon" />
         </Link>
       </div>
     </div>

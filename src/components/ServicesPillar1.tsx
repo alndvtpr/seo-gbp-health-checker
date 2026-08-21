@@ -48,7 +48,7 @@ export function ServicesPillar1() {
       className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12"
     >
       {/* Section Header */}
-      <div className="max-w-3xl">
+      <div className="max-w-3xl motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           PILLAR 01: FOUNDATION
         </span>
@@ -72,14 +72,15 @@ export function ServicesPillar1() {
 
       {/* 2-Column Responsive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-        {PILLAR_1_SERVICES.map((service) => (
+        {PILLAR_1_SERVICES.map((service, idx) => (
           <article
             key={service.id}
-            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+            style={{ transitionDelay: `${idx * 80}ms` }}
+            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 group flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal"
           >
             <div>
               {/* Card Icon Header */}
-              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-primary-container/20 transition-all">
+              <div className="w-12 h-12 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center mb-6 group-hover:bg-primary-container/20 transition-colors">
                 <Icon name={service.icon} size={26} className="text-primary-container" />
               </div>
 

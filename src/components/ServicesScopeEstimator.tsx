@@ -159,7 +159,7 @@ export function ServicesScopeEstimator() {
       className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-8 sm:space-y-12 scroll-mt-24"
     >
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
+      <div className="text-center max-w-3xl mx-auto space-y-3 motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Interactive Scope Planner
         </span>
@@ -177,7 +177,7 @@ export function ServicesScopeEstimator() {
       {/* Main Estimator Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Requirements Configuration (7 Cols) */}
-        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-xl">
+        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-xl motion-reveal">
           {/* Step 1: Select Project Type */}
           <div className="space-y-3">
             <div className="flex items-center justify-between gap-2">
@@ -328,7 +328,7 @@ export function ServicesScopeEstimator() {
         </div>
 
         {/* Right Column: Dynamic Estimate Output Card (5 Cols) */}
-        <div className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-2/85 via-surface-1/80 to-surface-1/75 backdrop-blur-md border-2 border-primary-container/60 shadow-[0_0_50px_rgba(224,123,32,0.18)]">
+        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-2/85 via-surface-1/80 to-surface-1/75 backdrop-blur-md border-2 border-primary-container/60 shadow-[0_0_50px_rgba(224,123,32,0.18)] motion-reveal">
           <div className="space-y-1">
             <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
               Estimated Sprint Scope
@@ -391,10 +391,10 @@ export function ServicesScopeEstimator() {
           {/* Action CTA Button */}
           <Link
             href={`/contact/?service=${encodeURIComponent(activeProject.serviceParam)}`}
-            className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-4 px-6 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-[1.02] transition-all flex items-center justify-center gap-2 min-h-[48px] cursor-pointer"
+            className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-4 px-6 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 min-h-[48px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Discuss This Project Scope</span>
-            <Icon name="arrow_forward" size={16} />
+            <Icon name="arrow_forward" size={16} className="btn-icon" />
           </Link>
 
           {/* Small Business Flexibility Guarantee Note */}

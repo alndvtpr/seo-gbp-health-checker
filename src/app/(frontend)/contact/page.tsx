@@ -76,7 +76,7 @@ export default function ContactPage() {
       <Breadcrumbs items={[{ name: 'Contact', url: '/contact/' }]} />
 
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-3 font-semibold">
           GET IN TOUCH — LET&apos;S CONNECT
         </span>
@@ -98,7 +98,7 @@ export default function ContactPage() {
       <div className="w-full max-w-3xl mx-auto h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden="true" />
 
       {/* 2. Low-Pressure Direct Message Section (Positioned Below Calendly) */}
-      <div className="text-center max-w-2xl mx-auto space-y-2.5">
+      <div className="text-center max-w-2xl mx-auto space-y-2.5 motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           NOT READY TO BOOK A CALL?
         </span>
@@ -113,7 +113,7 @@ export default function ContactPage() {
       {/* Direct Contact Info & Inquiry Form Grid (Positioned Below) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
         {/* Contact Info & Status */}
-        <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl">
+        <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl motion-reveal">
           {/* Availability Status Badge */}
           <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-primary-container/30 flex items-center gap-3">
             <span className="relative flex h-3 w-3 shrink-0" aria-hidden="true">
@@ -265,7 +265,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form Container */}
-        <div className="lg:col-span-7 rounded-3xl border border-white/10 bg-surface-1/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-7 rounded-3xl border border-white/10 bg-surface-1/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl motion-reveal">
           <ContactForm />
         </div>
       </div>

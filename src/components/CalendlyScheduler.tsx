@@ -199,7 +199,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
       aria-label="Direct Calendar Booking"
     >
       {/* Scheduler Header & Trust Badges */}
-      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-3">
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-3 motion-reveal">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs font-heading font-semibold uppercase tracking-[0.08em]">
           <Calendar className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>BOOK A CONVERSATION</span>
@@ -226,7 +226,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
       </div>
 
       {/* Main Glass Card Wrapper */}
-      <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-surface-1/90 p-2.5 sm:p-5 md:p-6 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden">
+      <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-surface-1/90 p-2.5 sm:p-5 md:p-6 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden motion-reveal">
         {/* Ambient Radial Glows (Amber + Sky) */}
         <div
           className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"

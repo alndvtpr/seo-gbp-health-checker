@@ -44,7 +44,7 @@ export default function ToolsPage() {
       <Breadcrumbs items={[{ name: 'Tools', url: '/tools/' }]} />
 
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto">
+      <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
           Free Resources &amp; Tools
         </span>
@@ -57,7 +57,7 @@ export default function ToolsPage() {
       </div>
 
       {/* Tool 1: SEO Specialist Salary Calculator */}
-      <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-6 sm:space-y-8">
+      <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-6 sm:space-y-8 motion-reveal">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Icon name="calculate" size={36} className="text-primary-container shrink-0" />
@@ -162,7 +162,7 @@ export default function ToolsPage() {
 
       {/* Tool 2 & Tool 3 Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between">
+        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between motion-reveal">
           <div className="space-y-3">
             <Icon name="travel_explore" size={36} className="text-primary-container" />
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
@@ -177,7 +177,7 @@ export default function ToolsPage() {
         </div>
 
         {/* Tool 3: Local SEO / GBP Health Checker — fully interactive */}
-        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6">
+        <div style={{ transitionDelay: '100ms' }} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 motion-reveal">
           <div className="flex items-center justify-between">
             <Icon name="distance" size={36} className="text-primary-container" />
             <a

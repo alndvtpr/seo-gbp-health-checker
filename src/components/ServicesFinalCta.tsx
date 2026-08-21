@@ -202,7 +202,7 @@ export function ServicesFinalCta() {
         aria-labelledby="final-cta-heading"
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto"
       >
-        <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)]">
+        <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
@@ -227,10 +227,10 @@ export function ServicesFinalCta() {
             <Link
               href="/contact/"
               aria-label="Book a Free 20-Minute Discovery Call"
-              className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-9 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.4)] hover:shadow-[0_0_40px_rgba(224,123,32,0.6)] hover:scale-105 active:scale-95 transition-all min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-9 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.4)] hover:shadow-[0_0_40px_rgba(224,123,32,0.6)] btn-motion min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               <span>Book a Free Discovery Call</span>
-              <Icon name="calendar_month" size={16} />
+              <Icon name="calendar_month" size={16} className="btn-icon" />
             </Link>
           </div>
         </div>

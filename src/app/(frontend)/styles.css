@@ -18,6 +18,247 @@
   --font-heading: var(--font-jakarta), sans-serif;
 }
 
+/* ── Motion Design System Tokens ─────────────────────────────────────────── */
+:root {
+  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-fast: 160ms;
+  --motion-normal: 240ms;
+  --motion-medium: 360ms;
+  --motion-slow: 500ms;
+  --motion-distance-xs: 4px;
+  --motion-distance-sm: 8px;
+  --motion-distance-md: 16px;
+  --motion-distance-lg: 24px;
+}
+
+/* ── Scroll Reveal Utilities (opted-in via class) ────────────────────────── */
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(var(--motion-distance-md));
+  transition: opacity var(--motion-slow) var(--ease-organic),
+              transform var(--motion-slow) var(--ease-organic);
+}
+.motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.motion-reveal-fast {
+  opacity: 0;
+  transform: translateY(var(--motion-distance-sm));
+  transition: opacity var(--motion-normal) var(--ease-organic),
+              transform var(--motion-normal) var(--ease-organic);
+}
+.motion-reveal-fast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal,
+  .motion-reveal-fast {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Button / CTA Motion ─────────────────────────────────────────────────── */
+.btn-motion {
+  transition: transform var(--motion-fast) var(--ease-organic),
+              box-shadow var(--motion-fast) var(--ease-organic),
+              background-color var(--motion-fast) var(--ease-organic);
+}
+.btn-motion:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.btn-motion:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btn-motion .btn-icon {
+  transition: transform var(--motion-fast) var(--ease-organic);
+}
+.btn-motion:hover:not(:disabled) .btn-icon {
+  transform: translateX(3px);
+}
+@media (hover: none) {
+  .btn-motion:hover:not(:disabled) {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-motion,
+  .btn-motion .btn-icon {
+    transition: none;
+  }
+}
+
+/* ── Card Image Zoom ─────────────────────────────────────────────────────── */
+.card-image-zoom img {
+  transition: transform var(--motion-medium) var(--ease-organic);
+}
+.card-image-zoom:hover img {
+  transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-image-zoom img {
+    transition: none;
+  }
+  .card-image-zoom:hover img {
+    transform: none;
+  }
+}
+
+/* ── Desktop Nav Link Animated Underline ─────────────────────────────────── */
+.nav-link-animated {
+  position: relative;
+}
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background-color: var(--color-primary-container);
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--motion-normal) var(--ease-organic);
+}
+.nav-link-animated.is-active::after {
+  transform: scaleX(1);
+}
+.nav-link-animated:hover::after {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-link-animated::after {
+    transition: none;
+  }
+}
+
+/* ── Mobile Nav Staggered Entrance ───────────────────────────────────────── */
+.mobile-nav-item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--motion-normal) var(--ease-organic),
+              transform var(--motion-normal) var(--ease-organic);
+}
+.mobile-menu-active .mobile-nav-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── FAQ Accordion Expand/Collapse ───────────────────────────────────────── */
+.faq-content-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--motion-normal) var(--ease-organic);
+}
+.faq-content-grid.is-open {
+  grid-template-rows: 1fr;
+}
+.faq-content-inner {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-content-grid {
+    transition: none;
+  }
+}
+
+/* ── Hero Text Entrance Animation ────────────────────────────────────────── */
+@keyframes hero-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-distance-md));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate-in {
+  opacity: 0;
+  animation: hero-text-in var(--motion-slow) var(--ease-organic) forwards;
+}
+
+.hero-delay-1 {
+  animation-delay: 0ms;
+}
+.hero-delay-2 {
+  animation-delay: 80ms;
+}
+.hero-delay-3 {
+  animation-delay: 180ms;
+}
+.hero-delay-4 {
+  animation-delay: 280ms;
+}
+.hero-delay-5 {
+  animation-delay: 380ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate-in {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+/* ── CSS-Only View Transitions (Progressive Enhancement) ─────────────────── */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-fade-out var(--motion-fast) var(--ease-standard) forwards;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in var(--motion-normal) var(--ease-organic) forwards;
+}
+
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--motion-distance-xs) * -1));
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-distance-xs));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 html {
   min-height: 100%;
   margin: 0;
@@ -125,13 +366,31 @@ body {
 /* Interactive Card Glow Effect */
 .card-interactive-glow {
   position: relative;
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color var(--motion-normal) var(--ease-organic),
+              transform var(--motion-normal) var(--ease-organic),
+              box-shadow var(--motion-normal) var(--ease-organic);
 }
 
 .card-interactive-glow:hover {
   border-color: rgba(224, 123, 32, 0.4);
   box-shadow: 0 0 35px rgba(224, 123, 32, 0.15);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+@media (hover: none) {
+  .card-interactive-glow:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive-glow {
+    transition: none;
+  }
+  .card-interactive-glow:hover {
+    transform: none;
+  }
 }
 
 /* ── Asset Armor & Design Protection ────────────────────────────────────────── */

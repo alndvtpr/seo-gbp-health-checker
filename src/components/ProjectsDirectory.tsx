@@ -306,7 +306,7 @@ export function ProjectsDirectory() {
   return (
     <div className="space-y-10 sm:space-y-14">
       {/* Category Filter Navigation */}
-      <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3">
+      <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 motion-reveal">
         {CATEGORIES.map((cat) => {
           const isActive = selectedCategory === cat
           return (
@@ -314,9 +314,9 @@ export function ProjectsDirectory() {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-heading tracking-[0.04em] transition-all cursor-pointer ${
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-heading tracking-[0.04em] transition-colors cursor-pointer ${
                 isActive
-                  ? 'bg-primary-container text-on-primary-container font-bold shadow-[0_0_25px_rgba(224,123,32,0.35)] scale-105'
+                  ? 'bg-primary-container text-on-primary-container font-bold shadow-[0_0_25px_rgba(224,123,32,0.35)]'
                   : 'bg-surface-1/90 text-on-surface/70 hover:text-white hover:bg-surface-2 border border-white/10'
               }`}
             >
@@ -328,10 +328,11 @@ export function ProjectsDirectory() {
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {filteredProjects.map((proj) => (
+        {filteredProjects.map((proj, idx) => (
           <div
             key={proj.id}
-            className="group rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] card-interactive-glow"
+            style={{ transitionDelay: `${(idx % 3) * 80}ms` }}
+            className="group rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between overflow-hidden shadow-xl card-interactive-glow card-image-zoom motion-reveal"
           >
             <div>
               {/* Project Card Image Preview */}
@@ -344,7 +345,7 @@ export function ProjectsDirectory() {
                   alt={proj.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface-1 via-transparent to-transparent opacity-80" />
 

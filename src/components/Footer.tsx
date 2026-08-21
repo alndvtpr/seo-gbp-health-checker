@@ -52,7 +52,7 @@ export const Footer = () => {
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="Gmail"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -64,7 +64,7 @@ export const Footer = () => {
               href="https://www.facebook.com/dcrazedave"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="Facebook"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -76,7 +76,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="LinkedIn"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true" focusable="false">
@@ -88,7 +88,7 @@ export const Footer = () => {
               href="https://github.com/alndvtpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="GitHub"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -98,7 +98,7 @@ export const Footer = () => {
             {/* RSS Feed */}
             <RssButton
               variant="icon"
-              className="w-8 h-8 bg-white/5 border-primary-container/30 shadow-[0_0_10px_rgba(238,128,47,0.1)] hover:shadow-[0_0_15px_rgba(238,128,47,0.3)]"
+              className="w-8 h-8 bg-white/5 border-primary-container/30 hover:-translate-y-0.5 transition-all shadow-[0_0_10px_rgba(238,128,47,0.1)] hover:shadow-[0_0_15px_rgba(238,128,47,0.3)]"
               iconSize={14}
             />
           </div>
@@ -113,26 +113,26 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-1.5 font-sans text-xs text-on-surface/75">
               <li>
-                <Link href="/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Home</Link>
+                <Link href="/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Home</Link>
               </li>
               <li>
-                <Link href="/about/" className="hover:text-primary-container transition-colors py-0.5 inline-block">About Me</Link>
+                <Link href="/about/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">About Me</Link>
               </li>
               <li>
-                <Link href="/projects/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Projects</Link>
+                <Link href="/projects/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Projects</Link>
               </li>
               <li>
-                <Link href="/blog/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Blog / Guides</Link>
+                <Link href="/blog/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Blog / Guides</Link>
               </li>
               <li>
-                <Link href="/contact/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Contact</Link>
+                <Link href="/contact/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Contact</Link>
               </li>
               <li>
                 <a
                   href="/rss.xml"
                   target="_blank"
                   rel="noopener noreferrer alternate"
-                  className="hover:text-primary-container text-on-surface/75 transition-colors py-0.5 inline-flex items-center gap-1.5"
+                  className="hover:text-primary-container text-on-surface/75 hover:translate-x-1 transition-all py-0.5 inline-flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
                   RSS Feed
@@ -148,19 +148,19 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-1.5 font-sans text-xs text-on-surface/75">
               <li>
-                <Link href="/services/#pillar-foundation" className="hover:text-primary-container transition-colors py-0.5 inline-block">Technical SEO &amp; Schema</Link>
+                <Link href="/services/#pillar-foundation" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Technical SEO &amp; Schema</Link>
               </li>
               <li>
-                <Link href="/services/#pillar-visibility" className="hover:text-primary-container transition-colors py-0.5 inline-block">AEO, GEO &amp; On-Page</Link>
+                <Link href="/services/#pillar-visibility" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">AEO, GEO &amp; On-Page</Link>
               </li>
               <li>
-                <Link href="/services/#pillar-execution" className="hover:text-primary-container transition-colors py-0.5 inline-block">Web Development</Link>
+                <Link href="/services/#pillar-execution" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Web Development</Link>
               </li>
               <li>
-                <Link href="/tools/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Local GBP Auditor</Link>
+                <Link href="/tools/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Local GBP Auditor</Link>
               </li>
               <li>
-                <Link href="/projects/" className="hover:text-primary-container transition-colors py-0.5 inline-block">Case Studies</Link>
+                <Link href="/projects/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Case Studies</Link>
               </li>
             </ul>
           </div>

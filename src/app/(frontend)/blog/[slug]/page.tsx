@@ -81,7 +81,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
 
       {/* Article Header */}
-      <header className="space-y-6 text-left border-b border-white/10 pb-8 sm:pb-12 max-w-4xl">
+      <header className="space-y-6 text-left border-b border-white/10 pb-8 sm:pb-12 max-w-4xl motion-reveal">
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-heading text-primary-container uppercase tracking-[0.08em] font-semibold text-xs px-3.5 py-1 rounded-full bg-primary-container/10 border border-primary-container/30">
             {post.category}
@@ -127,7 +127,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <section
               key={idx}
               id={`section-${idx + 1}`}
-              className="space-y-6 scroll-mt-28"
+              className="space-y-6 scroll-mt-28 motion-reveal"
             >
               <h2 className="font-heading text-2xl sm:text-3xl font-bold text-on-surface tracking-tight leading-snug">
                 {section.heading}
@@ -210,7 +210,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       {/* Related Technical Guides & Cross-Linking */}
-      <section className="space-y-6 max-w-6xl mx-auto">
+      <section className="space-y-6 max-w-6xl mx-auto motion-reveal">
         <div className="flex items-center justify-between">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
             Explore Related Guides &amp; Notes
@@ -227,11 +227,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {BLOG_POSTS.filter((p) => p.slug !== post.slug)
             .slice(0, 2)
-            .map((rel) => (
+            .map((rel, idx) => (
               <Link
                 key={rel.slug}
                 href={`/blog/${rel.slug}/`}
-                className="p-6 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg"
+                style={{ transitionDelay: `${(idx % 2) * 80}ms` }}
+                className="p-6 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg motion-reveal"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between text-xs font-sans text-on-surface/70">
@@ -261,7 +262,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Author Footer & Next Steps CTA */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/90 border border-primary-container/30 space-y-6 text-center shadow-[0_0_50px_rgba(224,123,32,0.15)]">
+      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/90 border border-primary-container/30 space-y-6 text-center shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Technical Collaboration
         </span>
@@ -274,14 +275,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="flex flex-wrap justify-center items-center gap-3 pt-2">
           <Link
             href="/contact/"
-            className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:scale-105 transition-all min-h-[48px]"
+            className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Get in Touch</span>
-            <Icon name="arrow_forward" size={16} />
+            <Icon name="arrow_forward" size={16} className="btn-icon" />
           </Link>
           <Link
             href="/blog/"
-            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full transition-all min-h-[48px]"
+            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Back to All Articles</span>
           </Link>

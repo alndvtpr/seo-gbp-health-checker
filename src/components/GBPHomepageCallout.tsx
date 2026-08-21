@@ -8,7 +8,7 @@ export const GBPHomepageCallout = () => {
   return (
     <section className="py-12 sm:py-20 bg-transparent relative z-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16">
-        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-1/80 via-surface-2/75 to-surface-1/80 backdrop-blur-md border border-primary-container/30 p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(230,126,34,0.15)] overflow-hidden">
+        <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-1/80 via-surface-2/75 to-surface-1/80 backdrop-blur-md border border-primary-container/30 p-6 sm:p-10 md:p-14 shadow-[0_0_60px_rgba(230,126,34,0.15)] overflow-hidden motion-reveal">
           
           {/* Subtle Ambient Radial Glow */}
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none animate-glow-pulse" />
@@ -17,7 +17,7 @@ export const GBPHomepageCallout = () => {
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-12">
             
             {/* Left Content Area */}
-            <div className="space-y-4 sm:space-y-6 max-w-2xl text-left">
+            <div className="space-y-4 sm:space-y-6 max-w-2xl text-left motion-reveal">
               <div className="flex flex-wrap items-center gap-2.5">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-heading font-semibold uppercase tracking-[0.08em] bg-primary-container/15 text-primary-container border border-primary-container/30">
                   <Sparkles className="w-3.5 h-3.5" />
@@ -60,7 +60,7 @@ export const GBPHomepageCallout = () => {
             </div>
 
             {/* Right Action Card / Interactive Preview */}
-            <div className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-2xl text-center max-w-sm card-interactive-glow">
+            <div style={{ transitionDelay: '100ms' }} className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-2xl text-center max-w-sm card-interactive-glow motion-reveal">
               <div className="space-y-1">
                 <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-primary-container font-semibold">
                   Zero Cost • Instant Execution
@@ -87,10 +87,10 @@ export const GBPHomepageCallout = () => {
 
               <Link
                 href="/tools/"
-                className="w-full min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-[1.02] transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
               >
                 <span>Launch Audit Tool Free</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 btn-icon" />
               </Link>
 
               <p className="text-[10px] text-on-surface/50 font-sans">

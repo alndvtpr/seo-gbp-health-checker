@@ -96,7 +96,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Hero Header */}
-      <div className="space-y-4">
+      <div className="space-y-4 motion-reveal">
         <div className="flex flex-wrap items-center gap-2.5">
           {project.status === 'Ongoing' ? (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">
@@ -126,7 +126,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Primary Visual Media Banner */}
-      <div className="relative w-full h-[240px] sm:h-[400px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/60">
+      <div className="relative w-full h-[240px] sm:h-[400px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/60 motion-reveal">
         <Image
           src={project.image}
           alt={project.title}
@@ -138,7 +138,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Metadata Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/90 border border-white/10 shadow-lg">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/90 border border-white/10 shadow-lg motion-reveal">
         <div>
           <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Project / Entity
@@ -176,7 +176,7 @@ export default async function ProjectDetailPage({
       {/* Detailed Content Sections */}
       <div className="space-y-8 sm:space-y-12 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
         {/* Section 1: Overview & Architecture */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
             01. Structural Overview
           </span>
@@ -188,7 +188,7 @@ export default async function ProjectDetailPage({
 
         {/* Verified Impact & Performance Metrics */}
         {project.metrics && project.metrics.length > 0 && (
-          <section className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-lg space-y-4">
+          <section className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-lg space-y-4 motion-reveal">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               Key Metrics &amp; Verified Benchmarks
             </span>
@@ -221,7 +221,7 @@ export default async function ProjectDetailPage({
 
         {/* Section 2/3: 3-Pillar Methodology */}
         {project.pillars && project.pillars.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '03. Core Methodology' : '02. Core Methodology'}
             </span>
@@ -253,7 +253,7 @@ export default async function ProjectDetailPage({
 
         {/* Section 3/4: Core Service Offerings */}
         {project.coreServices && project.coreServices.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '04. Core Capabilities' : '03. Core Capabilities'}
             </span>
@@ -277,7 +277,7 @@ export default async function ProjectDetailPage({
         )}
 
         {/* Section 4/5: Technology Stack */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
             {project.slug === 'alaintapiru-portfolio' ? '05. Development Stack' : '04. Development Stack'}
           </span>
@@ -298,7 +298,7 @@ export default async function ProjectDetailPage({
 
         {/* Section 5/6: Image Showcase / Gallery */}
         {project.gallery && project.gallery.length > 1 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '06. Visual Gallery' : '05. Visual Gallery'}
             </span>
@@ -326,7 +326,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Semantic Cross-Linking: Related Case Studies & Interactive Tools */}
-      <section className="space-y-6 pt-4 border-t border-white/10">
+      <section className="space-y-6 pt-4 border-t border-white/10 motion-reveal">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
@@ -393,7 +393,7 @@ export default async function ProjectDetailPage({
       </section>
 
       {/* Bottom CTA Banner with Contextual Lead Magnet */}
-      <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_40px_rgba(224,123,32,0.15)] text-center space-y-6">
+      <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_40px_rgba(224,123,32,0.15)] text-center space-y-6 motion-reveal">
         <div className="space-y-2">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
             {project.slug === 'alaintapiru-portfolio'
@@ -425,26 +425,26 @@ export default async function ProjectDetailPage({
                 : undefined)
             }
             aria-label={`Open ${project.title} external live build (opens in new tab)`}
-            className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.35)] hover:bg-primary hover:scale-105 transition-all cursor-pointer min-h-[48px]"
+            className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion cursor-pointer min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>{project.ctaText || 'View Live Build'}</span>
-            <Icon name="north_east" size={16} />
+            <Icon name="north_east" size={16} className="btn-icon" />
           </a>
 
           <Link
             href="/services/#scope-estimator"
-            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full transition-all min-h-[48px]"
+            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Estimate Sprint Scope</span>
-            <Icon name="calculate" size={16} />
+            <Icon name="calculate" size={16} className="btn-icon" />
           </Link>
 
           <Link
             href="/contact/"
-            className="inline-flex items-center gap-2 bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/30 text-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full transition-all min-h-[48px]"
+            className="inline-flex items-center gap-2 bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/30 text-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Get in Touch</span>
-            <Icon name="arrow_forward" size={16} />
+            <Icon name="arrow_forward" size={16} className="btn-icon" />
           </Link>
         </div>
       </div>
