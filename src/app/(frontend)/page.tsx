@@ -115,7 +115,7 @@ export default async function Page() {
                   key={`${tool.name}-badge-${idx}`}
                   className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
-                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
                   <span className="text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
@@ -131,7 +131,7 @@ export default async function Page() {
                   key={`${tool.name}-dup-badge-${idx}`}
                   className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-all duration-300 group flex items-center gap-2.5 shrink-0"
                 >
-                  <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 flex items-center justify-center shrink-0">
+                  <div className="w-5 h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
                   </div>
                   <span className="text-sm font-medium text-on-surface/90 group-hover:text-on-surface whitespace-nowrap tracking-wide">
