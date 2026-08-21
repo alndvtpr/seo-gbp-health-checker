@@ -25,20 +25,21 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const widgetParentRef = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
+  const hasInitializedRef = useRef(false)
+  const isLoadedRef = useRef(false)
+  const [isInView, setIsInView] = useState(() => {
+    if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
+      return true
+    }
+    return false
+  })
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasError, setHasError] = useState(false)
 
   // 1. IntersectionObserver: Lazy-load widget script only when approaching viewport (200px margin)
   useEffect(() => {
     const target = containerRef.current
-    if (!target) return
-
-    // Fallback if IntersectionObserver not available
-    if (typeof IntersectionObserver === 'undefined') {
-      setIsInView(true)
-      return
-    }
+    if (!target || typeof IntersectionObserver === 'undefined') return
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,8 +69,16 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
     let isMounted = true
     let timeoutId: ReturnType<typeof setTimeout> | null = null
 
+    const markLoaded = () => {
+      if (isMounted) {
+        isLoadedRef.current = true
+        setIsLoaded(true)
+      }
+    }
+
     const initWidget = () => {
       if (!isMounted || !widgetParentRef.current) return
+      if (hasInitializedRef.current) return // Prevent duplicate widget mounting
 
       try {
         // If Calendly global is ready, initialize
@@ -80,6 +89,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
             url,
             parentElement: widgetParentRef.current,
           })
+          hasInitializedRef.current = true
         }
       } catch (err) {
         console.warn('Calendly inline widget initialization note:', err)
@@ -119,9 +129,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
     const handleMessage = (e: MessageEvent) => {
       if (typeof e.data === 'object' && e.data !== null) {
         if (e.data.event && String(e.data.event).startsWith('calendly.')) {
-          if (isMounted) {
-            setIsLoaded(true)
-          }
+          markLoaded()
         }
       }
     }
@@ -136,16 +144,14 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
           iframe.addEventListener(
             'load',
             () => {
-              if (isMounted) {
-                setIsLoaded(true)
-              }
+              markLoaded()
             },
             { once: true }
           )
 
           // Fallback timeout to ensure skeleton fades out even if onload fires silently
           timeoutId = setTimeout(() => {
-            if (isMounted) setIsLoaded(true)
+            markLoaded()
           }, 2000)
         }
       }
@@ -157,11 +163,11 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
 
     // Safety timeout: If Calendly script doesn't resolve after 9 seconds, show direct link fallback
     const safetyTimeout = setTimeout(() => {
-      if (isMounted && !isLoaded) {
+      if (isMounted && !isLoadedRef.current) {
         // If iframe is present, consider loaded, otherwise flag error fallback
         const iframe = widgetParentRef.current?.querySelector('iframe')
         if (iframe) {
-          setIsLoaded(true)
+          markLoaded()
         } else {
           setHasError(true)
         }
@@ -178,6 +184,8 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
   }, [isInView, url])
 
   const handleRetry = () => {
+    hasInitializedRef.current = false
+    isLoadedRef.current = false
     setHasError(false)
     setIsLoaded(false)
     setIsInView(false)
@@ -193,7 +201,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
       {/* Scheduler Header & Trust Badges */}
       <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs font-heading font-semibold uppercase tracking-[0.08em]">
-          <Calendar className="w-3.5 h-3.5 shrink-0" />
+          <Calendar className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>BOOK A CONVERSATION</span>
         </div>
         <h2 className="font-heading text-xl sm:text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">
@@ -206,13 +214,13 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
         {/* Feature Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1 text-[11px] font-sans text-on-surface/80">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" /> 20-Min Strategy Call
+            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" aria-hidden="true" /> 20-Min Strategy Call
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> Practical Action Items
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" /> Practical Action Items
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" /> No Sales Pressure
+            <ShieldCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" aria-hidden="true" /> No Sales Pressure
           </span>
         </div>
       </div>
@@ -230,7 +238,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
         />
 
         {/* Fixed Height Scheduler Container (Guarantees 0 CLS & Matches Native Theme) */}
-        <div className="relative w-full h-[680px] sm:h-[700px] min-h-[680px] sm:min-h-[700px] min-w-[320px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#F8FAFC] border border-slate-200/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.04)]">
+        <div className="relative w-full min-w-0 h-[680px] sm:h-[700px] min-h-[680px] sm:min-h-[700px] rounded-xl sm:rounded-2xl overflow-hidden bg-[#F8FAFC] border border-slate-200/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.04)]">
           {/* Skeleton Loader State */}
           {(!isLoaded && !hasError) && (
             <div
@@ -289,7 +297,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
 
               {/* Skeleton Bottom Loader Status */}
               <div className="flex items-center justify-center gap-2.5 py-3 border-t border-slate-200/80 text-slate-600 text-xs font-medium">
-                <Loader2 className="w-4 h-4 animate-spin text-[#38BDF8]" />
+                <Loader2 className="w-4 h-4 animate-spin text-[#38BDF8]" aria-hidden="true" />
                 <span>Connecting to live Calendly schedule...</span>
               </div>
             </div>
@@ -302,7 +310,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
               role="alert"
             >
               <div className="w-16 h-16 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container flex items-center justify-center mb-4 shadow-[0_0_25px_rgba(230,126,34,0.25)]">
-                <Calendar className="w-8 h-8 text-primary-container" />
+                <Calendar className="w-8 h-8 text-primary-container" aria-hidden="true" />
               </div>
               <h3 className="font-heading text-xl font-bold text-on-surface mb-2">
                 Calendar Embed Blocked or Unavailable
@@ -316,18 +324,19 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
                   href="https://calendly.com/alaintapiru"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-primary transition-all shadow-lg min-h-[44px]"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-primary transition-all shadow-lg min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                  aria-label="Open Calendly Direct (opens in new tab)"
                 >
                   <span>Open Calendly Direct</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-4 h-4" aria-hidden="true" />
                 </a>
 
                 <button
                   type="button"
                   onClick={handleRetry}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 text-white font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-white/20 transition-all border border-white/10 min-h-[44px] cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 text-white font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-white/20 transition-all border border-white/10 min-h-[44px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <RefreshCcw className="w-4 h-4" />
+                  <RefreshCcw className="w-4 h-4" aria-hidden="true" />
                   <span>Retry</span>
                 </button>
               </div>
@@ -337,9 +346,10 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
           {/* The Actual Calendly Inline Widget Container */}
           <div
             ref={widgetParentRef}
-            className="calendly-inline-widget w-full h-[680px] sm:h-[700px] min-h-[680px] sm:min-h-[700px] min-w-[320px]"
+            className="calendly-inline-widget w-full min-w-0 h-[680px] sm:h-[700px] min-h-[680px] sm:min-h-[700px]"
             data-url={url}
-            style={{ minWidth: '320px', height: '100%' }}
+            style={{ width: '100%', height: '100%' }}
+            aria-label="Calendly Appointment Booking Widget"
           />
         </div>
 
@@ -351,10 +361,11 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
               href="https://calendly.com/alaintapiru"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary-container font-semibold underline underline-offset-4 transition-colors inline-flex items-center gap-1"
+              className="text-primary hover:text-primary-container font-semibold underline underline-offset-4 transition-colors inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container rounded"
+              aria-label="Book directly on Calendly (opens in a new tab)"
             >
               <span>Book directly on Calendly</span>
-              <ExternalLink className="w-3.5 h-3.5 inline shrink-0" />
+              <ExternalLink className="w-3.5 h-3.5 inline shrink-0" aria-hidden="true" />
             </a>
           </p>
           <span className="font-sans text-[11px] text-on-surface/50 font-medium">
