@@ -683,19 +683,29 @@ export async function sendAuditReportAction(data: AuditEmailData): Promise<SendA
   }
 
   const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
+  const resendApiKey = process.env.RESEND_API_KEY
+  const resendFrom = process.env.RESEND_FROM_EMAIL || 'GBP Health Checker <onboarding@resend.dev>'
+  const ownerRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
 
   const allActions = actionItems?.map((a) => `[${a.priority.toUpperCase()}] ${a.message}`) || topActionItems || []
+  const emailHtml = generateAuditEmailHtml(validatedData)
+  const emailText = generateAuditEmailText(validatedData)
+  const subjectLine = `📊 Complete GBP Audit & Growth Blueprint: ${businessName} (${totalScore}/100 - Grade ${grade})`
 
   const payload = {
     name: `GBP Lead: ${businessName}`,
     email,
+    to: email,
+    subject: subjectLine,
+    htmlBody: emailHtml,
+    textBody: emailText,
     website: location || '',
     service: `GBP Full Audit (${totalScore}/100 - Grade ${grade})`,
     message: `Business: ${businessName}\nLocation: ${location || 'N/A'}\nScore: ${totalScore}/100 (Grade ${grade})\nPrimary Category: ${primaryCategory || 'N/A'}\nTop Action Items:\n${allActions.map((item, i) => `${i + 1}. ${item}`).join('\n')}`,
     submittedAt: new Date().toISOString(),
   }
 
-  // 1. Google Sheets Webhook Dispatch (Lead Logging)
+  // 1. Google Sheets Webhook Dispatch (Lead Logging & Email Relay)
   const sheetPromise = (async () => {
     try {
       const response = await fetch(webhookUrl, {
@@ -717,11 +727,7 @@ export async function sendAuditReportAction(data: AuditEmailData): Promise<SendA
     }
   })()
 
-  // 2. Resend Email Dispatch
-  const resendApiKey = process.env.RESEND_API_KEY
-  const resendFrom = process.env.RESEND_FROM_EMAIL || 'GBP Health Checker <onboarding@resend.dev>'
-  const ownerRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
-
+  // 2. Resend Direct Email Dispatch
   const resendPromise = (async () => {
     if (!resendApiKey) {
       console.warn(
@@ -731,10 +737,7 @@ export async function sendAuditReportAction(data: AuditEmailData): Promise<SendA
     }
 
     try {
-      const emailHtml = generateAuditEmailHtml(validatedData)
-      const emailText = generateAuditEmailText(validatedData)
-
-      // Concurrently dispatch to recipient user and site owner
+      // Concurrently dispatch directly to the user's input email and site owner notification
       const [userResendResult, ownerResendResult] = await Promise.allSettled([
         fetch('https://api.resend.com/emails', {
           method: 'POST',
@@ -746,7 +749,7 @@ export async function sendAuditReportAction(data: AuditEmailData): Promise<SendA
             from: resendFrom,
             to: email,
             reply_to: ownerRecipient,
-            subject: `📊 Complete GBP Audit & Growth Blueprint: ${businessName} (${totalScore}/100 - Grade ${grade})`,
+            subject: subjectLine,
             html: emailHtml,
             text: emailText,
           }),
