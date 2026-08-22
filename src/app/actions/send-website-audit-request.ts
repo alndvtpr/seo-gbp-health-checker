@@ -295,7 +295,7 @@ function generateRequesterConfirmationHtml(data: WebsiteAuditRequestData, dateSt
           <tr>
             <td style="padding: 22px 28px; background-color: #0d0f14; border-top: 1px solid #262b36; text-align: center;">
               <p style="margin: 0 0 6px 0; font-size: 12px; color: #9ca3af; font-weight: 600;">
-                Alain Dave G. Tapiru • Technical SEO &amp; Full-Stack Web Specialist
+                Alain Dave G. Tapiru • SEO Specialist &amp; Web Developer
               </p>
               <p style="margin: 0 0 4px 0; font-size: 11px; color: #6b7280;">
                 <a href="https://www.alaintapiru.com" style="color: #e07b20; text-decoration: none; font-weight: 600;">alaintapiru.com</a> • <a href="mailto:alaintapiru@gmail.com" style="color: #e07b20; text-decoration: none; font-weight: 600;">alaintapiru@gmail.com</a>

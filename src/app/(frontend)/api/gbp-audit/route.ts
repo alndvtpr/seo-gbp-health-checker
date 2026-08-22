@@ -878,7 +878,7 @@ function generateLocalSeoActionPlan(
   // Week 1: Foundation & NAP Alignment
   plan += `#### 🗓️ Week 1: Core Foundation & NAP Integrity (Days 1–7)\n`
   if (failedItems.some((i) => i.message.toLowerCase().includes('website'))) {
-    plan += `- **Add Official Website URL**: Link your verified domain or high-converting local landing page to your Google Business Profile to unlock organic authority transference.\n`
+    plan += `- **Add Official Website URL**: Link your verified domain or optimized local landing page to your Google Business Profile to unlock organic authority transference.\n`
   }
   if (failedItems.some((i) => i.message.toLowerCase().includes('phone'))) {
     plan += `- **Configure Primary Local Phone Number**: Add a direct local telephone or mobile contact line to enhance Google trust validation and mobile click-to-call conversions.\n`

@@ -994,7 +994,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   <div className="p-4 print:p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 space-y-1">
                     <p className="font-bold">No Website Linked on GBP</p>
                     <p className="opacity-80">
-                      Linking a verified website or high-converting landing page is critical for local authority.
+                      Linking a verified website or optimized landing page is critical for local authority.
                     </p>
                   </div>
                 )}
@@ -1415,7 +1415,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   href="/contact/"
                   className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)] text-center flex items-center justify-center min-h-[44px]"
                 >
-                  Book Strategy Call
+                  Book a Free Discovery Call
                 </a>
                 <button
                   type="button"
