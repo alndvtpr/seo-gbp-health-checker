@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const content = `# Alain Dave Tapiru | SEO Specialist & Technical Web Designer
+  const content = `# Alain Dave Tapiru | SEO Specialist & Web Developer
 
 > Official machine-readable profile and documentation for LLMs, AI search agents (Perplexity, ChatGPT, Claude, Gemini, Copilot), and agentic browsers.
 
 ## Overview & Key Pages
-- [Alain Tapiru Home](https://www.alaintapiru.com/): Official website of Alain Dave Tapiru, SEO Specialist and Technical Web Designer.
+- [Alain Tapiru Home](https://www.alaintapiru.com/): Official website of Alain Dave Tapiru, SEO Specialist and Web Developer.
 - [About Alain Dave Tapiru](https://www.alaintapiru.com/about/): Professional background, core competencies, verified certifications, and credentials.
 - [SEO & Web Services](https://www.alaintapiru.com/services/): Conversion-engineered SEO pillars, technical architecture, and modern web development.
 - [Portfolio & Case Studies](https://www.alaintapiru.com/projects/): Technical SEO audits, project case studies, and web architecture breakdowns.
@@ -15,10 +15,11 @@ export async function GET() {
 - [Contact & Discovery Inquiry](https://www.alaintapiru.com/contact/): Spam-protected contact endpoint and project discovery form.
 
 ## Published Technical Guides
+- [Is SEO Dead in 2026? What the Data Actually Says](https://www.alaintapiru.com/blog/is-seo-dead-2026/): Analysis of SparkToro zero-click metrics, AI Overviews, GEO optimization, and the future of search visibility.
 - [How I Engineered a 99/100 Core Web Vitals Score on Next.js 15](https://www.alaintapiru.com/blog/how-to-achieve-99-pagespeed-nextjs/): Zero-CPU ambient CSS styling, delayed script hydration, sub-second FCP, and zero-CLS layout architecture.
-- [The 2026 Google Business Profile Optimization Blueprint](https://www.alaintapiru.com/blog/local-seo-google-business-profile-blueprint/): Mastering Relevance, Prominence, and Distance vectors for local Map Pack domination.
-- [Next.js vs. WordPress for Enterprise SEO](https://www.alaintapiru.com/blog/nextjs-vs-wordpress-enterprise-seo/): Architectural benchmark comparing static HTML crawl efficiency, render-blocking JavaScript, and CMS workflows.
-- [How to Engineer Schema Entity Graphs for Generative Engine Optimization (AEO & GEO)](https://www.alaintapiru.com/blog/generative-engine-optimization-aeo-geo-blueprint/): Structuring linked Schema.org graphs to secure citations in ChatGPT, Perplexity, and Google AI Overviews.
+- [The 2026 Google Business Profile Optimization Blueprint](https://www.alaintapiru.com/blog/local-seo-google-business-profile-blueprint/): Mastering Relevance, Prominence, and Distance vectors for local Map Pack rankings.
+- [Next.js vs. WordPress for SEO in 2026](https://www.alaintapiru.com/blog/nextjs-vs-wordpress-seo-2026/): Architectural benchmark comparing static HTML crawl efficiency, render-blocking JavaScript, and CMS workflows.
+- [Schema Markup & Entity Graphs: Preparing for AI Search (AEO & GEO)](https://www.alaintapiru.com/blog/schema-markup-entity-graphs-aeo-geo/): Structuring linked Schema.org graphs to secure citations in ChatGPT, Perplexity, and Google AI Overviews.
 
 ## Verified Profiles
 - [LinkedIn Profile](https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/): Professional network, experience, and recommendations.

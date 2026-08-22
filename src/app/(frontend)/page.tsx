@@ -169,7 +169,7 @@ export default async function Page() {
                 About Alain Dave Tapiru
               </p>
               <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
-                SEO Specialist &amp; Technical Web Designer
+                SEO Specialist &amp; Web Developer
               </h3>
             </div>
           </div>
@@ -192,15 +192,15 @@ export default async function Page() {
                   4 Core Disciplines
                 </span>
                 <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-                  SEO, Web Dev, Support &amp; Executive / General VA
+                  Technical SEO, Local Search, WordPress &amp; Next.js
                 </span>
               </div>
               <div style={{ transitionDelay: '80ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
-                  AI-Powered Workflows
+                  AI-Assisted Workflows
                 </span>
                 <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-                  Leveraging modern tools for faster, smarter builds.
+                  Fast research, structured schema implementation, and automated diagnostics.
                 </span>
               </div>
               <div style={{ transitionDelay: '160ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
@@ -208,7 +208,7 @@ export default async function Page() {
                   Dedicated Communication
                 </span>
                 <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-                  Clear, responsive project updates.
+                  Clear, responsive project updates and task logs.
                 </span>
               </div>
             </div>

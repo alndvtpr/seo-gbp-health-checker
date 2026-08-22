@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
           <div className="text-xs font-sans">
             <p className="font-heading font-bold text-on-surface">Alain Dave Tapiru</p>
-            <p className="text-on-surface/70">SEO Specialist &amp; Technical Web Designer</p>
+            <p className="text-on-surface/70">SEO Specialist &amp; Web Developer</p>
           </div>
         </div>
       </header>

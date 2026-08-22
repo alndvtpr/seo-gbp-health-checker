@@ -109,7 +109,7 @@ function getFeedItems(): FeedItem[] {
     link: `${BASE_URL}/`,
     pubDate: new Date('2026-08-19T08:30:00Z'),
     description:
-      'Official portfolio of Alain Dave Tapiru. SEO Specialist and Technical Web Designer specializing in Core Web Vitals, JSON-LD semantic architecture, and search visibility.',
+      'Official portfolio of Alain Dave Tapiru. SEO Specialist and Web Developer specializing in Core Web Vitals, JSON-LD semantic architecture, and search visibility.',
     category: 'Homepage',
     author: 'Alain Dave Tapiru',
   })
