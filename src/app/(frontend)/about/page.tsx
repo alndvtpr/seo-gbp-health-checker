@@ -59,7 +59,7 @@ export default function AboutPage() {
               As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frontend frameworks like Next.js and WordPress. I believe an effective website should be easy for search engines to crawl, fast for users to navigate, and built on reliable, secure foundations.
             </p>
             <p>
-              I am actively open to opportunities to contribute to forward-thinking SEO and digital teams as an SEO Specialist, Technical SEO Trainee, or Web and SEO Assistant. I bring proactive self-direction, fast execution, and a strong drive to learn and grow alongside experienced professionals.
+              I am actively available for project sprints, agency overflow support, and team roles as an SEO Specialist, Technical SEO Executor, or Web &amp; SEO Assistant. I bring proactive self-direction, fast execution, and a disciplined approach to technical problem-solving.
             </p>
           </div>
 

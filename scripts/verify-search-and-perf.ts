@@ -54,8 +54,8 @@ const expectedSitemapUrls = [
 
 check(
   'Sitemap',
-  'All 14 Canonical Routes Covered',
-  expectedSitemapUrls.length === 14,
+  `All ${expectedSitemapUrls.length} Canonical Routes Covered`,
+  expectedSitemapUrls.length === 7 + PROJECTS.length + BLOG_POSTS.length,
   `Total canonical sitemap routes: ${expectedSitemapUrls.length}`
 )
 

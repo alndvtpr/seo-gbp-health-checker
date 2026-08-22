@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       '@type': 'Person',
       name: 'Alain Dave Tapiru',
       url: 'https://www.alaintapiru.com/about/',
-      jobTitle: 'SEO Specialist & Technical Web Designer',
+      jobTitle: 'SEO Specialist & Web Developer',
     },
     publisher: {
       '@type': 'Person',

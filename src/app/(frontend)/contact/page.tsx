@@ -122,7 +122,7 @@ export default function ContactPage() {
             </span>
             <div>
               <span className="font-heading text-xs font-bold text-on-surface block">Current Availability</span>
-              <span className="font-sans text-xs text-on-surface/70">Open for project collaborations &amp; full-time opportunities</span>
+              <span className="font-sans text-xs text-on-surface/70">Open for project collaborations, overflow sprints &amp; team roles</span>
             </div>
           </div>
 

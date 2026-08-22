@@ -94,7 +94,7 @@ function getFeedItems(): FeedItem[] {
 
   // 5. Professional Credentials & Biography
   items.push({
-    title: 'About Alain Dave Tapiru | SEO Specialist & Technical Web Designer',
+    title: 'About Alain Dave Tapiru | SEO Specialist & Web Developer',
     link: `${BASE_URL}/about/`,
     pubDate: new Date('2026-08-17T16:00:00Z'),
     description:

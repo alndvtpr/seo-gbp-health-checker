@@ -58,12 +58,14 @@ export default async function ProjectDetailPage({
     author: {
       '@type': 'Person',
       name: 'Alain Dave G. Tapiru',
-      url: 'https://www.alaintapiru.com',
+      jobTitle: 'SEO Specialist & Web Developer',
+      url: 'https://www.alaintapiru.com/',
     },
     publisher: {
       '@type': 'Person',
       name: 'Alain Dave G. Tapiru',
-      url: 'https://www.alaintapiru.com',
+      jobTitle: 'SEO Specialist & Web Developer',
+      url: 'https://www.alaintapiru.com/',
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
