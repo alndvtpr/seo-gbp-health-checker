@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <radialGradient id="cardGlow" cx="50%" cy="0%" r="90%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0B0F19" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="barZeroClick" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E07B20"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="barClicks" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="450" rx="16" fill="#0B0F19" stroke="#1E293B" stroke-width="2"/>
+  <rect width="800" height="450" rx="16" fill="url(#cardGlow)"/>
+
+  <!-- Header Section -->
+  <g transform="translate(40, 35)">
+    <text x="0" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#E07B20" letter-spacing="1.5">SPARKTORO &amp; SIMILARWEB DATA</text>
+    <text x="0" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#F8FAFC">U.S. Google Search Click Distribution (Q1 2026)</text>
+    <text x="0" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#94A3B8">Analysis of billions of desktop &amp; mobile queries demonstrating the rise of zero-click search behavior.</text>
+  </g>
+
+  <!-- Main Chart Bars Comparison (2024 vs 2026) -->
+  <g transform="translate(40, 145)">
+    <!-- 2024 Row -->
+    <text x="0" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#CBD5E1">2024 Baseline</text>
+    <!-- Bar Container 2024 -->
+    <rect x="130" y="6" width="600" height="32" rx="6" fill="#1E293B"/>
+    <!-- Zero Click Portion: 60.45% = 362.7px -->
+    <rect x="130" y="6" width="362.7" height="32" rx="6" fill="#EA580C" fill-opacity="0.75"/>
+    <text x="310" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">60.45% Zero-Click</text>
+    <!-- Clicks Portion: 39.55% = 237.3px -->
+    <rect x="496" y="6" width="234" height="32" rx="6" fill="#2563EB" fill-opacity="0.75"/>
+    <text x="613" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">39.55%</text>
+
+    <!-- 2026 Row -->
+    <text x="0" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">Q1 2026 Study</text>
+    <!-- Bar Container 2026 -->
+    <rect x="130" y="76" width="600" height="38" rx="6" fill="#1E293B"/>
+    <!-- Zero Click Portion: 68.01% = 408px -->
+    <rect x="130" y="76" width="408" height="38" rx="6" fill="url(#barZeroClick)"/>
+    <text x="334" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#FFFFFF" text-anchor="middle">68.01% Zero-Click Searches</text>
+    <!-- Clicks Portion: 31.99% = 192px -->
+    <rect x="541" y="76" width="189" height="38" rx="6" fill="url(#barClicks)"/>
+    <text x="635" y="100" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF" text-anchor="middle">31.99% Clicks</text>
+  </g>
+
+  <!-- Key Statistics Callout Cards -->
+  <g transform="translate(40, 305)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="225" height="90" rx="10" fill="#161F30" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#E07B20">+7.56%</text>
+    <text x="20" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Zero-Click Growth</text>
+    <text x="20" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94A3B8">Largest 2-year jump recorded</text>
+
+    <!-- Card 2 -->
+    <rect x="245" y="0" width="230" height="90" rx="10" fill="#161F30" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="32" transform="translate(245, 0)" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#38BDF8">360 Clicks</text>
+    <text x="20" y="54" transform="translate(245, 0)" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Per 1,000 Searches</text>
+    <text x="20" y="72" transform="translate(245, 0)" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94A3B8">Reach the open web in the US</text>
+
+    <!-- Card 3 -->
+    <rect x="495" y="0" width="225" height="90" rx="10" fill="#161F30" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="32" transform="translate(495, 0)" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#10B981">High-Intent</text>
+    <text x="20" y="54" transform="translate(495, 0)" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Commercial Value</text>
+    <text x="20" y="72" transform="translate(495, 0)" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94A3B8">Transactional queries stay active</text>
+  </g>
+
+  <!-- Legend & Footer Note -->
+  <g transform="translate(40, 415)">
+    <text x="0" y="15" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748B">
+      Data Source: SparkToro &amp; Similarweb Q1 2026 US Search Engine Behavior Study • Qualified for US Desktop &amp; Mobile Search
+    </text>
+  </g>
+</svg>

@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { TableOfContents } from '@/components/TableOfContents'
 import { CodeBlock } from '@/components/CodeBlock'
-import { BLOG_POSTS, BlogPost } from '@/data/posts'
+import { BLOG_POSTS, type BlogPost, type BlogImage, type BlogSource } from '@/data/posts'
 
 export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -23,6 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${post.title} | Alain Dave Tapiru`,
     description: post.excerpt,
     url: `https://www.alaintapiru.com/blog/${post.slug}/`,
+    image: post.heroImage?.src || '/og-image.jpg',
+    type: 'article',
   })
 }
 
@@ -41,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }))
 
   // Schema Graph for Google & AI Search Engines
-  const articleSchema = {
+  const articleSchema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
@@ -63,6 +66,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       '@type': 'WebPage',
       '@id': `https://www.alaintapiru.com/blog/${post.slug}/`,
     },
+  }
+
+  // Add hero image to schema when present
+  if (post.heroImage) {
+    articleSchema.image = {
+      '@type': 'ImageObject',
+      url: `https://www.alaintapiru.com${post.heroImage.src}`,
+      description: post.heroImage.alt,
+    }
   }
 
   return (
@@ -115,6 +127,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
       </header>
+
+      {/* Hero Image */}
+      {post.heroImage && (
+        <figure className="w-full max-w-4xl rounded-2xl overflow-hidden border border-white/10 shadow-lg motion-reveal">
+          <Image
+            src={post.heroImage.src}
+            alt={post.heroImage.alt}
+            width={1200}
+            height={630}
+            priority
+            className="w-full h-auto object-cover"
+          />
+          {(post.heroImage.caption || post.heroImage.attribution) && (
+            <figcaption className="px-4 py-3 bg-surface-1/80 text-xs font-sans text-on-surface/60 flex items-center justify-between gap-4">
+              {post.heroImage.caption && <span>{post.heroImage.caption}</span>}
+              {post.heroImage.attribution && (
+                <span className="text-on-surface/40 italic shrink-0">{post.heroImage.attribution}</span>
+              )}
+            </figcaption>
+          )}
+        </figure>
+      )}
 
       {/* Main 2-Column Layout (Content + Sticky Table of Contents Sidebar) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -171,6 +205,46 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       </li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {/* Section Image */}
+              {section.image && (
+                <figure className="w-full rounded-2xl overflow-hidden border border-white/10 shadow-lg my-6">
+                  <Image
+                    src={section.image.src}
+                    alt={section.image.alt}
+                    width={800}
+                    height={450}
+                    loading="lazy"
+                    className="w-full h-auto object-cover"
+                  />
+                  {(section.image.caption || section.image.attribution) && (
+                    <figcaption className="px-4 py-3 bg-surface-1/80 text-xs font-sans text-on-surface/60 flex items-center justify-between gap-4">
+                      {section.image.caption && <span>{section.image.caption}</span>}
+                      {section.image.attribution && (
+                        <span className="text-on-surface/40 italic shrink-0">{section.image.attribution}</span>
+                      )}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
+              {/* Source Attribution */}
+              {section.sources && section.sources.length > 0 && (
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-2 text-xs font-sans text-on-surface/40">
+                  <span className="font-heading uppercase tracking-[0.08em] font-semibold text-on-surface/30">Sources:</span>
+                  {section.sources.map((source, sIdx) => (
+                    <a
+                      key={sIdx}
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className="text-on-surface/50 hover:text-primary-container transition-colors underline underline-offset-2 decoration-on-surface/20 hover:decoration-primary-container/50"
+                    >
+                      {source.label}
+                    </a>
+                  ))}
                 </div>
               )}
             </section>

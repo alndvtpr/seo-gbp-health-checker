@@ -19,11 +19,13 @@ export const generateMetadata = ({
   description,
   url,
   image = '/og-image.jpg',
+  type = 'website',
 }: {
   title: string
   description?: string
   url?: string
   image?: string
+  type?: 'website' | 'article'
 }): Metadata => {
   const siteName = 'Alain Dave Tapiru'
   const fullTitle = title
@@ -61,7 +63,7 @@ export const generateMetadata = ({
           alt: fullTitle,
         },
       ],
-      type: 'website',
+      type,
     },
     twitter: {
       card: 'summary_large_image',
