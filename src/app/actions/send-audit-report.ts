@@ -3,79 +3,79 @@
 import { z } from 'zod'
 
 const publicCheckSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   label: z.string(),
-  status: z.enum(['passed', 'failed', 'warning']),
-  value: z.string().optional(),
-  scoreEarned: z.number(),
-  maxScore: z.number(),
-  impactMessage: z.string(),
+  status: z.enum(['passed', 'failed', 'warning']).or(z.string()),
+  value: z.string().nullable().optional(),
+  scoreEarned: z.number().optional().default(0),
+  maxScore: z.number().optional().default(10),
+  impactMessage: z.string().optional().default(''),
 })
 
 const pillarSchema = z.object({
   name: z.string(),
-  score: z.number(),
-  maxScore: z.number(),
-  details: z.array(z.string()).optional(),
+  score: z.number().optional().default(0),
+  maxScore: z.number().optional().default(30),
+  details: z.array(z.string()).nullable().optional().default([]),
 })
 
 const actionItemSchema = z.object({
-  priority: z.enum(['high', 'medium', 'low', 'passed']),
+  priority: z.enum(['high', 'medium', 'low', 'passed']).or(z.string()).optional().default('medium'),
   message: z.string(),
 })
 
 const competitorSchema = z.object({
   name: z.string(),
-  rating: z.number().optional(),
-  reviews: z.number().optional(),
-  position: z.number(),
-  category: z.string().optional(),
+  rating: z.union([z.number(), z.string().transform(Number), z.null()]).optional(),
+  reviews: z.union([z.number(), z.string().transform(Number), z.null()]).optional(),
+  position: z.number().optional().default(1),
+  category: z.string().nullable().optional(),
 })
 
 const websiteSeoSchema = z.object({
-  url: z.string(),
+  url: z.string().nullable().optional(),
   title: z.string().nullable().optional(),
   metaDescription: z.string().nullable().optional(),
-  status: z.enum(['success', 'error', 'no_website']).optional(),
+  status: z.enum(['success', 'error', 'no_website']).or(z.string()).nullable().optional(),
 })
 
 const reviewTemplatesSchema = z.object({
-  positive: z.string(),
-  constructive: z.string(),
+  positive: z.string().nullable().optional(),
+  constructive: z.string().nullable().optional(),
 })
 
 const categoryBenchmarkSchema = z.object({
-  isCategoryAlignedWithTopCompetitors: z.boolean().optional(),
-  topCompetitorCategories: z.array(z.string()).optional(),
-  categoryOptimizationTip: z.string().optional(),
-  rawGoogleCategory: z.string().optional(),
-  isCategoryMismatchDetected: z.boolean().optional(),
-  recommendedPrimaryCategory: z.string().optional(),
-  recommendedSecondaryCategories: z.array(z.string()).optional(),
+  isCategoryAlignedWithTopCompetitors: z.boolean().nullable().optional(),
+  topCompetitorCategories: z.array(z.string()).nullable().optional(),
+  categoryOptimizationTip: z.string().nullable().optional(),
+  rawGoogleCategory: z.string().nullable().optional(),
+  isCategoryMismatchDetected: z.boolean().nullable().optional(),
+  recommendedPrimaryCategory: z.string().nullable().optional(),
+  recommendedSecondaryCategories: z.array(z.string()).nullable().optional(),
 })
 
 const auditEmailSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  businessName: z.string().min(1, 'Business name is required'),
-  location: z.string().optional(),
-  totalScore: z.number(),
-  grade: z.string(),
-  primaryCategory: z.string().optional(),
-  additionalCategories: z.array(z.string()).optional(),
-  foundInMapPack: z.boolean().optional(),
+  email: z.string().trim().toLowerCase().email('Please enter a valid email address'),
+  businessName: z.string().trim().min(1, 'Business name is required'),
+  location: z.string().nullable().optional(),
+  totalScore: z.union([z.number(), z.string().transform(Number)]),
+  grade: z.string().optional().default('N/A'),
+  primaryCategory: z.string().nullable().optional(),
+  additionalCategories: z.array(z.string()).nullable().optional(),
+  foundInMapPack: z.boolean().nullable().optional(),
   mapPackPosition: z.number().nullable().optional(),
-  pillars: z.array(pillarSchema).optional(),
-  publicChecks: z.array(publicCheckSchema).optional(),
-  actionItems: z.array(actionItemSchema).optional(),
-  competitors: z.array(competitorSchema).optional(),
-  websiteSeo: websiteSeoSchema.optional(),
-  aiRecommendations: z.string().optional(),
-  aiDescription: z.string().optional(),
-  aiReviewTemplates: reviewTemplatesSchema.optional(),
-  aiKeywords: z.array(z.string()).optional(),
-  categoryBenchmark: categoryBenchmarkSchema.optional(),
-  topActionItems: z.array(z.string()).optional(),
-  hp_website: z.string().optional(),
+  pillars: z.array(pillarSchema).nullable().optional(),
+  publicChecks: z.array(publicCheckSchema).nullable().optional(),
+  actionItems: z.array(actionItemSchema).nullable().optional(),
+  competitors: z.array(competitorSchema).nullable().optional(),
+  websiteSeo: websiteSeoSchema.nullable().optional(),
+  aiRecommendations: z.string().nullable().optional(),
+  aiDescription: z.string().nullable().optional(),
+  aiReviewTemplates: reviewTemplatesSchema.nullable().optional(),
+  aiKeywords: z.array(z.string()).nullable().optional(),
+  categoryBenchmark: categoryBenchmarkSchema.nullable().optional(),
+  topActionItems: z.array(z.string()).nullable().optional(),
+  hp_website: z.string().nullable().optional(),
 })
 
 export type AuditEmailData = z.infer<typeof auditEmailSchema>
@@ -83,6 +83,7 @@ export type AuditEmailData = z.infer<typeof auditEmailSchema>
 export interface SendAuditResponse {
   success: boolean
   error?: string
+  warning?: string
 }
 
 const DEFAULT_GOOGLE_SHEET_WEBHOOK_URL =
@@ -695,86 +696,98 @@ export async function sendAuditReportAction(data: AuditEmailData): Promise<SendA
   }
 
   // 1. Google Sheets Webhook Dispatch (Lead Logging)
-  try {
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-      redirect: 'follow',
-      cache: 'no-store',
-      signal: AbortSignal.timeout(15000),
-    })
+  const sheetPromise = (async () => {
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+        redirect: 'follow',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(8000),
+      })
 
-    if (!response.ok) {
-      console.warn(`Google Sheet Webhook returned HTTP ${response.status}`)
+      if (!response.ok) {
+        console.warn(`Google Sheet Webhook returned HTTP ${response.status}`)
+      }
+    } catch (error) {
+      console.error('Google Sheet Webhook audit submission error:', error)
     }
-  } catch (error) {
-    console.error('Google Sheet Webhook audit submission error:', error)
-  }
+  })()
 
   // 2. Resend Email Dispatch
   const resendApiKey = process.env.RESEND_API_KEY
   const resendFrom = process.env.RESEND_FROM_EMAIL || 'GBP Health Checker <onboarding@resend.dev>'
   const ownerRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
 
-  if (resendApiKey) {
+  const resendPromise = (async () => {
+    if (!resendApiKey) {
+      console.warn(
+        `[sendAuditReportAction] RESEND_API_KEY environment variable is not configured. Audit report could not be emailed to ${email}. Lead was recorded to Google Sheets.`,
+      )
+      return
+    }
+
     try {
       const emailHtml = generateAuditEmailHtml(validatedData)
       const emailText = generateAuditEmailText(validatedData)
 
-      // Dispatch 1: Send comprehensive report directly to recipient user
-      const userResend = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: resendFrom,
-          to: email,
-          reply_to: ownerRecipient,
-          subject: `📊 Complete GBP Audit & Growth Blueprint: ${businessName} (${totalScore}/100 - Grade ${grade})`,
-          html: emailHtml,
-          text: emailText,
+      // Concurrently dispatch to recipient user and site owner
+      const [userResendResult, ownerResendResult] = await Promise.allSettled([
+        fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: resendFrom,
+            to: email,
+            reply_to: ownerRecipient,
+            subject: `📊 Complete GBP Audit & Growth Blueprint: ${businessName} (${totalScore}/100 - Grade ${grade})`,
+            html: emailHtml,
+            text: emailText,
+          }),
         }),
-      })
+        fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: resendFrom,
+            to: ownerRecipient,
+            reply_to: email,
+            subject: `⚡ New GBP Audit Lead: ${businessName} (${totalScore}/100 - Grade ${grade})`,
+            html: emailHtml,
+            text: emailText,
+          }),
+        }),
+      ])
 
-      if (!userResend.ok) {
-        const errorText = await userResend.text()
-        console.error(`Resend user email delivery error (HTTP ${userResend.status}):`, errorText)
+      if (userResendResult.status === 'fulfilled' && !userResendResult.value.ok) {
+        const errorText = await userResendResult.value.text()
+        console.error(`Resend user email delivery error (HTTP ${userResendResult.value.status}):`, errorText)
+      } else if (userResendResult.status === 'rejected') {
+        console.error('Resend user email fetch rejected:', userResendResult.reason)
       }
 
-      // Dispatch 2: Send lead notification to site owner
-      const ownerResend = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: resendFrom,
-          to: ownerRecipient,
-          reply_to: email,
-          subject: `⚡ New GBP Audit Lead: ${businessName} (${totalScore}/100 - Grade ${grade})`,
-          html: emailHtml,
-          text: emailText,
-        }),
-      })
-
-      if (!ownerResend.ok) {
-        const errorText = await ownerResend.text()
-        console.error(`Resend owner notification delivery error (HTTP ${ownerResend.status}):`, errorText)
+      if (ownerResendResult.status === 'fulfilled' && !ownerResendResult.value.ok) {
+        const errorText = await ownerResendResult.value.text()
+        console.error(`Resend owner notification delivery error (HTTP ${ownerResendResult.value.status}):`, errorText)
+      } else if (ownerResendResult.status === 'rejected') {
+        console.error('Resend owner notification fetch rejected:', ownerResendResult.reason)
       }
     } catch (resendErr) {
       console.error('Resend audit dispatch error:', resendErr)
     }
-  } else {
-    console.warn(
-      `[sendAuditReportAction] RESEND_API_KEY environment variable is not configured. Audit report could not be emailed to ${email}. Lead was recorded to Google Sheets.`,
-    )
-  }
+  })()
+
+  // Concurrently await both dispatches
+  await Promise.allSettled([sheetPromise, resendPromise])
 
   return { success: true }
 }

@@ -287,6 +287,7 @@ export function GBPHealthChecker() {
   const [activeTab, setActiveTab] = useState<'roadmap' | 'description' | 'templates' | 'keywords'>('roadmap')
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
   const [emailInput, setEmailInput] = useState('')
+  const [emailModalError, setEmailModalError] = useState<string | null>(null)
   const [isSendingEmail, setIsSendingEmail] = useState(false)
   const [emailSentSuccess, setEmailSentSuccess] = useState(false)
 
@@ -298,17 +299,24 @@ export function GBPHealthChecker() {
     setResult(null)
     setIsEmailModalOpen(false)
     setEmailSentSuccess(false)
+    setEmailModalError(null)
   }, [])
 
   const handleSendEmailReport = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!emailInput || !result) return
+    setEmailModalError(null)
+    const cleanEmail = emailInput.trim().toLowerCase()
+    if (!cleanEmail) {
+      setEmailModalError('Please enter a valid email address.')
+      return
+    }
+    if (!result) return
 
     setIsSendingEmail(true)
     try {
       const res = await sendAuditReportAction({
-        email: emailInput,
-        businessName: result.businessName || 'Business',
+        email: cleanEmail,
+        businessName: (result.businessName || 'Business').trim(),
         location: result.location,
         totalScore: result.totalScore,
         grade: result.grade,
@@ -334,12 +342,16 @@ export function GBPHealthChecker() {
         setTimeout(() => {
           setIsEmailModalOpen(false)
           setEmailSentSuccess(false)
+          setEmailInput('')
+          setEmailModalError(null)
         }, 2200)
       } else {
+        setEmailModalError(res.error || 'Failed to dispatch email. Please try again.')
         setToastMsg({ message: res.error || 'Failed to dispatch email. Please try again.', type: 'error' })
       }
     } catch (err) {
       console.error('Email dispatch error:', err)
+      setEmailModalError('Error connecting to email service. Please try again.')
       setToastMsg({ message: 'Error sending email report. Please try again.', type: 'error' })
     } finally {
       setIsSendingEmail(false)
@@ -552,167 +564,197 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           ]
 
     return createPortal(
-      <div
-        id="gbp-audit-modal-portal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="gbp-modal-title"
-        className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto"
-        style={{ zIndex: 999999 }}
-        onClick={closeModal}
-      >
+      <>
+        {toastMsg && (
+          <Toast
+            message={toastMsg.message}
+            type={toastMsg.type}
+            onClose={() => setToastMsg(null)}
+          />
+        )}
         <div
-          id="gbp-audit-modal-container"
-          className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-background border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
-          onClick={(e) => e.stopPropagation()}
+          id="gbp-audit-modal-portal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="gbp-modal-title"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto"
+          style={{ zIndex: 999999 }}
+          onClick={closeModal}
         >
-          {/* ── Top Header / Branding Bar ── */}
-          <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-white/10 bg-surface-1 z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
-            <div className="space-y-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-primary-container/15 text-primary-container border border-primary-container/30">
-                  <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
-                </span>
-                {result.primaryCategory && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                    🏷️ {result.primaryCategory}
+          <div
+            id="gbp-audit-modal-container"
+            className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-background border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* ── Top Header / Branding Bar ── */}
+            <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-white/10 bg-surface-1 z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
+              <div className="space-y-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-primary-container/15 text-primary-container border border-primary-container/30">
+                    <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
                   </span>
-                )}
-                {result.categoryBenchmark?.isCategoryMismatchDetected && result.categoryBenchmark.rawGoogleCategory && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-400 border border-amber-500/30">
-                    ⚠️ Tagged as &quot;{result.categoryBenchmark.rawGoogleCategory}&quot; on Maps
+                  {result.primaryCategory && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                      🏷️ {result.primaryCategory}
+                    </span>
+                  )}
+                  {result.categoryBenchmark?.isCategoryMismatchDetected && result.categoryBenchmark.rawGoogleCategory && (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                      ⚠️ Tagged as &quot;{result.categoryBenchmark.rawGoogleCategory}&quot; on Maps
+                    </span>
+                  )}
+                  <span className="text-[11px] font-sans text-on-surface/60">•</span>
+                  <span className="text-[11px] font-sans text-on-surface/70 font-medium truncate">
+                    {result.location}
                   </span>
-                )}
-                <span className="text-[11px] font-sans text-on-surface/60">•</span>
-                <span className="text-[11px] font-sans text-on-surface/70 font-medium truncate">
-                  {result.location}
-                </span>
-                <span className="hidden print:inline-block text-[11px] font-sans text-on-surface/60">•</span>
-                <span className="hidden print:inline-block text-[11px] font-sans text-primary-container font-semibold">
-                  Audited on {auditDateStr}
-                </span>
+                  <span className="hidden print:inline-block text-[11px] font-sans text-on-surface/60">•</span>
+                  <span className="hidden print:inline-block text-[11px] font-sans text-primary-container font-semibold">
+                    Audited on {auditDateStr}
+                  </span>
+                </div>
+                <h2
+                  id="gbp-modal-title"
+                  className="font-heading font-extrabold text-lg sm:text-2xl md:text-3xl text-on-surface truncate"
+                >
+                  {result.businessName}
+                </h2>
               </div>
-              <h2
-                id="gbp-modal-title"
-                className="font-heading font-extrabold text-lg sm:text-2xl md:text-3xl text-on-surface truncate"
-              >
-                {result.businessName}
-              </h2>
+
+              <div className="no-print flex items-center flex-wrap gap-2.5 shrink-0">
+                {/* Email Report Button */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmailModalError(null)
+                    setIsEmailModalOpen(true)
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary-container/15 hover:bg-primary-container/25 text-primary-container border border-primary-container/30 text-xs font-heading font-bold transition-all cursor-pointer shadow-sm"
+                  title="Send audit summary to your email"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Email Report</span>
+                </button>
+
+                {/* Print / Save PDF Button */}
+                <button
+                  type="button"
+                  onClick={handleExportPdf}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface/80 hover:text-white transition-all cursor-pointer shadow-sm"
+                  title={`Export as ${((result.businessName || 'Business').trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '') || 'Business')}_Audit.pdf`}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Export PDF</span>
+                </button>
+
+                {/* Exit / Close Button */}
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="inline-flex items-center gap-1.5 bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 hover:text-rose-300 rounded-xl px-4 py-2 transition-all shadow-[0_0_20px_rgba(244,63,94,0.15)] border border-rose-500/30 font-heading font-bold text-xs uppercase tracking-wider group cursor-pointer"
+                  aria-label="Close dashboard"
+                >
+                  <span>Exit</span>
+                  <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300" />
+                </button>
+              </div>
             </div>
 
-            <div className="no-print flex items-center flex-wrap gap-2.5 shrink-0">
-              {/* Email Report Button */}
-              <button
-                type="button"
-                onClick={() => setIsEmailModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary-container/15 hover:bg-primary-container/25 text-primary-container border border-primary-container/30 text-xs font-heading font-bold transition-all cursor-pointer shadow-sm"
-                title="Send audit summary to your email"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email Report</span>
-              </button>
-
-              {/* Print / Save PDF Button */}
-              <button
-                type="button"
-                onClick={handleExportPdf}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface/80 hover:text-white transition-all cursor-pointer shadow-sm"
-                title={`Export as ${((result.businessName || 'Business').trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '') || 'Business')}_Audit.pdf`}
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Export PDF</span>
-              </button>
-
-              {/* Exit / Close Button */}
-              <button
-                type="button"
-                onClick={closeModal}
-                className="inline-flex items-center gap-1.5 bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 hover:text-rose-300 rounded-xl px-4 py-2 transition-all shadow-[0_0_20px_rgba(244,63,94,0.15)] border border-rose-500/30 font-heading font-bold text-xs uppercase tracking-wider group cursor-pointer"
-                aria-label="Close dashboard"
-              >
-                <span>Exit</span>
-                <X className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300" />
-              </button>
-            </div>
-          </div>
-
-          {/* Email Report Dialog Overlay */}
-          {isEmailModalOpen && (
-            <div
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
-              onClick={() => setIsEmailModalOpen(false)}
-            >
+            {/* Email Report Dialog Overlay */}
+            {isEmailModalOpen && (
               <div
-                className="w-full max-w-md bg-surface-1 border border-primary-container/40 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200 text-left relative"
-                onClick={(e) => e.stopPropagation()}
+                className="fixed inset-0 bg-black/85 backdrop-blur-md z-[1000001] flex items-center justify-center p-4 animate-in fade-in duration-200"
+                onClick={() => {
+                  setIsEmailModalOpen(false)
+                  setEmailModalError(null)
+                }}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-primary-container font-heading text-xs font-bold uppercase tracking-[0.08em]">
-                    <Mail className="w-4 h-4" />
-                    <span>Executive Audit Dispatch</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setIsEmailModalOpen(false)}
-                    className="text-on-surface/50 hover:text-white transition-colors cursor-pointer"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-
-                <div className="space-y-1.5">
-                  <h3 className="font-heading text-xl font-bold text-on-surface">
-                    Receive {result.businessName}&apos;s Audit Summary
-                  </h3>
-                  <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
-                    Enter your email to receive an executive recap including the {result.totalScore}/100 Health Score, category benchmark, and top action items.
-                  </p>
-                </div>
-
-                {emailSentSuccess ? (
-                  <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-sans flex items-center gap-2">
-                    <Check className="w-4 h-4 shrink-0 text-emerald-400" />
-                    <span>Report successfully dispatched! Check your inbox shortly.</span>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSendEmailReport} className="space-y-3.5">
-                    <div>
-                      <label className="font-heading text-[11px] uppercase tracking-wider text-on-surface/75 block mb-1.5 font-semibold">
-                        Your Email Address <span className="text-primary-container">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        value={emailInput}
-                        onChange={(e) => setEmailInput(e.target.value)}
-                        placeholder="e.g. founder@company.com"
-                        required
-                        disabled={isSendingEmail}
-                        className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-on-surface focus:outline-none focus:border-primary-container transition-all"
-                      />
+                <div
+                  className="w-full max-w-md bg-surface-1 border border-primary-container/40 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200 text-left relative z-10"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-primary-container font-heading text-xs font-bold uppercase tracking-[0.08em]">
+                      <Mail className="w-4 h-4" />
+                      <span>Executive Audit Dispatch</span>
                     </div>
-
                     <button
-                      type="submit"
-                      disabled={isSendingEmail || !emailInput}
-                      className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-3.5 rounded-xl shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      type="button"
+                      onClick={() => {
+                        setIsEmailModalOpen(false)
+                        setEmailModalError(null)
+                      }}
+                      className="text-on-surface/50 hover:text-white transition-colors cursor-pointer"
                     >
-                      {isSendingEmail ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>Sending Report...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Send Free Audit Report</span>
-                          <Send className="w-3.5 h-3.5" />
-                        </>
-                      )}
+                      <X className="w-4 h-4" />
                     </button>
-                  </form>
-                )}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <h3 className="font-heading text-xl font-bold text-on-surface">
+                      Receive {result.businessName}&apos;s Audit Summary
+                    </h3>
+                    <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                      Enter your email to receive an executive recap including the {result.totalScore}/100 Health Score, category benchmark, and top action items.
+                    </p>
+                  </div>
+
+                  {emailModalError && (
+                    <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-sans flex items-center gap-2">
+                      <span className="shrink-0 font-bold text-sm">⚠</span>
+                      <span>{emailModalError}</span>
+                    </div>
+                  )}
+
+                  {emailSentSuccess ? (
+                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-sans flex items-center gap-2">
+                      <Check className="w-4 h-4 shrink-0 text-emerald-400" />
+                      <span>Report successfully dispatched! Check your inbox shortly.</span>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSendEmailReport} className="space-y-3.5">
+                      <div>
+                        <label className="font-heading text-[11px] uppercase tracking-wider text-on-surface/75 block mb-1.5 font-semibold">
+                          Your Email Address <span className="text-primary-container">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          value={emailInput}
+                          onChange={(e) => {
+                            setEmailInput(e.target.value)
+                            if (emailModalError) setEmailModalError(null)
+                          }}
+                          placeholder="e.g. founder@company.com"
+                          required
+                          autoComplete="email"
+                          inputMode="email"
+                          autoFocus
+                          disabled={isSendingEmail}
+                          className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-on-surface focus:outline-none focus:border-primary-container transition-all"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSendingEmail || !emailInput.trim()}
+                        className="w-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] py-3.5 rounded-xl shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        {isSendingEmail ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            <span>Sending Report...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Send Free Audit Report</span>
+                            <Send className="w-3.5 h-3.5" />
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
           {/* ── Scrollable Dashboard Body ── */}
           <div
@@ -1419,7 +1461,10 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 </a>
                 <button
                   type="button"
-                  onClick={() => setIsEmailModalOpen(true)}
+                  onClick={() => {
+                    setEmailModalError(null)
+                    setIsEmailModalOpen(true)
+                  }}
                   className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all text-center flex items-center justify-center gap-2 min-h-[44px] cursor-pointer"
                 >
                   <Mail className="w-3.5 h-3.5 text-primary-container" />
@@ -1430,7 +1475,8 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
           </div>
         </div>
-      </div>,
+      </div>
+      </>,
       document.body,
     )
   }
