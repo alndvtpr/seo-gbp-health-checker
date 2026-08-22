@@ -7,9 +7,9 @@ import { AboutCredentials } from '@/components/AboutCredentials'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'About Alain Dave Tapiru | SEO Specialist in the Philippines',
+  title: 'About Alain Dave Tapiru | SEO Specialist & Web Developer',
   description:
-    'Meet Alain Dave Tapiru, an SEO Specialist and Technical Web Designer in the Philippines with hands-on experience in technical SEO, local search, and modern web builds.',
+    'Meet Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines building his SEO career through hands-on technical SEO, local search, and modern web projects.',
   url: 'https://www.alaintapiru.com/about/',
 })
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
           Building Search-Ready Websites &amp; Practical SEO Solutions
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          I am an SEO Specialist, Technical Web Designer, and BSIT student specializing in Network &amp; Cybersecurity.
+          I am an SEO Specialist, Technical Web Developer, and BSIT student specializing in Network &amp; Cybersecurity.
         </p>
       </div>
 
@@ -57,6 +57,9 @@ export default function AboutPage() {
             </p>
             <p>
               As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frontend frameworks like Next.js and WordPress. I believe an effective website should be easy for search engines to crawl, fast for users to navigate, and built on reliable, secure foundations.
+            </p>
+            <p>
+              I am actively open to opportunities to contribute to forward-thinking SEO and digital teams—whether as an SEO Specialist, Technical SEO Trainee, or Web/SEO Assistant. I bring proactive self-direction, rapid execution, and a strong desire to learn and grow alongside experienced professionals.
             </p>
           </div>
 

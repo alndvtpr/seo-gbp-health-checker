@@ -28,7 +28,7 @@ export interface BlogPost {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'how-to-achieve-99-pagespeed-nextjs',
-    title: 'How I Engineered a 99/100 Core Web Vitals Score on Next.js 15',
+    title: 'How I Optimized for a 99/100 Core Web Vitals Score on Next.js 15',
     category: 'Technical SEO & Web Perf',
     date: 'August 2026',
     datePublished: '2026-08-15',
@@ -257,7 +257,7 @@ export function scheduleIdleTask(callback: () => void, timeout = 8000) {
       "@type": "Person",
       "@id": "https://www.alaintapiru.com/#person",
       "name": "Alain Dave Tapiru",
-      "jobTitle": "Technical SEO Specialist"
+      "jobTitle": "SEO Specialist & Web Developer"
     },
     {
       "@type": "WebSite",

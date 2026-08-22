@@ -30,13 +30,13 @@ export function ServicesHero() {
         id="services-hero-heading"
         className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-6 motion-reveal"
       >
-        <span className="font-extrabold text-on-surface">Get Found on Google, Bing,</span>{' '}
-        <span className="font-medium text-on-surface/85">and AI Search Engines.</span>
+        <span className="font-extrabold text-on-surface">Build Faster, Search-Smarter Websites</span>{' '}
+        <span className="font-medium text-on-surface/85">Ready for Modern Discovery.</span>
       </h1>
 
       {/* Subheadline */}
       <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-        I build fast, responsive websites and deploy practical SEO, AEO, and GEO strategies designed to improve search visibility, support organic traffic, and optimize content for modern search.
+        I build fast, responsive websites and deploy practical SEO, structured data, and performance optimization across traditional and AI-assisted search.
       </p>
 
       {/* Action Row */}
@@ -45,7 +45,7 @@ export function ServicesHero() {
           href="/contact/"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          Book a Free Strategy Call
+          Book a Free Discovery Call
           <Icon name="arrow_forward" size={16} className="btn-icon" />
         </Link>
 

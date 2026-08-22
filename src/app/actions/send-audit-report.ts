@@ -493,11 +493,11 @@ function generateAuditEmailHtml(data: AuditEmailData): string {
                       Want Alain to Execute This Local SEO Sprint For You?
                     </h4>
                     <p style="margin: 0 0 16px 0; font-size: 13px; color: #d1d5db; line-height: 1.5; max-width: 480px; display: inline-block;">
-                      I specialize in fixing local search citations, accelerating 5-star review velocity, optimizing primary/secondary categories, and dominating the Google 3-Pack.
+                      I focus on resolving local search citation inconsistencies, optimizing primary/secondary categories, and strengthening Google Map Pack visibility.
                     </p>
                     <div>
                       <a href="https://www.alaintapiru.com/contact/" style="background-color: #e07b20; color: #ffffff; text-decoration: none; padding: 13px 26px; border-radius: 8px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; display: inline-block; box-shadow: 0 4px 16px rgba(224, 123, 32, 0.45);">
-                        Book 1-on-1 Strategy Call
+                        Book a Free Discovery Call
                       </a>
                     </div>
                   </td>
@@ -511,7 +511,7 @@ function generateAuditEmailHtml(data: AuditEmailData): string {
           <tr>
             <td style="padding: 22px 28px; background-color: #0d0f14; border-top: 1px solid #262b36; text-align: center;">
               <p style="margin: 0 0 6px 0; font-size: 12px; color: #9ca3af; font-weight: 500;">
-                Alain Dave G. Tapiru • Technical SEO &amp; Full-Stack Web Specialist
+                Alain Dave G. Tapiru • SEO Specialist &amp; Web Developer
               </p>
               <p style="margin: 0; font-size: 11px; color: #6b7280;">
                 <a href="https://www.alaintapiru.com" style="color: #e07b20; text-decoration: none; font-weight: 600;">alaintapiru.com</a> • <a href="mailto:alaintapiru@gmail.com" style="color: #e07b20; text-decoration: none; font-weight: 600;">alaintapiru@gmail.com</a>
@@ -637,14 +637,14 @@ MAP PACK RANK: ${foundInMapPack ? `Ranked #${mapPackPosition} in Local Map Pack`
   }
 
   text += `${divider}
-READY TO DOMINATE YOUR LOCAL MAP PACK?
+READY TO STRENGTHEN YOUR LOCAL MAP PACK VISIBILITY?
 ${divider}
-Book a 1-on-1 strategy call with Alain Dave Tapiru:
+Book a discovery call with Alain Dave Tapiru:
 https://www.alaintapiru.com/contact/
 
 Direct Contact:
 Alain Dave G. Tapiru
-Technical SEO & Full-Stack Web Specialist
+SEO Specialist & Web Developer
 Email: alaintapiru@gmail.com
 Website: https://www.alaintapiru.com
 `

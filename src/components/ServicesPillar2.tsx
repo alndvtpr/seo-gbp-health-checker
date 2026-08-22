@@ -41,15 +41,15 @@ const PILLAR_2_SERVICES: Pillar2Service[] = [
   {
     id: 'aeo-geo-optimization',
     title: 'AEO & GEO (Answer & Generative Engine Optimization)',
-    subhead: 'Structure content for search snippets and emerging AI search responses.',
+    subhead: 'Structure content for search snippets and emerging AI search experiences.',
     badge: 'Next-Gen Search',
     isFeatured: true,
     icon: 'auto_awesome',
-    ctaText: 'Optimize for AI Search',
+    ctaText: 'Structure Content for AI Search',
     deliverables: [
       'Direct answer formatting for Featured Snippets & "People Also Ask"',
       'Information-dense, source-citable content structuring for LLMs',
-      'Brand entity footprint optimization across key digital touchpoints',
+      'Brand entity structuring across key digital touchpoints',
     ],
   },
 ]
@@ -70,10 +70,10 @@ export function ServicesPillar2() {
           id="pillar-2-heading"
           className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
-          Engineered for Traditional Search &amp; Generative AI
+          Built for Traditional Search &amp; Emerging AI Discovery
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Improve search visibility across classic Google search results while structuring content for emerging AI search experiences in ChatGPT, Perplexity, and AI Overviews. Discover our full on-page execution in the{' '}
+          Strengthen search visibility across classic Google search results while structuring content for emerging AI search experiences in ChatGPT, Perplexity, and AI Overviews. Discover our full on-page execution in the{' '}
           <Link href="/projects/angat-sikat-studio/" className="text-primary-container font-semibold hover:underline">
             AngatSikat Studio Case Study
           </Link>.

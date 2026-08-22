@@ -83,9 +83,9 @@ export const angatSikatProject: Project = {
     'Elementor Compatible',
   ],
   metrics: [
-    { label: 'Mobile Speed', value: '98+', detail: 'Lightweight PHP theme build' },
-    { label: 'Crawl Cleanliness', value: '100%', detail: 'Semantic HTML5 outline' },
-    { label: 'Load Duration', value: '<1.2s', detail: 'Zero template bloat' },
+    { label: 'Mobile Speed', value: '98+', detail: 'Lighthouse Performance Score' },
+    { label: 'Crawl Cleanliness', value: '100%', detail: 'Semantic HTML5 structure' },
+    { label: 'Load Duration', value: '<1.2s', detail: 'Local benchmark test' },
   ],
   image: '/images/projects/angat-sikat-homepage-preview.webp',
   gallery: [
@@ -109,7 +109,7 @@ export const localSeoGbpProject: Project = {
     'An interactive, self-built Google Business Profile and local search diagnostic tool. Analyzes NAP consistency, rating metrics, review momentum, operating hours integrity, and outputs tailored 30-day dynamic SEO roadmaps.',
   category: 'Local SEO',
   tags: ['Local SEO', 'GBP Audit', 'Interactive Tool', 'Next.js', 'AI Insights'],
-  role: 'Developer & Local SEO Practitioner',
+  role: 'Developer & SEO Specialist',
   liveUrl: '/tools',
   featured: true,
   coreServices: [
@@ -133,9 +133,9 @@ export const localSeoGbpProject: Project = {
     },
   ],
   metrics: [
-    { label: 'Audit Speed', value: '3.2s', detail: 'Instant multi-signal scan' },
-    { label: 'Signal Vector', value: '10 Points', detail: 'Category, NAP, hours, rating, photos' },
-    { label: 'Report Format', value: '3 Pages', detail: 'Printable executive PDF roadmap' },
+    { label: 'Audit Speed', value: '3.2s', detail: 'Places API diagnostic runtime' },
+    { label: 'Signal Vector', value: '10 Points', detail: 'Public profile trust indicators' },
+    { label: 'Report Format', value: '3 Pages', detail: 'Executive PDF roadmap export' },
   ],
   techStack: ['Next.js', 'React', 'Tailwind CSS', 'Serper Places API', 'Google AI Studio'],
   image: '/images/projects/local-seo-gbp-checker-preview.webp',
@@ -178,9 +178,9 @@ export const portfolioProject: Project = {
     },
   ],
   metrics: [
-    { label: 'Desktop PageSpeed', value: '99', detail: 'Verified Google PageSpeed Insights' },
-    { label: 'Mobile PageSpeed', value: '96', detail: 'Verified Google PageSpeed Insights' },
-    { label: 'SEO & Best Practices', value: '100/100', detail: 'Zero audit violations' },
+    { label: 'Desktop PageSpeed', value: '99', detail: 'Google PageSpeed Insights (Production)' },
+    { label: 'Mobile PageSpeed', value: '96', detail: 'Google PageSpeed Insights (Production)' },
+    { label: 'SEO & Best Practices', value: '100/100', detail: 'Lighthouse Production Audit' },
   ],
   techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Payload CMS 3.0', 'Supabase'],
   image: '/images/projects/alaintapiru-website-preview.webp',

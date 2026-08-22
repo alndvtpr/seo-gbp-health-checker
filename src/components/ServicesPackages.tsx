@@ -71,16 +71,16 @@ const PACKAGES: PackageTier[] = [
     name: 'Ongoing Monthly SEO Support',
     cadence: 'Ongoing Monthly Sprint',
     startingPrice: '$450 USD / mo (₱25,000 / mo)',
-    badge: 'Ongoing Retainer',
+    badge: 'Ongoing Support',
     targetAudience: 'Businesses looking for consistent monthly optimization, technical maintenance, and ongoing search improvements.',
     includes: [
-      'Dedicated 20–25 Hours / Month Focused Execution',
+      'Dedicated 20–25 Hours / Month Focused Execution Capacity',
       'Ongoing Technical & On-Page SEO Sprints',
       'Google Business Profile (GBP) & Local Search Maintenance',
-      'Monthly Strategy Call & Live Reporting Dashboard',
+      'Regular Review Call & Live Reporting Dashboard',
       'Transparent Hour-by-Hour Activity Log',
     ],
-    ctaText: 'Inquire About Monthly Retainer',
+    ctaText: 'Inquire About Monthly Support',
   },
 ]
 
@@ -100,7 +100,7 @@ export function ServicesPackages() {
           id="packages-heading"
           className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
-          Engineered for Practical Search &amp; Web Visibility
+          Structured for Clear Scope &amp; Real Deliverables
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
           Structured, process-driven solutions differentiated by technical stack—from specialized SEO sprints and responsive WordPress sites to custom Next.js builds.

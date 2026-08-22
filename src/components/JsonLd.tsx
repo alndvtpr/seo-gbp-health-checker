@@ -12,9 +12,9 @@ export const JsonLd = () => {
       alternateName: 'Alain Tapiru',
       url: 'https://www.alaintapiru.com/',
       image: 'https://www.alaintapiru.com/about_me.jpg',
-      jobTitle: 'SEO Specialist & Web Designer & Developer',
+      jobTitle: 'SEO Specialist & Web Developer',
       description:
-        'Data-driven SEO Specialist and Technical Web Designer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',
+        'SEO Specialist and Technical Web Developer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',
       email: 'mailto:alaintapiru@gmail.com',
       telephone: '+63-906-324-9560',
       address: {

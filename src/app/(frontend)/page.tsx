@@ -13,9 +13,9 @@ import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
-  title: 'SEO Specialist Philippines | Technical & Local SEO – Alain Dave Tapiru',
+  title: 'SEO Specialist & Web Developer Philippines | Alain Dave Tapiru',
   description:
-    'Build search-ready websites that get discovered. Alain Dave Tapiru provides practical technical, on-page, and local SEO solutions tailored for modern search.',
+    'Building search-ready websites that get discovered. Alain Dave Tapiru develops practical technical, on-page, and local SEO solutions tailored for modern search.',
   url: 'https://www.alaintapiru.com/',
 })
 
@@ -169,7 +169,7 @@ export default async function Page() {
                 About Alain Dave Tapiru
               </p>
               <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
-                Data-Driven SEO Specialist &amp; Technical Web Designer
+                SEO Specialist &amp; Technical Web Designer
               </h3>
             </div>
           </div>
@@ -205,10 +205,10 @@ export default async function Page() {
               </div>
               <div style={{ transitionDelay: '160ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
-                  24hr Response Time
+                  Dedicated Communication
                 </span>
                 <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-                  Dedicated, fast communication.
+                  Clear, responsive project updates.
                 </span>
               </div>
             </div>
@@ -257,7 +257,7 @@ export default async function Page() {
             {
               step: '02',
               title: 'Keyword Research',
-              desc: 'High-intent search query discovery tailored to target buyer personas and search volume dynamics.',
+              desc: 'High-intent search query discovery mapped to target user search demand and relevance.',
               icon: 'key',
               href: '/services/#pillar-visibility',
               linkLabel: 'Explore Keyword Intelligence',
@@ -265,7 +265,7 @@ export default async function Page() {
             {
               step: '03',
               title: 'Competitive Analysis',
-              desc: 'Deconstructing top-ranking competitor strategies, backlink profiles, and content gaps.',
+              desc: 'Analyzing top-ranking competitor strategies, backlink profiles, and content gaps.',
               icon: 'equalizer',
               href: '/services/#pillar-visibility',
               linkLabel: 'Explore Competitor Benchmarking',
@@ -281,7 +281,7 @@ export default async function Page() {
             {
               step: '05',
               title: 'Off-Page SEO',
-              desc: 'Authoritative backlink acquisition, brand mention building, and local citations.',
+              desc: 'Link research, local citation building, and digital presence consistency.',
               icon: 'hub',
               href: '/services/#pillar-execution',
               linkLabel: 'Explore Authority Link Building',
@@ -289,7 +289,7 @@ export default async function Page() {
             {
               step: '06',
               title: 'Reporting & Data Analysis',
-              desc: 'Monthly transparent rank tracking, conversion metrics, and continuous performance tuning.',
+              desc: 'Structured rank tracking, organic search metrics, and continuous performance review.',
               icon: 'monitoring',
               href: '/services/#pillar-execution',
               linkLabel: 'Explore Analytics & Reporting',

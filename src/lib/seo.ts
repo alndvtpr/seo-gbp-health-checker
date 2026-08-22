@@ -28,7 +28,7 @@ export const generateMetadata = ({
   const siteName = 'Alain Dave Tapiru'
   const fullTitle = title
   const defaultDesc =
-    'Build search-ready websites that get discovered. Alain Dave Tapiru provides practical technical, on-page, and local SEO solutions tailored for modern search.'
+    'Building search-ready websites that get discovered. Alain Dave Tapiru develops practical technical, on-page, and local SEO solutions tailored for modern search.'
   const canonicalUrl = normalizeCanonicalUrl(url)
 
   return {

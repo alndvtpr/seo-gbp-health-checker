@@ -15,7 +15,7 @@ const PILLAR_1_SERVICES: ServiceCardData[] = [
   {
     id: 'technical-seo-audit',
     title: 'Comprehensive SEO Website Audit & Diagnostics',
-    subhead: 'Uncover hidden technical bottlenecks before they cost you traffic.',
+    subhead: 'Identify hidden technical bottlenecks before they affect your search performance.',
     icon: 'search_check',
     ctaText: 'Request an Audit',
     deliverables: [

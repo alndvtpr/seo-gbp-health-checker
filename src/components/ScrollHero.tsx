@@ -367,7 +367,7 @@ export const ScrollHero = () => {
           </h1>
 
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface-variant drop-shadow-lg font-normal leading-relaxed max-w-2xl hero-animate-in hero-delay-3">
-            Building search-ready websites and practical SEO solutions while developing hands-on experience in technical and local search optimization.
+            Building search-ready websites through hands-on technical SEO, local search optimization, and modern web development.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-4 sm:pt-6 w-full hero-animate-in hero-delay-4">
