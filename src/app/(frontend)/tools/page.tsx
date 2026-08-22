@@ -176,7 +176,7 @@ export default function ToolsPage() {
           <WebsiteAuditRequestForm />
         </div>
 
-        {/* Tool 3: Local SEO / GBP Health Checker — fully interactive */}
+        {/* Tool 3: Local SEO / GBP Health Checker (fully interactive) */}
         <div style={{ transitionDelay: '100ms' }} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 motion-reveal">
           <div className="flex items-center justify-between">
             <Icon name="distance" size={36} className="text-primary-container" />

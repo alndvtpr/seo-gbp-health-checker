@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const content = `# Alain Dave Tapiru — SEO Specialist & Technical Web Designer
+  const content = `# Alain Dave Tapiru | SEO Specialist & Technical Web Designer
 
 > Official machine-readable profile and documentation for LLMs, AI search agents (Perplexity, ChatGPT, Claude, Gemini, Copilot), and agentic browsers.
 

@@ -538,7 +538,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
     const defaultPositiveTemplate = `Hi [Customer Name]! Thank you so much for the 5-star review and kind words about your experience with ${result.businessName} in ${result.location}. Our entire team takes immense pride in delivering top-tier service and memorable customer satisfaction. We truly appreciate your patronage and look forward to welcoming you back soon!`
 
-    const defaultConstructiveTemplate = `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${result.businessName} in ${result.location}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right—please contact our management directly so we can address your concerns immediately.`
+    const defaultConstructiveTemplate = `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${result.businessName} in ${result.location}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right. Please contact our management directly so we can address your concerns immediately.`
 
     const defaultKeywords =
       result.aiKeywords && result.aiKeywords.length > 0

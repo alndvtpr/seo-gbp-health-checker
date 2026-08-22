@@ -8,7 +8,7 @@ const SERVICES_JSON_LD = {
     {
       '@type': 'ProfessionalService',
       '@id': 'https://www.alaintapiru.com/#service',
-      name: 'Alain Tapiru — SEO, AEO, GEO & Web Development Services',
+      name: 'Alain Tapiru | SEO, AEO, GEO & Web Development Services',
       url: 'https://www.alaintapiru.com/services/',
       image: 'https://www.alaintapiru.com/about_me.jpg',
       priceRange: '$$',

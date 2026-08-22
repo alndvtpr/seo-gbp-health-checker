@@ -31,7 +31,7 @@ export async function generateMetadata({
   }
 
   return buildSeoMetadata({
-    title: `${project.title} — ${project.category} Project | Alain Dave Tapiru`,
+    title: `${project.title} | ${project.category} Project | Alain Dave Tapiru`,
     description: project.shortDescription,
     url: `https://www.alaintapiru.com/projects/${project.slug}/`,
   })
@@ -52,7 +52,7 @@ export default async function ProjectDetailPage({
   const projectJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${project.title} — ${project.category} Project Breakdown`,
+    headline: `${project.title}: ${project.category} Project Breakdown`,
     description: project.shortDescription,
     image: `https://www.alaintapiru.com${project.image}`,
     author: {

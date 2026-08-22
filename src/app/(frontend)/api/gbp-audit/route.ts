@@ -303,7 +303,7 @@ async function scrapeWebsite(url: string): Promise<WebsiteSeo> {
 
     const html = await res.text()
 
-    // Regex extraction — no cheerio needed
+    // Regex extraction (no cheerio needed)
     const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)
     const metaMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)/i) || 
                       html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["']/i)
@@ -825,7 +825,7 @@ function generateReviewResponseTemplates(
 ): ReviewTemplates {
   return {
     positive: `Hi [Customer Name]! Thank you so much for the 5-star review and kind words about your experience with ${businessName} in ${targetLocation}. Our entire team takes immense pride in delivering top-tier service and memorable customer satisfaction. We truly appreciate your patronage and look forward to welcoming you back soon!`,
-    constructive: `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${businessName} in ${targetLocation}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right—please contact our management directly so we can address your concerns immediately.`,
+    constructive: `Hello [Customer Name], thank you for taking the time to share your honest feedback regarding your visit to ${businessName} in ${targetLocation}. We strive to provide the best possible experience and sincerely regret that we fell short of your expectations. We would love the opportunity to make this right. Please contact our management directly so we can address your concerns immediately.`,
   }
 }
 

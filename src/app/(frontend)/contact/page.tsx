@@ -78,7 +78,7 @@ export default function ContactPage() {
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-3 font-semibold">
-          GET IN TOUCH — LET&apos;S CONNECT
+          GET IN TOUCH | LET&apos;S CONNECT
         </span>
         <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-4 sm:mb-6">
           <span className="font-extrabold text-on-surface">Let&apos;s talk </span>

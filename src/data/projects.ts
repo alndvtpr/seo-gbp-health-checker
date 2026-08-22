@@ -145,7 +145,7 @@ export const localSeoGbpProject: Project = {
 export const portfolioProject: Project = {
   id: 'alaintapiru-portfolio',
   slug: 'alaintapiru-portfolio',
-  title: 'AlainTapiru.com — Technical SEO & Web Project',
+  title: 'AlainTapiru.com: Technical SEO & Web Project',
   tagline: 'High-Performance Portfolio & Technical Architecture.',
   status: 'Completed',
   shortDescription:

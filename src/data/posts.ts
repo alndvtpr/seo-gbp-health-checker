@@ -37,7 +37,7 @@ export const BLOG_POSTS: BlogPost[] = [
       'A deep dive into zero-CPU ambient CSS styling, delayed script hydration, fast First Contentful Paint, and zero-CLS layout architectures.',
     content: {
       lead:
-        'Search engine optimization in 2026 requires solid technical performance. Google’s Core Web Vitals algorithms evaluate direct user experience metrics—Largest Contentful Paint (LCP), Interaction to Next Paint (INP), and Cumulative Layout Shift (CLS). Here is how I achieved a verified 99 Desktop and 96 Mobile PageSpeed score.',
+        'Search engine optimization in 2026 requires solid technical performance. Google’s Core Web Vitals algorithms evaluate direct user experience metrics: Largest Contentful Paint (LCP), Interaction to Next Paint (INP), and Cumulative Layout Shift (CLS). Here is how I achieved a verified 99 Desktop and 96 Mobile PageSpeed score.',
       sections: [
         {
           heading: '1. Eliminating Main-Thread Render Blocking',
@@ -60,7 +60,7 @@ export const BLOG_POSTS: BlogPost[] = [
           heading: '2. Zero-CLS Image Containers & AVIF Compression',
           body: [
             'Cumulative Layout Shift (CLS) occurs when visual elements pop into the DOM without reserved viewport bounding boxes. To achieve a 0.000 CLS score, every image container must enforce explicit aspect-ratio properties.',
-            'Furthermore, converting legacy raster images to modern AVIF and WebP formats reduced initial asset payloads by more than 68% without sacrificing visual fidelity.',
+            'Converting legacy raster images to modern AVIF and WebP formats reduced initial asset payloads by more than 68% without sacrificing visual fidelity.',
           ],
           takeaways: [
             'Explicitly specify width and height on next/image containers.',
@@ -98,7 +98,7 @@ export function scheduleIdleTask(callback: () => void, timeout = 8000) {
     datePublished: '2026-08-10',
     readTime: '8 min read',
     excerpt:
-      'Understanding the 3 primary ranking factors—Relevance, Prominence, and Distance—with calibrated primary categories, review velocity, and entity validation.',
+      'Understanding the 3 primary ranking factors (Relevance, Prominence, and Distance) with calibrated primary categories, review velocity, and entity validation.',
     content: {
       lead:
         'Local search is no longer just about citations and keyword stuffing. Google’s local algorithm uses entity resolution and proximity clustering to decide which businesses earn placement in the Google Map 3-Pack.',

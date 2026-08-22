@@ -17,7 +17,7 @@ export function OpenToOpportunities() {
             Most of this page exists to convince you to hire me for a project. This part is different.
           </p>
           <p>
-            I built the SEO structure, the Next.js frontend, and the tools on this site mostly on my own, using the same AI-assisted workflows I&apos;d bring into your team. What I don&apos;t have yet is a room full of people doing this work at scale—that&apos;s the piece I&apos;m after.
+            I built the SEO structure, the Next.js frontend, and the tools on this site mostly on my own, using the same AI-assisted workflows I&apos;d bring into your team. What I don&apos;t have yet is a room full of people doing this work at scale. That&apos;s the environment I want to grow in.
           </p>
           <p>
             If you run an SEO, web dev, or virtual assistance program and have a seat open, I&apos;d like to talk. Internship, apprenticeship, trial project, I&apos;m not picky about the label.

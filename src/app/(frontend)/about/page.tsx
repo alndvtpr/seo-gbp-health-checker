@@ -53,13 +53,13 @@ export default function AboutPage() {
               My professional background began in client-facing support and operations, where I developed strong problem-solving habits, attention to detail, and clear communication. Transitioning into Search Engine Optimization gave me a dedicated path to connect analytical research with hands-on web development.
             </p>
             <p>
-              Over the past year, I have built practical, independent SEO experience through intensive upskilling, real project experimentation, and structured training—including completing the Pinoy SEO Bootcamp led by Rene Leandro Padilla. Rather than focusing purely on theory, I practice SEO by actively building search-ready websites, testing technical crawlability, optimizing local search signals, and developing custom tools.
+              Over the past year, I have built practical, independent SEO experience through intensive upskilling, real project experimentation, and structured training, including completing the Pinoy SEO Bootcamp led by Rene Leandro Padilla. Instead of focusing only on theory, I practice SEO by actively building search-ready websites, testing technical crawlability, optimizing local search signals, and developing custom tools.
             </p>
             <p>
               As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frontend frameworks like Next.js and WordPress. I believe an effective website should be easy for search engines to crawl, fast for users to navigate, and built on reliable, secure foundations.
             </p>
             <p>
-              I am actively open to opportunities to contribute to forward-thinking SEO and digital teams—whether as an SEO Specialist, Technical SEO Trainee, or Web/SEO Assistant. I bring proactive self-direction, rapid execution, and a strong desire to learn and grow alongside experienced professionals.
+              I am actively open to opportunities to contribute to forward-thinking SEO and digital teams as an SEO Specialist, Technical SEO Trainee, or Web and SEO Assistant. I bring proactive self-direction, fast execution, and a strong drive to learn and grow alongside experienced professionals.
             </p>
           </div>
 

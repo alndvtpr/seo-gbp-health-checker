@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const content = `# Alain Dave Tapiru — Comprehensive Technical & AI Search Specification
+  const content = `# Alain Dave Tapiru | Comprehensive Technical & AI Search Specification
 
 > Full machine-readable knowledge base for search indexing, LLM retrieval (RAG), and autonomous AI browsing agents.
 

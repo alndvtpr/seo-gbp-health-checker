@@ -103,7 +103,7 @@ export function ServicesPackages() {
           Structured for Clear Scope &amp; Real Deliverables
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Structured, process-driven solutions differentiated by technical stack—from specialized SEO sprints and responsive WordPress sites to custom Next.js builds.
+          Structured, process-driven solutions based on your technical stack, covering specialized SEO sprints, responsive WordPress sites, and custom Next.js builds.
         </p>
       </div>
 

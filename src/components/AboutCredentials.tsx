@@ -62,7 +62,7 @@ const EDUCATION_HISTORY: EducationItem[] = [
   },
   {
     degree: 'Bachelor of Science in Information Technology (Undergraduate Coursework)',
-    details: "Saint Mary's University — Bayombong, Nueva Vizcaya",
+    details: "Saint Mary's University, Bayombong, Nueva Vizcaya",
     timeline: '2014 – 2017',
     badge: 'Undergraduate Studies',
     badgeVariant: 'muted',

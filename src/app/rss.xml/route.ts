@@ -50,7 +50,7 @@ function getFeedItems(): FeedItem[] {
       : new Date('2026-08-17T10:00:00Z')
 
     items.push({
-      title: `${project.title} — ${project.tagline}`,
+      title: `${project.title}: ${project.tagline}`,
       link: `${BASE_URL}/projects/${project.slug}/`,
       pubDate: updateDate,
       description: project.shortDescription || project.fullDescription,
@@ -94,7 +94,7 @@ function getFeedItems(): FeedItem[] {
 
   // 5. Professional Credentials & Biography
   items.push({
-    title: 'About Alain Dave Tapiru — SEO Specialist & Technical Web Designer',
+    title: 'About Alain Dave Tapiru | SEO Specialist & Technical Web Designer',
     link: `${BASE_URL}/about/`,
     pubDate: new Date('2026-08-17T16:00:00Z'),
     description:
@@ -105,7 +105,7 @@ function getFeedItems(): FeedItem[] {
 
   // 6. Homepage / Master Profile
   items.push({
-    title: 'Alain Dave Tapiru — SEO Specialist & Web Developer',
+    title: 'Alain Dave Tapiru | SEO Specialist & Web Developer',
     link: `${BASE_URL}/`,
     pubDate: new Date('2026-08-19T08:30:00Z'),
     description:
@@ -127,7 +127,7 @@ function getFeedItems(): FeedItem[] {
 
   // 8. Contact & Discovery
   items.push({
-    title: 'Contact Alain Dave Tapiru — SEO Consulting & Project Discovery',
+    title: 'Contact Alain Dave Tapiru | SEO Consulting & Project Discovery',
     link: `${BASE_URL}/contact/`,
     pubDate: new Date('2026-08-15T09:00:00Z'),
     description:

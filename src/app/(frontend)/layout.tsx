@@ -30,7 +30,7 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata = generateMetadata({
-  title: 'SEO Specialist Philippines | Technical & Local SEO – Alain Dave Tapiru',
+  title: 'SEO Specialist Philippines | Technical & Local SEO | Alain Dave Tapiru',
   description:
     'Build search-ready websites that get discovered. Alain Dave Tapiru provides practical technical, on-page, and local SEO solutions tailored for modern search.',
 })
