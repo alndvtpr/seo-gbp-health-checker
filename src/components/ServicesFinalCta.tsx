@@ -6,12 +6,16 @@ const SERVICES_JSON_LD = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'ProfessionalService',
-      '@id': 'https://www.alaintapiru.com/#service',
+      '@type': ['ProfessionalService', 'LocalBusiness'],
+      '@id': 'https://www.alaintapiru.com/#business',
       name: 'Alain Tapiru | SEO, AEO, GEO & Web Development Services',
       url: 'https://www.alaintapiru.com/services/',
       image: 'https://www.alaintapiru.com/about_me.jpg',
+      telephone: '+63-906-324-9560',
+      email: 'alaintapiru@gmail.com',
       priceRange: '$$',
+      currenciesAccepted: 'USD, PHP',
+      paymentAccepted: 'Cash, Credit Card, Bank Transfer, PayPal, Wise, GCash',
       provider: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
@@ -24,7 +28,26 @@ const SERVICES_JSON_LD = {
         postalCode: '2010',
         addressCountry: 'PH',
       },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 15.1788,
+        longitude: 120.5843,
+      },
+      hasMap:
+        'https://www.google.com/maps/search/?api=1&query=10231+Everlasting+Street+Dau+Mabalacat+City+Pampanga',
       areaServed: [
+        {
+          '@type': 'City',
+          name: 'Mabalacat City',
+        },
+        {
+          '@type': 'AdministrativeArea',
+          name: 'Pampanga',
+        },
+        {
+          '@type': 'AdministrativeArea',
+          name: 'Central Luzon',
+        },
         {
           '@type': 'Country',
           name: 'Philippines',
