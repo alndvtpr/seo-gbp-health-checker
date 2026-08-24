@@ -26,10 +26,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     try {
-      const savedTheme = localStorage.getItem('theme') as Theme | null
-      if (savedTheme === 'light' || savedTheme === 'dark') {
-        setThemeState(savedTheme)
-        applyTheme(savedTheme)
+      const savedTheme = (localStorage.getItem('alaintapiru_theme') || localStorage.getItem('theme')) as Theme | null
+      if (savedTheme === 'dark') {
+        setThemeState('dark')
+        applyTheme('dark')
       } else {
         setThemeState('light')
         applyTheme('light')
@@ -60,6 +60,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setThemeState(newTheme)
     applyTheme(newTheme)
     try {
+      localStorage.setItem('alaintapiru_theme', newTheme)
       localStorage.setItem('theme', newTheme)
     } catch {
       // Ignore storage errors

@@ -38,8 +38,8 @@ export const metadata = generateMetadata({
 const themeInitScript = `
 (function() {
   try {
-    var saved = localStorage.getItem('theme');
-    var theme = (saved === 'light' || saved === 'dark') ? saved : 'light';
+    var saved = localStorage.getItem('alaintapiru_theme') || localStorage.getItem('theme');
+    var theme = (saved === 'dark') ? 'dark' : 'light';
     if (theme === 'dark') {
       document.documentElement.classList.remove('light');
       document.documentElement.classList.add('dark');
