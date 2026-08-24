@@ -23,7 +23,29 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/:path*',
+        source: '/',
+        has: [
+          {
+            type: 'host',
+            value: 'alaintapiru.com',
+          },
+        ],
+        destination: 'https://www.alaintapiru.com/',
+        permanent: true,
+      },
+      {
+        source: '/:path((?!.*\\.[^/]+$).*)',
+        has: [
+          {
+            type: 'host',
+            value: 'alaintapiru.com',
+          },
+        ],
+        destination: 'https://www.alaintapiru.com/:path/',
+        permanent: true,
+      },
+      {
+        source: '/:path*(.[^/]+)',
         has: [
           {
             type: 'host',
