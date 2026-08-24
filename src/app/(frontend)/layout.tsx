@@ -39,8 +39,7 @@ const themeInitScript = `
 (function() {
   try {
     var saved = localStorage.getItem('theme');
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var theme = saved || (prefersDark ? 'dark' : 'dark');
+    var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
     if (theme === 'light') {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
@@ -83,15 +82,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           href="/rss.xml"
         />
         <JsonLd />
-        {/* LCP Discovery Preload */}
-        <link
-          rel="preload"
-          as="image"
-          href="/hero-frames/frame-0000.webp"
-          type="image/webp"
-          // @ts-ignore
-          fetchPriority="high"
-        />
         {/* No-JS Accessibility Fallback for Scroll Reveal */}
         <noscript>
           <style>{`.motion-reveal, .motion-reveal-fast { opacity: 1 !important; transform: none !important; }`}</style>
