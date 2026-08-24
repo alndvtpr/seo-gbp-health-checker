@@ -44,37 +44,69 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }))
 
   // Schema Graph for Google & AI Search Engines
-  const articleSchema: Record<string, unknown> = {
+  const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.datePublished,
-    dateModified: post.datePublished,
-    author: {
-      '@type': 'Person',
-      name: 'Alain Dave Tapiru',
-      url: 'https://www.alaintapiru.com/about/',
-      jobTitle: 'SEO Specialist & Web Developer',
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Alain Dave Tapiru',
-      url: 'https://www.alaintapiru.com/',
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.alaintapiru.com/blog/${post.slug}/`,
-    },
-  }
-
-  // Add hero image to schema when present
-  if (post.heroImage) {
-    articleSchema.image = {
-      '@type': 'ImageObject',
-      url: `https://www.alaintapiru.com${post.heroImage.src}`,
-      description: post.heroImage.alt,
-    }
+    '@graph': [
+      {
+        '@type': 'BlogPosting',
+        '@id': `https://www.alaintapiru.com/blog/${post.slug}/#article`,
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.datePublished,
+        dateModified: post.datePublished,
+        inLanguage: 'en-US',
+        author: {
+          '@id': 'https://www.alaintapiru.com/#person',
+        },
+        publisher: {
+          '@id': 'https://www.alaintapiru.com/#business',
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.alaintapiru.com/blog/${post.slug}/#webpage`,
+          url: `https://www.alaintapiru.com/blog/${post.slug}/`,
+          isPartOf: {
+            '@id': 'https://www.alaintapiru.com/#website',
+          },
+          breadcrumb: {
+            '@id': `https://www.alaintapiru.com/blog/${post.slug}/#breadcrumb`,
+          },
+        },
+        ...(post.heroImage
+          ? {
+              image: {
+                '@type': 'ImageObject',
+                url: `https://www.alaintapiru.com${post.heroImage.src}`,
+                description: post.heroImage.alt,
+              },
+            }
+          : {}),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `https://www.alaintapiru.com/blog/${post.slug}/#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.alaintapiru.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Blog',
+            item: 'https://www.alaintapiru.com/blog/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: post.title,
+            item: `https://www.alaintapiru.com/blog/${post.slug}/`,
+          },
+        ],
+      },
+    ],
   }
 
   return (
@@ -93,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
 
       {/* Article Header */}
-      <header className="space-y-6 text-left border-b border-white/10 pb-8 sm:pb-12 max-w-4xl motion-reveal">
+      <header className="space-y-6 text-left border-b border-black/10 dark:border-white/10 pb-8 sm:pb-12 max-w-4xl motion-reveal">
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-heading text-primary-container uppercase tracking-[0.08em] font-semibold text-xs px-3.5 py-1 rounded-full bg-primary-container/10 border border-primary-container/30">
             {post.category}
@@ -118,7 +150,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Author Bylines */}
         <div className="flex items-center gap-3 pt-2">
-          <div className="w-10 h-10 rounded-full bg-surface-2 border border-white/10 flex items-center justify-center font-heading font-bold text-primary-container text-sm">
+          <div className="w-10 h-10 rounded-full bg-surface-2 border border-black/10 dark:border-white/10 flex items-center justify-center font-heading font-bold text-primary-container text-sm">
             AD
           </div>
           <div className="text-xs font-sans">
@@ -130,7 +162,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Hero Image */}
       {post.heroImage && (
-        <figure className="w-full max-w-4xl rounded-2xl overflow-hidden border border-white/10 shadow-lg motion-reveal">
+        <figure className="w-full max-w-4xl rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-lg motion-reveal">
           <Image
             src={post.heroImage.src}
             alt={post.heroImage.alt}
@@ -140,7 +172,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             className="w-full h-auto object-cover"
           />
           {(post.heroImage.caption || post.heroImage.attribution) && (
-            <figcaption className="px-4 py-3 bg-surface-1/80 text-xs font-sans text-on-surface/60 flex items-center justify-between gap-4">
+            <figcaption className="px-4 py-3 bg-surface-1/95 border-t border-black/10 dark:border-white/10 text-xs font-sans text-on-surface/60 flex items-center justify-between gap-4">
               {post.heroImage.caption && <span>{post.heroImage.caption}</span>}
               {post.heroImage.attribution && (
                 <span className="text-on-surface/40 italic shrink-0">{post.heroImage.attribution}</span>
@@ -193,7 +225,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               )}
 
               {section.takeaways && section.takeaways.length > 0 && (
-                <div className="p-6 rounded-2xl bg-surface-1 border border-white/10 space-y-3 my-6">
+                <div className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-3 my-6 shadow-sm">
                   <span className="font-heading text-xs uppercase tracking-[0.08em] text-on-surface/70 font-semibold block">
                     Key Takeaways
                   </span>
@@ -210,7 +242,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
               {/* Section Image */}
               {section.image && (
-                <figure className="w-full rounded-2xl overflow-hidden border border-white/10 shadow-lg my-6">
+                <figure className="w-full rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-lg my-6">
                   <Image
                     src={section.image.src}
                     alt={section.image.alt}
@@ -220,7 +252,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     className="w-full h-auto object-cover"
                   />
                   {(section.image.caption || section.image.attribution) && (
-                    <figcaption className="px-4 py-3 bg-surface-1/80 text-xs font-sans text-on-surface/60 flex items-center justify-between gap-4">
+                    <figcaption className="px-4 py-3 bg-surface-1/95 border-t border-black/10 dark:border-white/10 text-xs font-sans text-on-surface/60 flex items-center justify-between gap-4">
                       {section.image.caption && <span>{section.image.caption}</span>}
                       {section.image.attribution && (
                         <span className="text-on-surface/40 italic shrink-0">{section.image.attribution}</span>

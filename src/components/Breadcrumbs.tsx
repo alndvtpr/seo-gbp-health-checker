@@ -99,7 +99,7 @@ export function Breadcrumbs({
                 <Icon
                   name="chevron_right"
                   size={12}
-                  className="text-white/20 shrink-0"
+                  className="text-on-surface/30 shrink-0"
                   aria-hidden="true"
                 />
               </li>

@@ -80,7 +80,7 @@ export const ContactForm = () => {
         <button
           type="button"
           onClick={handleReset}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-on-surface hover:text-primary-container hover:border-primary-container/40 hover:bg-white/10 font-heading text-xs uppercase tracking-[0.06em] font-bold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-2 border border-black/10 dark:border-white/10 text-on-surface hover:text-primary-container hover:border-primary-container/40 hover:bg-surface-3 font-heading text-xs uppercase tracking-[0.06em] font-bold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
           <RefreshCcw className="w-4 h-4" aria-hidden="true" /> Send Another Request
         </button>

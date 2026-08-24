@@ -13,9 +13,66 @@ export const metadata = generateMetadata({
   url: 'https://www.alaintapiru.com/blog/',
 })
 
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': 'https://www.alaintapiru.com/blog/#webpage',
+      url: 'https://www.alaintapiru.com/blog/',
+      name: 'SEO Blog & Practical Web Insights | Alain Dave Tapiru',
+      description:
+        'Discover practical SEO notes, Core Web Vitals optimization experiments, and local search guides from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
+      isPartOf: {
+        '@id': 'https://www.alaintapiru.com/#website',
+      },
+      about: {
+        '@id': 'https://www.alaintapiru.com/#person',
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: BLOG_POSTS.map((post, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: `https://www.alaintapiru.com/blog/${post.slug}/`,
+          name: post.title,
+          description: post.excerpt,
+        })),
+      },
+      breadcrumb: {
+        '@id': 'https://www.alaintapiru.com/blog/#breadcrumb',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.alaintapiru.com/blog/#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.alaintapiru.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: 'https://www.alaintapiru.com/blog/',
+        },
+      ],
+    },
+  ],
+}
+
 export default function BlogPage() {
   return (
     <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-16">
+      {/* Structured JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
+
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={[{ name: 'Blog', url: '/blog/' }]} />
 

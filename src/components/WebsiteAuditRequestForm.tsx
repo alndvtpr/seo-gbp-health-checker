@@ -89,25 +89,25 @@ export const WebsiteAuditRequestForm: React.FC = () => {
         </div>
 
         {/* Submitted Summary Details Card */}
-        <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-left space-y-2 text-xs sm:text-sm font-sans max-w-md mx-auto">
-          <div className="flex items-start justify-between gap-2 border-b border-white/5 pb-2">
+        <div className="p-4 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-left space-y-2 text-xs sm:text-sm font-sans max-w-md mx-auto shadow-sm">
+          <div className="flex items-start justify-between gap-2 border-b border-black/10 dark:border-white/5 pb-2">
             <span className="text-on-surface/60 font-heading text-[11px] uppercase tracking-wider">Target Domain</span>
-            <span className="text-white font-semibold font-mono truncate max-w-[220px]">{submittedWebsite}</span>
+            <span className="text-on-surface font-semibold font-mono truncate max-w-[220px]">{submittedWebsite}</span>
           </div>
-          <div className="flex items-start justify-between gap-2 border-b border-white/5 pb-2">
+          <div className="flex items-start justify-between gap-2 border-b border-black/10 dark:border-white/5 pb-2">
             <span className="text-on-surface/60 font-heading text-[11px] uppercase tracking-wider">Confirmation To</span>
             <span className="text-primary-container font-semibold truncate max-w-[220px]">{submittedEmail}</span>
           </div>
           <div className="flex items-start justify-between gap-2 pt-0.5">
             <span className="text-on-surface/60 font-heading text-[11px] uppercase tracking-wider">Turnaround</span>
-            <span className="text-emerald-400 font-semibold">Within 24–48 Hours</span>
+            <span className="text-emerald-500 dark:text-emerald-400 font-semibold">Within 24–48 Hours</span>
           </div>
         </div>
 
         <button
           type="button"
           onClick={handleReset}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-on-surface hover:text-primary-container hover:border-primary-container/40 hover:bg-white/10 font-heading text-xs uppercase tracking-[0.06em] font-bold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-2 border border-black/10 dark:border-white/10 text-on-surface hover:text-primary-container hover:border-primary-container/40 hover:bg-surface-3 font-heading text-xs uppercase tracking-[0.06em] font-bold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
           <RefreshCcw className="w-3.5 h-3.5" /> Request Another Website Audit
         </button>

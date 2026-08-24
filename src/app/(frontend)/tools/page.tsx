@@ -6,6 +6,90 @@ import { WebsiteAuditRequestForm } from '@/components/WebsiteAuditRequestForm'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
+const toolsJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.alaintapiru.com/tools/#webpage',
+      url: 'https://www.alaintapiru.com/tools/',
+      name: 'Free SEO Diagnostic Tools & Calculators | Alain Dave Tapiru',
+      description:
+        'Explore practical SEO tools, local search diagnostic analyzers, and compensation calculators created by Alain Dave Tapiru.',
+      isPartOf: {
+        '@id': 'https://www.alaintapiru.com/#website',
+      },
+      breadcrumb: {
+        '@id': 'https://www.alaintapiru.com/tools/#breadcrumb',
+      },
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://www.alaintapiru.com/tools/#gbp-checker-app',
+      name: 'Local SEO & Google Business Profile Health Checker',
+      url: 'https://www.alaintapiru.com/tools/',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'All',
+      browserRequirements: 'Requires JavaScript. Requires HTML5.',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description:
+        'Interactive 10-point local search diagnostic tool analyzing Google Business Profile completeness, category alignment, review velocity, and generating 30-day dynamic SEO roadmaps.',
+      author: {
+        '@id': 'https://www.alaintapiru.com/#person',
+      },
+      creator: {
+        '@id': 'https://www.alaintapiru.com/#person',
+      },
+      provider: {
+        '@id': 'https://www.alaintapiru.com/#business',
+      },
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://www.alaintapiru.com/tools/#salary-calculator-app',
+      name: 'SEO Specialist Compensation Calculator',
+      url: 'https://www.alaintapiru.com/tools/',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'All',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description:
+        'Interactive compensation estimator for Philippine and offshore SEO professionals across experience levels, employment models, and skill domains.',
+      author: {
+        '@id': 'https://www.alaintapiru.com/#person',
+      },
+      provider: {
+        '@id': 'https://www.alaintapiru.com/#business',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.alaintapiru.com/tools/#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.alaintapiru.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Tools',
+          item: 'https://www.alaintapiru.com/tools/',
+        },
+      ],
+    },
+  ],
+}
+
 export default function ToolsPage() {
   // Salary Calculator State
   const [currency, setCurrency] = useState<'PHP' | 'USD'>('PHP')
@@ -40,6 +124,12 @@ export default function ToolsPage() {
 
   return (
     <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-20">
+      {/* Structured JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolsJsonLd) }}
+      />
+
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={[{ name: 'Tools', url: '/tools/' }]} />
 
@@ -57,7 +147,7 @@ export default function ToolsPage() {
       </div>
 
       {/* Tool 1: SEO Specialist Salary Calculator */}
-      <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-6 sm:space-y-8 motion-reveal shadow-sm">
+      <div id="salary-calculator" className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-6 sm:space-y-8 motion-reveal shadow-sm scroll-mt-28">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Icon name="calculate" size={36} className="text-primary-container shrink-0" />
@@ -162,7 +252,7 @@ export default function ToolsPage() {
 
       {/* Tool 2 & Tool 3 Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between motion-reveal shadow-sm">
+        <div id="website-audit" className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between motion-reveal shadow-sm scroll-mt-28">
           <div className="space-y-3">
             <Icon name="travel_explore" size={36} className="text-primary-container" />
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
@@ -177,7 +267,7 @@ export default function ToolsPage() {
         </div>
 
         {/* Tool 3: Local SEO / GBP Health Checker (fully interactive) */}
-        <div style={{ transitionDelay: '100ms' }} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-4 sm:space-y-6 motion-reveal shadow-sm">
+        <div id="gbp-checker" style={{ transitionDelay: '100ms' }} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-4 sm:space-y-6 motion-reveal shadow-sm scroll-mt-28">
           <div className="flex items-center justify-between">
             <Icon name="distance" size={36} className="text-primary-container" />
             <a

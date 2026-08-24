@@ -115,11 +115,11 @@ export function AboutCredentials() {
         onClick={closeModal}
       >
         <div
-          className="relative w-full max-w-2xl max-h-[88vh] flex flex-col bg-surface-1 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-2xl max-h-[88vh] flex flex-col bg-surface-1 border border-black/10 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
-          <div className="p-4 sm:p-5 border-b border-white/10 bg-surface-2 z-10 flex items-center justify-between gap-4 shrink-0">
+          <div className="p-4 sm:p-5 border-b border-black/10 dark:border-white/10 bg-surface-2 z-10 flex items-center justify-between gap-4 shrink-0">
             <div className="space-y-1 pr-2 min-w-0">
               <div className="flex items-center gap-2">
                 {selectedCert.verifyUrl ? (
@@ -156,14 +156,14 @@ export function AboutCredentials() {
               type="button"
               onClick={closeModal}
               aria-label="Close certificate preview"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/15 text-on-surface/70 hover:text-white border border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-surface-3 hover:bg-surface-1 text-on-surface/70 hover:text-on-surface border border-black/10 dark:border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
             >
               <Icon name="close" size={20} />
             </button>
           </div>
 
           {/* Modal Body: Certificate Image */}
-          <div className="w-full flex-1 flex items-center justify-center bg-black/60 p-3 sm:p-5 overflow-auto min-h-0">
+          <div className="w-full flex-1 flex items-center justify-center bg-black/80 p-3 sm:p-5 overflow-auto min-h-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={selectedCert.imageSrc}
@@ -173,7 +173,7 @@ export function AboutCredentials() {
           </div>
 
           {/* Modal Footer */}
-          <div className="p-3.5 sm:p-4 border-t border-white/10 bg-surface-2 flex flex-wrap items-center justify-between gap-2.5 shrink-0 z-10">
+          <div className="p-3.5 sm:p-4 border-t border-black/10 dark:border-white/10 bg-surface-2 flex flex-wrap items-center justify-between gap-2.5 shrink-0 z-10">
             <div className="text-[11px] font-sans text-on-surface/50">
               Official credential issued to <span className="text-on-surface/80 font-medium">Alain Dave Tapiru</span>
             </div>
@@ -186,7 +186,7 @@ export function AboutCredentials() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Download ${selectedCert.title} certificate`}
-                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-3.5 py-2 rounded-lg transition-colors cursor-pointer shadow-sm"
+                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-primary-container bg-surface-3 hover:bg-surface-1 border border-black/10 dark:border-white/10 px-3.5 py-2 rounded-lg transition-colors cursor-pointer shadow-sm"
                 title="Download certificate"
               >
                 <Icon name="download" size={14} />
@@ -211,7 +211,7 @@ export function AboutCredentials() {
               <button
                 type="button"
                 onClick={closeModal}
-                className="px-3.5 py-2 text-xs font-heading font-semibold text-on-surface/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors cursor-pointer"
+                className="px-3.5 py-2 text-xs font-heading font-semibold text-on-surface/70 hover:text-on-surface bg-surface-3 hover:bg-surface-1 border border-black/10 dark:border-white/10 rounded-lg transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -224,7 +224,7 @@ export function AboutCredentials() {
   }
 
   return (
-    <section className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 relative overflow-hidden shadow-2xl">
+    <section className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 relative overflow-hidden shadow-2xl">
       {/* Background Accent Glow */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-primary-container/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
 

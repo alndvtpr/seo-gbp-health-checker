@@ -51,26 +51,57 @@ export default async function ProjectDetailPage({
 
   const projectJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: `${project.title}: ${project.category} Project Breakdown`,
-    description: project.shortDescription,
-    image: `https://www.alaintapiru.com${project.image}`,
-    author: {
-      '@type': 'Person',
-      name: 'Alain Dave G. Tapiru',
-      jobTitle: 'SEO Specialist & Web Developer',
-      url: 'https://www.alaintapiru.com/',
-    },
-    publisher: {
-      '@type': 'Person',
-      name: 'Alain Dave G. Tapiru',
-      jobTitle: 'SEO Specialist & Web Developer',
-      url: 'https://www.alaintapiru.com/',
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.alaintapiru.com/projects/${project.slug}/`,
-    },
+    '@graph': [
+      {
+        '@type': 'Article',
+        '@id': `https://www.alaintapiru.com/projects/${project.slug}/#article`,
+        headline: `${project.title}: ${project.category} Project Breakdown`,
+        description: project.shortDescription,
+        image: `https://www.alaintapiru.com${project.image}`,
+        inLanguage: 'en-US',
+        author: {
+          '@id': 'https://www.alaintapiru.com/#person',
+        },
+        publisher: {
+          '@id': 'https://www.alaintapiru.com/#business',
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://www.alaintapiru.com/projects/${project.slug}/#webpage`,
+          url: `https://www.alaintapiru.com/projects/${project.slug}/`,
+          isPartOf: {
+            '@id': 'https://www.alaintapiru.com/#website',
+          },
+          breadcrumb: {
+            '@id': `https://www.alaintapiru.com/projects/${project.slug}/#breadcrumb`,
+          },
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `https://www.alaintapiru.com/projects/${project.slug}/#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://www.alaintapiru.com/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Projects',
+            item: 'https://www.alaintapiru.com/projects/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: project.title,
+            item: `https://www.alaintapiru.com/projects/${project.slug}/`,
+          },
+        ],
+      },
+    ],
   }
 
   return (
@@ -128,7 +159,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Primary Visual Media Banner */}
-      <div className="relative w-full h-[240px] sm:h-[400px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/60 motion-reveal">
+      <div className="relative w-full h-[240px] sm:h-[400px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/60 motion-reveal">
         <Image
           src={project.image}
           alt={project.title}
@@ -140,7 +171,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Metadata Bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/90 border border-white/10 shadow-lg motion-reveal">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-sm motion-reveal">
         <div>
           <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Project / Entity
@@ -161,7 +192,7 @@ export default async function ProjectDetailPage({
           <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Status
           </span>
-          <span className="font-heading text-xs sm:text-sm font-bold text-amber-400">
+          <span className="font-heading text-xs sm:text-sm font-bold text-amber-500 dark:text-amber-400">
             {project.status === 'Ongoing' ? 'Active Staging Build' : 'Production'}
           </span>
         </div>
@@ -178,7 +209,7 @@ export default async function ProjectDetailPage({
       {/* Detailed Content Sections */}
       <div className="space-y-8 sm:space-y-12 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
         {/* Section 1: Overview & Architecture */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
             01. Structural Overview
           </span>
@@ -190,13 +221,13 @@ export default async function ProjectDetailPage({
 
         {/* Verified Impact & Performance Metrics */}
         {project.metrics && project.metrics.length > 0 && (
-          <section className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-lg space-y-4 motion-reveal">
+          <section className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/30 shadow-sm space-y-4 motion-reveal">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               Key Metrics &amp; Verified Benchmarks
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {project.metrics.map((m, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+                <div key={idx} className="p-4 rounded-xl bg-surface-2/60 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 space-y-1">
                   <span className="font-heading text-xs text-on-surface/70 uppercase tracking-wider block">
                     {m.label}
                   </span>
@@ -223,7 +254,7 @@ export default async function ProjectDetailPage({
 
         {/* Section 2/3: 3-Pillar Methodology */}
         {project.pillars && project.pillars.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '03. Core Methodology' : '02. Core Methodology'}
             </span>
@@ -234,7 +265,7 @@ export default async function ProjectDetailPage({
               {project.pillars.map((pillar, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-xl bg-white/[0.03] border border-white/5 flex flex-col justify-between"
+                  className="p-5 rounded-xl bg-surface-2/60 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 flex flex-col justify-between"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-heading text-base font-bold text-on-surface tracking-wider">
@@ -255,7 +286,7 @@ export default async function ProjectDetailPage({
 
         {/* Section 3/4: Core Service Offerings */}
         {project.coreServices && project.coreServices.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '04. Core Capabilities' : '03. Core Capabilities'}
             </span>
@@ -266,7 +297,7 @@ export default async function ProjectDetailPage({
               {project.coreServices.map((service, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.03] border border-white/5"
+                  className="flex items-center gap-2.5 p-3 rounded-xl bg-surface-2/60 dark:bg-white/[0.03] border border-black/10 dark:border-white/5"
                 >
                   <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
                   <span className="font-sans text-xs sm:text-sm font-medium text-on-surface">
@@ -279,7 +310,7 @@ export default async function ProjectDetailPage({
         )}
 
         {/* Section 4/5: Technology Stack */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
             {project.slug === 'alaintapiru-portfolio' ? '05. Development Stack' : '04. Development Stack'}
           </span>
@@ -290,7 +321,7 @@ export default async function ProjectDetailPage({
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-heading font-medium text-on-surface"
+                className="px-3.5 py-1.5 rounded-full bg-surface-2 border border-black/10 dark:border-white/10 text-xs font-heading font-medium text-on-surface"
               >
                 {tech}
               </span>
@@ -300,7 +331,7 @@ export default async function ProjectDetailPage({
 
         {/* Section 5/6: Image Showcase / Gallery */}
         {project.gallery && project.gallery.length > 1 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/70 border border-white/5 motion-reveal">
+          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
               {project.slug === 'alaintapiru-portfolio' ? '06. Visual Gallery' : '05. Visual Gallery'}
             </span>
@@ -311,14 +342,14 @@ export default async function ProjectDetailPage({
               {project.gallery.map((img, idx) => (
                 <div
                   key={idx}
-                  className="relative h-60 sm:h-72 rounded-xl overflow-hidden border border-white/10 bg-black/40"
+                  className="relative h-60 sm:h-72 rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/40"
                 >
                   <Image
                     src={img}
                     alt={`${project.title} Preview ${idx + 1}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain bg-black/60"
+                    className="object-contain bg-black/5 dark:bg-black/60"
                   />
                 </div>
               ))}
@@ -328,7 +359,7 @@ export default async function ProjectDetailPage({
       </div>
 
       {/* Semantic Cross-Linking: Related Case Studies & Interactive Tools */}
-      <section className="space-y-6 pt-4 border-t border-white/10 motion-reveal">
+      <section className="space-y-6 pt-4 border-t border-black/10 dark:border-white/10 motion-reveal">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
@@ -351,7 +382,7 @@ export default async function ProjectDetailPage({
             <Link
               key={rel.slug}
               href={`/projects/${rel.slug}/`}
-              className="p-5 rounded-2xl bg-surface-1/80 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between"
+              className="p-5 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-sm"
             >
               <div>
                 <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] block mb-1 font-semibold">
@@ -364,7 +395,7 @@ export default async function ProjectDetailPage({
                   {rel.shortDescription}
                 </p>
               </div>
-              <div className="pt-3 border-t border-white/5 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
+              <div className="pt-3 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
                 <span>View Project Details</span>
                 <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
@@ -373,10 +404,10 @@ export default async function ProjectDetailPage({
           {/* Interactive Tool Card */}
           <Link
             href="/tools/"
-            className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-surface-1 to-surface-1 border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between"
+            className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-surface-1 to-surface-1 border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between shadow-sm"
           >
             <div>
-              <span className="font-heading text-[10px] text-emerald-400 uppercase tracking-[0.08em] block mb-1 font-semibold">
+              <span className="font-heading text-[10px] text-emerald-500 dark:text-emerald-400 uppercase tracking-[0.08em] block mb-1 font-semibold">
                 Live Diagnostic Suite
               </span>
               <h3 className="font-heading text-base font-bold text-on-surface group-hover:text-primary transition-colors mb-2">
@@ -386,7 +417,7 @@ export default async function ProjectDetailPage({
                 Run an instant diagnostic on Google Business Profile and local search signals.
               </p>
             </div>
-            <div className="pt-3 border-t border-white/5 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
+            <div className="pt-3 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
               <span>Launch Diagnostic Tool</span>
               <Icon name="north_east" size={14} className="group-hover:translate-x-1 transition-transform" />
             </div>

@@ -13,9 +13,59 @@ export const metadata = generateMetadata({
   url: 'https://www.alaintapiru.com/about/',
 })
 
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      '@id': 'https://www.alaintapiru.com/about/#webpage',
+      url: 'https://www.alaintapiru.com/about/',
+      name: 'About Alain Dave Tapiru | SEO Specialist & Web Developer',
+      description:
+        'Meet Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines building his SEO career through hands-on technical SEO, local search, and modern web projects.',
+      isPartOf: {
+        '@id': 'https://www.alaintapiru.com/#website',
+      },
+      about: {
+        '@id': 'https://www.alaintapiru.com/#person',
+      },
+      mainEntity: {
+        '@id': 'https://www.alaintapiru.com/#person',
+      },
+      breadcrumb: {
+        '@id': 'https://www.alaintapiru.com/about/#breadcrumb',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.alaintapiru.com/about/#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.alaintapiru.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'About',
+          item: 'https://www.alaintapiru.com/about/',
+        },
+      ],
+    },
+  ],
+}
+
 export default function AboutPage() {
   return (
     <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto relative z-20 space-y-12 sm:space-y-20">
+      {/* Structured JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+      />
+
       {/* Breadcrumb Navigation */}
       <Breadcrumbs items={[{ name: 'About', url: '/about/' }]} />
 
@@ -34,7 +84,7 @@ export default function AboutPage() {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-        <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl motion-reveal">
+        <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl motion-reveal">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/about_me.jpg"
@@ -63,14 +113,14 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="pt-4 border-t border-white/10">
+          <div className="pt-4 border-t border-black/10 dark:border-white/10">
             <h3 className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-3 font-semibold">
               Skills &amp; Areas of Practice
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Link
                 href="/services/#pillar-foundation"
-                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/70 hover:bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
@@ -84,7 +134,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/services/#pillar-execution"
-                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/70 hover:bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
@@ -98,7 +148,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/projects/angat-sikat-studio/"
-                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/70 hover:bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
@@ -112,7 +162,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/tools/"
-                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/70 hover:bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-all duration-300 group block"
+                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">

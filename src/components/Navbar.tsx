@@ -161,7 +161,7 @@ export const Navbar = () => {
 
           {/* Hamburger (Mobile & Tablet) */}
           <button
-            className="lg:hidden text-on-surface z-[60] relative p-2.5 rounded-full hover:bg-white/10 dark:hover:bg-white/10 hover:bg-black/10 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
+            className="lg:hidden text-on-surface z-[60] relative p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
           >
@@ -196,7 +196,7 @@ export const Navbar = () => {
                 onClick={() => setMenuOpen(false)}
                 style={{ transitionDelay: `${idx * 30}ms` }}
                 className={`mobile-nav-item font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors py-2 px-4 rounded-full min-h-[44px] flex items-center justify-center ${
-                  isActive ? 'text-primary-container bg-primary-container/10 border border-primary-container/30' : 'text-on-surface hover:text-primary-container hover:bg-white/5 dark:hover:bg-white/5 hover:bg-black/5'
+                  isActive ? 'text-primary-container bg-primary-container/10 border border-primary-container/30' : 'text-on-surface hover:text-primary-container hover:bg-black/5 dark:hover:bg-white/5'
                 }`}
               >
                 {link.name}
