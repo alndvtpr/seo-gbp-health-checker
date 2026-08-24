@@ -155,22 +155,39 @@ export default async function Page() {
       {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
       <section className="py-16 sm:py-24 bg-transparent relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
-          <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl motion-reveal">
-            <Image
-              src="/alain-dave-tapiru-professional-portrait.webp"
-              alt="Alain Dave Tapiru, SEO specialist and web developer"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-lg">
-              <p className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-1 font-bold">
-                About Alain Dave Tapiru
-              </p>
-              <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
-                SEO Specialist &amp; Web Developer
-              </h3>
+          {/* Left: Modern Editorial Portrait Card */}
+          <div className="w-full lg:w-1/2 motion-reveal">
+            <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+              {/* Ambient Accent Glow Backdrop */}
+              <div className="absolute -inset-2 sm:-inset-3 rounded-[2.5rem] bg-gradient-to-br from-primary-container/25 via-primary/10 to-emerald-500/15 blur-2xl opacity-70 dark:opacity-40 -z-10 pointer-events-none" />
+
+              {/* Framed Image Container */}
+              <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 bg-surface-1 shadow-2xl group">
+                <Image
+                  src="/alain-dave-tapiru-professional-portrait.webp"
+                  alt="Alain Dave Tapiru, SEO specialist and web developer"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-top sm:object-[center_15%] transition-transform duration-700 ease-[var(--ease-organic)] group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent dark:from-[#0a0c10]/90 dark:via-black/30 pointer-events-none" />
+
+                {/* Floating Profile Badge */}
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-surface-1/90 dark:bg-surface-1/80 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg flex items-center justify-between gap-3">
+                  <div>
+                    <p className="font-heading text-[11px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-bold">
+                      About Alain Dave Tapiru
+                    </p>
+                    <h3 className="font-heading text-xs sm:text-sm font-bold text-on-surface">
+                      SEO Specialist &amp; Web Developer
+                    </h3>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Available
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -83,15 +83,42 @@ export default function AboutPage() {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
-        <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl motion-reveal">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/alain-dave-tapiru-professional-portrait.webp"
-            alt="Alain Dave Tapiru, SEO specialist and web developer"
-            className="w-full h-full object-cover object-center absolute inset-0"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+        {/* Left: Modern Editorial Portrait Card */}
+        <div className="lg:col-span-5 lg:sticky lg:top-28 motion-reveal">
+          <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+            {/* Ambient Accent Glow Backdrop */}
+            <div className="absolute -inset-2 sm:-inset-3 rounded-[2.5rem] bg-gradient-to-br from-primary-container/25 via-primary/10 to-emerald-500/15 blur-2xl opacity-70 dark:opacity-40 -z-10 pointer-events-none" />
+
+            {/* Framed Image Container */}
+            <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 bg-surface-1 shadow-2xl group">
+              <Image
+                src="/alain-dave-tapiru-professional-portrait.webp"
+                alt="Alain Dave Tapiru, SEO specialist and web developer"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 480px"
+                className="object-cover object-top sm:object-[center_15%] transition-transform duration-700 ease-[var(--ease-organic)] group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent dark:from-[#0a0c10]/90 dark:via-black/30 pointer-events-none" />
+
+              {/* Floating Profile Badge */}
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-surface-1/90 dark:bg-surface-1/80 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg flex items-center justify-between gap-3">
+                <div>
+                  <p className="font-heading text-[11px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-bold">
+                    Alain Dave Tapiru
+                  </p>
+                  <p className="font-sans text-xs text-on-surface/80 font-medium">
+                    SEO Specialist &amp; Web Developer
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Available
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="lg:col-span-7 space-y-4 sm:space-y-6 motion-reveal">
