@@ -55,6 +55,12 @@ html[data-theme="dark"] {
   --font-heading: var(--font-jakarta), sans-serif;
 }
 
+/* ── Global Link Reset: Prevent Browser Default Purple/Violet Visited Colors ── */
+a, a:visited {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 /* ── Motion Design System Tokens ─────────────────────────────────────────── */
 :root {
   --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
