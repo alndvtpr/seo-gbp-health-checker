@@ -12,7 +12,7 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'dark',
+  theme: 'light',
   toggleTheme: () => {},
   setTheme: () => {},
   mounted: false,
@@ -21,7 +21,7 @@ const ThemeContext = createContext<ThemeContextType>({
 export const useTheme = () => useContext(ThemeContext)
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setThemeState] = useState<Theme>('dark')
+  const [theme, setThemeState] = useState<Theme>('light')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -31,12 +31,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         setThemeState(savedTheme)
         applyTheme(savedTheme)
       } else {
-        setThemeState('dark')
-        applyTheme('dark')
+        setThemeState('light')
+        applyTheme('light')
       }
     } catch {
-      // Fallback to dark
-      applyTheme('dark')
+      // Fallback to light
+      applyTheme('light')
     }
     setMounted(true)
   }, [])

@@ -39,17 +39,17 @@ const themeInitScript = `
 (function() {
   try {
     var saved = localStorage.getItem('theme');
-    var theme = (saved === 'light' || saved === 'dark') ? saved : 'dark';
-    if (theme === 'light') {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-      document.documentElement.setAttribute('data-theme', 'light');
-      document.documentElement.style.backgroundColor = '#fafaf8';
-    } else {
+    var theme = (saved === 'light' || saved === 'dark') ? saved : 'light';
+    if (theme === 'dark') {
       document.documentElement.classList.remove('light');
       document.documentElement.classList.add('dark');
       document.documentElement.setAttribute('data-theme', 'dark');
       document.documentElement.style.backgroundColor = '#0f1111';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.style.backgroundColor = '#fafaf8';
     }
   } catch (e) {}
 })();
@@ -62,13 +62,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`dark ${inter.variable} ${jakarta.variable}`}
-      data-theme="dark"
-      style={{ backgroundColor: '#0f1111' }}
+      className={`light ${inter.variable} ${jakarta.variable}`}
+      data-theme="light"
+      style={{ backgroundColor: '#fafaf8' }}
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
-        <meta name="theme-color" content="#121414" />
+        <meta name="theme-color" content="#fafaf8" />
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
