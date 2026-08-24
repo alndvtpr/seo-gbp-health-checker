@@ -45,7 +45,7 @@ const CERTIFICATIONS: Certification[] = [
     issuer: 'Meta | Coursera',
     issuedDate: 'Issued Dec 2020',
     badge: 'Verified Credential',
-    imageSrc: '/assets/certificates/Introduction to Social Media Marketing.webp',
+    imageSrc: '/assets/certificates/Introduction to Social Media Marketing.avif',
     downloadUrl: '/assets/certificates/Introduction to Social Media Marketing.pdf',
     downloadFilename: 'Introduction to Social Media Marketing - Alain Dave Tapiru.pdf',
     verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',

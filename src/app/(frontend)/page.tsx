@@ -157,8 +157,8 @@ export default async function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
           <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl motion-reveal">
             <Image
-              src="/about_me.webp"
-              alt="Alain Dave Tapiru Portrait"
+              src="/alain-dave-tapiru-professional-portrait.webp"
+              alt="Alain Dave Tapiru, SEO specialist and web developer"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
@@ -356,8 +356,8 @@ export default async function Page() {
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
-                    src="/images/projects/angat-sikat-homepage-preview.webp"
-                    alt="AngatSikat Studio Live Build Preview"
+                    src="/images/projects/angatsikat-studio-wordpress-website-preview.avif"
+                    alt="AngatSikat Studio WordPress website design and custom theme preview"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top"
@@ -432,8 +432,8 @@ export default async function Page() {
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
-                    src="/images/projects/local-seo-gbp-checker-preview.webp"
-                    alt="Local SEO & GBP Health Checker Preview"
+                    src="/images/projects/local-seo-gbp-health-checker-preview.webp"
+                    alt="Local SEO and Google Business Profile Health Checker interface"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top"
@@ -506,8 +506,8 @@ export default async function Page() {
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
-                    src="/images/projects/alaintapiru-website-preview.webp"
-                    alt="AlainTapiru.com Architecture Preview"
+                    src="/images/projects/alaintapiru-technical-seo-web-project-preview.webp"
+                    alt="AlainTapiru.com technical SEO and web architecture project preview"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top"

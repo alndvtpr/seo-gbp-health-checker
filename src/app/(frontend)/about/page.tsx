@@ -87,8 +87,8 @@ export default function AboutPage() {
         <div className="lg:col-span-5 relative h-[280px] sm:h-[380px] lg:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl motion-reveal">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/about_me.jpg"
-            alt="Alain Dave Tapiru"
+            src="/alain-dave-tapiru-professional-portrait.webp"
+            alt="Alain Dave Tapiru, SEO specialist and web developer"
             className="w-full h-full object-cover object-center absolute inset-0"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />

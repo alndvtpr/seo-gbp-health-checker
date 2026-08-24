@@ -30,7 +30,7 @@ export const Footer = () => {
             <div className="relative w-8 h-8 rounded-full overflow-hidden border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
               <Image
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
-                alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
+                alt="Alain Dave Tapiru"
                 width={32}
                 height={32}
                 className="w-full h-full object-contain p-0.5"

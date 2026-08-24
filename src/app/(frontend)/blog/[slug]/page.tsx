@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${post.title} | Alain Dave Tapiru`,
     description: post.excerpt,
     url: `https://www.alaintapiru.com/blog/${post.slug}/`,
-    image: post.heroImage?.src || '/og-image.jpg',
+    image: post.heroImage?.src || '/alain-dave-tapiru-professional-portrait.webp',
     type: 'article',
   })
 }

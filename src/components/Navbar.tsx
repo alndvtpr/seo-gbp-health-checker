@@ -71,7 +71,7 @@ export const Navbar = () => {
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 overflow-hidden rounded-full border border-black/15 dark:border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
               <img
                 src="/logo-44.webp"
-                alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
+                alt="Alain Dave Tapiru"
                 width="44"
                 height="44"
                 className="w-full h-full object-contain p-1"

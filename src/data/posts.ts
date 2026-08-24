@@ -52,8 +52,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'After a year of intensive SEO training and building real implementations, I dug into the latest data from SparkToro, Google, and independent research to find out what is actually dying, what still works, and what changed.',
     heroImage: {
-      src: '/images/blog/is-seo-dead-2026-hero.webp',
-      alt: 'Conceptual 3D visualization of 2026 search intelligence, interconnected knowledge graph nodes, and AI entity retrieval',
+      src: '/images/blog/is-seo-dead-2026-seo-search-landscape.webp',
+      alt: 'Illustration for Is SEO Dead in 2026, examining how Google search is changing',
       caption:
         'Modern search discovery is shifting from isolated 10-blue-link indexing to multi-dimensional AI entity retrieval.',
       attribution: 'Alain Dave Tapiru / Search Intelligence 2026',
@@ -76,8 +76,8 @@ export const BLOG_POSTS: BlogPost[] = [
               'The 68.01% zero-click figure reflects U.S. desktop and mobile search behavior analyzed by SparkToro and Similarweb. AI Overview prevalence and CTR drops vary significantly across geographic regions and transactional vs. informational queries.',
           },
           image: {
-            src: '/images/blog/us-zero-click-searches-sparktoro-2026.svg',
-            alt: 'SparkToro and Similarweb Q1 2026 U.S. Google search click distribution chart showing 68.01% zero-click rate',
+            src: '/images/blog/us-google-zero-click-searches-sparktoro-2026.svg',
+            alt: 'SparkToro 2026 U.S. Google search chart showing a 68.01% zero-click rate',
             caption:
               'U.S. Google search behavior: 68.01% of all queries now terminate without an outbound click to external websites.',
             attribution: 'Data Source: SparkToro / Similarweb Q1 2026 Study',
@@ -186,8 +186,8 @@ export const BLOG_POSTS: BlogPost[] = [
             'I structured my own digital portfolio around these exact principles: sub-1.4s mobile performance, unified Schema.org @graph markup connecting author and services, answer-first blog sections, and an interactive 10-point Google Business Profile diagnostic tool. These steps prioritize verified technical rigor over speculative shortcuts.',
           ],
           image: {
-            src: '/images/blog/3-tier-seo-geo-priority-framework.svg',
-            alt: 'The 3-Tier SEO & GEO Priority Framework diagram showing Tier 1 Technical, Tier 2 Entity, and Tier 3 AI-Ready strategy',
+            src: '/images/blog/three-tier-seo-geo-priority-framework.svg',
+            alt: 'Three-tier SEO and GEO priority framework showing Technical, Entity, and AI-Ready strategy',
             caption:
               'Sequential execution model: Higher-level AI and entity optimizations require a solid technical foundation to succeed.',
             attribution: 'Architecture: Alain Dave Tapiru',

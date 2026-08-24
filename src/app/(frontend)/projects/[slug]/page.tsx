@@ -162,7 +162,7 @@ export default async function ProjectDetailPage({
       <div className="relative w-full h-[240px] sm:h-[400px] md:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl bg-black/5 dark:bg-black/60 motion-reveal">
         <Image
           src={project.image}
-          alt={project.title}
+          alt={project.imageAlt || project.title}
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 1024px"

@@ -37,7 +37,7 @@ export const JsonLd = () => {
         name: 'Alain Dave G. Tapiru',
         alternateName: ['Alain Tapiru', 'Alain Dave Tapiru'],
         url: 'https://www.alaintapiru.com/',
-        image: 'https://www.alaintapiru.com/about_me.jpg',
+        image: 'https://www.alaintapiru.com/alain-dave-tapiru-professional-portrait.webp',
         jobTitle: 'SEO Specialist & Web Developer',
         description:
           'SEO Specialist and Technical Web Developer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',
@@ -81,7 +81,7 @@ export const JsonLd = () => {
         alternateName: 'Alain Dave Tapiru Freelance & Consulting',
         url: 'https://www.alaintapiru.com/',
         logo: 'https://www.alaintapiru.com/logo.png',
-        image: 'https://www.alaintapiru.com/about_me.jpg',
+        image: 'https://www.alaintapiru.com/alain-dave-tapiru-professional-portrait.webp',
         description:
           'Professional Technical SEO, Local Search Optimization, Google Business Profile management, and custom Next.js/WordPress web development.',
         telephone: '+63-906-324-9560',

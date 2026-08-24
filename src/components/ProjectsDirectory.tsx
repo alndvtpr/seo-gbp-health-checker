@@ -119,7 +119,7 @@ export function ProjectsDirectory() {
             <div className="relative w-full h-[220px] sm:h-[340px] md:h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/60 shadow-md">
               <Image
                 src={currentImage}
-                alt={activeModalProject.title}
+                alt={activeModalProject.imageAlt || activeModalProject.title}
                 fill
                 sizes="(max-width: 896px) 100vw, 896px"
                 className="object-contain object-center"
@@ -343,7 +343,7 @@ export function ProjectsDirectory() {
               >
                 <Image
                   src={proj.image}
-                  alt={proj.title}
+                  alt={proj.imageAlt || proj.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-top"

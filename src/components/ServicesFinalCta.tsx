@@ -10,7 +10,7 @@ const SERVICES_JSON_LD = {
       '@id': 'https://www.alaintapiru.com/#business',
       name: 'Alain Tapiru | SEO, AEO, GEO & Web Development Services',
       url: 'https://www.alaintapiru.com/services/',
-      image: 'https://www.alaintapiru.com/about_me.jpg',
+      image: 'https://www.alaintapiru.com/alain-dave-tapiru-professional-portrait.webp',
       telephone: '+63-906-324-9560',
       email: 'alaintapiru@gmail.com',
       priceRange: '$$',

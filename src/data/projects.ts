@@ -28,6 +28,7 @@ export interface Project {
   metrics?: ProjectMetric[]
   techStack: string[]
   image: string
+  imageAlt?: string
   gallery?: string[]
   ctaText?: string
 }
@@ -87,12 +88,13 @@ export const angatSikatProject: Project = {
     { label: 'Crawl Cleanliness', value: '100%', detail: 'Semantic HTML5 structure' },
     { label: 'Load Duration', value: '<1.2s', detail: 'Local benchmark test' },
   ],
-  image: '/images/projects/angat-sikat-homepage-preview.webp',
+  image: '/images/projects/angatsikat-studio-wordpress-website-preview.avif',
+  imageAlt: 'AngatSikat Studio WordPress website design and custom theme preview',
   gallery: [
-    '/images/projects/angat-sikat-homepage-preview.webp',
+    '/images/projects/angatsikat-studio-wordpress-website-preview.avif',
     '/images/projects/angat-sikat-philosophy-preview.webp',
     '/images/projects/angat-sikat-core-capabilities-preview.webp',
-    '/images/projects/angat-sikat-mobile-webview-preview.webp',
+    '/images/projects/angat-sikat-mobile-webview-preview.avif',
   ],
   ctaText: 'View Live Build',
 }
@@ -138,7 +140,8 @@ export const localSeoGbpProject: Project = {
     { label: 'Report Format', value: '3 Pages', detail: 'Executive PDF roadmap export' },
   ],
   techStack: ['Next.js', 'React', 'Tailwind CSS', 'Serper Places API', 'Google AI Studio'],
-  image: '/images/projects/local-seo-gbp-checker-preview.webp',
+  image: '/images/projects/local-seo-gbp-health-checker-preview.webp',
+  imageAlt: 'Local SEO and Google Business Profile Health Checker interface',
   ctaText: 'Launch Tool',
 }
 
@@ -183,9 +186,10 @@ export const portfolioProject: Project = {
     { label: 'SEO & Best Practices', value: '100/100', detail: 'Lighthouse Production Audit' },
   ],
   techStack: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Payload CMS 3.0', 'Supabase'],
-  image: '/images/projects/alaintapiru-website-preview.webp',
+  image: '/images/projects/alaintapiru-technical-seo-web-project-preview.webp',
+  imageAlt: 'AlainTapiru.com technical SEO and web architecture project preview',
   gallery: [
-    '/images/projects/alaintapiru-website-preview.webp',
+    '/images/projects/alaintapiru-technical-seo-web-project-preview.webp',
     '/images/projects/alaintapiru-pagespeed-desktop-audit-scores.avif',
     '/images/projects/alaintapiru-pagespeed-mobile-audit-scores.avif',
   ],
