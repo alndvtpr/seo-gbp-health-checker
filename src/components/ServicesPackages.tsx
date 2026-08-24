@@ -115,8 +115,8 @@ export function ServicesPackages() {
             style={{ transitionDelay: `${idx * 80}ms` }}
             className={`rounded-2xl sm:rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative backdrop-blur-md motion-reveal ${
               pkg.isFeatured
-                ? 'bg-gradient-to-b from-primary-container/20 via-surface-2/85 to-surface-1/80 border-2 border-primary-container/80 shadow-[0_0_50px_rgba(224,123,32,0.22)] lg:-translate-y-1 z-10 pt-9 sm:pt-10'
-                : 'bg-surface-1/80 border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 shadow-lg'
+                ? 'bg-surface-1/95 border-2 border-primary-container/80 shadow-[0_0_50px_rgba(224,123,32,0.22)] lg:-translate-y-1 z-10 pt-9 sm:pt-10'
+                : 'bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/40 hover:bg-surface-2 shadow-sm'
             }`}
           >
             {/* Floating Featured Badge */}
@@ -132,7 +132,7 @@ export function ServicesPackages() {
             <div>
               {/* Card Header & Badge */}
               <div className="flex items-center justify-between gap-2 mb-4">
-                <span className="text-[10px] font-heading font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-on-surface/70">
+                <span className="text-[10px] font-heading font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80">
                   {pkg.cadence}
                 </span>
                 <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-primary-container">
@@ -157,7 +157,7 @@ export function ServicesPackages() {
               </p>
 
               {/* Deliverables / Includes List */}
-              <div className="space-y-2.5 pt-5 border-t border-white/10 mb-6">
+              <div className="space-y-2.5 pt-5 border-t border-black/10 dark:border-white/10 mb-6">
                 <span className="font-heading text-[11px] text-primary-container uppercase tracking-wider block font-semibold">
                   What&apos;s Included:
                 </span>
@@ -183,7 +183,7 @@ export function ServicesPackages() {
               className={`inline-flex items-center justify-center w-full py-3 px-4 rounded-xl font-heading text-xs font-bold uppercase tracking-[0.06em] btn-motion min-h-[44px] text-center leading-normal focus-visible:ring-2 focus-visible:ring-primary-container ${
                 pkg.isFeatured
                   ? 'bg-primary-container text-on-primary-container shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)]'
-                  : 'bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-white/10 hover:border-transparent'
+                  : 'bg-black/5 dark:bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface border border-black/10 dark:border-white/10 hover:border-transparent'
               }`}
             >
               <span>{pkg.ctaText}</span>
@@ -194,11 +194,11 @@ export function ServicesPackages() {
       </div>
 
       {/* Small Business & Flexible Negotiation Trust Banner */}
-      <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-surface-1/95 via-surface-2/90 to-surface-1/95 border border-primary-container/35 shadow-xl relative overflow-hidden motion-reveal">
+      <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/35 shadow-xl relative overflow-hidden motion-reveal">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-heading text-xs font-bold uppercase tracking-[0.06em]">
-              <Icon name="handshake" size={15} className="text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 font-heading text-xs font-bold uppercase tracking-[0.06em]">
+              <Icon name="handshake" size={15} className="text-emerald-500" />
               <span>Small Business &amp; Custom Budget Friendly</span>
             </div>
             <h3 className="font-heading text-lg sm:text-2xl font-bold text-on-surface">
@@ -211,7 +211,7 @@ export function ServicesPackages() {
 
           <Link
             href="/contact/?service=Flexible%20Small%20Business%20Scope"
-            className="inline-flex items-center gap-2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl btn-motion whitespace-nowrap min-h-[46px] shadow-md focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="inline-flex items-center gap-2 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-600 dark:text-emerald-300 hover:text-emerald-700 dark:hover:text-emerald-200 font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl btn-motion whitespace-nowrap min-h-[46px] shadow-sm focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Discuss Custom Plan</span>
             <Icon name="arrow_forward" size={14} className="btn-icon" />

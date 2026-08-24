@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import { useTheme } from '@/components/ThemeProvider'
 
 const vertexShaderSource = `
   attribute vec2 a_position;
@@ -17,8 +18,11 @@ const fragmentShaderSource = `
   uniform float u_time;
   uniform vec2 u_resolution;
   uniform vec2 u_mouse;
+  uniform float u_theme; // 0.0 = dark, 1.0 = light (smooth interpolation)
 
-  vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+  vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+  vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+  vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
 
   float snoise(vec2 v){
     const vec4 C = vec4(0.211324865405187, 0.366025403784439,
@@ -29,7 +33,7 @@ const fragmentShaderSource = `
     i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
     vec4 x12 = x0.xyxy + C.xxzz;
     x12.xy -= i1;
-    i = mod(i, 289.0);
+    i = mod289(i);
     vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
     + i.x + vec3(0.0, i1.x, 1.0 ));
     vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
@@ -47,34 +51,87 @@ const fragmentShaderSource = `
     return 130.0 * dot(m, g);
   }
 
+  float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.5;
+    float shift = 100.0;
+    for (int i = 0; i < 3; ++i) {
+      v += a * snoise(p);
+      p = p * 2.0 + vec2(shift);
+      a *= 0.5;
+    }
+    return v;
+  }
+
   void main() {
     vec2 uv = v_texCoord;
     vec2 mouse = u_mouse / u_resolution;
-    
-    float noise1 = snoise(uv * 3.0 - u_time * 0.08);
-    float noise2 = snoise(uv * 6.0 + u_time * 0.15);
-    float finalNoise = noise1 * 0.5 + noise2 * 0.25;
-    
-    vec3 color = vec3(0.02, 0.02, 0.03); 
-    vec3 amber = vec3(0.9, 0.49, 0.13); // #E67E22 Noir Amber Glow
-    float glow = smoothstep(0.1, 0.8, finalNoise);
-    
     float dist = distance(uv, mouse);
-    float mouseGlow = smoothstep(0.35, 0.0, dist) * 0.25;
     
-    color += amber * glow * 0.25;
-    color += amber * mouseGlow;
+    // ── 1. DARK MODE CALCULATION (Amber Noir Smoke) ──────────────────────────
+    float darkNoise1 = snoise(uv * 3.0 - u_time * 0.08);
+    float darkNoise2 = snoise(uv * 6.0 + u_time * 0.15);
+    float darkFinalNoise = darkNoise1 * 0.5 + darkNoise2 * 0.25;
     
+    vec3 darkBase = vec3(0.02, 0.02, 0.03); 
+    vec3 darkAmber = vec3(0.9, 0.49, 0.13); // #E67E22 Noir Amber Glow
+    float darkGlow = smoothstep(0.1, 0.8, darkFinalNoise);
+    float darkMouseGlow = smoothstep(0.35, 0.0, dist) * 0.25;
+    
+    vec3 darkColor = darkBase;
+    darkColor += darkAmber * darkGlow * 0.25;
+    darkColor += darkAmber * darkMouseGlow;
     float vignette = smoothstep(1.3, 0.35, length(uv - 0.5));
-    color *= vignette;
+    darkColor *= vignette;
+
+    // ── 2. DAY MODE CALCULATION (Alabaster Cream Amber Peach - shader.html) ──
+    float lightTime = u_time * 0.08;
+    vec3 alabaster = vec3(0.98, 0.98, 0.97); // #FAFAF8
+    vec3 cream = vec3(0.957, 0.937, 0.918); // #F4EFEA
+    vec3 lightAmber = vec3(0.949, 0.659, 0.392); // #F2A864
+    vec3 peach = vec3(1.0, 0.875, 0.749);   // #FFDFBF
+
+    float n1 = fbm(uv * 1.5 + lightTime);
+    float n2 = fbm(uv * 2.0 - lightTime * 0.5 + n1 * 0.2);
     
-    gl_FragColor = vec4(color, 0.85);
+    vec3 lightColor = mix(alabaster, cream, n1 * 0.5 + 0.5);
+    lightColor = mix(lightColor, lightAmber, clamp(n2 * 0.2, 0.0, 0.15));
+    lightColor = mix(lightColor, peach, clamp(n1 * 0.1, 0.0, 0.1));
+    
+    float lightMouseGlow = smoothstep(0.4, 0.0, dist) * 0.08;
+    lightColor += lightAmber * lightMouseGlow;
+    
+    // Micro-grain texture for organic paper-like feel
+    float grain = (fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.02;
+    lightColor += grain;
+    
+    // Luminosity Guard (Ensure lum > 0.92 for absolute text contrast)
+    float lum = dot(lightColor, vec3(0.299, 0.587, 0.114));
+    if (lum < 0.92) {
+      lightColor += (0.92 - lum);
+    }
+
+    // ── 3. SEAMLESS UNIFORM INTERPOLATION ────────────────────────────────────
+    vec3 finalColor = mix(darkColor, lightColor, u_theme);
+    float finalAlpha = mix(0.85, 0.96, u_theme);
+
+    gl_FragColor = vec4(finalColor, finalAlpha);
   }
 `
 
 export const ShaderBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [mounted, setMounted] = useState(false)
+  const { theme } = useTheme()
+  const themeRef = useRef(theme)
+  const triggerAnimationRef = useRef<(() => void) | null>(null)
+
+  useEffect(() => {
+    themeRef.current = theme
+    if (triggerAnimationRef.current) {
+      triggerAnimationRef.current()
+    }
+  }, [theme])
 
   useEffect(() => {
     setMounted(true)
@@ -144,10 +201,12 @@ export const ShaderBackground = () => {
       const timeLoc = gl.getUniformLocation(program, 'u_time')
       const resLoc = gl.getUniformLocation(program, 'u_resolution')
       const mouseLoc = gl.getUniformLocation(program, 'u_mouse')
+      const themeLoc = gl.getUniformLocation(program, 'u_theme')
       
       let windowHeight = window.innerHeight
       let mouse = { x: window.innerWidth / 2, y: windowHeight / 2 }
       let lastInteractionTime = performance.now()
+      let currentThemeValue = themeRef.current === 'light' ? 1.0 : 0.0
 
       const handleMouseMove = (e: MouseEvent) => {
         mouse.x = (e.clientX / window.innerWidth) * canvas.width
@@ -178,9 +237,18 @@ export const ShaderBackground = () => {
 
       const drawFrame = (time: number) => {
         const elapsedTime = (time - startTime) / 1000
+        
+        // Smooth theme interpolation (target 1.0 for light, 0.0 for dark)
+        const targetTheme = themeRef.current === 'light' ? 1.0 : 0.0
+        currentThemeValue += (targetTheme - currentThemeValue) * 0.12
+        if (Math.abs(targetTheme - currentThemeValue) < 0.005) {
+          currentThemeValue = targetTheme
+        }
+
         gl.uniform1f(timeLoc, elapsedTime)
         gl.uniform2f(resLoc, canvas.width, canvas.height)
         gl.uniform2f(mouseLoc, mouse.x, mouse.y)
+        if (themeLoc) gl.uniform1f(themeLoc, currentThemeValue)
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       }
 
@@ -196,14 +264,17 @@ export const ShaderBackground = () => {
       resizeObserver.observe(canvas)
 
       const render = (time: number) => {
+        const targetTheme = themeRef.current === 'light' ? 1.0 : 0.0
+        const isThemeTransitioning = Math.abs(targetTheme - currentThemeValue) > 0.005
+
         // Skip draw call if less than ~33ms has elapsed (cap at ~30fps)
         if (time - lastDrawTime >= FRAME_INTERVAL) {
           lastDrawTime = time
           drawFrame(time)
         }
         
-        // Sleep when idle for > 4s to preserve 100% CPU when user is reading
-        if (time - lastInteractionTime > 4000) {
+        // Sleep when idle for > 4s AND theme transition is settled to preserve 100% CPU
+        if (time - lastInteractionTime > 4000 && !isThemeTransitioning) {
           stopAnimation()
           return
         }
@@ -223,6 +294,11 @@ export const ShaderBackground = () => {
           lastDrawTime = performance.now()
           requestId = requestAnimationFrame(render)
         }
+      }
+
+      triggerAnimationRef.current = () => {
+        lastInteractionTime = performance.now()
+        startAnimation()
       }
 
       if (prefersReducedMotion) {
@@ -294,29 +370,33 @@ export const ShaderBackground = () => {
 
     return () => {
       cleanupTriggerListeners()
+      triggerAnimationRef.current = null
       if (cleanupFn) cleanupFn()
     }
   }, [mounted])
+
+  const isLight = theme === 'light'
 
   return (
     <>
       {/* Zero-CPU instant CSS ambient glow (active on initial paint) */}
       <div 
-        className="fixed inset-0 w-full h-full z-[-2] pointer-events-none opacity-60"
+        className="fixed inset-0 w-full h-full z-[-2] pointer-events-none transition-opacity duration-500"
         style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 25%, rgba(230, 126, 34, 0.14) 0%, rgba(18, 20, 20, 0.05) 50%, transparent 75%)'
+          background: isLight
+            ? 'radial-gradient(ellipse 80% 50% at 50% 25%, rgba(242, 168, 100, 0.22) 0%, rgba(244, 239, 234, 0.1) 50%, transparent 75%)'
+            : 'radial-gradient(ellipse 80% 50% at 50% 25%, rgba(230, 126, 34, 0.14) 0%, rgba(18, 20, 20, 0.05) 50%, transparent 75%)',
+          opacity: isLight ? 0.75 : 0.6,
         }}
       />
       {/* Live organic Simplex Noise & mouse-glow WebGL canvas */}
       <canvas 
         ref={canvasRef} 
-        className="fixed inset-0 w-full h-full block z-[-2] pointer-events-none mix-blend-screen opacity-75 object-cover" 
+        className={`fixed inset-0 w-full h-full block z-[-2] pointer-events-none object-cover transition-opacity duration-500 ${
+          isLight ? 'opacity-90 mix-blend-normal' : 'opacity-75 mix-blend-screen'
+        }`}
         style={{ filter: 'blur(30px)', transform: 'translateZ(0)' }}
       />
     </>
   )
 }
-
-
-
-

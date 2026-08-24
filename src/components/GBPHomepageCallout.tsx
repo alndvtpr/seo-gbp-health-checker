@@ -60,7 +60,7 @@ export const GBPHomepageCallout = () => {
             </div>
 
             {/* Right Action Card / Interactive Preview */}
-            <div style={{ transitionDelay: '100ms' }} className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-2xl text-center max-w-sm card-interactive-glow motion-reveal">
+            <div style={{ transitionDelay: '100ms' }} className="w-full lg:w-auto shrink-0 flex flex-col items-center sm:items-stretch gap-3 sm:gap-4 p-6 sm:p-8 rounded-2xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-xl text-center max-w-sm card-interactive-glow motion-reveal">
               <div className="space-y-1">
                 <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-primary-container font-semibold">
                   Zero Cost • Instant Execution
@@ -70,17 +70,17 @@ export const GBPHomepageCallout = () => {
                 </h3>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 space-y-1 text-left">
+              <div className="p-3.5 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/5 space-y-1 text-left">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-on-surface/60">Audit Speed:</span>
-                  <span className="font-bold text-emerald-400">~3 seconds</span>
+                  <span className="text-on-surface/70">Audit Speed:</span>
+                  <span className="font-bold text-emerald-500">~3 seconds</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-on-surface/60">Export Format:</span>
+                  <span className="text-on-surface/70">Export Format:</span>
                   <span className="font-bold text-on-surface">Multi-Page PDF</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-on-surface/60">Access:</span>
+                  <span className="text-on-surface/70">Access:</span>
                   <span className="font-bold text-primary-container">100% Free</span>
                 </div>
               </div>

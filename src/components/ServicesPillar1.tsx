@@ -76,7 +76,7 @@ export function ServicesPillar1() {
           <article
             key={service.id}
             style={{ transitionDelay: `${idx * 80}ms` }}
-            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 group flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal"
+            className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 group flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal"
           >
             <div>
               {/* Card Icon Header */}
@@ -93,7 +93,7 @@ export function ServicesPillar1() {
               </p>
 
               {/* Deliverables List */}
-              <div className="space-y-3 pt-6 border-t border-white/10 mb-8">
+              <div className="space-y-3 pt-6 border-t border-black/10 dark:border-white/10 mb-8">
                 <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
                   Key Deliverables
                 </span>
@@ -116,7 +116,7 @@ export function ServicesPillar1() {
             <Link
               href="/contact/"
               aria-label={`${service.ctaText} for ${service.title}`}
-              className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-primary-container hover:text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] text-on-surface border border-black/10 dark:border-white/10 hover:border-transparent transition-all min-h-[46px] group-hover:bg-primary-container group-hover:text-on-primary-container focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               <span>{service.ctaText}</span>
               <Icon name="arrow_forward" size={14} className="ml-2" />

@@ -159,14 +159,14 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           placeholder="https://yourwebsite.com"
           disabled={isSubmitting}
           {...register('website')}
-          className={`w-full bg-white/5 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+          className={`w-full bg-surface-2/70 dark:bg-white/5 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
             errors.website
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-              : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
+              : 'border-black/10 dark:border-white/10 focus:border-primary-container focus:ring-primary-container/30'
           }`}
         />
         {errors.website && (
-          <p className="font-sans text-xs text-red-400 mt-1 flex items-center gap-1">
+          <p className="font-sans text-xs text-red-500 dark:text-red-400 mt-1 flex items-center gap-1">
             <span>&bull;</span> {errors.website.message}
           </p>
         )}
@@ -190,14 +190,14 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           placeholder="john@example.com"
           disabled={isSubmitting}
           {...register('email')}
-          className={`w-full bg-white/5 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
+          className={`w-full bg-surface-2/70 dark:bg-white/5 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
             errors.email
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-              : 'border-white/10 focus:border-primary-container focus:ring-primary-container/30'
+              : 'border-black/10 dark:border-white/10 focus:border-primary-container focus:ring-primary-container/30'
           }`}
         />
         {errors.email && (
-          <p className="font-sans text-xs text-red-400 mt-1 flex items-center gap-1">
+          <p className="font-sans text-xs text-red-500 dark:text-red-400 mt-1 flex items-center gap-1">
             <span>&bull;</span> {errors.email.message}
           </p>
         )}
@@ -219,7 +219,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
             placeholder="e.g. John / Acme Studio"
             disabled={isSubmitting}
             {...register('name')}
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all min-h-[44px] disabled:opacity-50"
+            className="w-full bg-surface-2/70 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-2.5 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all min-h-[44px] disabled:opacity-50"
           />
         </div>
 
@@ -236,7 +236,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
               id="audit-focus"
               disabled={isSubmitting}
               {...register('focus')}
-              className="w-full bg-surface-1 border border-white/10 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all min-h-[44px] disabled:opacity-50 appearance-none cursor-pointer"
+              className="w-full bg-surface-2/70 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-all min-h-[44px] disabled:opacity-50 appearance-none cursor-pointer"
             >
               <option value="" className="bg-surface-1 text-on-surface/50">
                 Select primary focus area...

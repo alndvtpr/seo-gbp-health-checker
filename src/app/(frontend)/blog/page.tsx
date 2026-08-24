@@ -41,7 +41,7 @@ export default function BlogPage() {
           <article
             key={post.slug}
             style={{ transitionDelay: `${(idx % 2) * 80}ms` }}
-            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 hover:border-primary-container/40 hover:bg-surface-2/80 transition-all duration-300 group flex flex-col justify-between shadow-xl card-interactive-glow motion-reveal"
+            className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 hover:border-primary-container/40 hover:bg-surface-2 transition-all duration-300 group flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs font-sans text-on-surface/70">
@@ -65,7 +65,7 @@ export default function BlogPage() {
               </p>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between font-sans text-xs text-on-surface/70">
+            <div className="pt-6 mt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-sans text-xs text-on-surface/70">
               <span className="text-on-surface/60">{post.date}</span>
               <Link
                 href={`/blog/${post.slug}/`}
@@ -80,7 +80,7 @@ export default function BlogPage() {
       </div>
 
       {/* Free GBP Health Checker Callout */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/80 backdrop-blur-md border border-primary-container/30 text-center space-y-6 shadow-[0_0_50px_rgba(224,123,32,0.12)] motion-reveal">
+      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/95 backdrop-blur-md border border-primary-container/30 text-center space-y-6 shadow-xl motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Interactive Diagnostic Tool
         </span>

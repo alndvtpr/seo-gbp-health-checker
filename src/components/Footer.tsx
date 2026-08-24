@@ -8,26 +8,26 @@ import { RssButton } from '@/components/RssButton'
 export const Footer = () => {
   return (
     <footer
-      className="bg-[#070e1b]/60 backdrop-blur-xl text-on-surface w-full pt-8 pb-6 px-4 sm:px-6 md:px-12 border-t border-white/10 relative z-30 overflow-hidden shadow-[0_-8px_30px_rgba(7,14,27,0.5)]"
+      className="bg-surface-1 text-on-surface w-full pt-8 pb-6 px-4 sm:px-6 md:px-12 border-t border-black/10 dark:border-white/10 relative z-30 overflow-hidden shadow-[0_-8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.5)]"
       style={{ paddingBottom: 'max(1.5rem, calc(0.75rem + env(safe-area-inset-bottom, 0px)))' }}
     >
       {/* Top Border Subtle Gradient Line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-orange-500/50 via-white/10 to-emerald-400/50 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-orange-500/50 via-black/10 dark:via-white/10 to-emerald-400/50 pointer-events-none" />
 
       {/* Central Deep Obsidian Atmospheric Base */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8,18,36,0.4)_0%,transparent_80%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(8,18,36,0.4)_0%,transparent_80%)] dark:block hidden pointer-events-none" />
 
-      {/* Left Warm Orange Neon Light Reflection */}
-      <div className="absolute -top-20 -left-20 w-[24rem] sm:w-[32rem] h-[24rem] sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(230,126,34,0.18)_0%,rgba(230,126,34,0.05)_45%,transparent_75%)] pointer-events-none blur-3xl animate-glow-pulse" />
+      {/* Left Warm Orange Neon Light Reflection (Dark Mode Only) */}
+      <div className="absolute -top-20 -left-20 w-[24rem] sm:w-[32rem] h-[24rem] sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(230,126,34,0.18)_0%,rgba(230,126,34,0.05)_45%,transparent_75%)] pointer-events-none blur-3xl animate-glow-pulse dark:block hidden" />
 
-      {/* Right Emerald Green Neon Light Reflection */}
-      <div className="absolute -bottom-20 -right-20 w-[24rem] sm:w-[32rem] h-[24rem] sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.16)_0%,rgba(16,185,129,0.04)_45%,transparent_75%)] pointer-events-none blur-3xl animate-glow-pulse" />
+      {/* Right Emerald Green Neon Light Reflection (Dark Mode Only) */}
+      <div className="absolute -bottom-20 -right-20 w-[24rem] sm:w-[32rem] h-[24rem] sm:h-[32rem] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.16)_0%,rgba(16,185,129,0.04)_45%,transparent_75%)] pointer-events-none blur-3xl animate-glow-pulse dark:block hidden" />
 
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-8 sm:gap-10 mb-6 relative z-10">
         {/* Left Side: Brand, Bio & Socials */}
         <div className="max-w-md space-y-3">
           <div className="flex items-center gap-2.5">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/10 flex items-center justify-center bg-white/5 shrink-0">
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
               <Image
                 src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
@@ -41,7 +41,7 @@ export const Footer = () => {
             </span>
           </div>
 
-          <p className="font-sans text-xs text-on-surface/75 leading-relaxed">
+          <p className="font-sans text-xs text-on-surface/80 leading-relaxed">
             SEO Specialist, Web Developer, &amp; Cybersecurity Student. Building search-ready, high-performance websites with clean technical foundations.
           </p>
 
@@ -52,7 +52,7 @@ export const Footer = () => {
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="Gmail"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -64,7 +64,7 @@ export const Footer = () => {
               href="https://www.facebook.com/dcrazedave"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="Facebook"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -76,7 +76,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="LinkedIn"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true" focusable="false">
@@ -88,7 +88,7 @@ export const Footer = () => {
               href="https://github.com/alndvtpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
               aria-label="GitHub"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -98,7 +98,7 @@ export const Footer = () => {
             {/* RSS Feed */}
             <RssButton
               variant="icon"
-              className="w-8 h-8 bg-white/5 border-primary-container/30 hover:-translate-y-0.5 transition-all shadow-[0_0_10px_rgba(238,128,47,0.1)] hover:shadow-[0_0_15px_rgba(238,128,47,0.3)]"
+              className="w-8 h-8 bg-black/5 dark:bg-white/5 border-primary-container/30 hover:-translate-y-0.5 transition-all shadow-[0_0_10px_rgba(238,128,47,0.1)] hover:shadow-[0_0_15px_rgba(238,128,47,0.3)]"
               iconSize={14}
             />
           </div>
@@ -111,7 +111,7 @@ export const Footer = () => {
             <h3 className="font-heading text-xs font-bold text-primary-container uppercase tracking-[0.06em]">
               Quick Links
             </h3>
-            <ul className="space-y-1.5 font-sans text-xs text-on-surface/75">
+            <ul className="space-y-1.5 font-sans text-xs text-on-surface/80">
               <li>
                 <Link href="/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Home</Link>
               </li>
@@ -132,7 +132,7 @@ export const Footer = () => {
                   href="/rss.xml"
                   target="_blank"
                   rel="noopener noreferrer alternate"
-                  className="hover:text-primary-container text-on-surface/75 hover:translate-x-1 transition-all py-0.5 inline-flex items-center gap-1.5"
+                  className="hover:text-primary-container text-on-surface/80 hover:translate-x-1 transition-all py-0.5 inline-flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
                   RSS Feed
@@ -146,7 +146,7 @@ export const Footer = () => {
             <h3 className="font-heading text-xs font-bold text-primary-container uppercase tracking-[0.06em]">
               Services &amp; Tools
             </h3>
-            <ul className="space-y-1.5 font-sans text-xs text-on-surface/75">
+            <ul className="space-y-1.5 font-sans text-xs text-on-surface/80">
               <li>
                 <Link href="/services/#pillar-foundation" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Technical SEO &amp; Schema</Link>
               </li>
@@ -168,7 +168,7 @@ export const Footer = () => {
       </div>
 
       {/* Bottom Copyright Bar */}
-      <div className="max-w-6xl mx-auto pt-4 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2 text-[11px] font-sans text-on-surface/60 relative z-10">
+      <div className="max-w-6xl mx-auto pt-4 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row justify-between items-center gap-2 text-[11px] font-sans text-on-surface/70 relative z-10">
         <div>
           © {new Date().getFullYear()} Alain Dave Tapiru. All rights reserved.
         </div>

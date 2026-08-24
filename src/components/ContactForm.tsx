@@ -141,14 +141,14 @@ export const ContactForm = () => {
           aria-describedby={errors.name ? 'contact-name-error' : undefined}
           disabled={isSubmitting}
           {...register('name')}
-          className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 ${
+          className={`w-full bg-surface-2/70 dark:bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 ${
             errors.name
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-              : 'border-white/10'
+              : 'border-black/10 dark:border-white/10'
           }`}
         />
         {errors.name && (
-          <p id="contact-name-error" role="alert" className="font-sans text-xs text-red-400 mt-1.5 flex items-center gap-1">
+          <p id="contact-name-error" role="alert" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
             <span aria-hidden="true">&bull;</span> {errors.name.message}
           </p>
         )}
@@ -173,14 +173,14 @@ export const ContactForm = () => {
             aria-describedby={errors.email ? 'contact-email-error' : undefined}
             disabled={isSubmitting}
             {...register('email')}
-            className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 ${
+            className={`w-full bg-surface-2/70 dark:bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 ${
               errors.email
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-                : 'border-white/10'
+                : 'border-black/10 dark:border-white/10'
             }`}
           />
           {errors.email && (
-            <p id="contact-email-error" role="alert" className="font-sans text-xs text-red-400 mt-1.5 flex items-center gap-1">
+            <p id="contact-email-error" role="alert" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
               <span aria-hidden="true">&bull;</span> {errors.email.message}
             </p>
           )}
@@ -203,14 +203,14 @@ export const ContactForm = () => {
             aria-describedby={errors.website ? 'contact-website-error' : undefined}
             disabled={isSubmitting}
             {...register('website')}
-            className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 ${
+            className={`w-full bg-surface-2/70 dark:bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 ${
               errors.website
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-                : 'border-white/10'
+                : 'border-black/10 dark:border-white/10'
             }`}
           />
           {errors.website && (
-            <p id="contact-website-error" role="alert" className="font-sans text-xs text-red-400 mt-1.5 flex items-center gap-1">
+            <p id="contact-website-error" role="alert" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
               <span aria-hidden="true">&bull;</span> {errors.website.message}
             </p>
           )}
@@ -233,10 +233,10 @@ export const ContactForm = () => {
             aria-describedby={errors.service ? 'contact-service-error' : undefined}
             disabled={isSubmitting}
             {...register('service')}
-            className={`w-full bg-surface-1 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 appearance-none cursor-pointer ${
+            className={`w-full bg-surface-2/70 dark:bg-surface-1 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all min-h-[46px] disabled:opacity-50 appearance-none cursor-pointer ${
               errors.service
                 ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-                : 'border-white/10'
+                : 'border-black/10 dark:border-white/10'
             }`}
           >
             <option value="" disabled className="bg-surface-1 text-on-surface/50">
@@ -255,7 +255,7 @@ export const ContactForm = () => {
           </div>
         </div>
         {errors.service && (
-          <p id="contact-service-error" className="font-sans text-xs text-red-400 mt-1.5 flex items-center gap-1" role="alert">
+          <p id="contact-service-error" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1" role="alert">
             <span aria-hidden="true">&bull;</span> {errors.service.message}
           </p>
         )}
@@ -278,14 +278,14 @@ export const ContactForm = () => {
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
           disabled={isSubmitting}
           {...register('message')}
-          className={`w-full bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all resize-none disabled:opacity-50 ${
+          className={`w-full bg-surface-2/70 dark:bg-surface-1/90 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-primary-container transition-all resize-none disabled:opacity-50 ${
             errors.message
               ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/30'
-              : 'border-white/10'
+              : 'border-black/10 dark:border-white/10'
           }`}
         />
         {errors.message && (
-          <p id="contact-message-error" className="font-sans text-xs text-red-400 mt-1.5 flex items-center gap-1" role="alert">
+          <p id="contact-message-error" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1" role="alert">
             <span aria-hidden="true">&bull;</span> {errors.message.message}
           </p>
         )}

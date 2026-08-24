@@ -89,12 +89,20 @@ export const ScrollHero = () => {
       ctx.clearRect(0, 0, width, height)
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight)
 
-      // Dark film-noir gradient overlay
+      // Gradient overlay calibrated for dark/light contrast
+      const isLight = typeof document !== 'undefined' && (document.documentElement.getAttribute('data-theme') === 'light' || document.documentElement.classList.contains('light'))
       const gradient = ctx.createLinearGradient(0, 0, 0, height)
-      gradient.addColorStop(0, 'rgba(18, 20, 20, 0.22)')
-      gradient.addColorStop(0.4, 'rgba(18, 20, 20, 0.08)')
-      gradient.addColorStop(0.8, 'rgba(18, 20, 20, 0.28)')
-      gradient.addColorStop(1, 'rgba(18, 20, 20, 0.55)')
+      if (isLight) {
+        gradient.addColorStop(0, 'rgba(250, 250, 248, 0.45)')
+        gradient.addColorStop(0.4, 'rgba(250, 250, 248, 0.25)')
+        gradient.addColorStop(0.8, 'rgba(250, 250, 248, 0.55)')
+        gradient.addColorStop(1, 'rgba(250, 250, 248, 0.85)')
+      } else {
+        gradient.addColorStop(0, 'rgba(18, 20, 20, 0.22)')
+        gradient.addColorStop(0.4, 'rgba(18, 20, 20, 0.08)')
+        gradient.addColorStop(0.8, 'rgba(18, 20, 20, 0.28)')
+        gradient.addColorStop(1, 'rgba(18, 20, 20, 0.55)')
+      }
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, width, height)
     },
@@ -351,7 +359,7 @@ export const ScrollHero = () => {
               <span className="font-heading text-[10px] sm:text-[11px] uppercase tracking-[0.08em] font-extrabold text-primary-container shrink-0">
                 ✨ Free Tool:
               </span>
-              <span className="text-on-surface/90 text-[11px] sm:text-xs font-medium truncate group-hover:text-white">
+              <span className="text-on-surface text-[11px] sm:text-xs font-semibold truncate group-hover:text-primary-container transition-colors">
                 Google Business Profile Auditor
               </span>
               <span className="text-primary-container font-bold text-xs group-hover:translate-x-0.5 transition-transform shrink-0">
@@ -362,7 +370,7 @@ export const ScrollHero = () => {
 
           <h1 className="font-heading text-3xl sm:text-5xl md:text-7xl tracking-[-0.025em] leading-[1.12] sm:leading-[1.08] drop-shadow-2xl hero-animate-in hero-delay-2">
             <span className="font-extrabold text-on-surface">SEO Specialist</span>{' '}
-            <span className="font-medium text-on-surface/90">in the Philippines</span>{' '}
+            <span className="font-semibold text-on-surface/90">in the Philippines</span>{' '}
             <span className="font-extrabold text-primary-container block sm:inline">Building Search-Ready Websites</span>
           </h1>
 
@@ -381,19 +389,19 @@ export const ScrollHero = () => {
             <Link
               href="/contact/"
               data-agent-action="start-seo-inquiry"
-              className="w-full sm:w-auto min-h-[48px] border border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="w-full sm:w-auto min-h-[48px] border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               Let&apos;s Work Together
             </Link>
           </div>
 
           {/* Socials */}
-          <div className="flex gap-3 sm:gap-4 pt-6 mt-2 border-t border-white/5 w-full sm:w-auto hero-animate-in hero-delay-5">
+          <div className="flex gap-3 sm:gap-4 pt-6 mt-2 border-t border-black/10 dark:border-white/10 w-full sm:w-auto hero-animate-in hero-delay-5">
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="w-10 h-10 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="Gmail"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -404,7 +412,7 @@ export const ScrollHero = () => {
               href="https://www.facebook.com/dcrazedave"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="Facebook"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
@@ -415,7 +423,7 @@ export const ScrollHero = () => {
               href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="LinkedIn"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
@@ -426,7 +434,7 @@ export const ScrollHero = () => {
               href="https://github.com/alndvtpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="GitHub"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">

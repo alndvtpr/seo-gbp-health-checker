@@ -57,28 +57,29 @@ export function ProjectsDirectory() {
 
     return createPortal(
       <div
+        id="project-detail-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
-        className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+        className="fixed inset-0 bg-black/60 dark:bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
         style={{ zIndex: 999999 }}
         onClick={closeModal}
       >
         <div
-          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-surface-1 border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-surface-1 border border-black/10 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
-          <div className="p-4 sm:p-6 border-b border-white/10 bg-surface-2 z-10 flex items-start justify-between gap-4 shrink-0">
+          <div className="p-4 sm:p-6 border-b border-black/10 dark:border-white/10 bg-surface-2 z-10 flex items-start justify-between gap-4 shrink-0">
             <div className="space-y-1.5 pr-2 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 {activeModalProject.status === 'Ongoing' ? (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-amber-500/10 text-amber-500 border border-amber-500/20">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                     Ongoing Build
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     Live Project
                   </span>
@@ -106,16 +107,16 @@ export function ProjectsDirectory() {
               type="button"
               onClick={closeModal}
               aria-label="Close project modal"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/15 text-on-surface/70 hover:text-white border border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/15 text-on-surface border border-black/10 dark:border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
             >
               <Icon name="close" size={20} />
             </button>
           </div>
 
           {/* Modal Body */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8 bg-background/90">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 sm:space-y-8 bg-surface-1">
             {/* Primary Visual Preview */}
-            <div className="relative w-full h-[220px] sm:h-[340px] md:h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-xl">
+            <div className="relative w-full h-[220px] sm:h-[340px] md:h-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-black/5 dark:bg-black/60 shadow-md">
               <Image
                 src={currentImage}
                 alt={activeModalProject.title}
@@ -140,7 +141,7 @@ export function ProjectsDirectory() {
                       className={`relative h-16 sm:h-20 rounded-lg sm:rounded-xl overflow-hidden border transition-all cursor-pointer ${
                         currentImage === img
                           ? 'border-primary-container ring-2 ring-primary-container/40'
-                          : 'border-white/10 opacity-60 hover:opacity-100 hover:border-white/30'
+                          : 'border-black/10 dark:border-white/10 opacity-70 hover:opacity-100 hover:border-black/30 dark:hover:border-white/30'
                       }`}
                     >
                       <Image
@@ -157,7 +158,7 @@ export function ProjectsDirectory() {
             )}
 
             {/* Project Overview */}
-            <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5">
+            <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-2 border border-black/10 dark:border-white/10">
               <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-[0.08em]">
                 Project Architecture &amp; Overview
               </h3>
@@ -168,30 +169,30 @@ export function ProjectsDirectory() {
 
             {/* PageSpeed Performance Highlight for alaintapiru-portfolio */}
             {activeModalProject.slug === 'alaintapiru-portfolio' && (
-              <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-500/10 via-surface-1 to-emerald-500/10 border border-amber-500/30 space-y-3">
+              <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-500/10 via-surface-2 to-emerald-500/10 border border-amber-500/30 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-heading text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="font-heading text-xs font-bold text-amber-500 uppercase tracking-wider flex items-center gap-1.5">
                     <span>⚡</span> Google PageSpeed Insights Benchmark
                   </span>
-                  <span className="text-[10px] font-heading font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="text-[10px] font-heading font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                     100% Passed Vitals
                   </span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-                  <div className="p-2 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-base sm:text-lg font-black font-heading text-amber-400">99 / 100</div>
+                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
+                    <div className="text-base sm:text-lg font-black font-heading text-amber-500">99 / 100</div>
                     <div className="text-[10px] font-heading text-on-surface/60 uppercase">Desktop Score</div>
                   </div>
-                  <div className="p-2 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-base sm:text-lg font-black font-heading text-emerald-400">96 / 100</div>
+                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
+                    <div className="text-base sm:text-lg font-black font-heading text-emerald-500">96 / 100</div>
                     <div className="text-[10px] font-heading text-on-surface/60 uppercase">Mobile Score</div>
                   </div>
-                  <div className="p-2 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-base sm:text-lg font-black font-heading text-emerald-400">100 / 100</div>
+                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
+                    <div className="text-base sm:text-lg font-black font-heading text-emerald-500">100 / 100</div>
                     <div className="text-[10px] font-heading text-on-surface/60 uppercase">Best Practices</div>
                   </div>
-                  <div className="p-2 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-base sm:text-lg font-black font-heading text-emerald-400">100 / 100</div>
+                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
+                    <div className="text-base sm:text-lg font-black font-heading text-emerald-500">100 / 100</div>
                     <div className="text-[10px] font-heading text-on-surface/60 uppercase">SEO Health</div>
                   </div>
                 </div>
@@ -208,17 +209,17 @@ export function ProjectsDirectory() {
                   {activeModalProject.pillars.map((pillar, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-primary-container/30 transition-all flex flex-col justify-between"
+                      className="p-4 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all flex flex-col justify-between shadow-xs"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-heading text-sm sm:text-base font-black text-on-surface tracking-wider">
                           {pillar.name}
                         </span>
-                        <span className="font-heading text-xs font-bold text-primary-container/60">
+                        <span className="font-heading text-xs font-bold text-primary-container/70">
                           0{idx + 1}
                         </span>
                       </div>
-                      <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                      <p className="font-sans text-xs text-on-surface/75 leading-relaxed">
                         {pillar.meaning}
                       </p>
                     </div>
@@ -237,7 +238,7 @@ export function ProjectsDirectory() {
                   {activeModalProject.coreServices.map((service, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-surface-2 border border-black/10 dark:border-white/10"
                     >
                       <Icon name="check_circle" size={14} className="text-primary-container shrink-0" />
                       <span className="font-sans text-xs text-on-surface/80">{service}</span>
@@ -256,7 +257,7 @@ export function ProjectsDirectory() {
                 {activeModalProject.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-heading font-medium text-on-surface/80"
+                    className="px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-heading font-medium text-on-surface/80"
                   >
                     {tech}
                   </span>
@@ -266,15 +267,15 @@ export function ProjectsDirectory() {
           </div>
 
           {/* Modal Footer */}
-          <div className="p-4 sm:p-5 border-t border-white/10 bg-surface-1 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+          <div className="p-4 sm:p-5 border-t border-black/10 dark:border-white/10 bg-surface-2 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
             <div className="text-[11px] font-sans text-on-surface/70">
-              Role: <span className="text-on-surface/90 font-medium">{activeModalProject.role}</span>
+              Role: <span className="text-on-surface font-medium">{activeModalProject.role}</span>
             </div>
 
             <div className="flex items-center flex-wrap gap-2.5">
               <Link
                 href={`/projects/${activeModalProject.slug}/`}
-                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 px-4 py-2.5 rounded-xl transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-primary-container bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/15 px-4 py-2.5 rounded-xl transition-colors cursor-pointer"
               >
                 <span>Project Breakdown</span>
                 <Icon name="arrow_forward" size={14} />
@@ -290,7 +291,7 @@ export function ProjectsDirectory() {
                     : undefined)
                 }
                 aria-label={`Open ${activeModalProject.title} external build (opens in new tab)`}
-                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-primary-container bg-primary-container hover:bg-primary px-4 py-2.5 rounded-xl shadow-[0_0_20px_rgba(230,126,34,0.4)] transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-primary-container bg-primary-container hover:bg-primary px-4 py-2.5 rounded-xl shadow-lg transition-all cursor-pointer"
               >
                 <span>{activeModalProject.ctaText || 'View Live Build'}</span>
                 <Icon name="north_east" size={14} />
@@ -317,7 +318,7 @@ export function ProjectsDirectory() {
               className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-heading tracking-[0.04em] transition-colors cursor-pointer ${
                 isActive
                   ? 'bg-primary-container text-on-primary-container font-bold shadow-[0_0_25px_rgba(224,123,32,0.35)]'
-                  : 'bg-surface-1/90 text-on-surface/70 hover:text-white hover:bg-surface-2 border border-white/10'
+                  : 'bg-surface-1/90 text-on-surface/80 hover:text-primary-container hover:bg-surface-2 border border-black/10 dark:border-white/10'
               }`}
             >
               {cat}
@@ -332,7 +333,7 @@ export function ProjectsDirectory() {
           <div
             key={proj.id}
             style={{ transitionDelay: `${(idx % 3) * 80}ms` }}
-            className="group rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between overflow-hidden shadow-xl card-interactive-glow card-image-zoom motion-reveal"
+            className="group rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 flex flex-col justify-between overflow-hidden shadow-lg card-interactive-glow card-image-zoom motion-reveal"
           >
             <div>
               {/* Project Card Image Preview */}
@@ -347,17 +348,17 @@ export function ProjectsDirectory() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface-1 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
 
                 {/* Floating Status Badge */}
                 <div className="absolute top-3 left-3 z-10">
                   {proj.status === 'Ongoing' ? (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-background/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-amber-500 border border-amber-500/40 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                       Ongoing Build
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-background/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-emerald-500 border border-emerald-500/40 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       Live Project
                     </span>
@@ -365,10 +366,10 @@ export function ProjectsDirectory() {
                 </div>
               </div>
 
-              {/* Project Card Content */}
-              <div className="p-5 sm:p-6 space-y-3">
+              {/* Card Meta Content */}
+              <div className="p-5 sm:p-6 space-y-2.5">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-heading text-[11px] text-primary-container uppercase tracking-[0.08em] font-semibold">
+                  <span className="font-heading text-xs text-primary-container uppercase tracking-wider font-semibold">
                     {proj.category}
                   </span>
                   <span className="text-xs font-sans text-on-surface/70">
@@ -396,7 +397,7 @@ export function ProjectsDirectory() {
                   {proj.tags.slice(0, 4).map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
+                      className="px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-heading text-on-surface/80 uppercase tracking-wider font-medium"
                     >
                       {t}
                     </span>
@@ -406,7 +407,7 @@ export function ProjectsDirectory() {
             </div>
 
             {/* Card Action Buttons */}
-            <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-3">
+            <div className="p-5 sm:p-6 pt-0 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between gap-3">
               <button
                 type="button"
                 onClick={() => setActiveModalProject(proj)}
@@ -426,7 +427,7 @@ export function ProjectsDirectory() {
                      : undefined)
                 }
                 aria-label={`Open ${proj.title} external build (opens in new tab)`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/30 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-primary-container/20 border border-black/10 dark:border-white/10 hover:border-primary-container/30 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
               >
                 <span>{proj.ctaText || 'Live Build'}</span>
                 <Icon name="north_east" size={13} />

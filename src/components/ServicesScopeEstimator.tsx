@@ -177,7 +177,7 @@ export function ServicesScopeEstimator() {
       {/* Main Estimator Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Requirements Configuration (7 Cols) */}
-        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/10 shadow-xl motion-reveal">
+        <div className="lg:col-span-7 space-y-6 sm:space-y-8 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-lg motion-reveal">
           {/* Step 1: Select Project Type */}
           <div className="space-y-3">
             <div className="flex items-center justify-between gap-2">
@@ -186,7 +186,7 @@ export function ServicesScopeEstimator() {
               </label>
 
               {/* Currency Toggle */}
-              <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-white/10 text-xs">
+              <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs">
                 <button
                   type="button"
                   onClick={() => setCurrency('USD')}
@@ -226,7 +226,7 @@ export function ServicesScopeEstimator() {
                     className={`p-4 rounded-xl text-left transition-all duration-200 cursor-pointer border ${
                       isSelected
                         ? 'bg-primary-container/15 border-primary-container text-on-surface shadow-md ring-1 ring-primary-container/50'
-                        : 'bg-white/[0.03] border-white/5 text-on-surface/80 hover:bg-white/5 hover:border-white/20'
+                        : 'bg-black/[0.02] dark:bg-white/[0.03] border-black/10 dark:border-white/10 text-on-surface/80 hover:bg-black/5 dark:hover:bg-white/5 hover:border-primary-container/30'
                     }`}
                   >
                     <div className="flex items-center justify-between gap-1 mb-1">
@@ -237,7 +237,7 @@ export function ServicesScopeEstimator() {
                         <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
                       )}
                     </div>
-                    <p className="font-sans text-xs text-on-surface/65 leading-relaxed mb-2">
+                    <p className="font-sans text-xs text-on-surface/70 leading-relaxed mb-2">
                       {type.description}
                     </p>
                     <span className="inline-block text-[11px] font-heading font-bold text-primary-container">
@@ -250,7 +250,7 @@ export function ServicesScopeEstimator() {
           </div>
 
           {/* Step 2: Capability Add-ons */}
-          <div className="space-y-3 pt-4 border-t border-white/10">
+          <div className="space-y-3 pt-4 border-t border-black/10 dark:border-white/10">
             <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
               2. Select Specialized Add-on Capabilities
             </label>
@@ -268,14 +268,14 @@ export function ServicesScopeEstimator() {
                     className={`p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-start gap-3 ${
                       isChecked
                         ? 'bg-primary-container/10 border-primary-container/60 text-on-surface'
-                        : 'bg-white/[0.02] border-white/5 text-on-surface/75 hover:bg-white/5 hover:border-white/15'
+                        : 'bg-black/[0.02] dark:bg-white/[0.02] border-black/10 dark:border-white/10 text-on-surface/80 hover:bg-black/5 dark:hover:bg-white/5 hover:border-primary-container/30'
                     }`}
                   >
                     <div
                       className={`w-5 h-5 rounded-md flex items-center justify-center border mt-0.5 shrink-0 transition-colors ${
                         isChecked
                           ? 'bg-primary-container border-primary-container text-on-primary-container'
-                          : 'border-white/20 bg-white/5'
+                          : 'border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5'
                       }`}
                     >
                       {isChecked && <Icon name="check_circle" size={14} />}
@@ -289,7 +289,7 @@ export function ServicesScopeEstimator() {
                           {addonPrice}
                         </span>
                       </div>
-                      <p className="font-sans text-xs text-on-surface/65 leading-relaxed">
+                      <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
                         {addon.description}
                       </p>
                     </div>
@@ -300,12 +300,12 @@ export function ServicesScopeEstimator() {
           </div>
 
           {/* Step 3: Timeline Urgency Toggle */}
-          <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-4">
+          <div className="pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-4">
             <div>
               <span className="font-heading text-xs font-bold text-on-surface block">
                 Accelerated Delivery Sprint
               </span>
-              <span className="font-sans text-xs text-on-surface/65">
+              <span className="font-sans text-xs text-on-surface/70">
                 Priority scheduling for rapid launch requirements (+25% sprint prioritization).
               </span>
             </div>
@@ -313,7 +313,7 @@ export function ServicesScopeEstimator() {
               type="button"
               onClick={() => setIsAccelerated(!isAccelerated)}
               className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                isAccelerated ? 'bg-primary-container' : 'bg-white/15'
+                isAccelerated ? 'bg-primary-container' : 'bg-black/15 dark:bg-white/15'
               }`}
               role="switch"
               aria-checked={isAccelerated}
@@ -328,7 +328,7 @@ export function ServicesScopeEstimator() {
         </div>
 
         {/* Right Column: Dynamic Estimate Output Card (5 Cols) */}
-        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-b from-surface-2/85 via-surface-1/80 to-surface-1/75 backdrop-blur-md border-2 border-primary-container/60 shadow-[0_0_50px_rgba(224,123,32,0.18)] motion-reveal">
+        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border-2 border-primary-container/60 shadow-xl motion-reveal">
           <div className="space-y-1">
             <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
               Estimated Sprint Scope
@@ -339,7 +339,7 @@ export function ServicesScopeEstimator() {
           </div>
 
           {/* Metrics Highlight Box */}
-          <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+          <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 text-center">
             <div>
               <span className="font-heading text-[10px] text-on-surface/60 uppercase tracking-wider block font-semibold">
                 Est. Duration
@@ -359,15 +359,15 @@ export function ServicesScopeEstimator() {
           </div>
 
           {/* Delivery Mode Badge */}
-          <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs font-sans">
+          <div className="flex items-center justify-between p-3 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/5 text-xs font-sans">
             <span className="text-on-surface/70">Execution Cadence:</span>
-            <span className="font-heading font-bold text-emerald-400">
+            <span className="font-heading font-bold text-emerald-500">
               {isAccelerated ? '⚡ Priority Accelerated Sprint' : 'Standard Delivery Sprint'}
             </span>
           </div>
 
           {/* Recommended Engagement Model */}
-          <div className="space-y-2 p-4 rounded-xl bg-surface-1 border border-white/10">
+          <div className="space-y-2 p-4 rounded-xl bg-surface-2/60 border border-black/10 dark:border-white/10">
             <span className="font-heading text-[11px] text-on-surface/70 uppercase tracking-wider block font-semibold">
               Recommended Package:
             </span>
@@ -375,7 +375,7 @@ export function ServicesScopeEstimator() {
               <Icon name="auto_awesome" size={16} className="text-primary-container" />
               <span>{activeProject.recommendedPackage}</span>
             </p>
-            <p className="font-sans text-xs text-on-surface/65 leading-relaxed pt-1">
+            <p className="font-sans text-xs text-on-surface/70 leading-relaxed pt-1">
               Includes core execution, QA testing, verified schema integration, and technical handoff.
             </p>
           </div>
@@ -399,8 +399,8 @@ export function ServicesScopeEstimator() {
 
           {/* Small Business Flexibility Guarantee Note */}
           <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-1">
-            <span className="font-heading text-[11px] font-bold text-emerald-400 flex items-center justify-center gap-1">
-              <Icon name="handshake" size={14} className="text-emerald-400" />
+            <span className="font-heading text-[11px] font-bold text-emerald-500 flex items-center justify-center gap-1">
+              <Icon name="handshake" size={14} className="text-emerald-500" />
               <span>Flexible Budget &amp; Phased Options</span>
             </span>
             <p className="font-sans text-[11px] text-on-surface/75 leading-relaxed">

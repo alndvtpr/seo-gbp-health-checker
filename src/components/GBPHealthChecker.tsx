@@ -577,29 +577,29 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           role="dialog"
           aria-modal="true"
           aria-labelledby="gbp-modal-title"
-          className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto"
+          className="fixed inset-0 bg-black/60 dark:bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto"
           style={{ zIndex: 999999 }}
           onClick={closeModal}
         >
           <div
             id="gbp-audit-modal-container"
-            className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-background border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_80px_rgba(0,0,0,0.95)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+            className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-surface-1 border border-black/10 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* ── Top Header / Branding Bar ── */}
-            <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-white/10 bg-surface-1 z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
+            <div className="p-4 sm:p-5 md:p-6 print:p-3 print:pb-2 border-b border-black/10 dark:border-white/10 bg-surface-2 z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:gap-1 shrink-0 print-break-inside-avoid">
               <div className="space-y-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-primary-container/15 text-primary-container border border-primary-container/30">
                     <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
                   </span>
                   {result.primaryCategory && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
                       🏷️ {result.primaryCategory}
                     </span>
                   )}
                   {result.categoryBenchmark?.isCategoryMismatchDetected && result.categoryBenchmark.rawGoogleCategory && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-500 border border-amber-500/30">
                       ⚠️ Tagged as &quot;{result.categoryBenchmark.rawGoogleCategory}&quot; on Maps
                     </span>
                   )}
@@ -639,7 +639,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 <button
                   type="button"
                   onClick={handleExportPdf}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface/80 hover:text-white transition-all cursor-pointer shadow-sm"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all cursor-pointer shadow-sm"
                   title={`Export as ${((result.businessName || 'Business').trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '') || 'Business')}_Audit.pdf`}
                 >
                   <Download className="w-3.5 h-3.5" />
@@ -650,7 +650,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="inline-flex items-center gap-1.5 bg-rose-500/15 hover:bg-rose-500/25 text-rose-400 hover:text-rose-300 rounded-xl px-4 py-2 transition-all shadow-[0_0_20px_rgba(244,63,94,0.15)] border border-rose-500/30 font-heading font-bold text-xs uppercase tracking-wider group cursor-pointer"
+                  className="inline-flex items-center gap-1.5 bg-rose-500/15 hover:bg-rose-500/25 text-rose-500 hover:text-rose-600 rounded-xl px-4 py-2 transition-all shadow-xs border border-rose-500/30 font-heading font-bold text-xs uppercase tracking-wider group cursor-pointer"
                   aria-label="Close dashboard"
                 >
                   <span>Exit</span>
@@ -1118,7 +1118,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'roadmap'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
-                        : 'text-on-surface/70 hover:text-white'
+                        : 'text-on-surface/70 hover:text-primary-container'
                     }`}
                   >
                     30-Day Sprint
@@ -1129,7 +1129,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'description'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
-                        : 'text-on-surface/70 hover:text-white'
+                        : 'text-on-surface/70 hover:text-primary-container'
                     }`}
                   >
                     750-Char Bio
@@ -1140,7 +1140,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'templates'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
-                        : 'text-on-surface/70 hover:text-white'
+                        : 'text-on-surface/70 hover:text-primary-container'
                     }`}
                   >
                     Review Playbook
@@ -1151,7 +1151,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'keywords'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
-                        : 'text-on-surface/70 hover:text-white'
+                        : 'text-on-surface/70 hover:text-primary-container'
                     }`}
                   >
                     Local Keywords
@@ -1161,12 +1161,12 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
               {/* Tab 1: 30-Day Sprint Roadmap */}
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'roadmap' ? 'block' : 'hidden'} print:mt-3`}>
-                <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
+                <div className="hidden print:flex items-center gap-2 pb-1 border-b border-black/10 dark:border-white/5">
                   <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 01</span>
                   <span className="text-on-surface/60 text-xs">•</span>
                   <h4 className="font-heading font-bold text-sm text-on-surface">30-Day Sprint Roadmap &amp; Strategic Milestones</h4>
                 </div>
-                <div className="prose prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-sm prose-h4:text-xs prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-white prose-a:text-primary-container bg-white/[0.02] p-5 sm:p-7 print:p-4 rounded-2xl border border-white/5 shadow-inner">
+                <div className="prose dark:prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-sm prose-h4:text-xs prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-on-surface prose-a:text-primary-container bg-surface-2 p-5 sm:p-7 print:p-4 rounded-2xl border border-black/10 dark:border-white/5 shadow-inner">
                   <ReactMarkdown>
                     {result.aiRecommendations || defaultActionPlan}
                   </ReactMarkdown>
@@ -1181,7 +1181,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                     <span className="font-heading text-xs font-bold text-on-surface">
                       Keyword-Optimized Google Business Description
                     </span>
-                    <span className="text-[11px] font-sans text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    <span className="text-[11px] font-sans text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                       {(result.aiDescription || defaultDescription).length} / 750 Characters
                     </span>
                   </div>
@@ -1197,7 +1197,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                   </button>
                 </div>
 
-                <div className="p-4 sm:p-5 print:p-3 rounded-xl bg-black/50 border border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all whitespace-pre-wrap">
+                <div className="p-4 sm:p-5 print:p-3 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs sm:text-sm text-on-surface/90 leading-relaxed font-sans select-all whitespace-pre-wrap">
                   {result.aiDescription || defaultDescription}
                 </div>
                 <p className="text-[11px] text-on-surface/70 italic">
@@ -1207,7 +1207,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
               {/* Tab 3: Review Response Playbook */}
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card print-page-break-before ${activeTab === 'templates' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-0`}>
-                <div className="hidden print:flex items-center gap-2 pb-1 border-b border-white/5">
+                <div className="hidden print:flex items-center gap-2 pb-1 border-b border-black/10 dark:border-white/5">
                   <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 03</span>
                   <span className="text-on-surface/60 text-xs">•</span>
                   <h4 className="font-heading font-bold text-sm text-on-surface">AI Review Response Playbook</h4>
@@ -1215,10 +1215,10 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 
                 <div className="grid grid-cols-1 md:grid-cols-2 print-grid-templates gap-4 print:gap-3">
                   {/* Positive Template */}
-                  <div className="p-5 print:p-3.5 rounded-2xl bg-black/40 border border-emerald-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
+                  <div className="p-5 print:p-3.5 rounded-2xl bg-surface-2 border border-emerald-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
                           5-Star Review Response (Keyword-Optimized)
                         </span>
                       </div>
@@ -1234,17 +1234,17 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                           '5-Star Template',
                         )
                       }
-                      className="no-print inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
+                      className="no-print inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
                     >
                       <span>Copy 5-Star Template</span>
                     </button>
                   </div>
 
                   {/* Constructive Template */}
-                  <div className="p-5 print:p-3.5 rounded-2xl bg-black/40 border border-amber-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
+                  <div className="p-5 print:p-3.5 rounded-2xl bg-surface-2 border border-amber-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30">
                           Constructive Review Response (Trust Recovery)
                         </span>
                       </div>
@@ -1260,7 +1260,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
                           'Constructive Template',
                         )
                       }
-                      className="no-print inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
+                      className="no-print inline-flex items-center justify-center gap-1.5 w-full py-2 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-xs font-heading font-bold text-on-surface transition-all cursor-pointer"
                     >
                       <span>Copy Constructive Template</span>
                     </button>
@@ -1503,7 +1503,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/60 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
+          className="w-full bg-surface-2/70 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Target Location */}
@@ -1516,7 +1516,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
           maxLength={100}
           required
           disabled={isLoading}
-          className="w-full bg-surface-1/90 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/60 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
+          className="w-full bg-surface-2/70 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container/30 transition-colors min-h-[46px] disabled:opacity-50"
         />
 
         {/* Submit */}

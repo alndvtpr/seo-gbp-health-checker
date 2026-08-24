@@ -57,7 +57,7 @@ export default function ToolsPage() {
       </div>
 
       {/* Tool 1: SEO Specialist Salary Calculator */}
-      <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-6 sm:space-y-8 motion-reveal">
+      <div className="p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-6 sm:space-y-8 motion-reveal shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Icon name="calculate" size={36} className="text-primary-container shrink-0" />
@@ -72,7 +72,7 @@ export default function ToolsPage() {
           </div>
 
           {/* Currency Toggle */}
-          <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-white/10 text-xs shrink-0 self-start sm:self-auto">
+          <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs shrink-0 self-start sm:self-auto">
             <button
               type="button"
               onClick={() => setCurrency('PHP')}
@@ -106,12 +106,12 @@ export default function ToolsPage() {
             <select
               value={exp}
               onChange={(e) => setExp(e.target.value)}
-              className="w-full bg-surface-1 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
+              className="w-full bg-surface-2/70 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             >
-              <option value="junior" className="bg-surface-1">Junior (1-2 Years)</option>
-              <option value="mid" className="bg-surface-1">Mid-Level (3-4 Years)</option>
-              <option value="senior" className="bg-surface-1">Senior Specialist (5+ Years)</option>
-              <option value="lead" className="bg-surface-1">SEO Lead / Manager</option>
+              <option value="junior" className="bg-surface-1 text-on-surface">Junior (1-2 Years)</option>
+              <option value="mid" className="bg-surface-1 text-on-surface">Mid-Level (3-4 Years)</option>
+              <option value="senior" className="bg-surface-1 text-on-surface">Senior Specialist (5+ Years)</option>
+              <option value="lead" className="bg-surface-1 text-on-surface">SEO Lead / Manager</option>
             </select>
           </div>
 
@@ -122,11 +122,11 @@ export default function ToolsPage() {
             <select
               value={employment}
               onChange={(e) => setEmployment(e.target.value)}
-              className="w-full bg-surface-1 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
+              className="w-full bg-surface-2/70 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             >
-              <option value="fulltime" className="bg-surface-1">Full-time Remote</option>
-              <option value="agency" className="bg-surface-1">Local Agency</option>
-              <option value="freelance" className="bg-surface-1">Freelance / Retainer</option>
+              <option value="fulltime" className="bg-surface-1 text-on-surface">Full-time Remote</option>
+              <option value="agency" className="bg-surface-1 text-on-surface">Local Agency</option>
+              <option value="freelance" className="bg-surface-1 text-on-surface">Freelance / Retainer</option>
             </select>
           </div>
 
@@ -137,16 +137,16 @@ export default function ToolsPage() {
             <select
               value={skill}
               onChange={(e) => setSkill(e.target.value)}
-              className="w-full bg-surface-1 border border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
+              className="w-full bg-surface-2/70 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
             >
-              <option value="content" className="bg-surface-1">Content &amp; On-Page SEO</option>
-              <option value="tech" className="bg-surface-1">Technical SEO &amp; Auditing</option>
-              <option value="fullstack" className="bg-surface-1">SEO + Frontend Web Development</option>
+              <option value="content" className="bg-surface-1 text-on-surface">Content &amp; On-Page SEO</option>
+              <option value="tech" className="bg-surface-1 text-on-surface">Technical SEO &amp; Auditing</option>
+              <option value="fullstack" className="bg-surface-1 text-on-surface">SEO + Frontend Web Development</option>
             </select>
           </div>
         </div>
 
-        <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/5 border border-primary-container/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+        <div className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-black/5 dark:bg-white/5 border border-primary-container/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
           <div>
             <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">Estimated Monthly Compensation</span>
             <span className="font-heading text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary-container">
@@ -162,7 +162,7 @@ export default function ToolsPage() {
 
       {/* Tool 2 & Tool 3 Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between motion-reveal">
+        <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-4 sm:space-y-6 flex flex-col justify-between motion-reveal shadow-sm">
           <div className="space-y-3">
             <Icon name="travel_explore" size={36} className="text-primary-container" />
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
@@ -177,7 +177,7 @@ export default function ToolsPage() {
         </div>
 
         {/* Tool 3: Local SEO / GBP Health Checker (fully interactive) */}
-        <div style={{ transitionDelay: '100ms' }} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 sm:space-y-6 motion-reveal">
+        <div style={{ transitionDelay: '100ms' }} className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 space-y-4 sm:space-y-6 motion-reveal shadow-sm">
           <div className="flex items-center justify-between">
             <Icon name="distance" size={36} className="text-primary-container" />
             <a

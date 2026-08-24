@@ -306,7 +306,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 key={rel.slug}
                 href={`/blog/${rel.slug}/`}
                 style={{ transitionDelay: `${(idx % 2) * 80}ms` }}
-                className="p-6 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-lg motion-reveal"
+                className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between shadow-md motion-reveal"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between text-xs font-sans text-on-surface/70">
@@ -326,7 +326,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   </p>
                 </div>
 
-                <div className="pt-3 mt-4 border-t border-white/5 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
+                <div className="pt-3 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
                   <span>Read Article</span>
                   <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -336,7 +336,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Author Footer & Next Steps CTA */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/90 border border-primary-container/30 space-y-6 text-center shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
+      <div className="p-8 sm:p-12 rounded-3xl bg-surface-1/95 border border-primary-container/30 space-y-6 text-center shadow-xl motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
           Technical Collaboration
         </span>
@@ -356,7 +356,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </Link>
           <Link
             href="/blog/"
-            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="inline-flex items-center gap-2 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] px-6 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Back to All Articles</span>
           </Link>

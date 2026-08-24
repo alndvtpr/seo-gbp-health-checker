@@ -113,7 +113,7 @@ export default async function Page() {
               {TECHNICAL_TOOLS.map((tool, idx) => (
                 <div
                   key={`${tool.name}-badge-${idx}`}
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-[border-color,background-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex items-center gap-2.5 shrink-0"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/95 backdrop-blur-md border border-black/[0.08] dark:border-white/[0.08] shadow-sm hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-[border-color,background-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex items-center gap-2.5 shrink-0"
                 >
                   <div className="w-5 h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
@@ -129,7 +129,7 @@ export default async function Page() {
               {TECHNICAL_TOOLS.map((tool, idx) => (
                 <div
                   key={`${tool.name}-dup-badge-${idx}`}
-                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/90 backdrop-blur-md border border-white/[0.08] shadow-lg hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-[border-color,background-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex items-center gap-2.5 shrink-0"
+                  className="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-surface-1/95 backdrop-blur-md border border-black/[0.08] dark:border-white/[0.08] shadow-sm hover:border-primary-container/70 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(230,126,34,0.3)] transition-[border-color,background-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex items-center gap-2.5 shrink-0"
                 >
                   <div className="w-5 h-5 flex items-center justify-center shrink-0">
                     {tool.svg}
@@ -155,7 +155,7 @@ export default async function Page() {
       {/* 3. ABOUT ME SNAPSHOT WITH METRIC COUNTERS */}
       <section className="py-16 sm:py-24 bg-transparent relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
-          <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl motion-reveal">
+          <div className="w-full lg:w-1/2 relative min-h-[260px] sm:min-h-[340px] md:min-h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 shadow-2xl motion-reveal">
             <Image
               src="/about_me.webp"
               alt="Alain Dave Tapiru Portrait"
@@ -163,8 +163,8 @@ export default async function Page() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-[#0f1111]/90 border border-white/10">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-lg">
               <p className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-1 font-bold">
                 About Alain Dave Tapiru
               </p>
@@ -186,28 +186,28 @@ export default async function Page() {
             </p>
 
             {/* Honest Metrics Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-white/10">
-              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-black/10 dark:border-white/10">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-surface-1/90 backdrop-blur-md border border-black/10 dark:border-white/5 flex flex-col justify-between motion-reveal shadow-sm">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   4 Core Disciplines
                 </span>
-                <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
+                <span className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed">
                   Technical SEO, Local Search, WordPress &amp; Next.js
                 </span>
               </div>
-              <div style={{ transitionDelay: '80ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
+              <div style={{ transitionDelay: '80ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/90 backdrop-blur-md border border-black/10 dark:border-white/5 flex flex-col justify-between motion-reveal shadow-sm">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   AI-Assisted Workflows
                 </span>
-                <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
+                <span className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed">
                   Fast research, structured schema implementation, and automated diagnostics.
                 </span>
               </div>
-              <div style={{ transitionDelay: '160ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/80 backdrop-blur-md border border-white/5 flex flex-col justify-between motion-reveal">
+              <div style={{ transitionDelay: '160ms' }} className="p-3.5 sm:p-4 rounded-xl bg-surface-1/90 backdrop-blur-md border border-black/10 dark:border-white/5 flex flex-col justify-between motion-reveal shadow-sm">
                 <span className="font-heading text-base sm:text-lg font-bold text-primary-container block mb-1">
                   Dedicated Communication
                 </span>
-                <span className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
+                <span className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed">
                   Clear, responsive project updates and task logs.
                 </span>
               </div>
@@ -298,19 +298,19 @@ export default async function Page() {
             <div
               key={item.step}
               style={{ transitionDelay: `${(idx % 3) * 80}ms` }}
-              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-1 border border-white/5 hover:border-primary-container/40 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group hover:-translate-y-[3px] relative flex flex-col justify-between motion-reveal"
+              className="p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/60 transition-[border-color,transform,box-shadow] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group hover:-translate-y-[3px] shadow-sm relative flex flex-col justify-between motion-reveal"
             >
               <div>
                 <div className="flex items-center justify-between mb-4 sm:mb-6">
                   <Icon name={item.icon} size={36} className="text-primary-container group-hover:scale-110 transition-transform" />
-                  <span className="font-heading text-2xl sm:text-3xl font-black text-white/10 group-hover:text-primary-container/30 transition-colors">
+                  <span className="font-heading text-2xl sm:text-3xl font-black text-black/15 dark:text-white/15 group-hover:text-primary-container/40 transition-colors">
                     {item.step}
                   </span>
                 </div>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface mb-2 sm:mb-3">{item.title}</h3>
-                <p className="font-sans text-sm text-on-surface/75 leading-relaxed mb-4">{item.desc}</p>
+                <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-4">{item.desc}</p>
               </div>
-              <div className="pt-3 border-t border-white/5">
+              <div className="pt-3 border-t border-black/10 dark:border-white/10">
                 <Link
                   href={item.href}
                   className="inline-flex items-center gap-1.5 font-heading text-xs font-bold text-primary-container hover:text-primary transition-colors py-1 group/link"
@@ -352,7 +352,7 @@ export default async function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Primary Featured Project: AngatSikat Studio */}
-            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-amber-500/20 hover:border-primary-container/60 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-[3px] card-image-zoom motion-reveal">
+            <div className="rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-amber-500/30 hover:border-primary-container/60 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-lg hover:-translate-y-[3px] card-image-zoom motion-reveal">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -362,9 +362,9 @@ export default async function Page() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#0f1111]/90 text-amber-400 border border-amber-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-surface-1/90 text-amber-500 border border-amber-500/40 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                       Ongoing
                     </span>
@@ -397,7 +397,7 @@ export default async function Page() {
                     {['WordPress', 'Technical SEO', 'Custom Theme'].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
+                        className="px-2.5 py-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-heading text-on-surface/80 uppercase tracking-wider font-medium"
                       >
                         {tag}
                       </span>
@@ -406,7 +406,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
+              <div className="p-5 sm:p-6 pt-0 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between gap-2">
                 <Link
                   href="/projects/angat-sikat-studio/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
@@ -428,7 +428,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 2: Local SEO & GBP Checker */}
-            <div style={{ transitionDelay: '80ms' }} className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-[3px] card-image-zoom motion-reveal">
+            <div style={{ transitionDelay: '80ms' }} className="rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 hover:border-primary-container/60 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-lg hover:-translate-y-[3px] card-image-zoom motion-reveal">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -438,9 +438,9 @@ export default async function Page() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#0f1111]/90 text-emerald-400 border border-emerald-500/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-surface-1/90 text-emerald-500 border border-emerald-500/40 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                       Live Tool
                     </span>
@@ -449,7 +449,7 @@ export default async function Page() {
 
                 <div className="p-5 sm:p-6 space-y-3">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-heading text-xs text-emerald-400 uppercase tracking-wider font-semibold">
+                    <span className="font-heading text-xs text-emerald-500 uppercase tracking-wider font-semibold">
                       Local SEO • Diagnostic Tool
                     </span>
                     <span className="text-xs font-sans text-on-surface/70">
@@ -473,7 +473,7 @@ export default async function Page() {
                     {['Next.js', 'React', 'Local SEO', 'AI Scoring'].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
+                        className="px-2.5 py-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-heading text-on-surface/80 uppercase tracking-wider font-medium"
                       >
                         {tag}
                       </span>
@@ -482,7 +482,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
+              <div className="p-5 sm:p-6 pt-0 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between gap-2">
                 <Link
                   href="/projects/local-seo-gbp-checker/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
@@ -493,7 +493,7 @@ export default async function Page() {
 
                 <Link
                   href="/tools/"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-primary-container/20 border border-black/10 dark:border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
                 >
                   <span>Launch Tool</span>
                   <Icon name="north_east" size={13} />
@@ -502,7 +502,7 @@ export default async function Page() {
             </div>
 
             {/* Featured Project 3: AlainTapiru.com Web Architecture */}
-            <div style={{ transitionDelay: '160ms' }} className="rounded-2xl sm:rounded-3xl bg-surface-1/80 backdrop-blur-md border border-white/5 hover:border-primary-container/40 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-[3px] card-image-zoom motion-reveal">
+            <div style={{ transitionDelay: '160ms' }} className="rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-black/10 dark:border-white/10 hover:border-primary-container/60 transition-[border-color,transform] duration-[var(--motion-normal)] ease-[var(--ease-organic)] group flex flex-col justify-between overflow-hidden shadow-lg hover:-translate-y-[3px] card-image-zoom motion-reveal">
               <div>
                 <div className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden">
                   <Image
@@ -512,9 +512,9 @@ export default async function Page() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f1111] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-[#0f1111]/90 text-primary-container border border-primary-container/30 backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-surface-1/90 text-primary-container border border-primary-container/30 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
                       Production
                     </span>
@@ -547,7 +547,7 @@ export default async function Page() {
                     {['Next.js 15', 'Tailwind CSS', 'Payload CMS', 'SEO'].map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/5 text-[11px] font-heading text-on-surface/70 uppercase tracking-wider font-medium"
+                        className="px-2.5 py-0.5 rounded-md bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[11px] font-heading text-on-surface/80 uppercase tracking-wider font-medium"
                       >
                         {tag}
                       </span>
@@ -556,7 +556,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="p-5 sm:p-6 pt-0 border-t border-white/5 mt-4 flex items-center justify-between gap-2">
+              <div className="p-5 sm:p-6 pt-0 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between gap-2">
                 <Link
                   href="/projects/alaintapiru-portfolio/"
                   className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-wider font-bold text-on-surface hover:text-primary-container transition-colors py-1"
@@ -566,10 +566,10 @@ export default async function Page() {
                 </Link>
 
                 <a
-                  href="https://github.com/alndvtpr"
+                  href="https://github.com/alndvtpr/portfolio-cms"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-primary-container/20 border border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-primary-container/20 border border-black/10 dark:border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
                 >
                   <span>Repository</span>
                   <Icon name="north_east" size={13} />

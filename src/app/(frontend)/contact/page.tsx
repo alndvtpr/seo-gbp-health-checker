@@ -116,9 +116,9 @@ export default function ContactPage() {
       {/* Direct Contact Info & Inquiry Form Grid (Positioned Below) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
         {/* Contact Info & Status */}
-        <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 shadow-xl motion-reveal">
+        <div className="lg:col-span-5 space-y-6 sm:space-y-8 p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-lg motion-reveal">
           {/* Availability Status Badge */}
-          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 border border-primary-container/30 flex items-center gap-3">
+          <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-black/5 dark:bg-white/5 border border-primary-container/30 flex items-center gap-3">
             <span className="relative flex h-3 w-3 shrink-0" aria-hidden="true">
               <span className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -157,11 +157,11 @@ export default function ContactPage() {
                   href="https://wa.me/639063249560"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.06em] bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.06em] bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                   title="Message on WhatsApp"
                   aria-label="Message on WhatsApp (opens in new tab)"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 motion-safe:animate-pulse" aria-hidden="true" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 motion-safe:animate-pulse" aria-hidden="true" />
                   WhatsApp
                 </a>
               </div>
@@ -198,7 +198,7 @@ export default function ContactPage() {
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+                  className="w-11 h-11 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
                   title="Gmail"
                   aria-label="Gmail (opens compose in new tab)"
                 >
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   href="https://wa.me/639063249560"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+                  className="w-11 h-11 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
                   title="WhatsApp"
                   aria-label="WhatsApp (opens in new tab)"
                 >
@@ -226,7 +226,7 @@ export default function ContactPage() {
                   href="https://www.facebook.com/dcrazedave"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+                  className="w-11 h-11 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
                   title="Facebook"
                   aria-label="Facebook Profile (opens in new tab)"
                 >
@@ -240,7 +240,7 @@ export default function ContactPage() {
                   href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+                  className="w-11 h-11 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
                   title="LinkedIn"
                   aria-label="LinkedIn Profile (opens in new tab)"
                 >
@@ -254,7 +254,7 @@ export default function ContactPage() {
                   href="https://github.com/alndvtpr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
+                  className="w-11 h-11 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center min-w-[44px] min-h-[44px] shadow-[0_0_15px_rgba(230,126,34,0.1)] hover:shadow-[0_0_25px_rgba(230,126,34,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface-1"
                   title="GitHub"
                   aria-label="GitHub Profile (opens in new tab)"
                 >
@@ -268,7 +268,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form Container */}
-        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-7 rounded-3xl border border-white/10 bg-surface-1/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl motion-reveal">
+        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-7 rounded-3xl border border-black/10 dark:border-white/10 bg-surface-1/95 p-6 sm:p-8 backdrop-blur-xl shadow-lg motion-reveal">
           <ContactForm />
         </div>
       </div>

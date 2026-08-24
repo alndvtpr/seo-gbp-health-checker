@@ -44,7 +44,7 @@ export const AnnouncementBanner = () => {
           </span>
 
           <p className="font-sans text-[11px] sm:text-xs md:text-sm text-on-surface/90 truncate">
-            <strong className="text-white font-semibold hidden xs:inline">Free GBP AI Audit Tool:</strong>{' '}
+            <strong className="text-on-surface font-semibold hidden xs:inline">Free GBP AI Audit Tool:</strong>{' '}
             <span className="hidden md:inline text-on-surface/80">
               Audit category accuracy, check Map Pack rankings, and generate a 30-Day Local SEO Roadmap in seconds.
             </span>

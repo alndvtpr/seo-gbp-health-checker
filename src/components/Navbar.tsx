@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Icon } from '@/components/icons'
 import { AnnouncementBanner } from '@/components/AnnouncementBanner'
 import { RssButton } from '@/components/RssButton'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -56,7 +57,7 @@ export const Navbar = () => {
           <div
             className={`mx-auto flex items-center justify-between pointer-events-auto transition-[background-color,box-shadow,padding,border-color,border-radius,max-width,margin] duration-300 ${
               scrolled
-                ? 'bg-background/95 shadow-2xl py-2 px-5 md:py-2.5 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-white/10 mx-3 md:mx-auto'
+                ? 'bg-surface-1/95 backdrop-blur-xl shadow-xl dark:shadow-2xl py-2 px-5 md:py-2.5 md:px-8 lg:px-10 rounded-2xl md:rounded-full max-w-6xl border border-black/10 dark:border-white/10 mx-3 md:mx-auto'
                 : 'px-4 md:px-12 max-w-7xl bg-transparent border-transparent'
             }`}
           >
@@ -67,7 +68,7 @@ export const Navbar = () => {
             aria-label="Alain Dave Tapiru - Home"
             className="flex items-center gap-2.5 sm:gap-3 group relative z-[60]"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 overflow-hidden rounded-full border border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-white/5 shrink-0">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 overflow-hidden rounded-full border border-black/15 dark:border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
               <img
                 src="/logo-44.webp"
                 alt="Alain Dave Tapiru SEO Specialist Philippines Logo"
@@ -76,13 +77,13 @@ export const Navbar = () => {
                 className="w-full h-full object-contain p-1"
               />
             </div>
-            <span className="font-heading font-bold text-base sm:text-lg md:text-xl text-on-surface tracking-tight group-hover:text-primary transition-colors whitespace-nowrap">
+            <span className="font-heading font-extrabold text-base sm:text-lg md:text-xl text-on-surface tracking-tight group-hover:text-primary transition-colors whitespace-nowrap">
               Alain Dave <span className="text-primary-container">Tapiru</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1 bg-surface-container-low/60 px-4 py-1.5 rounded-full border border-white/5">
+          <div className="hidden lg:flex items-center gap-1 bg-surface-2/90 dark:bg-surface-container-low/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-black/10 dark:border-white/10 shadow-xs">
             {navLinks.map((link) => {
               const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
               const targetPath = (link.href || '/').replace(/\/$/, '') || '/'
@@ -93,8 +94,8 @@ export const Navbar = () => {
                   href={link.href}
                   className={`font-heading text-[13px] uppercase tracking-[0.04em] px-3.5 py-1.5 rounded-full transition-colors duration-200 nav-link-animated ${
                     isActive
-                      ? 'text-primary-container bg-white/10 font-bold is-active'
-                      : 'text-on-surface/80 hover:text-primary-container hover:bg-white/5 font-medium'
+                      ? 'text-primary-container bg-primary-container/15 font-bold is-active shadow-xs'
+                      : 'text-on-surface/85 hover:text-primary-container hover:bg-black/5 dark:hover:bg-white/5 font-semibold'
                   }`}
                 >
                   {link.name}
@@ -105,12 +106,13 @@ export const Navbar = () => {
 
           {/* CTA Button & Socials */}
           <div className="hidden lg:flex items-center gap-4 relative z-[60]">
-            <div className="flex items-center gap-2.5 mr-1 pr-4 border-r border-white/10">
+            <div className="flex items-center gap-2.5 mr-1 pr-4 border-r border-black/10 dark:border-white/10">
+              <ThemeToggle />
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
                 title="Gmail"
                 aria-label="Gmail"
               >
@@ -120,7 +122,7 @@ export const Navbar = () => {
                 href="https://www.facebook.com/dcrazedave"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
                 title="Facebook"
                 aria-label="Facebook"
               >
@@ -130,7 +132,7 @@ export const Navbar = () => {
                 href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
                 title="LinkedIn"
                 aria-label="LinkedIn"
               >
@@ -140,13 +142,13 @@ export const Navbar = () => {
                 href="https://github.com/alndvtpr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
                 title="GitHub"
                 aria-label="GitHub"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15" aria-hidden="true" focusable="false" className="shrink-0"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
               </a>
-              <RssButton variant="icon" className="w-8 h-8 bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary hover:text-white transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]" iconSize={14} />
+              <RssButton variant="icon" className="w-8 h-8 bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary hover:text-white transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]" iconSize={14} />
             </div>
             <Link
               href="/contact/"
@@ -159,7 +161,7 @@ export const Navbar = () => {
 
           {/* Hamburger (Mobile & Tablet) */}
           <button
-            className="lg:hidden text-on-surface z-[60] relative p-2.5 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
+            className="lg:hidden text-on-surface z-[60] relative p-2.5 rounded-full hover:bg-white/10 dark:hover:bg-white/10 hover:bg-black/10 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
           >
@@ -171,7 +173,7 @@ export const Navbar = () => {
 
       {/* Full Screen Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-[#0c0f0f]/98 z-[55] flex flex-col justify-center items-center lg:hidden transition-all duration-300 ${
+        className={`fixed inset-0 bg-background/98 dark:bg-[#0c0f0f]/98 z-[55] flex flex-col justify-center items-center lg:hidden transition-all duration-300 ${
           menuOpen ? 'opacity-100 pointer-events-auto translate-y-0 mobile-menu-active' : 'opacity-0 pointer-events-none -translate-y-4'
         }`}
         style={{
@@ -194,7 +196,7 @@ export const Navbar = () => {
                 onClick={() => setMenuOpen(false)}
                 style={{ transitionDelay: `${idx * 30}ms` }}
                 className={`mobile-nav-item font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors py-2 px-4 rounded-full min-h-[44px] flex items-center justify-center ${
-                  isActive ? 'text-primary-container bg-primary-container/10 border border-primary-container/30' : 'text-on-surface hover:text-primary-container hover:bg-white/5'
+                  isActive ? 'text-primary-container bg-primary-container/10 border border-primary-container/30' : 'text-on-surface hover:text-primary-container hover:bg-white/5 dark:hover:bg-white/5 hover:bg-black/5'
                 }`}
               >
                 {link.name}
@@ -211,16 +213,17 @@ export const Navbar = () => {
             <Icon name="arrow_forward" size={16} className="btn-icon" />
           </Link>
           
-          {/* Mobile Menu Socials */}
+          {/* Mobile Menu Socials & Theme Toggle */}
           <div
             style={{ transitionDelay: `${(navLinks.length + 1) * 30}ms` }}
-            className="mobile-nav-item flex gap-3 sm:gap-4 mt-5 items-center justify-center"
+            className="mobile-nav-item flex gap-3 sm:gap-4 mt-5 items-center justify-center flex-wrap"
           >
+            <ThemeToggle className="w-11 h-11 min-w-[44px] min-h-[44px]" />
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="Gmail"
               title="Gmail"
             >
@@ -230,7 +233,7 @@ export const Navbar = () => {
               href="https://www.facebook.com/dcrazedave"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="Facebook"
               title="Facebook"
             >
@@ -240,7 +243,7 @@ export const Navbar = () => {
               href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="LinkedIn"
               title="LinkedIn"
             >
@@ -250,7 +253,7 @@ export const Navbar = () => {
               href="https://github.com/alndvtpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               aria-label="GitHub"
               title="GitHub"
             >
@@ -258,7 +261,7 @@ export const Navbar = () => {
             </a>
             <RssButton
               variant="icon"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary hover:text-white transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] bg-white/5 dark:bg-white/5 bg-black/5 border border-primary-container/30 text-primary-container hover:bg-primary hover:text-white transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
               iconSize={20}
             />
           </div>

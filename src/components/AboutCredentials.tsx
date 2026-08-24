@@ -253,7 +253,7 @@ export function AboutCredentials() {
               <div
                 key={cert.id}
                 style={{ transitionDelay: `${idx * 80}ms` }}
-                className="group p-4 sm:p-5 rounded-xl bg-surface-1/65 backdrop-blur-sm hover:bg-surface-1/85 border border-white/5 hover:border-primary-container/30 transition-all duration-300 flex flex-col justify-between gap-4 motion-reveal"
+                className="group p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm hover:bg-surface-2 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all duration-300 flex flex-col justify-between gap-4 motion-reveal shadow-sm"
               >
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-2">
@@ -283,7 +283,7 @@ export function AboutCredentials() {
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-white/5 flex items-center justify-between gap-2">
+                <div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-2">
                   <button
                     type="button"
                     onClick={() => setSelectedCert(cert)}
@@ -300,7 +300,7 @@ export function AboutCredentials() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Verify Alain Dave Tapiru's ${cert.title} on official registry (opens in new tab)`}
-                      className="text-xs font-sans text-on-surface/50 hover:text-primary-container underline underline-offset-2 transition-colors inline-flex items-center gap-1"
+                      className="text-xs font-sans text-on-surface/60 hover:text-primary-container underline underline-offset-2 transition-colors inline-flex items-center gap-1"
                     >
                       <span>Direct Verification Link</span>
                       <Icon name="north_east" size={11} />
@@ -315,7 +315,7 @@ export function AboutCredentials() {
         {/* Category 2: Formal Education & Academic Background */}
         <div className="motion-reveal">
           <div className="flex items-center gap-2 mb-4">
-            <span className="h-2 w-2 rounded-full bg-white/40 inline-block" />
+            <span className="h-2 w-2 rounded-full bg-primary-container inline-block" />
             <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
               Formal Education &amp; Academic Background
             </h3>
@@ -326,7 +326,7 @@ export function AboutCredentials() {
               <div
                 key={idx}
                 style={{ transitionDelay: `${idx * 80}ms` }}
-                className="p-4 sm:p-5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-1/85 transition-colors motion-reveal"
+                className="p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm border border-black/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-2 transition-colors motion-reveal shadow-sm"
               >
                 <div className="space-y-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface">
@@ -346,7 +346,7 @@ export function AboutCredentials() {
                       {edu.badge}
                     </span>
                   ) : (
-                    <span className="inline-block font-heading text-[11px] sm:text-xs text-on-surface/60 bg-white/5 border border-white/10 px-3 py-1 rounded-full font-medium">
+                    <span className="inline-block font-heading text-[11px] sm:text-xs text-on-surface/70 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 px-3 py-1 rounded-full font-medium">
                       {edu.badge}
                     </span>
                   )}
