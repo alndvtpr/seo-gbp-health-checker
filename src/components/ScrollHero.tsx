@@ -51,18 +51,26 @@ export const ScrollHero = () => {
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full hero-animate-in hero-delay-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full hero-animate-in hero-delay-4 flex-wrap">
             <Link
               href="/projects/"
               data-agent-action="view-portfolio-projects"
-              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-7 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               View My Work <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
             <Link
+              href="/resume/"
+              data-agent-action="view-resume"
+              className="w-full sm:w-auto min-h-[48px] bg-surface-1/90 hover:bg-surface-2 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-full hover:border-primary-container/40 transition-all flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            >
+              <Icon name="description" size={16} className="text-primary-container" />
+              View Resume
+            </Link>
+            <Link
               href="/contact/"
               data-agent-action="start-seo-inquiry"
-              className="w-full sm:w-auto min-h-[48px] border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-3.5 sm:py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="w-full sm:w-auto min-h-[48px] border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
               Let&apos;s Work Together
             </Link>

@@ -119,6 +119,9 @@ export const Footer = () => {
                 <Link href="/about/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">About Me</Link>
               </li>
               <li>
+                <Link href="/resume/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Resume</Link>
+              </li>
+              <li>
                 <Link href="/projects/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Projects</Link>
               </li>
               <li>

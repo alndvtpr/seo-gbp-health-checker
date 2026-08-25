@@ -10,6 +10,7 @@ export async function GET() {
 - **Location:** Mabalacat City, Pampanga, Philippines (GMT+8)
 - **Primary Roles:** SEO Specialist, Technical Web Developer
 - **Official Domains:** https://alaintapiru.com, https://www.alaintapiru.com
+- **Web Resume:** https://www.alaintapiru.com/resume/
 - **Contact:** alaintapiru@gmail.com
 - **Verified Entity Profiles:**
   - LinkedIn: https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/

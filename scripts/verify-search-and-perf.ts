@@ -51,6 +51,7 @@ const serviceRoutes = [
 const expectedSitemapUrls = [
   '/',
   '/about/',
+  '/resume/',
   '/projects/',
   '/tools/',
   '/services/',
@@ -64,7 +65,7 @@ const expectedSitemapUrls = [
 check(
   'Sitemap',
   `All ${expectedSitemapUrls.length} Canonical Routes Covered`,
-  expectedSitemapUrls.length === 7 + serviceRoutes.length + PROJECTS.length + BLOG_POSTS.length,
+  expectedSitemapUrls.length === 8 + serviceRoutes.length + PROJECTS.length + BLOG_POSTS.length,
   `Total canonical sitemap routes: ${expectedSitemapUrls.length}`
 )
 

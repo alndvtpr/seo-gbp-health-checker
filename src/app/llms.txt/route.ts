@@ -8,6 +8,7 @@ export async function GET() {
 ## Overview & Key Pages
 - [Alain Tapiru Home](https://www.alaintapiru.com/): Official website of Alain Dave Tapiru, SEO Specialist and Web Developer.
 - [About Alain Dave Tapiru](https://www.alaintapiru.com/about/): Professional background, core competencies, verified certifications, and credentials.
+- [Resume & Professional Credentials](https://www.alaintapiru.com/resume/): Complete verified web resume, work experience timeline, technology matrix, and downloadable PDF resume.
 - [SEO & Web Services Hub](https://www.alaintapiru.com/services/): Conversion-engineered SEO pillars, service directory, and delivery frameworks.
 - [Technical SEO Services](https://www.alaintapiru.com/services/technical-seo/): Server-side crawlability, Core Web Vitals speed tuning, and JSON-LD schema graphs.
 - [On-Page SEO Services](https://www.alaintapiru.com/services/on-page-seo/): Search intent keyword matrices, semantic heading outlines, and metadata CTR optimization.
