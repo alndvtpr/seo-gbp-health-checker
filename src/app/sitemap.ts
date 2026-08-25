@@ -16,10 +16,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact/',
   ]
 
+  const serviceRoutes = [
+    '/services/technical-seo/',
+    '/services/on-page-seo/',
+    '/services/local-seo/',
+    '/services/ai-search-optimization/',
+    '/services/web-development/',
+  ]
+
   const projectRoutes = PROJECTS.map((p) => `/projects/${p.slug}/`)
   const blogRoutes = BLOG_POSTS.map((b) => `/blog/${b.slug}/`)
 
-  const allRoutes = [...coreRoutes, ...projectRoutes, ...blogRoutes]
+  const allRoutes = [...coreRoutes, ...serviceRoutes, ...projectRoutes, ...blogRoutes]
 
   return allRoutes.map((route) => ({
     url: `${baseUrl}${route}`,

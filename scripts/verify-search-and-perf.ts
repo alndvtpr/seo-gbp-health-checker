@@ -40,6 +40,14 @@ check(
 )
 
 // 2. SITEMAP VERIFICATION
+const serviceRoutes = [
+  '/services/technical-seo/',
+  '/services/on-page-seo/',
+  '/services/local-seo/',
+  '/services/ai-search-optimization/',
+  '/services/web-development/',
+]
+
 const expectedSitemapUrls = [
   '/',
   '/about/',
@@ -48,6 +56,7 @@ const expectedSitemapUrls = [
   '/services/',
   '/blog/',
   '/contact/',
+  ...serviceRoutes,
   ...PROJECTS.map((p) => `/projects/${p.slug}/`),
   ...BLOG_POSTS.map((b) => `/blog/${b.slug}/`),
 ]
@@ -55,7 +64,7 @@ const expectedSitemapUrls = [
 check(
   'Sitemap',
   `All ${expectedSitemapUrls.length} Canonical Routes Covered`,
-  expectedSitemapUrls.length === 7 + PROJECTS.length + BLOG_POSTS.length,
+  expectedSitemapUrls.length === 7 + serviceRoutes.length + PROJECTS.length + BLOG_POSTS.length,
   `Total canonical sitemap routes: ${expectedSitemapUrls.length}`
 )
 

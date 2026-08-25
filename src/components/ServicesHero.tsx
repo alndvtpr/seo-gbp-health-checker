@@ -50,10 +50,10 @@ export function ServicesHero() {
         </Link>
 
         <a
-          href="#packages"
+          href="#service-directory"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          View Service Packages ↓
+          Explore Service Pillars ↓
         </a>
       </div>
 

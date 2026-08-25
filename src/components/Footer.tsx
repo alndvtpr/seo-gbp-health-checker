@@ -148,19 +148,19 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-1.5 font-sans text-xs text-on-surface/80">
               <li>
-                <Link href="/services/#pillar-foundation" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Technical SEO &amp; Schema</Link>
+                <Link href="/services/technical-seo/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Technical SEO</Link>
               </li>
               <li>
-                <Link href="/services/#pillar-visibility" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">AEO, GEO &amp; On-Page</Link>
+                <Link href="/services/on-page-seo/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">On-Page SEO</Link>
               </li>
               <li>
-                <Link href="/services/#pillar-execution" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Web Development</Link>
+                <Link href="/services/local-seo/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Local SEO &amp; GBP</Link>
               </li>
               <li>
-                <Link href="/tools/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Local GBP Auditor</Link>
+                <Link href="/services/ai-search-optimization/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">AI Search (AEO &amp; GEO)</Link>
               </li>
               <li>
-                <Link href="/projects/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Case Studies</Link>
+                <Link href="/services/web-development/" className="hover:text-primary-container hover:translate-x-1 transition-all py-0.5 inline-block">Web Development</Link>
               </li>
             </ul>
           </div>

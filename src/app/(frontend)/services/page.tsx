@@ -1,9 +1,7 @@
 import React from 'react'
 import { generateMetadata } from '@/lib/seo'
 import { ServicesHero } from '@/components/ServicesHero'
-import { ServicesPillar1 } from '@/components/ServicesPillar1'
-import { ServicesPillar2 } from '@/components/ServicesPillar2'
-import { ServicesPillars3And4 } from '@/components/ServicesPillars3And4'
+import { ServicesHubGrid } from '@/components/ServicesHubGrid'
 import { ServicesScopeEstimator } from '@/components/ServicesScopeEstimator'
 import { ServicesPackages } from '@/components/ServicesPackages'
 import { ServicesWorkflowAndFAQ } from '@/components/ServicesWorkflowAndFAQ'
@@ -27,31 +25,15 @@ export default function ServicesPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 2. Pillar 01: Technical & Semantic Foundation */}
-      <ServicesPillar1 />
+      {/* 2. Core Service Ecosystem Hub Grid & Connected Proofs */}
+      <ServicesHubGrid />
 
       {/* Ambient Section Divider */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 3. Pillar 02: Visibility (SEO, AEO & GEO) */}
-      <ServicesPillar2 />
-
-      {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
-
-      {/* 4. Pillars 03 & 04: Execution & Measurement */}
-      <ServicesPillars3And4 />
-
-      {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
-
-      {/* 5. Interactive Scope & Timeline Estimator */}
+      {/* 3. Interactive Scope & Timeline Estimator */}
       <ServicesScopeEstimator />
 
       {/* Ambient Section Divider */}
@@ -59,7 +41,7 @@ export default function ServicesPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 6. 3-Tier Engagement Pricing / Packaging Grid */}
+      {/* 4. 4-Tier Engagement Pricing / Packaging Grid */}
       <ServicesPackages />
 
       {/* Ambient Section Divider */}
@@ -67,10 +49,10 @@ export default function ServicesPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 6. 4-Step Delivery Workflow & FAQ Accordion */}
+      {/* 5. 4-Step Delivery Workflow & FAQ Accordion */}
       <ServicesWorkflowAndFAQ />
 
-      {/* 7. Closing Conversion CTA Banner & JSON-LD Structured Data */}
+      {/* 6. Closing Conversion CTA Banner & JSON-LD Structured Data */}
       <ServicesFinalCta />
     </div>
   )
