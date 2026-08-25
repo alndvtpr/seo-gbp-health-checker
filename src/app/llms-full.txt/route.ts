@@ -43,10 +43,6 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
 
 ## 5. Published Technical Guides & Knowledge Base
 - **Is SEO Dead in 2026? What the Data Actually Says (https://www.alaintapiru.com/blog/is-seo-dead-2026/):** Analysis of SparkToro zero-click metrics, AI Overviews, GEO optimization, and the future of search visibility.
-- **How I Engineered a 99/100 Core Web Vitals Score on Next.js 15 (https://www.alaintapiru.com/blog/how-to-achieve-99-pagespeed-nextjs/):** Technical blueprint covering main-thread render-blocking elimination, zero-CLS AVIF image containers, and idle-callback script hydration.
-- **The 2026 Google Business Profile Optimization Blueprint (https://www.alaintapiru.com/blog/local-seo-google-business-profile-blueprint/):** Local algorithm analysis covering primary category alignment, review velocity and sentiment analysis, and LocalBusiness entity linking.
-- **Next.js vs. WordPress for SEO in 2026 (https://www.alaintapiru.com/blog/nextjs-vs-wordpress-seo-2026/):** Architectural benchmark comparing static HTML crawl efficiency, render-blocking JavaScript, and CMS workflows.
-- **Schema Markup & Entity Graphs: Preparing for AI Search (https://www.alaintapiru.com/blog/schema-markup-entity-graphs-aeo-geo/):** Structuring linked Schema.org graphs to secure citations in ChatGPT, Perplexity, and Google AI Overviews.
 
 ## 6. Copyright & Licensing
 Copyright © 2026 Alain Dave Tapiru. All rights reserved. Proprietary design system, visual layouts, and source code are protected against unauthorized automated cloning.

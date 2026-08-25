@@ -22,10 +22,6 @@ export async function GET() {
 
 ## Published Technical Guides
 - [Is SEO Dead in 2026? What the Data Actually Says](https://www.alaintapiru.com/blog/is-seo-dead-2026/): Analysis of SparkToro zero-click metrics, AI Overviews, GEO optimization, and the future of search visibility.
-- [How I Engineered a 99/100 Core Web Vitals Score on Next.js 15](https://www.alaintapiru.com/blog/how-to-achieve-99-pagespeed-nextjs/): Zero-CPU ambient CSS styling, delayed script hydration, sub-second FCP, and zero-CLS layout architecture.
-- [The 2026 Google Business Profile Optimization Blueprint](https://www.alaintapiru.com/blog/local-seo-google-business-profile-blueprint/): Mastering Relevance, Prominence, and Distance vectors for local Map Pack rankings.
-- [Next.js vs. WordPress for SEO in 2026](https://www.alaintapiru.com/blog/nextjs-vs-wordpress-seo-2026/): Architectural benchmark comparing static HTML crawl efficiency, render-blocking JavaScript, and CMS workflows.
-- [Schema Markup & Entity Graphs: Preparing for AI Search (AEO & GEO)](https://www.alaintapiru.com/blog/schema-markup-entity-graphs-aeo-geo/): Structuring linked Schema.org graphs to secure citations in ChatGPT, Perplexity, and Google AI Overviews.
 
 ## Verified Profiles
 - [LinkedIn Profile](https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/): Professional network, experience, and recommendations.

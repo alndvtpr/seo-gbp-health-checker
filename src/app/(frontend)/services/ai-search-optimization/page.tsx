@@ -496,39 +496,39 @@ export default function AiSearchOptimizationPage() {
             </div>
 
             <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-3">
-              Schema Entity Graphs &amp; 2026 Generative Search
+              Is SEO Dead in 2026? What the Data Actually Says
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-              Read our deep-dive architectural guide on structuring connected Schema.org entity graphs, managing machine discoverability via /llms.txt, and navigating zero-click AI search experiences.
+              Read our deep-dive research guide analyzing SparkToro zero-click metrics, Google AI Overviews impact, GEO entity citations, and practical search priorities.
             </p>
 
             <div className="flex flex-wrap gap-2">
               <span className="px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-semibold">
-                Entity Disambiguation
-              </span>
-              <span className="px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-semibold">
-                Machine /llms.txt Standard
+                SparkToro Zero-Click Data
               </span>
               <span className="px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-semibold">
                 Google AI Overviews
+              </span>
+              <span className="px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-semibold">
+                3-Tier SEO/GEO Framework
               </span>
             </div>
           </div>
 
           <div className="shrink-0 flex flex-col gap-3 lg:w-72">
             <Link
-              href="/blog/schema-entity-graphs-generative-search-aeo-geo/"
+              href="/blog/is-seo-dead-2026/"
               className="inline-flex items-center justify-center w-full py-3.5 px-6 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] shadow-[0_0_20px_rgba(224,123,32,0.35)] hover:shadow-[0_0_30px_rgba(224,123,32,0.5)] btn-motion min-h-[46px] text-center"
             >
-              <span>Read Schema Entity Guide</span>
+              <span>Read 2026 Search Guide</span>
               <Icon name="arrow_forward" size={14} className="ml-2 btn-icon" />
             </Link>
 
             <Link
-              href="/blog/is-seo-dead-2026/"
+              href="/blog/"
               className="inline-flex items-center justify-center w-full py-3 px-6 rounded-xl border border-black/10 dark:border-white/10 hover:border-primary-container/40 bg-black/5 dark:bg-white/5 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] btn-motion min-h-[44px] text-center"
             >
-              <span>Is SEO Dead in 2026?</span>
+              <span>View All Blog Notes</span>
             </Link>
           </div>
         </div>
