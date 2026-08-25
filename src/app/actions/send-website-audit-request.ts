@@ -377,6 +377,10 @@ export async function sendWebsiteAuditRequestAction(
     minute: '2-digit',
   })
 
+  let sheetDelivered = false
+  let ownerDelivered = false
+  let userDelivered = false
+
   // 1. Google Sheets Webhook Dispatch (Lead Logging & CRM)
   const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
   const leadPayload = {
@@ -388,97 +392,115 @@ export async function sendWebsiteAuditRequestAction(
     submittedAt: new Date().toISOString(),
   }
 
-  try {
-    const sheetRes = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(leadPayload),
-      redirect: 'follow',
-      cache: 'no-store',
-      signal: AbortSignal.timeout(15000),
-    })
+  const sheetPromise = (async () => {
+    try {
+      const sheetRes = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadPayload),
+        redirect: 'follow',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(8000),
+      })
 
-    if (!sheetRes.ok) {
-      console.warn(`Google Sheet Webhook returned HTTP status ${sheetRes.status}`)
+      if (sheetRes.ok) {
+        sheetDelivered = true
+      } else {
+        console.warn(`Google Sheet Webhook returned HTTP status ${sheetRes.status}`)
+      }
+    } catch (sheetErr) {
+      console.error('Google Sheet Webhook audit submission error:', sheetErr)
     }
-  } catch (sheetErr) {
-    console.error('Google Sheet Webhook audit submission error:', sheetErr)
-  }
+  })()
 
   // 2. Resend Email Dispatch
   const resendApiKey = process.env.RESEND_API_KEY
   const resendFrom = process.env.RESEND_FROM_EMAIL || 'Alain Dave Tapiru <onboarding@resend.dev>'
   const ownerRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
 
-  let ownerDelivered = false
-  let userDelivered = false
+  const resendPromise = (async () => {
+    if (!resendApiKey) {
+      console.warn(
+        `[sendWebsiteAuditRequestAction] RESEND_API_KEY is not configured. Audit request could not be dispatched via Resend.`,
+      )
+      return
+    }
 
-  if (resendApiKey) {
     try {
-      // Dispatch 1: Informational notification to site owner (Alain)
       const ownerHtml = generateOwnerAlertHtml(validatedData, dateStr)
       const ownerText = generateOwnerAlertText(validatedData, dateStr)
-
-      const ownerResend = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: resendFrom,
-          to: ownerRecipient,
-          reply_to: email,
-          subject: `🔍 New SEO Website Audit Request: ${website} (${name || email})`,
-          html: ownerHtml,
-          text: ownerText,
-        }),
-      })
-
-      if (ownerResend.ok) {
-        ownerDelivered = true
-      } else {
-        const errorText = await ownerResend.text()
-        console.error(`Resend owner notification delivery error (HTTP ${ownerResend.status}):`, errorText)
-      }
-
-      // Dispatch 2: Confirmation copy to the requester
       const userHtml = generateRequesterConfirmationHtml(validatedData, dateStr)
       const userText = generateRequesterConfirmationText(validatedData, dateStr)
 
-      const userResend = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${resendApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: resendFrom,
-          to: email,
-          reply_to: ownerRecipient,
-          subject: `✅ SEO Website Audit Request Received: ${website}`,
-          html: userHtml,
-          text: userText,
+      // Dispatch 1: Informational notification to site owner (Alain)
+      // Dispatch 2: Confirmation copy to the requester
+      const [ownerResendResult, userResendResult] = await Promise.allSettled([
+        fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: resendFrom,
+            to: ownerRecipient,
+            reply_to: email,
+            subject: `🔍 New SEO Website Audit Request: ${website} (${name || email})`,
+            html: ownerHtml,
+            text: ownerText,
+          }),
         }),
-      })
+        fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: resendFrom,
+            to: email,
+            reply_to: ownerRecipient,
+            subject: `✅ SEO Website Audit Request Received: ${website}`,
+            html: userHtml,
+            text: userText,
+          }),
+        }),
+      ])
 
-      if (userResend.ok) {
-        userDelivered = true
+      if (ownerResendResult.status === 'fulfilled' && ownerResendResult.value.ok) {
+        ownerDelivered = true
+      } else if (ownerResendResult.status === 'fulfilled') {
+        const errorText = await ownerResendResult.value.text()
+        console.error(`Resend owner notification delivery error (HTTP ${ownerResendResult.value.status}):`, errorText)
       } else {
-        const errorText = await userResend.text()
-        console.error(`Resend requester confirmation delivery error (HTTP ${userResend.status}):`, errorText)
+        console.error('Resend owner notification rejected:', ownerResendResult.reason)
+      }
+
+      if (userResendResult.status === 'fulfilled' && userResendResult.value.ok) {
+        userDelivered = true
+      } else if (userResendResult.status === 'fulfilled') {
+        const errorText = await userResendResult.value.text()
+        console.error(`Resend requester confirmation delivery error (HTTP ${userResendResult.value.status}):`, errorText)
+      } else {
+        console.error('Resend requester confirmation rejected:', userResendResult.reason)
       }
     } catch (resendErr) {
       console.error('Resend audit dispatch error:', resendErr)
     }
-  } else {
-    console.warn(
-      `[sendWebsiteAuditRequestAction] RESEND_API_KEY is not configured. Audit request could not be dispatched via Resend.`,
-    )
+  })()
+
+  // Concurrently execute both dispatches
+  await Promise.allSettled([sheetPromise, resendPromise])
+
+  // Ensure at least one delivery pipeline succeeded
+  if (!sheetDelivered && !ownerDelivered && !userDelivered) {
+    return {
+      success: false,
+      error: 'Unable to submit audit request at this moment. Please try again or reach out directly.',
+    }
   }
 
-  // Graceful response check: if Resend is configured, we expect at least one delivery or fallback
   return { success: true }
 }
