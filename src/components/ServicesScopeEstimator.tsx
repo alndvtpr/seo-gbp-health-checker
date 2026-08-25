@@ -26,89 +26,106 @@ interface CapabilityAddon {
 
 const PROJECT_TYPES: ProjectType[] = [
   {
-    id: 'nextjs-custom',
-    name: 'Custom Next.js & React Build',
-    baseWeeks: 3,
-    basePriceUsd: 850,
-    basePricePhp: 48000,
-    description: 'Code-first React/Next.js architecture built for fast Core Web Vitals, clean crawlability, and zero layout shift.',
-    recommendedPackage: 'Custom Next.js Full-Stack Architecture',
-    serviceParam: 'AI Web Design & Dev',
+    id: 'health-check',
+    name: 'Website SEO Health Check',
+    baseWeeks: 0.5,
+    basePriceUsd: 65,
+    basePricePhp: 3500,
+    description: 'Technical crawl diagnostics, Core Web Vitals profiling, robots/sitemap inspection, and prioritized action plan.',
+    recommendedPackage: 'Website SEO Health Check (₱3,500)',
+    serviceParam: 'Website SEO Health Check',
   },
   {
-    id: 'wordpress-launch',
-    name: 'WordPress / Elementor Redesign',
-    baseWeeks: 2.5,
-    basePriceUsd: 480,
-    basePricePhp: 27000,
-    description: 'Custom responsive WordPress layout paired with technical speed optimization, schema integration, and easy CMS editing.',
-    recommendedPackage: 'WordPress High-Speed Business Website',
-    serviceParam: 'AI Web Design & Dev',
-  },
-  {
-    id: 'technical-audit',
-    name: 'Technical SEO Audit & Roadmap',
-    baseWeeks: 1.5,
-    basePriceUsd: 280,
-    basePricePhp: 15500,
-    description: 'Comprehensive crawl analysis, Core Web Vitals audit, schema verification, and prioritized 30-day action sprint.',
-    recommendedPackage: 'SEO & AI Readiness Sprint',
+    id: 'technical-sprint',
+    name: 'Technical SEO Fix Sprint',
+    baseWeeks: 1,
+    basePriceUsd: 155,
+    basePricePhp: 8500,
+    description: 'Direct hands-on fixes for indexing issues, 404s, redirect chains, JSON-LD schema, and basic Core Web Vitals.',
+    recommendedPackage: 'Technical SEO Fix Sprint (₱8,500)',
     serviceParam: 'Technical SEO Audit',
   },
   {
-    id: 'monthly-retainer',
-    name: 'Ongoing Monthly SEO Support',
+    id: 'on-page-sprint',
+    name: 'On-Page SEO Sprint',
+    baseWeeks: 1,
+    basePriceUsd: 120,
+    basePricePhp: 6500,
+    description: 'Search intent mapping, heading structure rewrite, click-focused meta titles/descriptions, and internal linking.',
+    recommendedPackage: 'On-Page SEO Sprint (₱6,500)',
+    serviceParam: 'On-Page SEO Optimization',
+  },
+  {
+    id: 'local-foundation',
+    name: 'Local SEO Foundation',
+    baseWeeks: 1,
+    basePriceUsd: 135,
+    basePricePhp: 7500,
+    description: '10-point Google Business Profile calibration, category alignment, NAP consistency review, and local schema.',
+    recommendedPackage: 'Local SEO Foundation (₱7,500)',
+    serviceParam: 'Local SEO Optimization',
+  },
+  {
+    id: 'monthly-support',
+    name: 'Monthly SEO Maintenance & Care',
     baseWeeks: 4,
+    basePriceUsd: 145,
+    basePricePhp: 8000,
+    description: 'Up to 8 hours/month of proactive technical maintenance, Search Console index monitoring, and transparent task logs.',
+    recommendedPackage: 'Monthly SEO Support (₱8,000/mo)',
+    serviceParam: 'Ongoing Monthly SEO Support',
+  },
+  {
+    id: 'custom-web',
+    name: 'Custom Web Development Build',
+    baseWeeks: 2.5,
     basePriceUsd: 450,
     basePricePhp: 25000,
-    description: 'Ongoing technical and on-page optimization, local search support, and transparent reporting (~20-25 hrs/month).',
-    recommendedPackage: 'Ongoing Monthly SEO Support',
-    serviceParam: 'Full-Service Monthly SEO',
+    description: 'Custom WordPress theme or code-first Next.js 15 web architecture built for sub-second LCP and zero layout shift.',
+    recommendedPackage: 'Custom Web Build (Scoped Quote)',
+    serviceParam: 'React & WordPress Web Development',
   },
 ]
 
 const CAPABILITIES: CapabilityAddon[] = [
   {
-    id: 'web-vitals',
-    name: 'Core Web Vitals Speed Optimization',
+    id: 'extra-pages',
+    name: 'Additional 5-Page On-Page Optimization',
     weeksDelta: 0.5,
-    priceUsd: 120,
-    pricePhp: 6800,
-    description: 'Image optimization, asset compression, render-blocking deferral, and performance tuning.',
+    priceUsd: 80,
+    pricePhp: 4500,
+    description: 'Intent mapping, single-H1 heading restructuring, metadata, and internal linking for 5 extra priority pages.',
   },
   {
     id: 'schema-graph',
-    name: 'Schema Markup & Structured Data',
+    name: 'Advanced JSON-LD Entity Graph Setup',
     weeksDelta: 0.5,
-    priceUsd: 90,
-    pricePhp: 5000,
-    description: 'Custom JSON-LD structured data implementation for Organization, LocalBusiness, Breadcrumbs, and FAQs.',
+    priceUsd: 65,
+    pricePhp: 3500,
+    description: 'Interconnected Schema.org markup for Organization, LocalBusiness, Breadcrumbs, FAQs, and Services.',
   },
   {
-    id: 'map-pack',
-    name: 'Local SEO & Google Business Profile Setup',
+    id: 'web-vitals',
+    name: 'Core Web Vitals Speed Optimization',
     weeksDelta: 0.5,
-    priceUsd: 90,
-    pricePhp: 5000,
-    description: 'Category alignment, NAP consistency checks, and local optimization strategy.',
+    priceUsd: 80,
+    pricePhp: 4500,
+    description: 'Image optimization, asset compression, render-blocking deferral, and performance tuning.',
   },
   {
     id: 'analytics-dashboard',
-    name: 'Looker Studio & GA4 Analytics Suite',
+    name: 'Google Search Console & GA4 Suite',
     weeksDelta: 0.5,
-    priceUsd: 70,
-    pricePhp: 4000,
-    description: 'Live automated reporting dashboard tracking organic conversions, keyword clicks, and engagement.',
+    priceUsd: 45,
+    pricePhp: 2500,
+    description: 'Clean Search Console sitemap setup, GA4 event tracking, and Looker Studio performance view.',
   },
 ]
 
 export function ServicesScopeEstimator() {
-  const [currency, setCurrency] = useState<'USD' | 'PHP'>('USD')
-  const [selectedType, setSelectedType] = useState<string>('nextjs-custom')
-  const [selectedAddons, setSelectedAddons] = useState<string[]>([
-    'web-vitals',
-    'schema-graph',
-  ])
+  const [currency, setCurrency] = useState<'PHP' | 'USD'>('PHP')
+  const [selectedType, setSelectedType] = useState<string>('technical-sprint')
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([])
   const [isAccelerated, setIsAccelerated] = useState<boolean>(false)
 
   const activeProject = useMemo(() => {
@@ -129,24 +146,24 @@ export function ServicesScopeEstimator() {
     })
 
     if (isAccelerated) {
-      total = Math.max(1.5, total * 0.65)
+      total = Math.max(0.5, total * 0.7)
     }
 
     return Math.round(total * 10) / 10
   }, [activeProject, selectedAddons, isAccelerated])
 
   const estimatedCost = useMemo(() => {
-    const isUsd = currency === 'USD'
-    let base = isUsd ? activeProject.basePriceUsd : activeProject.basePricePhp
+    const isPhp = currency === 'PHP'
+    let base = isPhp ? activeProject.basePricePhp : activeProject.basePriceUsd
     selectedAddons.forEach((addonId) => {
       const addon = CAPABILITIES.find((c) => c.id === addonId)
       if (addon) {
-        base += isUsd ? addon.priceUsd : addon.pricePhp
+        base += isPhp ? addon.pricePhp : addon.priceUsd
       }
     })
 
     if (isAccelerated) {
-      base *= 1.25
+      base *= 1.2
     }
 
     return Math.round(base)
@@ -170,7 +187,7 @@ export function ServicesScopeEstimator() {
           Project Scope &amp; Timeline Estimator
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Configure your technical requirements to calculate estimated sprint delivery timelines, add-on capabilities, and clear milestone budgets.
+          Configure your requirements to estimate sprint delivery timelines, add-on deliverables, and transparent pricing.
         </p>
       </div>
 
@@ -182,22 +199,11 @@ export function ServicesScopeEstimator() {
           <div className="space-y-3">
             <div className="flex items-center justify-between gap-2">
               <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
-                1. Choose Core Project Type
+                1. Choose Core Offer
               </label>
 
               {/* Currency Toggle */}
               <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs">
-                <button
-                  type="button"
-                  onClick={() => setCurrency('USD')}
-                  className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
-                    currency === 'USD'
-                      ? 'bg-primary-container text-on-primary-container shadow-sm'
-                      : 'text-on-surface/70 hover:text-on-surface'
-                  }`}
-                >
-                  USD ($)
-                </button>
                 <button
                   type="button"
                   onClick={() => setCurrency('PHP')}
@@ -209,39 +215,44 @@ export function ServicesScopeEstimator() {
                 >
                   PHP (₱)
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setCurrency('USD')}
+                  className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
+                    currency === 'USD'
+                      ? 'bg-primary-container text-on-primary-container shadow-sm'
+                      : 'text-on-surface/70 hover:text-on-surface'
+                  }`}
+                >
+                  USD ($)
+                </button>
               </div>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {PROJECT_TYPES.map((type) => {
                 const isSelected = selectedType === type.id
-                const displayPrice = currency === 'USD' 
-                  ? `$${type.basePriceUsd.toLocaleString()}`
-                  : `₱${type.basePricePhp.toLocaleString()}`
-
                 return (
                   <button
                     key={type.id}
                     type="button"
                     onClick={() => setSelectedType(type.id)}
-                    className={`p-4 rounded-xl text-left transition-all duration-200 cursor-pointer border ${
+                    className={`p-4 rounded-xl text-left border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                       isSelected
-                        ? 'bg-primary-container/15 border-primary-container text-on-surface shadow-md ring-1 ring-primary-container/50'
-                        : 'bg-black/[0.02] dark:bg-white/[0.03] border-black/10 dark:border-white/10 text-on-surface/80 hover:bg-black/5 dark:hover:bg-white/5 hover:border-primary-container/30'
+                        ? 'bg-primary-container/10 border-primary-container shadow-[0_0_20px_rgba(224,123,32,0.15)] ring-1 ring-primary-container'
+                        : 'bg-surface-2/60 border-black/10 dark:border-white/5 hover:border-white/20'
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-1 mb-1">
-                      <span className="font-heading text-sm font-bold text-on-surface">
+                    <div>
+                      <span className="font-heading text-sm font-bold text-on-surface block mb-1">
                         {type.name}
                       </span>
-                      {isSelected && (
-                        <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
-                      )}
+                      <span className="font-sans text-xs text-on-surface/70 leading-relaxed block line-clamp-2">
+                        {type.description}
+                      </span>
                     </div>
-                    <p className="font-sans text-xs text-on-surface/70 leading-relaxed mb-2">
-                      {type.description}
-                    </p>
-                    <span className="inline-block text-[11px] font-heading font-bold text-primary-container">
-                      Base: {displayPrice}
+                    <span className="font-heading text-xs font-bold text-primary-container mt-3 block">
+                      From {currency === 'PHP' ? `₱${type.basePricePhp.toLocaleString()}` : `$${type.basePriceUsd}`}
                     </span>
                   </button>
                 )
@@ -249,168 +260,171 @@ export function ServicesScopeEstimator() {
             </div>
           </div>
 
-          {/* Step 2: Capability Add-ons */}
+          {/* Step 2: Add-On Capabilities */}
           <div className="space-y-3 pt-4 border-t border-black/10 dark:border-white/10">
             <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
-              2. Select Specialized Add-on Capabilities
+              2. Optional Add-On Deliverables
             </label>
+
             <div className="space-y-2.5">
               {CAPABILITIES.map((addon) => {
                 const isChecked = selectedAddons.includes(addon.id)
-                const addonPrice = currency === 'USD'
-                  ? `+$${addon.priceUsd}`
-                  : `+₱${addon.pricePhp.toLocaleString()}`
-
                 return (
-                  <div
+                  <button
                     key={addon.id}
+                    type="button"
                     onClick={() => toggleAddon(addon.id)}
-                    className={`p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-start gap-3 ${
+                    className={`w-full p-3.5 sm:p-4 rounded-xl text-left border transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 ${
                       isChecked
-                        ? 'bg-primary-container/10 border-primary-container/60 text-on-surface'
-                        : 'bg-black/[0.02] dark:bg-white/[0.02] border-black/10 dark:border-white/10 text-on-surface/80 hover:bg-black/5 dark:hover:bg-white/5 hover:border-primary-container/30'
+                        ? 'bg-primary-container/10 border-primary-container/80 ring-1 ring-primary-container/40'
+                        : 'bg-surface-2/50 border-black/10 dark:border-white/5 hover:border-white/20'
                     }`}
                   >
-                    <div
-                      className={`w-5 h-5 rounded-md flex items-center justify-center border mt-0.5 shrink-0 transition-colors ${
-                        isChecked
-                          ? 'bg-primary-container border-primary-container text-on-primary-container'
-                          : 'border-black/20 dark:border-white/20 bg-black/5 dark:bg-white/5'
-                      }`}
-                    >
-                      {isChecked && <Icon name="check_circle" size={14} />}
-                    </div>
-                    <div className="space-y-0.5 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
+                    <div className="flex items-start gap-3">
+                      <div
+                        className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 mt-0.5 border transition-colors ${
+                          isChecked
+                            ? 'bg-primary-container border-primary-container text-on-primary-container'
+                            : 'border-white/20 bg-surface-1'
+                        }`}
+                      >
+                        {isChecked && <Icon name="check" size={14} />}
+                      </div>
+                      <div>
+                        <span className="font-heading text-sm font-bold text-on-surface block">
                           {addon.name}
                         </span>
-                        <span className="text-[11px] font-heading font-semibold text-primary-container shrink-0">
-                          {addonPrice}
+                        <span className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                          {addon.description}
                         </span>
                       </div>
-                      <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
-                        {addon.description}
-                      </p>
                     </div>
-                  </div>
+
+                    <span className="font-heading text-xs font-bold text-primary-container shrink-0">
+                      +{currency === 'PHP' ? `₱${addon.pricePhp.toLocaleString()}` : `$${addon.priceUsd}`}
+                    </span>
+                  </button>
                 )
               })}
             </div>
           </div>
 
-          {/* Step 3: Timeline Urgency Toggle */}
+          {/* Step 3: Priority Sprint Schedule */}
           <div className="pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-4">
             <div>
               <span className="font-heading text-xs font-bold text-on-surface block">
-                Accelerated Delivery Sprint
+                Expedited Sprint Delivery
               </span>
               <span className="font-sans text-xs text-on-surface/70">
-                Priority scheduling for rapid launch requirements (+25% sprint prioritization).
+                Prioritized schedule targeting 30% faster deliverable completion (+20% sprint rate).
               </span>
             </div>
+
             <button
               type="button"
               onClick={() => setIsAccelerated(!isAccelerated)}
-              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                isAccelerated ? 'bg-primary-container' : 'bg-black/15 dark:bg-white/15'
+              className={`w-12 h-6 rounded-full transition-colors p-1 cursor-pointer shrink-0 ${
+                isAccelerated ? 'bg-primary-container' : 'bg-surface-3 border border-white/10'
               }`}
-              role="switch"
-              aria-checked={isAccelerated}
             >
-              <span
-                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                  isAccelerated ? 'translate-x-5' : 'translate-x-0'
+              <div
+                className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                  isAccelerated ? 'translate-x-6' : 'translate-x-0'
                 }`}
               />
             </button>
           </div>
         </div>
 
-        {/* Right Column: Dynamic Estimate Output Card (5 Cols) */}
-        <div style={{ transitionDelay: '80ms' }} className="lg:col-span-5 space-y-6 sticky top-28 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border-2 border-primary-container/60 shadow-xl motion-reveal">
-          <div className="space-y-1">
-            <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
-              Estimated Sprint Scope
-            </span>
-            <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
-              Project Delivery Summary
-            </h3>
-          </div>
-
-          {/* Metrics Highlight Box */}
-          <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 text-center">
-            <div>
-              <span className="font-heading text-[10px] text-on-surface/60 uppercase tracking-wider block font-semibold">
-                Est. Duration
-              </span>
-              <span className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
-                {estimatedWeeks} {estimatedWeeks === 1 ? 'Week' : 'Weeks'}
+        {/* Right Column: Estimated Summary Card (5 Cols Sticky) */}
+        <div className="lg:col-span-5 sticky top-28 space-y-6 motion-reveal">
+          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-xl border border-primary-container/40 shadow-[0_0_50px_rgba(224,123,32,0.15)] space-y-6">
+            <div className="flex items-center justify-between gap-2 border-b border-black/10 dark:border-white/10 pb-4">
+              <div>
+                <span className="font-heading text-[10px] uppercase tracking-wider text-primary-container font-bold block">
+                  Configuration Summary
+                </span>
+                <h3 className="font-heading text-lg font-bold text-on-surface">
+                  {activeProject.name}
+                </h3>
+              </div>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                Transparent
               </span>
             </div>
-            <div>
-              <span className="font-heading text-[10px] text-on-surface/60 uppercase tracking-wider block font-semibold">
-                Est. Investment
-              </span>
-              <span className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
-                {currency === 'USD' ? `$${estimatedCost.toLocaleString()}` : `₱${estimatedCost.toLocaleString()}`}
-              </span>
+
+            {/* Price & Timeline Counters */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-surface-2/70 border border-black/10 dark:border-white/5">
+                <span className="font-sans text-xs text-on-surface/70 block mb-1">
+                  Estimated Rate
+                </span>
+                <span className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
+                  {currency === 'PHP' ? `₱${estimatedCost.toLocaleString()}` : `$${estimatedCost.toLocaleString()}`}
+                </span>
+                <span className="text-[10px] font-sans text-on-surface/60 block mt-0.5">
+                  {currency === 'PHP' ? 'Philippine Pesos' : 'USD Equivalent'}
+                </span>
+              </div>
+
+              <div className="p-4 rounded-xl bg-surface-2/70 border border-black/10 dark:border-white/5">
+                <span className="font-sans text-xs text-on-surface/70 block mb-1">
+                  Estimated Timeline
+                </span>
+                <span className="font-heading text-2xl sm:text-3xl font-extrabold text-on-surface">
+                  {estimatedWeeks === 0.5 ? '2-3 Days' : `${estimatedWeeks} ${estimatedWeeks === 1 ? 'Week' : 'Weeks'}`}
+                </span>
+                <span className="text-[10px] font-sans text-on-surface/60 block mt-0.5">
+                  Delivery Sprint
+                </span>
+              </div>
             </div>
-          </div>
 
-          {/* Delivery Mode Badge */}
-          <div className="flex items-center justify-between p-3 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/5 text-xs font-sans">
-            <span className="text-on-surface/70">Execution Cadence:</span>
-            <span className="font-heading font-bold text-emerald-500">
-              {isAccelerated ? '⚡ Priority Accelerated Sprint' : 'Standard Delivery Sprint'}
-            </span>
-          </div>
+            {/* Selected Breakdown Items */}
+            <div className="space-y-2 pt-2 border-t border-black/10 dark:border-white/10 text-xs font-sans text-on-surface/80">
+              <div className="flex justify-between">
+                <span>Base Deliverables</span>
+                <span className="font-semibold text-on-surface">
+                  {currency === 'PHP' ? `₱${activeProject.basePricePhp.toLocaleString()}` : `$${activeProject.basePriceUsd}`}
+                </span>
+              </div>
+              {selectedAddons.map((addonId) => {
+                const addon = CAPABILITIES.find((c) => c.id === addonId)
+                if (!addon) return null
+                return (
+                  <div key={addonId} className="flex justify-between text-on-surface/70">
+                    <span className="truncate pr-2">+ {addon.name}</span>
+                    <span className="font-medium text-primary-container shrink-0">
+                      {currency === 'PHP' ? `₱${addon.pricePhp.toLocaleString()}` : `$${addon.priceUsd}`}
+                    </span>
+                  </div>
+                )
+              })}
+              {isAccelerated && (
+                <div className="flex justify-between text-emerald-400 font-medium">
+                  <span>Expedited Sprint (+20%)</span>
+                  <span>Active</span>
+                </div>
+              )}
+            </div>
 
-          {/* Recommended Engagement Model */}
-          <div className="space-y-2 p-4 rounded-xl bg-surface-2/60 border border-black/10 dark:border-white/10">
-            <span className="font-heading text-[11px] text-on-surface/70 uppercase tracking-wider block font-semibold">
-              Recommended Package:
-            </span>
-            <p className="font-heading text-base font-bold text-on-surface flex items-center gap-2">
-              <Icon name="auto_awesome" size={16} className="text-primary-container" />
+            {/* Recommended Package Notice */}
+            <div className="p-3 rounded-xl bg-primary-container/10 border border-primary-container/20 text-xs font-sans text-on-surface/80">
+              <strong className="font-heading font-bold text-primary-container uppercase text-[10px] tracking-wider block mb-0.5">
+                Matching Offer Tier:
+              </strong>
               <span>{activeProject.recommendedPackage}</span>
-            </p>
-            <p className="font-sans text-xs text-on-surface/70 leading-relaxed pt-1">
-              Includes core execution, QA testing, verified schema integration, and technical handoff.
-            </p>
+            </div>
+
+            {/* Book Estimated Scope Action */}
+            <Link
+              href={`/contact/?service=${encodeURIComponent(activeProject.serviceParam)}`}
+              className="w-full inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-4 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
+            >
+              <span>Discuss This Scope</span>
+              <Icon name="arrow_forward" size={16} className="btn-icon" />
+            </Link>
           </div>
-
-          {/* Selected Add-ons Pill Count */}
-          <div className="flex items-center justify-between text-xs font-sans text-on-surface/70 px-1">
-            <span>Configured Add-ons:</span>
-            <span className="font-heading font-bold text-on-surface">
-              {selectedAddons.length} of {CAPABILITIES.length} Selected
-            </span>
-          </div>
-
-          {/* Action CTA Button */}
-          <Link
-            href={`/contact/?service=${encodeURIComponent(activeProject.serviceParam)}`}
-            className="w-full bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] py-4 px-6 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 min-h-[48px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
-          >
-            <span>Discuss This Project Scope</span>
-            <Icon name="arrow_forward" size={16} className="btn-icon" />
-          </Link>
-
-          {/* Small Business Flexibility Guarantee Note */}
-          <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-1">
-            <span className="font-heading text-[11px] font-bold text-emerald-500 flex items-center justify-center gap-1">
-              <Icon name="handshake" size={14} className="text-emerald-500" />
-              <span>Flexible Budget &amp; Phased Options</span>
-            </span>
-            <p className="font-sans text-[11px] text-on-surface/75 leading-relaxed">
-              Have specific constraints or a custom scope? We can tailor deliverables sprint-by-sprint to fit your exact needs.
-            </p>
-          </div>
-
-          <p className="text-[11px] font-sans text-on-surface/50 text-center leading-relaxed">
-            Free discovery call included. All projects include direct communication, regular updates, and milestone-based reviews.
-          </p>
         </div>
       </div>
     </section>

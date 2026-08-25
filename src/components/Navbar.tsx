@@ -61,7 +61,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         name: 'All Services & Packages',
         href: '/services/',
-        description: 'Full service roadmap, process & deliverables',
+        description: 'Practical SEO, local visibility & web support',
       },
       {
         name: 'Technical SEO',
@@ -83,7 +83,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         name: 'AI Search (AEO & GEO)',
         href: '/services/ai-search-optimization/',
-        description: 'Machine discoverability, entities & direct answers',
+        description: 'Structured data, entities & machine discoverability',
         badge: 'AI Search',
       },
       {

@@ -7,9 +7,9 @@ import { AboutCredentials } from '@/components/AboutCredentials'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'About Alain Dave Tapiru | SEO Specialist & Web Developer Philippines',
+  title: 'About Alain Dave Tapiru | Practical SEO & Web Support Philippines',
   description:
-    'Learn more about Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines. Explore my background, training journey, and technical capabilities.',
+    'Learn more about Alain Dave Tapiru. Practical SEO and website support for small businesses and agencies. Background, hands-on projects, and technical skills.',
   url: 'https://www.alaintapiru.com/about/',
 })
 
@@ -20,9 +20,9 @@ const aboutJsonLd = {
       '@type': 'AboutPage',
       '@id': 'https://www.alaintapiru.com/about/#webpage',
       url: 'https://www.alaintapiru.com/about/',
-      name: 'About Alain Dave Tapiru | SEO Specialist & Web Developer Philippines',
+      name: 'About Alain Dave Tapiru | Practical SEO & Web Support Philippines',
       description:
-        'Learn more about Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines. Explore my background, training journey, and technical capabilities.',
+        'Learn more about Alain Dave Tapiru. Practical SEO and website support for small businesses and agencies. Background, hands-on projects, and technical skills.',
       isPartOf: {
         '@id': 'https://www.alaintapiru.com/#website',
       },
@@ -75,10 +75,10 @@ export default function AboutPage() {
           Biography &amp; Background
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-tight">
-          About Alain Dave Tapiru: Background, Technical Skills &amp; SEO Approach
+          About Alain Dave Tapiru: Practical SEO &amp; Web Support
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          I am an SEO Specialist, Technical Web Developer, and BSIT student specializing in Network &amp; Cybersecurity.
+          I provide hands-on technical SEO, local search foundation work, and website support for small businesses and digital agencies.
         </p>
       </div>
 
@@ -123,20 +123,20 @@ export default function AboutPage() {
 
         <div className="lg:col-span-7 space-y-4 sm:space-y-6 motion-reveal">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface tracking-tight">
-            My SEO Journey &amp; Philosophy
+            My Background &amp; Working Philosophy
           </h2>
           <div className="space-y-3 sm:space-y-4 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
             <p>
-              My professional background began in client-facing support and operations, where I developed strong problem-solving habits, attention to detail, and clear communication. Transitioning into Search Engine Optimization gave me a dedicated path to connect analytical research with hands-on web development.
+              My professional background began in client-facing support and operations, where I developed strong habits around responsiveness, attention to detail, and structured task management. Transitioning into Search Engine Optimization gave me a dedicated path to connect analytical research with hands-on web development.
             </p>
             <p>
-              Over the past year, I have built practical, independent SEO experience through intensive upskilling, real project experimentation, and structured training, including completing the Pinoy SEO Bootcamp led by Rene Leandro Padilla. Instead of focusing only on theory, I practice SEO by actively building search-ready websites, testing technical crawlability, optimizing local search signals, and developing custom tools.
+              Over the past year, I have built practical, independent SEO experience through intensive upskilling, real project experimentation, and structured training, including completing the Pinoy SEO Bootcamp led by Rene Leandro Padilla. Rather than relying on theory alone, I practice SEO by actively building search-ready websites, testing technical crawlability, optimizing local search signals, and developing custom diagnostic tools.
             </p>
             <p>
-              As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frontend frameworks like Next.js and WordPress. I believe an effective website should be easy for search engines to crawl, fast for users to navigate, and built on reliable, secure foundations.
+              As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frameworks like Next.js and WordPress. I believe a successful website must be easy for search engines to crawl, fast for users to navigate, and built on reliable foundations.
             </p>
             <p>
-              I am actively available for project sprints, agency overflow support, and team roles as an SEO Specialist, Technical SEO Executor, or Web &amp; SEO Assistant. I bring proactive self-direction, fast execution, and a disciplined approach to technical problem-solving.
+              I am actively available for small business projects, website support retainers, and agency overflow sprints. I bring clear scopes, transparent communication, and a disciplined approach to technical execution.
             </p>
           </div>
 

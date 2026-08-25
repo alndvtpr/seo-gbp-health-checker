@@ -496,7 +496,7 @@ export default function WebDevelopmentPage() {
       >
         <div className="space-y-4 max-w-3xl motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-            PROVEN IMPLEMENTATIONS
+            LIVE TECHNICAL PROOFS
           </span>
           <h2
             id="proof-stack-heading"
@@ -505,7 +505,7 @@ export default function WebDevelopmentPage() {
             Live Codebases &amp; Real Performance Metrics
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            See how our search-ready engineering standards perform across Next.js and custom WordPress production builds.
+            Explore live builds demonstrating fast Core Web Vitals, clean crawlability, and responsive architecture.
           </p>
         </div>
 
@@ -518,68 +518,73 @@ export default function WebDevelopmentPage() {
                   Next.js 15 &bull; Code-First
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  99 Desktop / 96 Mobile
+                  99 Performance &bull; 0ms TBT
                 </span>
               </div>
+
               <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2">
-                AlainTapiru.com Architecture
+                AlainTapiru.com Custom Next.js 15 Portfolio
               </h3>
-              <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed mb-6">
-                Next.js 15 App Router portfolio engineered with sub-second LCP, zero CLS, interaction-deferred WebGL smoke shaders, and complete Schema.org entity linking.
+              <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-6">
+                Engineered with React 19 Server Components, Tailwind CSS variables, structured JSON-LD entity graphs, and zero layout shift.
               </p>
+
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-black/10 dark:border-white/10 mb-6">
+                {['App Router', 'React 19', 'Tailwind CSS', 'Payload CMS', 'Zero CLS'].map((tag) => (
+                  <span key={tag} className="px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-mono text-on-surface/75">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <Link
-              href="/projects/alaintapiru-portfolio/"
-              className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] btn-motion min-h-[44px] transition-all"
-            >
-              <span>Explore Next.js Case Study</span>
-              <Icon name="arrow_forward" size={14} className="btn-icon" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/projects/alaintapiru-portfolio/"
+                className="inline-flex items-center gap-1.5 font-heading text-xs font-bold text-primary-container hover:underline uppercase tracking-wider"
+              >
+                Read Case Study <Icon name="arrow_forward" size={14} />
+              </Link>
+            </div>
           </article>
 
-          {/* Proof Card 2: WordPress AngatSikat */}
+          {/* Proof Card 2: AngatSikat Studio WordPress Theme */}
           <article className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 flex flex-col justify-between shadow-lg card-interactive-glow motion-reveal">
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <span className="text-[10px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-2.5 py-0.5 rounded bg-black/5 dark:bg-white/5">
-                  WordPress &bull; Custom Theme
+                  WordPress &bull; Bespoke Theme
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  98+ Mobile Lighthouse
+                  98+ Mobile Score
                 </span>
               </div>
+
               <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2">
-                AngatSikat Studio Custom Theme
+                AngatSikat Studio Bespoke Theme
               </h3>
-              <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed mb-6">
-                Custom WordPress theme architecture (&apos;angatsikat-studio&apos;) built from scratch for agency service presentation without page builder bloat.
+              <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-6">
+                Custom PHP WordPress theme developed from scratch without slow page builders, featuring clean semantic markup and fast loading speeds.
               </p>
+
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-black/10 dark:border-white/10 mb-6">
+                {['Custom PHP Theme', 'Semantic HTML5', 'Speed Hardening', 'Schema.org'].map((tag) => (
+                  <span key={tag} className="px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-mono text-on-surface/75">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <Link
-              href="/projects/angat-sikat-studio/"
-              className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-primary-container hover:text-on-primary-container text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] btn-motion min-h-[44px] transition-all"
-            >
-              <span>Explore WordPress Case Study</span>
-              <Icon name="arrow_forward" size={14} className="btn-icon" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/projects/angat-sikat-studio/"
+                className="inline-flex items-center gap-1.5 font-heading text-xs font-bold text-primary-container hover:underline uppercase tracking-wider"
+              >
+                Read Case Study <Icon name="arrow_forward" size={14} />
+              </Link>
+            </div>
           </article>
-        </div>
-
-        {/* Tech Stack Pills */}
-        <div className="p-6 rounded-2xl bg-surface-1/80 border border-black/10 dark:border-white/10 flex flex-wrap items-center justify-center gap-2.5 motion-reveal">
-          <span className="font-heading text-xs uppercase tracking-wider text-primary-container font-semibold mr-2">
-            Production Stack:
-          </span>
-          {TECH_STACK.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-semibold"
-            >
-              {tech}
-            </span>
-          ))}
         </div>
       </section>
 
@@ -588,9 +593,9 @@ export default function WebDevelopmentPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 6. Web Dev FAQs */}
+      {/* 6. FAQ Section */}
       <section
-        id="web-dev-faq"
+        id="faq"
         aria-labelledby="faq-heading"
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-5xl mx-auto space-y-8 sm:space-y-12"
       >
@@ -605,7 +610,7 @@ export default function WebDevelopmentPage() {
             Web Development Questions &amp; Answers
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            Practical guidance on framework choices, CMS dashboards, and performance guarantees.
+            Practical guidance on framework choices, CMS dashboards, and Core Web Vitals optimization.
           </p>
         </div>
 

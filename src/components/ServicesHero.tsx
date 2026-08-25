@@ -4,9 +4,9 @@ import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 const TRUST_POINTS = [
-  'Search Engine & AI-Ready',
-  'Performance-Focused (<1s Load Target)',
-  'Practical SEO Measurement',
+  'Clearly Defined Scope',
+  'Direct & Transparent Communication',
+  'Predictable & Fair Pricing',
 ] as const
 
 export function ServicesHero() {
@@ -23,20 +23,20 @@ export function ServicesHero() {
       {/* Eyebrow Badge */}
       <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container font-heading text-xs font-semibold uppercase tracking-[0.08em] mb-6 motion-reveal">
         <Icon name="auto_awesome" size={14} className="text-primary-container" />
-        <span>SEARCH ENGINE OPTIMIZATION • AEO &amp; GEO • WEB DEVELOPMENT</span>
+        <span>PRACTICAL SEO • LOCAL SEARCH • WEBSITE SUPPORT</span>
       </div>
 
       <h1
         id="services-hero-heading"
         className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-6 motion-reveal"
       >
-        <span className="font-extrabold text-on-surface">Professional SEO Services</span>{' '}
-        <span className="font-medium text-on-surface/85">&amp; Search-Ready Web Development</span>
+        <span className="font-extrabold text-on-surface">Practical SEO Services</span>{' '}
+        <span className="font-medium text-on-surface/85">&amp; Website Support</span>
       </h1>
 
       {/* Subheadline */}
       <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-        Explore practical SEO services in the Philippines: technical crawlability, structured schema markup, local search optimization, and high-performance web development.
+        Clearly scoped technical SEO, on-page optimization, local search foundation work, and web support for small businesses and agencies.
       </p>
 
       {/* Action Row */}
@@ -45,7 +45,7 @@ export function ServicesHero() {
           href="/contact/"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          Book a Free Discovery Call
+          Schedule a 20-Minute Call
           <Icon name="arrow_forward" size={16} className="btn-icon" />
         </Link>
 
@@ -53,7 +53,7 @@ export function ServicesHero() {
           href="#service-directory"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          Explore Service Pillars ↓
+          Explore Services ↓
         </a>
       </div>
 

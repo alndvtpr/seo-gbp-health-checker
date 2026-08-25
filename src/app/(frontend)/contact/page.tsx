@@ -5,9 +5,9 @@ import { CalendlyScheduler } from '@/components/CalendlyScheduler'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'SEO Consultation & Contact | Hire Alain Dave Tapiru',
+  title: 'Contact Alain Dave Tapiru | SEO Specialist & Web Support',
   description:
-    'Book a free 20-minute SEO consultation or send a direct inquiry to discuss your website optimization, technical SEO sprints, or web development needs.',
+    'Schedule a 20-minute call or send a direct inquiry to discuss practical SEO, local search foundations, website support, or agency overflow tasks.',
   url: 'https://www.alaintapiru.com/contact/',
 })
 
@@ -18,9 +18,9 @@ const jsonLd = {
       '@type': 'ContactPage',
       '@id': 'https://www.alaintapiru.com/contact/#webpage',
       url: 'https://www.alaintapiru.com/contact/',
-      name: 'SEO Consultation & Contact | Hire Alain Dave Tapiru',
+      name: 'Contact Alain Dave Tapiru | SEO Specialist & Web Support',
       description:
-        'Book a free 20-minute SEO consultation or send a direct inquiry to discuss your website optimization, technical SEO sprints, or web development needs.',
+        'Schedule a 20-minute call or send a direct inquiry to discuss practical SEO, local search foundations, website support, or agency overflow tasks.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://www.alaintapiru.com/#website',
@@ -81,16 +81,16 @@ export default function ContactPage() {
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-3 font-semibold">
-          GET IN TOUCH | LET&apos;S CONNECT
+          GET IN TOUCH • DIRECT COMMUNICATION
         </span>
         <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-4 sm:mb-6">
-          <span className="font-extrabold text-on-surface">Let&apos;s talk </span>
+          <span className="font-extrabold text-on-surface">Let&apos;s discuss your </span>
           <span className="font-extrabold text-primary-container">SEO</span>
-          <span className="font-extrabold text-on-surface"> &amp; web development.</span>
-          <span className="block font-medium text-on-surface/85 mt-1 sm:mt-2 text-2xl sm:text-4xl md:text-5xl">Building search-ready digital foundations.</span>
+          <span className="font-extrabold text-on-surface"> &amp; website needs.</span>
+          <span className="block font-medium text-on-surface/85 mt-1 sm:mt-2 text-2xl sm:text-4xl md:text-5xl">Practical solutions for small businesses &amp; agencies.</span>
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Schedule a 20-minute conversation or send a direct inquiry to discuss your website, technical SEO needs, or upcoming web development project.
+          Schedule a 20-minute conversation or send a direct inquiry to discuss project sprints, overflow tasks, or website fixes.
         </p>
       </div>
 
@@ -125,7 +125,7 @@ export default function ContactPage() {
             </span>
             <div>
               <span className="font-heading text-xs font-bold text-on-surface block">Current Availability</span>
-              <span className="font-sans text-xs text-on-surface/70">Open for project collaborations, overflow sprints &amp; team roles</span>
+              <span className="font-sans text-xs text-on-surface/70">Open for small business projects, website support &amp; agency overflow sprints</span>
             </div>
           </div>
 

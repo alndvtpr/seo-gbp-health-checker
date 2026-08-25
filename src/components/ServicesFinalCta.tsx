@@ -247,7 +247,7 @@ export function ServicesFinalCta() {
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
-            <span>Free 20-minute discovery call • No pressure</span>
+            <span>20-minute conversation • Direct communication • No obligations</span>
           </div>
 
           {/* Headline */}
@@ -255,22 +255,22 @@ export function ServicesFinalCta() {
             id="final-cta-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface tracking-tight max-w-3xl mx-auto leading-tight"
           >
-            Ready to Build a Stronger, Search-Ready Web Presence?
+            Ready for Practical SEO or Website Support?
           </h2>
 
           {/* Subheadline */}
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface/80 max-w-2xl mx-auto leading-relaxed">
-            Let&apos;s diagnose technical bottlenecks, implement clean SEO fundamentals, and prepare your site for discovery.
+            Let&apos;s review your website, clarify what needs fixing, and map out a practical implementation plan.
           </p>
 
           {/* Action Row */}
           <div className="pt-2">
             <Link
               href="/contact/"
-              aria-label="Book a Free 20-Minute Discovery Call"
+              aria-label="Schedule a 20-Minute Call"
               className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-9 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.4)] hover:shadow-[0_0_40px_rgba(224,123,32,0.6)] btn-motion min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Book a Free Discovery Call</span>
+              <span>Schedule a 20-Minute Call</span>
               <Icon name="calendar_month" size={16} className="btn-icon" />
             </Link>
           </div>

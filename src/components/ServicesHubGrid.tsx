@@ -135,16 +135,16 @@ export function ServicesHubGrid() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
-          SERVICE ECOSYSTEM • DEDICATED CAPABILITIES
+          SERVICE DIRECTORY • CLEARLY SCOPED DELIVERABLES
         </span>
         <h2
           id="service-directory-heading"
           className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
         >
-          Dedicated SEO &amp; Web Development Pillars
+          Core SEO &amp; Web Support Capabilities
         </h2>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          Select a specialized service pillar below to explore in-depth methodologies, concrete deliverables, and practical case study proofs tailored to your technical needs.
+          Select a specialized service pillar below to explore clearly scoped deliverables, turnaround times, and practical implementation details.
         </p>
       </div>
 

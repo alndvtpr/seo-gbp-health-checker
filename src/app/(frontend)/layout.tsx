@@ -30,9 +30,9 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata = generateMetadata({
-  title: 'SEO Specialist Philippines | Technical & Local SEO | Alain Dave Tapiru',
+  title: 'SEO Specialist Philippines | Practical SEO & Web Support | Alain Dave Tapiru',
   description:
-    'Alain Dave Tapiru is an SEO Specialist in the Philippines building search-ready websites through practical technical SEO, local search optimization, and modern web development.',
+    'Alain Dave Tapiru provides practical SEO and website support for small businesses and agencies in the Philippines. Hands-on technical SEO, local search, and clean web development.',
 })
 
 const themeInitScript = `

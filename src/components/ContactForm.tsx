@@ -10,7 +10,7 @@ import { sendContactAction } from '@/app/actions/send-contact'
 const SERVICE_OPTIONS = [
   'Overflow Task / Backlog Support',
   'Technical SEO Audit & Architecture',
-  'Search & AI Engine Optimization (AEO/GEO)',
+  'On-Page & Local SEO Support',
   'React & WordPress Web Development',
   'Ongoing Monthly SEO Support',
   'Consultation / General Inquiry',
@@ -105,7 +105,7 @@ export const ContactForm = () => {
           Tell Me What You’re Working On
         </h3>
         <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-          Share your website, project, or SEO challenge. Give me as much or as little detail as you have.
+          Share your website, project, or task details. I will personally review and respond within 24 hours.
         </p>
       </div>
 

@@ -12,23 +12,23 @@ interface WorkflowStep {
 const WORKFLOW_STEPS: WorkflowStep[] = [
   {
     step: '01',
-    title: 'Discovery & Technical Access',
-    desc: 'GA4, GSC, CMS & competitor data onboarding',
+    title: 'Discovery & Access',
+    desc: 'Reviewing current website health, Search Console & GA4 access, and specific target goals.',
   },
   {
     step: '02',
-    title: 'Baseline Benchmarking',
-    desc: 'Auditing current indexation, site speed & ranking signals',
+    title: 'Baseline Diagnostics',
+    desc: 'Auditing crawl status, indexing roadblocks, Core Web Vitals, and local search signals.',
   },
   {
     step: '03',
-    title: 'Agile Execution Sprints',
-    desc: 'Bi-weekly technical, semantic & on-page optimizations',
+    title: 'Implementation Sprint',
+    desc: 'Executing hands-on technical fixes, on-page headings, schema markup, and speed optimizations.',
   },
   {
     step: '04',
     title: 'Transparent Reporting',
-    desc: 'Live Looker Studio access + monthly Loom breakdowns',
+    desc: 'Delivering documented task logs, validation test proofs, and practical next-step recommendations.',
   },
 ]
 
@@ -39,24 +39,34 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
-    question: 'What is the difference between traditional SEO, AEO, and GEO?',
+    question: 'Can I start with a Website SEO Health Check before booking a sprint?',
     answer:
-      'Traditional SEO optimizes your web pages to rank in search engine results. AEO (Answer Engine Optimization) structures content for quick, direct answers like Featured Snippets. GEO (Generative Engine Optimization) organizes facts, entities, and structured data so AI models (such as ChatGPT, Perplexity, and Google AI Overviews) can easily understand and reference your brand.',
+      'Yes. The ₱3,500 Website SEO Health Check is designed to give you a clear, honest diagnosis of what is broken on your website before committing to implementation. If you decide to book a Technical SEO Sprint within 14 days, the ₱3,500 fee is credited toward the sprint cost.',
   },
   {
-    question: 'Can you optimize my existing website, or do I need a new build?',
+    question: 'How do payment milestones work for sprints and projects?',
     answer:
-      'I can audit and optimize your existing site directly. If your current CMS is severely bloated or slow, I will provide specific recommendations on whether a rebuild or technical refactor is most practical.',
+      'For sprint-based offers (Website Health Check, Technical Sprint, On-Page Sprint, Local SEO Foundation), engagements are structured with 50% upfront to initiate the sprint and 50% upon verified delivery and walkthrough. Agency overflow blocks (₱4,500 per 10 hours) are billed per block.',
   },
   {
-    question: 'Why choose a React / Next.js site over WordPress (or vice versa)?',
+    question: 'Do you guarantee #1 rankings or a specific traffic increase?',
     answer:
-      'React & Next.js sites offer fast loading speeds, zero layout shift, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both cleanly.',
+      'No. I do not make false ranking or traffic guarantees because search engine algorithms and competitor movements cannot be directly controlled. What I do guarantee is verified, compliant technical execution, error-free schema markup, clean crawlability, and best-practice on-page optimization.',
   },
   {
-    question: 'How do you track and report progress?',
+    question: 'What happens if my website has more issues or pages than the scope cap?',
     answer:
-      'You get access to a structured Looker Studio dashboard tracking organic search performance, impressions, clicks, and ranking movements, supported by regular update walkthroughs.',
+      'If your website exceeds the package scope cap (for example, more than 5 key pages for on-page optimization or more than 10 technical issues), we prioritize the highest-impact items first. Any additional work is clearly quoted upfront in ₱4,500 / 10-hour blocks or individual add-ons.',
+  },
+  {
+    question: 'How does the monthly ₱8,000/month maintenance support work?',
+    answer:
+      'The monthly support tier is limited to up to 8 dedicated hours per month for ongoing technical maintenance, Search Console index monitoring, local signal checks, and minor updates. It is offered to clients who have completed an initial health check or sprint so that core baseline issues are resolved first.',
+  },
+  {
+    question: 'What is the typical turnaround time for an SEO sprint?',
+    answer:
+      'A Website Health Check is typically delivered within 2–3 business days. Focused Technical and On-Page Sprints are completed within 5–7 business days from receiving required site access.',
   },
 ]
 
@@ -148,10 +158,10 @@ export function ServicesWorkflowAndFAQ() {
             id="faq-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
-            Clear Answers to Common Questions
+            Clear Answers to Pricing &amp; Scope Questions
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            Everything you need to know about my SEO, web development, and diagnostic process.
+            Straightforward answers about pricing, payment milestones, scope limits, and collaboration expectations.
           </p>
         </div>
 

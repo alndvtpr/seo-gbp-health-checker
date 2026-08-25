@@ -42,7 +42,7 @@ export const Footer = () => {
           </div>
 
           <p className="font-sans text-xs text-on-surface/80 leading-relaxed">
-            SEO Specialist, Web Developer, &amp; Cybersecurity Student. Building search-ready, high-performance websites with clean technical foundations.
+            SEO Specialist &amp; Web Developer. Practical SEO, local search optimization, and website support for small businesses and agencies.
           </p>
 
           {/* Socials */}

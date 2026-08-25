@@ -38,41 +38,34 @@ export const ScrollHero = () => {
 
           {/* Main Display Headline */}
           <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] tracking-[-0.03em] leading-[1.12] sm:leading-[1.06] drop-shadow-sm hero-animate-in hero-delay-2 max-w-4xl">
-            <span className="font-extrabold text-on-surface">SEO Specialist</span>{' '}
-            <span className="font-semibold text-on-surface/90">in the Philippines</span>{' '}
+            <span className="font-extrabold text-on-surface">Practical SEO</span>{' '}
+            <span className="font-semibold text-on-surface/90">&amp; Website Support</span>{' '}
             <span className="font-extrabold text-primary-container block mt-1.5 sm:mt-2.5">
-              Building Search-Ready Websites
+              For Small Businesses &amp; Agencies
             </span>
           </h1>
 
           {/* Subheading / Value Proposition */}
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface-variant font-normal leading-relaxed max-w-2xl mx-auto hero-animate-in hero-delay-3 text-center">
-            Building search-ready websites through hands-on technical SEO, local search optimization, and modern web development.
+            Hands-on technical SEO, local search foundation work, and web support with clear scope, direct communication, and transparent pricing.
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full hero-animate-in hero-delay-4 flex-wrap">
             <Link
-              href="/projects/"
-              data-agent-action="view-portfolio-projects"
+              href="/services/#packages"
+              data-agent-action="view-services-packages"
               className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-7 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              View My Work <Icon name="arrow_forward" size={16} className="btn-icon" />
+              See Services &amp; Starting Prices <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
             <Link
-              href="/resume/"
-              data-agent-action="view-resume"
+              href="/tools/#website-audit"
+              data-agent-action="request-health-check"
               className="w-full sm:w-auto min-h-[48px] bg-surface-1/90 hover:bg-surface-2 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-full hover:border-primary-container/40 transition-all flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <Icon name="description" size={16} className="text-primary-container" />
-              View Resume
-            </Link>
-            <Link
-              href="/contact/"
-              data-agent-action="start-seo-inquiry"
-              className="w-full sm:w-auto min-h-[48px] border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
-            >
-              Let&apos;s Work Together
+              <Icon name="find_in_page" size={16} className="text-primary-container" />
+              Request a Website Health Check
             </Link>
           </div>
 

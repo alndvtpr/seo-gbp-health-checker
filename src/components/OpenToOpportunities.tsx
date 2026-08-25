@@ -14,13 +14,13 @@ export function OpenToOpportunities() {
         </h2>
         <div className="font-sans text-on-surface/80 max-w-2xl mx-auto mb-8 sm:mb-10 text-sm sm:text-base leading-relaxed space-y-4">
           <p>
-            If you run an SEO agency, web development team, or digital business with fluctuating client workloads, I am available to take on discrete backlog tickets, technical audits, and implementation tasks without requiring a long-term fixed commitment.
+            If you run an SEO agency, web development team, or small business with active projects or backlog tickets, I am available to take on discrete technical audits, on-page optimization, and web support tasks without requiring long-term fixed commitments.
           </p>
           <p>
             I built the technical architecture, custom diagnostic tools, and Next.js frontend on this site from scratch, applying the same structured problem-solving and AI-assisted workflows I bring to client deliverables.
           </p>
           <p>
-            Whether you need extra execution capacity for client sprints, structured data implementation, or website optimization, I am ready to take on a single task and let the work speak for itself.
+            Whether you need extra execution capacity for client sprints, local SEO setup, or website maintenance, I am ready to take on a single task and let the work speak for itself.
           </p>
         </div>
 

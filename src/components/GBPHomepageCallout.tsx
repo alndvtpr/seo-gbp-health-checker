@@ -35,7 +35,7 @@ export const GBPHomepageCallout = () => {
               </h2>
 
               <p className="font-sans text-sm sm:text-base text-on-surface/80 leading-relaxed">
-                Identify critical category misclassifications, verify 10 essential public trust signals, benchmark against top Map Pack competitors, and instantly generate an executive 30-Day Action Plan with exportable PDF deliverables.
+                Check category accuracy, evaluate 10 essential public trust signals, review local competitor categories, and generate a practical 30-Day Action Plan with an exportable PDF report.
               </p>
 
               {/* Feature Checklist Grid */}
@@ -46,15 +46,15 @@ export const GBPHomepageCallout = () => {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-on-surface/90">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Semantic Category AI &amp; Mismatch Alerts</span>
+                  <span>Category Accuracy &amp; Mismatch Alerts</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-on-surface/90">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Map Pack Competitor Benchmarking</span>
+                  <span>Local Competitor Category Review</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-on-surface/90">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>3-Page Executive PDF Roadmap Export</span>
+                  <span>Practical 30-Day Action Checklist</span>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export const GBPHomepageCallout = () => {
                 href="/tools/"
                 className="w-full min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-6 py-3.5 rounded-xl shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
               >
-                <span>Launch Audit Tool Free</span>
+                <span>Launch Free Audit Tool</span>
                 <ArrowRight className="w-4 h-4 btn-icon" />
               </Link>
 

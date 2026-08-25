@@ -672,7 +672,7 @@ export default function LocalSeoPage() {
             id="final-cta-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface tracking-tight max-w-3xl mx-auto leading-tight"
           >
-            Ready to Dominate Your Local Service Area and Google Maps?
+            Ready to Improve Your Local Search Visibility and Google Maps Presence?
           </h2>
 
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface/80 max-w-2xl mx-auto leading-relaxed">
