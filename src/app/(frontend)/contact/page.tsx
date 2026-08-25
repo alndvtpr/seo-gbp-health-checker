@@ -5,9 +5,9 @@ import { CalendlyScheduler } from '@/components/CalendlyScheduler'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'Contact Alain Tapiru | SEO & Web Development Philippines',
+  title: 'SEO Consultation & Contact | Hire Alain Dave Tapiru',
   description:
-    'Get in touch with Alain Dave Tapiru or book a 20-minute discussion on technical SEO, local search optimization, and search-ready web development.',
+    'Book a free 20-minute SEO consultation or send a direct inquiry to discuss your website optimization, technical SEO sprints, or web development needs.',
   url: 'https://www.alaintapiru.com/contact/',
 })
 
@@ -18,9 +18,9 @@ const jsonLd = {
       '@type': 'ContactPage',
       '@id': 'https://www.alaintapiru.com/contact/#webpage',
       url: 'https://www.alaintapiru.com/contact/',
-      name: 'Contact Alain Tapiru | SEO & Web Development Philippines',
+      name: 'SEO Consultation & Contact | Hire Alain Dave Tapiru',
       description:
-        'Get in touch with Alain Dave Tapiru or book a 20-minute discussion on technical SEO, local search optimization, and search-ready web development.',
+        'Book a free 20-minute SEO consultation or send a direct inquiry to discuss your website optimization, technical SEO sprints, or web development needs.',
       isPartOf: {
         '@type': 'WebSite',
         '@id': 'https://www.alaintapiru.com/#website',

@@ -7,9 +7,9 @@ import { AboutCredentials } from '@/components/AboutCredentials'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
-  title: 'About Alain Dave Tapiru | SEO Specialist & Web Developer',
+  title: 'About Alain Dave Tapiru | SEO Specialist & Web Developer Philippines',
   description:
-    'Meet Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines building his SEO career through hands-on technical SEO, local search, and modern web projects.',
+    'Learn more about Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines. Explore my background, training journey, and technical capabilities.',
   url: 'https://www.alaintapiru.com/about/',
 })
 
@@ -20,9 +20,9 @@ const aboutJsonLd = {
       '@type': 'AboutPage',
       '@id': 'https://www.alaintapiru.com/about/#webpage',
       url: 'https://www.alaintapiru.com/about/',
-      name: 'About Alain Dave Tapiru | SEO Specialist & Web Developer',
+      name: 'About Alain Dave Tapiru | SEO Specialist & Web Developer Philippines',
       description:
-        'Meet Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines building his SEO career through hands-on technical SEO, local search, and modern web projects.',
+        'Learn more about Alain Dave Tapiru, an SEO Specialist and Technical Web Developer in the Philippines. Explore my background, training journey, and technical capabilities.',
       isPartOf: {
         '@id': 'https://www.alaintapiru.com/#website',
       },
@@ -75,7 +75,7 @@ export default function AboutPage() {
           Biography &amp; Background
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-tight">
-          Building Search-Ready Websites &amp; Practical SEO Solutions
+          About Alain Dave Tapiru: Background, Technical Skills &amp; SEO Approach
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
           I am an SEO Specialist, Technical Web Developer, and BSIT student specializing in Network &amp; Cybersecurity.

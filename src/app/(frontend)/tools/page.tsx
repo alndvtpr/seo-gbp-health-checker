@@ -13,9 +13,9 @@ const toolsJsonLd = {
       '@type': 'WebPage',
       '@id': 'https://www.alaintapiru.com/tools/#webpage',
       url: 'https://www.alaintapiru.com/tools/',
-      name: 'Free SEO Diagnostic Tools & Calculators | Alain Dave Tapiru',
+      name: 'Free SEO Tools & Diagnostic Calculators | Alain Dave Tapiru',
       description:
-        'Explore practical SEO tools, local search diagnostic analyzers, and compensation calculators created by Alain Dave Tapiru.',
+        'Free, practical SEO tools and calculators. Audit Google Business Profile signals, estimate SEO compensation, and request website technical reviews.',
       isPartOf: {
         '@id': 'https://www.alaintapiru.com/#website',
       },
@@ -139,7 +139,7 @@ export default function ToolsPage() {
           Free Resources &amp; Tools
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-[-0.025em]">
-          SEO &amp; Practical Web Tools
+          Free SEO Tools &amp; Practical Web Utilities
         </h1>
         <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
           Interactive tools designed for website owners, teams, and SEO practitioners.

@@ -10,9 +10,9 @@ import { ServicesWorkflowAndFAQ } from '@/components/ServicesWorkflowAndFAQ'
 import { ServicesFinalCta } from '@/components/ServicesFinalCta'
 
 export const metadata = generateMetadata({
-  title: 'SEO, Web Design & Development Services | Alain Dave Tapiru',
+  title: 'SEO Services Philippines | Web Design & Optimization | Alain Dave Tapiru',
   description:
-    'Explore practical SEO, web design, and development services built to improve search visibility, Core Web Vitals performance, and search readiness.',
+    'Professional SEO services in the Philippines. Practical technical SEO, local search optimization, search-ready web development, and performance audits.',
   url: 'https://www.alaintapiru.com/services/',
 })
 

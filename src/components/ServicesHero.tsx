@@ -30,13 +30,13 @@ export function ServicesHero() {
         id="services-hero-heading"
         className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-[-0.025em] leading-[1.12] max-w-4xl mx-auto mb-6 motion-reveal"
       >
-        <span className="font-extrabold text-on-surface">Build Faster, Search-Smarter Websites</span>{' '}
-        <span className="font-medium text-on-surface/85">Ready for Modern Discovery.</span>
+        <span className="font-extrabold text-on-surface">Professional SEO Services</span>{' '}
+        <span className="font-medium text-on-surface/85">&amp; Search-Ready Web Development</span>
       </h1>
 
       {/* Subheadline */}
       <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-        I build fast, responsive websites and deploy practical SEO, structured data, and performance optimization across traditional and AI-assisted search.
+        Explore practical SEO services in the Philippines: technical crawlability, structured schema markup, local search optimization, and high-performance web development.
       </p>
 
       {/* Action Row */}

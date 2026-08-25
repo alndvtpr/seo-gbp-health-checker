@@ -7,9 +7,9 @@ import { RssButton } from '@/components/RssButton'
 import { BLOG_POSTS } from '@/data/posts'
 
 export const metadata = generateMetadata({
-  title: 'SEO Blog & Practical Web Insights | Alain Dave Tapiru',
+  title: 'SEO Guides & Technical Web Insights | Alain Dave Tapiru',
   description:
-    'Discover practical SEO notes, Core Web Vitals optimization experiments, and local search guides from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
+    'Practical SEO guides, Core Web Vitals optimization tutorials, and local search notes by Alain Dave Tapiru, an SEO Specialist in the Philippines.',
   url: 'https://www.alaintapiru.com/blog/',
 })
 
@@ -20,9 +20,9 @@ const blogJsonLd = {
       '@type': 'CollectionPage',
       '@id': 'https://www.alaintapiru.com/blog/#webpage',
       url: 'https://www.alaintapiru.com/blog/',
-      name: 'SEO Blog & Practical Web Insights | Alain Dave Tapiru',
+      name: 'SEO Guides & Technical Web Insights | Alain Dave Tapiru',
       description:
-        'Discover practical SEO notes, Core Web Vitals optimization experiments, and local search guides from Alain Dave Tapiru, an SEO Specialist in the Philippines.',
+        'Practical SEO guides, Core Web Vitals optimization tutorials, and local search notes by Alain Dave Tapiru, an SEO Specialist in the Philippines.',
       isPartOf: {
         '@id': 'https://www.alaintapiru.com/#website',
       },
@@ -82,7 +82,7 @@ export default function BlogPage() {
           Insights &amp; Technical Notes
         </span>
         <h1 className="font-heading text-4xl md:text-6xl font-extrabold text-on-surface tracking-[-0.025em]">
-          Ideas, Experiments &amp; Technical Notes
+          SEO Guides, Experiments &amp; Technical Notes
         </h1>
         <p className="font-sans text-on-surface/80 text-base leading-relaxed max-w-2xl mx-auto">
           Practical technical breakdowns, SEO research notes, and modern web performance experiments.

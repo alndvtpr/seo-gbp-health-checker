@@ -5,9 +5,9 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { PROJECTS } from '@/data/projects'
 
 export const metadata = generateMetadata({
-  title: 'SEO, Web Design & Development Projects | Alain Dave Tapiru',
+  title: 'SEO Portfolio & Web Development Projects | Alain Dave Tapiru',
   description:
-    'See SEO, web design and development in action. Explore Alain Dave Tapiru’s projects in technical SEO, WordPress, performance and website optimization.',
+    'Explore the SEO portfolio and practical web projects of Alain Dave Tapiru. Real implementations across technical SEO, custom WordPress themes, and local search tools.',
   url: 'https://www.alaintapiru.com/projects/',
 })
 
@@ -18,9 +18,9 @@ const projectsJsonLd = {
       '@type': 'CollectionPage',
       '@id': 'https://www.alaintapiru.com/projects/#webpage',
       url: 'https://www.alaintapiru.com/projects/',
-      name: 'SEO, Web Design & Development Projects | Alain Dave Tapiru',
+      name: 'SEO Portfolio & Web Development Projects | Alain Dave Tapiru',
       description:
-        'See SEO, web design and development in action. Explore Alain Dave Tapiru’s projects in technical SEO, WordPress, performance and website optimization.',
+        'Explore the SEO portfolio and practical web projects of Alain Dave Tapiru. Real implementations across technical SEO, custom WordPress themes, and local search tools.',
       isPartOf: {
         '@id': 'https://www.alaintapiru.com/#website',
       },
@@ -80,7 +80,7 @@ export default function ProjectsPage() {
           Practical Projects &amp; Active Builds
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-[-0.025em]">
-          Projects &amp; Practical SEO Work
+          SEO Portfolio &amp; Practical Web Projects
         </h1>
         <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
           Practical implementations in custom WordPress development, technical search engine optimization, web architecture, and local search tools.
