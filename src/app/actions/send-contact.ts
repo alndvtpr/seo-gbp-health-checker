@@ -178,7 +178,7 @@ export async function sendContactAction(data: ContactFormData): Promise<SendCont
 
   const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
   const resendApiKey = process.env.RESEND_API_KEY
-  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Alain Dave Tapiru <onboarding@resend.dev>'
+  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Alain Dave Tapiru <audit@mail.alaintapiru.com>'
   const resendRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
 
   const payload = {

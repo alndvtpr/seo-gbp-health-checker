@@ -417,7 +417,7 @@ export async function sendWebsiteAuditRequestAction(
 
   // 2. Resend Email Dispatch
   const resendApiKey = process.env.RESEND_API_KEY
-  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Alain Dave Tapiru <onboarding@resend.dev>'
+  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Alain Dave Tapiru <audit@mail.alaintapiru.com>'
   const ownerRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
 
   const resendPromise = (async () => {

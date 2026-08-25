@@ -684,7 +684,7 @@ export async function sendAuditReportAction(data: AuditEmailData): Promise<SendA
 
   const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || DEFAULT_GOOGLE_SHEET_WEBHOOK_URL
   const resendApiKey = process.env.RESEND_API_KEY
-  const resendFrom = process.env.RESEND_FROM_EMAIL || 'GBP Health Checker <onboarding@resend.dev>'
+  const resendFrom = process.env.RESEND_FROM_EMAIL || 'GBP Health Checker <audit@mail.alaintapiru.com>'
   const ownerRecipient = process.env.CONTACT_NOTIFICATION_EMAIL || 'alaintapiru@gmail.com'
 
   const allActions = actionItems?.map((a) => `[${a.priority.toUpperCase()}] ${a.message}`) || topActionItems || []
