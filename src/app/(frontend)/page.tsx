@@ -80,12 +80,12 @@ export default async function Page() {
             A practical toolkit for research, optimization, analytics, content, and modern web development.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="/services/#pillar-foundation" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
+            <Link href="/services/technical-seo/" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="search" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
               <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">SEO &amp; Analytics</h3>
               <span className="font-sans text-xs text-on-surface/65">Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs</span>
             </Link>
-            <Link href="/services/#pillar-execution" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
+            <Link href="/services/web-development/" className="flex items-center gap-2 group hover:opacity-100 transition-opacity">
               <Icon name="code" size={14} className="text-primary-container group-hover:scale-110 transition-transform" />
               <h3 className="font-heading text-xs text-on-surface/80 group-hover:text-primary-container uppercase tracking-wider transition-colors font-semibold">Web &amp; SEO</h3>
               <span className="font-sans text-xs text-on-surface/65">WordPress &bull; Elementor &bull; Next.js &bull; React</span>
@@ -268,48 +268,48 @@ export default async function Page() {
               title: 'Website Audit',
               desc: 'Comprehensive technical review analyzing site health, speed, indexing, crawlability, and schema implementation.',
               icon: 'find_in_page',
-              href: '/services/#pillar-foundation',
-              linkLabel: 'Explore Technical Audit Services',
+              href: '/services/technical-seo/',
+              linkLabel: 'Explore Technical SEO Services',
             },
             {
               step: '02',
               title: 'Keyword Research',
               desc: 'High-intent search query discovery mapped to target user search demand and relevance.',
               icon: 'key',
-              href: '/services/#pillar-visibility',
-              linkLabel: 'Explore Keyword Intelligence',
+              href: '/services/on-page-seo/',
+              linkLabel: 'Explore On-Page & Intent Strategy',
             },
             {
               step: '03',
               title: 'Competitive Analysis',
               desc: 'Analyzing top-ranking competitor strategies, backlink profiles, and content gaps.',
               icon: 'equalizer',
-              href: '/services/#pillar-visibility',
-              linkLabel: 'Explore Competitor Benchmarking',
+              href: '/services/on-page-seo/',
+              linkLabel: 'Explore Content Optimization',
             },
             {
               step: '04',
               title: 'On-Page SEO',
               desc: 'Optimizing titles, headers, internal linking structure, metadata, and core web vitals.',
               icon: 'edit_note',
-              href: '/services/#pillar-visibility',
-              linkLabel: 'Explore On-Page Optimization',
+              href: '/services/on-page-seo/',
+              linkLabel: 'Explore On-Page Deliverables',
             },
             {
               step: '05',
-              title: 'Off-Page SEO',
-              desc: 'Link research, local citation building, and digital presence consistency.',
+              title: 'Local SEO & Citations',
+              desc: 'Google Business Profile calibration, NAP directory consistency, and local review momentum.',
               icon: 'hub',
-              href: '/services/#pillar-execution',
-              linkLabel: 'Explore Authority Link Building',
+              href: '/services/local-seo/',
+              linkLabel: 'Explore Local SEO Services',
             },
             {
               step: '06',
-              title: 'Reporting & Data Analysis',
-              desc: 'Structured rank tracking, organic search metrics, and continuous performance review.',
+              title: 'Web & AI Search Engineering',
+              desc: 'Code-first Next.js/WordPress development and machine discoverability for modern AI search.',
               icon: 'monitoring',
-              href: '/services/#pillar-execution',
-              linkLabel: 'Explore Analytics & Reporting',
+              href: '/services/web-development/',
+              linkLabel: 'Explore Web Dev & AI Optimization',
             },
           ].map((item, idx) => (
             <div

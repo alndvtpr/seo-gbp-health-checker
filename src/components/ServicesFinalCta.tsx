@@ -207,6 +207,24 @@ const SERVICES_JSON_LD = {
         },
       ],
     },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.alaintapiru.com/services/#breadcrumbs',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.alaintapiru.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Services',
+          item: 'https://www.alaintapiru.com/services/',
+        },
+      ],
+    },
   ],
 }
 

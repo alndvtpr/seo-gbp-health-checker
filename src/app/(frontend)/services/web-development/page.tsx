@@ -200,6 +200,30 @@ const WEB_DEV_SCHEMA = {
         },
       })),
     },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.alaintapiru.com/services/web-development/#breadcrumbs',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.alaintapiru.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Services',
+          item: 'https://www.alaintapiru.com/services/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Web Development',
+          item: 'https://www.alaintapiru.com/services/web-development/',
+        },
+      ],
+    },
   ],
 }
 
@@ -600,6 +624,67 @@ export default function WebDevelopmentPage() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
+      {/* Related Services Navigation */}
+      <section className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto space-y-6">
+        <div className="flex items-center justify-between">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
+            RELATED DISCIPLINES
+          </span>
+          <Link
+            href="/services/"
+            className="text-xs font-heading font-semibold text-on-surface/70 hover:text-primary-container transition-colors flex items-center gap-1"
+          >
+            <span>All Services Hub</span>
+            <Icon name="arrow_forward" size={13} />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Link
+            href="/services/technical-seo/"
+            className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all group flex flex-col justify-between shadow-sm motion-reveal"
+          >
+            <div>
+              <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-primary-container mb-2 block">Speed &amp; Architecture</span>
+              <h3 className="font-heading text-lg font-bold text-on-surface group-hover:text-primary transition-colors mb-1">
+                Technical SEO &amp; Schema Architecture
+              </h3>
+              <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                Core Web Vitals tuning, structured data implementation, and crawl velocity audits.
+              </p>
+            </div>
+            <div className="pt-3 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
+              <span>View Technical SEO Scope</span>
+              <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
+
+          <Link
+            href="/services/on-page-seo/"
+            className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all group flex flex-col justify-between shadow-sm motion-reveal"
+          >
+            <div>
+              <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-primary-container mb-2 block">Content Structure &amp; Copy</span>
+              <h3 className="font-heading text-lg font-bold text-on-surface group-hover:text-primary transition-colors mb-1">
+                On-Page SEO &amp; Content Optimization
+              </h3>
+              <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
+                Search intent keyword mapping, semantic HTML5 headings, and metadata CTR tuning.
+              </p>
+            </div>
+            <div className="pt-3 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
+              <span>View On-Page SEO Scope</span>
+              <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Link>
         </div>
       </section>
 

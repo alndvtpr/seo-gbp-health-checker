@@ -464,13 +464,31 @@ export default async function ProjectDetailPage({
             <Icon name="north_east" size={16} className="btn-icon" />
           </a>
 
-          <Link
-            href="/services/#scope-estimator"
-            className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
-          >
-            <span>Estimate Sprint Scope</span>
-            <Icon name="calculate" size={16} className="btn-icon" />
-          </Link>
+          {project.slug === 'alaintapiru-portfolio' ? (
+            <Link
+              href="/services/technical-seo/"
+              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            >
+              <span>Explore Technical SEO Services</span>
+              <Icon name="arrow_forward" size={16} className="btn-icon" />
+            </Link>
+          ) : project.slug === 'local-seo-gbp-checker' ? (
+            <Link
+              href="/services/local-seo/"
+              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            >
+              <span>Explore Local SEO Services</span>
+              <Icon name="arrow_forward" size={16} className="btn-icon" />
+            </Link>
+          ) : (
+            <Link
+              href="/services/web-development/"
+              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            >
+              <span>Explore Web Development Services</span>
+              <Icon name="arrow_forward" size={16} className="btn-icon" />
+            </Link>
+          )}
 
           <Link
             href="/contact/"
