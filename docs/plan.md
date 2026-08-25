@@ -108,7 +108,7 @@
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-25)**: `feat(services): implement transparent PHP-first starter offers, scope caps, and 11-section homepage conversion path`
+- **Commit `HEAD` (`586850e` - 2026-08-25)**: `feat(services): implement transparent PHP-first starter offers, scope caps, and 11-section homepage conversion path`
   - Aligned website positioning across all core routes to practical SEO and website support for small businesses and agencies.
   - Rebuilt homepage into an 11-section client conversion path with dual CTAs ("See Services & Starting Prices" and "Request a Website Health Check") and truthful role-labeled project cards.
   - Rebuilt `/services/` around transparent PHP-first starter packages (₱3,500 Health Check, ₱8,500 Technical Sprint, ₱6,500 On-Page Sprint, ₱7,500 Local SEO, ₱500/hr or ₱4,500/10hr Overflow Support, ₱8,000/mo Monthly Support) with explicit scope caps and pricing FAQs.
