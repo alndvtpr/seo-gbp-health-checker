@@ -142,7 +142,7 @@ export default function ToolsPage() {
           Free SEO Tools &amp; Practical Web Utilities
         </h1>
         <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
-          Interactive tools designed for website owners, teams, and SEO practitioners.
+          Interactive diagnostic and estimation tools designed for website owners, teams, and SEO practitioners. All diagnostics provide practical heuristic evaluations based on public web signals without algorithmic ranking guarantees.
         </p>
       </div>
 

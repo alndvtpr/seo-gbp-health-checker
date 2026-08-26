@@ -12,6 +12,7 @@ import { PerformanceAuditProof } from '@/components/PerformanceAuditProof'
 import { Icon } from '@/components/icons'
 import { OpenToOpportunities } from '@/components/OpenToOpportunities'
 import { HomepageFAQ } from '@/components/HomepageFAQ'
+import { TrustCommitment } from '@/components/TrustCommitment'
 import { generateMetadata } from '@/lib/seo'
 
 export const metadata = generateMetadata({
@@ -599,12 +600,15 @@ export default async function Page() {
         <PerformanceAuditProof compact={true} />
       </section>
 
+      {/* 8. HONEST TRUST SYSTEM & SCOPE COMMITMENT */}
+      <TrustCommitment />
+
       {/* Ambient Section Divider */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 8. WHY WORK WITH ALAIN (ABOUT & BACKGROUND SNAPSHOT) */}
+      {/* 9. WHY WORK WITH ALAIN (ABOUT & BACKGROUND SNAPSHOT) */}
       <section className="py-16 sm:py-24 bg-transparent relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 flex flex-col lg:flex-row items-center gap-10 sm:gap-16">
           {/* Left: Modern Editorial Portrait Card */}

@@ -31,7 +31,7 @@ export async function generateMetadata({
   }
 
   return buildSeoMetadata({
-    title: `${project.title} | ${project.category} Project | Alain Dave Tapiru`,
+    title: `${project.title} | ${project.category} Project Breakdown | Alain Dave Tapiru`,
     description: project.shortDescription,
     url: `https://www.alaintapiru.com/projects/${project.slug}/`,
   })
@@ -131,15 +131,14 @@ export default async function ProjectDetailPage({
       {/* Hero Header */}
       <div className="space-y-4 motion-reveal">
         <div className="flex flex-wrap items-center gap-2.5">
-          {project.status === 'Ongoing' ? (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-medium bg-black/5 dark:bg-white/5 text-on-surface border border-black/10 dark:border-white/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
+            {project.proofLabel}
+          </span>
+          {project.status === 'Ongoing' && (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">
               <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-              Ongoing Build
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              Live Project
+              Ongoing Staging Build
             </span>
           )}
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
@@ -174,10 +173,10 @@ export default async function ProjectDetailPage({
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 sm:p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-sm motion-reveal">
         <div>
           <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
-            Project / Entity
+            Proof Classification
           </span>
-          <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
-            {project.title}
+          <span className="font-heading text-xs sm:text-sm font-bold text-primary-container">
+            {project.proofLabel}
           </span>
         </div>
         <div>
@@ -198,36 +197,92 @@ export default async function ProjectDetailPage({
         </div>
         <div>
           <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
-            Primary Stack
+            Category
           </span>
-          <span className="font-heading text-xs sm:text-sm font-bold text-primary-container">
+          <span className="font-heading text-xs sm:text-sm font-bold text-on-surface">
             {project.category}
           </span>
         </div>
       </div>
 
-      {/* Detailed Content Sections */}
+      {/* 5-Part Structured Breakdown */}
       <div className="space-y-8 sm:space-y-12 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
-        {/* Section 1: Overview & Architecture */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
+        {/* 1. Problem & Goal */}
+        <section className="space-y-3 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-            01. Structural Overview
+            01. Problem &amp; Project Goal
           </span>
           <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
-            Platform Purpose &amp; Architecture
+            What Was Being Solved
+          </h2>
+          <p className="leading-relaxed">{project.problemOrGoal}</p>
+        </section>
+
+        {/* 2. Alain's Exact Role */}
+        <section className="space-y-3 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
+            02. Alain&apos;s Exact Role &amp; Ownership
+          </span>
+          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
+            {project.exactRole}
           </h2>
           <p className="leading-relaxed">{project.fullDescription}</p>
         </section>
 
-        {/* Verified Impact & Performance Metrics */}
-        {project.metrics && project.metrics.length > 0 && (
-          <section className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/30 shadow-sm space-y-4 motion-reveal">
+        {/* 3. Hands-On Work Completed */}
+        {project.workCompleted && project.workCompleted.length > 0 && (
+          <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-              Key Metrics &amp; Verified Benchmarks
+              03. Hands-On Work Completed
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
+              Deliverables &amp; Technical Execution
+            </h2>
+            <ul className="space-y-3 pt-2">
+              {project.workCompleted.map((task, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <Icon name="check_circle" size={18} className="text-primary-container shrink-0 mt-0.5" />
+                  <span className="text-on-surface/85 leading-relaxed">{task}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* 4. Tools & Methods Used */}
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
+            04. Tools &amp; Methods Applied
+          </span>
+          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
+            Technology Stack &amp; Workflow Tooling
+          </h2>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {project.methodsAndTools.map((tool, idx) => (
+              <span
+                key={idx}
+                className="px-3.5 py-1.5 rounded-full bg-surface-2 border border-black/10 dark:border-white/10 text-xs font-heading font-medium text-on-surface"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {/* 5. Empirical Validation & Benchmarks */}
+        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-emerald-500/5 border border-emerald-500/25 motion-reveal shadow-sm">
+          <span className="font-heading text-xs text-emerald-500 font-bold uppercase tracking-[0.08em] block">
+            05. Practical Validation &amp; Live Link
+          </span>
+          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
+            Empirical Results &amp; Verification
+          </h2>
+          <p className="leading-relaxed text-on-surface/85">{project.validationNotes}</p>
+
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
               {project.metrics.map((m, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-surface-2/60 dark:bg-white/[0.03] border border-black/10 dark:border-white/5 space-y-1">
+                <div key={idx} className="p-4 rounded-xl bg-surface-1 border border-black/10 dark:border-white/10 space-y-1">
                   <span className="font-heading text-xs text-on-surface/70 uppercase tracking-wider block">
                     {m.label}
                   </span>
@@ -240,26 +295,26 @@ export default async function ProjectDetailPage({
                 </div>
               ))}
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
-        {/* Empirical PageSpeed & Technical SEO Audit Proof */}
+        {/* PageSpeed Audit Proof Component for alaintapiru-portfolio */}
         {project.slug === 'alaintapiru-portfolio' && (
           <PerformanceAuditProof
-            eyebrow="02. Empirical Validation & Audit Proof"
+            eyebrow="Empirical Validation & Audit Proof"
             title="Google PageSpeed Insights Audit Scores"
             subtitle="Verified Core Web Vitals and Lighthouse technical audit scores for alaintapiru.com across Desktop and Mobile devices, demonstrating sub-second load velocity, 0ms Total Blocking Time, and flawless 100/100 SEO health."
           />
         )}
 
-        {/* Section 2/3: 3-Pillar Methodology */}
+        {/* Methodology Pillars */}
         {project.pillars && project.pillars.length > 0 && (
           <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-              {project.slug === 'alaintapiru-portfolio' ? '03. Core Methodology' : '02. Core Methodology'}
+              Strategic Framework
             </span>
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
-              The 3-Pillar Strategic Framework
+              The 3-Pillar Methodology
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {project.pillars.map((pillar, idx) => (
@@ -284,59 +339,14 @@ export default async function ProjectDetailPage({
           </section>
         )}
 
-        {/* Section 3/4: Core Service Offerings */}
-        {project.coreServices && project.coreServices.length > 0 && (
-          <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
-            <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-              {project.slug === 'alaintapiru-portfolio' ? '04. Core Capabilities' : '03. Core Capabilities'}
-            </span>
-            <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
-              Structured Service Offerings
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {project.coreServices.map((service, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-2.5 p-3 rounded-xl bg-surface-2/60 dark:bg-white/[0.03] border border-black/10 dark:border-white/5"
-                >
-                  <Icon name="check_circle" size={16} className="text-primary-container shrink-0" />
-                  <span className="font-sans text-xs sm:text-sm font-medium text-on-surface">
-                    {service}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Section 4/5: Technology Stack */}
-        <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
-          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-            {project.slug === 'alaintapiru-portfolio' ? '05. Development Stack' : '04. Development Stack'}
-          </span>
-          <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
-            Technologies Applied
-          </h2>
-          <div className="flex flex-wrap gap-2 pt-2">
-            {project.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-3.5 py-1.5 rounded-full bg-surface-2 border border-black/10 dark:border-white/10 text-xs font-heading font-medium text-on-surface"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 5/6: Image Showcase / Gallery */}
+        {/* Visual Gallery */}
         {project.gallery && project.gallery.length > 1 && (
           <section className="space-y-6 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 motion-reveal shadow-sm">
             <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-              {project.slug === 'alaintapiru-portfolio' ? '06. Visual Gallery' : '05. Visual Gallery'}
+              Visual Captures
             </span>
             <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
-              Staging &amp; Design Captures
+              Staging &amp; Interface Screenshots
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.gallery.map((img, idx) => (
@@ -396,14 +406,14 @@ export default async function ProjectDetailPage({
                 </p>
               </div>
               <div className="pt-3 border-t border-black/10 dark:border-white/10 mt-4 flex items-center justify-between text-xs font-heading font-bold text-primary-container">
-                <span>View Project Details</span>
+                <span>View 5-Part Breakdown</span>
                 <Icon name="arrow_forward" size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
           ))}
           {/* Interactive Tool Card */}
           <Link
-            href="/tools/"
+            href="/tools/#gbp-checker"
             className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-surface-1 to-surface-1 border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between shadow-sm"
           >
             <div>
@@ -425,7 +435,7 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {/* Bottom CTA Banner with Contextual Lead Magnet */}
+      {/* Bottom Contextual CTA Banner */}
       <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-primary-container/30 shadow-[0_0_40px_rgba(224,123,32,0.15)] text-center space-y-6 motion-reveal">
         <div className="space-y-2">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
@@ -436,7 +446,7 @@ export default async function ProjectDetailPage({
               : '🚀 Custom Web Architecture'}
           </span>
           <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
-            Interested in Building a Project Like {project.title}?
+            Interested in Work Like {project.title}?
           </h2>
           <p className="font-sans text-xs sm:text-sm text-on-surface/70 max-w-xl mx-auto leading-relaxed">
             {project.slug === 'alaintapiru-portfolio'
@@ -466,26 +476,26 @@ export default async function ProjectDetailPage({
 
           {project.slug === 'alaintapiru-portfolio' ? (
             <Link
-              href="/services/technical-seo/"
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              href="/services/#pillar-technical-fix"
+              className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-1 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Explore Technical SEO Services</span>
+              <span>Technical SEO Fix Sprint (From ₱8,500)</span>
               <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           ) : project.slug === 'local-seo-gbp-checker' ? (
             <Link
-              href="/services/local-seo/"
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              href="/services/#pillar-local-seo"
+              className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-1 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Explore Local SEO Services</span>
+              <span>Local SEO Foundation (From ₱7,500)</span>
               <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           ) : (
             <Link
-              href="/services/web-development/"
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/15 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              href="/services/#pillar-health-check"
+              className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-1 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Explore Web Development Services</span>
+              <span>Website SEO Health Check (From ₱3,500)</span>
               <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           )}

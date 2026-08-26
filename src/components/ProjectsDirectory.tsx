@@ -73,23 +73,18 @@ export function ProjectsDirectory() {
           <div className="p-4 sm:p-6 border-b border-black/10 dark:border-white/10 bg-surface-2 z-10 flex items-start justify-between gap-4 shrink-0">
             <div className="space-y-1.5 pr-2 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                {activeModalProject.status === 'Ongoing' ? (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-black/5 dark:bg-white/5 text-on-surface/80 border border-black/10 dark:border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
+                  {activeModalProject.proofLabel}
+                </span>
+                {activeModalProject.status === 'Ongoing' && (
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-amber-500/10 text-amber-500 border border-amber-500/20">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                     Ongoing Build
                   </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    Live Project
-                  </span>
                 )}
                 <span className="font-heading text-[11px] text-primary-container uppercase tracking-wider font-bold">
                   {activeModalProject.category}
-                </span>
-                <span className="text-[11px] font-sans text-on-surface/60">•</span>
-                <span className="text-[11px] font-sans text-on-surface/75">
-                  {activeModalProject.role}
                 </span>
               </div>
               <h2
@@ -130,7 +125,7 @@ export function ProjectsDirectory() {
             {activeModalProject.gallery && activeModalProject.gallery.length > 1 && (
               <div className="space-y-2">
                 <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">
-                  Preview Screenshots ({activeModalProject.gallery.length})
+                  Preview Captures ({activeModalProject.gallery.length})
                 </span>
                 <div className="grid grid-cols-4 gap-2 sm:gap-3">
                   {activeModalProject.gallery.map((img, idx) => (
@@ -157,112 +152,74 @@ export function ProjectsDirectory() {
               </div>
             )}
 
-            {/* Project Overview */}
-            <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-2 border border-black/10 dark:border-white/10">
-              <h3 className="font-heading text-xs sm:text-sm font-bold text-primary-container uppercase tracking-[0.08em]">
-                Project Architecture &amp; Overview
+            {/* 1. Problem / Goal */}
+            <div className="space-y-2.5 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-2 border border-black/10 dark:border-white/10">
+              <span className="font-heading text-[11px] text-primary-container font-bold uppercase tracking-wider block">
+                01. Problem &amp; Project Goal
+              </span>
+              <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
+                What Was Being Solved
+              </h3>
+              <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
+                {activeModalProject.problemOrGoal}
+              </p>
+            </div>
+
+            {/* 2. Alain's Exact Role */}
+            <div className="space-y-2.5 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-2 border border-black/10 dark:border-white/10">
+              <span className="font-heading text-[11px] text-primary-container font-bold uppercase tracking-wider block">
+                02. Exact Role &amp; Ownership
+              </span>
+              <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
+                {activeModalProject.exactRole}
               </h3>
               <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
                 {activeModalProject.fullDescription}
               </p>
             </div>
 
-            {/* PageSpeed Performance Highlight for alaintapiru-portfolio */}
-            {activeModalProject.slug === 'alaintapiru-portfolio' && (
-              <div className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-gradient-to-br from-amber-500/10 via-surface-2 to-emerald-500/10 border border-amber-500/30 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="font-heading text-xs font-bold text-amber-500 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>⚡</span> Google PageSpeed Insights Benchmark
-                  </span>
-                  <span className="text-[10px] font-heading font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                    100% Passed Vitals
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
-                    <div className="text-base sm:text-lg font-black font-heading text-amber-500">99 / 100</div>
-                    <div className="text-[10px] font-heading text-on-surface/60 uppercase">Desktop Score</div>
-                  </div>
-                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
-                    <div className="text-base sm:text-lg font-black font-heading text-emerald-500">96 / 100</div>
-                    <div className="text-[10px] font-heading text-on-surface/60 uppercase">Mobile Score</div>
-                  </div>
-                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
-                    <div className="text-base sm:text-lg font-black font-heading text-emerald-500">100 / 100</div>
-                    <div className="text-[10px] font-heading text-on-surface/60 uppercase">Best Practices</div>
-                  </div>
-                  <div className="p-2 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 shadow-xs">
-                    <div className="text-base sm:text-lg font-black font-heading text-emerald-500">100 / 100</div>
-                    <div className="text-[10px] font-heading text-on-surface/60 uppercase">SEO Health</div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* 3-Pillar Methodology (ANGAT, MAKITA, MASIKAT) */}
-            {activeModalProject.pillars && activeModalProject.pillars.length > 0 && (
-              <div className="space-y-3">
-                <span className="font-heading text-[10px] sm:text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-                  Core Methodology &amp; Execution Framework
+            {/* 3. Work Completed */}
+            {activeModalProject.workCompleted && activeModalProject.workCompleted.length > 0 && (
+              <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-2 border border-black/10 dark:border-white/10">
+                <span className="font-heading text-[11px] text-primary-container font-bold uppercase tracking-wider block">
+                  03. Hands-On Work Completed
                 </span>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-                  {activeModalProject.pillars.map((pillar, idx) => (
-                    <div
-                      key={idx}
-                      className="p-4 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all flex flex-col justify-between shadow-xs"
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-heading text-sm sm:text-base font-black text-on-surface tracking-wider">
-                          {pillar.name}
-                        </span>
-                        <span className="font-heading text-xs font-bold text-primary-container/70">
-                          0{idx + 1}
-                        </span>
-                      </div>
-                      <p className="font-sans text-xs text-on-surface/75 leading-relaxed">
-                        {pillar.meaning}
-                      </p>
-                    </div>
+                <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-on-surface/80">
+                  {activeModalProject.workCompleted.map((task, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <Icon name="check_circle" size={15} className="text-primary-container shrink-0 mt-0.5" />
+                      <span>{task}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
-            {/* Core Services & Capabilities */}
-            {activeModalProject.coreServices && activeModalProject.coreServices.length > 0 && (
-              <div className="space-y-3">
-                <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">
-                  Structured Service Capabilities
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
-                  {activeModalProject.coreServices.map((service, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-surface-2 border border-black/10 dark:border-white/10"
-                    >
-                      <Icon name="check_circle" size={14} className="text-primary-container shrink-0" />
-                      <span className="font-sans text-xs text-on-surface/80">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Tech Stack */}
-            <div className="space-y-2.5">
-              <span className="font-heading text-[10px] sm:text-xs text-on-surface/70 uppercase tracking-[0.08em] block font-semibold">
-                Technologies &amp; Platform Stack
+            {/* 4. Methods & Tools Used */}
+            <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-surface-2 border border-black/10 dark:border-white/10">
+              <span className="font-heading text-[11px] text-primary-container font-bold uppercase tracking-wider block">
+                04. Tools &amp; Methods Applied
               </span>
               <div className="flex flex-wrap gap-2">
-                {activeModalProject.techStack.map((tech) => (
+                {activeModalProject.methodsAndTools.map((tool, idx) => (
                   <span
-                    key={tech}
-                    className="px-3 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-heading font-medium text-on-surface/80"
+                    key={idx}
+                    className="px-3 py-1.5 rounded-lg bg-surface-1 border border-black/10 dark:border-white/10 text-xs font-heading font-medium text-on-surface"
                   >
-                    {tech}
+                    {tool}
                   </span>
                 ))}
               </div>
+            </div>
+
+            {/* 5. Empirical Validation & Benchmarks */}
+            <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
+              <span className="font-heading text-[11px] text-emerald-500 font-bold uppercase tracking-wider block">
+                05. Practical Validation &amp; Link
+              </span>
+              <p className="font-sans text-xs sm:text-sm text-on-surface/85 leading-relaxed">
+                {activeModalProject.validationNotes}
+              </p>
             </div>
           </div>
 
@@ -277,7 +234,7 @@ export function ProjectsDirectory() {
                 href={`/projects/${activeModalProject.slug}/`}
                 className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-primary-container bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/15 px-4 py-2.5 rounded-xl transition-colors cursor-pointer"
               >
-                <span>Project Breakdown</span>
+                <span>Full Project Breakdown</span>
                 <Icon name="arrow_forward" size={14} />
               </Link>
 
@@ -350,17 +307,16 @@ export function ProjectsDirectory() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
 
-                {/* Floating Status Badge */}
-                <div className="absolute top-3 left-3 z-10">
-                  {proj.status === 'Ongoing' ? (
+                {/* Floating Status / Proof Badge */}
+                <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-on-surface border border-black/10 dark:border-white/10 backdrop-blur-md shadow-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
+                    {proj.proofLabel}
+                  </span>
+                  {proj.status === 'Ongoing' && (
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-amber-500 border border-amber-500/40 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                       Ongoing Build
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-emerald-500 border border-emerald-500/40 backdrop-blur-md shadow-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                      Live Project
                     </span>
                   )}
                 </div>
@@ -413,28 +369,33 @@ export function ProjectsDirectory() {
                 onClick={() => setActiveModalProject(proj)}
                 className="inline-flex items-center gap-1 font-heading text-xs uppercase tracking-[0.06em] font-bold text-on-surface hover:text-primary-container transition-colors py-1 cursor-pointer"
               >
-                <span>Details &amp; Framework</span>
+                <span>5-Part Breakdown</span>
                 <Icon name="arrow_forward" size={14} />
               </button>
 
-              <a
-                href={proj.liveUrl}
-                target={proj.liveUrl.startsWith('http') ? '_blank' : undefined}
-                rel={
-                  proj.rel ||
-                  (proj.liveUrl.startsWith('http')
-                     ? 'noopener noreferrer'
-                     : undefined)
-                }
-                aria-label={`Open ${proj.title} external build (opens in new tab)`}
+              <Link
+                href={`/projects/${proj.slug}/`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-primary-container/20 border border-black/10 dark:border-white/10 hover:border-primary-container/30 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all"
               >
-                <span>{proj.ctaText || 'Live Build'}</span>
-                <Icon name="north_east" size={13} />
-              </a>
+                <span>Case Details</span>
+                <Icon name="arrow_forward" size={13} />
+              </Link>
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Trust & Transparency Note: How Projects Become Case Studies */}
+      <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/20 shadow-md space-y-3 motion-reveal">
+        <div className="flex items-center gap-2.5">
+          <Icon name="verified_user" size={18} className="text-primary-container" />
+          <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface">
+            How Projects Become Case Studies &amp; Data Transparency
+          </h3>
+        </div>
+        <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed">
+          All projects displayed above represent real, verifiable implementations with defined scopes. To maintain strict client confidentiality and non-disclosure standards, commercial client data, private Search Console performance graphs, and proprietary business metrics are published only with explicit client permission and appropriate context.
+        </p>
       </div>
 
       {/* Render React Portal Modal */}

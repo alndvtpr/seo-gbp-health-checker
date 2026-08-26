@@ -77,7 +77,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: 'SEO & Marketing Tools',
+    title: 'SEO & Marketing Tools (Daily Practice)',
     icon: 'build',
     skills: [
       'Ahrefs',
@@ -144,11 +144,11 @@ const EXPERIENCES: ExperienceItem[] = [
   {
     role: 'SEO Trainee & Contributor',
     company: 'PinoySEO Bootcamp (Batch 32)',
-    type: 'Remote Training & Live Build',
+    type: 'Remote Training & Live Audits',
     period: 'Aug 2025 – Sep 2025',
     highlights: [
       'Completed an intensive, hands-on SEO bootcamp covering technical SEO, on/off-page optimization, and data analysis.',
-      "Contributed to building the mentor's live business website, NorcalCoffee.com, applying bootcamp concepts to production.",
+      'Contributed to hands-on technical SEO audits, keyword research, and on-page optimization exercises during bootcamp training under mentor Rene Leandro Padilla.',
       'Audited sites using Screaming Frog, Ahrefs, SEMrush, and Ubersuggest, catching technical issues automated tools often miss.',
     ],
   },
@@ -177,6 +177,8 @@ const EXPERIENCES: ExperienceItem[] = [
 interface ProjectFeature {
   title: string
   tagline: string
+  proofLabel: string
+  status?: string
   description: string
   link: string
   isExternal?: boolean
@@ -187,6 +189,8 @@ const SELECTED_PROJECTS: ProjectFeature[] = [
   {
     title: 'AngatSikat Studio',
     tagline: 'Custom WordPress Theme & Technical SEO Platform',
+    proofLabel: 'Self-initiated build',
+    status: 'Ongoing build',
     description:
       'A bespoke WordPress theme architecture built without template bloat, featuring structured schema, sub-1.2s local load benchmarks, and clean semantic crawlability.',
     link: '/projects/angat-sikat-studio/',
@@ -195,6 +199,7 @@ const SELECTED_PROJECTS: ProjectFeature[] = [
   {
     title: 'Local SEO & GBP Health Checker',
     tagline: 'Interactive 10-Point Diagnostic Engine',
+    proofLabel: 'Self-initiated build',
     description:
       'A self-built web tool analyzing Google Business Profile trust signals, review momentum, category alignment, and synthesizing 30-day dynamic optimization roadmaps.',
     link: '/tools/#gbp-checker',
@@ -203,19 +208,11 @@ const SELECTED_PROJECTS: ProjectFeature[] = [
   {
     title: 'AlainTapiru.com Architecture',
     tagline: 'High-Performance Next.js Portfolio',
+    proofLabel: 'Self-initiated build',
     description:
       'Personal portfolio and technical playground built on Next.js 16, featuring zero layout shift, dual-theme styling, JSON-LD linked entity graphs, and /llms.txt discoverability.',
     link: '/projects/alaintapiru-portfolio/',
     tags: ['Next.js 16', 'Tailwind CSS', 'Schema Graph'],
-  },
-  {
-    title: 'NorcalCoffee.com Live Contribution',
-    tagline: 'Bootcamp Mentor Live Business Build',
-    description:
-      "Contributed to building the live business website for the PinoySEO mentor during Batch 32 training, applying practical on-page and technical fundamentals.",
-    link: 'https://norcalcoffee.com',
-    isExternal: true,
-    tags: ['SEO Bootcamp', 'Live Project', 'Web Build'],
   },
 ]
 
@@ -498,6 +495,18 @@ export default function ResumePage() {
               className="bg-surface-1 rounded-2xl border border-black/10 dark:border-white/10 p-5 space-y-3 flex flex-col justify-between shadow-xs hover:border-primary-container/40 transition-colors group"
             >
               <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-black/5 dark:bg-white/5 text-on-surface/80 border border-black/10 dark:border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
+                    {proj.proofLabel}
+                  </span>
+                  {proj.status && (
+                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                      {proj.status}
+                    </span>
+                  )}
+                </div>
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="font-heading text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors">
                     {proj.title}

@@ -72,17 +72,17 @@ export default function AboutPage() {
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
-          Biography &amp; Background
+          Biography &amp; Professional Background
         </span>
         <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-extrabold text-on-surface mb-4 sm:mb-6 tracking-tight">
-          About Alain Dave Tapiru: Practical SEO &amp; Web Support
+          Practical SEO &amp; Website Support for Growing Businesses
         </h1>
-        <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-          I provide hands-on technical SEO, local search foundation work, and website support for small businesses and digital agencies.
+        <p className="font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
+          I help small business owners and digital agency teams fix technical website errors, optimize local search presence, and improve organic crawlability with clear scopes, predictable rates, and direct communication.
         </p>
       </div>
 
-      {/* Main Grid */}
+      {/* Main Grid: Portrait & Story */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
         {/* Left: Modern Editorial Portrait Card */}
         <div className="lg:col-span-5 lg:sticky lg:top-28 motion-reveal">
@@ -121,28 +121,30 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-7 space-y-4 sm:space-y-6 motion-reveal">
+        {/* Right: Narrative */}
+        <div className="lg:col-span-7 space-y-5 sm:space-y-6 motion-reveal">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-on-surface tracking-tight">
-            My Background &amp; Working Philosophy
+            Background, Philosophy &amp; How I Work
           </h2>
-          <div className="space-y-3 sm:space-y-4 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
+          <div className="space-y-3.5 sm:space-y-4 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
             <p>
-              My professional background began in client-facing support and operations, where I developed strong habits around responsiveness, attention to detail, and structured task management. Transitioning into Search Engine Optimization gave me a dedicated path to connect analytical research with hands-on web development.
+              My professional foundation started in high-volume customer service and operations. Handling demanding support environments taught me how to communicate clearly, document work meticulously, and take full accountability for deliverables. When I transitioned into Search Engine Optimization, I brought those same discipline habits into technical search audits, on-page optimization, and web development.
             </p>
             <p>
-              Over the past year, I have built practical, independent SEO experience through intensive upskilling, real project experimentation, and structured training, including completing the Pinoy SEO Bootcamp led by Rene Leandro Padilla. Rather than relying on theory alone, I practice SEO by actively building search-ready websites, testing technical crawlability, optimizing local search signals, and developing custom diagnostic tools.
+              <strong>Over the past year</strong>, I have focused on building practical, hands-on SEO capability. Rather than studying theory in isolation, I practice by actively building search-optimized websites, auditing crawl performance, configuring Google Business Profiles, and developing diagnostic tools. I completed the intensive Pinoy SEO Bootcamp (Batch 32) under mentor Rene Leandro Padilla, gaining structured training in technical SEO crawls, keyword intent mapping, and site health diagnostics.
             </p>
             <p>
-              As a BSIT student specializing in Network &amp; Cybersecurity, I look at search through a technical lens: combining clean semantic markup, Core Web Vitals performance, and modern frameworks like Next.js and WordPress. I believe a successful website must be easy for search engines to crawl, fast for users to navigate, and built on reliable foundations.
+              As a current Bachelor of Science in Information Technology (BSIT) student specializing in Network &amp; Cybersecurity, I approach SEO through a technical lens: combining semantic HTML5 structure, Core Web Vitals speed optimization, and modern web frameworks like Next.js, React, and WordPress.
             </p>
             <p>
-              I am actively available for small business projects, website support retainers, and agency overflow sprints. I bring clear scopes, transparent communication, and a disciplined approach to technical execution.
+              I work with small business owners who need dependable SEO foundations without agency markups, as well as digital marketing agencies looking for a reliable partner to handle technical SEO overflow tasks on clear, predictable terms.
             </p>
           </div>
 
+          {/* Quick Capability Highlights */}
           <div className="pt-4 border-t border-black/10 dark:border-white/10">
             <h3 className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] mb-3 font-semibold">
-              Skills &amp; Areas of Practice
+              Core Technical Capabilities
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Link
@@ -151,14 +153,15 @@ export default function AboutPage() {
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
                   <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    Technical, On-Page &amp; Local SEO
+                    Technical &amp; Local SEO
                   </h4>
                   <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Crawl error resolution, schema markup, Core Web Vitals speed optimization, local SEO presence, content optimization, and search engine best practices.
+                  Crawl error resolution, schema markup, Core Web Vitals speed tuning, and Google Business Profile signal calibration.
                 </p>
               </Link>
+
               <Link
                 href="/services/#pillar-execution"
                 className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
@@ -170,41 +173,118 @@ export default function AboutPage() {
                   <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Next.js, React, Tailwind CSS, Payload CMS, WordPress, Elementor, and responsive glassmorphism interfaces.
-                </p>
-              </Link>
-              <Link
-                href="/projects/angat-sikat-studio/"
-                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
-              >
-                <div className="flex items-center justify-between gap-1 mb-1">
-                  <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    Practical SEO Tools &amp; Builds
-                  </h4>
-                  <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                </div>
-                <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Building live, functional projects like the Local SEO &amp; GBP Health Checker, AngatSikat Studio theme, and custom portfolio architecture.
-                </p>
-              </Link>
-              <Link
-                href="/tools/"
-                className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
-              >
-                <div className="flex items-center justify-between gap-1 mb-1">
-                  <h4 className="font-heading text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
-                    AI-Assisted Workflows &amp; Diagnostics
-                  </h4>
-                  <Icon name="arrow_forward" size={14} className="text-primary-container opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                </div>
-                <p className="font-sans text-xs sm:text-sm text-on-surface/65 leading-relaxed">
-                  Leveraging modern AI tooling for diagnostic roadmaps, structured data generation, and rapid development workflows.
+                  Custom WordPress themes, Next.js, React, Tailwind CSS, semantic HTML5 hierarchy, and responsive performance.
                 </p>
               </Link>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Best Fit vs. Not the Right Fit Yet Section */}
+      <section className="space-y-8 motion-reveal">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-2 font-semibold">
+            Client Compatibility &amp; Expectations
+          </span>
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface mb-3 tracking-tight">
+            Is Alain the Right Partner for Your Project?
+          </h2>
+          <p className="font-sans text-sm sm:text-base text-on-surface/75 leading-relaxed">
+            Clear expectations ensure great collaboration. Here is an honest breakdown of where I deliver high value and where other specialists may be better suited.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {/* Best Fit For */}
+          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-emerald-500/30 shadow-lg space-y-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 flex items-center justify-center shrink-0">
+                <Icon name="check_circle" size={20} />
+              </div>
+              <div>
+                <span className="font-heading text-[11px] text-emerald-500 font-bold uppercase tracking-wider block">
+                  Ideal Collaboration
+                </span>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface">
+                  Best Fit For
+                </h3>
+              </div>
+            </div>
+
+            <ul className="space-y-3.5 font-sans text-xs sm:text-sm text-on-surface/80">
+              <li className="flex items-start gap-2.5">
+                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Small Service Businesses &amp; Founders:</strong> Need clear technical SEO audits, on-page content optimization, or Google Business Profile setup without complicated contracts or agency overhead.
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Digital Marketing Agencies:</strong> Need a dependable, communicative contractor to handle technical audit backlogs, site fixes, and schema tasks at fixed sprint or hourly rates (₱500/hr).
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>WordPress &amp; Next.js Website Owners:</strong> Want faster loading speeds, clean semantic structure, mobile usability fixes, and error-free search engine indexation.
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Clients Valuing Direct Communication:</strong> Prefer working one-on-one with the person actually auditing and coding the site, with clear deliverables and documentation.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Not the Right Fit Yet */}
+          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-amber-500/30 shadow-lg space-y-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center shrink-0">
+                <Icon name="close" size={20} />
+              </div>
+              <div>
+                <span className="font-heading text-[11px] text-amber-500 font-bold uppercase tracking-wider block">
+                  Honest Scope Boundaries
+                </span>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface">
+                  Not the Right Fit Yet
+                </h3>
+              </div>
+            </div>
+
+            <ul className="space-y-3.5 font-sans text-xs sm:text-sm text-on-surface/80">
+              <li className="flex items-start gap-2.5">
+                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Enterprise Scale &amp; High-Risk Migrations:</strong> Websites with hundreds of thousands of dynamic URLs, complex database migrations, or multi-region enterprise IT stacks.
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Guaranteed #1 Rankings Demands:</strong> Anyone seeking contractual guarantees on search positions or overnight traffic spikes that violate search engine guidelines.
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Mass PBN / Aggressive Link Building Schemes:</strong> Automated link networks, spammy directory blasts, or manipulative backlink schemes.
+                </span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <span>
+                  <strong>Full-Service Paid Advertising Agencies:</strong> Large-scale Google Ads / Meta Ads budget management outside of organic search and website technical support.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {/* Ambient Section Divider */}
       <div className="w-full max-w-7xl mx-auto">
