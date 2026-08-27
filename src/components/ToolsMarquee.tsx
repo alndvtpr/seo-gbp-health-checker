@@ -121,11 +121,11 @@ export function ToolsMarquee() {
     <section
       id="tools-marquee"
       aria-label="Technical Stack and Tools"
-      className="relative z-20 overflow-hidden border-y border-primary-container/20 bg-transparent py-8 sm:py-10 shadow-[0_0_30px_rgba(224,123,32,0.06),inset_0_0_20px_rgba(224,123,32,0.02)]"
+      className="relative z-20 overflow-hidden border-y border-primary-container/20 bg-transparent py-12 shadow-[0_0_30px_rgba(224,123,32,0.08),inset_0_0_20px_rgba(224,123,32,0.03)] sm:py-16"
     >
       {/* Mild Amber/Orange Ambient Background Glow */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(224,123,32,0.06)_0%,transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(224,123,32,0.08)_0%,transparent_65%)]"
         aria-hidden="true"
       />
 
@@ -134,10 +134,10 @@ export function ToolsMarquee() {
           <span className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-primary-container">
             Technical Stack
           </span>
-          <h2 className="mt-1.5 font-heading text-xl font-bold tracking-tight text-on-surface sm:text-2xl md:text-3xl">
+          <h2 className="mt-2 font-heading text-2xl font-bold tracking-tight text-on-surface sm:text-3xl md:text-4xl">
             Tools I Use to Turn SEO Into Action
           </h2>
-          <p className="mx-auto mt-2 max-w-xl font-sans text-xs sm:text-sm leading-relaxed text-on-surface/75">
+          <p className="mx-auto mt-3 max-w-xl font-sans text-sm leading-relaxed text-on-surface/75 sm:text-base">
             A practical toolkit for research, optimization, analytics, content, and modern web development.
           </p>
         </div>
@@ -145,7 +145,7 @@ export function ToolsMarquee() {
 
       {/* Marquee Infinite Loop Container with Gradient Mask */}
       <div
-        className="relative z-10 mt-6 flex w-full flex-col py-1"
+        className="relative z-10 mt-8 flex w-full flex-col py-1"
         style={{
           maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',

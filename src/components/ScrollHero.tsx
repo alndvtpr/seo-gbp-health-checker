@@ -12,7 +12,7 @@ export const ScrollHero = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[540px] md:w-[680px] lg:w-[840px] h-[320px] sm:h-[420px] lg:h-[520px] bg-primary-container/10 dark:bg-primary-container/15 rounded-full blur-[100px] pointer-events-none -z-10" />
 
       {/* Hero Content Section - 2-Column Responsive Editorial Layout */}
-      <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 lg:px-16 pt-24 sm:pt-32 md:pt-36 pb-10 sm:pb-14">
+      <div className="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-12 lg:px-16 pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Negative space for Eyebrow, H1, Value Proposition, CTAs, Socials */}

@@ -126,10 +126,9 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-27)**: `feat(homepage): remove redundant tool category pills and calibrate 2026 portfolio vertical spacing`
-  - Removed redundant 3-line tool category pill block from `<ToolsMarquee />` on the homepage.
-  - Applied 2026 non-SERP portfolio spacing best practices: tightened hero-to-marquee vertical rhythm (`pb-10 sm:pb-14` / `py-8 sm:py-10`), calibrated section container paddings to `py-14 sm:py-20`, and harmonized card gaps (`gap-5 sm:gap-6`).
-  - Streamlined Gestalt visual hierarchy between section headers and content grids (`mt-8 sm:mt-10`).
+- **Commit `HEAD` (Current - 2026-08-27)**: `feat(homepage): remove redundant tool category navigation links from marquee`
+  - Removed the 3-line tool category navigation links block from `<ToolsMarquee />` on the homepage as requested.
+  - Preserved 100% of the original homepage layout, vertical rhythm, and section spacing.
   - Passed 6/6 search CI checks, 0 TypeScript errors, and 30/30 production static routes.
 - **Commit `HEAD~1` (2026-08-27)**: `feat(contact): streamline contact page copy hierarchy and humanize messaging`
   - Replaced repetitive "Schedule a 20-Minute Intro Call / Conversation" headers with clean, single-point messaging.
