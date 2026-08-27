@@ -28,6 +28,7 @@
 8. **No Automated Browser Subagents**: Do not launch automated browser subagents / browser execution tools as they are non-functional in this environment. Delegate visual verification directly to the user with the clickable localhost link or direct testing instructions.
 9. **Controlled Documentation Model**: The version-controlled `payload-website/docs/plan.md` is the master roadmap. The owner approved four scoped Phase 01 supporting records under `payload-website/docs/site-improvement/` for implementation state, facts, decisions, and baseline evidence. The workspace-level `docs/plan.md` is a synchronized convenience copy. Do not create additional planning or audit files without approval.
 10. **Explicit Push Approval Gate**: Never automatically push commits to remote (`git push origin main`). All changes must remain local for localhost testing (`http://localhost:3000`) until the user explicitly requests or commands to push live.
+11. **Phase-to-Phase Session Hand-Off Protocol (Context Token Optimization)**: At the conclusion of every phase (after verification, documentation sync, and live git push), the assistant must output a structured hand-off prompt instructing the user to open a fresh conversation for the next phase. This preserves tokens, eliminates context rot, and maintains peak execution accuracy.
 
 ---
 
