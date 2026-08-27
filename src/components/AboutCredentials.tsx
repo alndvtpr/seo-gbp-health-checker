@@ -11,6 +11,7 @@ interface Certification {
   issuedDate: string
   badge: string
   imageSrc: string
+  imageAlt?: string
   downloadUrl: string
   downloadFilename: string
   verifyUrl?: string
@@ -33,6 +34,8 @@ const CERTIFICATIONS: Certification[] = [
     issuedDate: 'Issued Sept 2025',
     badge: 'Verified Credential',
     imageSrc: '/assets/certificates/Alain Dave Tapiru -SEO Specialist Philippines Certificate.webp',
+    imageAlt:
+      'Online SEO Bootcamp Batch 32 certificate earned by Alain Dave Tapiru from PinoySEO and SOVA Training',
     downloadUrl: '/assets/certificates/Alain Dave Tapiru -SEO Specialist Philippines Certificate.webp',
     downloadFilename: 'Alain Dave Tapiru - SEO Specialist Philippines Certificate.webp',
     verifyUrl:
@@ -46,9 +49,27 @@ const CERTIFICATIONS: Certification[] = [
     issuedDate: 'Issued Dec 2020',
     badge: 'Verified Credential',
     imageSrc: '/assets/certificates/Introduction to Social Media Marketing.avif',
+    imageAlt:
+      'Introduction to Social Media Marketing Coursera certificate from Meta earned by Alain Dave Tapiru',
     downloadUrl: '/assets/certificates/Introduction to Social Media Marketing.pdf',
     downloadFilename: 'Introduction to Social Media Marketing - Alain Dave Tapiru.pdf',
     verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'grammar-punctuation-uci',
+    title: 'Grammar and Punctuation',
+    issuer: 'UC Irvine | Coursera',
+    issuedDate: 'Issued Oct 2020',
+    badge: 'Verified Credential',
+    imageSrc: '/assets/certificates/Grammar and Punctuation Certificate Alain Dave Tapiru.avif',
+    imageAlt:
+      'Grammar and Punctuation Coursera certificate from UCI earned by Alain Dave Tapiru',
+    downloadUrl:
+      '/assets/certificates/Grammar and Punctuation Coursera Certificate - Alain Dave Tapiru.pdf',
+    downloadFilename:
+      'Grammar and Punctuation Coursera Certificate - Alain Dave Tapiru.pdf',
+    verifyUrl: 'https://coursera.org/verify/P4ZJK54AY7WD',
     buttonText: 'View / Verify',
   },
 ]
@@ -167,7 +188,7 @@ export function AboutCredentials() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={selectedCert.imageSrc}
-              alt={`${selectedCert.title} - ${selectedCert.issuer}`}
+              alt={selectedCert.imageAlt || `${selectedCert.title} - ${selectedCert.issuer}`}
               className="max-h-[48vh] sm:max-h-[52vh] max-w-full w-auto h-auto object-contain rounded-lg sm:rounded-xl shadow-xl border border-white/10"
             />
           </div>
@@ -248,7 +269,7 @@ export function AboutCredentials() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
             {CERTIFICATIONS.map((cert, idx) => (
               <div
                 key={cert.id}

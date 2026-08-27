@@ -243,9 +243,10 @@ const CERTIFICATIONS: CertificationItem[] = [
   },
   {
     title: 'Grammar and Punctuation',
-    issuer: 'Coursera',
-    date: 'Issued 2020',
-    badge: 'Completed',
+    issuer: 'UC Irvine | Coursera',
+    date: 'Issued Oct 2020',
+    verifyUrl: 'https://coursera.org/verify/P4ZJK54AY7WD',
+    badge: 'Verified Credential',
   },
   {
     title: 'English Communications',

@@ -36,8 +36,7 @@ Evidence date: 2026-08-27
 | BS Information Technology, Network and Cybersecurity, Mapua Malayan Digital College, expected 2029 | Owner-supplied ongoing education | Consistent between PDF and web resume. Enrollment status was not independently verified. |
 | BS Information Technology undergraduate study, Saint Mary's University, 2014-2017 | Owner-supplied education history | Web resume provides 2014-2017; PDF summarizes the undergraduate record as 2017. |
 | Pinoy SEO/SOVA completion, Sept 2025 | Publicly verifiable credential | Repository certificate asset exists and the SOVA registry page includes the owner name. |
-| Meta/Coursera credential, Dec 2020 | Owner-confirmed title | The owner confirmed `Introduction to Social Media Marketing` on 2026-08-27. The About credential already used that title; the web resume and replacement downloadable PDF now match it. Coursera verification URL resolves, but raw server HTML did not expose the holder name. |
-| Grammar and Punctuation, Coursera, 2020 | Owner-supplied completion | Listed in PDF and web resume; no verification link or certificate asset was found. |
+| Grammar and Punctuation (UCI | Coursera), Oct 2020 | Verified credential | Repository certificate asset (PDF & AVIF/WebP) exists and Coursera verification URL (https://coursera.org/verify/P4ZJK54AY7WD) resolves. |
 | English Communications, ERC Global, 2023 | Owner-supplied corporate training | Listed in PDF and web resume; no external verification was performed. |
 
 ## Project inventory
