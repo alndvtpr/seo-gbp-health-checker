@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Icon } from '@/components/icons'
 import { AnnouncementBanner } from '@/components/AnnouncementBanner'
@@ -270,13 +271,14 @@ export const Navbar = () => {
               aria-label="Alain Dave Tapiru - Home"
               className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 group relative z-[60] shrink-0"
             >
-              <div className="relative w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 overflow-hidden rounded-full border border-black/15 dark:border-white/20 group-hover:border-primary-container transition-colors flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
-                <img
-                  src="/logo-44.webp"
-                  alt="Alain Dave Tapiru"
-                  width="44"
-                  height="44"
-                  className="w-full h-full object-contain p-1"
+              <div className="relative w-[34px] h-[32px] sm:w-[38px] sm:h-[36px] xl:w-[40px] xl:h-[38px] shrink-0 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/branding/alain-dave-tapiru-adt-logo.avif"
+                  alt=""
+                  width={40}
+                  height={38}
+                  priority
+                  className="w-full h-full object-contain transition-transform duration-200 ease-[var(--ease-organic)] motion-reduce:transform-none group-hover:scale-[1.02]"
                 />
               </div>
               <span className="font-heading font-extrabold text-sm sm:text-base xl:text-lg text-on-surface tracking-tight group-hover:text-primary transition-colors whitespace-nowrap">

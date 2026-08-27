@@ -69,6 +69,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#fafaf8" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />

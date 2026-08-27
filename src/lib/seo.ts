@@ -45,6 +45,7 @@ export const generateMetadata = ({
     },
     icons: {
       icon: [
+        { url: '/favicon.ico', sizes: 'any' },
         { url: '/logo.webp', type: 'image/webp' },
         { url: '/logo.png', type: 'image/png' },
       ],

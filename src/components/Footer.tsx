@@ -26,20 +26,24 @@ export const Footer = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start justify-between gap-8 sm:gap-10 mb-6 relative z-10">
         {/* Left Side: Brand, Bio & Socials */}
         <div className="max-w-md space-y-3">
-          <div className="flex items-center gap-2.5">
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-black/10 dark:border-white/10 flex items-center justify-center bg-black/5 dark:bg-white/5 shrink-0">
+          <Link
+            href="/"
+            aria-label="Alain Dave Tapiru - Home"
+            className="inline-flex items-center gap-2.5 sm:gap-3 group"
+          >
+            <div className="relative w-[46px] h-[44px] sm:w-[50px] sm:h-[48px] shrink-0 flex items-center justify-center overflow-hidden">
               <Image
-                src="/Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp"
-                alt="Alain Dave Tapiru"
-                width={32}
-                height={32}
-                className="w-full h-full object-contain p-0.5"
+                src="/branding/alain-dave-tapiru-adt-logo.avif"
+                alt=""
+                width={50}
+                height={48}
+                className="w-full h-full object-contain transition-transform duration-200 ease-[var(--ease-organic)] motion-reduce:transform-none group-hover:scale-[1.02]"
               />
             </div>
-            <span className="font-heading font-bold text-on-surface text-base sm:text-lg">
+            <span className="font-heading font-bold text-on-surface text-base sm:text-lg group-hover:text-primary transition-colors">
               Alain Dave <span className="text-primary-container">Tapiru</span>
             </span>
-          </div>
+          </Link>
 
           <p className="font-sans text-xs text-on-surface/80 leading-relaxed">
             SEO Specialist &amp; Web Developer. Practical SEO, local search optimization, and website support for small businesses and agencies.
