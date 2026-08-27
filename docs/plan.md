@@ -126,21 +126,21 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-27)**: `feat(homepage): remove redundant tool category navigation links from marquee`
+- **Commit `HEAD` (Current - 2026-08-27)**: `feat(hero): update homepage hero with high-resolution transparent Photoroom AVIF portrait`
+  - Converted user's high-resolution transparent cutout portrait (`ChatGPT Image Aug 27, 2026, 02_15_59 PM-Photoroom.png`) to AVIF (`public/alain-dave-tapiru-seo-specialist-philippines-hero.avif`, 52.9KB, 916×896), WebP (47.8KB), and PNG (868KB).
+  - Preserved exact canonical filename and SEO alt text (`Alain Dave Tapiru, SEO Specialist in the Philippines, in a professional homepage hero portrait`).
+  - Configured `<ScrollHero />` with 916/896 aspect ratio, responsive sizing (`max-w-[360px]` to `max-w-[640px]`), unoptimized direct delivery, and ambient backlight.
+  - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
+- **Commit `HEAD~1` (2026-08-27)**: `feat(homepage): remove redundant tool category navigation links from marquee`
   - Removed the 3-line tool category navigation links block from `<ToolsMarquee />` on the homepage as requested.
   - Preserved 100% of the original homepage layout, vertical rhythm, and section spacing.
   - Passed 6/6 search CI checks, 0 TypeScript errors, and 30/30 production static routes.
-- **Commit `HEAD~1` (2026-08-27)**: `feat(contact): streamline contact page copy hierarchy and humanize messaging`
+- **Commit `HEAD~2` (2026-08-27)**: `feat(contact): streamline contact page copy hierarchy and humanize messaging`
   - Replaced repetitive "Schedule a 20-Minute Intro Call / Conversation" headers with clean, single-point messaging.
   - Aligned hero with personal copy: Eyebrow (`LET'S TALK • NO PRESSURE`), H1 (`Tell Me What You're Working On`), and practical discovery intro.
   - Streamlined Calendly scheduler section with unified booking header, "Choose a Time" CTA pill, and trust badges (`20 Minutes • Practical Next Steps • No Sales Pressure`).
   - Aligned direct inquiry section and form card with "RATHER WRITE IT DOWN?" / "Send Me the Details" copy while preserving all schema, validation, and accessibility.
   - Passed 6/6 search CI checks, 0 TypeScript errors, and 30/30 production static routes.
-- **Commit `HEAD~2` (2026-08-27)**: `feat(hero): integrate centered transparent cutout AVIF portrait into homepage hero`
-  - Converted user's transparent cutout portrait to high-performance AVIF (`public/alain-dave-tapiru-seo-specialist-philippines-hero.avif`, 43.3KB, 654×564) and WebP fallback (41.2KB).
-  - Configured `<ScrollHero />` with centered right-column transparent portrait seating (`object-contain object-bottom`), realistic drop-shadow, and subtle base feathering.
-  - 100% transparent alpha channel eliminates all gray boxes, seams, and background artifacts across Light (`#fafaf8`) and Dark (`#0f1111`) modes.
-  - Passed 6/6 automated search CI checks, 0 TypeScript errors, and 30/30 production static routes.
 
 ---
 

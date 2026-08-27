@@ -106,7 +106,7 @@ export const ScrollHero = () => {
 
           {/* Right Column: 2026 Transparent Hero Portrait */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-center hero-animate-in hero-delay-1 w-full mt-6 lg:mt-0">
-            <div className="relative w-full max-w-[360px] sm:max-w-[440px] md:max-w-[480px] lg:max-w-[540px] xl:max-w-[600px] 2xl:max-w-[640px] aspect-[620/560] group">
+            <div className="relative w-full max-w-[360px] sm:max-w-[440px] md:max-w-[480px] lg:max-w-[540px] xl:max-w-[600px] 2xl:max-w-[640px] aspect-[916/896] group">
               
               {/* Subtle Ambient Radial Glow Behind Subject */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] rounded-full bg-gradient-to-tr from-primary-container/20 via-primary/10 to-transparent blur-3xl opacity-80 dark:opacity-45 -z-10 pointer-events-none" />
