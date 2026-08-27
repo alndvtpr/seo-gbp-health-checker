@@ -50,7 +50,7 @@ export const BLOG_POSTS: BlogPost[] = [
     datePublished: '2026-08-22',
     readTime: '8 min read',
     excerpt:
-      'After a year of intensive SEO training and building real implementations, I dug into the latest data from SparkToro, Google, and independent research to find out what is actually dying, what still works, and what changed.',
+      'Over the past year of hands-on SEO practice, training through PinoySEO Bootcamp, and building practical implementations, I dug into data from SparkToro, Google, and independent research to analyze what is dying, what still works, and what changed.',
     heroImage: {
       src: '/images/blog/is-seo-dead-in-2026.avif',
       alt: 'Gravestone marked SEO representing the question Is SEO dead in 2026?',
@@ -60,7 +60,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     content: {
       lead:
-        'Every year someone declares SEO dead. In 2026, the argument sounds more convincing than usual: 68% of U.S. Google searches now end without a single click, AI Overviews frequently occupy prime search real estate, and tools like ChatGPT and Perplexity are answering queries directly. After a year of intensive SEO training through PinoySEO Bootcamp and building hands-on implementations like schema entity graphs, technical audits, and a GBP diagnostic tool, I wanted to cut through the noise. Here is what the data actually shows.',
+        'Every year someone declares SEO dead. In 2026, the argument sounds more convincing than usual: 68% of U.S. Google searches now end without a single click, AI Overviews frequently occupy prime search real estate, and tools like ChatGPT and Perplexity are answering queries directly. Through hands-on SEO practice, PinoySEO Bootcamp training, and building real implementations like schema entity graphs, technical audits, and a GBP diagnostic tool, I wanted to cut through the noise. Here is what the data actually shows.',
       sections: [
         {
           heading: '1. The "SEO Is Dead" Claim Has Real Evidence Behind It This Time',

@@ -72,7 +72,7 @@ export default function ProjectsPage() {
       />
 
       {/* Breadcrumb Navigation */}
-      <Breadcrumbs items={[{ name: 'Projects', url: '/projects/' }]} />
+      <Breadcrumbs showJsonLd={false} items={[{ name: 'Projects', url: '/projects/' }]} />
 
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">

@@ -211,9 +211,9 @@ const SELECTED_PROJECTS: ProjectFeature[] = [
     tagline: 'High-Performance Next.js Portfolio',
     proofLabel: 'Self-initiated build',
     description:
-      'Personal portfolio and technical playground built on Next.js 16, featuring zero layout shift, dual-theme styling, JSON-LD linked entity graphs, and /llms.txt discoverability.',
+      'Personal portfolio and technical playground built on Next.js App Router, featuring zero layout shift, dual-theme styling, JSON-LD linked entity graphs, and /llms.txt discoverability.',
     link: '/projects/alaintapiru-portfolio/',
-    tags: ['Next.js 16', 'Tailwind CSS', 'Schema Graph'],
+    tags: ['Next.js', 'Tailwind CSS', 'Schema Graph'],
   },
 ]
 

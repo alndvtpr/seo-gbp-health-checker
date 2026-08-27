@@ -252,7 +252,7 @@ export default function AboutPage() {
               <li className="flex items-start gap-2.5">
                 <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
                 <span>
-                  <strong>WordPress &amp; Next.js Website Owners:</strong> Want faster loading speeds, clean semantic structure, mobile usability fixes, and error-free search engine indexation.
+                  <strong>WordPress &amp; Next.js Website Owners:</strong> Want faster loading speeds, clean semantic structure, mobile usability fixes, and improved crawlability and clearer indexation signals for search engines.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">

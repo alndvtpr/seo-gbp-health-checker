@@ -115,6 +115,7 @@ export default async function ProjectDetailPage({
       {/* Breadcrumb Navigation & Back Link */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <Breadcrumbs
+          showJsonLd={false}
           items={[
             { name: 'Projects', url: '/projects/' },
             { name: project.title, url: `/projects/${project.slug}/` },
@@ -303,7 +304,7 @@ export default async function ProjectDetailPage({
           <PerformanceAuditProof
             eyebrow="Empirical Validation & Audit Proof"
             title="Google PageSpeed Insights Audit Scores"
-            subtitle="Verified Core Web Vitals and Lighthouse technical audit scores for alaintapiru.com across Desktop and Mobile devices, demonstrating sub-second load velocity, 0ms Total Blocking Time, and flawless 100/100 SEO health."
+            subtitle="Google PageSpeed Insights and Lighthouse lab audit scores (August 2026) for alaintapiru.com across Desktop and Mobile devices, demonstrating sub-second load velocity, 0ms Total Blocking Time in lab testing, and 100/100 SEO health."
           />
         )}
 
@@ -476,26 +477,26 @@ export default async function ProjectDetailPage({
 
           {project.slug === 'alaintapiru-portfolio' ? (
             <Link
-              href="/services/#pillar-technical-fix"
+              href="/contact/?service=Custom+Next.js+%26+React+Architecture+%28%E2%82%B148%2C000+%2F+%24850%29"
               className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-1 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Technical SEO Fix Sprint (From ₱8,500)</span>
+              <span>Custom Next.js &amp; React (From ₱48,000 / $850)</span>
               <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           ) : project.slug === 'local-seo-gbp-checker' ? (
             <Link
-              href="/services/#pillar-local-seo"
+              href="/contact/?service=SEO+%26+AI+Readiness+Sprint+%28%E2%82%B115%2C500+%2F+%24280%29"
               className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-1 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Local SEO Foundation (From ₱7,500)</span>
+              <span>SEO &amp; AI Readiness Sprint (From ₱15,500 / $280)</span>
               <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           ) : (
             <Link
-              href="/services/#pillar-health-check"
+              href="/contact/?service=WordPress+High-Speed+Business+Site+%28%E2%82%B127%2C000+%2F+%24480%29"
               className="inline-flex items-center gap-2 bg-surface-2 hover:bg-surface-1 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Website SEO Health Check (From ₱3,500)</span>
+              <span>WordPress Business Site (From ₱27,000 / $480)</span>
               <Icon name="arrow_forward" size={16} className="btn-icon" />
             </Link>
           )}

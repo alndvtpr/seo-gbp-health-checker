@@ -117,7 +117,7 @@ const TECH_STACK_TOOLS = [
   'PageSpeed Insights',
   'Chrome DevTools Profiler',
   'Schema.org Validator',
-  'Next.js 15 App Router',
+  'Next.js App Router',
   'WordPress Core',
   'Cloudflare / Security Headers',
 ]
@@ -254,6 +254,7 @@ export default function TechnicalSeoPage() {
             ]}
             align="center"
             className="mb-6"
+            showJsonLd={false}
           />
         </div>
 
@@ -531,10 +532,10 @@ export default function TechnicalSeoPage() {
               <div className="flex items-center justify-between gap-2 mb-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-[11px] font-bold uppercase tracking-[0.06em]">
                   <Icon name="auto_awesome" size={13} />
-                  Practical Implementation Proof
+                  Self-Initiated Production Build
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  Case Study
+                  Live Portfolio
                 </span>
               </div>
 
@@ -542,17 +543,17 @@ export default function TechnicalSeoPage() {
                 AlainTapiru.com Technical Architecture
               </h3>
               <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-                See this exact technical SEO framework applied in practice on this website: Next.js 15 App Router architecture, 99 Desktop / 96 Mobile PageSpeed performance, sub-second LCP, zero CLS, and fully connected Schema.org entity graphs.
+                See this exact technical SEO framework applied in practice on this website: Next.js App Router architecture, 99 Desktop / 96 Mobile PageSpeed lab scores, sub-second LCP, zero CLS, and fully connected Schema.org entity graphs.
               </p>
 
               <div className="grid grid-cols-3 gap-3 mb-6 pt-4 border-t border-black/10 dark:border-white/10 text-center">
                 <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                   <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">99</span>
-                  <span className="font-sans text-[10px] text-on-surface/70">Desktop Speed</span>
+                  <span className="font-sans text-[10px] text-on-surface/70">Desktop Lab Score</span>
                 </div>
                 <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                   <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">96</span>
-                  <span className="font-sans text-[10px] text-on-surface/70">Mobile Speed</span>
+                  <span className="font-sans text-[10px] text-on-surface/70">Mobile Lab Score</span>
                 </div>
                 <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                   <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">0.000</span>

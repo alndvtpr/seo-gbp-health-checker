@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
+import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { Download, X, Compass, Globe, CheckCircle, ArrowUpRight, Mail, Send, Check, Loader2 } from 'lucide-react'
 import { sendAuditReportAction } from '@/app/actions/send-audit-report'
@@ -273,7 +274,7 @@ function Toast({
   )
 }
 
-// ─── Main Component ──────────────────────────────────────────────────────────
+const emptySubscribe = () => () => {}
 
 export function GBPHealthChecker() {
   const [businessName, setBusinessName] = useState('')
@@ -283,17 +284,17 @@ export function GBPHealthChecker() {
   const [result, setResult] = useState<GBPAuditResponse | null>(null)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [toastMsg, setToastMsg] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-  const [mounted, setMounted] = useState(false)
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  )
   const [activeTab, setActiveTab] = useState<'roadmap' | 'description' | 'templates' | 'keywords'>('roadmap')
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
   const [emailInput, setEmailInput] = useState('')
   const [emailModalError, setEmailModalError] = useState<string | null>(null)
   const [isSendingEmail, setIsSendingEmail] = useState(false)
   const [emailSentSuccess, setEmailSentSuccess] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const closeModal = useCallback(() => {
     setResult(null)
@@ -1453,12 +1454,12 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
               </div>
 
               <div className="no-print flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
-                <a
-                  href="/contact/"
+                <Link
+                  href="/contact/?service=local-seo"
                   className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] hover:brightness-110 active:scale-95 transition-all shadow-[0_0_25px_rgba(230,126,34,0.4)] text-center flex items-center justify-center min-h-[44px]"
                 >
                   Book a Free Discovery Call
-                </a>
+                </Link>
                 <button
                   type="button"
                   onClick={() => {

@@ -7,7 +7,7 @@ import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { TableOfContents } from '@/components/TableOfContents'
 import { CodeBlock } from '@/components/CodeBlock'
-import { BLOG_POSTS, type BlogPost, type BlogImage, type BlogSource } from '@/data/posts'
+import { BLOG_POSTS } from '@/data/posts'
 
 export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -122,6 +122,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           { name: 'Blog', url: '/blog/' },
           { name: post.title, url: `/blog/${post.slug}/` },
         ]}
+        showJsonLd={false}
       />
 
       {/* Article Header */}

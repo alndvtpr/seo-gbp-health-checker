@@ -42,18 +42,18 @@ export function ServicesHero() {
       {/* Action Row */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 sm:mb-16 w-full sm:w-auto motion-reveal">
         <Link
-          href="/contact/"
+          href="/tools/#website-audit"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-8 py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:shadow-[0_0_35px_rgba(224,123,32,0.5)] btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          Schedule a 20-Minute Call
+          Request a Website Health Check
           <Icon name="arrow_forward" size={16} className="btn-icon" />
         </Link>
 
         <a
-          href="#service-directory"
+          href="#packages"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
-          Explore Services ↓
+          View Starting Offers ↓
         </a>
       </div>
 

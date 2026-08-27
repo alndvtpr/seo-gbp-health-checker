@@ -74,7 +74,7 @@ export default function BlogPage() {
       />
 
       {/* Breadcrumb Navigation */}
-      <Breadcrumbs items={[{ name: 'Blog', url: '/blog/' }]} />
+      <Breadcrumbs items={[{ name: 'Blog', url: '/blog/' }]} showJsonLd={false} />
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4 motion-reveal">

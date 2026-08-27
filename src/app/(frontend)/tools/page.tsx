@@ -131,7 +131,7 @@ export default function ToolsPage() {
       />
 
       {/* Breadcrumb Navigation */}
-      <Breadcrumbs items={[{ name: 'Tools', url: '/tools/' }]} />
+      <Breadcrumbs items={[{ name: 'Tools', url: '/tools/' }]} showJsonLd={false} />
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
@@ -162,10 +162,12 @@ export default function ToolsPage() {
           </div>
 
           {/* Currency Toggle */}
-          <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs shrink-0 self-start sm:self-auto">
+          <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs shrink-0 self-start sm:self-auto" role="group" aria-label="Currency selection">
             <button
               type="button"
               onClick={() => setCurrency('PHP')}
+              aria-pressed={currency === 'PHP'}
+              aria-label="Switch to Philippine Peso (PHP)"
               className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
                 currency === 'PHP'
                   ? 'bg-primary-container text-on-primary-container shadow-sm'
@@ -177,6 +179,8 @@ export default function ToolsPage() {
             <button
               type="button"
               onClick={() => setCurrency('USD')}
+              aria-pressed={currency === 'USD'}
+              aria-label="Switch to US Dollar (USD)"
               className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
                 currency === 'USD'
                   ? 'bg-primary-container text-on-primary-container shadow-sm'
@@ -190,10 +194,11 @@ export default function ToolsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           <div>
-            <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-bold">
+            <label htmlFor="salary-exp" className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-bold">
               Experience Level
             </label>
             <select
+              id="salary-exp"
               value={exp}
               onChange={(e) => setExp(e.target.value)}
               className="w-full bg-surface-2/70 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
@@ -206,10 +211,11 @@ export default function ToolsPage() {
           </div>
 
           <div>
-            <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-bold">
+            <label htmlFor="salary-employment" className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-bold">
               Employment Type
             </label>
             <select
+              id="salary-employment"
               value={employment}
               onChange={(e) => setEmployment(e.target.value)}
               className="w-full bg-surface-2/70 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"
@@ -221,10 +227,11 @@ export default function ToolsPage() {
           </div>
 
           <div>
-            <label className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-bold">
+            <label htmlFor="salary-skill" className="font-heading text-xs text-on-surface/80 uppercase tracking-wider block mb-2 font-bold">
               Primary Skillset
             </label>
             <select
+              id="salary-skill"
               value={skill}
               onChange={(e) => setSkill(e.target.value)}
               className="w-full bg-surface-2/70 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface focus:outline-none focus:border-primary-container min-h-[46px]"

@@ -239,6 +239,7 @@ export default function OnPageSeoPage() {
             ]}
             align="center"
             className="mb-6"
+            showJsonLd={false}
           />
         </div>
 
@@ -488,10 +489,10 @@ export default function OnPageSeoPage() {
             <div className="flex items-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-[11px] font-bold uppercase tracking-[0.06em]">
                 <Icon name="auto_awesome" size={13} />
-                Live Case Study
+                Self-Initiated Staging Build
               </span>
               <span className="text-xs font-heading font-bold text-primary-container">
-                WordPress &amp; On-Page SEO
+                WordPress &amp; On-Page Architecture
               </span>
             </div>
 
@@ -499,13 +500,13 @@ export default function OnPageSeoPage() {
               AngatSikat Studio Content &amp; Theme Architecture
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-              Explore how on-page search intent and semantic HTML5 headings were unified in a custom WordPress theme build without bloated templates: 98+ mobile speed, clean crawl paths, and distinct service landing page silos.
+              Explore how on-page search intent and semantic HTML5 headings were unified in a custom WordPress theme build without bloated templates: 98+ mobile lab speed, clean crawl paths, and distinct service landing page silos.
             </p>
 
             <div className="grid grid-cols-3 gap-3 pt-4 border-t border-black/10 dark:border-white/10 text-center max-w-lg">
               <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                 <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">98+</span>
-                <span className="font-sans text-[10px] text-on-surface/70">Mobile Speed</span>
+                <span className="font-sans text-[10px] text-on-surface/70">Mobile Lab Speed</span>
               </div>
               <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                 <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">100%</span>
@@ -513,7 +514,7 @@ export default function OnPageSeoPage() {
               </div>
               <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                 <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">&lt;1.2s</span>
-                <span className="font-sans text-[10px] text-on-surface/70">Load Duration</span>
+                <span className="font-sans text-[10px] text-on-surface/70">Local Benchmark</span>
               </div>
             </div>
           </div>

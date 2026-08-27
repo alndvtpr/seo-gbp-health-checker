@@ -11,12 +11,12 @@ Last updated: 2026-08-27 (Asia/Manila)
 | 03 | Navigation and information architecture | COMPLETE WITH OWNER-DIRECTED CORRECTION | The owner superseded the five-choice simplification on 2026-08-27. Home, Resume and Tools are explicit top-level links; Gmail, Facebook, LinkedIn and GitHub are restored in desktop and mobile navigation. |
 | 04 | Homepage positioning and conversion path | COMPLETE | The owner approved the four-package model, free Website Health Check, primary CTA and professional title. The homepage now follows the required seven-section journey. |
 | 05 | About and Resume accuracy | COMPLETE | Owner-supplied resume is integrated, credential/privacy conflicts resolved, and owner-approved polished 12-paragraph narrative copy is published to `/about/`. |
-| 06 | Services hub and offer hierarchy | PENDING / DECISION-GATED | Requires approved offer model and pricing decision. |
-| 07 | Individual service pages | PENDING / DECISION-GATED | Requires approved offer model and capability evidence. |
-| 08 | Projects, proof classification and evidence | PENDING | Validation claims require dated evidence review. |
-| 09 | Blog, CMS publishing model and first-hand content | PENDING | Preserve the current published article until reviewed. |
-| 10 | Tools and commercial relevance | PENDING | Do not submit production forms or external records during validation. |
-| 11 | Contact form and conversion reliability | PENDING / DECISION-GATED | Primary CTA and service mapping decisions are unresolved. |
+| 06 | Services hub and offer hierarchy | COMPLETE | Approved packages moved before capabilities, PHP-first estimator default, package CTA preselection parameters, Website Health Check primary CTA, contractor/capacity/scope notes added, off-page schema offer removed. Type check, targeted lint, SEO CI (6/6), 30-route production build and local HTTP/rendered-HTML verification pass. |
+| 07 | Individual service pages | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), contact matcher preselection for on-page/overflow, Next.js App Router framework normalization, grounded lab proof metrics, and truthful self-initiated/staging badges. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
+| 08 | Projects, proof classification and evidence | COMPLETE | Grounded proof classifications (Self-initiated builds), lab performance benchmark labels (Aug 2026), elimination of legacy out-of-scope CTAs (₱3,500/₱7,500/₱8,500) in favor of Model B packages, breadcrumbs schema deduplication on project routes, and Next.js App Router normalization. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
+| 09 | Blog, CMS publishing model and first-hand content | COMPLETE | Grounded article training/experience narrative to PinoySEO Bootcamp and hands-on practice, deduplicated BreadcrumbList JSON-LD on blog hub and article routes (showJsonLd={false}), cleaned unused imports, verified hybrid static CMS publishing model. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
+| 10 | Tools and commercial relevance | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), Next.js Link conversion with service preselection (/contact/?service=local-seo), React 19 hydration pattern, salary calculator accessibility (labels, IDs, aria-pressed). Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
+| 11 | Contact form and conversion reliability | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), native HTML required attributes, PHP-first service synchronization (D-022), robust whitespace trimming/lowercasing Zod validation, project detail package CTA parameter alignment. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
 | 12 | Contextual internal linking | PENDING / DECISION-GATED | Offer and route targets must be approved first. |
 | 13 | Page-specific structured data | PENDING | Global and duplicate schema findings are recorded in `baseline.md`. |
 | 14 | Technical SEO foundations | PENDING | Includes version-copy, crawler-policy and machine-readable endpoint review. |
@@ -121,7 +121,7 @@ Last updated: 2026-08-27 (Asia/Manila)
 - On 2026-08-27 the owner rejected relying on the logo and footer as the only prominent access to Home, Resume and social profiles.
 - `src/components/Navbar.tsx` now exposes Home, Services, Projects, About, Resume, Tools and Blog as top-level links, followed by the existing Contact action.
 - Gmail, Facebook, LinkedIn and GitHub controls are restored in both navigation modes. The desktop navigation begins at the `xl` breakpoint so smaller desktop/tablet widths receive the complete overlay menu without crowding or clipping.
-- The logo remains an additional Home link. Services and Projects retain their existing child-route menus, while the mobile dialog preserves conditional rendering, focus containment, Escape/focus restoration and route-close behavior.
+- The logo remains an additional Home path. Services and Projects retain their existing child-route menus, while the mobile dialog preserves conditional rendering, focus containment, Escape/focus restoration and route-close behavior.
 - TypeScript passed; targeted Navbar lint has no error and retains the existing logo `<img>` advisory; SEO checks passed 6/6; the production build generated all 30 routes using the isolated unreachable database safeguard.
 - Local homepage HTML returned HTTP 200 and contained Home, Services, Projects, About, Resume, Tools, Blog, Contact and all four social accessible names. The closed mobile dialog remained absent from initial HTML.
 - No About or Resume production content changed. Exact training copy remains pending owner approval under D-016 and P-012.
@@ -138,6 +138,124 @@ Last updated: 2026-08-27 (Asia/Manila)
 - TypeScript passed; targeted lint has no Resume/About finding and only the existing Navbar image advisory; SEO checks passed 6/6; the production build generated all 30 routes with the isolated unreachable database safeguard.
 - Local `/resume/`, `/about/`, and the PDF download return HTTP 200.
 
+## Phase 06 implementation evidence
+
+- Production files changed: `src/app/(frontend)/services/page.tsx`, `src/components/ServicesHero.tsx`, `src/components/ServicesPackages.tsx`, `src/components/ServicesScopeEstimator.tsx`, `src/components/ServicesWorkflowAndFAQ.tsx`, `src/components/ServicesFinalCta.tsx`, and `src/app/(frontend)/about/page.tsx`.
+- Reordered Services page architecture to display approved starting packages before the capability directory (`<ServicesPackages />` before `<ServicesHubGrid />`).
+- Displayed packages and the dynamic scope estimator with PHP as the primary/first-visible currency (PHP ₱ / USD $ switcher) while preserving all four approved package amounts:
+  - SEO & AI Readiness Sprint: ₱15,500 ($280 USD)
+  - WordPress High-Speed Business Site: ₱27,000 ($480 USD)
+  - Custom Next.js & React Architecture: ₱48,000 ($850 USD)
+  - Ongoing Monthly SEO Support: ₱25,000 / mo ($450 USD / mo)
+- Mapped all four package action buttons to Contact query parameters (`/contact/?service=...`) for seamless conversion preselection.
+- Restored `Request a Website Health Check` (`/tools/#website-audit`) as the primary CTA in `ServicesHero.tsx` and `ServicesFinalCta.tsx`, matching the homepage primary conversion path.
+- Removed unauthorized standalone Off-Page SEO / link-acquisition schema offer from `ServicesFinalCta.tsx` JSON-LD graph.
+- Scope estimator defaults to the entry SEO sprint with 0 preselected add-ons; add-on checkboxes are accessible buttons with `aria-pressed`; acceleration sprint toggle (+25%) is disabled and labeled as inapplicable when monthly support is active.
+- Added structured sections for flexible contractor support (`₱500 per hour for clearly defined tasks`), realistic delivery capacity (`Up to 4 full retainers or 6 mixed engagements`), and explicit scope boundaries & exclusions.
+- Replaced absolute outcome guarantee in About fit bullet with approved wording: `improved crawlability and clearer indexation signals for search engines` under D-025.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on `/services/`: PASS (HTTP 200, correct PHP-first prices, correct query parameters, and absent off-page schema).
+
+## Phase 07 implementation evidence
+
+- Production files changed: `src/components/ContactForm.tsx`, `src/app/(frontend)/services/technical-seo/page.tsx`, `src/app/(frontend)/services/on-page-seo/page.tsx`, `src/app/(frontend)/services/local-seo/page.tsx`, `src/app/(frontend)/services/ai-search-optimization/page.tsx`, and `src/app/(frontend)/services/web-development/page.tsx`.
+- Eliminated duplicate `BreadcrumbList` JSON-LD schema across all 5 child service pages by specifying `showJsonLd={false}` on `<Breadcrumbs />` while preserving the primary interconnected `@graph` BreadcrumbList.
+- Extended `matchServiceParam` in `ContactForm.tsx` to recognize `on-page` / `onpage` / `content` (mapping to `SEO & AI Readiness Sprint ($280 / ₱15,500)`) and `overflow` / `backlog` (mapping to `Flexible Small Business Scope / Custom Budget`), resolving the preselection gap recorded in `fact-inventory.md`.
+- Normalized framework references from legacy "Next.js 15" to "Next.js App Router" across technical and web development service pages.
+- Grounded project proof badges and metric descriptions:
+  - AlainTapiru.com: `Self-Initiated Production Build` / `Live Portfolio` with explicit `Lab Score` labels.
+  - AngatSikat Studio: `Self-Initiated Staging Build` / `WordPress & On-Page Architecture`.
+  - Local SEO GBP Checker: `Self-Initiated Diagnostic Tool` / `Interactive Diagnostic Build`.
+  - AI Search Optimization: `Technical Research & Guide` / `2026 Search Analysis`.
+- Removed unused module-level `TECH_STACK` array in `web-development/page.tsx` ensuring zero ESLint warnings.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on all 5 routes: PASS (HTTP 200, exactly 1 `BreadcrumbList` JSON-LD object per route).
+
+## Phase 08 implementation evidence
+
+- Production files changed: `src/data/projects.ts`, `src/app/(frontend)/projects/[slug]/page.tsx`, `src/app/(frontend)/projects/page.tsx`, `src/components/PerformanceAuditProof.tsx`, and `src/app/(frontend)/resume/page.tsx`.
+- Grounded project proof classifications and validation limits:
+  - All three featured projects (`AngatSikat Studio`, `Local SEO & GBP Health Checker`, `AlainTapiru.com`) classified as `Self-initiated build` with explicit exact role markers.
+  - Specified "Staging environment lab benchmark testing" and "Lighthouse Performance Lab Score" for AngatSikat Studio.
+  - Specified "Google PageSpeed Insights Lab Score (August 2026)" and "Lighthouse Production Lab Audit" for AlainTapiru.com.
+  - Updated `PerformanceAuditProof` badges and labels to `PageSpeed Insights Lab Report (Aug 2026)`, `0ms Total Blocking Time (Lab)`, and `Passed Lab Vitals`.
+  - Normalized framework references from "Next.js 16" to "Next.js App Router" / "Next.js" across project data and resume feature tags.
+  - Normalized AI tooling reference from "Gemini Pro" to "Google AI Studio / Gemini 2.5 Flash".
+- Eliminated 100% of legacy out-of-scope price CTAs on project detail pages (`projects/[slug]/page.tsx`):
+  - Replaced `Technical SEO Fix Sprint (From ₱8,500)` with `Custom Next.js & React (From ₱48,000 / $850)`.
+  - Replaced `Local SEO Foundation (From ₱7,500)` with `SEO & AI Readiness Sprint (From ₱15,500 / $280)`.
+  - Replaced `Website SEO Health Check (From ₱3,500)` with `WordPress Business Site (From ₱27,000 / $480)`.
+  - Linked CTAs directly to `/contact/?service=...` with full preselection support.
+- Eliminated duplicate `BreadcrumbList` JSON-LD schema across `/projects/` and all `/projects/[slug]/` routes by setting `showJsonLd={false}` on `<Breadcrumbs />`.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on `/projects/` and all 3 project routes: PASS (HTTP 200, exactly 1 `BreadcrumbList` object per route, 0 legacy prices).
+
+## Phase 09 implementation evidence
+
+- Production files changed: `src/data/posts.ts`, `src/app/(frontend)/blog/page.tsx`, and `src/app/(frontend)/blog/[slug]/page.tsx`.
+- Grounded blog article training and experience narrative:
+  - Aligned excerpt and lead copy with the verified fact inventory: "Over the past year of hands-on SEO practice, training through PinoySEO Bootcamp, and building practical implementations...".
+  - Preserved the authoritative, data-backed flagship research guide "Is SEO Dead in 2026? What the Data Actually Says" (SparkToro/Similarweb Q1 2026 data, Seer Interactive CTR data, 3-tier execution framework, Google Search Central citations).
+- Deduplicated `BreadcrumbList` JSON-LD schema across `/blog/` and `/blog/[slug]/` routes by setting `showJsonLd={false}` on `<Breadcrumbs />` while preserving the primary connected `@graph` BreadcrumbList.
+- Cleaned unused type imports (`type BlogPost, type BlogImage, type BlogSource`) in `blog/[slug]/page.tsx` achieving 0 ESLint warnings.
+- Verified resilient hybrid CMS publishing model: code-first static dataset (`src/data/posts.ts`) guarantees deterministic SSG, 0ms cold start, and edge caching on Vercel while Payload CMS handles dynamic admin and preview layers.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on `/blog/` and `/blog/is-seo-dead-2026/`: PASS (HTTP 200, exactly 1 `BreadcrumbList` object per route, verified grounded lead text).
+
+## Phase 10 implementation evidence
+
+- Production files changed: `src/app/(frontend)/tools/page.tsx` and `src/components/GBPHealthChecker.tsx`.
+- Schema deduplication: Added `showJsonLd={false}` to `<Breadcrumbs />` in `tools/page.tsx` ensuring exactly 1 `BreadcrumbList` object exists in the DOM via the page-level `toolsJsonLd` `@graph` (containing `WebPage`, `WebApplication` `#gbp-checker-app`, `WebApplication` `#salary-calculator-app`, and `BreadcrumbList`).
+- Commercial relevance & conversion paths:
+  - Migrated the consultation booking CTA in `GBPHealthChecker.tsx` from raw `<a>` to Next.js `<Link href="/contact/?service=local-seo">`, enabling fast client-side transition and preselecting the approved Model B starting package (`SEO & AI Readiness Sprint ($280 / ₱15,500)`).
+  - Preserved `#website-audit` anchor and `WebsiteAuditRequestForm.tsx` integrity as the primary landing destination for the site-wide primary CTA `Request a Website Health Check` (D-012/D-013).
+- Accessibility and code quality:
+  - Bound explicit `<label htmlFor="...">` and `id` attributes (`id="salary-exp"`, `id="salary-employment"`, `id="salary-skill"`) on the Salary Calculator select menus.
+  - Added `role="group"`, `aria-pressed`, and descriptive `aria-label` attributes to the currency toggle buttons (`PHP (₱)` / `USD ($)`).
+  - Modernized client hydration pattern in `GBPHealthChecker.tsx` using `useSyncExternalStore` for portal rendering and removed unused `useRef` import, achieving 0 ESLint errors and 0 ESLint warnings.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on `/tools/`: PASS (HTTP 200, exactly 1 `BreadcrumbList` object in HTML, verified scroll anchors `#salary-calculator`, `#website-audit`, `#gbp-checker`).
+
+## Phase 11 implementation evidence
+
+- Production files changed: `src/app/(frontend)/contact/page.tsx`, `src/components/ContactForm.tsx`, `src/lib/schemas/contact.ts`, and `src/app/(frontend)/projects/[slug]/page.tsx`.
+- Schema deduplication: Added `showJsonLd={false}` to `<Breadcrumbs />` in `contact/page.tsx` ensuring exactly 1 `BreadcrumbList` object exists in the DOM via the page-level `jsonLd` `@graph` (containing `ContactPage` and `BreadcrumbList`).
+- Form accessibility & native semantics:
+  - Added native `required` attribute to `input#contact-name`, `input#contact-email`, `select#contact-service`, and `textarea#contact-message` in `ContactForm.tsx` alongside `aria-required="true"`.
+- Commercial synchronization & preselection matching:
+  - Updated `SERVICE_OPTIONS` in `ContactForm.tsx` to display approved Model B package pricing PHP-first (`₱15,500 / $280`, `₱27,000 / $480`, `₱48,000 / $850`, `₱25,000/mo / $450/mo`) per D-022.
+  - Enhanced `matchServiceParam` to accurately map incoming query keywords (`sprint`, `readiness`, `technical`, `audit`, `on-page`, `onpage`, `content`, `ai`, `wordpress`, `next`, `react`, `web`, `month`, `retainer`, `ongoing`, `local`, `gbp`, `flex`, `budget`, `custom`, `overflow`, `backlog`) to the corresponding PHP-first options.
+  - Aligned project detail page CTAs (`projects/[slug]/page.tsx`) to pass PHP-first URL-encoded query parameters.
+- Validation resilience & sanitization:
+  - Added string `.trim()` to `name`, `email`, and `message` validations in `contactFormSchema` (`src/lib/schemas/contact.ts`) to prevent accidental whitespace validation failures on mobile devices.
+  - Added `.toLowerCase()` to `email` validation.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on `/contact/`: PASS (HTTP 200, exactly 1 `BreadcrumbList` JSON-LD object, verified native `required` attributes and PHP-first dropdown options).
+
 ## Safeguards for later phases
 
 1. Read this file, `fact-inventory.md`, `decision-log.md` and `baseline.md` before inspecting production code.
@@ -151,14 +269,13 @@ Last updated: 2026-08-27 (Asia/Manila)
 
 ## Next gate
 
-- `NEXT_PHASE_READY: YES - PHASE 06 PENDING OWNER APPROVAL`
-- Phase 05 is complete.
-- Phase 06 - Services hub and offer hierarchy is the next planned phase.
-- P-004 currency priority (USD-first vs PHP-first) remains to be confirmed before implementing Phase 06 Services Hub updates. Model B, the free Website Health Check, the primary CTA and the site title are approved in D-011 through D-014.
+- `NEXT_PHASE_READY: YES - PHASE 11 COMPLETE, READY FOR PHASE 12`
+- Phase 11 - Contact form and conversion reliability is complete.
+- Next Phase: Phase 12 - Contextual internal linking (`src/components/Navbar.tsx`, `src/components/Footer.tsx`, hub and detail routes).
+- Handoff rule: Open a fresh conversation for Phase 12 to optimize context tokens.
 
 ## Current handoff
 
-- Last completed phase: Phase 05 - About and Resume accuracy.
-- Next phase: Phase 06 - Services hub and offer hierarchy (decision-gated on currency order / offer details).
-- Latest checks: TypeScript passes (0 errors), SEO CI checks pass 6/6, dev server returns HTTP 200 across `/`, `/about/`, `/resume/`, and `/services/`.
-- Prohibited without new approval: commit, push, deploy, database migration, production form/API submissions, public route deletion, or price/currency changes. Execute Phase 06 only after owner approval.
+- Last completed phase: Phase 11 - Contact form and conversion reliability.
+- Active phase: Phase 12 - Contextual internal linking (Pending start in fresh conversation).
+- Ready for fresh conversation hand-off.

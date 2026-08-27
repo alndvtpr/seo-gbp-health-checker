@@ -239,6 +239,7 @@ export default function AiSearchOptimizationPage() {
             ]}
             align="center"
             className="mb-6"
+            showJsonLd={false}
           />
         </div>
 
@@ -488,10 +489,10 @@ export default function AiSearchOptimizationPage() {
             <div className="flex items-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-[11px] font-bold uppercase tracking-[0.06em]">
                 <Icon name="auto_awesome" size={13} />
-                Technical Research &amp; Guides
+                Technical Research &amp; Guide
               </span>
               <span className="text-xs font-heading font-bold text-primary-container">
-                AEO &amp; GEO Methodology
+                2026 Search Analysis
               </span>
             </div>
 

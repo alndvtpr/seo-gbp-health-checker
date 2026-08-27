@@ -7,17 +7,17 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 export const metadata = generateMetadata({
   title: 'SEO-Ready Web Design & Development | Next.js & WordPress | Alain Dave Tapiru',
   description:
-    'High-performance, SEO-ready web design and development. Code-first Next.js 15 App Router architectures and bespoke WordPress themes engineered for speed, clean code, and search crawlability.',
+    'High-performance, SEO-ready web design and development. Code-first Next.js App Router architectures and bespoke WordPress themes engineered for speed, clean code, and search crawlability.',
   url: 'https://www.alaintapiru.com/services/web-development/',
 })
 
 const WEB_DEV_CAPABILITIES = [
   {
     id: 'nextjs-architecture',
-    title: 'Custom Next.js 15 & React Development',
+    title: 'Custom Next.js & React Development',
     icon: 'code_blocks',
     description:
-      'Code-first web applications built with the modern Next.js 15 App Router, React 19, and Server Components for instant navigation, sub-second TTFB, and flawless crawlability.',
+      'Code-first web applications built with the modern Next.js App Router, React 19, and Server Components for fast navigation, sub-second TTFB, and streamlined search crawlability.',
     deliverables: [
       'Static Site Generation (SSG) & Server-Side Rendering (SSR)',
       'Clean modular TypeScript component architecture',
@@ -107,16 +107,6 @@ const WORKFLOW_STEPS = [
   },
 ]
 
-const TECH_STACK = [
-  'Next.js 15 (App Router)',
-  'React 19',
-  'TypeScript',
-  'Tailwind CSS',
-  'WordPress Core & PHP',
-  'Payload CMS 3.0',
-  'Google Analytics 4',
-  'Google Search Console',
-]
 
 const FAQS = [
   {
@@ -151,7 +141,7 @@ const WEB_DEV_SCHEMA = {
       url: 'https://www.alaintapiru.com/services/web-development/',
       serviceType: 'Web Design & Development',
       description:
-        'High-performance, SEO-ready web design and development. Code-first Next.js 15 App Router architectures and bespoke WordPress themes engineered for speed, clean code, and search crawlability.',
+        'High-performance, SEO-ready web design and development. Code-first Next.js App Router architectures and bespoke WordPress themes engineered for speed, clean code, and search crawlability.',
       provider: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
@@ -168,7 +158,7 @@ const WEB_DEV_SCHEMA = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Next.js 15 & React Code-First Development',
+              name: 'Next.js & React Code-First Development',
             },
           },
           {
@@ -250,6 +240,7 @@ export default function WebDevelopmentPage() {
             ]}
             align="center"
             className="mb-6"
+            showJsonLd={false}
           />
         </div>
 
@@ -270,7 +261,7 @@ export default function WebDevelopmentPage() {
 
         {/* Subhead */}
         <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-          Build fast, accessible, and easily discoverable websites. We build code-first Next.js 15 architectures and bespoke WordPress themes engineered with clean semantics, sub-second load times, and built-in search crawlability.
+          Build fast, accessible, and easily discoverable websites. We build code-first Next.js architectures and bespoke WordPress themes engineered with clean semantics, sub-second load times, and built-in search crawlability.
         </p>
 
         {/* Action Row */}
@@ -294,7 +285,7 @@ export default function WebDevelopmentPage() {
         {/* 3-Item Trust Bar */}
         <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {[
-            'Next.js 15 & Custom WordPress Themes',
+            'Next.js & Custom WordPress Themes',
             'Core Web Vitals & Zero-CLS Engineering',
             'Built-in Schema & Analytics Tracking',
           ].map((point, idx) => (
@@ -515,18 +506,18 @@ export default function WebDevelopmentPage() {
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <span className="text-[10px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-2.5 py-0.5 rounded bg-black/5 dark:bg-white/5">
-                  Next.js 15 &bull; Code-First
+                  Next.js &bull; Self-Initiated Build
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  99 Performance &bull; 0ms TBT
+                  99 Desktop Lab &bull; 0.000 CLS
                 </span>
               </div>
 
               <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2">
-                AlainTapiru.com Custom Next.js 15 Portfolio
+                AlainTapiru.com Custom Next.js Architecture
               </h3>
               <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-6">
-                Engineered with React 19 Server Components, Tailwind CSS variables, structured JSON-LD entity graphs, and zero layout shift.
+                Engineered with Next.js App Router, React 19 Server Components, Tailwind CSS variables, structured JSON-LD entity graphs, and zero layout shift.
               </p>
 
               <div className="flex flex-wrap gap-2 pt-2 border-t border-black/10 dark:border-white/10 mb-6">
@@ -553,10 +544,10 @@ export default function WebDevelopmentPage() {
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <span className="text-[10px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-2.5 py-0.5 rounded bg-black/5 dark:bg-white/5">
-                  WordPress &bull; Bespoke Theme
+                  WordPress &bull; Staging Build
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  98+ Mobile Score
+                  98+ Mobile Lab Score
                 </span>
               </div>
 
@@ -564,7 +555,7 @@ export default function WebDevelopmentPage() {
                 AngatSikat Studio Bespoke Theme
               </h3>
               <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-6">
-                Custom PHP WordPress theme developed from scratch without slow page builders, featuring clean semantic markup and fast loading speeds.
+                Custom PHP WordPress theme developed from scratch without slow page builders, featuring clean semantic markup and fast mobile loading speeds.
               </p>
 
               <div className="flex flex-wrap gap-2 pt-2 border-t border-black/10 dark:border-white/10 mb-6">
@@ -713,7 +704,7 @@ export default function WebDevelopmentPage() {
           </h2>
 
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface/80 max-w-2xl mx-auto leading-relaxed">
-            Let&apos;s build a high-performance Next.js 15 app or custom WordPress website engineered with clean code and built-in search crawlability.
+            Let&apos;s build a high-performance Next.js app or custom WordPress website engineered with clean code and built-in search crawlability.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

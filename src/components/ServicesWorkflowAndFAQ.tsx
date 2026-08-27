@@ -12,23 +12,23 @@ interface WorkflowStep {
 const WORKFLOW_STEPS: WorkflowStep[] = [
   {
     step: '01',
-    title: 'Discovery & Technical Access',
-    desc: 'GA4, GSC, CMS & competitor data onboarding',
+    title: 'Discovery & Access',
+    desc: 'Confirm goals, scope, website access, Search Console, GA4, and CMS requirements',
   },
   {
     step: '02',
     title: 'Baseline Benchmarking',
-    desc: 'Auditing current indexation, site speed & ranking signals',
+    desc: 'Review crawl health, search visibility, priority pages, and measurable starting conditions',
   },
   {
     step: '03',
-    title: 'Agile Execution Sprints',
-    desc: 'Bi-weekly technical, semantic & on-page optimizations',
+    title: 'Prioritized Implementation',
+    desc: 'Work through the agreed technical, on-page, local, or web backlog within the confirmed scope',
   },
   {
     step: '04',
-    title: 'Transparent Reporting',
-    desc: 'Live Looker Studio access + monthly Loom breakdowns',
+    title: 'Review & Next Plan',
+    desc: 'Share completed work, key Search Console and GA4 patterns, open items, and the next priorities',
   },
 ]
 
@@ -56,7 +56,7 @@ const FAQS: FAQItem[] = [
   {
     question: 'How do you track and report progress?',
     answer:
-      'You get access to a structured Looker Studio dashboard tracking organic search performance, impressions, clicks, and ranking movements, supported by regular update walkthroughs.',
+      'Reporting follows the agreed scope. Monthly support includes an activity log, a review of relevant Search Console and GA4 patterns, and a prioritized next-step plan. A configured Looker Studio and GA4 dashboard is available as an optional add-on when the required access and measurement setup are in place.',
   },
 ]
 

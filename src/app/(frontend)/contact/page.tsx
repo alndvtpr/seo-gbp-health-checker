@@ -76,7 +76,7 @@ export default function ContactPage() {
       />
 
       {/* Breadcrumb Navigation */}
-      <Breadcrumbs items={[{ name: 'Contact', url: '/contact/' }]} />
+      <Breadcrumbs items={[{ name: 'Contact', url: '/contact/' }]} showJsonLd={false} />
 
       {/* Header with Single Clear Question */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">

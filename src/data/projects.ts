@@ -77,7 +77,7 @@ export const angatSikatProject: Project = {
     'Elementor compatibility for client-friendly content editing',
   ],
   validationNotes:
-    'Validated on active staging environment (https://angat-sikat.freedev.app/) with 98+ Mobile Lighthouse performance score and sub-1.2s local benchmark load times.',
+    'Validated on active staging environment (https://angat-sikat.freedev.app/) with lab benchmark testing showing 98+ Mobile Lighthouse performance score and sub-1.2s local load timing.',
   liveUrl: 'https://angat-sikat.freedev.app/',
   rel: 'noopener noreferrer nofollow',
   featured: true,
@@ -104,9 +104,9 @@ export const angatSikatProject: Project = {
     },
   ],
   metrics: [
-    { label: 'Mobile Speed', value: '98+', detail: 'Lighthouse Performance Score' },
+    { label: 'Mobile Speed', value: '98+', detail: 'Lighthouse Performance Lab Score' },
     { label: 'Crawl Cleanliness', value: '100%', detail: 'Semantic HTML5 structure' },
-    { label: 'Load Duration', value: '<1.2s', detail: 'Local benchmark test' },
+    { label: 'Load Duration', value: '<1.2s', detail: 'Local benchmark lab test' },
   ],
   techStack: [
     'WordPress',
@@ -140,7 +140,7 @@ export const localSeoGbpProject: Project = {
   category: 'Local SEO',
   tags: ['Local SEO', 'GBP Audit', 'Interactive Tool', 'Next.js', 'AI Insights'],
   role: 'Developer & SEO Specialist',
-  exactRole: 'Tool Architect, Full-Stack Developer & SEO Specialist',
+  exactRole: 'Tool Architect, Full-Stack Developer & SEO Specialist (Self-Initiated Diagnostic Tool)',
   problemOrGoal:
     'Small business owners often do not understand why competitors outrank them on Google Maps or local search. The goal was to build a fast, transparent diagnostic tool that scans public Google Business Profile signals and translates technical local ranking factors into actionable weekly milestones.',
   workCompleted: [
@@ -150,10 +150,10 @@ export const localSeoGbpProject: Project = {
     'Implemented client-side PDF executive report generation for immediate download and sharing.',
   ],
   methodsAndTools: [
-    'Next.js 16 (App Router & Server Actions)',
+    'Next.js App Router (Server Actions & API Routes)',
     'React 19 & Tailwind CSS (Accessible interactive UI)',
     'Serper.dev Places API (Google Maps signal ingestion)',
-    'Google AI Studio / Gemini Pro (Contextual roadmap synthesis)',
+    'Google AI Studio / Gemini 2.5 Flash (Contextual roadmap synthesis)',
     'jsPDF / html2canvas (Executive PDF summary export)',
   ],
   validationNotes:
@@ -181,7 +181,7 @@ export const localSeoGbpProject: Project = {
     },
   ],
   metrics: [
-    { label: 'Audit Speed', value: '3.2s', detail: 'Places API diagnostic runtime' },
+    { label: 'Audit Speed', value: '~3.2s', detail: 'Places API diagnostic runtime' },
     { label: 'Signal Vector', value: '10 Points', detail: 'Public profile trust indicators' },
     { label: 'Report Format', value: '3 Pages', detail: 'Executive PDF roadmap export' },
   ],
@@ -201,29 +201,29 @@ export const portfolioProject: Project = {
   shortDescription:
     'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, Core Web Vitals optimization, and AI discoverability.',
   fullDescription:
-    'A performance-focused personal portfolio combining Next.js 16, Tailwind CSS, and Payload CMS 3.0. Features zero layout shift, interaction-deferred WebGL canvas rendering, complete JSON-LD structured data graph hierarchy, and LLM-friendly content endpoints (/llms.txt).',
+    'A performance-focused personal portfolio combining Next.js App Router, Tailwind CSS, and Payload CMS 3.0. Features zero layout shift, interaction-deferred WebGL canvas rendering, complete JSON-LD structured data graph hierarchy, and LLM-friendly content endpoints (/llms.txt).',
   category: 'Technical SEO',
-  tags: ['Technical SEO', 'Next.js 16', 'Tailwind CSS', 'Payload CMS', 'Core Web Vitals'],
+  tags: ['Technical SEO', 'Next.js', 'Tailwind CSS', 'Payload CMS', 'Core Web Vitals'],
   role: 'Technical SEO & Web Architecture',
   exactRole: 'Lead Architect, Designer & Developer (Personal Production Build)',
   problemOrGoal:
-    'Demonstrate practical mastery of modern technical SEO and front-end engineering by building a website that achieves exceptional Core Web Vitals, flawless semantic crawlability, structured JSON-LD entity graphs, and smooth dual-theme accessibility.',
+    'Demonstrate practical mastery of modern technical SEO and front-end engineering by building a website that achieves high Core Web Vitals lab benchmarks, clean semantic crawlability, structured JSON-LD entity graphs, and smooth dual-theme accessibility.',
   workCompleted: [
-    'Architected Next.js 16 App Router application with static generation (SSG) across 30+ routes.',
+    'Architected Next.js App Router application with static generation (SSG) across 30+ routes.',
     'Implemented comprehensive Schema.org JSON-LD graph (Person, WebSite, ProfessionalService, BreadcrumbList, CollectionPage).',
     'Engineered zero Cumulative Layout Shift (CLS) with explicit image sizing and system fallback typography.',
     'Built lightweight WebGL shader background that auto-pauses during idle states to maintain 0ms Total Blocking Time.',
     'Created /llms.txt and /llms-full.txt endpoints for automated AI model discoverability.',
   ],
   methodsAndTools: [
-    'Next.js 16 & React 19 (App Router, Turbopack)',
+    'Next.js & React 19 (App Router, Turbopack)',
     'TypeScript & Tailwind CSS v4 (Strict token-based design system)',
     'Payload CMS 3.0 & Supabase PostgreSQL (Structured headless data)',
     'Google Search Console & Google Analytics 4',
     'Google PageSpeed Insights & Lighthouse Automated CI Checks',
   ],
   validationNotes:
-    'Production build independently verified with Google PageSpeed Insights: 99 Desktop, 96 Mobile, and 100/100 Lighthouse SEO & Best Practices scores.',
+    'Production build lab audit verified with Google PageSpeed Insights (August 2026): 99 Desktop, 96 Mobile, and 100/100 Lighthouse SEO & Best Practices scores.',
   liveUrl: 'https://github.com/alndvtpr',
   featured: true,
   coreServices: [
@@ -247,11 +247,11 @@ export const portfolioProject: Project = {
     },
   ],
   metrics: [
-    { label: 'Desktop PageSpeed', value: '99', detail: 'Google PageSpeed Insights (Production)' },
-    { label: 'Mobile PageSpeed', value: '96', detail: 'Google PageSpeed Insights (Production)' },
-    { label: 'SEO & Best Practices', value: '100/100', detail: 'Lighthouse Production Audit' },
+    { label: 'Desktop PageSpeed', value: '99', detail: 'Google PageSpeed Insights Lab Score (August 2026)' },
+    { label: 'Mobile PageSpeed', value: '96', detail: 'Google PageSpeed Insights Lab Score (August 2026)' },
+    { label: 'SEO & Best Practices', value: '100/100', detail: 'Lighthouse Production Lab Audit' },
   ],
-  techStack: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'Payload CMS 3.0', 'Supabase'],
+  techStack: ['Next.js App Router', 'TypeScript', 'Tailwind CSS', 'Payload CMS 3.0', 'Supabase'],
   image: '/images/projects/alaintapiru-technical-seo-web-project-preview.webp',
   imageAlt: 'AlainTapiru.com technical SEO and web architecture project preview',
   gallery: [

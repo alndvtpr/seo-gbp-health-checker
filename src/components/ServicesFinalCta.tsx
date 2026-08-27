@@ -139,16 +139,6 @@ const SERVICES_JSON_LD = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'Off-Page SEO & Authority Building',
-              serviceType: 'Off-Page SEO & Link Acquisition',
-              description:
-                'Quality backlink acquisition strategies, local citation building, and backlink profile analysis.',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
               name: 'Local SEO & Google Business Profile (GBP) Optimization',
               serviceType: 'Local SEO Optimization',
               description:
@@ -202,7 +192,7 @@ const SERVICES_JSON_LD = {
           name: 'How do you track and report progress?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'You get access to a structured Looker Studio dashboard tracking organic search performance, impressions, clicks, and ranking movements, supported by regular update walkthroughs.',
+            text: 'Reporting follows the agreed scope. Monthly support includes an activity log, a review of relevant Search Console and GA4 patterns, and a prioritized next-step plan. A configured Looker Studio and GA4 dashboard is available as an optional add-on when the required access and measurement setup are in place.',
           },
         },
       ],
@@ -247,7 +237,7 @@ export function ServicesFinalCta() {
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
-            <span>20-minute conversation • Direct communication • No obligations</span>
+            <span>Free entry-point diagnostic • Clear scope • No obligations</span>
           </div>
 
           {/* Headline */}
@@ -266,12 +256,12 @@ export function ServicesFinalCta() {
           {/* Action Row */}
           <div className="pt-2">
             <Link
-              href="/contact/"
-              aria-label="Schedule a 20-Minute Call"
+              href="/tools/#website-audit"
+              aria-label="Request a Website Health Check"
               className="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-9 py-4 rounded-full shadow-[0_0_30px_rgba(224,123,32,0.4)] hover:shadow-[0_0_40px_rgba(224,123,32,0.6)] btn-motion min-h-[48px] focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <span>Schedule a 20-Minute Call</span>
-              <Icon name="calendar_month" size={16} className="btn-icon" />
+              <span>Request a Website Health Check</span>
+              <Icon name="search_check" size={16} className="btn-icon" />
             </Link>
           </div>
         </div>

@@ -18,7 +18,7 @@ export function PerformanceAuditProof({
   className = '',
   eyebrow = '02. Empirical Validation & Audit Proof',
   title = 'Google PageSpeed Insights Audit Scores',
-  subtitle = 'Empirical Lighthouse and Core Web Vitals benchmarks for alaintapiru.com demonstrating fast load velocity, 0ms Total Blocking Time, and 100/100 SEO health.',
+  subtitle = 'Empirical Lighthouse and PageSpeed Insights lab benchmarks for alaintapiru.com demonstrating fast load velocity, 0ms Total Blocking Time in lab testing, and 100/100 SEO health.',
   compact = false,
 }: PerformanceAuditProofProps) {
   const [activeTab, setActiveTab] = useState<TabType>('compare')
@@ -41,7 +41,7 @@ export function PerformanceAuditProof({
           </span>
           <span className="text-on-surface/40 text-xs hidden sm:inline">•</span>
           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            Official PageSpeed Report
+            PageSpeed Insights Lab Report (Aug 2026)
           </span>
         </div>
 
@@ -66,7 +66,7 @@ export function PerformanceAuditProof({
             <span className="text-xl sm:text-2xl font-black font-heading text-on-surface">99</span>
             <span className="text-[11px] text-emerald-400 font-bold">/ 100</span>
           </div>
-          <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0ms Total Blocking Time</span>
+          <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0ms Total Blocking Time (Lab)</span>
         </div>
 
         <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
@@ -82,13 +82,13 @@ export function PerformanceAuditProof({
 
         <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-primary-container uppercase tracking-wider flex items-center gap-1">
-            🟢 Core Web Vitals
+            🟢 Lab Performance Vitals
           </span>
           <div className="flex items-baseline gap-1 mt-1">
             <span className="text-xl sm:text-2xl font-black font-heading text-on-surface">100%</span>
             <span className="text-[11px] text-emerald-400 font-bold">Passed</span>
           </div>
-          <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0.000 CLS &bull; Sub-1.2s LCP</span>
+          <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0.000 CLS &bull; Sub-1.2s LCP (Lab)</span>
         </div>
 
         <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
@@ -278,7 +278,7 @@ export function PerformanceAuditProof({
                 <Icon name="check_circle" size={16} className="text-emerald-400" />
                 <span className="text-on-surface/80 font-medium">Mobile Simulated Slow 4G</span>
               </div>
-              <span className="text-emerald-400 font-heading font-bold">Passed Vitals</span>
+              <span className="text-emerald-400 font-heading font-bold">Passed Lab Vitals</span>
             </div>
           </div>
         )}

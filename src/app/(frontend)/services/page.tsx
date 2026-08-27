@@ -25,7 +25,15 @@ export default function ServicesPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 2. Core Service Ecosystem Hub Grid & Connected Proofs */}
+      {/* 2. Approved Engagement Packages */}
+      <ServicesPackages />
+
+      {/* Ambient Section Divider */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
+      </div>
+
+      {/* 3. Core Service Capabilities & Connected Proofs */}
       <ServicesHubGrid />
 
       {/* Ambient Section Divider */}
@@ -33,16 +41,8 @@ export default function ServicesPage() {
         <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
       </div>
 
-      {/* 3. Interactive Scope & Timeline Estimator */}
+      {/* 4. Interactive Scope & Timeline Estimator */}
       <ServicesScopeEstimator />
-
-      {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
-
-      {/* 4. 4-Tier Engagement Pricing / Packaging Grid */}
-      <ServicesPackages />
 
       {/* Ambient Section Divider */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">

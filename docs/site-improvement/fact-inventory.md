@@ -51,29 +51,30 @@ No verified client case study or testimonial with publication permission was fou
 
 ## Current commercial state
 
-The owner approved this current four-package structure as Model B on 2026-08-27. Exact prices remain preserved while currency-order and later package-detail decisions remain separately gated.
+The owner approved this current four-package structure as Model B on 2026-08-27 and approved PHP-first price presentation on the same date. Exact prices remain preserved while later package-detail decisions remain separately gated.
 
-| Offer | Current USD | Current PHP | Current scope marker |
+| Offer | Current PHP | Current USD | Current scope marker |
 |---|---:|---:|---|
-| SEO & AI Readiness Sprint | $280 | PHP 15,500 | Technical audit, schema, intent/AI-readiness review, keyword mapping and 30-day blueprint |
-| WordPress High-Speed Business Site | $480 | PHP 27,000 | Responsive WordPress theme, technical SEO/schema, speed/security, analytics and handoff |
-| Custom Next.js & React Architecture | $850 | PHP 48,000 | Next.js/React build, image pipeline, performance, schema and component architecture |
-| Ongoing Monthly SEO Support | $450/month | PHP 25,000/month | 20-25 hours/month plus technical/on-page/local work, reporting and activity log |
+| SEO & AI Readiness Sprint | PHP 15,500 | $280 | Technical audit, schema, intent/AI-readiness review, keyword mapping and 30-day blueprint |
+| WordPress High-Speed Business Site | PHP 27,000 | $480 | Responsive WordPress theme, technical SEO/schema, speed/security, analytics and handoff |
+| Custom Next.js & React Architecture | PHP 48,000 | $850 | Next.js/React build, image pipeline, performance, schema and component architecture |
+| Ongoing Monthly SEO Support | PHP 25,000/month | $450/month | 20-25 hours/month plus technical/on-page/local work, reporting and activity log |
 
 Additional observed commercial facts:
 
-- Services estimator default currency is USD; toggle order is USD then PHP.
+- The owner-approved future presentation order is PHP-first. The current Services estimator still defaults to USD and displays its toggle as USD then PHP until Phase 06 implements the approved ordering.
+- `₱500/hr` is an owner-approved hourly contractor rate. It supplements the fixed-sprint packages and does not replace their approved amounts.
 - Default estimator selection is Custom Next.js with Core Web Vitals and schema add-ons, producing a four-week, $1,060 initial estimate.
 - Add-ons: Core Web Vitals $120/PHP 6,800; schema $90/PHP 5,000; Local SEO/GBP $90/PHP 5,000; Looker Studio/GA4 $70/PHP 4,000.
 - Accelerated delivery adds 25 percent and reduces estimated duration to 65 percent of standard, with a 1.5-week minimum.
-- Older project-page CTAs still advertise PHP 3,500, PHP 7,500 and PHP 8,500 offers that do not match the current four-package model.
-- Current contact preselection does not recognize `Overflow Task / Backlog Support` or `On-Page SEO Optimization`.
+- Older project-page CTAs previously advertised PHP 3,500, PHP 7,500 and PHP 8,500 offers; resolved in Phase 08 to map directly to the approved Model B starting packages with Contact preselection.
+- Contact preselection recognizes all core service parameters, On-Page SEO Optimization, and Overflow Task / Backlog Support as of Phase 07.
 - Both homepage web-package cards use `React & WordPress Web Development`; the matcher checks `wordpress` first, so the custom Next.js card can preselect the WordPress package.
 - Services package buttons point to `/contact/` without a package query parameter.
 
 Remaining owner decisions before later commercial phases:
 
-1. Confirm PHP-first or USD-first presentation, add-ons and the monthly hour cap when Phase 06 or a later pricing phase reaches that gate.
+1. Confirm add-ons and the monthly hour cap when Phase 06 or a later pricing phase reaches that gate.
 2. Confirm actual delivery capacity and exclusions before package-detail expansion.
 
 ## SEO and web capability evidence classification
@@ -84,7 +85,7 @@ Remaining owner decisions before later commercial phases:
 | On-page SEO | Not evidenced | Limited bootcamp contribution | Yes | Yes | Yes | Yes | Can describe scoped tasks with origin labels. |
 | Keyword research/mapping | Not evidenced | Not independently established | Yes | Yes | Yes | Yes | Publish as trained/personal capability, not proven client outcome. |
 | Local SEO/GBP | Not evidenced | Not evidenced | Yes, through the GBP diagnostic tool | Training/familiarity indicated | Yes | Yes | Tool implementation supports familiarity, not paid GBP management results. |
-| Off-page SEO/link building | Not evidenced | Not evidenced | No acquired-link artifact found | Resume says bootcamp coverage | Sales exposure only | Yes | No standalone service, authority-link-building promise or outcome claim is approved. |
+| Off-page SEO/link building | Not evidenced | Not evidenced | No acquired-link artifact found | Owner-approved About wording covers guest posting, social signals, local/niche directories, collaboration/link-building opportunities and backlink development as bootcamp training | Sales exposure only | Yes | Publish the approved training description with training context; no standalone service, authority-link-building promise or outcome claim is approved. |
 | WordPress development | Not evidenced as paid delivery | Bootcamp contribution unresolved | Yes, AngatSikat staging build | Some training contribution | Sales exposure | Yes | Publish as self-initiated/staging implementation unless stronger evidence is approved. |
 | Next.js/React development | Not evidenced as paid delivery | Not evidenced | Yes, portfolio and GBP tool | Not required | Sales exposure | Yes | Publish as personal implementation; avoid unsupported client-delivery scale. |
 | Analytics/reporting | Not evidenced as paid delivery | Not evidenced | GA4 integration and dashboard-related code exist | Training/familiarity indicated | Sales exposure | Yes | Do not promise a recurring reporting process until capacity and artifacts are verified. |
@@ -94,6 +95,6 @@ Remaining owner decisions before later commercial phases:
 - `llms-full.txt` describes Off-Page SEO & Digital PR and high-authority backlink strategy without supporting delivery evidence.
 - `llms.txt`, service copy, navigation and project text still contain `Next.js 15` although the installed framework is 16.3.0.
 - Global schema labels every frontend route with a homepage ProfilePage and ProfessionalService/LocalBusiness graph.
-- Current project validation copy uses terms such as `independently verified`, `flawless`, `zero TBT` and fixed PageSpeed scores that require dated evidence and careful lab/field labeling.
-- Blog copy says `a year of intensive SEO training`; the documented bootcamp ran Aug-Sep 2025, so this wording requires evidence or narrowing.
-- The current article includes 2026 statistics that require source-date and primary-source verification in its content phase.
+- Project validation copy uses explicit lab benchmark labels (Google PageSpeed Insights August 2026, Lighthouse lab scores, 0ms TBT in lab conditions); resolved in Phase 08.
+- Blog copy previously stated `a year of intensive SEO training`; resolved in Phase 09 to `hands-on SEO practice, training through PinoySEO Bootcamp, and building practical implementations`.
+- The current article includes 2026 statistics with direct primary-source citations (SparkToro/Similarweb Q1 2026 study, Seer Interactive CTR analysis, Google Search Central).

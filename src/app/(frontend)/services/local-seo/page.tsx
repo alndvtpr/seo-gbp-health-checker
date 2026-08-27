@@ -253,6 +253,7 @@ export default function LocalSeoPage() {
             ]}
             align="center"
             className="mb-6"
+            showJsonLd={false}
           />
         </div>
 
@@ -502,10 +503,10 @@ export default function LocalSeoPage() {
             <div className="flex items-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-heading text-[11px] font-bold uppercase tracking-[0.06em]">
                 <Icon name="auto_awesome" size={13} />
-                Self-Built Diagnostic Engine
+                Self-Initiated Diagnostic Tool
               </span>
               <span className="text-xs font-heading font-bold text-primary-container">
-                Interactive Tool &amp; Case Study
+                Interactive Diagnostic Build
               </span>
             </div>
 

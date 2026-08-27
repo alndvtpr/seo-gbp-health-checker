@@ -13,6 +13,7 @@ interface PackageTier {
   popularBadge?: string
   includes: string[]
   ctaText: string
+  ctaHref: string
 }
 
 const PACKAGES: PackageTier[] = [
@@ -20,7 +21,7 @@ const PACKAGES: PackageTier[] = [
     id: 'tier-1-sprint',
     name: 'SEO & AI Readiness Sprint',
     cadence: 'Technical Audit & Strategy',
-    startingPrice: '$280 USD (₱15,500)',
+    startingPrice: '₱15,500 ($280 USD)',
     badge: 'Search Foundation',
     targetAudience: 'Website owners seeking technical crawl fixes, structured data implementation, and search readiness.',
     includes: [
@@ -31,12 +32,13 @@ const PACKAGES: PackageTier[] = [
       'Prioritized 30-Day Fix Blueprint + Video Walkthrough',
     ],
     ctaText: 'Book a Readiness Sprint',
+    ctaHref: '/contact/?service=SEO%20%26%20AI%20Readiness%20Sprint',
   },
   {
     id: 'tier-2-wordpress',
     name: 'WordPress High-Speed Business Site',
     cadence: 'CMS Build & Launch',
-    startingPrice: '$480 USD (₱27,000)',
+    startingPrice: '₱27,000 ($480 USD)',
     badge: 'WordPress / CMS',
     popularBadge: 'Popular for Small Business',
     isFeatured: true,
@@ -49,38 +51,41 @@ const PACKAGES: PackageTier[] = [
       'CMS Hand-off & Guided Walkthrough',
     ],
     ctaText: 'Start WordPress Project',
+    ctaHref: '/contact/?service=WordPress%20High-Speed%20Business%20Site',
   },
   {
     id: 'tier-3-nextjs',
     name: 'Custom Next.js & React Architecture',
     cadence: 'Code-First Engineering',
-    startingPrice: '$850 USD (₱48,000)',
+    startingPrice: '₱48,000 ($850 USD)',
     badge: 'Code-First Web',
     targetAudience: 'Brands and projects requiring modern code-first development, fast Core Web Vitals, and clean web architecture.',
     includes: [
-      'Bespoke Next.js 15 App Router & React Build',
-      'Zero-CLS Image Pipelines & Tailwind / M3 Design',
+      'Modern Next.js App Router & React Build',
+      'Responsive Image Pipelines & Tailwind / M3 Design',
       'Performance-focused build targeting fast Core Web Vitals',
       'Custom Schema Markup & JSON-LD Integration',
       'Scalable component architecture & clean code standards',
     ],
     ctaText: 'Build Custom Next.js Site',
+    ctaHref: '/contact/?service=Custom%20Next.js%20%26%20React%20Architecture',
   },
   {
     id: 'tier-4-retainer',
     name: 'Ongoing Monthly SEO Support',
     cadence: 'Ongoing Monthly Sprint',
-    startingPrice: '$450 USD / mo (₱25,000 / mo)',
+    startingPrice: '₱25,000 / mo ($450 USD / mo)',
     badge: 'Ongoing Support',
     targetAudience: 'Businesses looking for consistent monthly optimization, technical maintenance, and ongoing search improvements.',
     includes: [
-      'Dedicated 20–25 Hours / Month Focused Execution Capacity',
-      'Ongoing Technical & On-Page SEO Sprints',
-      'Google Business Profile (GBP) & Local Search Maintenance',
-      'Regular Review Call & Live Reporting Dashboard',
-      'Transparent Hour-by-Hour Activity Log',
+      'Up to 30 Delivery Hours / Month',
+      'Monthly Crawl, Search Console & GA4 Health Review',
+      'Prioritized Technical Fixes & On-Page Implementation',
+      'Up to 4 Priority Page Optimizations or 2 Content Briefs',
+      'Monthly Review, Next-Step Plan & Activity Log',
     ],
     ctaText: 'Inquire About Monthly Support',
+    ctaHref: '/contact/?service=Ongoing%20Monthly%20SEO%20Support',
   },
 ]
 
@@ -146,7 +151,7 @@ export function ServicesPackages() {
                   {pkg.name}
                 </h3>
                 <span className="font-heading text-sm sm:text-base font-extrabold text-primary-container block">
-                  {pkg.startingPrice}
+                  Starting at {pkg.startingPrice}
                 </span>
               </div>
 
@@ -178,7 +183,7 @@ export function ServicesPackages() {
 
             {/* Action CTA Button */}
             <Link
-              href="/contact/"
+              href={pkg.ctaHref}
               aria-label={`${pkg.ctaText} - ${pkg.name}`}
               className={`inline-flex items-center justify-center w-full py-3 px-4 rounded-xl font-heading text-xs font-bold uppercase tracking-[0.06em] btn-motion min-h-[44px] text-center leading-normal focus-visible:ring-2 focus-visible:ring-primary-container ${
                 pkg.isFeatured
@@ -191,6 +196,64 @@ export function ServicesPackages() {
             </Link>
           </article>
         ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 motion-reveal">
+        <article className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-sm space-y-3">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
+            Flexible Contractor Support
+          </span>
+          <h3 className="font-heading text-xl font-bold text-on-surface">
+            ₱500 per hour for clearly defined tasks
+          </h3>
+          <p className="font-sans text-sm text-on-surface/75 leading-relaxed">
+            Best for focused backlog support, implementation assistance, or a small task with a confirmed brief. The monthly retainer is priced separately because it reserves capacity and includes planning, monitoring, and reporting.
+          </p>
+        </article>
+
+        <article className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-sm space-y-3">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
+            Delivery Capacity
+          </span>
+          <h3 className="font-heading text-xl font-bold text-on-surface">
+            Up to 4 full retainers or 6 mixed engagements
+          </h3>
+          <p className="font-sans text-sm text-on-surface/75 leading-relaxed">
+            The ceiling is four full monthly SEO retainers. A mixed roster can reach six only when some engagements are smaller fixed sprints or hourly tasks.
+          </p>
+        </article>
+      </div>
+
+      <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-sm space-y-5 motion-reveal">
+        <div className="space-y-2 max-w-4xl">
+          <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold">
+            Scope Boundaries &amp; Separately Quoted Extras
+          </span>
+          <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface">
+            What the core packages do not automatically include
+          </h3>
+        </div>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 font-sans text-sm text-on-surface/75 leading-relaxed">
+          <li className="flex items-start gap-2.5">
+            <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
+            <span>Paid-media budgets, ad-platform charges, paid placements, premium tools, domains, hosting, plugins, and other third-party fees remain client-funded.</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
+            <span>Paid-ads support may be considered as a research-led, separately scoped extra after campaign goals, tracking readiness, budget, access, and platform fit are reviewed.</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
+            <span>Manual backlink outreach may be evaluated only as a separately scoped extra. Link purchases, automated blasts, private blog networks, and manipulative ranking schemes are excluded.</span>
+          </li>
+          <li className="flex items-start gap-2.5">
+            <Icon name="check_circle" size={16} className="text-primary-container shrink-0 mt-0.5" />
+            <span>Large content-production volumes, major redesigns, custom integrations, and work outside the written deliverables require a revised scope, schedule, and quote.</span>
+          </li>
+        </ul>
+        <p className="font-sans text-xs text-on-surface/60 leading-relaxed">
+          Monthly priorities are agreed at the start of each cycle, and unused reserved hours do not automatically roll over. No package guarantees rankings, traffic, leads, revenue, ad return, or backlink placement. Any extra work starts only after written scope approval.
+        </p>
       </div>
 
       {/* Small Business & Flexible Negotiation Trust Banner */}

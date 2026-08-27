@@ -301,6 +301,79 @@ Phase 05 remains in progress because About wording is decision-gated. This compl
 | SEO checks | PASS | Search/performance verification remains 6/6 with 17 sitemap routes, 3 projects and 1 blog article. |
 | Production build | PASS | Next.js 16.3.0 compiled, type-checked and generated all 30 pages using the isolated unreachable database URI; the expected homepage fallback handled the refusal. |
 | Local HTTP and download | PASS | `/resume/` and `/Alain_Dave_Tapiru_Resume.pdf` return HTTP 200; the served PDF is 391,408 bytes and its SHA-256 matches the public file. |
-| About copy | UNCHANGED / OWNER GATED | P-006 and P-012 remain unresolved; no About biography or training wording changed. |
+## Phase 06 services validation delta
+
+Phase 06 reordered the Services hub, established PHP-first pricing, linked package CTAs to contact query parameters, restored the free Website Health Check primary CTA, and eliminated the unauthorized standalone off-page SEO schema offer.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Offer hierarchy | PASS - STATIC/SSR | Packages are rendered before the capability directory (`<ServicesPackages />` before `<ServicesHubGrid />`). |
+| Pricing priority | PASS - STATIC/SSR | Approved packages and scope estimator display PHP (₱) as primary and default, with USD ($) conversion switcher. |
+| Package amounts | PASS | All 4 approved packages remain exact: ₱15,500 ($280), ₱27,000 ($480), ₱48,000 ($850), and ₱25,000/mo ($450/mo). |
+| Preselection CTAs | PASS - STATIC/SSR | Package CTA links route to `/contact/?service=...` with URL-encoded package names. |
+| Primary CTA alignment | PASS - STATIC/SSR | Hero and closing action on Services target `/tools/#website-audit` ("Request a Website Health Check"). |
+| Schema graph cleanup | PASS - JSON-LD | Standalone Off-Page SEO & Authority Building offer removed from `ServicesFinalCta.tsx` schema graph. |
+| Scope estimator bounds | PASS - COMPONENT | Defaults to entry sprint, add-ons have accessible `aria-pressed`, acceleration toggle disabled for monthly retainer. |
+| Contractor / Capacity / Exclusions | PASS - STATIC/SSR | Explicit sections added for ₱500/hr contractor tasks, 4 retainer / 6 mixed capacity, and clear scope boundaries. |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All 6 Services files and About page pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | `/services/` returns HTTP 200 at `http://localhost:3000/services/` with verified rendered content. |
+
+No database write, form submission, external record, commit, push or deployment occurred.
+
+## Phase 07 service pages validation delta
+
+Phase 07 aligned all 5 child service pages with the approved offer model, eliminated duplicate BreadcrumbList schema, grounded case study proof labels and lab metrics, normalized framework references, and fixed Contact preselection for on-page SEO.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Schema deduplication | PASS - JSON-LD | `<Breadcrumbs showJsonLd={false} />` on all 5 child service pages; rendered HTML confirmed exactly 1 `BreadcrumbList` object per page. |
+| Contact preselection | PASS - COMPONENT | `matchServiceParam` in `ContactForm.tsx` handles `on-page` / `onpage` / `content` and `overflow` / `backlog`. |
+| Framework normalization | PASS - CONTENT | "Next.js 15" updated to "Next.js App Router" across technical and web development service pages. |
+| Grounded proof labels | PASS - CONTENT | Truthful `Self-Initiated Production Build`, `Self-Initiated Staging Build`, and `Self-Initiated Diagnostic Tool` labels with explicit lab speed distinctions. |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All 6 modified files pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | All 5 service routes return HTTP 200 at `http://localhost:3000/services/[slug]/`. |
+
+No database write, form submission, external record, commit, push or deployment occurred.
+
+## Phase 08 projects and proof evidence validation delta
+
+Phase 08 grounded project proof classifications and lab performance labels, eliminated legacy out-of-scope CTAs (₱3,500/₱7,500/₱8,500) from project detail pages, deduplicated breadcrumbs JSON-LD schema across project routes, and normalized framework/AI tooling names.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Proof classification | PASS - CONTENT/DATA | All 3 projects designated as `Self-initiated build` with explicit exact role descriptions. |
+| Lab benchmark labels | PASS - CONTENT | Explicit lab labels applied: "Google PageSpeed Insights Lab Score (August 2026)", "0ms Total Blocking Time (Lab)", "Passed Lab Vitals", and "Lighthouse Performance Lab Score". |
+| CTA package alignment | PASS - STATIC/SSR | Legacy pricing (₱3,500, ₱7,500, ₱8,500) eliminated; project CTAs now map to approved Model B starting packages (₱15,500, ₱27,000, ₱48,000) with Contact preselection. |
+| Schema deduplication | PASS - JSON-LD | `<Breadcrumbs showJsonLd={false} />` on `/projects/` and all `/projects/[slug]/` routes; rendered HTML confirmed exactly 1 `BreadcrumbList` object per page. |
+| Framework normalization | PASS - CONTENT | "Next.js 16" normalized to "Next.js App Router" / "Next.js"; "Gemini Pro" updated to "Google AI Studio / Gemini 2.5 Flash". |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All 5 modified files pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | `/projects/` and all 3 project routes return HTTP 200 at `http://localhost:3000/projects/...` with verified rendered content. |
+
+No database write, form submission, external record, commit, push or deployment occurred.
+
+## Phase 09 blog and CMS publishing model validation delta
+
+Phase 09 grounded blog article training and experience narratives, deduplicated BreadcrumbList JSON-LD schema across `/blog/` and `/blog/[slug]/`, cleaned unused imports in the blog template, and verified the resilient hybrid CMS publishing model.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Narrative grounding | PASS - CONTENT/DATA | Aligned excerpt and lead in `src/data/posts.ts` to PinoySEO Bootcamp training and over a year of hands-on practice. |
+| Schema deduplication | PASS - JSON-LD | `<Breadcrumbs showJsonLd={false} />` on `/blog/` and `/blog/[slug]/`; rendered HTML confirmed exactly 1 `BreadcrumbList` object per route. |
+| Unused import cleanup | PASS - CODE | Removed unused type imports (`BlogPost`, `BlogImage`, `BlogSource`) in `blog/[slug]/page.tsx`. |
+| CMS publishing model | PASS - ARCHITECTURE | Hybrid architecture verified: static dataset (`posts.ts`) powers resilient SSG, 0ms cold-start, deterministic edge deployment, while Payload CMS supports dynamic admin and live preview capabilities. |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All modified blog files pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | `/blog/` and `/blog/is-seo-dead-2026/` return HTTP 200 at `http://localhost:3000/blog/...` with verified rendered content. |
 
 No database write, form submission, external record, commit, push or deployment occurred.

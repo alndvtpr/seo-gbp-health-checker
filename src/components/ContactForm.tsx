@@ -10,10 +10,10 @@ import { sendContactAction } from '@/app/actions/send-contact'
 import { Icon } from '@/components/icons'
 
 export const SERVICE_OPTIONS = [
-  'SEO & AI Readiness Sprint ($280 / ₱15,500)',
-  'WordPress High-Speed Business Site ($480 / ₱27,000)',
-  'Custom Next.js & React Architecture ($850 / ₱48,000)',
-  'Ongoing Monthly SEO Support ($450/mo / ₱25,000/mo)',
+  'SEO & AI Readiness Sprint (₱15,500 / $280)',
+  'WordPress High-Speed Business Site (₱27,000 / $480)',
+  'Custom Next.js & React Architecture (₱48,000 / $850)',
+  'Ongoing Monthly SEO Support (₱25,000/mo / $450/mo)',
   'Local SEO & Google Business Profile Setup',
   'Flexible Small Business Scope / Custom Budget',
   'General Project Inquiry / Consultation',
@@ -22,15 +22,30 @@ export const SERVICE_OPTIONS = [
 function matchServiceParam(param: string | null): string {
   if (!param) return ''
   const lower = param.toLowerCase()
-  if (lower.includes('sprint') || lower.includes('readiness') || lower.includes('technical') || lower.includes('audit'))
-    return 'SEO & AI Readiness Sprint ($280 / ₱15,500)'
-  if (lower.includes('wordpress')) return 'WordPress High-Speed Business Site ($480 / ₱27,000)'
+  if (
+    lower.includes('sprint') ||
+    lower.includes('readiness') ||
+    lower.includes('technical') ||
+    lower.includes('audit') ||
+    lower.includes('on-page') ||
+    lower.includes('onpage') ||
+    lower.includes('content') ||
+    lower.includes('ai')
+  )
+    return 'SEO & AI Readiness Sprint (₱15,500 / $280)'
+  if (lower.includes('wordpress')) return 'WordPress High-Speed Business Site (₱27,000 / $480)'
   if (lower.includes('next') || lower.includes('react') || lower.includes('web'))
-    return 'Custom Next.js & React Architecture ($850 / ₱48,000)'
+    return 'Custom Next.js & React Architecture (₱48,000 / $850)'
   if (lower.includes('month') || lower.includes('retainer') || lower.includes('ongoing'))
-    return 'Ongoing Monthly SEO Support ($450/mo / ₱25,000/mo)'
+    return 'Ongoing Monthly SEO Support (₱25,000/mo / $450/mo)'
   if (lower.includes('local') || lower.includes('gbp')) return 'Local SEO & Google Business Profile Setup'
-  if (lower.includes('flex') || lower.includes('budget') || lower.includes('custom'))
+  if (
+    lower.includes('flex') ||
+    lower.includes('budget') ||
+    lower.includes('custom') ||
+    lower.includes('overflow') ||
+    lower.includes('backlog')
+  )
     return 'Flexible Small Business Scope / Custom Budget'
   return ''
 }
@@ -190,6 +205,7 @@ function ContactFormInner() {
             type="text"
             placeholder="e.g. Maria Santos"
             autoComplete="name"
+            required
             aria-required="true"
             aria-invalid={errors.name ? 'true' : 'false'}
             aria-describedby={errors.name ? 'contact-name-error' : undefined}
@@ -222,6 +238,7 @@ function ContactFormInner() {
               type="email"
               placeholder="maria@example.com"
               autoComplete="email"
+              required
               aria-required="true"
               aria-invalid={errors.email ? 'true' : 'false'}
               aria-describedby={errors.email ? 'contact-email-error' : undefined}
@@ -282,6 +299,7 @@ function ContactFormInner() {
           <div className="relative">
             <select
               id="contact-service"
+              required
               aria-required="true"
               aria-invalid={errors.service ? 'true' : 'false'}
               aria-describedby={errors.service ? 'contact-service-error' : undefined}
@@ -327,6 +345,7 @@ function ContactFormInner() {
             id="contact-message"
             rows={4}
             placeholder="Describe your website, the specific problem you need fixed, or the overflow tasks you need covered..."
+            required
             aria-required="true"
             aria-invalid={errors.message ? 'true' : 'false'}
             aria-describedby={errors.message ? 'contact-message-error' : undefined}

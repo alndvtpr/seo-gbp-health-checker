@@ -27,15 +27,18 @@ Last updated: 2026-08-27
 | D-019 | Replace the public resume download with the owner-supplied two-page PDF, preserving its wording except for the owner-confirmed credential-title correction. | Owner instruction on 2026-08-27: `change the resume file using the uploaded resume` | Makes the supplied file the Phase 05 resume source while preserving D-016's prohibition on independently authored personal claims. |
 | D-020 | Present the downloadable resume in an embedded, site-styled PDF preview with Download, Open New Tab and optional Hide/Show controls. | Owner instruction and visual reference on 2026-08-27: `incorporate this kind of preview for my resume... download it but uses by website's design and style` | Adds an in-page viewer without copying the reference site's identity, changing resume content or removing direct-file access. |
 | D-021 | Approve the exact polished narrative copy for the About page (`src/app/(frontend)/about/page.tsx`). | Owner provided the complete polished 12-paragraph narrative on 2026-08-27 | Resolves P-006 (About experience wording) and P-012 (Pinoy SEO training wording and placement). Completes Phase 05. |
+| D-022 | Present approved commercial prices PHP-first while preserving the existing PHP and USD amounts. | Owner confirmation on 2026-08-27: `PHP first` | Resolves P-004. Phase 06 may change presentation order/defaults but may not change amounts without a separate approval. |
+| D-023 | Publish `₱500/hr` as an approved hourly contractor rate alongside the existing fixed-sprint offers. | Owner confirmation on 2026-08-27: `Yes 500 per hour is good.` | Confirms the hourly rate already shown in the About fit guidance; it does not replace or silently recalculate the four approved packages. |
+| D-024 | Preserve the About training description covering guest posting, collaboration/link-building opportunities and backlink development. | Owner confirmation on 2026-08-27: `yes` | Approves this wording as bootcamp training coverage only. It does not establish paid-delivery evidence or approve a standalone link-building service. |
+| D-025 | Replace the absolute phrase `error-free search engine indexation` with `improved crawlability and clearer indexation signals for search engines`. | Owner selected option 1 on 2026-08-27: `I like number 1` | Removes an unsupported outcome guarantee while preserving the intended client-fit message. |
 
 ## Pending owner decisions
 
 | ID | Decision needed | Current state | Blocks |
 |---|---|---|---|
-| P-004 | Pricing and currency presentation | Current exact prices are preserved; PHP-first vs USD-first is unresolved | Phases 04, 06, 07, 10 and 11 |
 | P-007 | Precise address and geocoordinates | City, phone and email are approved for public resume display under D-018; precise address and coordinates still lack explicit permission | Phase 13 |
 | P-008 | LocalBusiness/ProfessionalService eligibility | No verified GBP/business-address eligibility record was found | Phase 13 |
-| P-009 | Off-page SEO publishing scope | Resume lists the skill and bootcamp coverage, but delivery evidence is absent | Phases 06, 07, 09, 14 and 19 |
+| P-009 | Off-page SEO publishing scope | D-024 approves the exact About training description, but paid-delivery evidence remains absent and no standalone link-building offer is approved | Phases 06, 07, 09, 14 and 19 |
 | P-010 | Deployment identity | GitHub main and local HEAD match, but Vercel does not expose the deployed SHA | Phase 20 release-readiness audit |
 | P-011 | Test database strategy | Existing integration/E2E tests can touch the configured database | Any phase requiring full test execution |
 

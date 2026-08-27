@@ -32,18 +32,18 @@ const PROJECT_TYPES: ProjectType[] = [
     basePriceUsd: 850,
     basePricePhp: 48000,
     description: 'Code-first React/Next.js architecture built for fast Core Web Vitals, clean crawlability, and zero layout shift.',
-    recommendedPackage: 'Custom Next.js Full-Stack Architecture',
-    serviceParam: 'AI Web Design & Dev',
+    recommendedPackage: 'Custom Next.js & React Architecture',
+    serviceParam: 'Custom Next.js & React Architecture',
   },
   {
     id: 'wordpress-launch',
-    name: 'WordPress / Elementor Redesign',
+    name: 'WordPress High-Speed Business Site',
     baseWeeks: 2.5,
     basePriceUsd: 480,
     basePricePhp: 27000,
     description: 'Custom responsive WordPress layout paired with technical speed optimization, schema integration, and easy CMS editing.',
-    recommendedPackage: 'WordPress High-Speed Business Website',
-    serviceParam: 'AI Web Design & Dev',
+    recommendedPackage: 'WordPress High-Speed Business Site',
+    serviceParam: 'WordPress High-Speed Business Site',
   },
   {
     id: 'technical-audit',
@@ -53,7 +53,7 @@ const PROJECT_TYPES: ProjectType[] = [
     basePricePhp: 15500,
     description: 'Comprehensive crawl analysis, Core Web Vitals audit, schema verification, and prioritized 30-day action sprint.',
     recommendedPackage: 'SEO & AI Readiness Sprint',
-    serviceParam: 'Technical SEO Audit',
+    serviceParam: 'SEO & AI Readiness Sprint',
   },
   {
     id: 'monthly-retainer',
@@ -61,9 +61,9 @@ const PROJECT_TYPES: ProjectType[] = [
     baseWeeks: 4,
     basePriceUsd: 450,
     basePricePhp: 25000,
-    description: 'Ongoing technical and on-page optimization, local search support, and transparent reporting (~20-25 hrs/month).',
+    description: 'Up to 30 delivery hours per month for prioritized technical, on-page, and local search support with an activity log and monthly review.',
     recommendedPackage: 'Ongoing Monthly SEO Support',
-    serviceParam: 'Full-Service Monthly SEO',
+    serviceParam: 'Ongoing Monthly SEO Support',
   },
 ]
 
@@ -103,17 +103,16 @@ const CAPABILITIES: CapabilityAddon[] = [
 ]
 
 export function ServicesScopeEstimator() {
-  const [currency, setCurrency] = useState<'USD' | 'PHP'>('USD')
-  const [selectedType, setSelectedType] = useState<string>('nextjs-custom')
-  const [selectedAddons, setSelectedAddons] = useState<string[]>([
-    'web-vitals',
-    'schema-graph',
-  ])
+  const [currency, setCurrency] = useState<'USD' | 'PHP'>('PHP')
+  const [selectedType, setSelectedType] = useState<string>('technical-audit')
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([])
   const [isAccelerated, setIsAccelerated] = useState<boolean>(false)
 
   const activeProject = useMemo(() => {
     return PROJECT_TYPES.find((t) => t.id === selectedType) || PROJECT_TYPES[0]
   }, [selectedType])
+  const accelerationAvailable = activeProject.id !== 'monthly-retainer'
+  const isAccelerationApplied = isAccelerated && accelerationAvailable
 
   const toggleAddon = (id: string) => {
     setSelectedAddons((prev) =>
@@ -128,12 +127,12 @@ export function ServicesScopeEstimator() {
       if (addon) total += addon.weeksDelta
     })
 
-    if (isAccelerated) {
+    if (isAccelerationApplied) {
       total = Math.max(1.5, total * 0.65)
     }
 
     return Math.round(total * 10) / 10
-  }, [activeProject, selectedAddons, isAccelerated])
+  }, [activeProject, selectedAddons, isAccelerationApplied])
 
   const estimatedCost = useMemo(() => {
     const isUsd = currency === 'USD'
@@ -145,12 +144,12 @@ export function ServicesScopeEstimator() {
       }
     })
 
-    if (isAccelerated) {
+    if (isAccelerationApplied) {
       base *= 1.25
     }
 
     return Math.round(base)
-  }, [activeProject, selectedAddons, isAccelerated, currency])
+  }, [activeProject, selectedAddons, isAccelerationApplied, currency])
 
   return (
     <section
@@ -189,17 +188,6 @@ export function ServicesScopeEstimator() {
               <div className="inline-flex items-center p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 text-xs">
                 <button
                   type="button"
-                  onClick={() => setCurrency('USD')}
-                  className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
-                    currency === 'USD'
-                      ? 'bg-primary-container text-on-primary-container shadow-sm'
-                      : 'text-on-surface/70 hover:text-on-surface'
-                  }`}
-                >
-                  USD ($)
-                </button>
-                <button
-                  type="button"
                   onClick={() => setCurrency('PHP')}
                   className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
                     currency === 'PHP'
@@ -208,6 +196,17 @@ export function ServicesScopeEstimator() {
                   }`}
                 >
                   PHP (₱)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCurrency('USD')}
+                  className={`px-3 py-1 rounded-lg font-heading font-bold transition-all cursor-pointer ${
+                    currency === 'USD'
+                      ? 'bg-primary-container text-on-primary-container shadow-sm'
+                      : 'text-on-surface/70 hover:text-on-surface'
+                  }`}
+                >
+                  USD ($)
                 </button>
               </div>
             </div>
@@ -223,6 +222,7 @@ export function ServicesScopeEstimator() {
                     key={type.id}
                     type="button"
                     onClick={() => setSelectedType(type.id)}
+                    aria-pressed={isSelected}
                     className={`p-4 rounded-xl text-left transition-all duration-200 cursor-pointer border ${
                       isSelected
                         ? 'bg-primary-container/15 border-primary-container text-on-surface shadow-md ring-1 ring-primary-container/50'
@@ -254,6 +254,9 @@ export function ServicesScopeEstimator() {
             <label className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] font-semibold block">
               2. Select Specialized Add-on Capabilities
             </label>
+            <p className="font-sans text-xs text-on-surface/65 leading-relaxed">
+              Add-ons start unselected and are included only when relevant. For monthly support, selected add-ons are treated as one-time setup estimates in the first month.
+            </p>
             <div className="space-y-2.5">
               {CAPABILITIES.map((addon) => {
                 const isChecked = selectedAddons.includes(addon.id)
@@ -262,10 +265,12 @@ export function ServicesScopeEstimator() {
                   : `+₱${addon.pricePhp.toLocaleString()}`
 
                 return (
-                  <div
+                  <button
                     key={addon.id}
+                    type="button"
                     onClick={() => toggleAddon(addon.id)}
-                    className={`p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-start gap-3 ${
+                    aria-pressed={isChecked}
+                    className={`w-full p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-start gap-3 text-left ${
                       isChecked
                         ? 'bg-primary-container/10 border-primary-container/60 text-on-surface'
                         : 'bg-black/[0.02] dark:bg-white/[0.02] border-black/10 dark:border-white/10 text-on-surface/80 hover:bg-black/5 dark:hover:bg-white/5 hover:border-primary-container/30'
@@ -293,7 +298,7 @@ export function ServicesScopeEstimator() {
                         {addon.description}
                       </p>
                     </div>
-                  </div>
+                  </button>
                 )
               })}
             </div>
@@ -306,21 +311,27 @@ export function ServicesScopeEstimator() {
                 Accelerated Delivery Sprint
               </span>
               <span className="font-sans text-xs text-on-surface/70">
-                Priority scheduling for rapid launch requirements (+25% sprint prioritization).
+                {accelerationAvailable
+                  ? 'Subject to availability; adds 25% for priority sprint scheduling.'
+                  : 'Not applied to ongoing monthly support.'}
               </span>
             </div>
             <button
               type="button"
               onClick={() => setIsAccelerated(!isAccelerated)}
+              disabled={!accelerationAvailable}
+              aria-label="Toggle accelerated delivery"
               className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                isAccelerated ? 'bg-primary-container' : 'bg-black/15 dark:bg-white/15'
+                isAccelerationApplied ? 'bg-primary-container' : 'bg-black/15 dark:bg-white/15'
+              } ${
+                accelerationAvailable ? '' : 'cursor-not-allowed opacity-50'
               }`}
               role="switch"
-              aria-checked={isAccelerated}
+              aria-checked={isAccelerationApplied}
             >
               <span
                 className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                  isAccelerated ? 'translate-x-5' : 'translate-x-0'
+                  isAccelerationApplied ? 'translate-x-5' : 'translate-x-0'
                 }`}
               />
             </button>
@@ -345,12 +356,16 @@ export function ServicesScopeEstimator() {
                 Est. Duration
               </span>
               <span className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
-                {estimatedWeeks} {estimatedWeeks === 1 ? 'Week' : 'Weeks'}
+                {activeProject.id === 'monthly-retainer'
+                  ? 'Monthly'
+                  : `${estimatedWeeks} ${estimatedWeeks === 1 ? 'Week' : 'Weeks'}`}
               </span>
             </div>
             <div>
               <span className="font-heading text-[10px] text-on-surface/60 uppercase tracking-wider block font-semibold">
-                Est. Investment
+                {activeProject.id === 'monthly-retainer' && selectedAddons.length > 0
+                  ? 'Est. First Month'
+                  : 'Est. Investment'}
               </span>
               <span className="font-heading text-2xl sm:text-3xl font-extrabold text-primary-container">
                 {currency === 'USD' ? `$${estimatedCost.toLocaleString()}` : `₱${estimatedCost.toLocaleString()}`}
@@ -362,7 +377,11 @@ export function ServicesScopeEstimator() {
           <div className="flex items-center justify-between p-3 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/5 text-xs font-sans">
             <span className="text-on-surface/70">Execution Cadence:</span>
             <span className="font-heading font-bold text-emerald-500">
-              {isAccelerated ? '⚡ Priority Accelerated Sprint' : 'Standard Delivery Sprint'}
+              {activeProject.id === 'monthly-retainer'
+                ? 'Reserved Monthly Capacity'
+                : isAccelerationApplied
+                  ? 'Priority Accelerated Sprint'
+                  : 'Standard Delivery Sprint'}
             </span>
           </div>
 
@@ -376,7 +395,7 @@ export function ServicesScopeEstimator() {
               <span>{activeProject.recommendedPackage}</span>
             </p>
             <p className="font-sans text-xs text-on-surface/70 leading-relaxed pt-1">
-              Includes core execution, QA testing, verified schema integration, and technical handoff.
+              Final deliverables, access requirements, timing, and exclusions are confirmed in writing before work begins.
             </p>
           </div>
 
@@ -409,7 +428,7 @@ export function ServicesScopeEstimator() {
           </div>
 
           <p className="text-[11px] font-sans text-on-surface/50 text-center leading-relaxed">
-            Free discovery call included. All projects include direct communication, regular updates, and milestone-based reviews.
+            Estimates are planning guides. Final scope and start date depend on access, complexity, and current capacity.
           </p>
         </div>
       </div>
