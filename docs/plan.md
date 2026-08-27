@@ -126,23 +126,22 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-27)**: `feat(contact): streamline contact page copy hierarchy and humanize messaging`
+- **Commit `HEAD` (Current - 2026-08-27)**: `feat(homepage): remove redundant tool category pills and calibrate 2026 portfolio vertical spacing`
+  - Removed redundant 3-line tool category pill block from `<ToolsMarquee />` on the homepage.
+  - Applied 2026 non-SERP portfolio spacing best practices: tightened hero-to-marquee vertical rhythm (`pb-10 sm:pb-14` / `py-8 sm:py-10`), calibrated section container paddings to `py-14 sm:py-20`, and harmonized card gaps (`gap-5 sm:gap-6`).
+  - Streamlined Gestalt visual hierarchy between section headers and content grids (`mt-8 sm:mt-10`).
+  - Passed 6/6 search CI checks, 0 TypeScript errors, and 30/30 production static routes.
+- **Commit `HEAD~1` (2026-08-27)**: `feat(contact): streamline contact page copy hierarchy and humanize messaging`
   - Replaced repetitive "Schedule a 20-Minute Intro Call / Conversation" headers with clean, single-point messaging.
   - Aligned hero with personal copy: Eyebrow (`LET'S TALK • NO PRESSURE`), H1 (`Tell Me What You're Working On`), and practical discovery intro.
   - Streamlined Calendly scheduler section with unified booking header, "Choose a Time" CTA pill, and trust badges (`20 Minutes • Practical Next Steps • No Sales Pressure`).
   - Aligned direct inquiry section and form card with "RATHER WRITE IT DOWN?" / "Send Me the Details" copy while preserving all schema, validation, and accessibility.
   - Passed 6/6 search CI checks, 0 TypeScript errors, and 30/30 production static routes.
-- **Commit `HEAD~1` (2026-08-27)**: `feat(hero): integrate centered transparent cutout AVIF portrait into homepage hero`
+- **Commit `HEAD~2` (2026-08-27)**: `feat(hero): integrate centered transparent cutout AVIF portrait into homepage hero`
   - Converted user's transparent cutout portrait to high-performance AVIF (`public/alain-dave-tapiru-seo-specialist-philippines-hero.avif`, 43.3KB, 654×564) and WebP fallback (41.2KB).
   - Configured `<ScrollHero />` with centered right-column transparent portrait seating (`object-contain object-bottom`), realistic drop-shadow, and subtle base feathering.
   - 100% transparent alpha channel eliminates all gray boxes, seams, and background artifacts across Light (`#fafaf8`) and Dark (`#0f1111`) modes.
   - Passed 6/6 automated search CI checks, 0 TypeScript errors, and 30/30 production static routes.
-- **Commit `HEAD~2` (2026-08-27)**: `fix(cms-database): configure Supabase connection pooler and restore infinite tools marquee`
-  - Resolved Supabase direct connection IPv4 deprecation / inactivity pause by migrating `DATABASE_URI` to AWS East pooler (`aws-0-us-east-1.pooler.supabase.com:5432`).
-  - Successfully verified Payload CMS 3.88 connection, schema synchronization, and automatic creation of all 18 CMS database tables.
-  - Restored GPU-accelerated infinite `<ToolsMarquee />` on `/` with translation-composited keyframes (`translate3d`).
-  - Aligned desktop and mobile navigation ordering and hardened LinkedIn anchor with `rel="noopener noreferrer nofollow"`.
-  - Passed 6/6 search CI checks and 0 TypeScript compilation errors.
 
 ---
 

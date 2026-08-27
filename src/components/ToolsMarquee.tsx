@@ -1,6 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
-import { Icon } from '@/components/icons'
 
 const TECHNICAL_TOOLS = [
   {
@@ -123,11 +121,11 @@ export function ToolsMarquee() {
     <section
       id="tools-marquee"
       aria-label="Technical Stack and Tools"
-      className="relative z-20 overflow-hidden border-y border-primary-container/20 bg-transparent py-12 shadow-[0_0_30px_rgba(224,123,32,0.08),inset_0_0_20px_rgba(224,123,32,0.03)] sm:py-16"
+      className="relative z-20 overflow-hidden border-y border-primary-container/20 bg-transparent py-8 sm:py-10 shadow-[0_0_30px_rgba(224,123,32,0.06),inset_0_0_20px_rgba(224,123,32,0.02)]"
     >
       {/* Mild Amber/Orange Ambient Background Glow */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(224,123,32,0.08)_0%,transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(224,123,32,0.06)_0%,transparent_65%)]"
         aria-hidden="true"
       />
 
@@ -136,58 +134,18 @@ export function ToolsMarquee() {
           <span className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-primary-container">
             Technical Stack
           </span>
-          <h2 className="mt-2 font-heading text-2xl font-bold tracking-tight text-on-surface sm:text-3xl md:text-4xl">
+          <h2 className="mt-1.5 font-heading text-xl font-bold tracking-tight text-on-surface sm:text-2xl md:text-3xl">
             Tools I Use to Turn SEO Into Action
           </h2>
-          <p className="mx-auto mt-3 max-w-xl font-sans text-sm leading-relaxed text-on-surface/75 sm:text-base">
+          <p className="mx-auto mt-2 max-w-xl font-sans text-xs sm:text-sm leading-relaxed text-on-surface/75">
             A practical toolkit for research, optimization, analytics, content, and modern web development.
           </p>
-
-          {/* Category Navigation Links */}
-          <div className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2.5">
-            <Link
-              href="/services/technical-seo/"
-              className="group inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs transition-colors hover:bg-surface-1"
-            >
-              <Icon name="search" size={14} className="text-primary-container transition-transform group-hover:scale-110" />
-              <span className="font-heading font-semibold uppercase tracking-[0.06em] text-on-surface/80 group-hover:text-primary-container">
-                SEO &amp; Analytics
-              </span>
-              <span className="hidden font-sans text-on-surface/60 sm:inline">
-                &bull; Google Search Console &bull; GA4 &bull; Semrush &bull; Ahrefs
-              </span>
-            </Link>
-            <Link
-              href="/services/web-development/"
-              className="group inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs transition-colors hover:bg-surface-1"
-            >
-              <Icon name="code" size={14} className="text-primary-container transition-transform group-hover:scale-110" />
-              <span className="font-heading font-semibold uppercase tracking-[0.06em] text-on-surface/80 group-hover:text-primary-container">
-                Web &amp; SEO
-              </span>
-              <span className="hidden font-sans text-on-surface/60 sm:inline">
-                &bull; WordPress &bull; Elementor &bull; Next.js &bull; React
-              </span>
-            </Link>
-            <Link
-              href="/tools/"
-              className="group inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs transition-colors hover:bg-surface-1"
-            >
-              <Icon name="auto_awesome" size={14} className="text-primary-container transition-transform group-hover:scale-110" />
-              <span className="font-heading font-semibold uppercase tracking-[0.06em] text-on-surface/80 group-hover:text-primary-container">
-                AI &amp; Diagnostics
-              </span>
-              <span className="hidden font-sans text-on-surface/60 sm:inline">
-                &bull; Interactive GBP Auditor &bull; Gemini AI Sprints
-              </span>
-            </Link>
-          </div>
         </div>
       </div>
 
       {/* Marquee Infinite Loop Container with Gradient Mask */}
       <div
-        className="relative z-10 mt-8 flex w-full flex-col py-1"
+        className="relative z-10 mt-6 flex w-full flex-col py-1"
         style={{
           maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
