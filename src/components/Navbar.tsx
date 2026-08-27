@@ -23,6 +23,36 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { name: 'Home', href: '/' },
+  { name: 'About', href: '/about/' },
+  {
+    name: 'Projects',
+    href: '/projects/',
+    children: [
+      {
+        name: 'All Projects & Case Studies',
+        href: '/projects/',
+        description: 'Complete directory of practical builds & breakdowns',
+      },
+      {
+        name: 'AngatSikat Studio',
+        href: '/projects/angat-sikat-studio/',
+        description: 'Custom WordPress theme & SEO architecture',
+        badge: 'WordPress',
+      },
+      {
+        name: 'Local SEO & GBP Checker',
+        href: '/projects/local-seo-gbp-checker/',
+        description: 'Interactive signal diagnostic tool & analyzer',
+        badge: 'Local SEO',
+      },
+      {
+        name: 'AlainTapiru.com Architecture',
+        href: '/projects/alaintapiru-portfolio/',
+        description: 'Next.js 15 portfolio & technical SEO build',
+        badge: 'Technical SEO',
+      },
+    ],
+  },
   {
     name: 'Services',
     href: '/services/',
@@ -63,38 +93,8 @@ const NAV_ITEMS: NavItem[] = [
       },
     ],
   },
-  {
-    name: 'Projects',
-    href: '/projects/',
-    children: [
-      {
-        name: 'All Projects & Case Studies',
-        href: '/projects/',
-        description: 'Complete directory of practical builds & breakdowns',
-      },
-      {
-        name: 'AngatSikat Studio',
-        href: '/projects/angat-sikat-studio/',
-        description: 'Custom WordPress theme & SEO architecture',
-        badge: 'WordPress',
-      },
-      {
-        name: 'Local SEO & GBP Checker',
-        href: '/projects/local-seo-gbp-checker/',
-        description: 'Interactive signal diagnostic tool & analyzer',
-        badge: 'Local SEO',
-      },
-      {
-        name: 'AlainTapiru.com Architecture',
-        href: '/projects/alaintapiru-portfolio/',
-        description: 'Next.js 15 portfolio & technical SEO build',
-        badge: 'Technical SEO',
-      },
-    ],
-  },
-  { name: 'About', href: '/about/' },
-  { name: 'Resume', href: '/resume/' },
   { name: 'Tools', href: '/tools/' },
+  { name: 'Resume', href: '/resume/' },
   { name: 'Blog', href: '/blog/' },
 ]
 
@@ -408,12 +408,12 @@ export const Navbar = () => {
                 <a
                   href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="flex w-8 h-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-colors"
                   aria-label="LinkedIn"
                   title="LinkedIn"
                 >
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.45a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13h-3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.72v20.56C24 .77 23.2 0 22.22 0z" /></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.45a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13h-3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.78 24h20.44c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" /></svg>
                 </a>
                 <a
                   href="https://github.com/alndvtpr"
@@ -637,7 +637,7 @@ export const Navbar = () => {
               aria-label="LinkedIn"
               title="LinkedIn"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.45a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13h-3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.72v20.56C24 .77 23.2 0 22.22 0z" /></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.45a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13h-3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.78 24h20.44c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" /></svg>
             </a>
             <a
               href="https://github.com/alndvtpr"

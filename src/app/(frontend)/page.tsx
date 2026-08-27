@@ -7,6 +7,7 @@ import type { Page as PayloadPage } from '@/payload-types'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ScrollHero } from '@/components/ScrollHero'
+import { ToolsMarquee } from '@/components/ToolsMarquee'
 import { Icon } from '@/components/icons'
 import { PROJECTS } from '@/data/projects'
 import { generateMetadata } from '@/lib/seo'
@@ -125,7 +126,10 @@ export default async function Page() {
         <ScrollHero />
       </section>
 
-      {/* 2. Personal fit */}
+      {/* 2. Tools & Infinite Marquee */}
+      <ToolsMarquee />
+
+      {/* 3. Personal fit */}
       <section className="relative z-20 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 md:px-16">
         <div className="max-w-3xl motion-reveal">
           <span className="font-heading text-xs font-semibold uppercase tracking-[0.08em] text-primary-container">

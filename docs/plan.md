@@ -126,19 +126,21 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-27)**: `feat(branding): implement new ADT gold monogram logo in AVIF across header and footer`
+- **Commit `HEAD` (Current - 2026-08-27)**: `fix(cms-database): configure Supabase connection pooler and restore infinite tools marquee`
+  - Resolved Supabase direct connection IPv4 deprecation / inactivity pause by migrating `DATABASE_URI` to AWS East pooler (`aws-0-us-east-1.pooler.supabase.com:5432`).
+  - Successfully verified Payload CMS 3.88 connection, schema synchronization, and automatic creation of all 18 CMS database tables.
+  - Restored GPU-accelerated infinite `<ToolsMarquee />` on `/` with translation-composited keyframes (`translate3d`).
+  - Aligned desktop and mobile navigation ordering and hardened LinkedIn anchor with `rel="noopener noreferrer nofollow"`.
+  - Passed 6/6 search CI checks and 0 TypeScript compilation errors.
+- **Commit `HEAD~1` (2026-08-27)**: `feat(branding): implement new ADT gold monogram logo in AVIF across header and footer`
   - Integrated canonical AVIF logo (`public/branding/alain-dave-tapiru-adt-logo.avif`, 968x925, ~142KB) and WebP fallback (`alain-dave-tapiru-adt-logo.webp`, ~164KB).
   - Upgraded `Navbar.tsx` and `Footer.tsx` with `next/image` intrinsic dimensions, responsive scaling (header: 34–38px, footer: 44–48px), and clean surface seating.
   - Removed obsolete legacy `logo-44.webp` and `Alain-Dave-Tapiru-SEO-Specialist-Philippines-Logo.webp` while preserving metadata favicon/OpenGraph assets.
   - Passed 6/6 search CI checks, 0 TypeScript errors, 0 ESLint warnings/errors, and 30/30 production routes built.
-- **Commit `HEAD~1` (2026-08-27)**: `feat(credentials): add Grammar and Punctuation UCI Coursera certificate with verification and responsive preview`
+- **Commit `HEAD~2` (2026-08-27)**: `feat(credentials): add Grammar and Punctuation UCI Coursera certificate with verification and responsive preview`
   - Integrated UCI | Coursera Grammar and Punctuation certificate asset (PDF, WebP, AVIF) into `AboutCredentials.tsx` with modal image preview, download, and Coursera verification URL.
   - Aligned credential entry in `resume/page.tsx` with verified status and updated `fact-inventory.md`.
   - Upgraded certificate grid on `/about` to responsive 3-column layout on large screens (`lg:grid-cols-3`).
-- **Commit `HEAD~2` (`2108615` - 2026-08-27)**: `feat(about-resume): publish verified about narrative, hardened resume modal previewer, and updated 1-page PDF`
-  - Published verified 12-paragraph About narrative and updated training scope in `fact-inventory.md`.
-  - Fixed PDF embed security headers in `next.config.ts` (`X-Frame-Options: SAMEORIGIN` / `frame-ancestors 'self'`).
-  - Hardened `ResumePdfPreview.tsx` with on-demand loading to eliminate auto-download popups, interactive modal viewer, and 1-page ATS standard.
 
 ---
 
