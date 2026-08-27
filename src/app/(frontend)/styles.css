@@ -265,6 +265,12 @@ html[data-theme="dark"] {
   }
 }
 
+/* ── Hero Portrait Atmospheric Feather Mask ──────────────────────────────── */
+.hero-portrait-mask {
+  mask-image: radial-gradient(ellipse 88% 85% at 70% 45%, #000 50%, transparent 94%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 85% at 70% 45%, #000 50%, transparent 94%);
+}
+
 /* ── CSS-Only View Transitions (Progressive Enhancement) ─────────────────── */
 @view-transition {
   navigation: auto;
