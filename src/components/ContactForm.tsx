@@ -142,13 +142,13 @@ function ContactFormInner() {
     <div className="p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-black/10 dark:border-white/10 shadow-xl space-y-6">
       <div>
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-1.5 font-semibold">
-          Direct Project Inquiry
+          DIRECT INQUIRY
         </span>
-        <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-1.5 tracking-tight">
-          Tell Me What You’re Working On
-        </h2>
+        <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-1.5 tracking-tight">
+          Share Your Project Details
+        </h3>
         <p className="font-sans text-xs sm:text-sm text-on-surface/70 leading-relaxed">
-          Share your website, project sprint, or overflow task. All inquiries are reviewed directly by Alain.
+          Share your website, task notes, or priorities below. All inquiries are reviewed directly by Alain.
         </p>
       </div>
 

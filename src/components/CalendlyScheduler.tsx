@@ -202,22 +202,22 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
       <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-3 motion-reveal">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container text-xs font-heading font-semibold uppercase tracking-[0.08em]">
           <Calendar className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-          <span>BOOK A CONVERSATION</span>
+          <span>Choose a Time</span>
         </div>
-        <h2 className="font-heading text-xl sm:text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight">
-          Schedule a 20-Minute Conversation
-        </h2>
+        <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-extrabold text-on-surface tracking-tight">
+          Pick a Time That Works for You
+        </h3>
         <p className="font-sans text-xs sm:text-sm md:text-base text-on-surface/75 leading-relaxed max-w-xl mx-auto">
-          Choose a time that works for you. Let&apos;s discuss your website, explore practical search opportunities, and see how we can work together.
+          No long sales pitch. Just a straightforward conversation about what you&apos;re trying to improve and whether I&apos;m the right person to help.
         </p>
 
         {/* Feature Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1 text-[11px] font-sans text-on-surface/80">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" aria-hidden="true" /> 20-Min Conversation
+            <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" aria-hidden="true" /> 20 Minutes
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" /> Practical Action Items
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" /> Practical Next Steps
           </span>
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
             <ShieldCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" aria-hidden="true" /> No Sales Pressure

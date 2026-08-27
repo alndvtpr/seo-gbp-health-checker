@@ -81,13 +81,13 @@ export default function ContactPage() {
       {/* Header with Single Clear Question */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
         <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block mb-3 font-semibold">
-          GET IN TOUCH • DIRECT COMMUNICATION
+          LET&apos;S TALK • NO PRESSURE
         </span>
         <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-4 sm:mb-6">
-          What Would You Like Help With?
+          Tell Me What You&apos;re Working On
         </h1>
         <p className="font-sans text-on-surface/75 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Schedule a 20-minute conversation below or send a direct inquiry to discuss project sprints, website fixes, or agency overflow support.
+          Need help with SEO, a website issue, or an extra pair of hands for an agency project? Send me the details or book a quick 20-minute call. I&apos;ll take a look at what you&apos;re working on, ask a few questions, and tell you where I can realistically help.
         </p>
       </div>
 
@@ -95,13 +95,13 @@ export default function ContactPage() {
       <section className="space-y-6 motion-reveal">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-            DIRECT DISCOVERY CALL
+            PREFER TO TALK IT THROUGH?
           </span>
           <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
-            Schedule a 20-Minute Intro Call
+            Book a 20-Minute Call
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed">
-            Pick an open slot on my calendar below for a direct, low-pressure discussion about your website priorities or agency overflow requirements.
+          <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed max-w-xl mx-auto">
+            Pick a time that works for you. We can talk through your website, SEO priorities, or project requirements and figure out the most practical next step.
           </p>
         </div>
 
@@ -115,13 +115,13 @@ export default function ContactPage() {
       <div className="space-y-8 sm:space-y-10">
         <div className="text-center max-w-2xl mx-auto space-y-2 motion-reveal">
           <span className="font-heading text-xs text-primary-container uppercase tracking-[0.08em] block font-semibold">
-            NOT READY TO BOOK A CALL?
+            RATHER WRITE IT DOWN?
           </span>
           <h2 className="font-heading text-xl sm:text-3xl font-bold text-on-surface tracking-tight">
-            Send a Direct Project Message
+            Send Me the Details
           </h2>
           <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed max-w-xl mx-auto">
-            Send a note about your website, SEO goals, or overflow tasks. You don&apos;t need everything figured out yet.
+            Not ready for a call? That&apos;s completely fine. Tell me a little about your website, SEO issue, or project and I&apos;ll get back to you personally.
           </p>
         </div>
 
