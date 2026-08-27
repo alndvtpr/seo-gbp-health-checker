@@ -125,14 +125,15 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (`9f54500` - 2026-08-27)**: `feat: update about me portrait to AVIF, update SEO schemas, and remove legacy portrait`
+- **Commit `HEAD` (`2108615` - 2026-08-27)**: `feat(about-resume): publish verified about narrative, hardened resume modal previewer, and updated 1-page PDF`
+  - Published verified 12-paragraph About narrative and updated training scope in `fact-inventory.md`.
+  - Fixed PDF embed security headers in `next.config.ts` (`X-Frame-Options: SAMEORIGIN` / `frame-ancestors 'self'`).
+  - Hardened `ResumePdfPreview.tsx` with on-demand loading to eliminate auto-download popups, interactive modal viewer, and 1-page ATS standard.
+- **Commit `HEAD~1` (`9f54500` - 2026-08-27)**: `feat: update about me portrait to AVIF, update SEO schemas, and remove legacy portrait`
   - Upgraded portrait asset to optimized AVIF format and updated structured JSON-LD schemas.
-- **Commit `HEAD~1` (`739c59e` - 2026-08-26)**: `feat(contact-pricing): optimize contact flow with Calendly atop, restore original pricing packages, and update plan.md`
+- **Commit `HEAD~2` (`739c59e` - 2026-08-26)**: `feat(contact-pricing): optimize contact flow with Calendly atop, restore original pricing packages, and update plan.md`
   - Repositioned Calendly and the direct inquiry flow on `/contact/`.
   - Restored the four current USD/PHP packages across homepage, Services, estimator and Contact options.
-- **Commit `HEAD~2` (`392121e` - 2026-08-26)**: `feat(trust-about-projects): implement honest trust system, fit guidance matrix, and 5-part project evidence framework`
-  - Added `TrustCommitment.tsx`, About fit guidance and project proof classifications.
-  - Reworked project and resume evidence presentation across 10 files.
 
 ---
 
