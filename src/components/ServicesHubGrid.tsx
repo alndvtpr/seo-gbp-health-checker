@@ -88,11 +88,11 @@ const SERVICE_HUB_CARDS: ServiceHubCard[] = [
     pillar: 'Pillar 05 • Web Engineering',
     title: 'SEO-Ready Web Design & Development',
     description:
-      'High-performance Next.js 15 App Router web apps and custom WordPress themes engineered with clean code, sub-second load times, and built-in search architecture.',
+      'High-performance Next.js App Router web apps and custom WordPress themes engineered with clean code, sub-second load times, and built-in search architecture.',
     href: '/services/web-development/',
     icon: 'code_blocks',
     deliverables: [
-      'Custom Next.js 15 & React code-first architectures',
+      'Custom Next.js & React code-first architectures',
       'Bespoke WordPress theme builds (no bloated templates)',
       'Performance engineering targeting fast Core Web Vitals',
       'Integrated GA4 analytics & Search Console tracking',
@@ -106,7 +106,7 @@ const PROOF_ITEMS = [
     title: 'AlainTapiru.com Architecture',
     category: 'Technical SEO & Next.js',
     metric: '99 Desktop / 96 Mobile PageSpeed',
-    description: 'Code-first Next.js 15 portfolio with structured JSON-LD entity graph and zero CLS.',
+    description: 'Code-first Next.js portfolio with structured JSON-LD entity graph and zero CLS.',
     href: '/projects/alaintapiru-portfolio/',
   },
   {

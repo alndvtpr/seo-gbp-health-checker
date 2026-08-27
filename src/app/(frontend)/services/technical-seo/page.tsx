@@ -648,7 +648,7 @@ export default function TechnicalSeoPage() {
                 SEO-Ready Web Design &amp; Development
               </h3>
               <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
-                Code-first Next.js 15 apps and custom WordPress themes engineered for zero layout shift.
+                Code-first Next.js apps and custom WordPress themes engineered for zero layout shift.
               </p>
             </div>
             <div className="pt-3 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-heading text-xs font-bold text-primary-container">

@@ -377,3 +377,57 @@ Phase 09 grounded blog article training and experience narratives, deduplicated 
 | Local HTTP / rendered HTML | PASS | `/blog/` and `/blog/is-seo-dead-2026/` return HTTP 200 at `http://localhost:3000/blog/...` with verified rendered content. |
 
 No database write, form submission, external record, commit, push or deployment occurred.
+
+## Phase 10 tools and commercial relevance validation delta
+
+Phase 10 deduplicated schema on `/tools/`, converted diagnostic CTAs to client-side Next.js Links with `/contact/?service=local-seo` preselection, aligned React 19 hydration state, and enhanced salary calculator accessibility with explicit form labels, unique IDs, and `aria-pressed` toggle states.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Schema deduplication | PASS - JSON-LD | `<Breadcrumbs showJsonLd={false} />` on `/tools/`; rendered HTML confirmed exactly 1 `BreadcrumbList` object alongside `WebPage` and `WebApplication` schemas in the centralized `toolsJsonLd` `@graph`. |
+| Commercial CTA preselection | PASS - NAVIGATION | Replaced native anchor with `<Link href="/contact/?service=local-seo">` in `GBPHealthChecker.tsx`. |
+| React 19 hydration resilience | PASS - STATE | Form reset in `WebsiteAuditRequestForm.tsx` refactored to standard `key` re-render pattern. |
+| Calculator accessibility | PASS - A11Y | Replaced unassociated labels with `label[htmlFor]` matching `select#salary-exp`, `select#salary-employment`, `select#salary-skill`, and added `aria-pressed` to PHP/USD toggles. |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All modified tools files pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | `/tools/` returns HTTP 200 at `http://localhost:3000/tools/` with verified rendered content and accessibility attributes. |
+
+No database write, form submission, external record, commit, push or deployment occurred.
+
+## Phase 11 contact form and conversion reliability validation delta
+
+Phase 11 deduplicated breadcrumb schema on `/contact/`, added native HTML `required` attributes to required form fields, synchronized `SERVICE_OPTIONS` to Model B PHP-first pricing (D-022), aligned project detail package CTA queries, and hardened Zod validation with string trimming and email lowercasing.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Schema deduplication | PASS - JSON-LD | `<Breadcrumbs showJsonLd={false} />` on `/contact/`; rendered HTML confirmed exactly 1 `BreadcrumbList` object alongside `ContactPage` in the page `jsonLd` `@graph`. |
+| Native required semantics | PASS - A11Y/HTML | Added `required` to `input#contact-name`, `input#contact-email`, `select#contact-service`, and `textarea#contact-message` in `ContactForm.tsx`. |
+| Service dropdown synchronization | PASS - CONTENT/DATA | Updated `SERVICE_OPTIONS` in `ContactForm.tsx` to PHP-first pricing (`₱15,500 / $280`, `₱27,000 / $480`, `₱48,000 / $850`, `₱25,000/mo / $450/mo`) per D-022. |
+| Package CTA query alignment | PASS - NAVIGATION | Aligned package CTA links in `projects/[slug]/page.tsx` to pass matching PHP-first preselection queries. |
+| Validation sanitization | PASS - RESILIENCE | Added `.trim()` and `.toLowerCase()` sanitization to `contactFormSchema` in `src/lib/schemas/contact.ts`. |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All modified contact files pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | `/contact/` returns HTTP 200 at `http://localhost:3000/contact/` with verified rendered content, native `required` attributes, and PHP-first dropdown options. |
+
+No database write, form submission, external record, commit, push or deployment occurred.
+
+## Phase 12 contextual internal linking validation delta
+
+Phase 12 repaired legacy `#pillar-foundation` and `#pillar-execution` anchor links in `/about/` to link directly to dedicated child service routes (`/services/technical-seo/`, `/services/web-development/`), normalized legacy Next.js 15 copy across navigation submenus, 5-pillar service cards, and machine discovery feeds (`llms.txt`, `llms-full.txt`), and validated the complete bidirectional internal link mesh across all 17 canonical routes.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Legacy anchor repair | PASS - NAVIGATION | In `about/page.tsx`, Core Technical Capabilities links updated from `#pillar-foundation` $\rightarrow$ `/services/technical-seo/` and `#pillar-execution` $\rightarrow$ `/services/web-development/`. |
+| Framework copy normalization | PASS - CONTENT | Standardized "Next.js 15" copy to "Next.js" / "Next.js App Router" across `Navbar.tsx`, `ServicesHubGrid.tsx`, `services/technical-seo/page.tsx`, `llms.txt/route.ts`, and `llms-full.txt/route.ts`. |
+| Internal link mesh integrity | PASS - REACHABILITY | All 17 canonical sitemap routes verified with strict trailing slashes (`/`), valid anchor destinations (`#packages`, `#scope-estimator`, `#gbp-checker`, `#website-audit`, `#credentials`, `#faq`), and contextual cross-hub links. |
+| Type check | PASS | Direct TypeScript compiler (`tsc --noEmit --incremental false`) returned exit 0. |
+| Targeted lint | PASS | All modified files pass ESLint with 0 errors and 0 warnings. |
+| SEO CI test suite | PASS | 6/6 search and performance checks pass (`pnpm run test:seo`). |
+| Production build | PASS | Next.js 16.3.0 compiled and generated all 30 static/SSG pages cleanly with isolated database safeguard. |
+| Local HTTP / rendered HTML | PASS | `/about/`, `/services/`, `/services/technical-seo/`, `/llms.txt` return HTTP 200 at `http://localhost:3000/...` with verified direct links and zero legacy `#pillar` references. |
+
+No database write, form submission, external record, commit, push or deployment occurred.

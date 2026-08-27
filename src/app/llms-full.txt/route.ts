@@ -27,7 +27,7 @@ Alain Dave Tapiru utilizes a structured 6-step search optimization methodology:
 6. **Reporting & Data Analysis:** GA4 conversion tracking, Google Search Console performance monitoring, transparent monthly ROI metrics.
 
 ## 3. Technology Stack & Development Standards
-- **Frontend / Frameworks:** Next.js 15 (App Router, Turbopack, React 19), Tailwind CSS, TypeScript.
+- **Frontend / Frameworks:** Next.js (App Router, Turbopack, React 19), Tailwind CSS, TypeScript.
 - **Content Management:** Payload CMS 3.0, PostgreSQL (Supabase).
 - **Core Web Vitals Benchmarks:**
   - Largest Contentful Paint (LCP): ≤ 2.0s

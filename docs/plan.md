@@ -29,6 +29,10 @@
 9. **Controlled Documentation Model**: The version-controlled `payload-website/docs/plan.md` is the master roadmap. The owner approved four scoped Phase 01 supporting records under `payload-website/docs/site-improvement/` for implementation state, facts, decisions, and baseline evidence. The workspace-level `docs/plan.md` is a synchronized convenience copy. Do not create additional planning or audit files without approval.
 10. **Explicit Push Approval Gate**: Never automatically push commits to remote (`git push origin main`). All changes must remain local for localhost testing (`http://localhost:3000`) until the user explicitly requests or commands to push live.
 11. **Phase-to-Phase Session Hand-Off Protocol (Context Token Optimization)**: At the conclusion of every phase (after verification, documentation sync, and live git push), the assistant must output a structured hand-off prompt instructing the user to open a fresh conversation for the next phase. This preserves tokens, eliminates context rot, and maintains peak execution accuracy.
+12. **Subjective Decision & Content Consultation Gate**: Before executing any task that involves subjective decisions (especially website copy, pricing, service descriptions, messaging, positioning, CTAs, or major content changes), do not make the decision for the owner.
+    - First, briefly explain what needs to be decided and give 2–3 strong options or recommendations (e.g., *"What price should we use for this service? A, B, or C?"*, *"Which version do you prefer, A or B?"*, or *"Would you like to keep this statement, rewrite it, or remove it?"*).
+    - Wait for the owner's choice before implementing that specific change.
+    - Do not interrupt for routine technical work, obvious fixes, or decisions already clearly defined in `plan.md`. Only ask when owner preference, business judgment, or personal voice genuinely matters.
 
 ---
 
@@ -132,22 +136,23 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-27)**: `feat(contact): execute Master Implementation Program Phase 11 for contact form and conversion reliability`
+- **Commit `HEAD` (Current - 2026-08-27)**: `feat(links): execute Master Implementation Program Phase 12 for contextual internal linking`
+  - Repaired legacy `#pillar-foundation` and `#pillar-execution` anchors in `about/page.tsx` to point directly to dedicated service routes (`/services/technical-seo/` and `/services/web-development/`).
+  - Normalized legacy "Next.js 15" copy to "Next.js" / "Next.js App Router" across navigation submenus (`Navbar.tsx`), 5-pillar grid (`ServicesHubGrid.tsx`), technical SEO service page, and machine feeds (`llms.txt`, `llms-full.txt`).
+  - Verified complete bidirectional internal link mesh across all 17 canonical routes with strict trailing slashes (`/`), valid anchor destinations, and contextual cross-links.
+  - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
+- **Commit `HEAD~1` (2026-08-27)**: `feat(contact): execute Master Implementation Program Phase 11 for contact form and conversion reliability`
   - Deduplicated BreadcrumbList JSON-LD on `/contact/` via `showJsonLd={false}` on `<Breadcrumbs />`.
   - Added native HTML `required` attributes to mandatory form controls (`contact-name`, `contact-email`, `contact-service`, `contact-message`) in `ContactForm.tsx` alongside `aria-required="true"`.
   - Standardized `SERVICE_OPTIONS` with PHP-first pricing (₱15,500 / $280, ₱27,000 / $480, ₱48,000 / $850, ₱25,000/mo / $450/mo) per D-022.
   - Enhanced `matchServiceParam` to map all query parameters to PHP-first options and aligned project detail page package CTA links.
   - Added `.trim()` and `.toLowerCase()` sanitization to Zod contact validation schema.
   - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
-- **Commit `HEAD~1` (2026-08-27)**: `feat(hero): update homepage hero with high-resolution transparent Photoroom AVIF portrait`
+- **Commit `HEAD~2` (2026-08-27)**: `feat(hero): update homepage hero with high-resolution transparent Photoroom AVIF portrait`
   - Converted user's high-resolution transparent cutout portrait (`ChatGPT Image Aug 27, 2026, 02_15_59 PM-Photoroom.png`) to AVIF (`public/alain-dave-tapiru-seo-specialist-philippines-hero.avif`, 52.9KB, 916×896), WebP (47.8KB), and PNG (868KB).
   - Preserved exact canonical filename and SEO alt text (`Alain Dave Tapiru, SEO Specialist in the Philippines, in a professional homepage hero portrait`).
   - Configured `<ScrollHero />` with 916/896 aspect ratio, responsive sizing (`max-w-[360px]` to `max-w-[640px]`), unoptimized direct delivery, and ambient backlight.
   - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
-- **Commit `HEAD~2` (2026-08-27)**: `feat(homepage): remove redundant tool category navigation links from marquee`
-  - Removed the 3-line tool category navigation links block from `<ToolsMarquee />` on the homepage as requested.
-  - Preserved 100% of the original homepage layout, vertical rhythm, and section spacing.
-  - Passed 6/6 search CI checks, 0 TypeScript errors, and 30/30 production static routes.
 
 ---
 

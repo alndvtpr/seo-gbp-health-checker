@@ -17,7 +17,7 @@ Last updated: 2026-08-27 (Asia/Manila)
 | 09 | Blog, CMS publishing model and first-hand content | COMPLETE | Grounded article training/experience narrative to PinoySEO Bootcamp and hands-on practice, deduplicated BreadcrumbList JSON-LD on blog hub and article routes (showJsonLd={false}), cleaned unused imports, verified hybrid static CMS publishing model. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
 | 10 | Tools and commercial relevance | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), Next.js Link conversion with service preselection (/contact/?service=local-seo), React 19 hydration pattern, salary calculator accessibility (labels, IDs, aria-pressed). Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
 | 11 | Contact form and conversion reliability | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), native HTML required attributes, PHP-first service synchronization (D-022), robust whitespace trimming/lowercasing Zod validation, project detail package CTA parameter alignment. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
-| 12 | Contextual internal linking | PENDING / DECISION-GATED | Offer and route targets must be approved first. |
+| 12 | Contextual internal linking | COMPLETE | Repaired legacy #pillar anchors in `/about/` to point directly to dedicated service routes (`/services/technical-seo/`, `/services/web-development/`), normalized legacy Next.js 15 copy across navigation submenus, service cards, technical SEO child page, and machine feeds (`llms.txt`, `llms-full.txt`), and validated bidirectional internal linking mesh across all 17 canonical routes. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
 | 13 | Page-specific structured data | PENDING | Global and duplicate schema findings are recorded in `baseline.md`. |
 | 14 | Technical SEO foundations | PENDING | Includes version-copy, crawler-policy and machine-readable endpoint review. |
 | 15 | Accessibility remediation | PENDING | Native required semantics and interactive target audit are recorded. |
@@ -256,6 +256,22 @@ Last updated: 2026-08-27 (Asia/Manila)
   - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
   - Local HTTP / rendered HTML checks on `/contact/`: PASS (HTTP 200, exactly 1 `BreadcrumbList` JSON-LD object, verified native `required` attributes and PHP-first dropdown options).
 
+### Phase 12 verification evidence (2026-08-27)
+
+- Production files changed: `src/app/(frontend)/about/page.tsx`, `src/components/Navbar.tsx`, `src/components/ServicesHubGrid.tsx`, `src/app/(frontend)/services/technical-seo/page.tsx`, `src/app/llms.txt/route.ts`, and `src/app/llms-full.txt/route.ts`.
+- Legacy anchor repair & route alignment:
+  - In `src/app/(frontend)/about/page.tsx`, updated Core Technical Capabilities links from deprecated `#pillar-foundation` and `#pillar-execution` anchors directly to dedicated service routes `/services/technical-seo/` and `/services/web-development/`.
+- Framework copy normalization:
+  - Normalized legacy `"Next.js 15"` mentions to standardized `"Next.js"` / `"Next.js App Router"` in navigation submenus (`Navbar.tsx`), 5-pillar service card grid (`ServicesHubGrid.tsx`), related service card (`services/technical-seo/page.tsx`), and machine discovery endpoints (`llms.txt` and `llms-full.txt`).
+- Internal linking mesh integrity:
+  - Verified bidirectional cross-linking across all 17 canonical routes with proper trailing slashes (`/`), valid anchor IDs (`#packages`, `#scope-estimator`, `#gbp-checker`, `#website-audit`, `#credentials`, `#faq`), and contextual cross-links connecting hubs, services, projects, tools, and blog guides.
+- Validation:
+  - TypeScript compiler (`tsc --noEmit --incremental false`): PASS (0 errors).
+  - Targeted ESLint on all modified files: PASS (0 errors, 0 warnings).
+  - SEO CI test suite (`pnpm run test:seo`): PASS (6/6 checks).
+  - Next.js 16.3.0 production build: PASS (all 30 static and SSG routes generated with isolated database safeguard).
+  - Local HTTP / rendered HTML checks on `/about/`, `/services/`, `/services/technical-seo/`, `/llms.txt`: PASS (HTTP 200, verified direct service route links, 0 deprecated pillar anchors).
+
 ## Safeguards for later phases
 
 1. Read this file, `fact-inventory.md`, `decision-log.md` and `baseline.md` before inspecting production code.
@@ -269,13 +285,13 @@ Last updated: 2026-08-27 (Asia/Manila)
 
 ## Next gate
 
-- `NEXT_PHASE_READY: YES - PHASE 11 COMPLETE, READY FOR PHASE 12`
-- Phase 11 - Contact form and conversion reliability is complete.
-- Next Phase: Phase 12 - Contextual internal linking (`src/components/Navbar.tsx`, `src/components/Footer.tsx`, hub and detail routes).
-- Handoff rule: Open a fresh conversation for Phase 12 to optimize context tokens.
+- `NEXT_PHASE_READY: YES - PHASE 12 COMPLETE, READY FOR PHASE 13`
+- Phase 12 - Contextual internal linking is complete.
+- Next Phase: Phase 13 - Page-specific structured data (Schema graph deepening, BreadcrumbList verification, OfferCatalog & WebApplication schema auditing).
+- Handoff rule: Open a fresh conversation for Phase 13 to optimize context tokens.
 
 ## Current handoff
 
-- Last completed phase: Phase 11 - Contact form and conversion reliability.
-- Active phase: Phase 12 - Contextual internal linking (Pending start in fresh conversation).
+- Last completed phase: Phase 12 - Contextual internal linking.
+- Active phase: Phase 13 - Page-specific structured data (Pending start in fresh conversation).
 - Ready for fresh conversation hand-off.

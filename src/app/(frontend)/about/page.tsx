@@ -172,7 +172,7 @@ export default function AboutPage() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <Link
-                href="/services/#pillar-foundation"
+                href="/services/technical-seo/"
                 className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
@@ -187,7 +187,7 @@ export default function AboutPage() {
               </Link>
 
               <Link
-                href="/services/#pillar-execution"
+                href="/services/web-development/"
                 className="p-3.5 sm:p-4 rounded-xl bg-surface-1/95 hover:bg-surface-2 border border-black/10 dark:border-white/5 hover:border-primary-container/40 transition-all duration-300 group block shadow-sm"
               >
                 <div className="flex items-center justify-between gap-1 mb-1">

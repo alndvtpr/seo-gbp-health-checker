@@ -48,7 +48,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         name: 'AlainTapiru.com Architecture',
         href: '/projects/alaintapiru-portfolio/',
-        description: 'Next.js 15 portfolio & technical SEO build',
+        description: 'Next.js App Router portfolio & technical SEO build',
         badge: 'Technical SEO',
       },
     ],
@@ -88,7 +88,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         name: 'Web Development',
         href: '/services/web-development/',
-        description: 'Next.js 15 & custom WordPress theme builds',
+        description: 'Next.js App Router & custom WordPress theme builds',
         badge: 'Next.js / WP',
       },
     ],
