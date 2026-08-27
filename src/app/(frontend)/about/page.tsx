@@ -93,8 +93,8 @@ export default function AboutPage() {
             {/* Framed Image Container */}
             <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden border border-black/10 dark:border-white/10 bg-surface-1 shadow-2xl group">
               <Image
-                src="/alain-dave-tapiru-professional-portrait.webp"
-                alt="Alain Dave Tapiru, SEO specialist and web developer"
+                src="/alain-dave-tapiru-seo-specialist-philippines.avif"
+                alt="Alain Dave Tapiru, SEO specialist in the Philippines"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 480px"

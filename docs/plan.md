@@ -26,7 +26,7 @@
 6. **Plan Maintenance**: Maintain rolling window in Section 4 (keep recent active tasks; roll completed foundations into Section 3). Keep Section 5 strictly to last 3 commits.
 7. **Mandatory Localhost Verification Link & Live Preview Startup**: After every code change, the agent MUST ensure the dev server is active, verify that the new build is loaded and responding with HTTP 200, and explicitly provide the clickable localhost preview link (`http://localhost:3000`) for the user to test and verify before commits/deployments.
 8. **No Automated Browser Subagents**: Do not launch automated browser subagents / browser execution tools as they are non-functional in this environment. Delegate visual verification directly to the user with the clickable localhost link or direct testing instructions.
-9. **Single Authoritative Plan File**: `docs/plan.md` (root repository directory) is the sole authoritative project documentation and planning file. Do not create or reference any secondary plan files.
+9. **Controlled Documentation Model**: The version-controlled `payload-website/docs/plan.md` is the master roadmap. The owner approved four scoped Phase 01 supporting records under `payload-website/docs/site-improvement/` for implementation state, facts, decisions, and baseline evidence. The workspace-level `docs/plan.md` is a synchronized convenience copy. Do not create additional planning or audit files without approval.
 10. **Explicit Push Approval Gate**: Never automatically push commits to remote (`git push origin main`). All changes must remain local for localhost testing (`http://localhost:3000`) until the user explicitly requests or commands to push live.
 
 ---
@@ -102,32 +102,38 @@
 - [x] **Phase 41 Honest Trust System, Verifiable Proof Classification & Scope Boundaries**: Built an honest trust system distinguishing real client work, training contributions, and self-initiated projects without fabricated social proof or false outcome guarantees; created `TrustCommitment.tsx` component with concise trust statement, 2-column "What You Can Expect" vs. "What I Do Not Promise" comparison, and verified credentials quick access; added standardized `proofLabel` field across `projects.ts`, `ProjectsDirectory.tsx`, `projects/[slug]/`, and `resume/page.tsx` (`Self-initiated build`, `Ongoing build`, `Training contribution`); removed defunct `NorcalCoffee.com` links and reframed bootcamp highlights around practical audit exercises; reframed tools as "Tools Used in Daily Practice"; clarified diagnostic heuristic scope in `tools/page.tsx`; verified 6/6 passing search CI checks and 0 build errors across all 30 static & SSG routes.
 - [x] **Phase 42 About & Portfolio Client Confidence & Evidence System**: Upgraded About and Portfolio pages to support client confidence through an honest professional story, clear project roles, explicit fit guidance, and useful evidence of practical capability; rewrote About page opening to lead directly with practical client value (fixing technical crawl errors, on-page optimization, local search signals, web support) while preserving the truthful "over the past year" experience statement; added 2-column "Best Fit For" vs. "Not the Right Fit Yet" matrix; structured all portfolio projects around a 5-part evidence framework (Problem/Goal, Exact Role, Work Completed, Tools & Methods, Practical Validation); clearly marked AngatSikat Studio, Local SEO GBP Health Checker, and AlainTapiru.com Architecture according to their true self-initiated/staging/live roles; excluded defunct Norcal Coffee project from portfolio; added "How Projects Become Case Studies & Data Transparency" trust note; verified 6/6 passing search CI checks, 0 TypeScript errors, and 30/30 static SSG routes built cleanly.
 - [x] **Phase 43 Low-Pressure, Qualified Contact Flow & Service Preselection**: Transformed `/contact/` into a low-pressure, qualified client conversion flow; revised opening around single clear H1 ("What Would You Like Help With?"); placed Calendly booking scheduler at top for frictionless discovery scheduling, with direct inquiry form and direct contact details below; clearly designated Name, Email, Service Needed, and Message as required with visible UI indicators and accessible validation; kept Website URL optional; synchronized service dropdown options with engagement packages; implemented query parameter preselection (`/contact?service=...`); added transparent "What Happens After You Submit" 3-step expectation sequence; verified 6/6 passing search CI checks, 0 TypeScript errors, and 30/30 static SSG routes built cleanly.
+- [x] **2026 Master Implementation Program - Phase 01 Repository Baseline, Fact Inventory & Safeguards**: Completed a documentation-only audit at commit `739c59e`; verified the installed stack (Next.js 16.3.0, React 19.2.8, Payload 3.88.0, Tailwind 4.3.3), 17 public canonical URLs, 30 generated page units, Vercel production responses, current four-package commercial state, public resume evidence, schema/forms/integrations, and existing tests. Created controlled implementation-state, fact-inventory, decision-log, and baseline records. Production build and type check passed; SEO checks passed 6/6; lint has 9 pre-existing errors and 24 warnings; database-touching tests were not run. No production website file changed.
+- [x] **2026 Master Implementation Program - Phase 02 Global Design-System Restraint**: Implemented restrained shared card elevation/radius, non-pill CTA actions, stronger keyboard focus, explicit reduced-motion handling and WCAG-compliant orange action contrast without changing content, routes, metadata, schema, pricing or component APIs. Type check, SEO checks and production build pass; lint remains at the 9-error/24-warning baseline. The owner accepted the phase by instructing Codex to proceed.
+- [x] **2026 Master Implementation Program - Phase 03 Navigation & Information Architecture**: Reduced the global primary navigation to Services, Projects, About, Blog and the existing Contact action while keeping the logo as Home and moving Resume/Tools to secondary access. The mobile dialog is absent on initial render and now includes correct expanded state, focus containment, Escape/focus restoration, route-close and resize cleanup. All 17 sitemap routes remain reachable; type check and production build pass. The owner accepted the phase on 2026-08-26.
+- [x] **2026 Master Implementation Program - Phase 04 Homepage Positioning & Conversion Path**: Replaced the previous eleven-part homepage sequence with seven purposeful sections: Hero, Personal fit, Starting offers, Sample deliverable, Selected work, Engagement process and objections, and Final CTA. Applied the owner-approved Model B packages/prices, free Website Health Check primary action and `SEO Specialist & Web Developer` title; retained all three real projects and added a genuine internal-anchor audit excerpt. Type check, targeted lint, SEO checks and the 30-page production build pass; full lint remains at the pre-existing 9-error/24-warning baseline. Owner responsive/theme/keyboard review remains pending.
 
 #### Master Plan Status
-🎉 **ALL PHASES (Phases 1–43 & Roadmap Phases A, B, C, D, E) FULLY COMPLETED & VERIFIED.** The website features a unified, accessible dual-theme system, comprehensive Schema.org linked entity architecture, 5 dedicated commercial service pillar routes, modern 2026 web resume and downloadable PDF engine, machine discoverability feeds, zero performance regressions, modern editorial portrait positioning, verified multi-channel form & email dispatch pipeline, active GA4 realtime tracking engine, distinct 1-to-1 page-to-intent search separation, rich accessible desktop & mobile navigation dropdowns, curated editorial blog research architecture, practical early-stage SEO and web support positioning, an 11-section client-first conversion path, proven transparent pricing tiers with interactive scope estimator, an honest trust system with explicit proof classification, a 5-part project evidence framework, a low-pressure qualified contact conversion flow, and 0 build errors across all static Next.js production routes.
+**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** The new 20-phase Master Implementation Program is now active: Phases 01-04 are complete, and Phases 05-20 remain unexecuted. Phase 05 (About and Resume accuracy) is next and must follow the fact-inventory gates. Historical completion claims in this file do not override the current evidence baseline.
+
+**Durable phase handoff rule:** At the end of every completed phase, update this roadmap and the applicable controlled records, refresh the `Current handoff`, and create one fresh Codex project task using the same saved project when task creation is available. The new task must read the recorded context and respect unresolved gates before editing. `payload-website/AGENTS.md` contains the authoritative operating procedure.
+
+Master Implementation Program supporting records:
+
+- [`docs/site-improvement/implementation-state.md`](site-improvement/implementation-state.md) - phase status, architecture and safe commands.
+- [`docs/site-improvement/fact-inventory.md`](site-improvement/fact-inventory.md) - verified, conflicting and owner-confirmation-required facts.
+- [`docs/site-improvement/decision-log.md`](site-improvement/decision-log.md) - approved decisions and remaining gates.
+- [`docs/site-improvement/baseline.md`](site-improvement/baseline.md) - repository, live deployment, routes, schema, forms and validation evidence.
 
 ---
 
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (`586850e` - 2026-08-25)**: `feat(services): implement transparent PHP-first starter offers, scope caps, and 11-section homepage conversion path`
-  - Aligned website positioning across all core routes to practical SEO and website support for small businesses and agencies.
-  - Rebuilt homepage into an 11-section client conversion path with dual CTAs ("See Services & Starting Prices" and "Request a Website Health Check") and truthful role-labeled project cards.
-  - Rebuilt `/services/` around transparent PHP-first starter packages (₱3,500 Health Check, ₱8,500 Technical Sprint, ₱6,500 On-Page Sprint, ₱7,500 Local SEO, ₱500/hr or ₱4,500/10hr Overflow Support, ₱8,000/mo Monthly Support) with explicit scope caps and pricing FAQs.
-  - Synchronized `ServicesScopeEstimator` and Homepage pricing snapshot.
-  - Verified 6/6 passing search CI checks and compiled 30/30 static & SSG routes with 0 errors.
-- **Commit `HEAD~1` (`680adcc` - 2026-08-25)**: `feat(blog): prune legacy AI blogs, retain 2026 flagship guide, and update hero avif asset`
-  - Pruned 4 legacy AI-generated blog posts from dataset, preserving the data-backed flagship research article "Is SEO Dead in 2026? What the Data Actually Says".
-  - Upgraded blog hero image to modern AVIF asset (`/images/blog/is-seo-dead-in-2026.avif`) with descriptive alt text.
-  - Synchronized `/llms.txt`, `/llms-full.txt`, `/sitemap.xml`, `/rss.xml`, and `/services/ai-search-optimization/` cross-links.
-  - Verified 6/6 search CI checks and compiled 30/30 production routes with 0 errors.
-- **Commit `HEAD~2` (`a2cf66e` - 2026-08-25)**: `feat(resume): implement 2026 web resume, PDF delivery engine, and global navigation integration`
-  - Created `/resume/` page featuring modern 2026 web resume layout, vertical experience timeline, skills matrix, and verified certification links.
-  - Added static PDF delivery for `Alain_Dave_Tapiru_Resume.pdf` in `public/` with view and download actions.
-  - Integrated `Resume` into `Navbar.tsx` (desktop & mobile) with responsive breakpoint spacing, `Footer.tsx` quick links, `ScrollHero.tsx` secondary CTA, and `/about` bottom CTA.
-  - Synchronized `sitemap.ts` (21 canonical routes), `verify-search-and-perf.ts` (6/6 CI passing), `llms.txt`, and `llms-full.txt`.
-  - Built all 34 static Next.js production routes with 0 errors.
+- **Commit `HEAD` (`739c59e` - 2026-08-26)**: `feat(contact-pricing): optimize contact flow with Calendly atop, restore original pricing packages, and update plan.md`
+  - Repositioned Calendly and the direct inquiry flow on `/contact/`.
+  - Restored the four current USD/PHP packages across homepage, Services, estimator and Contact options.
+  - Updated service workflow and plan documentation.
+- **Commit `HEAD~1` (`392121e` - 2026-08-26)**: `feat(trust-about-projects): implement honest trust system, fit guidance matrix, and 5-part project evidence framework`
+  - Added `TrustCommitment.tsx`, About fit guidance and project proof classifications.
+  - Reworked project and resume evidence presentation across 10 files.
+  - Updated project data to distinguish self-initiated, ongoing and training work.
+- **Commit `HEAD~2` (`4d174ed` - 2026-08-25)**: `docs: sync plan.md with commit hash and Phase 40 milestone`
+  - Updated the rolling plan milestone and commit reference.
 
 ---
 
@@ -171,6 +177,46 @@
 
 ---
 
+### PHASE B — DUAL-THEME (DAY/DARK MODE) SYSTEM ARCHITECTURE & POLISH [STATUS: COMPLETED ✅]
+*Executed without layout shifts, flash of unstyled content, or shader degradation.*
+
+- **Part B.1 — CSS Token Architecture Refactoring**: Completed.
+- **Part B.2 — Theme State Management & Persistence**: Completed.
+- **Part B.3 — Day Mode Component Styling & Surface Polish**: Completed.
+- **Part B.4 — Day Mode Shader Integration (`shader.html` Reference)**: Completed.
+- **Part B.5 — Theme Transition Smoothness & Fluidity**: Completed.
+- **Part B.6 — Hero Canvas Removal & Light-First Default Theme Configuration**: Completed.
+
+---
+
+### PHASE C — SITE ARCHITECTURE & INTERNAL LINKING EVOLUTION [STATUS: COMPLETED ✅]
+*Evaluate scalability and user journeys before adding structural routes.*
+
+- **Part C.1 — Services Page vs. Dedicated Routes Evaluation**: Completed. Formally evaluated and confirmed single-page pillar layout with anchor navigation.
+- **Part C.2 — Tools Suite Architecture Evaluation**: Completed. Formally evaluated and confirmed consolidated `/tools/` hub with anchor IDs (`#salary-calculator`, `#website-audit`, `#gbp-checker`).
+- **Part C.3 — Case Study & Project Template Polish**: Completed. Harmonized dual-theme tokens across `src/app/(frontend)/projects/[slug]/page.tsx`.
+- **Part C.4 — Interconnected Topic Cluster & Internal Linking Graph**: Completed. Connected cross-hub mesh with dual-theme breadcrumb styling.
+
+---
+
+### PHASE D — SCHEMA GRAPH & 2026 ENTITY ARCHITECTURE [STATUS: COMPLETED ✅]
+*Deepen structured data across all pages while preserving the core `#business` and `#person` graph.*
+
+- **Part D.1 — Route-Specific Schema Additions**: Completed. Added `AboutPage` to `/about/`, `CollectionPage` + `ItemList` to `/projects/` and `/blog/`, and `WebApplication` schemas to `/tools/`.
+- **Part D.2 — Entity Graph Harmonization**: Completed. Standardized `@id` fragment identifiers (`#website`, `#profilepage`, `#person`, `#business`, `#webpage`, `#breadcrumb`, `#article`) and interconnected author, publisher, and provider relationships.
+- **Part D.3 — AI Search (GEO / AEO) Content & Machine Discoverability**: Completed. Synchronized `/llms.txt`, `/llms-full.txt`, dynamic `/sitemap.xml`, and `/rss.xml` delta feeds.
+
+---
+
+### PHASE E — COMPREHENSIVE PERFORMANCE & UI/UX POLISH [STATUS: COMPLETED ✅]
+*Final audit and quality gate before production lock.*
+
+- **Part E.1 — UI/UX & Conversion Funnel Polish**: Completed. Polished modal ergonomics, form reset flows, and touch targets (&ge; 44px).
+- **Part E.2 — Performance & Asset Optimization**: Completed. Verified zero unused CSS, AVIF/WebP image compression, and security headers.
+- **Part E.3 — Master Verification & Quality Gate**: Completed. Verified 6/6 SEO CI checks and 28/28 SSG production routes compiled with 0 errors.
+
+---
+
 ## 8. Controlled Execution Protocol & Deviation Control
 
 ### 8.1 Standard Execution Workflow
@@ -197,6 +243,12 @@ After completing any implementation task, the agent MUST output the following su
 - **Animation Impact**: Preserved / Improved / Affected.
 - **Validation Status**: Build status, localhost test link (`http://localhost:3000`), console errors, test results.
 - **Deviations**: *"No deviation from Master Plan"* (or documented request).
+
+### 8.3 Deviation Control
+If an alternative implementation or architecture is discovered:
+- Do NOT implement silently.
+- Output a **PROPOSED DEVIATION** specifying: (1) Master Plan Decision, (2) Proposed Alternative, (3) Rationale & Benefits, (4) Risks, (5) Affected Files & Phases.
+- Await explicit user approval before proceeding.
 
 ---
 

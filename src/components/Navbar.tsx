@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Icon } from '@/components/icons'
 import { AnnouncementBanner } from '@/components/AnnouncementBanner'
-import { RssButton } from '@/components/RssButton'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 interface NavChildItem {
@@ -22,38 +21,6 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about/' },
-  { name: 'Resume', href: '/resume/' },
-  {
-    name: 'Projects',
-    href: '/projects/',
-    children: [
-      {
-        name: 'All Projects & Case Studies',
-        href: '/projects/',
-        description: 'Complete directory of practical builds & breakdowns',
-      },
-      {
-        name: 'AngatSikat Studio',
-        href: '/projects/angat-sikat-studio/',
-        description: 'Custom WordPress theme & SEO architecture',
-        badge: 'WordPress',
-      },
-      {
-        name: 'Local SEO & GBP Checker',
-        href: '/projects/local-seo-gbp-checker/',
-        description: 'Interactive signal diagnostic tool & analyzer',
-        badge: 'Local SEO',
-      },
-      {
-        name: 'AlainTapiru.com Architecture',
-        href: '/projects/alaintapiru-portfolio/',
-        description: 'Next.js 15 portfolio & technical SEO build',
-        badge: 'Technical SEO',
-      },
-    ],
-  },
   {
     name: 'Services',
     href: '/services/',
@@ -95,34 +62,36 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    name: 'Tools',
-    href: '/tools/',
+    name: 'Projects',
+    href: '/projects/',
     children: [
       {
-        name: 'All Tools & Resources',
-        href: '/tools/',
-        description: 'Free interactive diagnostics & calculator suite',
+        name: 'All Projects & Case Studies',
+        href: '/projects/',
+        description: 'Complete directory of practical builds & breakdowns',
       },
       {
-        name: 'GBP Health Checker',
-        href: '/tools/#gbp-checker',
-        description: '10-point Google Business Profile signal audit',
-        badge: 'Interactive',
+        name: 'AngatSikat Studio',
+        href: '/projects/angat-sikat-studio/',
+        description: 'Custom WordPress theme & SEO architecture',
+        badge: 'WordPress',
       },
       {
-        name: 'SEO Website Audit Request',
-        href: '/tools/#website-audit',
-        description: 'Speed, security & crawlability health check',
+        name: 'Local SEO & GBP Checker',
+        href: '/projects/local-seo-gbp-checker/',
+        description: 'Interactive signal diagnostic tool & analyzer',
+        badge: 'Local SEO',
       },
       {
-        name: 'SEO Salary Calculator',
-        href: '/tools/#salary-calculator',
-        description: 'Philippine & offshore compensation estimator',
+        name: 'AlainTapiru.com Architecture',
+        href: '/projects/alaintapiru-portfolio/',
+        description: 'Next.js 15 portfolio & technical SEO build',
+        badge: 'Technical SEO',
       },
     ],
   },
+  { name: 'About', href: '/about/' },
   { name: 'Blog', href: '/blog/' },
-  { name: 'Contact', href: '/contact/' },
 ]
 
 export const Navbar = () => {
@@ -133,6 +102,14 @@ export const Navbar = () => {
   const pathname = usePathname()
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const navContainerRef = useRef<HTMLDivElement | null>(null)
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null)
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null)
+  const firstMobileLinkRef = useRef<HTMLAnchorElement | null>(null)
+
+  const closeMobileMenu = () => {
+    setMenuOpen(false)
+    setMobileExpanded({})
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -155,11 +132,59 @@ export const Navbar = () => {
     }
   }, [menuOpen])
 
+  // Clear mobile-only state when the layout crosses into the desktop navigation.
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 1024px)')
+    const handleDesktopChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        setMenuOpen(false)
+        setMobileExpanded({})
+      }
+    }
+
+    desktopQuery.addEventListener('change', handleDesktopChange)
+    return () => desktopQuery.removeEventListener('change', handleDesktopChange)
+  }, [])
+
+  // Move focus into the open mobile dialog and contain keyboard traversal.
+  useEffect(() => {
+    if (!menuOpen || !mobileMenuRef.current) return
+
+    const menu = mobileMenuRef.current
+    const focusableSelector =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    firstMobileLinkRef.current?.focus()
+
+    const handleMenuKeyDown = (event: KeyboardEvent) => {
+      const focusableItems = Array.from(menu.querySelectorAll<HTMLElement>(focusableSelector))
+      if (event.key !== 'Tab' || focusableItems.length === 0) return
+
+      const firstItem = focusableItems[0]
+      const lastItem = focusableItems[focusableItems.length - 1]
+
+      if (event.shiftKey && document.activeElement === firstItem) {
+        event.preventDefault()
+        lastItem.focus()
+      } else if (!event.shiftKey && document.activeElement === lastItem) {
+        event.preventDefault()
+        firstItem.focus()
+      }
+    }
+
+    menu.addEventListener('keydown', handleMenuKeyDown)
+    return () => menu.removeEventListener('keydown', handleMenuKeyDown)
+  }, [menuOpen])
+
   // Close dropdown on outside click or escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setOpenDropdown(null)
+        if (mobileMenuRef.current) {
+          setMenuOpen(false)
+          setMobileExpanded({})
+          window.requestAnimationFrame(() => menuButtonRef.current?.focus())
+        }
       }
     }
 
@@ -212,7 +237,11 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 pointer-events-none flex flex-col">
+      <header
+        className="fixed top-0 left-0 w-full z-50 pointer-events-none flex flex-col"
+        inert={menuOpen ? true : undefined}
+        aria-hidden={menuOpen ? true : undefined}
+      >
         {/* Row 1: Top Announcement Banner (Permanently pinned at top across all scroll depths) */}
         <div className="w-full pointer-events-auto">
           <AnnouncementBanner />
@@ -271,11 +300,17 @@ export const Navbar = () => {
                     className="relative group/navitem"
                     onMouseEnter={() => hasChildren && handleMouseEnter(item.name)}
                     onMouseLeave={() => hasChildren && handleMouseLeave()}
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                        setOpenDropdown(null)
+                      }
+                    }}
                   >
                     <Link
                       href={item.href}
                       onClick={() => setOpenDropdown(null)}
                       onFocus={() => hasChildren && setOpenDropdown(item.name)}
+                      aria-current={isExactActive ? 'page' : undefined}
                       aria-haspopup={hasChildren ? 'menu' : undefined}
                       aria-expanded={hasChildren ? isDropdownOpen : undefined}
                       className={`font-heading text-[12px] xl:text-[13px] uppercase tracking-[0.03em] xl:tracking-[0.04em] px-2.5 xl:px-3 py-1.5 rounded-full transition-colors duration-200 nav-link-animated inline-flex items-center gap-0.5 xl:gap-1 ${
@@ -342,54 +377,12 @@ export const Navbar = () => {
               })}
             </div>
 
-            {/* CTA Button & Socials */}
+            {/* Theme control and contact action */}
             <div className="hidden lg:flex items-center gap-2 xl:gap-3.5 relative z-[60] shrink-0">
-              <div className="flex items-center gap-1.5 xl:gap-2 mr-0.5 xl:mr-1 pr-2 xl:pr-3.5 border-r border-black/10 dark:border-white/10">
-                <ThemeToggle />
-                <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="hidden xl:flex w-7 h-7 xl:w-8 xl:h-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
-                  title="Gmail"
-                  aria-label="Gmail"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
-                </a>
-                <a
-                  href="https://www.facebook.com/dcrazedave"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden xl:flex w-7 h-7 xl:w-8 xl:h-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
-                  title="Facebook"
-                  aria-label="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false" className="shrink-0"><path d="M12 2.04c-5.5 0-10 4.48-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.54-4.5-10.02-10-10.02z" /></svg>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden 2xl:flex w-7 h-7 xl:w-8 xl:h-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
-                  title="LinkedIn"
-                  aria-label="LinkedIn"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.45a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13h-3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.78 24h20.44c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" /></svg>
-                </a>
-                <a
-                  href="https://github.com/alndvtpr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden 2xl:flex w-7 h-7 xl:w-8 xl:h-8 items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
-                  title="GitHub"
-                  aria-label="GitHub"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false" className="shrink-0"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                </a>
-                <RssButton variant="icon" className="hidden 2xl:flex w-7 h-7 xl:w-8 xl:h-8 bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary hover:text-white transition-all shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]" iconSize={13} />
-              </div>
+              <ThemeToggle />
               <Link
                 href="/contact/"
+                aria-current={pathname?.startsWith('/contact') ? 'page' : undefined}
                 className="bg-primary-container text-on-primary-container font-heading text-xs uppercase tracking-[0.06em] font-bold px-4 xl:px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary btn-motion flex items-center gap-1.5 xl:gap-2 whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
               >
                 <span>Get in Touch</span>
@@ -399,9 +392,13 @@ export const Navbar = () => {
 
             {/* Hamburger (Mobile & Tablet) */}
             <button
+              ref={menuButtonRef}
+              type="button"
               className="lg:hidden text-on-surface z-[60] relative p-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center justify-center min-w-[44px] min-h-[44px]"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle Menu"
+              onClick={() => (menuOpen ? closeMobileMenu() : setMenuOpen(true))}
+              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
             >
               <Icon name={menuOpen ? 'close' : 'menu'} size={24} className="block" />
             </button>
@@ -409,11 +406,14 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* Full Screen Mobile Menu */}
-      <div
-        className={`fixed inset-0 bg-background/98 dark:bg-[#0c0f0f]/98 z-[55] flex flex-col justify-center items-center lg:hidden transition-all duration-300 ${
-          menuOpen ? 'opacity-100 pointer-events-auto translate-y-0 mobile-menu-active' : 'opacity-0 pointer-events-none -translate-y-4'
-        }`}
+      {/* Full Screen Mobile Menu: absent from the initial render and focus order */}
+      {menuOpen && <div
+        ref={mobileMenuRef}
+        id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Primary navigation"
+        className="fixed inset-0 bg-background/98 dark:bg-[#0c0f0f]/98 z-[55] flex flex-col justify-center items-center lg:hidden opacity-100 pointer-events-auto translate-y-0 mobile-menu-active"
         style={{
           paddingTop: 'max(2rem, env(safe-area-inset-top, 2rem))',
           paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 2rem))',
@@ -421,8 +421,19 @@ export const Navbar = () => {
       >
         <div className="absolute top-1/4 -left-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl pointer-events-none" />
+        <button
+          type="button"
+          onClick={() => {
+            closeMobileMenu()
+            window.requestAnimationFrame(() => menuButtonRef.current?.focus())
+          }}
+          aria-label="Close navigation menu"
+          className="absolute top-4 right-4 z-20 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-surface-1 border border-black/10 dark:border-white/10 text-on-surface hover:text-primary-container"
+        >
+          <Icon name="close" size={24} />
+        </button>
 
-        <nav className="flex flex-col items-center gap-2 text-center z-10 w-full px-5 max-w-sm max-h-[calc(100dvh-120px)] overflow-y-auto">
+        <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-2 text-center z-10 w-full px-5 max-w-sm max-h-[calc(100dvh-120px)] overflow-y-auto">
           {NAV_ITEMS.map((item, idx) => {
             const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
             const targetPath = (item.href || '/').replace(/\/$/, '') || '/'
@@ -436,10 +447,12 @@ export const Navbar = () => {
 
             if (!hasChildren) {
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
+                  <Link
+                    ref={idx === 0 ? firstMobileLinkRef : undefined}
+                    key={item.name}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    aria-current={isExactActive ? 'page' : undefined}
                   style={{ transitionDelay: `${idx * 25}ms` }}
                   className={`mobile-nav-item font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors py-2 px-4 rounded-full min-h-[44px] flex items-center justify-center w-full ${
                     isActive
@@ -466,8 +479,10 @@ export const Navbar = () => {
                   }`}
                 >
                   <Link
+                    ref={idx === 0 ? firstMobileLinkRef : undefined}
                     href={item.href}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={closeMobileMenu}
+                    aria-current={isExactActive ? 'page' : undefined}
                     className={`font-heading text-lg sm:text-xl font-bold uppercase tracking-[0.06em] transition-colors flex-1 text-left ${
                       isActive ? 'text-primary-container' : 'text-on-surface hover:text-primary-container'
                     }`}
@@ -502,7 +517,7 @@ export const Navbar = () => {
                       <Link
                         key={child.name}
                         href={child.href}
-                        onClick={() => setMenuOpen(false)}
+                        onClick={closeMobileMenu}
                         className="flex flex-col px-3.5 py-2.5 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors min-h-[44px] justify-center"
                       >
                         <div className="flex items-center justify-between gap-1.5">
@@ -530,7 +545,8 @@ export const Navbar = () => {
 
           <Link
             href="/contact/"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMobileMenu}
+            aria-current={pathname?.startsWith('/contact') ? 'page' : undefined}
             style={{ transitionDelay: `${NAV_ITEMS.length * 25}ms` }}
             className="mobile-nav-item mt-2 w-full text-center bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm uppercase tracking-[0.06em] font-bold px-8 py-3.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary btn-motion flex items-center justify-center gap-2 min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
@@ -538,60 +554,24 @@ export const Navbar = () => {
             <Icon name="arrow_forward" size={16} className="btn-icon" />
           </Link>
 
-          {/* Mobile Menu Socials & Theme Toggle */}
+          {/* Secondary resources remain available without crowding primary navigation. */}
           <div
+            role="group"
+            aria-label="Secondary resources"
             style={{ transitionDelay: `${(NAV_ITEMS.length + 1) * 25}ms` }}
-            className="mobile-nav-item flex gap-3 sm:gap-4 mt-4 items-center justify-center flex-wrap"
+            className="mobile-nav-item flex gap-3 mt-4 items-center justify-center flex-wrap"
           >
+            <Link href="/resume/" onClick={closeMobileMenu} className="min-h-[44px] inline-flex items-center px-3 text-sm font-heading font-semibold text-on-surface/80 hover:text-primary-container">
+              Resume
+            </Link>
+            <Link href="/tools/" onClick={closeMobileMenu} className="min-h-[44px] inline-flex items-center px-3 text-sm font-heading font-semibold text-on-surface/80 hover:text-primary-container">
+              Tools
+            </Link>
             <ThemeToggle className="w-11 h-11 min-w-[44px] min-h-[44px]" />
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
-              aria-label="Gmail"
-              title="Gmail"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
-            </a>
-            <a
-              href="https://www.facebook.com/dcrazedave"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
-              aria-label="Facebook"
-              title="Facebook"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true" focusable="false" className="shrink-0"><path d="M12 2.04c-5.5 0-10 4.48-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.54-4.5-10.02-10-10.02z" /></svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
-              aria-label="LinkedIn"
-              title="LinkedIn"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true" focusable="false" className="shrink-0"><path d="M20.45 20.45h-3.56v-5.56c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.65H9.36V9H12.8v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.45a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13h-3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.78 24h20.44c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" /></svg>
-            </a>
-            <a
-              href="https://github.com/alndvtpr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
-              aria-label="GitHub"
-              title="GitHub"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true" focusable="false" className="shrink-0"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-            </a>
-            <RssButton
-              variant="icon"
-              className="w-11 h-11 min-w-[44px] min-h-[44px] bg-white/5 dark:bg-white/5 bg-black/5 border border-primary-container/30 text-primary-container hover:bg-primary hover:text-white transition-all shadow-[0_0_12px_rgba(230,126,34,0.15)] hover:shadow-[0_0_20px_rgba(230,126,34,0.4)]"
-              iconSize={20}
-            />
           </div>
         </nav>
       </div>
+      }
     </>
   )
 }

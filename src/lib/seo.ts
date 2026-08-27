@@ -18,7 +18,7 @@ export const generateMetadata = ({
   title,
   description,
   url,
-  image = '/alain-dave-tapiru-professional-portrait.webp',
+  image = '/alain-dave-tapiru-seo-specialist-philippines.avif',
   type = 'website',
 }: {
   title: string

@@ -26,7 +26,7 @@ export const ThemeToggle = ({ className = '' }: { className?: string }) => {
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to Day Mode' : 'Switch to Dark Mode'}
       title={isDark ? 'Switch to Day Mode' : 'Switch to Dark Mode'}
-      className={`w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] btn-motion cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container shrink-0 ${className}`}
+      className={`icon-control w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] btn-motion cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container shrink-0 ${className}`}
     >
       {isDark ? (
         // Sun icon for switching to Day Mode

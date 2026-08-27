@@ -14,58 +14,39 @@ export const ScrollHero = () => {
       <div className="flex flex-col justify-center items-center text-center px-4 sm:px-6 md:px-12 lg:px-16 pt-28 sm:pt-36 md:pt-40 pb-16 sm:pb-24 relative z-20 max-w-5xl mx-auto w-full">
         <div className="flex flex-col items-center max-w-4xl space-y-5 sm:space-y-7">
           
-          {/* Interactive Announcement Pill */}
-          <div className="hero-animate-in hero-delay-1 flex justify-center">
-            <Link
-              href="/tools/"
-              className="group inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-1/90 hover:bg-surface-2 border border-primary-container/40 hover:border-primary-container text-xs font-sans text-on-surface shadow-[0_0_20px_rgba(230,126,34,0.15)] hover:shadow-[0_0_30px_rgba(230,126,34,0.3)] transition-all duration-300 max-w-full"
-            >
-              <span className="flex h-2 w-2 relative shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="font-heading text-[10px] sm:text-[11px] uppercase tracking-[0.08em] font-extrabold text-primary-container shrink-0">
-                ✨ Free Tool:
-              </span>
-              <span className="text-on-surface text-[11px] sm:text-xs font-semibold truncate group-hover:text-primary-container transition-colors">
-                Google Business Profile Auditor
-              </span>
-              <span className="text-primary-container font-bold text-xs group-hover:translate-x-0.5 transition-transform shrink-0">
-                →
-              </span>
-            </Link>
-          </div>
+          <p className="font-heading text-[11px] sm:text-xs uppercase tracking-[0.08em] font-bold text-primary-container">
+            Alain Dave Tapiru <span aria-hidden="true">·</span> SEO Specialist &amp; Web Developer
+          </p>
 
           {/* Main Display Headline */}
-          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] tracking-[-0.03em] leading-[1.12] sm:leading-[1.06] drop-shadow-sm hero-animate-in hero-delay-2 max-w-4xl">
-            <span className="font-extrabold text-on-surface">Practical SEO</span>{' '}
-            <span className="font-semibold text-on-surface/90">&amp; Website Support</span>{' '}
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] tracking-[-0.03em] leading-[1.12] sm:leading-[1.06] drop-shadow-sm max-w-4xl">
+            <span className="font-extrabold text-on-surface">SEO Specialist</span>{' '}
+            <span className="font-semibold text-on-surface/90">&amp; Web Developer</span>{' '}
             <span className="font-extrabold text-primary-container block mt-1.5 sm:mt-2.5">
-              For Small Businesses &amp; Agencies
+              for Small Businesses &amp; Agencies
             </span>
           </h1>
 
           {/* Subheading / Value Proposition */}
-          <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface-variant font-normal leading-relaxed max-w-2xl mx-auto hero-animate-in hero-delay-3 text-center">
-            Hands-on technical SEO, local search foundation work, and web support with clear scope, direct communication, and transparent pricing.
+          <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface-variant font-normal leading-relaxed max-w-3xl mx-auto hero-animate-in hero-delay-2 text-center">
+            I handle technical SEO, local search setup, on-page improvements, and WordPress or Next.js fixes through clearly scoped projects. You work with me directly and know what will be delivered before the work starts.
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full hero-animate-in hero-delay-4 flex-wrap">
-            <Link
-              href="/services/#packages"
-              data-agent-action="view-services-packages"
-              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-7 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
-            >
-              See Services &amp; Starting Prices <Icon name="arrow_forward" size={16} className="btn-icon" />
-            </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full hero-animate-in hero-delay-3 flex-wrap">
             <Link
               href="/tools/#website-audit"
               data-agent-action="request-health-check"
+              className="w-full sm:w-auto min-h-[48px] bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm font-bold uppercase tracking-[0.06em] px-7 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-[0_0_25px_rgba(224,123,32,0.35)] hover:bg-primary btn-motion flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            >
+              Request a Website Health Check <Icon name="arrow_forward" size={16} className="btn-icon" />
+            </Link>
+            <Link
+              href="/projects/"
+              data-agent-action="view-projects"
               className="w-full sm:w-auto min-h-[48px] bg-surface-1/90 hover:bg-surface-2 border border-black/15 dark:border-white/20 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-full hover:border-primary-container/40 transition-all flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
             >
-              <Icon name="find_in_page" size={16} className="text-primary-container" />
-              Request a Website Health Check
+              View Projects <Icon name="arrow_forward" size={16} className="text-primary-container" />
             </Link>
           </div>
 
