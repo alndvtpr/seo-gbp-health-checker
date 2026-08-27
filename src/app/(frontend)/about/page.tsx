@@ -128,16 +128,40 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-3.5 sm:space-y-4 font-sans text-on-surface/80 text-sm sm:text-base leading-relaxed">
             <p>
-              My professional foundation started in high-volume customer service and operations. Handling demanding support environments taught me how to communicate clearly, document work meticulously, and take full accountability for deliverables. When I transitioned into Search Engine Optimization, I brought those same discipline habits into technical search audits, on-page optimization, and web development.
+              My professional journey started in customer service and operations, working in fast-paced environments where every conversation mattered. It was not always easy, but that experience taught me a lot about patience, communication, attention to detail, and being responsible for the work assigned to me. More importantly, it taught me the discipline of showing up, solving problems, and doing my best even when things get demanding.
             </p>
             <p>
-              <strong>Over the past year</strong>, I have focused on building practical, hands-on SEO capability. Rather than studying theory in isolation, I practice by actively building search-optimized websites, auditing crawl performance, configuring Google Business Profiles, and developing diagnostic tools. I completed the intensive Pinoy SEO Bootcamp (Batch 32) under mentor Rene Leandro Padilla, gaining structured training in technical SEO crawls, keyword intent mapping, and site health diagnostics.
+              When I eventually found my way into SEO, I realized that many of those lessons still applied. SEO may be a completely different field, but it also requires patience, careful analysis, problem-solving, and a willingness to keep learning. That was one of the reasons I became genuinely interested in it.
             </p>
             <p>
-              As a current Bachelor of Science in Information Technology (BSIT) student specializing in Network &amp; Cybersecurity, I approach SEO through a technical lens: combining semantic HTML5 structure, Core Web Vitals speed optimization, and modern web frameworks like Next.js, React, and WordPress.
+              Over the past year, I have been focused on building my SEO skills through actual hands-on practice. I do not want to learn SEO only by reading about it or watching tutorials. I enjoy applying what I learn by building and optimizing websites, studying how search engines crawl them, working with Google Search Console and analytics data, improving on-page elements, and finding technical issues that may be holding a website back.
             </p>
             <p>
-              I work with small business owners who need dependable SEO foundations without agency markups, as well as digital marketing agencies looking for a reliable partner to handle technical SEO overflow tasks on clear, predictable terms.
+              One important part of that journey was completing Pinoy SEO Bootcamp Batch 32 under the mentorship of Rene Leandro Padilla. The bootcamp gave me a more structured understanding of how different parts of SEO work together.
+            </p>
+            <p>
+              I learned how to establish data benchmarks and conduct website audits, perform competitive analysis, and approach keyword research and keyword mapping based on what a website is actually trying to achieve. I also gained training in on-page SEO together with technical SEO, which helped me understand that good content and good website structure should support each other.
+            </p>
+            <p>
+              The training also introduced me to the wider side of off-page SEO. This included Google Business Profile optimization, submitting businesses to relevant local and niche directories, guest posting, building external social signals, collaboration and link-building opportunities, and developing backlinks. We also covered SEO reporting and data analysis, which taught me that doing SEO work is only part of the job. You also need to understand the data, measure what is happening, and communicate the results clearly.
+            </p>
+            <p>
+              What I appreciated most about the bootcamp was that it helped me see SEO as a complete process rather than a collection of separate techniques. There is still a lot I want to learn and experience, and that is actually one of the things that keeps me excited about this field. Every website gives me something new to study, test, improve, or understand.
+            </p>
+            <p>
+              At the same time, I am currently pursuing my Bachelor of Science in Information Technology (BSIT), specializing in Network and Cybersecurity. Because of my IT background, I naturally enjoy the more technical side of SEO. I like understanding what is happening behind a website, from semantic HTML and site structure to Core Web Vitals, performance, crawling, indexing, and the technologies used to build modern websites.
+            </p>
+            <p>
+              I also spend time working with platforms and frameworks such as WordPress, Next.js, and React, which allows me to look at SEO not only from the perspective of keywords and content, but also from the website itself.
+            </p>
+            <p>
+              Today, I want to use what I am learning to help small businesses that need a dependable SEO foundation without immediately paying large agency fees, while also working with digital marketing and SEO agencies that may need someone reliable for technical SEO, on-page work, research, audits, or overflow tasks.
+            </p>
+            <p>
+              I may still be growing in this industry, but I take every opportunity seriously. I enjoy learning, I enjoy figuring things out, and there is a different kind of fulfillment for me whenever I can look at a website, find something that can be improved, work on it, and see that improvement reflected in the results.
+            </p>
+            <p>
+              For me, SEO has become more than just another skill to learn. It is a field where I can combine my interest in technology, analysis, problem-solving, and building things on the web, and I am genuinely excited to see where that journey takes me.
             </p>
           </div>
 

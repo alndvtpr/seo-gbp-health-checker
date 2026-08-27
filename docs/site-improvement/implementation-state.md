@@ -8,9 +8,9 @@ Last updated: 2026-08-27 (Asia/Manila)
 |---|---|---|---|
 | 01 | Repository baseline, fact inventory and safeguards | COMPLETE WITH PRE-EXISTING ISSUES | Documentation-only baseline completed at commit `739c59e`; no production source changed. |
 | 02 | Global design-system restraint | COMPLETE | Shared card, CTA, focus and reduced-motion primitives were restrained without changing content or component APIs. The owner accepted the phase by instructing Codex to proceed. |
-| 03 | Navigation and information architecture | COMPLETE | Five primary choices are preserved as Services, Projects, About, Blog and the existing Contact CTA; Resume and Tools are secondary. Automated checks passed, and the owner accepted the phase on 2026-08-26. |
+| 03 | Navigation and information architecture | COMPLETE WITH OWNER-DIRECTED CORRECTION | The owner superseded the five-choice simplification on 2026-08-27. Home, Resume and Tools are explicit top-level links; Gmail, Facebook, LinkedIn and GitHub are restored in desktop and mobile navigation. |
 | 04 | Homepage positioning and conversion path | COMPLETE | The owner approved the four-package model, free Website Health Check, primary CTA and professional title. The homepage now follows the required seven-section journey. |
-| 05 | About and Resume accuracy | PENDING | Use `fact-inventory.md` as the factual gate. |
+| 05 | About and Resume accuracy | COMPLETE | Owner-supplied resume is integrated, credential/privacy conflicts resolved, and owner-approved polished 12-paragraph narrative copy is published to `/about/`. |
 | 06 | Services hub and offer hierarchy | PENDING / DECISION-GATED | Requires approved offer model and pricing decision. |
 | 07 | Individual service pages | PENDING / DECISION-GATED | Requires approved offer model and capability evidence. |
 | 08 | Projects, proof classification and evidence | PENDING | Validation claims require dated evidence review. |
@@ -40,8 +40,8 @@ Last updated: 2026-08-27 (Asia/Manila)
 
 - Active Git repository: `payload-website/`
 - Branch: `main`
-- Local HEAD: `739c59e47b638f34d38612623dd274ad98304e08`
-- GitHub `origin/main`: `739c59e47b638f34d38612623dd274ad98304e08` (read-only remote verification on 2026-08-26)
+- Local HEAD: `9f5450028b60fe50eda006cd94391c369e1ee8ce`
+- GitHub `origin/main`: `9f5450028b60fe50eda006cd94391c369e1ee8ce` (observed during the final Phase 04 handoff on 2026-08-27)
 - Remote: `https://github.com/alndvtpr/portfolio-cms.git`
 - Working tree before Phase 01: clean
 - Deployment provider observed from response headers: Vercel
@@ -116,6 +116,28 @@ Last updated: 2026-08-27 (Asia/Manila)
 - Local homepage HTML returns HTTP 200, one H1, seven sections, two primary health-check links, four FAQ summaries, no empty project-image alternatives and no old `href="/services/#estimator"` anchor.
 - Automated browser execution remains prohibited by `docs/plan.md`; owner visual review from 320 through 1440 pixels, both themes, reduced motion and keyboard focus remains pending at `http://localhost:3000`.
 
+## Phase 03 owner-directed correction after Phase 04
+
+- On 2026-08-27 the owner rejected relying on the logo and footer as the only prominent access to Home, Resume and social profiles.
+- `src/components/Navbar.tsx` now exposes Home, Services, Projects, About, Resume, Tools and Blog as top-level links, followed by the existing Contact action.
+- Gmail, Facebook, LinkedIn and GitHub controls are restored in both navigation modes. The desktop navigation begins at the `xl` breakpoint so smaller desktop/tablet widths receive the complete overlay menu without crowding or clipping.
+- The logo remains an additional Home link. Services and Projects retain their existing child-route menus, while the mobile dialog preserves conditional rendering, focus containment, Escape/focus restoration and route-close behavior.
+- TypeScript passed; targeted Navbar lint has no error and retains the existing logo `<img>` advisory; SEO checks passed 6/6; the production build generated all 30 routes using the isolated unreachable database safeguard.
+- Local homepage HTML returned HTTP 200 and contained Home, Services, Projects, About, Resume, Tools, Blog, Contact and all four social accessible names. The closed mobile dialog remained absent from initial HTML.
+- No About or Resume production content changed. Exact training copy remains pending owner approval under D-016 and P-012.
+
+## Phase 05 implementation evidence
+
+- The owner confirmed the exact Meta/Coursera title as `Introduction to Social Media Marketing` and approved continued public resume display of Mabalacat City, phone and email.
+- `public/Alain_Dave_Tapiru_Resume.pdf` now uses the owner-supplied two-page resume. Only its conflicting credential title was corrected; no other personal wording was independently rewritten.
+- `src/app/(frontend)/resume/page.tsx` now uses the same exact credential title instead of the former combined title.
+- The PDF preserves the supplied contact information and all owner-supplied summary, skills, experience and education content.
+- `src/components/ResumePdfPreview.tsx` adds the owner-requested, site-styled inline PDF viewer. It is visible by default and provides Download, Open New Tab and accessible Hide/Show Preview controls.
+- The owner supplied and approved the complete, polished 12-paragraph narrative copy for `/about/` (`src/app/(frontend)/about/page.tsx`) on 2026-08-27, resolving P-006 and P-012 under D-021.
+- Both final PDF pages were rendered and visually inspected with no clipping, overlap or broken glyphs. Text extraction contains the correct title and excludes the former wrong title.
+- TypeScript passed; targeted lint has no Resume/About finding and only the existing Navbar image advisory; SEO checks passed 6/6; the production build generated all 30 routes with the isolated unreachable database safeguard.
+- Local `/resume/`, `/about/`, and the PDF download return HTTP 200.
+
 ## Safeguards for later phases
 
 1. Read this file, `fact-inventory.md`, `decision-log.md` and `baseline.md` before inspecting production code.
@@ -129,18 +151,14 @@ Last updated: 2026-08-27 (Asia/Manila)
 
 ## Next gate
 
-- `NEXT_PHASE_READY: YES - FACT INVENTORY GATES APPLY`
-- Phase 04 is complete. Owner visual review is still pending and must not be reported as observed evidence.
-- Phase 05 - About and Resume accuracy is next.
-- Before publishing contested facts in Phase 05, reconcile P-006 exact experience wording, P-007 public contact/privacy scope and the conflicting Meta/Coursera credential title. Use dated or narrower supported wording when a disputed claim can be omitted safely; ask the owner when the page or downloadable resume requires a definitive choice.
-- P-004 currency priority remains unresolved and continues to gate later pricing presentation work; Model B, the free Website Health Check, the primary CTA and the site title are approved in D-011 through D-014.
+- `NEXT_PHASE_READY: YES - PHASE 06 PENDING OWNER APPROVAL`
+- Phase 05 is complete.
+- Phase 06 - Services hub and offer hierarchy is the next planned phase.
+- P-004 currency priority (USD-first vs PHP-first) remains to be confirmed before implementing Phase 06 Services Hub updates. Model B, the free Website Health Check, the primary CTA and the site title are approved in D-011 through D-014.
 
 ## Current handoff
 
-- Last completed phase: Phase 04 - Homepage positioning and conversion path.
-- Next phase: Phase 05 - About and Resume accuracy.
-- Phase 05 factual gates: exact experience wording (P-006), public contact/privacy scope (P-007), exact Meta/Coursera credential title, employment/training classification and consistency with the downloadable resume asset.
-- Latest checks: TypeScript passed; targeted Phase 04 lint passed; SEO checks passed 6/6; production build generated 30 pages; local homepage returned HTTP 200 with one H1 and seven sections; full lint stayed at the pre-existing 9-error/24-warning baseline.
-- Cumulative uncommitted production files: `src/app/(frontend)/styles.css`, `src/components/ThemeToggle.tsx`, `src/components/Navbar.tsx`, `src/components/Footer.tsx`, `src/components/ScrollHero.tsx`, and `src/app/(frontend)/page.tsx`.
-- Prohibited without new approval: commit, push, deploy, database migration, production form/API submissions, public route deletion, or price/currency changes. Execute Phase 05 only in the fresh task.
-- Continuation protocol: begin in a fresh Codex task using the same saved project, read all controlled records and the Phase 05 packet, preserve all cumulative uncommitted work, and resolve or safely narrow its factual conflicts before editing production code.
+- Last completed phase: Phase 05 - About and Resume accuracy.
+- Next phase: Phase 06 - Services hub and offer hierarchy (decision-gated on currency order / offer details).
+- Latest checks: TypeScript passes (0 errors), SEO CI checks pass 6/6, dev server returns HTTP 200 across `/`, `/about/`, `/resume/`, and `/services/`.
+- Prohibited without new approval: commit, push, deploy, database migration, production form/API submissions, public route deletion, or price/currency changes. Execute Phase 06 only after owner approval.

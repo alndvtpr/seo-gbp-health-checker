@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { generateMetadata } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { ResumePdfPreview } from '@/components/ResumePdfPreview'
 
 export const metadata = generateMetadata({
   title: 'Resume | Alain Dave Tapiru — SEO Specialist & Technical Virtual Assistant',
@@ -234,7 +235,7 @@ const CERTIFICATIONS: CertificationItem[] = [
     badge: 'Verified Credential',
   },
   {
-    title: 'Introduction to Social Media Marketing / Digital Marketing',
+    title: 'Introduction to Social Media Marketing',
     issuer: 'Meta | Coursera',
     date: 'Issued Dec 2020',
     verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',
@@ -256,7 +257,7 @@ const CERTIFICATIONS: CertificationItem[] = [
 
 export default function ResumePage() {
   return (
-    <div className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-12 lg:px-16 max-w-4xl mx-auto relative z-20 space-y-10 sm:space-y-14">
+    <div className="pt-28 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 md:px-10 lg:px-12 max-w-4xl mx-auto relative z-20 space-y-6 sm:space-y-8">
       {/* Structured JSON-LD Schema */}
       <script
         type="application/ld+json"
@@ -267,7 +268,7 @@ export default function ResumePage() {
       <Breadcrumbs items={[{ name: 'Resume', url: '/resume/' }]} />
 
       {/* Modern 2026 Executive Header Card */}
-      <header className="bg-surface-1 rounded-2xl sm:rounded-3xl border border-black/10 dark:border-white/10 p-6 sm:p-8 md:p-10 shadow-sm relative overflow-hidden motion-reveal">
+      <header className="bg-surface-1 rounded-2xl sm:rounded-3xl border border-black/10 dark:border-white/10 p-5 sm:p-7 md:p-8 shadow-sm relative overflow-hidden motion-reveal">
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary-container/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
@@ -301,26 +302,6 @@ export default function ResumePage() {
             </div>
           </div>
 
-          {/* Sleek, Proportionate PDF Action Buttons */}
-          <div className="flex items-center gap-2.5 sm:self-start shrink-0">
-            <a
-              href="/Alain_Dave_Tapiru_Resume.pdf"
-              download="Alain_Dave_Tapiru_Resume.pdf"
-              className="h-10 px-4 sm:px-5 inline-flex items-center justify-center gap-2 rounded-full bg-primary-container text-on-primary-container font-heading text-xs font-bold uppercase tracking-[0.06em] shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary btn-motion transition-all whitespace-nowrap"
-            >
-              <Icon name="download" size={15} className="btn-icon" />
-              <span>Download PDF</span>
-            </a>
-            <a
-              href="/Alain_Dave_Tapiru_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-10 px-4 sm:px-5 inline-flex items-center justify-center gap-1.5 rounded-full bg-surface-2 hover:bg-black/5 dark:hover:bg-white/10 text-on-surface font-heading text-xs font-semibold uppercase tracking-[0.06em] border border-black/10 dark:border-white/15 transition-colors whitespace-nowrap"
-            >
-              <Icon name="visibility" size={15} className="text-primary-container" />
-              <span>View PDF</span>
-            </a>
-          </div>
         </div>
 
         {/* Integrated Contact & Profiles Bar */}
@@ -363,6 +344,8 @@ export default function ResumePage() {
           </a>
         </div>
       </header>
+
+      <ResumePdfPreview />
 
       {/* Professional Summary */}
       <section className="space-y-3 motion-reveal" aria-labelledby="summary-heading">
@@ -686,4 +669,3 @@ export default function ResumePage() {
     </div>
   )
 }
-

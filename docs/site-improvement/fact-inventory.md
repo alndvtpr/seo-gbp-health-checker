@@ -18,11 +18,11 @@ Evidence date: 2026-08-27
 | Preferred display name: Alain Dave Tapiru | Repository-observed | Used throughout navigation and branding; confirm if the middle initial should appear in formal contexts. |
 | Website role: SEO Specialist & Web Developer | Owner-approved | Approved by the owner on 2026-08-27 for site-wide professional positioning. The resume retains its separate recruiter-facing heading until Phase 05 reviews it. |
 | Primary audiences: small businesses and agencies/web teams needing scoped support | Repository-observed | Consistent across current homepage, Services, About and Contact copy. |
-| Experience duration | Owner confirmation required | Resume says over a year across customer support, SEO knowledge and AI-assisted web design. About says over the past year of practical SEO capability. Do not rewrite either as over a year of paid SEO delivery. |
-| Public location: Mabalacat City, Pampanga, Philippines | Consistent but permission-sensitive | Present in resume and Contact page. Confirm ongoing permission before broader reuse. |
+| Experience duration | Verified / Owner-approved | The owner approved the exact About page narrative on 2026-08-27 describing "Over the past year, I have been focused on building my SEO skills through actual hands-on practice...". The resume separately describes over a year across customer support, SEO, and web development. |
+| Public location: Mabalacat City, Pampanga, Philippines | Owner-approved for resume display | The owner explicitly approved continued publication of the city together with phone and email on 2026-08-27. This does not authorize the precise street address. |
 | Precise street address and geocoordinates | Owner confirmation required | Global schema publishes `10231 Everlasting Street, Dau` and coordinates `15.1788, 120.5843`; the resume only publishes city/province. Confirm privacy, business-address status and GBP eligibility. |
-| Email: alaintapiru@gmail.com | Consistent but permission-sensitive | Present in resume, Contact, footer/social links, schema and machine-readable endpoints. Explicit public-display permission is not recorded in the repository. |
-| Phone/WhatsApp: +63 906 324 9560 | Consistent but permission-sensitive | Present in resume, Contact and global schema. Explicit public-display permission is not recorded in the repository. |
+| Email: alaintapiru@gmail.com | Owner-approved for resume display | Present in resume, Contact, footer/social links, schema and machine-readable endpoints. The owner explicitly approved continued resume publication on 2026-08-27. |
+| Phone/WhatsApp: +63 906 324 9560 | Owner-approved for resume display | Present in resume, Contact and global schema. The owner explicitly approved continued resume publication on 2026-08-27. |
 | Site-wide primary CTA | Owner-approved | `Request a Website Health Check` was approved on 2026-08-27 as the primary action, leading to the existing Website Audit request form at `/tools/#website-audit`. The diagnostic is approved as a free entry-point offer. |
 
 ## Employment, training, education and credentials
@@ -30,13 +30,13 @@ Evidence date: 2026-08-27
 | Item | Classification | Status and notes |
 |---|---|---|
 | Frelas Media, SEO Sales Staff, Jul-Aug 2025 | Resume-represented freelance sales exposure | Consistent between PDF and web resume. Duties establish outreach, sales and service explanation, not delivery of client SEO campaigns. |
-| PinoySEO Bootcamp Batch 32, Aug-Sep 2025 | Verified training and contributed exercises | Public SOVA Batch 32 page returned HTTP 200 and included Alain Dave Tapiru. The PDF mentions a NorcalCoffee.com contribution; current web resume narrows this to training audits and exercises. Relationship/scope beyond training remains unresolved. |
+| PinoySEO Bootcamp Batch 32, Aug-Sep 2025 | Verified training and contributed exercises | Public SOVA Batch 32 page returned HTTP 200 and included Alain Dave Tapiru. The owner approved the comprehensive training breakdown on the About page on 2026-08-27 covering website audits, data benchmarking, competitor analysis, keyword research/mapping, technical and on-page SEO, local SEO/GBP, directory citations, guest posting, backlinks, social signals, and monthly reporting. |
 | Alorica, Customer Experience Agent, Apr-Oct 2024 | Resume-represented employment | Consistent between PDF and web resume; no independent employer verification was performed. |
 | ERC Global, Customer Service Representative, Jun-Nov 2023 | Resume-represented employment | Consistent between PDF and web resume; no independent employer verification was performed. |
 | BS Information Technology, Network and Cybersecurity, Mapua Malayan Digital College, expected 2029 | Owner-supplied ongoing education | Consistent between PDF and web resume. Enrollment status was not independently verified. |
 | BS Information Technology undergraduate study, Saint Mary's University, 2014-2017 | Owner-supplied education history | Web resume provides 2014-2017; PDF summarizes the undergraduate record as 2017. |
 | Pinoy SEO/SOVA completion, Sept 2025 | Publicly verifiable credential | Repository certificate asset exists and the SOVA registry page includes the owner name. |
-| Meta/Coursera credential, Dec 2020 | Conflicting title | Repository asset and About page say `Introduction to Social Media Marketing`; PDF says `Introduction to Digital Marketing`; web resume combines both names. Coursera verification URL resolves, but raw server HTML did not expose the holder name. Use the certificate's exact title after owner confirmation. |
+| Meta/Coursera credential, Dec 2020 | Owner-confirmed title | The owner confirmed `Introduction to Social Media Marketing` on 2026-08-27. The About credential already used that title; the web resume and replacement downloadable PDF now match it. Coursera verification URL resolves, but raw server HTML did not expose the holder name. |
 | Grammar and Punctuation, Coursera, 2020 | Owner-supplied completion | Listed in PDF and web resume; no verification link or certificate asset was found. |
 | English Communications, ERC Global, 2023 | Owner-supplied corporate training | Listed in PDF and web resume; no external verification was performed. |
 

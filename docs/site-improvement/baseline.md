@@ -262,3 +262,45 @@ Phase 04 changed the homepage route and hero positioning only. It did not change
 | Diff check | PASS | `git diff --check` reports no whitespace errors. |
 
 The local development server uses an isolated unreachable database URI; no database write, form submission, external record, commit, push or deployment occurred.
+
+During the final Phase 04 handoff, repository state changed concurrently: local `main` and `origin/main` advanced from `739c59e` to `9f54500` at 2026-08-27 11:10:59 +08:00. The commit contains the cumulative Phase 01-04 work together with separate portrait and schema updates. No commit or push command was run by the Phase 04 task, and no reset, revert or other destructive correction was attempted. Deployment identity was not checked and must not be inferred from this Git observation.
+
+## Phase 03 navigation correction validation delta
+
+The owner directed a navigation correction after Phase 04, superseding the earlier five-primary-choice information architecture. Only `src/components/Navbar.tsx` changed in production code; About and Resume content remained untouched.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Top-level route visibility | PASS - STATIC/SSR | Rendered homepage navigation contains Home, Services, Projects, About, Resume, Tools and Blog plus the existing Contact action. |
+| Social visibility | PASS - STATIC/SSR | Gmail, Facebook, LinkedIn and GitHub accessible names and destinations are rendered for desktop and supplied in the conditional mobile dialog. |
+| Home redundancy | PASS | Both the explicit Home item and the owner-name/logo point to `/`. |
+| Mobile initial state | PASS - STATIC/SSR | Trigger retains `aria-controls="mobile-navigation"`; the closed modal dialog is absent from initial HTML. |
+| Responsive implementation | PASS - CODE | Complete desktop navigation begins at 1280 pixels; lower widths use the full overlay menu so all restored routes and social controls remain reachable without compressing the desktop bar. |
+| Type check | PASS | Direct TypeScript compiler run returned exit 0. |
+| Targeted lint | PASS WITH BASELINE WARNING | Navbar has no lint error and retains the existing `@next/next/no-img-element` logo advisory. |
+| SEO checks | PASS | Search/performance verification remains 6/6 with 17 sitemap routes, 3 projects and 1 blog article. |
+| Production build | PASS | Next.js 16.3.0 compiled, type-checked and generated 30 pages using the isolated unreachable database URI; the expected homepage fallback handled the refusal. |
+| Local HTTP | PASS | Homepage returned HTTP 200 at `http://localhost:3000`. |
+| Visual review | OWNER REVIEW PENDING | Confirm desktop fit at and above 1280 pixels and the overlay menu below 1280 pixels in both themes; automated browser execution remains prohibited by `docs/plan.md`. |
+
+## Phase 05 resume validation delta
+
+Phase 05 remains in progress because About wording is decision-gated. This completed resume subtask replaced the public download with the owner-supplied two-page PDF, corrected only the owner-confirmed Meta/Coursera title, and aligned the web resume credential entry. About production copy did not change.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Owner decisions | PASS | The owner confirmed `Introduction to Social Media Marketing`, approved continued display of city/phone/email and directed use of the supplied resume file on 2026-08-27. |
+| PDF source integration | PASS | The public asset is a two-page US Letter PDF based on the owner-supplied 341,284-byte file; the final public file is 391,408 bytes after rebuilding page 2 for the exact credential correction. |
+| PDF text integrity | PASS | Extraction finds `Introduction to Social Media Marketing`, does not find `Introduction to Digital Marketing`, and preserves the supplied contact, summary, skills, experience and education content. |
+| PDF visual QA | PASS | Both final pages were rendered at 2.2x and inspected; text is legible with no clipping, overlap, black boxes or broken glyphs. |
+| Web resume consistency | PASS - STATIC/SSR | `/resume/` renders the exact credential title, city, phone, email and both PDF actions; the former combined credential title is absent. |
+| Embedded viewer initial state | PASS - STATIC/SSR | Resume HTML contains the site-styled preview header, labelled PDF iframe, Download and Open New Tab links, and an expanded Hide Preview control linked to `resume-pdf-frame`. |
+| Embedded viewer interaction and visual fit | OWNER REVIEW PENDING | Confirm Hide/Show behavior, browser-native PDF controls, mobile stacking and light/dark appearance at `http://localhost:3000/resume/`; automated browser execution is prohibited by `docs/plan.md`. |
+| Type check | PASS | Direct project TypeScript compiler run returned exit 0. |
+| Targeted lint | PASS WITH BASELINE WARNING | Resume page has no finding; Navbar retains the existing `@next/next/no-img-element` advisory and has no error. |
+| SEO checks | PASS | Search/performance verification remains 6/6 with 17 sitemap routes, 3 projects and 1 blog article. |
+| Production build | PASS | Next.js 16.3.0 compiled, type-checked and generated all 30 pages using the isolated unreachable database URI; the expected homepage fallback handled the refusal. |
+| Local HTTP and download | PASS | `/resume/` and `/Alain_Dave_Tapiru_Resume.pdf` return HTTP 200; the served PDF is 391,408 bytes and its SHA-256 matches the public file. |
+| About copy | UNCHANGED / OWNER GATED | P-006 and P-012 remain unresolved; no About biography or training wording changed. |
+
+No database write, form submission, external record, commit, push or deployment occurred.
