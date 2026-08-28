@@ -118,9 +118,10 @@
 - [x] **2026 Master Implementation Program - Phase 09 Blog, CMS Publishing Model and First-Hand Content**: Grounded blog article training and experience narrative in `src/data/posts.ts` to PinoySEO Bootcamp training and over a year of hands-on practice; preserved the authoritative flagship research guide (*Is SEO Dead in 2026? What the Data Actually Says*) with primary source citations (SparkToro/Similarweb Q1 2026, Seer Interactive, Google Search Central); eliminated duplicate `BreadcrumbList` JSON-LD schema on `/blog/` and `/blog/[slug]/` via `showJsonLd={false}` on breadcrumbs; removed unused type imports in blog article template; verified hybrid static CMS publishing model; passed type check, targeted lint (0/0), 6/6 SEO CI checks, 30-route Next.js production build, and local rendered HTML verification.
 - [x] **2026 Master Implementation Program - Phase 10 Tools and Commercial Relevance**: Deduplicated BreadcrumbList JSON-LD on `/tools/` via `showJsonLd={false}` on breadcrumbs; migrated GBP consultation CTA in `GBPHealthChecker.tsx` to Next.js `<Link href="/contact/?service=local-seo">` preselecting the approved Model B starting package; modernized client portal hydration with `useSyncExternalStore` and removed unused `useRef` import (0 ESLint errors/warnings); enhanced Salary Calculator accessibility with `<label htmlFor="...">`, input IDs, and currency switcher `aria-pressed` / `aria-label` attributes; passed type check, targeted lint (0/0), 6/6 SEO CI checks, 30-route Next.js production build, and local rendered HTML verification.
 - [x] **2026 Master Implementation Program - Phase 11 Contact Form and Conversion Reliability**: Deduplicated BreadcrumbList JSON-LD on `/contact/` via `showJsonLd={false}` on breadcrumbs; added native HTML `required` attributes to mandatory form controls (`contact-name`, `contact-email`, `contact-service`, `contact-message`) alongside `aria-required="true"`; standardized `SERVICE_OPTIONS` with PHP-first pricing (₱15,500 / $280, ₱27,000 / $480, ₱48,000 / $850, ₱25,000/mo / $450/mo) per D-022; enhanced `matchServiceParam` to map all query parameters to PHP-first options; aligned project detail page package CTA links; added `.trim()` and `.toLowerCase()` sanitization to Zod contact validation; passed type check, targeted lint (0/0), 6/6 SEO CI checks, 30-route Next.js production build, and local rendered HTML verification.
+- [x] **Resume Maintenance Release - Recruiter-Grade ATS PDF (2026-08-28)**: Replaced `public/Alain_Dave_Tapiru_Resume.pdf` in place with the owner-approved, refined one-page recruiter-grade resume. Preserved the stable public URL and all existing Preview, Download, Print, and Open Tab controls. Verified a tagged US Letter PDF, one-page output, ATS-readable text, and an exact SHA-256 match with the approved source artifact. The owner explicitly authorized committing, pushing, and publishing this bounded release; Phase 13 remains the next unexecuted Master Implementation Program phase.
 
 #### Master Plan Status
-**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** The new 20-phase Master Implementation Program is active: Phases 01-11 are complete, and Phases 12-20 remain unexecuted. Continue to Phase 12 in a fresh conversation. Historical completion claims in this file do not override current repository evidence.
+**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** The new 20-phase Master Implementation Program is active: Phases 01-12 are complete, the 2026-08-28 resume maintenance release is complete, and Phases 13-20 remain unexecuted. Continue to Phase 13 in a fresh conversation. Historical completion claims in this file do not override current repository evidence.
 
 **Durable phase handoff rule:** At the end of every completed phase, update this roadmap and the applicable controlled records, refresh the `Current handoff`, and create one fresh Codex project task using the same saved project when task creation is available. The new task must read the recorded context and respect unresolved gates before editing. `payload-website/AGENTS.md` contains the authoritative operating procedure.
 
@@ -136,22 +137,21 @@ Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-27)**: `feat(links): execute Master Implementation Program Phase 12 for contextual internal linking`
+- **Commit `HEAD` (Current - 2026-08-28)**: `chore(resume): publish refined ATS resume`
+  - Replaced the public resume PDF with the owner-approved, one-page recruiter-grade version while retaining the stable `/Alain_Dave_Tapiru_Resume.pdf` URL.
+  - Preserved all existing web resume preview, download, print, and open-tab behavior without changing application code or routes.
+  - Verified one-page tagged US Letter output, ATS-readable extraction, exact source/target SHA-256 equality, and production delivery after the owner-authorized push.
+- **Commit `HEAD~1` (2026-08-27)**: `feat(links): execute Master Implementation Program Phase 12 for contextual internal linking`
   - Repaired legacy `#pillar-foundation` and `#pillar-execution` anchors in `about/page.tsx` to point directly to dedicated service routes (`/services/technical-seo/` and `/services/web-development/`).
   - Normalized legacy "Next.js 15" copy to "Next.js" / "Next.js App Router" across navigation submenus (`Navbar.tsx`), 5-pillar grid (`ServicesHubGrid.tsx`), technical SEO service page, and machine feeds (`llms.txt`, `llms-full.txt`).
   - Verified complete bidirectional internal link mesh across all 17 canonical routes with strict trailing slashes (`/`), valid anchor destinations, and contextual cross-links.
   - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
-- **Commit `HEAD~1` (2026-08-27)**: `feat(contact): execute Master Implementation Program Phase 11 for contact form and conversion reliability`
+- **Commit `HEAD~2` (2026-08-27)**: `feat(contact): execute Master Implementation Program Phase 11 for contact form and conversion reliability`
   - Deduplicated BreadcrumbList JSON-LD on `/contact/` via `showJsonLd={false}` on `<Breadcrumbs />`.
   - Added native HTML `required` attributes to mandatory form controls (`contact-name`, `contact-email`, `contact-service`, `contact-message`) in `ContactForm.tsx` alongside `aria-required="true"`.
   - Standardized `SERVICE_OPTIONS` with PHP-first pricing (₱15,500 / $280, ₱27,000 / $480, ₱48,000 / $850, ₱25,000/mo / $450/mo) per D-022.
   - Enhanced `matchServiceParam` to map all query parameters to PHP-first options and aligned project detail page package CTA links.
   - Added `.trim()` and `.toLowerCase()` sanitization to Zod contact validation schema.
-  - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
-- **Commit `HEAD~2` (2026-08-27)**: `feat(hero): update homepage hero with high-resolution transparent Photoroom AVIF portrait`
-  - Converted user's high-resolution transparent cutout portrait (`ChatGPT Image Aug 27, 2026, 02_15_59 PM-Photoroom.png`) to AVIF (`public/alain-dave-tapiru-seo-specialist-philippines-hero.avif`, 52.9KB, 916×896), WebP (47.8KB), and PNG (868KB).
-  - Preserved exact canonical filename and SEO alt text (`Alain Dave Tapiru, SEO Specialist in the Philippines, in a professional homepage hero portrait`).
-  - Configured `<ScrollHero />` with 916/896 aspect ratio, responsive sizing (`max-w-[360px]` to `max-w-[640px]`), unoptimized direct delivery, and ambient backlight.
   - Passed 6/6 search CI checks, 0 TypeScript compilation errors, and 30/30 production static routes.
 
 ---
