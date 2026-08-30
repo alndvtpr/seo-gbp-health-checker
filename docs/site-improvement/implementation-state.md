@@ -23,7 +23,7 @@ Last updated: 2026-08-30 (Asia/Manila)
 | 15 | Accessibility remediation | COMPLETE | Global bypass navigation, native landmarks and controls, managed dialog focus, marquee pause/resume, résumé controls, form relationships, live announcements and 12 static regression checks implemented and verified without browser automation or production submissions. |
 | 16 | Performance and honest measurement | COMPLETE | GA4 Web Vitals RUM instrumentation, duplicate-pageview removal, repository/lab/field evidence separation, unsupported performance-claim correction, shader mount cleanup and 7 static regression checks completed and verified. No field Core Web Vitals dataset is claimed. |
 | 17 | Mobile and responsive QA | COMPLETE | Dynamic-viewport dialog containment, mobile input sizing, narrow toolbar wrapping, 44px persistent controls and 9 static responsive checks were implemented and verified without browser automation. Owner visual/device review remains pending. |
-| 18 | Dark and light theme parity | COMPLETE | Theme initialization, persistence, native control metadata, shared/component surface parity and core token contrast were implemented and verified statically and through rendered HTTP output. Owner visual/theme/device review remains pending. |
+| 18 | Dark and light theme parity | COMPLETE | Theme initialization, persistence, native control metadata, shared/component surface parity and core token contrast were implemented and verified statically and through rendered HTTP output. The owner generally approved the localhost appearance under D-039; no device-specific observation matrix is claimed. |
 | 19 | Site-wide humanization and factual consistency | COMPLETE | Active public and machine-readable copy now reflects Alain's solo-practitioner identity, approved facts, evidence limits and commercial boundaries; 10 static content/fact checks pass. |
 | 20 | Final regression, crawl and release-readiness audit | COMPLETE - OWNER REVIEW/RELEASE GATES OPEN | Cumulative regression, isolated build and local production crawl pass after three bounded fixes. Deployment remains prohibited until explicitly approved. |
 
@@ -40,8 +40,8 @@ Last updated: 2026-08-30 (Asia/Manila)
 
 - Active Git repository: `payload-website/`
 - Branch: `main`
-- Local HEAD: `91a4533d8c1a38347f1acf23364c455e9751b841`
-- GitHub `origin/main`: `91a4533d8c1a38347f1acf23364c455e9751b841` (observed during the Phase 16 handoff on 2026-08-29)
+- Local HEAD: `950ca3c009a5ba7075d50098af21041499c010e7`
+- GitHub `origin/main`: `950ca3c009a5ba7075d50098af21041499c010e7` (verified locally on 2026-08-30 after the D-037 push)
 - Remote: `https://github.com/alndvtpr/portfolio-cms.git`
 - Working tree before Phase 01: clean
 - Deployment provider observed from response headers: Vercel
@@ -386,18 +386,29 @@ Last updated: 2026-08-30 (Asia/Manila)
 - Known limitations: P-010 remains unresolved because no evidence ties the production Vercel deployment to `d15c592`. Integration/E2E remain gated by P-011. No automated browser, assistive-technology, real-device, orientation or owner visual/theme observation is claimed.
 - No commit, push, deployment, release, database write/migration, database-backed test, production form/API submission, external record, route deletion/redirect or approved-price change occurred during this reconciliation.
 
+## Post-program release-gate follow-up evidence (2026-08-30)
+
+- Repository and public deployment check: local `main` and `origin/main` are both `950ca3c009a5ba7075d50098af21041499c010e7`. Read-only production requests confirm Vercel serves the canonical site and that the apex redirects to `www`; public headers expose Vercel request IDs but no deployment commit SHA. The private GitHub repository returned 404 to anonymous status/check/deployment API requests, and the local workspace has no Vercel project link, Vercel token, Vercel CLI or authenticated GitHub CLI. This established the P-010 evidence limitation; D-039 later closed the gate through explicit owner acceptance without inferring a production SHA.
+- P-011 resolved: downloaded the official EDB PostgreSQL 16.15 Windows portable archive to a dedicated system-temporary folder, recorded SHA-256 `25E6FCDFB8CAEC38691BF461125E7564508760666F7B8E5DC6A5F0818F58F81E`, initialized a new cluster with trust authentication, and bound the server only to `127.0.0.1:55432`.
+- Database isolation: created only the disposable `payload_reconcile` database and explicitly set `DATABASE_URI`, `POSTGRES_URL_NON_POOLING` and `POSTGRES_URL` to `postgresql://payload_test_owner@127.0.0.1:55432/payload_reconcile`; used a test-only Payload secret. No production database credential, form or API was used.
+- Database-backed validation: `pnpm run test:int` passed 1/1. Payload pulled/pushed schema only against the disposable database, and the server stopped successfully immediately after the test.
+- Cleanup: after confirming port 55432 was no longer listening and verifying the exact temporary path under the system temp root, permanently removed the downloaded runtime, cluster, log and test data. The disposable data is not recoverable from that folder.
+- Honest remaining test boundary: browser E2E was not run. The standing plan prohibits automated browser tools; Playwright browser binaries are absent; and `tests/e2e/frontend.e2e.spec.ts` still asserts the obsolete Payload blank-template title and H1. These are separate E2E coverage limitations, not a failure of the now-proven disposable-database strategy.
+- Owner visual gate: the owner reviewed the safeguarded localhost preview and stated `I think it is good now. I want this finished` under D-039. This is recorded as general owner approval of the appearance; no specific phone/tablet/desktop, portrait/landscape, theme, keyboard, reduced-motion or dialog observation is invented.
+- No production source, public copy, price, route, schema, integration, accessibility behavior, deployment or release changed during this follow-up.
+
 ## Next gate
 
 - `NEXT_PHASE_READY: NO - MASTER IMPLEMENTATION PROGRAM COMPLETE`
-- Phase 20 and the post-Phase 20 architecture reconciliation are complete within the static, isolated-build and local rendered-HTTP evidence boundary.
-- Owner gate: the owner authorized one reconciliation checkpoint commit and push under D-037. Manual deployment/release, pending visual/theme/device/orientation review, and acceptance of P-010/P-011 remain separate owner decisions.
+- Phase 20, the post-Phase 20 architecture reconciliation and the P-011 disposable-database proof are complete within their recorded evidence boundaries.
+- Release-readiness gates: none remain. D-039 closes P-010 by owner acceptance of the documented unverified-SHA limitation and closes the visual gate by general owner approval. Manual deployment/release remains separately prohibited unless explicitly authorized.
 - No fresh phase task was created because Phase 20 is the final numbered program phase and no next phase is defined.
 
 ## Current handoff
 
-- Last completed work: post-Phase 20 architecture reconciliation and regression-harness repair (2026-08-30).
-- Active phase: none. The Master Implementation Program and post-program reconciliation are complete; the owner authorized one checkpoint commit and push of the validated local documentation/regression updates under D-037.
-- Unresolved decisions: P-007 precise address/geocoordinates; P-008 LocalBusiness/ProfessionalService eligibility; P-009 standalone off-page/link-building publishing scope; P-010 deployment identity; P-011 test database strategy.
-- Checks run: TypeScript (pass), full lint (exit 0; zero errors/12 warnings), SEO/privacy/security 17/17, accessibility 12/12, performance/evidence 7/7, responsive 9/9, theme 10/10, content/facts 10/10, isolated unreachable-database build with 29 route units, 17-route local canonical crawl, 34 parsed JSON-LD scripts, 18 discovered route targets, 30 discovered asset paths, endpoint/security/feed/protected-content verification and `git diff --check` (all pass).
-- Reconciliation changes: `scripts/verify-accessibility.ts`, `scripts/verify-content.ts`, `docs/plan.md`, `docs/site-improvement/implementation-state.md`, `docs/site-improvement/decision-log.md` and `docs/site-improvement/baseline.md`, plus the synchronized workspace convenience plan. `fact-inventory.md` was intentionally unchanged because no factual, commercial, privacy, credential or positioning evidence changed.
-- Authorization boundary: D-037 authorizes one commit and push of this validated reconciliation checkpoint. No manual deployment or release, database write/migration, production form/API submission, route deletion/redirect or approved-price change is authorized. Any additional commit or push requires a new explicit owner instruction.
+- Last completed work: post-program release-gate closure, including P-011 disposable-database proof and D-039 owner acceptance (2026-08-30).
+- Active phase: none. The Master Implementation Program, post-program reconciliation and release-readiness follow-up are complete within their recorded evidence boundaries.
+- Unresolved non-release publishing decisions: P-007 precise address/geocoordinates; P-008 LocalBusiness/ProfessionalService eligibility; P-009 standalone off-page/link-building publishing scope. P-010 and the owner visual gate are closed under D-039 without claiming an exact Vercel SHA or device-specific observations.
+- Checks run: follow-up TypeScript passed; full lint exits 0 with zero errors/12 warnings; the complete static matrix passed 65/65; `pnpm run test:int` passed 1/1 against a localhost-only disposable PostgreSQL 16.15 database; and the unreachable-database localhost preview returned HTTP 200 with title and H1. Read-only production HTTP checks passed but did not expose a commit SHA. The previously recorded isolated build and local crawl remain unchanged and passing.
+- Follow-up documentation changes: `docs/plan.md`, `docs/site-improvement/implementation-state.md`, `docs/site-improvement/decision-log.md` and `docs/site-improvement/baseline.md`, plus the synchronized workspace convenience plan. `fact-inventory.md` remains unchanged because no factual, commercial, privacy, credential or positioning evidence changed.
+- Authorization boundary: no manual deployment/release, production form/API submission, route deletion/redirect or approved-price change is authorized. The only database writes performed were inside the removed disposable local cluster. Any commit or push of this follow-up documentation requires a new explicit owner instruction.

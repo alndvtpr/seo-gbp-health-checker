@@ -373,6 +373,26 @@ Reconciliation conclusion: the GitHub architecture work safely preserves the ver
 
 No commit, push, deployment, release, database write/migration, database-backed test, production form/API submission, external record, route deletion/redirect or approved-price change occurred during this reconciliation.
 
+## Post-program release-gate validation delta (2026-08-30)
+
+This follow-up investigated the remaining P-010 deployment-identity, P-011 disposable-database and owner visual/theme/device gates after the D-037 reconciliation checkpoint was committed and pushed as `950ca3c`.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Repository identity | PASS | Local `main` and `origin/main` both resolve to `950ca3c009a5ba7075d50098af21041499c010e7`; the working tree was clean before this documentation-only follow-up. |
+| Static, type and lint regression | PASS WITH WARNINGS | The six static suites passed 65/65; direct TypeScript passed; full ESLint exited 0 with zero errors and the unchanged 12 warnings; and `git diff --check` passed. |
+| Public production service | PASS - READ ONLY | Home, Services, sitemap and robots return HTTP 200 from Vercel; the apex returns 308 to `https://www.alaintapiru.com/`; framing, HSTS and content-type contracts remain present. No production form or API was submitted. |
+| P-010 deployment identity | CLOSED - OWNER-ACCEPTED LIMITATION | Public Vercel responses expose request IDs, not a commit SHA. Anonymous GitHub status/check/deployment API requests return 404 for the private repository, and no local authenticated metadata path exists. Under D-039, the owner instructed Codex to finish and accepted this documented limitation. This does not assert that Vercel production is commit `950ca3c`. |
+| Disposable database runtime | PASS | Official EDB PostgreSQL 16.15 portable archive was downloaded to a dedicated system-temporary folder. The 332,441,502-byte ZIP had SHA-256 `25E6FCDFB8CAEC38691BF461125E7564508760666F7B8E5DC6A5F0818F58F81E`; required server tools were present. |
+| P-011 isolation boundary | PASS | A newly initialized cluster listened only on `127.0.0.1:55432`; a new `payload_reconcile` database was created; and `DATABASE_URI`, `POSTGRES_URL_NON_POOLING` and `POSTGRES_URL` all explicitly pointed to that database with a test-only Payload secret. No production database credential was used. |
+| Integration suite | PASS | `pnpm run test:int` passed 1/1 in 8.20 seconds. Payload schema initialization and the `users` collection query ran only against the disposable database. |
+| Disposable cleanup | PASS - PERMANENT | PostgreSQL stopped successfully; port 55432 was confirmed not listening; the exact task directory was verified under the system temp root; and the runtime, cluster, log and test data were permanently removed. |
+| Browser E2E | NOT RUN - SEPARATE LIMITATION | The plan prohibits automated browser tools, Playwright browser binaries are absent, and the frontend E2E fixture still expects the obsolete Payload blank-template homepage. The successful disposable-database proof resolves P-011, but it does not claim browser E2E coverage. |
+| Owner-review preview | COMPLETE AND STOPPED | `http://localhost:3000/` returned HTTP 200 with a rendered title and H1 while every database URL was forced to the unreachable local port 1. The owner reviewed the preview, then the local server was stopped. |
+| Owner visual/theme/device review | PASS - GENERAL OWNER APPROVAL | The owner stated `I think it is good now. I want this finished` under D-039. This closes the owner-review gate as a general approval; no device-by-device, orientation, theme, keyboard, reduced-motion or dialog observations are claimed. |
+
+Follow-up conclusion: P-011 is resolved with direct isolated database-backed evidence. D-039 closes P-010 by accepting the documented deployment-identity limitation and closes the visual gate through general owner approval. No release-readiness gate remains, and no website source, public content, price, route, schema, deployment or release changed.
+
 ## Phase 19 site-wide humanization and factual consistency validation delta
 
 Phase 19 audited active public and machine-readable wording against the approved fact inventory and decision log. It changed wording and corrected documented commercial drift without changing routes, schema relationships, prices, integrations, accessibility behavior, responsive behavior, theme behavior or evidence classifications.
