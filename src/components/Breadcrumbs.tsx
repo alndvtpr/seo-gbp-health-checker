@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Icon } from '@/components/icons'
-import { normalizeCanonicalUrl, serializeJsonLd } from '@/lib/seo'
+import { buildBreadcrumbJsonLd, serializeJsonLd } from '@/lib/seo'
 
 export interface BreadcrumbItem {
   name: string
@@ -27,17 +27,7 @@ export function Breadcrumbs({
     ...items.filter((item) => item.url !== '/' && item.name.toLowerCase() !== 'home'),
   ]
 
-  // Generate Schema.org BreadcrumbList structured data
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: normalizedItems.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: normalizeCanonicalUrl(item.url),
-    })),
-  }
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(normalizedItems)
 
   const alignmentClass =
     align === 'center'

@@ -1,28 +1,28 @@
 import React from 'react'
-import { serializeJsonLd } from '@/lib/seo'
+import { PERSON_ID, SITE_URL, WEBSITE_ID, serializeJsonLd } from '@/lib/seo'
 
 export const GLOBAL_JSON_LD = {
   '@context': 'https://schema.org',
   '@graph': [
       {
         '@type': 'WebSite',
-        '@id': 'https://www.alaintapiru.com/#website',
-        url: 'https://www.alaintapiru.com/',
+        '@id': WEBSITE_ID,
+        url: SITE_URL,
         name: 'Alain Dave Tapiru | SEO Specialist & Web Developer',
         description:
           'Technical SEO, Local Search Optimization, Core Web Vitals, and Next.js / WordPress development services.',
         publisher: {
-          '@id': 'https://www.alaintapiru.com/#person',
+          '@id': PERSON_ID,
         },
         inLanguage: 'en-US',
       },
       {
         '@type': 'Person',
-        '@id': 'https://www.alaintapiru.com/#person',
+        '@id': PERSON_ID,
         name: 'Alain Dave G. Tapiru',
         alternateName: ['Alain Tapiru', 'Alain Dave Tapiru'],
-        url: 'https://www.alaintapiru.com/',
-        image: 'https://www.alaintapiru.com/alain-dave-tapiru-seo-specialist-philippines.avif',
+        url: SITE_URL,
+        image: `${SITE_URL}alain-dave-tapiru-seo-specialist-philippines.avif`,
         jobTitle: 'SEO Specialist & Web Developer',
         description:
           'SEO Specialist and Technical Web Developer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',

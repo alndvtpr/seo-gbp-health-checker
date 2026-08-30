@@ -1,21 +1,47 @@
 import type { Metadata } from 'next'
 
+export const SITE_ORIGIN = 'https://www.alaintapiru.com'
+export const SITE_URL = `${SITE_ORIGIN}/`
+export const WEBSITE_ID = `${SITE_URL}#website`
+export const PERSON_ID = `${SITE_URL}#person`
+export const PROFILE_PAGE_ID = `${SITE_URL}#profilepage`
+
+export interface SeoBreadcrumbItem {
+  name: string
+  url: string
+}
+
 export const serializeJsonLd = (value: object): string =>
   JSON.stringify(value).replace(/</g, '\\u003c')
 
 export const normalizeCanonicalUrl = (rawUrl?: string): string => {
-  if (!rawUrl) return 'https://www.alaintapiru.com/'
+  if (!rawUrl) return SITE_URL
   try {
-    const parsed = new URL(rawUrl, 'https://www.alaintapiru.com')
+    const parsed = new URL(rawUrl, SITE_ORIGIN)
     let pathname = parsed.pathname.toLowerCase()
     if (!pathname.endsWith('/')) {
       pathname += '/'
     }
-    return `https://www.alaintapiru.com${pathname}`
+    return `${SITE_ORIGIN}${pathname}`
   } catch {
-    return 'https://www.alaintapiru.com/'
+    return SITE_URL
   }
 }
+
+export const buildBreadcrumbJsonLd = (
+  items: readonly SeoBreadcrumbItem[],
+  id?: string,
+) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  ...(id ? { '@id': id } : {}),
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: normalizeCanonicalUrl(item.url),
+  })),
+})
 
 export const generateMetadata = ({
   title,
@@ -37,13 +63,13 @@ export const generateMetadata = ({
   const canonicalUrl = normalizeCanonicalUrl(url)
 
   return {
-    metadataBase: new URL('https://www.alaintapiru.com'),
+    metadataBase: new URL(SITE_ORIGIN),
     title: fullTitle,
     description: description || defaultDesc,
     alternates: {
       canonical: canonicalUrl,
       types: {
-        'application/rss+xml': 'https://www.alaintapiru.com/rss.xml',
+        'application/rss+xml': `${SITE_ORIGIN}/rss.xml`,
       },
     },
     icons: {
@@ -88,4 +114,3 @@ export const generateMetadata = ({
     },
   }
 }
-

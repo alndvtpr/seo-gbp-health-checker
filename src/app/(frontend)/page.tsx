@@ -7,24 +7,31 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ScrollHero } from '@/components/ScrollHero'
 import { ToolsMarquee } from '@/components/ToolsMarquee'
 import { HomeSections } from '@/components/home/HomeSections'
-import { generateMetadata, serializeJsonLd } from '@/lib/seo'
+import {
+  PERSON_ID,
+  PROFILE_PAGE_ID,
+  SITE_URL,
+  WEBSITE_ID,
+  generateMetadata,
+  serializeJsonLd,
+} from '@/lib/seo'
 
 export const metadata = generateMetadata({
   title: 'SEO Specialist & Web Developer Philippines | Alain Dave Tapiru',
   description:
     'Alain Dave Tapiru handles technical SEO, local search setup, on-page improvements, and WordPress or Next.js fixes for small businesses and agencies through clearly scoped projects.',
-  url: 'https://www.alaintapiru.com/',
+  url: SITE_URL,
 })
 
 const homeJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  '@id': 'https://www.alaintapiru.com/#profilepage',
-  url: 'https://www.alaintapiru.com/',
+  '@id': PROFILE_PAGE_ID,
+  url: SITE_URL,
   name: 'Alain Dave G. Tapiru - Profile',
-  isPartOf: { '@id': 'https://www.alaintapiru.com/#website' },
-  about: { '@id': 'https://www.alaintapiru.com/#person' },
-  mainEntity: { '@id': 'https://www.alaintapiru.com/#person' },
+  isPartOf: { '@id': WEBSITE_ID },
+  about: { '@id': PERSON_ID },
+  mainEntity: { '@id': PERSON_ID },
 }
 
 export default async function Page() {
