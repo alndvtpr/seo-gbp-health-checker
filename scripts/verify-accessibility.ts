@@ -16,7 +16,8 @@ interface CheckResult {
 }
 
 const results: CheckResult[] = []
-const source = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf8')
+const source = (path: string) =>
+  readFileSync(resolve(process.cwd(), path), 'utf8').replace(/\r\n?/g, '\n')
 
 function check(area: string, name: string, condition: boolean) {
   results.push({ area, name, passed: condition })

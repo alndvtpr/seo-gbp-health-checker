@@ -16,7 +16,10 @@ const assert: (condition: unknown, message: string) => asserts condition = (cond
   if (!condition) throw new Error(message)
 }
 
-const homepage = read('src/app/(frontend)/page.tsx')
+const homepage = [
+  read('src/app/(frontend)/page.tsx'),
+  read('src/components/home/HomeSections.tsx'),
+].join('\n')
 const about = read('src/app/(frontend)/about/page.tsx')
 const services = [
   read('src/app/(frontend)/services/technical-seo/page.tsx'),

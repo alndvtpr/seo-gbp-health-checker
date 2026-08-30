@@ -348,6 +348,31 @@ Release-readiness conclusion: the cumulative workspace is technically ready for 
 
 No commit, push, deployment, release, database write/migration, database-backed test, production form/API submission, external record, route deletion/redirect or approved-price change occurred during the audit. After the audit, the owner authorized the final checkpoint commit and push under D-034; no manual deployment or release was authorized.
 
+## Post-Phase 20 architecture reconciliation and regression-repair validation delta
+
+The owner completed three additional architecture PRs in a separate GitHub workflow after the verified `120979c` Phase 13–20 checkpoint. Repository ancestry proves the resulting merge commits are linear descendants of that checkpoint: `1be8de2` centralizes navigation/static sitemap routes, `6c38752` extracts unchanged homepage sections, and `d15c592` centralizes site identity and breadcrumb schema plumbing. Local `main` fast-forwarded cleanly to `d15c592` under D-035; no reset, rebase, overwrite or conflict resolution occurred.
+
+| Check | Status | Evidence |
+|---|---|---|
+| Git ancestry and synchronization | PASS | `120979c` is an ancestor of `d15c592`; `git pull --ff-only origin main` advanced local `main` by exactly the three architecture commits and left local `HEAD` equal to `origin/main`. |
+| Architecture scope | PASS - REVIEWED | The cumulative eight-file architecture diff adds `src/config/site.ts` and `src/components/home/HomeSections.tsx`, then rewires Navbar, sitemap, homepage and shared schema helpers without changing the canonical route set or approved visible copy. |
+| Initial regression finding | FAIL - HARNESS ONLY | Accessibility was 11/12 because one exact source assertion was CRLF-sensitive. Content was 8/10 because two assertions inspected only `page.tsx` after unchanged homepage copy moved into `HomeSections.tsx`. The normalized/composed source contracts and rendered homepage passed before repair. |
+| Narrow regression repair | PASS | `verify-accessibility.ts` normalizes CRLF/CR line endings before source matching. `verify-content.ts` treats `page.tsx` plus `HomeSections.tsx` as the composed homepage source. No production component or public content changed. |
+| Static regression matrix | PASS | SEO/privacy/security 17/17, accessibility 12/12, performance/evidence 7/7, responsive 9/9, theme 10/10 and content/facts 10/10 pass (65/65 total). |
+| Type and lint | PASS WITH WARNINGS | Direct TypeScript passes. Full ESLint exits 0 with zero errors and the same 12 legacy warnings. |
+| Isolated production build | PASS | Next.js 16.3.0 generated all 29 route units with `postgresql://reconcile:reconcile@127.0.0.1:1/reconcile`; the expected connection refusal proves the configured database was unreachable while the static fallback completed generation. |
+| Canonical crawl and schema | PASS | All 17 canonical local routes return HTTP 200 with exact self-canonicals and one H1; all 34 JSON-LD scripts parse. |
+| Discovered links and assets | PASS | All 18 distinct local route targets and 30 distinct local static asset paths discovered by the bounded crawl return HTTP 200. This count reflects the reconciliation crawler's path-only collection and is not a replacement for Phase 20's anchor-inclusive inventory. |
+| Machine endpoints and security | PASS | Sitemap contains 17 locations; RSS, sitemap, robots and both LLM endpoints return the expected media types; `X-Frame-Options: DENY` and CSP `frame-ancestors 'none'` remain intact. |
+| Protected homepage contracts | PASS - RENDERED | All four approved PHP-first package prices, `Request a Website Health Check` and `/tools/#website-audit` are present in the rendered homepage. About/service/project/blog protected paths were unchanged by the architecture commits. |
+| Browser/device/visual review | OWNER REVIEW PENDING | No automated browser, assistive-technology, real-device, orientation or owner visual/theme observation was run or claimed. |
+| P-010 deployment identity | UNRESOLVED | GitHub `main` and local `HEAD` match at `d15c592`, but no evidence ties the production Vercel deployment to that SHA. |
+| P-011 database-backed suites | NOT RUN | Integration/E2E remain gated because no isolated disposable database was available; no production database, form or API was touched. |
+
+Reconciliation conclusion: the GitHub architecture work safely preserves the verified Phase 13–20 checkpoint, and the local regression harness is restored to 65/65. The owner authorized one reconciliation checkpoint commit and push under D-037. No manual deployment or release is authorized.
+
+No commit, push, deployment, release, database write/migration, database-backed test, production form/API submission, external record, route deletion/redirect or approved-price change occurred during this reconciliation.
+
 ## Phase 19 site-wide humanization and factual consistency validation delta
 
 Phase 19 audited active public and machine-readable wording against the approved fact inventory and decision log. It changed wording and corrected documented commercial drift without changing routes, schema relationships, prices, integrations, accessibility behavior, responsive behavior, theme behavior or evidence classifications.
