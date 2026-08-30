@@ -1,24 +1,34 @@
 'use client'
 
-import { useLivePreview } from '@payloadcms/live-preview-react'
-import React from 'react'
+import React, { useSyncExternalStore } from 'react'
+
+const DynamicLivePreview = React.lazy(() =>
+  import('@payloadcms/live-preview-react').then((mod) => ({
+    default: function LivePreviewInner() {
+      mod.useLivePreview({
+        serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        depth: 2,
+        initialData: {},
+      })
+      return null
+    },
+  }))
+)
+
+const subscribe = () => () => {}
+const getSnapshot = () =>
+  process.env.NODE_ENV === 'development' ||
+  (typeof window !== 'undefined' && window.self !== window.top)
+const getServerSnapshot = () => process.env.NODE_ENV === 'development'
 
 export const LivePreviewListener: React.FC = () => {
-  const isPreviewContext = typeof window !== 'undefined' ? window.self !== window.top : false
-  const isDev = process.env.NODE_ENV === 'development'
+  const shouldLoad = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
-  if (isDev || isPreviewContext) {
-    return <LivePreviewInner />
-  }
-  return null
+  if (!shouldLoad) return null
+
+  return (
+    <React.Suspense fallback={null}>
+      <DynamicLivePreview />
+    </React.Suspense>
+  )
 }
-
-const LivePreviewInner: React.FC = () => {
-  useLivePreview({
-    serverURL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-    depth: 2,
-    initialData: {},
-  })
-  return null
-}
-

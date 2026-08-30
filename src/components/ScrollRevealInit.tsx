@@ -38,13 +38,7 @@ export function ScrollRevealInit() {
         '.motion-reveal:not(.is-visible), .motion-reveal-fast:not(.is-visible)'
       )
       elements.forEach((el) => {
-        const rect = el.getBoundingClientRect()
-        // If already in viewport on mount, reveal immediately to prevent blank flashes
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          el.classList.add('is-visible')
-        } else {
-          observer.observe(el)
-        }
+        observer.observe(el)
       })
     }
 

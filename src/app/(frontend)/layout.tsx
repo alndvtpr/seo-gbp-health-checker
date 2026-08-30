@@ -25,7 +25,6 @@ const jakarta = Plus_Jakarta_Sans({
   display: 'swap',
   preload: true,
   adjustFontFallback: true,
-  weight: ['500', '600', '700', '800'],
 })
 
 export const metadata = generateMetadata({
@@ -76,7 +75,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
+        {/* Preconnect for Analytics and External Endpoints */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         {/* Zero-Flash SSR Theme Initialization Script */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* RSS 2.0 Delta Feed Autodiscovery */}

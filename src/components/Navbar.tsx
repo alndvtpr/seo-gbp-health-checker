@@ -188,7 +188,6 @@ export const Navbar = () => {
                   alt=""
                   width={40}
                   height={38}
-                  priority
                   className="w-full h-full object-contain transition-transform duration-200 ease-[var(--ease-organic)] motion-reduce:transform-none group-hover:scale-[1.02]"
                 />
               </div>

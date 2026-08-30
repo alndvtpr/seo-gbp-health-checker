@@ -251,7 +251,7 @@ export const HomeSections = () => (
           {PROJECTS.map((project, index) => (
             <article key={project.slug} style={{ transitionDelay: `${index * 70}ms` }} className="card-interactive-glow motion-reveal overflow-hidden border border-black/10 bg-surface-1/95 dark:border-white/10">
               <div className="relative aspect-[16/10] overflow-hidden bg-surface-2">
-                <Image src={project.image} alt={project.imageAlt ?? `${project.title} project preview`} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover object-top transition-transform duration-[var(--motion-slow)] ease-[var(--ease-organic)] hover:scale-[1.02]" />
+                <Image src={project.image} alt={project.imageAlt ?? `${project.title} project preview`} fill sizes="(max-width: 640px) 95vw, (max-width: 1024px) 90vw, 380px" className="object-cover object-top transition-transform duration-[var(--motion-slow)] ease-[var(--ease-organic)] hover:scale-[1.02]" />
               </div>
               <div className="p-5 sm:p-6">
                 <div className="flex flex-wrap items-center gap-2">
