@@ -7,96 +7,7 @@ import { usePathname } from 'next/navigation'
 import { Icon } from '@/components/icons'
 import { AnnouncementBanner } from '@/components/AnnouncementBanner'
 import { ThemeToggle } from '@/components/ThemeToggle'
-
-interface NavChildItem {
-  name: string
-  href: string
-  description?: string
-  badge?: string
-}
-
-interface NavItem {
-  name: string
-  href: string
-  children?: NavChildItem[]
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about/' },
-  {
-    name: 'Projects',
-    href: '/projects/',
-    children: [
-      {
-        name: 'All Projects & Case Studies',
-        href: '/projects/',
-        description: 'Complete directory of practical builds & breakdowns',
-      },
-      {
-        name: 'AngatSikat Studio',
-        href: '/projects/angat-sikat-studio/',
-        description: 'Custom WordPress theme & SEO architecture',
-        badge: 'WordPress',
-      },
-      {
-        name: 'Local SEO & GBP Checker',
-        href: '/projects/local-seo-gbp-checker/',
-        description: 'Interactive signal diagnostic tool & analyzer',
-        badge: 'Local SEO',
-      },
-      {
-        name: 'AlainTapiru.com Architecture',
-        href: '/projects/alaintapiru-portfolio/',
-        description: 'Next.js App Router portfolio & technical SEO build',
-        badge: 'Technical SEO',
-      },
-    ],
-  },
-  {
-    name: 'Services',
-    href: '/services/',
-    children: [
-      {
-        name: 'All Services & Packages',
-        href: '/services/',
-        description: 'Practical SEO, local visibility & web support',
-      },
-      {
-        name: 'Technical SEO',
-        href: '/services/technical-seo/',
-        description: 'Crawlability, Core Web Vitals & schema architecture',
-        badge: 'Technical',
-      },
-      {
-        name: 'On-Page SEO',
-        href: '/services/on-page-seo/',
-        description: 'Search intent mapping, headings & metadata CTR',
-      },
-      {
-        name: 'Local SEO & GBP',
-        href: '/services/local-seo/',
-        description: 'Google Maps presence & 10-point signal diagnostics',
-        badge: 'Local',
-      },
-      {
-        name: 'AI Search (AEO & GEO)',
-        href: '/services/ai-search-optimization/',
-        description: 'Structured data, entities & machine discoverability',
-        badge: 'AI Search',
-      },
-      {
-        name: 'Web Development',
-        href: '/services/web-development/',
-        description: 'Next.js App Router & custom WordPress theme builds',
-        badge: 'Next.js / WP',
-      },
-    ],
-  },
-  { name: 'Tools', href: '/tools/' },
-  { name: 'Resume', href: '/resume/' },
-  { name: 'Blog', href: '/blog/' },
-]
+import { SITE_NAV_ITEMS } from '@/config/site'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -291,7 +202,7 @@ export const Navbar = () => {
               aria-label="Primary navigation"
               className="hidden xl:flex items-center gap-0.5 bg-surface-2/90 dark:bg-surface-container-low/80 backdrop-blur-md px-2 py-1.5 rounded-full border border-black/10 dark:border-white/10 shadow-xs"
             >
-              {NAV_ITEMS.map((item) => {
+              {SITE_NAV_ITEMS.map((item) => {
                 const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
                 const targetPath = (item.href || '/').replace(/\/$/, '') || '/'
                 const isExactActive = currentPath === targetPath
@@ -299,7 +210,7 @@ export const Navbar = () => {
                   item.href !== '/' && currentPath.startsWith(targetPath)
                 )
                 const isActive = isExactActive || isChildActive
-                const hasChildren = Boolean(item.children && item.children.length > 0)
+                const hasChildren = Boolean('children' in item && item.children.length > 0)
                 const isDropdownOpen = openDropdown === item.name
 
                 return (
@@ -340,7 +251,7 @@ export const Navbar = () => {
                     </Link>
 
                     {/* Desktop Dropdown Popover */}
-                    {hasChildren && item.children && (
+                    {'children' in item && item.children && (
                       <div
                         id={`desktop-submenu-${item.name}`}
                         aria-label={`${item.name} submenu`}
@@ -363,7 +274,7 @@ export const Navbar = () => {
                                 <span className="font-heading text-[13px] font-bold text-neutral-900 dark:text-neutral-100 group-hover/child:text-primary-container transition-colors truncate">
                                   {child.name}
                                 </span>
-                                {child.badge && (
+                                {'badge' in child && child.badge && (
                                   <span className="font-heading text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-primary-container/15 text-primary-container border border-primary-container/30 font-bold shrink-0">
                                     {child.badge}
                                   </span>
@@ -484,7 +395,7 @@ export const Navbar = () => {
         </button>
 
         <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-2 text-center z-10 w-full px-5 max-w-sm max-h-[calc(100dvh-120px)] overflow-y-auto">
-          {NAV_ITEMS.map((item, idx) => {
+          {SITE_NAV_ITEMS.map((item, idx) => {
             const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
             const targetPath = (item.href || '/').replace(/\/$/, '') || '/'
             const isExactActive = currentPath === targetPath
@@ -492,7 +403,7 @@ export const Navbar = () => {
               item.href !== '/' && currentPath.startsWith(targetPath)
             )
             const isActive = isExactActive || isChildActive
-            const hasChildren = Boolean(item.children && item.children.length > 0)
+            const hasChildren = Boolean('children' in item && item.children.length > 0)
             const isExpanded = Boolean(mobileExpanded[item.name])
 
             if (!hasChildren) {
@@ -558,7 +469,7 @@ export const Navbar = () => {
                 </div>
 
                 {/* Mobile Accordion Children (Clean Text-First) */}
-                {isExpanded && item.children && (
+                {isExpanded && 'children' in item && item.children && (
                   <div
                     id={`mobile-submenu-${item.name}`}
                     className="w-full bg-neutral-100/90 dark:bg-[#1a1c1d] border border-black/10 dark:border-white/15 rounded-2xl p-1.5 mt-1 mb-1 space-y-0.5 text-left shadow-md"
@@ -574,7 +485,7 @@ export const Navbar = () => {
                           <span className="font-heading text-xs sm:text-sm font-bold text-neutral-900 dark:text-neutral-100 truncate">
                             {child.name}
                           </span>
-                          {child.badge && (
+                          {'badge' in child && child.badge && (
                             <span className="font-heading text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary-container/15 text-primary-container border border-primary-container/30 font-bold shrink-0">
                               {child.badge}
                             </span>
@@ -597,7 +508,7 @@ export const Navbar = () => {
             href="/contact/"
             onClick={closeMobileMenu}
             aria-current={pathname?.startsWith('/contact') ? 'page' : undefined}
-            style={{ transitionDelay: `${NAV_ITEMS.length * 25}ms` }}
+            style={{ transitionDelay: `${SITE_NAV_ITEMS.length * 25}ms` }}
             className="mobile-nav-item mt-2 w-full text-center bg-primary-container text-on-primary-container font-heading text-xs sm:text-sm uppercase tracking-[0.06em] font-bold px-8 py-3.5 rounded-full shadow-[0_0_20px_rgba(224,123,32,0.3)] hover:bg-primary btn-motion flex items-center justify-center gap-2 min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             <span>Get in Touch</span>
@@ -608,7 +519,7 @@ export const Navbar = () => {
           <div
             role="group"
             aria-label="Social links and theme control"
-            style={{ transitionDelay: `${(NAV_ITEMS.length + 1) * 25}ms` }}
+            style={{ transitionDelay: `${(SITE_NAV_ITEMS.length + 1) * 25}ms` }}
             className="mobile-nav-item flex gap-3 mt-4 items-center justify-center flex-wrap"
           >
             <ThemeToggle className="w-11 h-11 min-w-[44px] min-h-[44px]" />

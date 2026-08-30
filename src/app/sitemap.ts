@@ -1,28 +1,10 @@
 import type { MetadataRoute } from 'next'
+import { STATIC_SITEMAP_ROUTES } from '@/config/site'
 import { PROJECTS } from '@/data/projects'
 import { BLOG_POSTS } from '@/data/posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.alaintapiru.com'
-
-  const coreRoutes = [
-    '/',
-    '/about/',
-    '/resume/',
-    '/projects/',
-    '/tools/',
-    '/services/',
-    '/blog/',
-    '/contact/',
-  ]
-
-  const serviceRoutes = [
-    '/services/technical-seo/',
-    '/services/on-page-seo/',
-    '/services/local-seo/',
-    '/services/ai-search-optimization/',
-    '/services/web-development/',
-  ]
 
   const projectRoutes = PROJECTS.map((project) => `/projects/${project.slug}/`)
   const blogRoutes = BLOG_POSTS.map((post) => ({
@@ -30,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: post.dateModified ?? post.datePublished,
   }))
 
-  const stableRoutes = [...coreRoutes, ...serviceRoutes, ...projectRoutes]
+  const stableRoutes = [...STATIC_SITEMAP_ROUTES, ...projectRoutes]
 
   return [
     ...stableRoutes.map((route) => ({
