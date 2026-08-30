@@ -146,8 +146,10 @@
 - [x] **Task 11 Extract GBP Email Report Dialog (2026-08-29)**: Extracted standalone component `EmailReportDialog` from `src/components/GBPHealthChecker.tsx` into `src/components/gbp/EmailReportDialog.tsx`. Replaced inline modal overlay implementation with module import and clean decoupled presentation props. Preserved 100% of email dispatch actions, validation, error/success states, styling, JSX structure, and accessibility/focus management with zero regressions. Verified 0 TypeScript errors, 29/29 production static routes, 35/35 passing CI checks (16/16 SEO, 12/12 A11y, 7/7 Performance), and clean baseline linting (15 problems). Committed as `324bbff` and pushed to `origin/main`.
 - [x] **Task 12 Extract GBP Fallback Audit Deliverables (2026-08-29)**: Extracted the fallback action plan, business description, review templates and keyword generation from `GBPHealthChecker.tsx` into the pure helper module `src/lib/gbp/auditDeliverables.ts`, preserving the component's cumulative unstaged accessibility work. Committed separately as `91a4533` and pushed to `origin/main` while Phase 16 documentation was in progress; the Phase 16 task preserved the commit and did not commit or push.
 
+- [x] **Homepage Hero SEO Positioning Alignment (2026-08-30)**: Integrated geo-targeted phrase "in the Philippines" into the main `<ScrollHero />` H1 headline ("SEO Specialist & Web Developer in the Philippines for Small Businesses & Agencies") targeting primary high-intent geo commercial search keywords while preserving semantic hierarchy, theme tokens, and visual contrast; verified 17/17 automated SEO CI checks, TypeScript compile (0 errors), and HTTP 200 on localhost.
+
 #### Master Plan Status
-**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation and the release-gate follow-up are complete. Local `main` and GitHub `origin/main` are at the pushed reconciliation commit `950ca3c`. P-011 is resolved by a successful integration run against a localhost-only disposable PostgreSQL 16.15 database that was stopped and removed after the test. Under D-039, the owner generally approved the localhost appearance and accepted the documented inability to verify the exact Vercel production SHA, closing the visual gate and P-010 without inventing specific observations or deployment identity. No manual deployment or release is authorized. Historical completion claims in this file do not override current repository evidence.
+**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, and Homepage Hero SEO positioning alignment are complete.
 
 Durable phase handoff rule: At the end of every completed phase, update this roadmap and the applicable controlled records, refresh the Current handoff, and create one fresh Codex project task using the same saved project when task creation is available. The new task must explicitly use gpt-5.6-sol with high reasoning, read the recorded context, and respect unresolved gates before editing. payload-website/AGENTS.md contains the authoritative operating procedure.
 
@@ -167,15 +169,13 @@ Architecture & Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-30)**: `test: reconcile architecture regression coverage` (`950ca3c`)
-  - Normalized source line endings in the accessibility harness, made content coverage follow the extracted homepage composition, and synchronized the applicable controlled records.
-  - Pushed to `origin/main` under D-037 after TypeScript, lint, all 65 static checks, the isolated build and local crawl passed.
-- **Commit `HEAD~1` (2026-08-30)**: `Architecture PR 3: centralize SEO identity and breadcrumb schema (#6)` (`d15c592`)
-  - Centralized the canonical site origin and entity IDs, reused the breadcrumb builder, and wired the homepage/global schema and sitemap to the shared SEO layer.
-  - Descends from the verified `120979c` Phase 13–20 checkpoint; the post-fast-forward validation and regression repairs preserve its behavior.
-- **Commit `HEAD~2` (2026-08-30)**: `Architecture PR 2: extract homepage static sections` (`6c38752`)
-  - Extracted unchanged static homepage offers, proof, projects, process, FAQ and CTA markup into `src/components/home/HomeSections.tsx` while retaining the Payload fallback and route composition.
-  - The content regression harness follows that composition so approved prices and CTA contracts remain protected.
+- **Commit `HEAD` (Current - 2026-08-30)**: `feat(seo): add Philippines geo-targeting to homepage hero headline`
+  - Integrated "in the Philippines" into the primary `<ScrollHero />` H1 headline for geo-targeted search intent while preserving semantic hierarchy, theme tokens, and typography rhythm.
+  - Verified 17/17 automated SEO CI checks, TypeScript compile (0 errors), and live preview HTTP 200.
+- **Commit `HEAD~1` (2026-08-30)**: `perf: optimize web performance based on PageSpeed Insights forensic audit` (`14f4950`)
+  - Re-encoded branding logo, removed critical LCP preload bottleneck, eliminated layout thrashing in scroll reveal, and added static caching.
+- **Commit `HEAD~2` (2026-08-30)**: `docs: close release-readiness gates` (`c7fc110`)
+  - Synchronized implementation baseline and release verification records.
 
 ---
 

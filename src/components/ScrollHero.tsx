@@ -24,6 +24,9 @@ export const ScrollHero = () => {
             <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.25rem] tracking-[-0.03em] leading-[1.12] sm:leading-[1.06] drop-shadow-sm">
               <span className="font-extrabold text-on-surface">SEO Specialist</span>{' '}
               <span className="font-semibold text-on-surface/90">&amp; Web Developer</span>{' '}
+              <span className="font-semibold text-on-surface/85 block mt-1 sm:mt-2">
+                in the Philippines
+              </span>
               <span className="font-extrabold text-primary-container block mt-1.5 sm:mt-2.5">
                 for Small Businesses &amp; Agencies
               </span>
