@@ -1,5 +1,5 @@
 import React from 'react'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { ProjectsDirectory } from '@/components/ProjectsDirectory'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { PROJECTS } from '@/data/projects'
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
       {/* Structured JSON-LD Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(projectsJsonLd) }}
       />
 
       {/* Breadcrumb Navigation */}

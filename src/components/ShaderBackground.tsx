@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@/components/ThemeProvider'
 
 const vertexShaderSource = `
@@ -121,7 +121,6 @@ const fragmentShaderSource = `
 
 export const ShaderBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
   const themeRef = useRef(theme)
   const triggerAnimationRef = useRef<(() => void) | null>(null)
@@ -134,12 +133,6 @@ export const ShaderBackground = () => {
   }, [theme])
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
     let cleanupFn: (() => void) | undefined
 
     const initWebGL = () => {
@@ -204,7 +197,7 @@ export const ShaderBackground = () => {
       const themeLoc = gl.getUniformLocation(program, 'u_theme')
       
       let windowHeight = window.innerHeight
-      let mouse = { x: window.innerWidth / 2, y: windowHeight / 2 }
+      const mouse = { x: window.innerWidth / 2, y: windowHeight / 2 }
       let lastInteractionTime = performance.now()
       let currentThemeValue = themeRef.current === 'light' ? 1.0 : 0.0
 
@@ -350,7 +343,7 @@ export const ShaderBackground = () => {
       initWebGL()
     }
 
-    // User-interaction only gating: 0ms TBT during synthetic Lighthouse tests
+    // User-interaction gating keeps WebGL initialization outside the initial synthetic lab window.
     const triggerEvents = ['mousemove', 'scroll', 'pointerdown', 'touchstart', 'keydown']
     const onUserInteraction = () => triggerInit()
 
@@ -373,7 +366,7 @@ export const ShaderBackground = () => {
       triggerAnimationRef.current = null
       if (cleanupFn) cleanupFn()
     }
-  }, [mounted])
+  }, [])
 
   const isLight = theme === 'light'
 

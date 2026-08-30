@@ -30,7 +30,7 @@ export const RssButton: React.FC<RssButtonProps> = ({
     return (
       <a
         {...commonProps}
-        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary-container/15 text-primary-container border border-primary-container/30 hover:bg-primary hover:text-white transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container ${className}`}
+        className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-primary-container/30 bg-primary-container/15 px-3 py-1 text-xs font-medium text-primary-container transition-all duration-300 hover:bg-primary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container ${className}`}
       >
         <Icon name="rss_feed" size={iconSize || 14} className="shrink-0" />
         {showText && <span>{label}</span>}
@@ -42,7 +42,7 @@ export const RssButton: React.FC<RssButtonProps> = ({
     return (
       <a
         {...commonProps}
-        className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full font-heading text-xs uppercase tracking-[0.06em] font-bold bg-primary-container/15 text-primary-container border border-primary-container/30 hover:bg-primary hover:text-white hover:shadow-[0_0_20px_rgba(224,123,32,0.4)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container ${className}`}
+        className={`inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-primary-container/30 bg-primary-container/15 px-4 py-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-primary-container transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-[0_0_20px_rgba(224,123,32,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container ${className}`}
       >
         <Icon name="rss_feed" size={iconSize || 16} className="shrink-0" />
         {showText && <span>{label}</span>}
@@ -54,7 +54,7 @@ export const RssButton: React.FC<RssButtonProps> = ({
   return (
     <a
       {...commonProps}
-      className={`flex items-center justify-center rounded-full text-primary-container bg-primary-container/15 border border-primary-container/30 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container ${className}`}
+      className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-primary-container/15 text-primary-container transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container ${className}`}
     >
       <Icon name="rss_feed" size={iconSize || 16} className="shrink-0" />
     </a>

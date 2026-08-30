@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 import { Icon } from '@/components/icons'
+import { useModalFocus } from '@/hooks/useModalFocus'
 
 interface Certification {
   id: string
@@ -90,44 +91,46 @@ const EDUCATION_HISTORY: EducationItem[] = [
   },
 ]
 
+const subscribe = () => () => {}
+const getSnapshot = () => true
+const getServerSnapshot = () => false
+
 export function AboutCredentials() {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const modalTitleRef = useRef<HTMLHeadingElement>(null)
 
   const closeModal = useCallback(() => {
     setSelectedCert(null)
   }, [])
 
-  // Keyboard navigation & body scroll lock
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeModal()
-      }
-    }
+  useModalFocus({
+    active: Boolean(selectedCert),
+    containerRef: modalRef,
+    initialFocusRef: modalTitleRef,
+    onEscape: closeModal,
+  })
 
+  // Body scroll lock while the modal is active.
+  useEffect(() => {
     if (selectedCert) {
-      window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [selectedCert, closeModal])
+  }, [selectedCert])
 
   const renderModal = () => {
     if (!selectedCert || !mounted) return null
 
     return createPortal(
       <div
+        ref={modalRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="cert-modal-title"
@@ -136,7 +139,7 @@ export function AboutCredentials() {
         onClick={closeModal}
       >
         <div
-          className="relative w-full max-w-2xl max-h-[88vh] flex flex-col bg-surface-1 border border-black/10 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_0_60px_rgba(0,0,0,0.9)] overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative my-auto flex max-h-[calc(100dvh-1.5rem)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-black/10 bg-surface-1 shadow-[0_0_60px_rgba(0,0,0,0.9)] animate-in fade-in zoom-in-95 duration-200 sm:max-h-[88dvh] sm:rounded-3xl dark:border-white/15"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
@@ -149,14 +152,14 @@ export function AboutCredentials() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Verify Alain Dave Tapiru's ${selectedCert.title} credential on official registry (opens in new tab)`}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                    className="inline-flex min-h-[44px] items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-heading text-[10px] font-medium text-emerald-700 transition-colors hover:border-emerald-500/40 hover:bg-emerald-500/20 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300"
                   >
-                    <Icon name="check_circle" size={11} className="text-emerald-400" />
+                    <Icon name="check_circle" size={11} className="text-emerald-700 dark:text-emerald-400" />
                     {selectedCert.badge}
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    <Icon name="check_circle" size={11} className="text-emerald-400" />
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                    <Icon name="check_circle" size={11} className="text-emerald-700 dark:text-emerald-400" />
                     {selectedCert.badge}
                   </span>
                 )}
@@ -165,7 +168,9 @@ export function AboutCredentials() {
                 </span>
               </div>
               <h3
+                ref={modalTitleRef}
                 id="cert-modal-title"
+                tabIndex={-1}
                 className="font-heading text-sm sm:text-base md:text-lg font-bold text-on-surface truncate"
               >
                 {selectedCert.title}
@@ -177,7 +182,7 @@ export function AboutCredentials() {
               type="button"
               onClick={closeModal}
               aria-label="Close certificate preview"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-surface-3 hover:bg-surface-1 text-on-surface/70 hover:text-on-surface border border-black/10 dark:border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-surface-3 hover:bg-surface-1 text-on-surface/70 hover:text-on-surface border border-black/10 dark:border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
             >
               <Icon name="close" size={20} />
             </button>
@@ -207,7 +212,7 @@ export function AboutCredentials() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Download ${selectedCert.title} certificate`}
-                className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-on-surface hover:text-primary-container bg-surface-3 hover:bg-surface-1 border border-black/10 dark:border-white/10 px-3.5 py-2 rounded-lg transition-colors cursor-pointer shadow-sm"
+                className="inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-lg border border-black/10 bg-surface-3 px-3.5 py-2 font-heading text-xs font-bold text-on-surface shadow-sm transition-colors hover:bg-surface-1 hover:text-primary-container dark:border-white/10"
                 title="Download certificate"
               >
                 <Icon name="download" size={14} />
@@ -287,14 +292,14 @@ export function AboutCredentials() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Verify Alain Dave Tapiru's ${cert.title} certification (opens in new tab)`}
-                        className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                        className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
                       >
-                        <Icon name="check_circle" size={12} className="text-emerald-400" />
+                        <Icon name="check_circle" size={12} className="text-emerald-700 dark:text-emerald-400" />
                         {cert.badge}
                       </a>
                     ) : (
-                      <span className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        <Icon name="check_circle" size={12} className="text-emerald-400" />
+                      <span className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                        <Icon name="check_circle" size={12} className="text-emerald-700 dark:text-emerald-400" />
                         {cert.badge}
                       </span>
                     )}

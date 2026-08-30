@@ -74,13 +74,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <section className="space-y-4">
           <h2 className="font-heading text-2xl font-bold text-on-surface tracking-tight">Architecture &amp; Strategic Execution</h2>
           <p>
-            Modern search engine optimization requires tight integration between content design and code delivery. We eliminate layout shift (CLS), ensure instant First Contentful Paint (FCP), and embed rich schema graphs that clarify context to both Google and AI search engines.
+            Modern search engine optimization requires tight integration between content design and code delivery. We reserve layout space, measure paint timing, and embed rich schema graphs that clarify context to both Google and AI search engines.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
             <div className="p-6 rounded-xl bg-white/5 border border-white/10 space-y-2">
               <h3 className="font-heading text-base font-bold text-primary-container">Core Web Vitals Optimization</h3>
               <p className="text-sm text-on-surface/70">
-                Zero main-thread blocking, optimized next/image assets, and asynchronous resource hydration for sub-second page loads.
+                Main-thread profiling, optimized next/image assets, and deferred non-critical work with separate lab and field measurement.
               </p>
             </div>
             <div className="p-6 rounded-xl bg-white/5 border border-white/10 space-y-2">

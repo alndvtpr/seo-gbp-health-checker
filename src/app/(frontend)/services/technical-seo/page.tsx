@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
   title: 'Technical SEO Services Philippines | Crawlability & Speed | Alain Dave Tapiru',
   description:
-    'Professional Technical SEO services in the Philippines. Fix crawl bottlenecks, eliminate indexation errors, optimize Core Web Vitals, and implement custom JSON-LD schema.',
+    'Practical Technical SEO support in the Philippines. Find crawl bottlenecks, improve indexation signals, review Core Web Vitals, and implement appropriate JSON-LD schema.',
   url: 'https://www.alaintapiru.com/services/technical-seo/',
 })
 
@@ -74,24 +74,24 @@ const PROBLEMS_SOLVED = [
   {
     title: 'Pages Not Indexing or Dropping from SERPs',
     problem: 'Search engines are ignoring new pages, displaying "Crawled - currently not indexed", or dropping established URLs due to low crawl priority or soft 404s.',
-    solution: 'We audit crawl paths, eliminate canonical conflicts, clean up sitemap inconsistencies, and streamline internal link equity directly to priority URLs.',
+    solution: 'I audit crawl paths, resolve canonical conflicts, clean up sitemap inconsistencies, and direct internal links toward priority URLs.',
   },
   {
     problem: 'Slow mobile speeds, unstable layouts, and heavy script payloads hurt user experience, driving up bounce rates and pulling down organic rankings.',
     title: 'Poor Mobile Performance & Core Web Vitals',
-    solution: 'We identify render-blocking bottlenecks, optimize image pipelines with zero-CLS dimensions, and defer non-critical JavaScript execution.',
+    solution: 'I identify render-blocking bottlenecks, reserve image dimensions to reduce layout movement, and defer non-critical JavaScript where appropriate.',
   },
   {
     problem: 'Search engines and AI answer engines cannot distinguish your brand, services, or author credentials due to missing or invalid structured data.',
     title: 'Missing Rich Snippets & Zero Entity Clarity',
-    solution: 'We write bespoke, nested JSON-LD schema graphs connecting your business entity, services, authors, and credentials directly to the Knowledge Graph.',
+    solution: 'I write custom JSON-LD graphs that connect supported business, service, author, and credential entities without adding claims the page cannot verify.',
   },
 ]
 
 const WORKFLOW_STEPS = [
   {
     step: '01',
-    title: 'Comprehensive Technical Audit',
+    title: 'Technical SEO Audit',
     desc: 'Deep multi-crawler scan analyzing status codes, directives, rendering behavior, and sitemap integrity.',
   },
   {
@@ -124,7 +124,7 @@ const TECH_STACK_TOOLS = [
 
 const FAQS = [
   {
-    question: 'How long does a comprehensive technical SEO audit take?',
+    question: 'How long does a technical SEO audit take?',
     answer:
       'A thorough technical audit typically takes 3 to 5 business days depending on site size and complexity. You receive an executive summary, a prioritized fix checklist, and exact code snippets ready for implementation.',
   },
@@ -155,7 +155,7 @@ const TECHNICAL_SEO_SCHEMA = {
       url: 'https://www.alaintapiru.com/services/technical-seo/',
       serviceType: 'Technical Search Engine Optimization',
       description:
-        'Professional Technical SEO services in the Philippines. Crawlability audits, Core Web Vitals speed optimization, structured JSON-LD entity markup, and site architecture.',
+        'Practical Technical SEO support in the Philippines. Crawlability audits, Core Web Vitals review, structured JSON-LD entity markup, and site architecture.',
       provider: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
@@ -237,7 +237,7 @@ export default function TechnicalSeoPage() {
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(TECHNICAL_SEO_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(TECHNICAL_SEO_SCHEMA) }}
       />
 
       {/* 1. Hero Section */}
@@ -275,7 +275,7 @@ export default function TechnicalSeoPage() {
 
         {/* Subhead */}
         <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-          Eliminate indexation roadblocks, optimize Core Web Vitals, and build connected JSON-LD entity graphs so search engines and AI crawlers can discover, render, and understand your website effortlessly.
+          Find crawl and indexation roadblocks, review Core Web Vitals, and build connected JSON-LD graphs so search engines and AI crawlers can more easily discover, render, and understand your website.
         </p>
 
         {/* Action Row */}
@@ -290,23 +290,23 @@ export default function TechnicalSeoPage() {
 
           <a
             href="#what-we-audit"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             Explore Audit Areas ↓
           </a>
         </div>
 
         {/* 3-Item Trust Bar */}
-        <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div className="pt-8 border-t border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {[
             'Manual Diagnostics (No Automated Spam)',
             'Actionable Code-Level Fixes',
-            'Sub-Second PageSpeed Targeting',
+            'Performance Budget Targeting',
           ].map((point, idx) => (
             <div
               key={point}
               style={{ transitionDelay: `${idx * 60}ms` }}
-              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
+              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
             >
               <Icon name="check_circle" size={18} className="text-primary-container shrink-0" />
               <span>{point}</span>
@@ -334,7 +334,7 @@ export default function TechnicalSeoPage() {
             id="problems-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
-            Common Technical Roadblocks We Solve
+            Common Technical Roadblocks I Can Help Resolve
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
             Content and backlinks cannot perform if search engines are blocked by server latency, broken directives, or crawl traps.
@@ -385,7 +385,7 @@ export default function TechnicalSeoPage() {
             id="audit-areas-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
-            What We Inspect, Diagnose &amp; Optimize
+            What I Inspect, Diagnose &amp; Improve
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
             Every technical audit covers server health, indexability directives, rendering pipelines, and semantic schema architectures.
@@ -543,7 +543,7 @@ export default function TechnicalSeoPage() {
                 AlainTapiru.com Technical Architecture
               </h3>
               <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-                See this exact technical SEO framework applied in practice on this website: Next.js App Router architecture, 99 Desktop / 96 Mobile PageSpeed lab scores, sub-second LCP, zero CLS, and fully connected Schema.org entity graphs.
+                See this technical SEO framework applied on this website: Next.js App Router architecture, August 2026 PageSpeed lab screenshots recording 99 Desktop / 96 Mobile, sub-1.2s LCP and 0.000 CLS, plus connected Schema.org entity graphs. These are dated simulated results, not field Core Web Vitals.
               </p>
 
               <div className="grid grid-cols-3 gap-3 mb-6 pt-4 border-t border-black/10 dark:border-white/10 text-center">
@@ -648,7 +648,7 @@ export default function TechnicalSeoPage() {
                 SEO-Ready Web Design &amp; Development
               </h3>
               <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
-                Code-first Next.js apps and custom WordPress themes engineered for zero layout shift.
+                Code-first Next.js apps and custom WordPress themes engineered with reserved layout space and layout-shift checks.
               </p>
             </div>
             <div className="pt-3 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
@@ -685,7 +685,7 @@ export default function TechnicalSeoPage() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto"
       >
         <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
             <span>Ready for a clean crawl foundation • Direct Discovery Call</span>
           </div>
@@ -713,7 +713,7 @@ export default function TechnicalSeoPage() {
 
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
             >
               <span>Back to Services Hub</span>
             </Link>

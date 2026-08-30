@@ -932,7 +932,7 @@ function generateLocalSeoActionPlan(
     }
   }
   plan += `- **Top Local & Industry Citations**: Ensure consistent Name, Address, and Phone (NAP) across major local directories, social profiles, and industry listings.\n`
-  plan += `- **Embed Google Map & Schema Markup**: Add a responsive Google Maps embed and \`LocalBusiness\` JSON-LD structured data to your website's contact page.\n\n`
+  plan += `- **Review Map & Schema Markup**: Add a useful map when it helps customers and use \`LocalBusiness\` JSON-LD only when the verified business details and schema eligibility support it.\n\n`
 
   plan += `> 💡 **Next Steps**: Focus on High Priority items first to trigger faster ranking recalculations on Google Maps!`
 
@@ -1377,4 +1377,3 @@ Jump straight into the action plan without pleasantries.`
 
   return NextResponse.json(finalResponse)
 }
-

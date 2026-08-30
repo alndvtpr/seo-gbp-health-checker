@@ -63,7 +63,7 @@ const PACKAGES: PackageTier[] = [
     includes: [
       'Modern Next.js App Router & React Build',
       'Responsive Image Pipelines & Tailwind / M3 Design',
-      'Performance-focused build targeting fast Core Web Vitals',
+      'Performance-focused build with an agreed Core Web Vitals lab budget',
       'Custom Schema Markup & JSON-LD Integration',
       'Scalable component architecture & clean code standards',
     ],
@@ -78,7 +78,7 @@ const PACKAGES: PackageTier[] = [
     badge: 'Ongoing Support',
     targetAudience: 'Businesses looking for consistent monthly optimization, technical maintenance, and ongoing search improvements.',
     includes: [
-      'Up to 30 Delivery Hours / Month',
+      '20–25 Delivery Hours / Month',
       'Monthly Crawl, Search Console & GA4 Health Review',
       'Prioritized Technical Fixes & On-Page Implementation',
       'Up to 4 Priority Page Optimizations or 2 Content Briefs',
@@ -260,15 +260,15 @@ export function ServicesPackages() {
       <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/35 shadow-xl relative overflow-hidden motion-reveal">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 font-heading text-xs font-bold uppercase tracking-[0.06em]">
-              <Icon name="handshake" size={15} className="text-emerald-500" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 font-heading text-xs font-bold uppercase tracking-[0.06em]">
+              <Icon name="handshake" size={15} className="text-emerald-700 dark:text-emerald-400" />
               <span>Small Business &amp; Custom Budget Friendly</span>
             </div>
             <h3 className="font-heading text-lg sm:text-2xl font-bold text-on-surface">
               Need a flexible scope tailored to your current budget?
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed">
-              If you have specific budget constraints or unique requirements, we can tailor custom milestone deliverables or sprint-based phases according to your exact needs.
+              If you have specific budget constraints or requirements, I can break the work into clear milestones or sprint-based phases that fit the agreed scope.
             </p>
           </div>
 

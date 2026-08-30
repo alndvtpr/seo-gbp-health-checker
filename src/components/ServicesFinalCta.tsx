@@ -1,40 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
 import { Icon } from '@/components/icons'
+import { serializeJsonLd } from '@/lib/seo'
 
-const SERVICES_JSON_LD = {
+export const SERVICES_JSON_LD = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': ['ProfessionalService', 'LocalBusiness'],
-      '@id': 'https://www.alaintapiru.com/#business',
+      '@type': 'Service',
+      '@id': 'https://www.alaintapiru.com/services/#service-catalog',
       name: 'Alain Tapiru | SEO, AEO, GEO & Web Development Services',
       url: 'https://www.alaintapiru.com/services/',
       image: 'https://www.alaintapiru.com/alain-dave-tapiru-seo-specialist-philippines.avif',
-      telephone: '+63-906-324-9560',
-      email: 'alaintapiru@gmail.com',
-      priceRange: '$$',
-      currenciesAccepted: 'USD, PHP',
-      paymentAccepted: 'Cash, Credit Card, Bank Transfer, PayPal, Wise, GCash',
       provider: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
       },
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '10231 Everlasting Street, Dau',
-        addressLocality: 'Mabalacat City',
-        addressRegion: 'Pampanga',
-        postalCode: '2010',
-        addressCountry: 'PH',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 15.1788,
-        longitude: 120.5843,
-      },
-      hasMap:
-        'https://www.google.com/maps/search/?api=1&query=10231+Everlasting+Street+Dau+Mabalacat+City+Pampanga',
       areaServed: [
         {
           '@type': 'City',
@@ -146,16 +127,6 @@ const SERVICES_JSON_LD = {
               sameAs: 'https://en.wikipedia.org/wiki/Local_search_(Internet)',
             },
           },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Competitive Analysis SEO',
-              serviceType: 'Competitive SEO Intelligence',
-              description:
-                'Comprehensive market share analysis, competitor backlink profiling, and SERP visibility gap analysis.',
-            },
-          },
         ],
       },
     },
@@ -184,7 +155,7 @@ const SERVICES_JSON_LD = {
           name: 'Why choose a React / Next.js site over WordPress (or vice versa)?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'React & Next.js sites offer fast loading speeds, zero layout shift, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both cleanly.',
+            text: 'React & Next.js sites offer tighter control over asset delivery, layout stability, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both with performance measurement and clear scope boundaries.',
           },
         },
         {
@@ -224,7 +195,7 @@ export function ServicesFinalCta() {
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_JSON_LD) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(SERVICES_JSON_LD) }}
       />
 
       {/* High-Impact Closing CTA Banner */}
@@ -235,7 +206,7 @@ export function ServicesFinalCta() {
       >
         <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
           {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
             <span>Free entry-point diagnostic • Clear scope • No obligations</span>
           </div>

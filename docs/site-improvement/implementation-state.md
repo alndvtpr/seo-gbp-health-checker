@@ -1,6 +1,6 @@
 # Site Improvement Implementation State
 
-Last updated: 2026-08-27 (Asia/Manila)
+Last updated: 2026-08-30 (Asia/Manila)
 
 ## Program status
 
@@ -18,14 +18,14 @@ Last updated: 2026-08-27 (Asia/Manila)
 | 10 | Tools and commercial relevance | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), Next.js Link conversion with service preselection (/contact/?service=local-seo), React 19 hydration pattern, salary calculator accessibility (labels, IDs, aria-pressed). Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
 | 11 | Contact form and conversion reliability | COMPLETE | Schema deduplication (showJsonLd={false} on breadcrumbs), native HTML required attributes, PHP-first service synchronization (D-022), robust whitespace trimming/lowercasing Zod validation, project detail package CTA parameter alignment. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
 | 12 | Contextual internal linking | COMPLETE | Repaired legacy #pillar anchors in `/about/` to point directly to dedicated service routes (`/services/technical-seo/`, `/services/web-development/`), normalized legacy Next.js 15 copy across navigation submenus, service cards, technical SEO child page, and machine feeds (`llms.txt`, `llms-full.txt`), and validated bidirectional internal linking mesh across all 17 canonical routes. Type check, targeted lint (0/0), SEO CI (6/6), 30-route production build, and local HTTP/rendered-HTML verification pass. |
-| 13 | Page-specific structured data | PENDING | Global and duplicate schema findings are recorded in `baseline.md`. |
-| 14 | Technical SEO foundations | PENDING | Includes version-copy, crawler-policy and machine-readable endpoint review. |
-| 15 | Accessibility remediation | PENDING | Native required semantics and interactive target audit are recorded. |
-| 16 | Performance and honest measurement | PENDING | Existing lab claims require dated evidence classification. |
-| 17 | Mobile and responsive QA | PENDING | Browser-width validation was not part of this documentation-only phase. |
-| 18 | Dark and light theme parity | PENDING | Both themes exist; parity requires later visual testing. |
-| 19 | Site-wide humanization and factual consistency | PENDING | Use the approved fact inventory and decision log. |
-| 20 | Final regression, crawl and release-readiness audit | PENDING | Deployment remains prohibited until explicitly approved. |
+| 13 | Page-specific structured data | COMPLETE - QUALITY AUDITED | Canonical global Person/WebSite graph, page-specific entities, truthful Service/OfferCatalog and WebApplication relationships, privacy-safe location handling, HTML-safe JSON-LD serialization and single BreadcrumbList output verified across all 17 canonical routes. |
+| 14 | Technical SEO foundations | COMPLETE - QUALITY AUDITED | Durable framework wording, preserved crawler policy, exact canonicals, evidence-based sitemap/RSS dates and boundaries, robots output, machine-readable endpoints and 16-check SEO coverage were aligned and verified. |
+| 15 | Accessibility remediation | COMPLETE | Global bypass navigation, native landmarks and controls, managed dialog focus, marquee pause/resume, résumé controls, form relationships, live announcements and 12 static regression checks implemented and verified without browser automation or production submissions. |
+| 16 | Performance and honest measurement | COMPLETE | GA4 Web Vitals RUM instrumentation, duplicate-pageview removal, repository/lab/field evidence separation, unsupported performance-claim correction, shader mount cleanup and 7 static regression checks completed and verified. No field Core Web Vitals dataset is claimed. |
+| 17 | Mobile and responsive QA | COMPLETE | Dynamic-viewport dialog containment, mobile input sizing, narrow toolbar wrapping, 44px persistent controls and 9 static responsive checks were implemented and verified without browser automation. Owner visual/device review remains pending. |
+| 18 | Dark and light theme parity | COMPLETE | Theme initialization, persistence, native control metadata, shared/component surface parity and core token contrast were implemented and verified statically and through rendered HTTP output. Owner visual/theme/device review remains pending. |
+| 19 | Site-wide humanization and factual consistency | COMPLETE | Active public and machine-readable copy now reflects Alain's solo-practitioner identity, approved facts, evidence limits and commercial boundaries; 10 static content/fact checks pass. |
+| 20 | Final regression, crawl and release-readiness audit | COMPLETE - OWNER REVIEW/RELEASE GATES OPEN | Cumulative regression, isolated build and local production crawl pass after three bounded fixes. Deployment remains prohibited until explicitly approved. |
 
 ## Durable documentation model
 
@@ -40,8 +40,8 @@ Last updated: 2026-08-27 (Asia/Manila)
 
 - Active Git repository: `payload-website/`
 - Branch: `main`
-- Local HEAD: `9f5450028b60fe50eda006cd94391c369e1ee8ce`
-- GitHub `origin/main`: `9f5450028b60fe50eda006cd94391c369e1ee8ce` (observed during the final Phase 04 handoff on 2026-08-27)
+- Local HEAD: `91a4533d8c1a38347f1acf23364c455e9751b841`
+- GitHub `origin/main`: `91a4533d8c1a38347f1acf23364c455e9751b841` (observed during the Phase 16 handoff on 2026-08-29)
 - Remote: `https://github.com/alndvtpr/portfolio-cms.git`
 - Working tree before Phase 01: clean
 - Deployment provider observed from response headers: Vercel
@@ -61,7 +61,7 @@ Last updated: 2026-08-27 (Asia/Manila)
 | Fonts | Inter for body text; Plus Jakarta Sans for headings |
 | CMS collections | users, media, folders, tags, pages, ai-memory |
 | Content sources | React route content, `src/data/projects.ts`, `src/data/posts.ts`, and optional Payload `pages` content |
-| Analytics | Google Analytics 4 through `@next/third-parties/google` |
+| Analytics | Google Analytics 4 through `@next/third-parties/google`; automatic history-change pageviews plus queued `useReportWebVitals` events after deployment |
 | External services | Supabase/PostgreSQL, Serper Places, Gemini, OpenAI plugin key, Resend, Google Sheets webhook, Calendly, IndexNow and WebSub |
 
 ## Baseline commands and results
@@ -280,18 +280,112 @@ Last updated: 2026-08-27 (Asia/Manila)
 4. Do not change prices, offer hierarchy, the site-wide primary CTA or public routes until the matching decision is recorded.
 5. Do not publish a standalone Off-Page SEO or authority-link-building offer without verified delivery evidence and owner approval.
 6. Do not describe Lighthouse or PageSpeed lab data as field Core Web Vitals.
-7. Do not publish precise address or geocoordinates until public-display permission and business/GBP eligibility are recorded.
+7. Do not restore precise address, geocoordinates, `LocalBusiness`, or `ProfessionalService` until public-display permission and business/GBP eligibility are recorded.
 8. Run E2E and integration tests only against an isolated, disposable test database.
+
+## Phase 14 implementation evidence
+
+- Production files changed: `src/app/robots.ts`, `src/app/sitemap.ts`, `src/app/rss.xml/route.ts`, `src/app/llms.txt/route.ts`, `src/app/llms-full.txt/route.ts`, `src/app/(frontend)/resume/page.tsx`, `src/data/posts.ts`, and `src/data/projects.ts`; verification coverage changed in `scripts/verify-search-and-perf.ts`.
+- Preserved the existing crawler allow/block choices, including OAI-SearchBot access. `/sitemap.xml` is the sole sitemap declared in robots output; `/rss.xml` remains an evidence-dated recent-update feed. Current Google guidance can also accept RSS/Atom as sitemap formats, so the boundary is a deliberate site policy rather than a categorical format limitation.
+- Removed build-time `new Date()` values from every sitemap entry. Stable routes omit unsupported modification dates; the published article uses its maintained `dateModified` after the significant 2026-08-29 structured-data update, with `datePublished` as the code fallback.
+- Normalized the last source-level `Next.js 16` label to `Next.js App Router` so public framework copy does not stale on upgrades.
+- Replaced unsupported off-page delivery, backlink-strategy and monthly ROI language in `/llms-full.txt` with evidence-bounded workflow descriptions; removed an unsupported resume-verification adjective from `/llms.txt`; the owner-approved About training wording remains unchanged.
+- Preserved Phase 13's canonical Person/WebSite graph, page-specific schemas, breadcrumb deduplication, privacy-safe location handling, and absence of unsupported LocalBusiness/ProfessionalService assertions.
+- Validation: TypeScript passed; targeted ESLint passed with 0 findings; SEO CI passed 16/16; the isolated production build generated all 30 route units; all 17 canonical routes returned HTTP 200 with exact `www` trailing-slash self-canonicals; robots, sitemap, RSS and both machine endpoints passed rendered checks.
+
+## Combined Phase 13-14 quality audit (2026-08-29)
+
+- Re-audited every cumulative uncommitted change against repository evidence and the complete controlled record set. The original Phase 13 entity/privacy correction and Phase 14 crawler choices were retained.
+- Added `serializeJsonLd` in `src/lib/seo.ts` and applied it to every JSON-LD script so `<` is escaped before inline rendering; exported the canonical global and Services graphs for direct verification.
+- Corrected nested Contact entity URLs to the exact `www` trailing-slash root and preserved canonical IDs and relationships across every page-specific graph.
+- Added the article's evidence-backed `dateModified: 2026-08-29`; sitemap and RSS now derive dates only from maintained article data, and undated static/project entries are excluded from RSS recent-update items.
+- Expanded SEO CI to 16 checks covering exact sitemap URL membership and uniqueness, evidence-backed `lastmod`, RSS separation and evidence dates, exact crawler groups, canonical helpers, machine endpoints, global schema privacy/entity boundaries and HTML-safe serialization.
+- Rendered verification passed for all 17 canonical routes and all 34 JSON-LD scripts. The root contains no breadcrumb graph; each of the other 16 routes contains exactly one. No rendered graph contains `LocalBusiness`, `ProfessionalService`, `#business`, precise street address or geocoordinates.
+- Endpoint regression passed for robots, sitemap, RSS, `/llms.txt` and `/llms-full.txt`; all approved package prices, the ₱500/hour rate and owner-approved About training wording remain rendered.
+- No database write, migration, form/API submission, external record, commit, push, deployment, route deletion/redirect, price change or Phase 15 implementation occurred.
+
+## Phase 15 implementation evidence (2026-08-29)
+
+- Production files changed: `src/app/(frontend)/layout.tsx`, `src/app/(frontend)/styles.css`, `src/components/AboutCredentials.tsx`, `src/components/ContactForm.tsx`, `src/components/GBPHealthChecker.tsx`, `src/components/Navbar.tsx`, `src/components/ProjectsDirectory.tsx`, `src/components/ResumePdfPreview.tsx`, `src/components/TableOfContents.tsx`, `src/components/ToolsMarquee.tsx`, and `src/components/WebsiteAuditRequestForm.tsx`; shared focus management was added in `src/hooks/useModalFocus.ts`, with verification coverage in `scripts/verify-accessibility.ts` and `package.json`.
+- Navigation and focus: added a keyboard-visible skip link to a focusable `main`; corrected the desktop primary navigation to a native labelled `nav`; retained disclosure relationships through `aria-expanded`/`aria-controls`; and increased scroll offset so fixed framing does not obscure anchored focus targets.
+- Dialogs and controls: certificate, project, résumé and GBP results dialogs now set initial focus, contain Tab/Shift+Tab, close on Escape and return focus. The nested GBP email dialog owns its keyboard events. Project-card click areas are native buttons; filters, gallery selectors, deliverable tabs and diagnostic choices expose selected state.
+- Motion and résumé: the automatic tools marquee now provides an explicit pause/resume control while preserving the existing animation and reduced-motion behavior. Résumé Print/Open Tab controls retain accessible names at narrow widths, modal controls meet the 44px touch-target goal, and the fallback print path invokes the print dialog after loading the stable PDF URL.
+- Forms and feedback: GBP business/location inputs and email dialog have programmatic labels; website-audit required fields expose native/ARIA requirements, invalid state and error descriptions; Contact and audit forms expose busy state; success/error feedback uses appropriate live status/alert semantics.
+- Validation: direct TypeScript passed; targeted ESLint passed with 0 findings; static accessibility regression passed 12/12; SEO/privacy regression passed 16/16; the isolated unreachable-database production build generated all 30 route units; `/`, `/about/`, `/projects/`, `/resume/`, `/tools/` and `/contact/` returned HTTP 200 with representative rendered semantics verified; `git diff --check` passed.
+- Known limitations: full repository lint is 5 errors/17 warnings, improved from the pre-Phase-15 local 7-error/18-warning state, with every remaining error in pre-existing out-of-scope files. The existing integration suite timed out during database initialization and was not pursued under P-011; no database write was performed. Owner visual, assistive-technology and device review remains unreported and is not claimed.
+- Preservation: 16/16 SEO/privacy checks confirm the Phase 13 Person/WebSite and privacy boundaries remain intact. P-007, P-008 and P-009 remain unresolved; approved About training wording, all approved PHP/USD prices, the ₱500/hour rate, capacity/scope wording, routes, evidence classifications and owner-supplied personal facts remain unchanged.
+- No commit, push, deployment, database write/migration, production form/API submission, external record, route deletion/redirect, price change, or Phase 16 work occurred during the Phase 15 task.
+
+## Phase 16 implementation evidence (2026-08-29)
+
+- Analytics measurement: removed the manual `usePathname`/`useSearchParams` pageview emitter from `GoogleAnalytics.tsx` because the configured GA4 integration already measures browser-history changes. Added `useReportWebVitals` with a stable module callback that queues `web_vital` events and metric name, ID, value, delta, rating, navigation type and path after the instrumentation is deployed and receives browser traffic.
+- Evidence boundaries: public project, service, résumé, proof and machine-readable copy now distinguishes repository-observed safeguards, dated August 2026 lab screenshots, and unavailable field data. Exact portfolio figures remain only where the dated screenshots support them and are explicitly not described as field Core Web Vitals. Unsupported AngatSikat `98+`/sub-1.2s, GBP aggregate runtime, invented machine-readable thresholds, and absolute speed/layout guarantees were removed.
+- Shader/runtime safeguards: removed the avoidable mount-state render from `ShaderBackground.tsx` while preserving interaction-triggered initialization, 480px/320px render-buffer caps, approximately 30fps scheduling, 4s idle sleep, visibility pause and reduced-motion bypass. The historical `0ms TBT` value remains a dated lab observation only, not a durable guarantee.
+- Verification coverage: added `scripts/verify-performance.ts` and `pnpm run test:performance` with 7 checks for analytics integrity, lab/field disclosures, unsupported thresholds, dated asset dimensions, shader safeguards, Calendly lazy/single initialization/layout reserve, image formats and disabled production source maps.
+- Validation: TypeScript passed; targeted Phase 16 ESLint returned 0 findings; performance checks passed 7/7; SEO/privacy checks passed 16/16; accessibility checks passed 12/12; the isolated unreachable-database build generated 29 route units; all 17 canonical routes returned HTTP 200 with rendered price, rate, training wording and privacy-boundary checks passing; `git diff --check` passed. Full lint remains at 3 errors/12 warnings, all outside Phase 16.
+- Measurement limitation: a read-only PageSpeed Insights API request returned HTTP 429 because the API project exposed zero daily quota. No fresh PageSpeed result, CrUX record, passing p75 field dataset, browser/device visual review or post-deployment GA4 dataset is claimed.
+- P-011: no integration or E2E test was run because an isolated disposable database was not available. The production build used the unreachable URI `postgresql://phase16:phase16@127.0.0.1:1/phase16`; the expected connection refusal exercised the existing fallback without a database write.
+- Preservation: P-007, P-008 and P-009 remain unresolved. The Phase 13 canonical Person/WebSite graph and privacy boundary, approved About training wording, all approved PHP/USD prices, the ₱500/hour rate, capacity/scope wording, current routes, accessibility behavior/regression coverage, evidence classifications and owner-supplied personal facts remain intact.
+- Concurrent repository state: while Phase 16 was in progress, separate owner-authorized Tasks 01-12 advanced local and remote `main` from `0123b8ac` to `91a4533`, including Task 04's removal of the unused example route and Task 12's extraction of fallback GBP audit deliverables. The Phase 16 task preserved those commits and all cumulative uncommitted owner, Antigravity, Gemini and Codex work; it did not run commit or push.
+- No deployment, database write/migration, production form/API submission, external record, route deletion/redirect, approved-price change or Phase 17-20 implementation occurred during Phase 16.
+
+## Phase 17 implementation evidence (2026-08-29)
+
+- Viewport and navigation: retained device-width viewport, user zoom through maximum scale 5, `viewport-fit=cover`, global horizontal containment, `100dvh` page sizing, the `xl` desktop/mobile navigation boundary, scrollable mobile navigation and top/bottom safe-area handling. The absolute mobile close control now also respects the display cutout.
+- Dialog containment: résumé, project, credential and GBP audit dialogs now use dynamic-viewport maximum heights. The résumé viewer uses the available mobile viewport directly, and its four-control toolbar becomes an equal-width grid with icon-only labels below 400px while retaining accessible names. The nested GBP email dialog can scroll in short/landscape viewports.
+- Mobile controls and form sizing: persistent announcement, footer, hero, Contact, résumé and GBP audit controls now meet the 44px target contract. The extracted GBP report email input uses `text-base sm:text-sm`, restoring the 16px iOS auto-zoom safeguard. Code-block headers truncate long filenames and retain horizontal code scrolling; RSS variants retain 44px targets.
+- Regression coverage: added `scripts/verify-responsive.ts` and `pnpm run test:responsive` with 9 static checks covering viewport/cutout behavior, overflow containment, navigation, dynamic dialogs, 16px mobile forms, 44px controls, wide-content containment, Calendly reservation and responsive `next/image` sizing hints.
+- Validation actually run: direct TypeScript passed; targeted Phase 17 ESLint excluding `AnnouncementBanner.tsx` returned 0 findings; the responsive suite passed 9/9; accessibility passed 12/12; performance passed 7/7; SEO/privacy passed 16/16; `git diff --check` passed; the isolated unreachable-database build generated 29 route units; all 17 canonical local routes returned HTTP 200 with exact self-canonicals; all 34 JSON-LD scripts parsed; rendered prices, ₱500/hour, About training wording and P-007/P-008 schema boundaries passed.
+- Known limitations: full lint remains at the exact Phase 16 baseline of 3 errors/12 warnings. The targeted Phase 17 lint includes the unchanged `AnnouncementBanner.tsx:14` effect-state error when that file is included; the Phase 17 class-only change did not touch that line. Integration/E2E remain gated by P-011. No automated browser, assistive-technology, real-device, orientation or owner visual observation is claimed.
+- Preservation: no existing website content, approved price, route, schema relationship, analytics evidence classification, integration behavior or owner-supplied personal fact changed. P-007, P-008 and P-009 remain unresolved; the approved About training wording, all approved PHP/USD prices, the ₱500/hour rate, capacity/scope wording, Phase 15 accessibility behavior and Phase 16 evidence boundaries remain intact.
+- No commit, push, deployment, database write/migration, production form/API submission, external record, route deletion/redirect, approved-price change or Phase 18-20 implementation occurred.
+
+## Phase 18 implementation evidence (2026-08-29)
+
+- Theme state: retained the light-first server root and synchronous inline pre-paint script while synchronizing class, `data-theme`, root background, native `color-scheme` and `theme-color` metadata. `ThemeProvider` now uses an external-store subscription, re-applies saved state in a layout effect, writes both current and legacy storage keys, and responds to cross-tab storage changes without reintroducing the former effect-state lint failures.
+- Control and token parity: the theme toggle exposes `aria-pressed`, keeps a disabled pre-mount state and retains a 44px target. Light and dark token blocks declare native color schemes; inputs, selects and textareas inherit the scheme and use tokenized accent/caret colors. Core background/text and action token pairs meet the 4.5:1 WCAG AA threshold in both themes.
+- Component parity: replaced dark-only neutral surfaces and low-contrast light accents across shared service, workflow, table-of-contents, project, résumé, contact, article, proof, audit and GBP-report interfaces with paired light/dark surfaces and status colors. The GBP report canvas and extracted SVG ring now inherit theme tokens/current color. The fixed light Calendly loading canvas, fixed dark code canvas and screenshot/address-bar chrome remain explicit because their internal palettes require those canvases.
+- Regression coverage: added `scripts/verify-theme.ts`, exposed as `pnpm run test:theme`, with 10 static checks for token contrast, pre-paint state, persistence/cross-tab behavior, toggle accessibility, native controls, shared surfaces, GBP rendering, intentional canvases, status colors and shader/reduced-motion preservation.
+- Validation actually run: direct TypeScript passed; targeted Phase 18 ESLint returned no source findings (CSS produced only the expected ignored-file notice); theme passed 10/10; responsive passed 9/9; accessibility passed 12/12; performance/evidence passed 7/7; SEO/privacy passed 16/16; `git diff --check` passed; the isolated unreachable-database production build compiled and generated 29 route units; all 17 canonical local routes returned HTTP 200; and 7 rendered theme-bootstrap contracts passed.
+- Known limitations: full lint reports 1 error and 12 warnings. The sole error is the unchanged `AnnouncementBanner.tsx:14` synchronous effect-state baseline; Phase 18 changed presentation classes in that component, not the effect line. Integration/E2E remain gated by P-011. No automated browser, assistive-technology, real-device, orientation, owner visual observation or post-deployment theme observation is claimed; manual review is pending at `http://localhost:3000` while the retained server is available.
+- Preservation: no existing website content, approved price, rate, route, schema relationship, analytics evidence classification, responsive behavior/regression contract, integration behavior or owner-supplied personal fact changed. P-007, P-008 and P-009 remain unresolved; P-011 remains enforced; the approved About training wording, all approved PHP/USD prices, the ₱500/hour rate, capacity/scope wording, Phase 15 accessibility behavior, Phase 16 evidence boundaries and Phase 17 responsive behavior remain intact.
+- The isolated build used `postgresql://phase18:phase18@127.0.0.1:1/phase18`; the expected connection refusal prevented database access while the existing fallback allowed static generation. No database-backed test ran.
+- No commit, push, deployment, database write/migration, production form/API submission, external record, route deletion/redirect, approved-price change or Phase 19-20 implementation occurred.
+
+## Phase 19 implementation evidence (2026-08-29)
+
+- Voice and positioning: active service, contact, tool and package copy now speaks consistently in Alain's individual voice instead of implying an agency team. The exact owner-approved About narrative and training paragraph remain unchanged.
+- Commercial consistency: all four approved PHP/USD amounts remain exact and Homepage summaries now follow the approved PHP-first presentation. The monthly package and estimator were reconciled from an unapproved 30-hour drift to the recorded 20-25 hours per month; the ₱500/hour rate, capacity and exclusion wording remain intact.
+- Evidence and privacy boundaries: removed absolute speed, layout, ranking and inquiry implications; replaced unsupported proprietary/agency-scale wording; kept all three projects classified as self-initiated; preserved repository/lab/field distinctions; and conditioned generic local structured-data work on verified client facts and eligibility without resolving P-007 or P-008 for the owner's entity.
+- Machine and diagnostic copy: `/llms.txt` and `/llms-full.txt` now describe practical skills, exact project origins and bounded performance evidence. GBP interface/report wording describes heuristic public-signal review and AI-assisted drafts without suggesting Google's ranking algorithm is reproduced.
+- Regression coverage: added `scripts/verify-content.ts` and `pnpm run test:content` with 10 source-level checks for locked About facts, PHP-first approved pricing, hours/rate/capacity, primary CTA, solo-practitioner voice, humanization patterns, self-initiated project evidence, machine-readable boundaries, P-009 and conditional local-schema wording.
+- Validation actually run: direct TypeScript passed; targeted Phase 19 ESLint returned 0 findings; content/facts passed 10/10; SEO/privacy 16/16, accessibility 12/12, performance/evidence 7/7, responsive 9/9 and theme 10/10 all passed; the isolated unreachable-database build generated 29 route units; all 17 canonical routes returned HTTP 200; five rendered Phase 19 content contracts passed.
+- Known limitations: full lint remains at the exact Phase 18 baseline of 1 error/12 warnings, with the sole error at unchanged `AnnouncementBanner.tsx:14`. Integration/E2E were not run under P-011. No automated browser, assistive-technology, real-device, orientation, owner visual observation, live crawl or deployment-identity conclusion is claimed.
+- No commit, push, deployment, database write/migration, production form/API submission, external record, route deletion/redirect, approved-price change or Phase 20 implementation occurred.
+
+## Phase 20 implementation evidence (2026-08-30)
+
+- Cumulative audit: preserved all owner, Antigravity, Gemini and Codex changes across the 70-file tracked Phase 13–19 workspace plus the untracked controlled verification/architecture files and the committed GBP refactors through `91a4533`.
+- Bounded release fixes: replaced the announcement banner's effect-driven mount/storage state with `useSyncExternalStore` plus same-session dismissal; restored `X-Frame-Options: DENY` and CSP `frame-ancestors 'none'`; changed `/rss.xml` from generic `application/xml` to `application/rss+xml`; and added a framing-contract check to the SEO/privacy suite.
+- Validation actually run: direct TypeScript passed; full repository lint now exits 0 with zero errors and 12 warnings; SEO/privacy/security passed 17/17; accessibility 12/12; performance/evidence 7/7; responsive 9/9; theme 10/10; content/facts 10/10; and `git diff --check` passed.
+- Isolated build and crawl: the production build generated all 29 route units with `postgresql://phase20:phase20@127.0.0.1:1/phase20`; the expected connection refusal prevented database access. All 17 canonical routes returned HTTP 200 with exact self-canonicals and one H1; all 34 JSON-LD scripts parsed; 33 unique internal targets, their anchors and 36 local assets resolved; machine endpoints, RSS media type, resume PDF and framing headers passed.
+- Redirect evidence: canonical slashed legacy aliases redirect directly to their recorded destinations. Unslashed legacy aliases first receive the global trailing-slash normalization before that destination redirect; no redirect rule was changed because route deletion/redirect changes were outside authorization.
+- Known limitations: P-010 remains unresolved because the live deployment does not expose a commit SHA and no release occurred. Integration/E2E remain gated by P-011. The 12 lint warnings are non-error legacy advisories. No automated browser, assistive-technology, real-device, orientation, owner visual/theme observation, live-deployment crawl or post-deployment analytics observation is claimed.
+- Preservation: P-007, P-008 and P-009 remain unresolved; the exact approved About narrative/training wording, all approved PHP/USD prices, the ₱500/hour rate, 20–25 monthly hours, capacity/scope wording, routes, schema relationships, accessibility behavior, performance evidence classes, responsive behavior, theme parity and owner-supplied personal facts remain intact.
+- No commit, push, deployment, release, database write/migration, database-backed test, production form/API submission, external record, route deletion/redirect or approved-price change occurred.
 
 ## Next gate
 
-- `NEXT_PHASE_READY: YES - PHASE 12 COMPLETE, READY FOR PHASE 13`
-- Phase 12 - Contextual internal linking is complete.
-- Next Phase: Phase 13 - Page-specific structured data (Schema graph deepening, BreadcrumbList verification, OfferCatalog & WebApplication schema auditing).
-- Handoff rule: Open a fresh conversation for Phase 13 to optimize context tokens.
+- `NEXT_PHASE_READY: NO - MASTER IMPLEMENTATION PROGRAM COMPLETE`
+- Phase 20 is complete within the static, isolated-build and local rendered-HTTP evidence boundary.
+- Owner gate: the final checkpoint commit and push were authorized on 2026-08-30. Manual deployment/release, pending visual/theme/device/orientation review, and acceptance of P-010/P-011 remain separate owner decisions.
+- No fresh phase task was created because Phase 20 is the final numbered program phase and no next phase is defined.
 
 ## Current handoff
 
-- Last completed phase: Phase 12 - Contextual internal linking.
-- Active phase: Phase 13 - Page-specific structured data (Pending start in fresh conversation).
-- Ready for fresh conversation hand-off.
+- Last completed work: Phase 20 - Final regression, crawl and release-readiness audit (2026-08-30).
+- Active phase: none. The Master Implementation Program is complete and awaiting owner review/release decisions.
+- Unresolved decisions: P-007 precise address/geocoordinates; P-008 LocalBusiness/ProfessionalService eligibility; P-009 standalone off-page/link-building publishing scope; P-010 deployment identity; P-011 test database strategy.
+- Checks run: TypeScript (pass), full lint (exit 0; zero errors/12 warnings), SEO/privacy/security 17/17, accessibility 12/12, performance/evidence 7/7, responsive 9/9, theme 10/10, content/facts 10/10, isolated unreachable-database build with 29 route units, 17-route local canonical crawl, 34 parsed JSON-LD scripts, 33 unique internal targets, 36 local assets, endpoint/security/feed verification and `git diff --check` (all pass).
+- Phase 20 changed `src/components/AnnouncementBanner.tsx`, `next.config.ts`, `src/app/rss.xml/route.ts` and `scripts/verify-search-and-perf.ts`, plus controlled documentation. `fact-inventory.md` was intentionally unchanged because no factual, commercial, privacy, credential or positioning evidence changed.
+- Authorization boundary: the owner authorized this final checkpoint commit and push on 2026-08-30. No manual deployment or release, database write/migration, production form/API submission, route deletion/redirect or approved-price change is authorized. No additional commit or push is authorized beyond this checkpoint without a new instruction.

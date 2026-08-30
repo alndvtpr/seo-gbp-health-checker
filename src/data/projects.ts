@@ -77,7 +77,7 @@ export const angatSikatProject: Project = {
     'Elementor compatibility for client-friendly content editing',
   ],
   validationNotes:
-    'Validated on active staging environment (https://angat-sikat.freedev.app/) with lab benchmark testing showing 98+ Mobile Lighthouse performance score and sub-1.2s local load timing.',
+    'The active staging URL is repository-observed. No maintained dated Lighthouse artifact or field dataset supports the former exact performance figures, so they are not presented as verified results.',
   liveUrl: 'https://angat-sikat.freedev.app/',
   rel: 'noopener noreferrer nofollow',
   featured: true,
@@ -100,13 +100,13 @@ export const angatSikatProject: Project = {
     },
     {
       name: 'MASIKAT',
-      meaning: 'Turn search visibility into genuine business inquiries and engagement.',
+      meaning: 'Create clearer paths from search visibility to useful inquiries.',
     },
   ],
   metrics: [
-    { label: 'Mobile Speed', value: '98+', detail: 'Lighthouse Performance Lab Score' },
-    { label: 'Crawl Cleanliness', value: '100%', detail: 'Semantic HTML5 structure' },
-    { label: 'Load Duration', value: '<1.2s', detail: 'Local benchmark lab test' },
+    { label: 'Performance Evidence', value: 'Lab only', detail: 'No maintained dated report' },
+    { label: 'Markup Review', value: 'Semantic', detail: 'HTML5 structure inspected' },
+    { label: 'Build Status', value: 'Ongoing', detail: 'Active staging implementation' },
   ],
   techStack: [
     'WordPress',
@@ -144,10 +144,10 @@ export const localSeoGbpProject: Project = {
   problemOrGoal:
     'Small business owners often do not understand why competitors outrank them on Google Maps or local search. The goal was to build a fast, transparent diagnostic tool that scans public Google Business Profile signals and translates technical local ranking factors into actionable weekly milestones.',
   workCompleted: [
-    'Engineered real-time business search and profile data ingestion using Serper Places API.',
-    'Built algorithmic health scoring across 10 critical local SEO trust vectors (NAP, primary/secondary categories, review count, rating velocity, photo recency, operating hours).',
-    'Integrated Google Gemini AI via structured prompts to generate customized 30-day tactical action plans.',
-    'Implemented client-side PDF executive report generation for immediate download and sharing.',
+    'Connected business search and public profile data through the Serper Places API.',
+    'Built heuristic health scoring across 10 public profile indicators, including NAP, categories, review count, rating, photos, and operating hours.',
+    'Integrated Gemini 2.5 Flash through structured prompts to draft 30-day action plans.',
+    'Implemented client-side PDF report generation for download and sharing.',
   ],
   methodsAndTools: [
     'Next.js App Router (Server Actions & API Routes)',
@@ -157,7 +157,7 @@ export const localSeoGbpProject: Project = {
     'jsPDF / html2canvas (Executive PDF summary export)',
   ],
   validationNotes:
-    'Live and functional directly on this website at /tools/#gbp-checker. Delivers complete diagnostic signal breakdowns in ~3.2 seconds without requiring client account access.',
+    'Live and functional directly on this website at /tools/#gbp-checker. Runtime depends on the external Places and AI services; no maintained aggregate field-runtime dataset is claimed.',
   liveUrl: '/tools',
   featured: true,
   coreServices: [
@@ -177,11 +177,11 @@ export const localSeoGbpProject: Project = {
     },
     {
       name: 'EXECUTE',
-      meaning: 'Deliver concrete weekly milestones to elevate local pack presence.',
+      meaning: 'Organize practical weekly steps for profile and local search improvements.',
     },
   ],
   metrics: [
-    { label: 'Audit Speed', value: '~3.2s', detail: 'Places API diagnostic runtime' },
+    { label: 'Audit Runtime', value: 'API-dependent', detail: 'No maintained field aggregate' },
     { label: 'Signal Vector', value: '10 Points', detail: 'Public profile trust indicators' },
     { label: 'Report Format', value: '3 Pages', detail: 'Executive PDF roadmap export' },
   ],
@@ -195,24 +195,24 @@ export const portfolioProject: Project = {
   id: 'alaintapiru-portfolio',
   slug: 'alaintapiru-portfolio',
   title: 'AlainTapiru.com: Technical SEO & Web Project',
-  tagline: 'High-Performance Portfolio & Technical Architecture.',
+  tagline: 'Personal Portfolio & Technical Architecture.',
   status: 'Completed',
   proofLabel: 'Self-initiated build',
   shortDescription:
-    'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, Core Web Vitals optimization, and AI discoverability.',
+    'My personal portfolio built with a modern web stack, combining technical SEO, search-friendly architecture, performance safeguards, and machine-readable content.',
   fullDescription:
-    'A performance-focused personal portfolio combining Next.js App Router, Tailwind CSS, and Payload CMS 3.0. Features zero layout shift, interaction-deferred WebGL canvas rendering, complete JSON-LD structured data graph hierarchy, and LLM-friendly content endpoints (/llms.txt).',
+    'A performance-focused personal portfolio combining Next.js App Router, Tailwind CSS, and Payload CMS 3.0. Features reserved image layout space, interaction-deferred WebGL canvas rendering, complete JSON-LD structured data graph hierarchy, and LLM-friendly content endpoints (/llms.txt).',
   category: 'Technical SEO',
   tags: ['Technical SEO', 'Next.js', 'Tailwind CSS', 'Payload CMS', 'Core Web Vitals'],
   role: 'Technical SEO & Web Architecture',
-  exactRole: 'Lead Architect, Designer & Developer (Personal Production Build)',
+  exactRole: 'Architect, Designer & Developer (Personal Production Build)',
   problemOrGoal:
-    'Demonstrate practical mastery of modern technical SEO and front-end engineering by building a website that achieves high Core Web Vitals lab benchmarks, clean semantic crawlability, structured JSON-LD entity graphs, and smooth dual-theme accessibility.',
+    'Demonstrate hands-on technical SEO and front-end implementation through a personal site with dated lab benchmarks, semantic crawlability, supported JSON-LD relationships, and a dual-theme interface.',
   workCompleted: [
-    'Architected Next.js App Router application with static generation (SSG) across 30+ routes.',
-    'Implemented comprehensive Schema.org JSON-LD graph (Person, WebSite, ProfessionalService, BreadcrumbList, CollectionPage).',
-    'Engineered zero Cumulative Layout Shift (CLS) with explicit image sizing and system fallback typography.',
-    'Built lightweight WebGL shader background that auto-pauses during idle states to maintain 0ms Total Blocking Time.',
+    'Architected a Next.js App Router application with static generation for public pages.',
+    'Implemented canonical Person and WebSite entities plus page-specific Schema.org markup where the visible content supports it.',
+    'Reserved layout space for key images and configured fallback typography to reduce Cumulative Layout Shift risk.',
+    'Built a lightweight WebGL shader background that initializes after interaction, caps its render loop, and auto-pauses during idle states.',
     'Created /llms.txt and /llms-full.txt endpoints for automated AI model discoverability.',
   ],
   methodsAndTools: [
@@ -220,10 +220,10 @@ export const portfolioProject: Project = {
     'TypeScript & Tailwind CSS v4 (Strict token-based design system)',
     'Payload CMS 3.0 & Supabase PostgreSQL (Structured headless data)',
     'Google Search Console & Google Analytics 4',
-    'Google PageSpeed Insights & Lighthouse Automated CI Checks',
+    'Dated PageSpeed screenshots & static performance regression checks',
   ],
   validationNotes:
-    'Production build lab audit verified with Google PageSpeed Insights (August 2026): 99 Desktop, 96 Mobile, and 100/100 Lighthouse SEO & Best Practices scores.',
+    'Dated repository screenshots record August 2026 Google PageSpeed Insights lab results: 99 Desktop, 96 Mobile, and 100/100 Lighthouse SEO & Best Practices. They are not field Core Web Vitals.',
   liveUrl: 'https://github.com/alndvtpr',
   featured: true,
   coreServices: [
@@ -235,11 +235,11 @@ export const portfolioProject: Project = {
   pillars: [
     {
       name: 'SPEED',
-      meaning: 'Sub-2.0s LCP and zero Total Blocking Time through deferred hydration.',
+      meaning: 'August 2026 screenshots record sub-1.2s LCP and 0ms TBT under simulated lab conditions.',
     },
     {
       name: 'STRUCTURE',
-      meaning: 'Complete JSON-LD graph hierarchy and strict semantic HTML5.',
+      meaning: 'Connected JSON-LD relationships and semantic HTML5 structure.',
     },
     {
       name: 'SECURITY',

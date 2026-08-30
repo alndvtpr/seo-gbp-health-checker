@@ -26,15 +26,19 @@ export function CircularProgressRing({
     return () => clearTimeout(timer)
   }, [score, circumference])
 
-  const ringColor =
+  const ringColorClass =
     score >= 70
-      ? '#4ade80'
+      ? 'stroke-emerald-600 dark:stroke-emerald-400'
       : score >= 40
-        ? '#ffb783'
-        : '#f87171'
+        ? 'stroke-primary-container'
+        : 'stroke-rose-600 dark:stroke-rose-400'
 
   const gradeColor =
-    score >= 70 ? 'text-emerald-400' : score >= 40 ? 'text-primary-container' : 'text-rose-400'
+    score >= 70
+      ? 'text-emerald-700 dark:text-emerald-400'
+      : score >= 40
+        ? 'text-primary-container'
+        : 'text-rose-700 dark:text-rose-400'
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -46,7 +50,8 @@ export function CircularProgressRing({
           aria-label={`GBP score: ${score} out of 100`}
         >
           <circle
-            stroke="rgba(255,255,255,0.06)"
+            stroke="currentColor"
+            className="text-black/10 dark:text-white/10"
             fill="transparent"
             strokeWidth={stroke}
             r={normalizedRadius}
@@ -54,8 +59,8 @@ export function CircularProgressRing({
             cy={radius}
           />
           <circle
-            stroke={ringColor}
             fill="transparent"
+            className={ringColorClass}
             strokeWidth={stroke}
             strokeLinecap="round"
             strokeDasharray={`${circumference} ${circumference}`}
@@ -71,7 +76,8 @@ export function CircularProgressRing({
             y={radius - 7}
             textAnchor="middle"
             dominantBaseline="middle"
-            fill="white"
+            fill="currentColor"
+            className="text-on-surface"
             fontSize="24"
             fontWeight="800"
             fontFamily="var(--font-jakarta), sans-serif"
@@ -83,7 +89,8 @@ export function CircularProgressRing({
             y={radius + 15}
             textAnchor="middle"
             dominantBaseline="middle"
-            fill="rgba(255,255,255,0.4)"
+            fill="currentColor"
+            className="text-on-surface/50"
             fontSize="10"
             fontFamily="var(--font-inter), sans-serif"
             fontWeight="600"
@@ -92,7 +99,7 @@ export function CircularProgressRing({
           </text>
         </svg>
       </div>
-      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
         <span className="text-[10px] uppercase font-heading font-bold text-on-surface/50 tracking-wider">
           Rating
         </span>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
@@ -70,17 +70,17 @@ const AI_PARADIGM_SHIFTS = [
   {
     title: 'From Keyword Strings to Semantic Entities',
     problem: 'Traditional keyword stuffing is ineffective for modern LLMs that understand context, entity relationships, and topical authority.',
-    solution: 'We structure your content around named entities, semantic topics, and clear subject relationships that machines can map without ambiguity.',
+    solution: 'I structure content around named entities, related topics, and clear subject relationships that machines can parse more reliably.',
   },
   {
     title: 'Direct Answer Synthesis Over Blue Links',
     problem: 'Searchers increasingly receive synthesized summaries in Google AI Overviews and conversational engines before scrolling to standard search results.',
-    solution: 'We format your content with information-dense definitions and structured tables engineered for direct extraction and citation.',
+    solution: 'I format key facts with concise definitions and structured tables that are easier for search and AI systems to extract.',
   },
   {
     title: 'Verifiable Evidence & Source Attribution',
     problem: 'AI models prioritize sources with verifiable facts, clear author authority, and distinct first-hand experience rather than generic regurgitated copy.',
-    solution: 'We integrate transparent case study proof, explicit author credentials, and verifiable technical data into your key commercial pages.',
+    solution: 'I connect supported case-study evidence, author credentials, and technical data to the pages where those facts are relevant.',
   },
 ]
 
@@ -111,7 +111,7 @@ const FAQS = [
   {
     question: 'Can you guarantee that ChatGPT, Perplexity, or Google AI Overviews will cite my site?',
     answer:
-      'No. Generative AI engines and LLMs operate probabilistically and synthesize responses dynamically based on real-time queries. No legitimate consultant can promise or guarantee specific AI citations. What we do is optimize your website’s factual structure, entity clarity, schema, and machine-readable feeds so AI engines can easily read, parse, and attribute your content when answering relevant queries.',
+      'No. Generative AI systems produce answers probabilistically, so no consultant can promise a specific citation. I can improve factual structure, entity clarity, schema, and machine-readable feeds so those systems can read and attribute the site more clearly.',
   },
   {
     question: 'What is the difference between traditional SEO, AEO, and GEO?',
@@ -222,7 +222,7 @@ export default function AiSearchOptimizationPage() {
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(AI_SEARCH_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(AI_SEARCH_SCHEMA) }}
       />
 
       {/* 1. Hero Section */}
@@ -275,14 +275,14 @@ export default function AiSearchOptimizationPage() {
 
           <a
             href="#what-we-optimize"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             Explore AEO &amp; GEO Scope ↓
           </a>
         </div>
 
         {/* 3-Item Trust Bar */}
-        <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div className="pt-8 border-t border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {[
             'Source-Citable Content Formatting',
             'Entity & Knowledge Graph Alignment',
@@ -291,7 +291,7 @@ export default function AiSearchOptimizationPage() {
             <div
               key={point}
               style={{ transitionDelay: `${idx * 60}ms` }}
-              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
+              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
             >
               <Icon name="check_circle" size={18} className="text-primary-container shrink-0" />
               <span>{point}</span>
@@ -342,7 +342,7 @@ export default function AiSearchOptimizationPage() {
                   {item.problem}
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/85 leading-relaxed">
-                  <strong className="font-semibold text-primary-container block mb-0.5">Our Optimization:</strong>
+                  <strong className="font-semibold text-primary-container block mb-0.5">My Approach:</strong>
                   {item.solution}
                 </p>
               </div>
@@ -370,7 +370,7 @@ export default function AiSearchOptimizationPage() {
             id="optimization-areas-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
-            How We Structure Content for AI Discoverability
+            How I Structure Content for AI Discoverability
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
             From direct definition formatting to machine-readable /llms.txt endpoints and connected entity graphs.
@@ -500,7 +500,7 @@ export default function AiSearchOptimizationPage() {
               Is SEO Dead in 2026? What the Data Actually Says
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-              Read our deep-dive research guide analyzing SparkToro zero-click metrics, Google AI Overviews impact, GEO entity citations, and practical search priorities.
+              Read my research guide on SparkToro zero-click metrics, Google AI Overviews, GEO entity citations, and practical search priorities.
             </p>
 
             <div className="flex flex-wrap gap-2">
@@ -647,7 +647,7 @@ export default function AiSearchOptimizationPage() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto"
       >
         <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
             <span>Future-Proof Your Search Presence • Direct Discovery Call</span>
           </div>
@@ -675,7 +675,7 @@ export default function AiSearchOptimizationPage() {
 
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
             >
               <span>Back to Services Hub</span>
             </Link>

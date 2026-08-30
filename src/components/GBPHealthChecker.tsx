@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState, useEffect, useCallback, useSyncExternalStore } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import { Download, X, Compass, Globe, CheckCircle, ArrowUpRight, Mail } from 'lucide-react'
 import { sendAuditReportAction } from '@/app/actions/send-audit-report'
+import { useModalFocus } from '@/hooks/useModalFocus'
 import { PillarCard } from '@/components/gbp/PillarCard'
 import { CircularProgressRing } from '@/components/gbp/CircularProgressRing'
 import { Toast } from '@/components/gbp/Toast'
@@ -50,6 +51,8 @@ export function GBPHealthChecker() {
   const [emailModalError, setEmailModalError] = useState<string | null>(null)
   const [isSendingEmail, setIsSendingEmail] = useState(false)
   const [emailSentSuccess, setEmailSentSuccess] = useState(false)
+  const resultDialogRef = useRef<HTMLDivElement>(null)
+  const resultDialogTitleRef = useRef<HTMLHeadingElement>(null)
 
   const closeModal = useCallback(() => {
     setResult(null)
@@ -57,6 +60,13 @@ export function GBPHealthChecker() {
     setEmailSentSuccess(false)
     setEmailModalError(null)
   }, [])
+
+  useModalFocus({
+    active: Boolean(result),
+    containerRef: resultDialogRef,
+    initialFocusRef: resultDialogTitleRef,
+    onEscape: closeModal,
+  })
 
   const handleSendEmailReport = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -114,26 +124,18 @@ export function GBPHealthChecker() {
     }
   }
 
-  // Keyboard navigation & body scroll lock
+  // Body scroll lock while the results dialog is active.
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeModal()
-      }
-    }
-
     if (result) {
-      window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [result, closeModal])
+  }, [result])
 
   /**
    * 2026 Executive PDF Export Engine.
@@ -294,6 +296,7 @@ export function GBPHealthChecker() {
           />
         )}
         <div
+          ref={resultDialogRef}
           id="gbp-audit-modal-portal"
           role="dialog"
           aria-modal="true"
@@ -304,7 +307,7 @@ export function GBPHealthChecker() {
         >
           <div
             id="gbp-audit-modal-container"
-            className="relative w-full max-w-6xl max-h-[94vh] flex flex-col bg-surface-1 border border-black/10 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+            className="relative my-auto flex max-h-[calc(100dvh-1rem)] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-black/10 bg-surface-1 shadow-2xl animate-in fade-in zoom-in-95 duration-200 sm:max-h-[94dvh] sm:rounded-3xl dark:border-white/15"
             onClick={(e) => e.stopPropagation()}
           >
             {/* ── Top Header / Branding Bar ── */}
@@ -315,12 +318,12 @@ export function GBPHealthChecker() {
                     <span>⚡</span> Alain Dave Tapiru • Local SEO Engine
                   </span>
                   {result.primaryCategory && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-emerald-500/15 text-emerald-700 dark:text-emerald-500 border border-emerald-500/30">
                       🏷️ {result.primaryCategory}
                     </span>
                   )}
                   {result.categoryBenchmark?.isCategoryMismatchDetected && result.categoryBenchmark.rawGoogleCategory && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.08em] bg-amber-500/15 text-amber-700 dark:text-amber-500 border border-amber-500/30">
                       ⚠️ Tagged as &quot;{result.categoryBenchmark.rawGoogleCategory}&quot; on Maps
                     </span>
                   )}
@@ -334,7 +337,9 @@ export function GBPHealthChecker() {
                   </span>
                 </div>
                 <h2
+                  ref={resultDialogTitleRef}
                   id="gbp-modal-title"
+                  tabIndex={-1}
                   className="font-heading font-extrabold text-lg sm:text-2xl md:text-3xl text-on-surface truncate"
                 >
                   {result.businessName}
@@ -349,7 +354,7 @@ export function GBPHealthChecker() {
                     setEmailModalError(null)
                     setIsEmailModalOpen(true)
                   }}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-primary-container/15 hover:bg-primary-container/25 text-primary-container border border-primary-container/30 text-xs font-heading font-bold transition-all cursor-pointer shadow-sm"
+                  className="inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-xl border border-primary-container/30 bg-primary-container/15 px-3.5 py-2 font-heading text-xs font-bold text-primary-container shadow-sm transition-all hover:bg-primary-container/25"
                   title="Send audit summary to your email"
                 >
                   <Mail className="w-3.5 h-3.5" />
@@ -360,7 +365,7 @@ export function GBPHealthChecker() {
                 <button
                   type="button"
                   onClick={handleExportPdf}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/10 dark:border-white/10 text-xs font-heading font-bold text-on-surface hover:text-primary-container transition-all cursor-pointer shadow-sm"
+                  className="inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-xl border border-black/10 bg-black/5 px-3.5 py-2 font-heading text-xs font-bold text-on-surface shadow-sm transition-all hover:bg-black/10 hover:text-primary-container dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
                   title={`Export as ${((result.businessName || 'Business').trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').replace(/_+/g, '_').replace(/^_+|_+$/g, '') || 'Business')}_Audit.pdf`}
                 >
                   <Download className="w-3.5 h-3.5" />
@@ -371,7 +376,7 @@ export function GBPHealthChecker() {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="inline-flex items-center gap-1.5 bg-rose-500/15 hover:bg-rose-500/25 text-rose-500 hover:text-rose-600 rounded-xl px-4 py-2 transition-all shadow-xs border border-rose-500/30 font-heading font-bold text-xs uppercase tracking-wider group cursor-pointer"
+                  className="group inline-flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/15 px-4 py-2 font-heading text-xs font-bold uppercase tracking-wider text-rose-700 shadow-xs transition-all hover:bg-rose-500/25 hover:text-rose-800 dark:text-rose-500 dark:hover:text-rose-400"
                   aria-label="Close dashboard"
                 >
                   <span>Exit</span>
@@ -403,7 +408,7 @@ export function GBPHealthChecker() {
           {/* ── Scrollable Dashboard Body ── */}
           <div
             id="gbp-modal-scrollable-body"
-            className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-[#000] overscroll-contain"
+            className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 print:p-0 space-y-6 sm:space-y-8 print:space-y-3 bg-background overscroll-contain"
             style={{ paddingBottom: 'max(1.5rem, calc(1rem + env(safe-area-inset-bottom, 0px)))' }}
           >
             
@@ -411,7 +416,7 @@ export function GBPHealthChecker() {
             <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-1 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
               {/* Score Radar (4 Cols) */}
-              <div className="lg:col-span-4 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 flex flex-col items-center justify-between text-center gap-4 print:gap-2 relative overflow-hidden shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-4 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 flex flex-col items-center justify-between text-center gap-4 print:gap-2 relative overflow-hidden shadow-xl print-break-inside-avoid">
                 <div className="space-y-1">
                   <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                     Profile Health Score
@@ -424,19 +429,19 @@ export function GBPHealthChecker() {
                 <CircularProgressRing score={result.totalScore} grade={result.grade} />
 
                 <div className="space-y-2 w-full pt-1">
-                  <div className="flex items-center justify-between text-[11px] px-3 py-1.5 rounded-lg bg-white/5 border border-white/5">
+                  <div className="flex items-center justify-between text-[11px] px-3 py-1.5 rounded-lg bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
                     <span className="text-on-surface/70">Checks Passed:</span>
-                    <span className="font-heading font-bold text-emerald-400">
+                    <span className="font-heading font-bold text-emerald-700 dark:text-emerald-400">
                       {passedCount} / {totalChecks}
                     </span>
                   </div>
 
                   {result.foundInMapPack ? (
-                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-heading font-bold tracking-[0.06em]">
+                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-heading font-bold tracking-[0.06em]">
                       <span>✓</span> Ranked #{result.mapPackPosition} in Local Map Pack
                     </div>
                   ) : (
-                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-400 text-xs font-heading font-bold tracking-[0.06em]">
+                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-400 text-xs font-heading font-bold tracking-[0.06em]">
                       <span>✗</span> Not Ranking in Top 10 Map Pack
                     </div>
                   )}
@@ -444,7 +449,7 @@ export function GBPHealthChecker() {
               </div>
 
               {/* 3 Pillars Breakdown (8 Cols) */}
-              <div className="lg:col-span-8 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 flex flex-col justify-between gap-4 print:gap-2 shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-8 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 flex flex-col justify-between gap-4 print:gap-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
@@ -465,15 +470,15 @@ export function GBPHealthChecker() {
                   ))}
                 </div>
 
-                <p className="text-[11px] font-sans text-on-surface/70 leading-relaxed bg-white/[0.02] p-3 print:p-2 rounded-xl border border-white/5">
-                  💡 <strong className="text-on-surface/90">Strategic Takeaway:</strong> Google ranks profiles based on <span className="text-primary-container font-semibold">Relevance</span> (NAP &amp; categories), <span className="text-primary-container font-semibold">Prominence</span> (reviews &amp; velocity), and <span className="text-primary-container font-semibold">Distance</span> (location signals).
+                <p className="text-[11px] font-sans text-on-surface/70 leading-relaxed bg-black/[0.02] dark:bg-white/[0.02] p-3 print:p-2 rounded-xl border border-black/5 dark:border-white/5">
+                  💡 <strong className="text-on-surface/90">What this means:</strong> Google describes local results in terms of <span className="text-primary-container font-semibold">Relevance</span>, <span className="text-primary-container font-semibold">Prominence</span>, and <span className="text-primary-container font-semibold">Distance</span>. This diagnostic reviews public signals related to those areas; it does not reproduce Google&apos;s ranking system.
                 </p>
               </div>
             </div>
 
             {/* ── 10-Point Public Audit Diagnostic Grid ── */}
             {result.publicChecks && result.publicChecks.length > 0 && (
-              <div className="p-6 sm:p-7 print:p-3.5 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+              <div className="p-6 sm:p-7 print:p-3.5 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
@@ -492,15 +497,15 @@ export function GBPHealthChecker() {
                   {result.publicChecks.map((chk) => (
                     <div
                       key={chk.id}
-                      className="p-3 print:p-2 rounded-xl bg-white/[0.02] border border-white/5 flex items-start gap-2.5 print-break-inside-avoid"
+                      className="p-3 print:p-2 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 flex items-start gap-2.5 print-break-inside-avoid"
                     >
                       <span
                         className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
                           chk.status === 'passed'
-                            ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                            ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30'
                             : chk.status === 'warning'
-                              ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                              : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                              ? 'bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30'
+                              : 'bg-rose-500/20 text-rose-700 dark:text-rose-400 border border-rose-500/30'
                         }`}
                       >
                         {chk.status === 'passed' ? '✓' : chk.status === 'warning' ? '⚠️' : '✗'}
@@ -513,10 +518,10 @@ export function GBPHealthChecker() {
                           <span
                             className={`text-[10px] font-heading font-bold px-1.5 py-0.5 rounded shrink-0 ${
                               chk.status === 'passed'
-                                ? 'text-emerald-400 bg-emerald-500/10'
+                                ? 'text-emerald-700 dark:text-emerald-400 bg-emerald-500/10'
                                 : chk.status === 'warning'
-                                  ? 'text-amber-400 bg-amber-500/10'
-                                  : 'text-rose-400 bg-rose-500/10'
+                                  ? 'text-amber-700 dark:text-amber-400 bg-amber-500/10'
+                                  : 'text-rose-700 dark:text-rose-400 bg-rose-500/10'
                             }`}
                           >
                             {chk.scoreEarned}/{chk.maxScore} pts
@@ -541,7 +546,7 @@ export function GBPHealthChecker() {
             <div className="grid grid-cols-1 lg:grid-cols-12 print-grid-row-2 gap-4 sm:gap-6 print:gap-3 print-break-inside-avoid">
               
               {/* Competitor Gap Radar (7 Cols) */}
-              <div className="lg:col-span-7 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-7 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
@@ -559,10 +564,10 @@ export function GBPHealthChecker() {
                     {result.competitors.map((comp, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 print:p-2 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between gap-3 hover:bg-white/[0.06] transition-colors print-break-inside-avoid"
+                        className="p-3.5 print:p-2 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 flex items-center justify-between gap-3 hover:bg-black/[0.06] dark:hover:bg-white/[0.06] transition-colors print-break-inside-avoid"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <span className="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-heading text-xs font-bold text-primary-container shrink-0">
+                          <span className="w-6 h-6 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center font-heading text-xs font-bold text-primary-container shrink-0">
                             #{comp.position}
                           </span>
                           <div className="min-w-0">
@@ -577,7 +582,7 @@ export function GBPHealthChecker() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-heading font-bold tracking-[0.06em]">
+                          <span className="px-2.5 py-1 rounded-md bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-[11px] font-heading font-bold tracking-[0.06em]">
                             {comp.rating ? `${comp.rating} ⭐` : 'Unrated'}
                           </span>
                           <span className="text-[11px] font-sans text-on-surface/70">
@@ -597,7 +602,7 @@ export function GBPHealthChecker() {
                   <div
                     className={`p-3.5 sm:p-4 print:p-2.5 rounded-xl border text-xs print-break-inside-avoid shadow-inner ${
                       result.categoryBenchmark.isCategoryMismatchDetected
-                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-100'
+                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-900 dark:text-amber-100'
                         : 'bg-primary-container/10 border-primary-container/20 text-on-surface/90'
                     }`}
                   >
@@ -605,11 +610,11 @@ export function GBPHealthChecker() {
                       <span className="font-heading font-bold uppercase tracking-[0.08em] text-[10px] text-primary-container">
                         {result.categoryBenchmark.isCategoryMismatchDetected
                           ? '🚨 Critical Category Anomaly Detected'
-                          : '🏷️ Category Intelligence Strategy'}
+                          : '🏷️ Category and Profile Review'}
                       </span>
                       {result.categoryBenchmark.rawGoogleCategory &&
                         result.categoryBenchmark.isCategoryMismatchDetected && (
-                          <span className="text-[10px] text-amber-400 font-medium bg-amber-500/20 px-2 py-0.5 rounded-md border border-amber-500/30">
+                          <span className="text-[10px] text-amber-700 dark:text-amber-400 font-medium bg-amber-500/20 px-2 py-0.5 rounded-md border border-amber-500/30">
                             Current Google Tag: &quot;{result.categoryBenchmark.rawGoogleCategory}&quot;
                           </span>
                         )}
@@ -622,7 +627,7 @@ export function GBPHealthChecker() {
               </div>
 
               {/* Website & Semantic SEO Snapshot (5 Cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
+              <div className="lg:col-span-5 p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
@@ -637,7 +642,7 @@ export function GBPHealthChecker() {
 
                 {result.websiteSeo && result.websiteSeo.status !== 'no_website' ? (
                   <div className="space-y-3 print:space-y-2 text-xs">
-                    <div className="p-2.5 print:p-2 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-between gap-2">
+                    <div className="p-2.5 print:p-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 flex items-center justify-between gap-2">
                       <span className="text-on-surface/50 text-[11px]">Linked URL:</span>
                       <a
                         href={result.websiteSeo.url}
@@ -651,7 +656,7 @@ export function GBPHealthChecker() {
                     </div>
 
                     {result.websiteSeo.status === 'error' ? (
-                      <p className="text-xs text-rose-400 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                      <p className="text-xs text-rose-700 dark:text-rose-400 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
                         ⚠ Website responded with an error or blocked the audit bot.
                       </p>
                     ) : (
@@ -660,8 +665,8 @@ export function GBPHealthChecker() {
                           <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-on-surface/50">
                             Title Tag
                           </span>
-                          <p className="text-xs text-on-surface font-medium leading-relaxed bg-white/[0.02] p-2.5 print:p-2 rounded-lg border border-white/5">
-                            {result.websiteSeo.title ? result.websiteSeo.title : <span className="text-rose-400">Missing Title Tag</span>}
+                          <p className="text-xs text-on-surface font-medium leading-relaxed bg-black/[0.02] dark:bg-white/[0.02] p-2.5 print:p-2 rounded-lg border border-black/5 dark:border-white/5">
+                            {result.websiteSeo.title ? result.websiteSeo.title : <span className="text-rose-700 dark:text-rose-400">Missing Title Tag</span>}
                           </p>
                         </div>
 
@@ -669,18 +674,18 @@ export function GBPHealthChecker() {
                           <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-on-surface/50">
                             Meta Description
                           </span>
-                          <p className="text-xs text-on-surface/70 leading-relaxed line-clamp-2 bg-white/[0.02] p-2.5 print:p-2 rounded-lg border border-white/5">
-                            {result.websiteSeo.metaDescription ? result.websiteSeo.metaDescription : <span className="text-rose-400">Missing Meta Description</span>}
+                          <p className="text-xs text-on-surface/70 leading-relaxed line-clamp-2 bg-black/[0.02] dark:bg-white/[0.02] p-2.5 print:p-2 rounded-lg border border-black/5 dark:border-white/5">
+                            {result.websiteSeo.metaDescription ? result.websiteSeo.metaDescription : <span className="text-rose-700 dark:text-rose-400">Missing Meta Description</span>}
                           </p>
                         </div>
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div className="p-4 print:p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-300 space-y-1">
+                  <div className="p-4 print:p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs text-rose-700 dark:text-rose-300 space-y-1">
                     <p className="font-bold">No Website Linked on GBP</p>
                     <p className="opacity-80">
-                      Linking a verified website or optimized landing page is critical for local authority.
+                      Linking an accurate website or relevant landing page can help customers and search systems confirm the business details.
                     </p>
                   </div>
                 )}
@@ -688,7 +693,7 @@ export function GBPHealthChecker() {
             </div>
 
             {/* ── Bento Row 3: Action Plan Priority Matrix ── */}
-            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2.5 shadow-xl print-break-inside-avoid">
+            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 space-y-4 print:space-y-2.5 shadow-xl print-break-inside-avoid">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
@@ -706,10 +711,10 @@ export function GBPHealthChecker() {
               <div className="grid grid-cols-1 md:grid-cols-2 print-grid-actions gap-3 print:gap-2">
                 {result.actionItems?.map((item, idx) => {
                   const colors = {
-                    high: 'bg-rose-500/10 border-rose-500/25 text-rose-300',
-                    medium: 'bg-amber-500/10 border-amber-500/25 text-amber-300',
-                    low: 'bg-sky-500/10 border-sky-500/25 text-sky-300',
-                    passed: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300 opacity-70',
+                    high: 'bg-rose-500/10 border-rose-500/25 text-rose-700 dark:text-rose-300',
+                    medium: 'bg-amber-500/10 border-amber-500/25 text-amber-700 dark:text-amber-300',
+                    low: 'bg-sky-500/10 border-sky-500/25 text-sky-700 dark:text-sky-300',
+                    passed: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-700 dark:text-emerald-300 opacity-70',
                   }[item.priority]
 
                   const icons = {
@@ -738,15 +743,15 @@ export function GBPHealthChecker() {
             </div>
 
             {/* ── Bento Row 4: ✨ Alain Dave Tapiru's AI Growth Arsenal ── */}
-            <div id="ai-arsenal-section" className="p-6 sm:p-8 print:p-4 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#1c1f20] via-[#161819] to-[#121414] border border-primary-container/30 space-y-6 print:space-y-4 shadow-2xl relative overflow-hidden print-page-break-before">
+            <div id="ai-arsenal-section" className="p-6 sm:p-8 print:p-4 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-surface-3 via-surface-2 to-surface-1 border border-primary-container/30 space-y-6 print:space-y-4 shadow-2xl relative overflow-hidden print-page-break-before">
               
               {/* Header with Tab Navigation */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 print:gap-1 pb-2 border-b border-white/10 print-break-inside-avoid">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 print:gap-1 pb-2 border-b border-black/10 dark:border-white/10 print-break-inside-avoid">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">✨</span>
                     <h3 className="font-heading font-extrabold text-lg sm:text-xl text-on-surface">
-                      Alain&apos;s AI Strategic Growth Arsenal
+                      AI-Assisted Draft Deliverables
                     </h3>
                   </div>
                   <p className="text-xs text-on-surface/60">
@@ -755,11 +760,12 @@ export function GBPHealthChecker() {
                 </div>
 
                 {/* Tab Switcher (Screen Only) */}
-                <div className="no-print flex items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 overflow-x-auto max-w-full py-1.5 px-1.5 scrollbar-none">
+                <div role="group" aria-label="Generated audit deliverables" className="no-print flex items-center gap-1.5 p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 overflow-x-auto max-w-full py-1.5 px-1.5 scrollbar-none">
                   <button
                     type="button"
                     onClick={() => setActiveTab('roadmap')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                    aria-pressed={activeTab === 'roadmap'}
+                    className={`min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'roadmap'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-primary-container'
@@ -770,7 +776,8 @@ export function GBPHealthChecker() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('description')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                    aria-pressed={activeTab === 'description'}
+                    className={`min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'description'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-primary-container'
@@ -781,7 +788,8 @@ export function GBPHealthChecker() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('templates')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                    aria-pressed={activeTab === 'templates'}
+                    className={`min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'templates'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-primary-container'
@@ -792,7 +800,8 @@ export function GBPHealthChecker() {
                   <button
                     type="button"
                     onClick={() => setActiveTab('keywords')}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                    aria-pressed={activeTab === 'keywords'}
+                    className={`min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                       activeTab === 'keywords'
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface/70 hover:text-primary-container'
@@ -808,7 +817,7 @@ export function GBPHealthChecker() {
                 <div className="hidden print:flex items-center gap-2 pb-1 border-b border-black/10 dark:border-white/5">
                   <span className="text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 01</span>
                   <span className="text-on-surface/60 text-xs">•</span>
-                  <h4 className="font-heading font-bold text-sm text-on-surface">30-Day Sprint Roadmap &amp; Strategic Milestones</h4>
+                  <h4 className="font-heading font-bold text-sm text-on-surface">30-Day Roadmap &amp; Weekly Steps</h4>
                 </div>
                 <div className="prose dark:prose-invert prose-sm max-w-none prose-headings:font-heading prose-headings:text-primary-container prose-headings:font-bold prose-h3:text-sm prose-h4:text-xs prose-p:text-on-surface/80 prose-li:text-on-surface/80 prose-strong:text-on-surface prose-a:text-primary-container bg-surface-2 p-5 sm:p-7 print:p-4 rounded-2xl border border-black/10 dark:border-white/5 shadow-inner">
                   <ReactMarkdown>
@@ -825,7 +834,7 @@ export function GBPHealthChecker() {
                     <span className="font-heading text-xs font-bold text-on-surface">
                       Keyword-Optimized Google Business Description
                     </span>
-                    <span className="text-[11px] font-sans text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                    <span className="text-[11px] font-sans text-emerald-700 dark:text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
                       {(result.aiDescription || defaultDescription).length} / 750 Characters
                     </span>
                   </div>
@@ -862,7 +871,7 @@ export function GBPHealthChecker() {
                   <div className="p-5 print:p-3.5 rounded-2xl bg-surface-2 border border-emerald-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-500 border border-emerald-500/30">
                           5-Star Review Response (Keyword-Optimized)
                         </span>
                       </div>
@@ -888,7 +897,7 @@ export function GBPHealthChecker() {
                   <div className="p-5 print:p-3.5 rounded-2xl bg-surface-2 border border-amber-500/20 space-y-3 print:space-y-1.5 flex flex-col justify-between print-break-inside-avoid">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-heading font-bold bg-amber-500/15 text-amber-700 dark:text-amber-500 border border-amber-500/30">
                           Constructive Review Response (Trust Recovery)
                         </span>
                       </div>
@@ -914,7 +923,7 @@ export function GBPHealthChecker() {
 
               {/* Tab 4: High-Intent Local Keywords */}
               <div className={`space-y-3 print:space-y-1.5 print-deliverable-card ${activeTab === 'keywords' ? 'block' : 'hidden'} print-break-inside-avoid print:mt-4`}>
-                <div className="flex items-center justify-between pb-1 border-b border-white/5">
+                <div className="flex items-center justify-between pb-1 border-b border-black/5 dark:border-white/5">
                   <div className="flex items-center gap-2">
                     <span className="hidden print:inline-block text-primary-container font-heading font-bold text-xs uppercase tracking-[0.08em]">Deliverable 04 •</span>
                     <h4 className="font-heading font-bold text-xs sm:text-sm text-on-surface">
@@ -935,7 +944,7 @@ export function GBPHealthChecker() {
                       key={i}
                       type="button"
                       onClick={() => copyToClipboard(kw, `Keyword: "${kw}"`)}
-                      className="inline-flex items-center gap-2 px-3.5 py-2 print:px-2.5 print:py-1 rounded-xl bg-white/5 hover:bg-primary-container/20 border border-white/10 hover:border-primary-container/40 text-xs font-heading font-medium text-on-surface hover:text-primary-container transition-all cursor-pointer group print-break-inside-avoid"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 print:px-2.5 print:py-1 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-primary-container/20 border border-black/10 dark:border-white/10 hover:border-primary-container/40 text-xs font-heading font-medium text-on-surface hover:text-primary-container transition-all cursor-pointer group print-break-inside-avoid"
                     >
                       <span>{kw}</span>
                       <ArrowUpRight className="no-print w-3 h-3 opacity-40 group-hover:opacity-100" />
@@ -944,7 +953,7 @@ export function GBPHealthChecker() {
                 </div>
 
                 {result.additionalCategories && result.additionalCategories.length > 0 && (
-                  <div className="pt-2 border-t border-white/5 space-y-1.5 print:space-y-1">
+                  <div className="pt-2 border-t border-black/5 dark:border-white/5 space-y-1.5 print:space-y-1">
                     <span className="text-[11px] font-sans text-on-surface/50 block">
                       Recommended Secondary Categories for Google Business Profile:
                     </span>
@@ -952,7 +961,7 @@ export function GBPHealthChecker() {
                       {result.additionalCategories.map((subCat, sIdx) => (
                         <span
                           key={sIdx}
-                          className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-heading font-medium"
+                          className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[11px] font-heading font-medium"
                         >
                           + {subCat}
                         </span>
@@ -964,7 +973,7 @@ export function GBPHealthChecker() {
             </div>
 
             {/* ── Bento Row 5: Deep Check Validator ── */}
-            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid print:mt-3">
+            <div className="p-6 sm:p-7 print:p-4 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 space-y-4 print:space-y-2 shadow-xl print-break-inside-avoid print:mt-3">
               <div className="space-y-1">
                 <span className="font-heading text-[10px] text-primary-container uppercase tracking-[0.08em] font-semibold">
                   Internal Verification Signals
@@ -981,12 +990,12 @@ export function GBPHealthChecker() {
                 {deepCheckQuestions.map((q, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 print:gap-2 p-3.5 print:p-2.5 rounded-xl bg-white/[0.02] border border-white/5 print-break-inside-avoid"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 print:gap-2 p-3.5 print:p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 print-break-inside-avoid"
                   >
                     <span className="text-xs font-medium text-on-surface/90 flex-1">{q}</span>
                     
                     {/* Screen View: Interactive Yes/No buttons */}
-                    <div className="no-print flex items-center gap-2 shrink-0">
+                    <div role="group" aria-label={`Answer for: ${q}`} className="no-print flex items-center gap-2 shrink-0">
                       <button
                         type="button"
                         onClick={() => {
@@ -994,10 +1003,11 @@ export function GBPHealthChecker() {
                           newAns[idx] = true
                           setDeepCheckAnswers(newAns)
                         }}
+                        aria-pressed={deepCheckAnswers[idx] === true}
                         className={`px-4 py-1.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
                           deepCheckAnswers[idx] === true
-                            ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400'
-                            : 'bg-white/5 border-white/20 text-white/70 hover:bg-white/10'
+                            ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-700 dark:text-emerald-400'
+                            : 'bg-black/5 border-black/20 text-on-surface/70 hover:bg-black/10 dark:bg-white/5 dark:border-white/20 dark:hover:bg-white/10'
                         }`}
                       >
                         Yes
@@ -1009,10 +1019,11 @@ export function GBPHealthChecker() {
                           newAns[idx] = false
                           setDeepCheckAnswers(newAns)
                         }}
+                        aria-pressed={deepCheckAnswers[idx] === false}
                         className={`px-4 py-1.5 rounded-full text-xs font-heading font-bold uppercase tracking-wider border transition-all cursor-pointer ${
                           deepCheckAnswers[idx] === false
-                            ? 'bg-rose-500/20 border-rose-500/50 text-rose-400'
-                            : 'bg-white/5 border-white/20 text-white/70 hover:bg-white/10'
+                            ? 'bg-rose-500/20 border-rose-500/50 text-rose-700 dark:text-rose-400'
+                            : 'bg-black/5 border-black/20 text-on-surface/70 hover:bg-black/10 dark:bg-white/5 dark:border-white/20 dark:hover:bg-white/10'
                         }`}
                       >
                         No
@@ -1022,15 +1033,15 @@ export function GBPHealthChecker() {
                     {/* Print View: Clean status indicator */}
                     <div className="hidden print:flex items-center gap-2 shrink-0">
                       {deepCheckAnswers[idx] === true ? (
-                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                           ✓ Verified
                         </span>
                       ) : deepCheckAnswers[idx] === false ? (
-                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-rose-500/20 text-rose-700 dark:text-rose-400 border border-rose-500/30">
                           ✗ Needs Action
                         </span>
                       ) : (
-                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                        <span className="px-3 py-1 rounded-full text-[11px] font-heading font-bold uppercase bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
                           ⚡ Recommended Signal
                         </span>
                       )}
@@ -1068,7 +1079,7 @@ export function GBPHealthChecker() {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                         />
                       </svg>
-                      <span>Recalculating Score &amp; Strategy…</span>
+                      <span>Recalculating score and action plan…</span>
                     </>
                   ) : (
                     'Update My Score & AI Plan'
@@ -1076,7 +1087,7 @@ export function GBPHealthChecker() {
                 </button>
                 {deepCheckAnswers.includes(null) && (
                   <p className="text-[10px] text-on-surface/70 uppercase tracking-[0.08em] font-semibold">
-                    Answer all 4 questions to unlock final score
+                    Answer all 4 questions to calculate the final score
                   </p>
                 )}
               </div>
@@ -1089,7 +1100,7 @@ export function GBPHealthChecker() {
                   Want Alain to execute this Local SEO sprint for you?
                 </h4>
                 <p className="text-xs sm:text-sm text-on-surface/80 max-w-xl leading-relaxed">
-                  I help local businesses optimize Google Business Profiles with accurate categorization, citation cleanup, review management systems, and improved Map Pack visibility.
+                  I offer scoped Google Business Profile support covering category review, citation consistency, review-response workflows, and practical local search improvements.
                 </p>
                 <p className="hidden print:block text-xs text-primary-container font-semibold pt-1">
                   Contact: alaintapiru@gmail.com • Web: alaintapiru.com • Book: alaintapiru.com/contact/
@@ -1109,7 +1120,7 @@ export function GBPHealthChecker() {
                     setEmailModalError(null)
                     setIsEmailModalOpen(true)
                   }}
-                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all text-center flex items-center justify-center gap-2 min-h-[44px] cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-3 rounded-xl bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] transition-all text-center flex items-center justify-center gap-2 min-h-[44px] cursor-pointer"
                 >
                   <Mail className="w-3.5 h-3.5 text-primary-container" />
                   <span>Email Audit Summary</span>
@@ -1136,8 +1147,11 @@ export function GBPHealthChecker() {
         />
       )}
 
-      <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-3.5" noValidate>
+      <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-3.5" noValidate aria-busy={isLoading}>
         {/* Business Name */}
+        <label htmlFor="gbp-business-name" className="sr-only">
+          Business name as listed on Google Maps
+        </label>
         <input
           id="gbp-business-name"
           type="text"
@@ -1151,6 +1165,9 @@ export function GBPHealthChecker() {
         />
 
         {/* Target Location */}
+        <label htmlFor="gbp-target-location" className="sr-only">
+          Target location or city
+        </label>
         <input
           id="gbp-target-location"
           type="text"

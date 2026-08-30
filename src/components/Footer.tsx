@@ -54,7 +54,7 @@ export const Footer = () => {
               href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-[0_0_10px_rgba(230,126,34,0.1)] transition-all hover:-translate-y-0.5 hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] dark:bg-white/5"
               aria-label="Gmail"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -66,7 +66,7 @@ export const Footer = () => {
               href="https://www.facebook.com/dcrazedave"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-[0_0_10px_rgba(230,126,34,0.1)] transition-all hover:-translate-y-0.5 hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] dark:bg-white/5"
               aria-label="Facebook"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -78,7 +78,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-[0_0_10px_rgba(230,126,34,0.1)] transition-all hover:-translate-y-0.5 hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] dark:bg-white/5"
               aria-label="LinkedIn"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true" focusable="false">
@@ -90,7 +90,7 @@ export const Footer = () => {
               href="https://github.com/alndvtpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container hover:-translate-y-0.5 transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)]"
+              className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-[0_0_10px_rgba(230,126,34,0.1)] transition-all hover:-translate-y-0.5 hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] dark:bg-white/5"
               aria-label="GitHub"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true" focusable="false">
@@ -100,7 +100,7 @@ export const Footer = () => {
             {/* RSS Feed */}
             <RssButton
               variant="icon"
-              className="w-8 h-8 bg-black/5 dark:bg-white/5 border-primary-container/30 hover:-translate-y-0.5 transition-all shadow-[0_0_10px_rgba(238,128,47,0.1)] hover:shadow-[0_0_15px_rgba(238,128,47,0.3)]"
+              className="h-11 w-11 min-h-[44px] min-w-[44px] border-primary-container/30 bg-black/5 shadow-[0_0_10px_rgba(238,128,47,0.1)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(238,128,47,0.3)] dark:bg-white/5"
               iconSize={14}
             />
           </div>

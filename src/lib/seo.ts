@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+export const serializeJsonLd = (value: object): string =>
+  JSON.stringify(value).replace(/</g, '\\u003c')
+
 export const normalizeCanonicalUrl = (rawUrl?: string): string => {
   if (!rawUrl) return 'https://www.alaintapiru.com/'
   try {

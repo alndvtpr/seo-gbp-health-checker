@@ -10,7 +10,7 @@ export function PillarCard({ pillar }: { pillar: AuditPillar }) {
     pct >= 70 ? 'bg-emerald-400' : pct >= 40 ? 'bg-primary-container' : 'bg-rose-400'
 
   return (
-    <div className="p-4 sm:p-5 print:p-3 rounded-2xl bg-white/[0.03] border border-white/5 space-y-3 print:space-y-1.5 hover:bg-white/[0.05] transition-colors print-break-inside-avoid">
+    <div className="p-4 sm:p-5 print:p-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 space-y-3 print:space-y-1.5 hover:bg-black/[0.05] dark:hover:bg-white/[0.05] transition-colors print-break-inside-avoid">
       <div className="flex items-center justify-between">
         <span className="font-heading text-xs print:text-[11px] font-bold uppercase tracking-wider text-on-surface/90">
           {pillar.name}
@@ -21,7 +21,7 @@ export function PillarCard({ pillar }: { pillar: AuditPillar }) {
         </span>
       </div>
 
-      <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+        <div className="h-1.5 w-full bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-700 ease-out ${barColor}`}
           style={{ width: `${pct}%` }}

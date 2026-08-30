@@ -10,7 +10,7 @@ import { ScrollHero } from '@/components/ScrollHero'
 import { ToolsMarquee } from '@/components/ToolsMarquee'
 import { Icon } from '@/components/icons'
 import { PROJECTS } from '@/data/projects'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 
 export const metadata = generateMetadata({
   title: 'SEO Specialist & Web Developer Philippines | Alain Dave Tapiru',
@@ -19,10 +19,21 @@ export const metadata = generateMetadata({
   url: 'https://www.alaintapiru.com/',
 })
 
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': 'https://www.alaintapiru.com/#profilepage',
+  url: 'https://www.alaintapiru.com/',
+  name: 'Alain Dave G. Tapiru - Profile',
+  isPartOf: { '@id': 'https://www.alaintapiru.com/#website' },
+  about: { '@id': 'https://www.alaintapiru.com/#person' },
+  mainEntity: { '@id': 'https://www.alaintapiru.com/#person' },
+}
+
 const STARTING_OFFERS = [
   {
     title: 'SEO & AI Readiness Sprint',
-    price: '$280 USD (₱15,500)',
+    price: '₱15,500 ($280 USD)',
     audience: 'Businesses that need one website diagnosed before committing to ongoing work.',
     deliverable:
       'Technical crawl diagnostics, schema implementation, search-intent review, and a prioritized 30-day action blueprint.',
@@ -30,7 +41,7 @@ const STARTING_OFFERS = [
   },
   {
     title: 'WordPress High-Speed Business Site',
-    price: '$480 USD (₱27,000)',
+    price: '₱27,000 ($480 USD)',
     audience: 'Small businesses that need an editable, search-ready website foundation.',
     deliverable:
       'A responsive WordPress theme, technical SEO and schema setup, speed and security configuration, analytics, and handoff.',
@@ -38,7 +49,7 @@ const STARTING_OFFERS = [
   },
   {
     title: 'Custom Next.js & React Architecture',
-    price: '$850 USD (₱48,000)',
+    price: '₱48,000 ($850 USD)',
     audience: 'Founders or teams that need a code-first website with custom front-end requirements.',
     deliverable:
       'A Next.js and React build with a structured component system, image pipeline, performance work, and schema implementation.',
@@ -46,7 +57,7 @@ const STARTING_OFFERS = [
   },
   {
     title: 'Ongoing Monthly SEO Support',
-    price: '$450 USD / mo (₱25,000 / mo)',
+    price: '₱25,000 / mo ($450 USD / mo)',
     audience: 'Businesses or agencies with a defined recurring technical, on-page, or local SEO backlog.',
     deliverable:
       'Twenty to twenty-five hours per month of agreed SEO implementation, review calls, reporting, and activity logs.',
@@ -59,7 +70,7 @@ const PROCESS_STAGES = [
     number: '01',
     title: 'Agree the scope',
     description:
-      'We define the problem, required access, deliverables, exclusions, timing, and price before work begins.',
+      'You and I define the problem, required access, deliverables, exclusions, timing, and price before work begins.',
   },
   {
     number: '02',
@@ -119,6 +130,10 @@ export default async function Page() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(homeJsonLd) }}
+      />
       <LivePreviewListener />
 
       {/* 1. Hero */}
@@ -159,16 +174,16 @@ export default async function Page() {
           </div>
 
           <div className="border-t border-black/10 py-8 dark:border-white/10 md:border-l md:border-t-0 md:pl-10">
-            <p className="font-heading text-xs font-bold uppercase tracking-[0.08em] text-emerald-500">
+            <p className="font-heading text-xs font-bold uppercase tracking-[0.08em] text-emerald-700 dark:text-emerald-500">
               Agencies &amp; web teams
             </p>
             <h3 className="mt-3 font-heading text-xl font-bold text-on-surface sm:text-2xl">
               A good fit when the backlog already has a defined owner and outcome
             </h3>
             <ul className="mt-5 space-y-3 font-sans text-sm leading-relaxed text-on-surface/80 sm:text-base">
-              <li className="flex gap-3"><Icon name="check_circle" size={18} className="mt-0.5 shrink-0 text-emerald-500" />A technical SEO ticket needs implementation capacity.</li>
-              <li className="flex gap-3"><Icon name="check_circle" size={18} className="mt-0.5 shrink-0 text-emerald-500" />Schema or on-page updates need documented delivery.</li>
-              <li className="flex gap-3"><Icon name="check_circle" size={18} className="mt-0.5 shrink-0 text-emerald-500" />A WordPress or Next.js backlog item needs focused support.</li>
+              <li className="flex gap-3"><Icon name="check_circle" size={18} className="mt-0.5 shrink-0 text-emerald-700 dark:text-emerald-500" />A technical SEO ticket needs implementation capacity.</li>
+              <li className="flex gap-3"><Icon name="check_circle" size={18} className="mt-0.5 shrink-0 text-emerald-700 dark:text-emerald-500" />Schema or on-page updates need documented delivery.</li>
+              <li className="flex gap-3"><Icon name="check_circle" size={18} className="mt-0.5 shrink-0 text-emerald-700 dark:text-emerald-500" />A WordPress or Next.js backlog item needs focused support.</li>
             </ul>
           </div>
         </div>
@@ -248,7 +263,7 @@ export default async function Page() {
               <span className="font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-surface">
                 Internal anchor mismatch
               </span>
-              <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.06em] text-emerald-500">
+              <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.06em] text-emerald-700 dark:text-emerald-500">
                 Resolved
               </span>
             </div>

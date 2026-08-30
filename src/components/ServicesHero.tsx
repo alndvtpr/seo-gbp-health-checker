@@ -17,7 +17,12 @@ export function ServicesHero() {
     >
       {/* Breadcrumb Navigation */}
       <div className="motion-reveal">
-        <Breadcrumbs items={[{ name: 'Services', url: '/services/' }]} align="center" className="mb-6" />
+        <Breadcrumbs
+          items={[{ name: 'Services', url: '/services/' }]}
+          align="center"
+          className="mb-6"
+          showJsonLd={false}
+        />
       </div>
 
       {/* Eyebrow Badge */}
@@ -51,19 +56,19 @@ export function ServicesHero() {
 
         <a
           href="#packages"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-black/15 bg-black/5 px-8 py-4 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface hover:border-primary-container/50 hover:bg-black/10 sm:w-auto sm:text-sm dark:border-white/15 dark:bg-white/5 dark:hover:bg-white/10 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
         >
           View Starting Offers ↓
         </a>
       </div>
 
       {/* 3-Item Trust Bar */}
-      <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+      <div className="pt-8 border-t border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
         {TRUST_POINTS.map((point, idx) => (
           <div
             key={point}
             style={{ transitionDelay: `${idx * 60}ms` }}
-            className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
+            className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
           >
             <Icon name="check_circle" size={18} className="text-primary-container shrink-0" />
             <span>{point}</span>

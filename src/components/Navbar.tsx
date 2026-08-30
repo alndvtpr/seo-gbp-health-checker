@@ -287,7 +287,10 @@ export const Navbar = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden xl:flex items-center gap-0.5 bg-surface-2/90 dark:bg-surface-container-low/80 backdrop-blur-md px-2 py-1.5 rounded-full border border-black/10 dark:border-white/10 shadow-xs">
+            <nav
+              aria-label="Primary navigation"
+              className="hidden xl:flex items-center gap-0.5 bg-surface-2/90 dark:bg-surface-container-low/80 backdrop-blur-md px-2 py-1.5 rounded-full border border-black/10 dark:border-white/10 shadow-xs"
+            >
               {NAV_ITEMS.map((item) => {
                 const currentPath = (pathname || '/').replace(/\/$/, '') || '/'
                 const targetPath = (item.href || '/').replace(/\/$/, '') || '/'
@@ -316,8 +319,8 @@ export const Navbar = () => {
                       onClick={() => setOpenDropdown(null)}
                       onFocus={() => hasChildren && setOpenDropdown(item.name)}
                       aria-current={isExactActive ? 'page' : undefined}
-                      aria-haspopup={hasChildren ? 'menu' : undefined}
                       aria-expanded={hasChildren ? isDropdownOpen : undefined}
+                      aria-controls={hasChildren ? `desktop-submenu-${item.name}` : undefined}
                       className={`font-heading text-[12px] xl:text-[13px] uppercase tracking-[0.03em] xl:tracking-[0.04em] px-2.5 xl:px-3 py-1.5 rounded-full transition-colors duration-200 nav-link-animated inline-flex items-center gap-0.5 xl:gap-1 ${
                         isActive
                           ? 'text-primary-container bg-primary-container/15 font-bold is-active shadow-xs'
@@ -339,7 +342,7 @@ export const Navbar = () => {
                     {/* Desktop Dropdown Popover */}
                     {hasChildren && item.children && (
                       <div
-                        role="menu"
+                        id={`desktop-submenu-${item.name}`}
                         aria-label={`${item.name} submenu`}
                         className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[80] transition-all duration-200 ease-[var(--ease-organic)] ${
                           isDropdownOpen
@@ -353,7 +356,6 @@ export const Navbar = () => {
                             <Link
                               key={child.name}
                               href={child.href}
-                              role="menuitem"
                               onClick={() => setOpenDropdown(null)}
                               className="flex flex-col px-3 py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors group/child text-left"
                             >
@@ -380,7 +382,7 @@ export const Navbar = () => {
                   </div>
                 )
               })}
-            </div>
+            </nav>
 
             {/* Social links, theme control and contact action */}
             <div className="hidden xl:flex items-center gap-2 relative z-[60] shrink-0">
@@ -475,7 +477,8 @@ export const Navbar = () => {
             window.requestAnimationFrame(() => menuButtonRef.current?.focus())
           }}
           aria-label="Close navigation menu"
-          className="absolute top-4 right-4 z-20 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-surface-1 border border-black/10 dark:border-white/10 text-on-surface hover:text-primary-container"
+          className="absolute right-4 z-20 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-black/10 bg-surface-1 text-on-surface hover:text-primary-container dark:border-white/10"
+          style={{ top: 'max(1rem, env(safe-area-inset-top, 1rem))' }}
         >
           <Icon name="close" size={24} />
         </button>
@@ -542,7 +545,7 @@ export const Navbar = () => {
                     aria-expanded={isExpanded}
                     aria-label={`Toggle ${item.name} submenu`}
                     aria-controls={`mobile-submenu-${item.name}`}
-                    className="w-10 h-10 flex items-center justify-center rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface hover:text-primary-container transition-colors shrink-0"
+                    className="flex h-11 w-11 min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-xl border border-black/10 bg-black/5 text-on-surface transition-colors hover:text-primary-container dark:border-white/10 dark:bg-white/5"
                   >
                     <Icon
                       name="expand_more"

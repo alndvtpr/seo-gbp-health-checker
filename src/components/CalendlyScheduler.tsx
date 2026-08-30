@@ -213,20 +213,20 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
 
         {/* Feature Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1 text-[11px] font-sans text-on-surface/80">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-black/10 shadow-sm dark:border-white/10">
             <Clock className="w-3.5 h-3.5 text-primary-container shrink-0" aria-hidden="true" /> 20 Minutes
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" /> Practical Next Steps
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-black/10 shadow-sm dark:border-white/10">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 shrink-0" aria-hidden="true" /> Practical Next Steps
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-white/10 shadow-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" aria-hidden="true" /> No Sales Pressure
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-1/90 border border-black/10 shadow-sm dark:border-white/10">
+            <ShieldCheck className="w-3.5 h-3.5 text-sky-700 dark:text-sky-400 shrink-0" aria-hidden="true" /> No Sales Pressure
           </span>
         </div>
       </div>
 
       {/* Main Glass Card Wrapper */}
-      <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-surface-1/90 p-2.5 sm:p-5 md:p-6 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative overflow-hidden motion-reveal">
+      <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-surface-1/90 p-2.5 sm:p-5 md:p-6 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.12)] relative overflow-hidden motion-reveal dark:border-white/10 dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
         {/* Ambient Radial Glows (Amber + Sky) */}
         <div
           className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"
@@ -334,7 +334,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
                 <button
                   type="button"
                   onClick={handleRetry}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 text-white font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-white/20 transition-all border border-white/10 min-h-[44px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-black/5 text-on-surface font-heading text-xs font-bold uppercase tracking-[0.06em] hover:bg-black/10 transition-all border border-black/10 min-h-[44px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:bg-white/10 dark:hover:bg-white/20 dark:border-white/10"
                 >
                   <RefreshCcw className="w-4 h-4" aria-hidden="true" />
                   <span>Retry</span>
@@ -354,7 +354,7 @@ export const CalendlyScheduler: React.FC<CalendlySchedulerProps> = ({
         </div>
 
         {/* Fallback Secondary CTA & Timezone Guidance */}
-        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 text-center sm:text-left">
+        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 text-center sm:text-left dark:border-white/10">
           <p className="font-sans text-xs sm:text-sm text-on-surface/75">
             Having trouble loading the calendar?{' '}
             <a

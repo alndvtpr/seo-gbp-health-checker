@@ -31,7 +31,7 @@ const PROJECT_TYPES: ProjectType[] = [
     baseWeeks: 3,
     basePriceUsd: 850,
     basePricePhp: 48000,
-    description: 'Code-first React/Next.js architecture built for fast Core Web Vitals, clean crawlability, and zero layout shift.',
+    description: 'Code-first React/Next.js architecture built for measurable performance, clean crawlability, and reduced layout-shift risk.',
     recommendedPackage: 'Custom Next.js & React Architecture',
     serviceParam: 'Custom Next.js & React Architecture',
   },
@@ -61,7 +61,7 @@ const PROJECT_TYPES: ProjectType[] = [
     baseWeeks: 4,
     basePriceUsd: 450,
     basePricePhp: 25000,
-    description: 'Up to 30 delivery hours per month for prioritized technical, on-page, and local search support with an activity log and monthly review.',
+    description: '20–25 delivery hours per month for prioritized technical, on-page, and local search support with an activity log and monthly review.',
     recommendedPackage: 'Ongoing Monthly SEO Support',
     serviceParam: 'Ongoing Monthly SEO Support',
   },
@@ -82,7 +82,7 @@ const CAPABILITIES: CapabilityAddon[] = [
     weeksDelta: 0.5,
     priceUsd: 90,
     pricePhp: 5000,
-    description: 'Custom JSON-LD structured data implementation for Organization, LocalBusiness, Breadcrumbs, and FAQs.',
+    description: 'Supported JSON-LD implementation for eligible entity and page types based on verified business details and visible content.',
   },
   {
     id: 'map-pack',
@@ -376,7 +376,7 @@ export function ServicesScopeEstimator() {
           {/* Delivery Mode Badge */}
           <div className="flex items-center justify-between p-3 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/10 dark:border-white/5 text-xs font-sans">
             <span className="text-on-surface/70">Execution Cadence:</span>
-            <span className="font-heading font-bold text-emerald-500">
+            <span className="font-heading font-bold text-emerald-700 dark:text-emerald-500">
               {activeProject.id === 'monthly-retainer'
                 ? 'Reserved Monthly Capacity'
                 : isAccelerationApplied
@@ -418,12 +418,12 @@ export function ServicesScopeEstimator() {
 
           {/* Small Business Flexibility Guarantee Note */}
           <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-1">
-            <span className="font-heading text-[11px] font-bold text-emerald-500 flex items-center justify-center gap-1">
-              <Icon name="handshake" size={14} className="text-emerald-500" />
+            <span className="font-heading text-[11px] font-bold text-emerald-700 dark:text-emerald-500 flex items-center justify-center gap-1">
+              <Icon name="handshake" size={14} className="text-emerald-700 dark:text-emerald-500" />
               <span>Flexible Budget &amp; Phased Options</span>
             </span>
             <p className="font-sans text-[11px] text-on-surface/75 leading-relaxed">
-              Have specific constraints or a custom scope? We can tailor deliverables sprint-by-sprint to fit your exact needs.
+              Have specific constraints or a custom scope? I can organize the deliverables sprint by sprint around the scope we agree on.
             </p>
           </div>
 

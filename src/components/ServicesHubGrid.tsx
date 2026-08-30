@@ -88,12 +88,12 @@ const SERVICE_HUB_CARDS: ServiceHubCard[] = [
     pillar: 'Pillar 05 • Web Engineering',
     title: 'SEO-Ready Web Design & Development',
     description:
-      'High-performance Next.js App Router web apps and custom WordPress themes engineered with clean code, sub-second load times, and built-in search architecture.',
+      'High-performance Next.js App Router web apps and custom WordPress themes engineered with clean code, performance budgets, and built-in search architecture.',
     href: '/services/web-development/',
     icon: 'code_blocks',
     deliverables: [
       'Custom Next.js & React code-first architectures',
-      'Bespoke WordPress theme builds (no bloated templates)',
+      'Custom WordPress theme builds without bloated templates',
       'Performance engineering targeting fast Core Web Vitals',
       'Integrated GA4 analytics & Search Console tracking',
     ],
@@ -105,15 +105,15 @@ const PROOF_ITEMS = [
   {
     title: 'AlainTapiru.com Architecture',
     category: 'Technical SEO & Next.js',
-    metric: '99 Desktop / 96 Mobile PageSpeed',
-    description: 'Code-first Next.js portfolio with structured JSON-LD entity graph and zero CLS.',
+    metric: 'Aug 2026 Lab: 99 Desktop / 96 Mobile',
+    description: 'Code-first Next.js portfolio with a structured JSON-LD entity graph and reserved layout space. Lab scores are not field Core Web Vitals.',
     href: '/projects/alaintapiru-portfolio/',
   },
   {
     title: 'AngatSikat Studio',
     category: 'WordPress & On-Page SEO',
-    metric: '98+ Mobile Lighthouse Score',
-    description: 'Custom WordPress theme build engineered for fast crawlability and clean semantics.',
+    metric: 'Performance Report Not Maintained',
+    description: 'Custom WordPress theme build engineered for fast crawlability and clean semantics without an unsupported exact score.',
     href: '/projects/angat-sikat-studio/',
   },
   {

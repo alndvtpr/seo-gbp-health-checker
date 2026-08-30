@@ -16,6 +16,11 @@
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "test:a11y": "tsx scripts/verify-accessibility.ts",
+    "test:performance": "tsx scripts/verify-performance.ts",
+    "test:responsive": "tsx scripts/verify-responsive.ts",
+    "test:theme": "tsx scripts/verify-theme.ts",
+    "test:content": "tsx scripts/verify-content.ts",
     "test:seo": "tsx scripts/verify-search-and-perf.ts"
   },
   "dependencies": {

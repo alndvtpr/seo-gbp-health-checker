@@ -107,9 +107,9 @@ function ContactFormInner() {
 
   if (isSuccess) {
     return (
-      <div className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/40 shadow-xl text-center space-y-6 animate-in fade-in zoom-in duration-300">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(16,185,129,0.25)]">
-          <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-500" />
+      <div role="status" aria-live="polite" className="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-primary-container/40 shadow-xl text-center space-y-6 animate-in fade-in zoom-in duration-300">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-500 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(16,185,129,0.25)]">
+          <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10 text-emerald-700 dark:text-emerald-500" />
         </div>
 
         <div className="space-y-2">
@@ -128,15 +128,15 @@ function ContactFormInner() {
           </span>
           <ul className="space-y-2 font-sans text-xs text-on-surface/75">
             <li className="flex items-start gap-2">
-              <Icon name="check" size={14} className="text-emerald-500 shrink-0 mt-0.5" />
+              <Icon name="check" size={14} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
               <span>I personally review your website URL and task details.</span>
             </li>
             <li className="flex items-start gap-2">
-              <Icon name="check" size={14} className="text-emerald-500 shrink-0 mt-0.5" />
+              <Icon name="check" size={14} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
               <span>I will reply with honest scope guidance and next steps.</span>
             </li>
             <li className="flex items-start gap-2">
-              <Icon name="check" size={14} className="text-emerald-500 shrink-0 mt-0.5" />
+              <Icon name="check" size={14} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
               <span>No automated sales pitches, pressure, or spam.</span>
             </li>
           </ul>
@@ -167,7 +167,7 @@ function ContactFormInner() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5" noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5" noValidate aria-busy={isSubmitting}>
         {/* Hidden honeypot anti-spam field */}
         <input
           type="text"
@@ -182,12 +182,12 @@ function ContactFormInner() {
         {serverError && (
           <div
             role="alert"
-            className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 flex items-start gap-3 text-xs sm:text-sm animate-in fade-in duration-200"
+            className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 flex items-start gap-3 text-xs sm:text-sm animate-in fade-in duration-200"
           >
-            <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-red-700 dark:text-red-400 shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <p className="font-heading font-semibold text-red-200">Submission Error</p>
-              <p className="text-red-300/90 leading-relaxed">{serverError}</p>
+              <p className="font-heading font-semibold text-red-800 dark:text-red-200">Submission Error</p>
+              <p className="text-red-700/90 dark:text-red-300/90 leading-relaxed">{serverError}</p>
             </div>
           </div>
         )}
@@ -218,7 +218,7 @@ function ContactFormInner() {
             }`}
           />
           {errors.name && (
-            <p id="contact-name-error" role="alert" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
+            <p id="contact-name-error" role="alert" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1.5 flex items-center gap-1">
               <span aria-hidden="true">&bull;</span> {errors.name.message}
             </p>
           )}
@@ -251,7 +251,7 @@ function ContactFormInner() {
               }`}
             />
             {errors.email && (
-              <p id="contact-email-error" role="alert" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
+              <p id="contact-email-error" role="alert" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1.5 flex items-center gap-1">
                 <span aria-hidden="true">&bull;</span> {errors.email.message}
               </p>
             )}
@@ -281,7 +281,7 @@ function ContactFormInner() {
               }`}
             />
             {errors.website && (
-              <p id="contact-website-error" role="alert" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1">
+              <p id="contact-website-error" role="alert" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1.5 flex items-center gap-1">
                 <span aria-hidden="true">&bull;</span> {errors.website.message}
               </p>
             )}
@@ -327,7 +327,7 @@ function ContactFormInner() {
             </div>
           </div>
           {errors.service && (
-            <p id="contact-service-error" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1" role="alert">
+            <p id="contact-service-error" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1.5 flex items-center gap-1" role="alert">
               <span aria-hidden="true">&bull;</span> {errors.service.message}
             </p>
           )}
@@ -358,7 +358,7 @@ function ContactFormInner() {
             }`}
           />
           {errors.message && (
-            <p id="contact-message-error" className="font-sans text-xs text-red-500 dark:text-red-400 mt-1.5 flex items-center gap-1" role="alert">
+            <p id="contact-message-error" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1.5 flex items-center gap-1" role="alert">
               <span aria-hidden="true">&bull;</span> {errors.message.message}
             </p>
           )}
@@ -385,7 +385,7 @@ function ContactFormInner() {
 
         {/* Low-pressure note */}
         <p className="font-sans text-[11px] text-center text-on-surface/60 leading-relaxed pt-1">
-          No obligation. We will review your scope and agree on deliverables before any work starts.
+          No obligation. I will review your scope with you, and we will agree on deliverables before any work starts.
         </p>
       </form>
     </div>

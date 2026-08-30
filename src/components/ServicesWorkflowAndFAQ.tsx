@@ -51,7 +51,7 @@ const FAQS: FAQItem[] = [
   {
     question: 'Why choose a React / Next.js site over WordPress (or vice versa)?',
     answer:
-      'React & Next.js sites offer fast loading speeds, zero layout shift, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both cleanly.',
+      'React & Next.js sites offer tighter control over asset delivery, layout stability, and code-first scalability. WordPress offers flexibility and an easy content management dashboard for non-technical teams. I build both with performance measurement and clear scope boundaries.',
   },
   {
     question: 'How do you track and report progress?',
@@ -98,7 +98,7 @@ export function ServicesWorkflowAndFAQ() {
             <div
               key={step.step}
               style={{ transitionDelay: `${idx * 80}ms` }}
-              className="p-6 sm:p-7 rounded-2xl bg-surface-1/90 border border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between relative shadow-lg motion-reveal"
+            className="p-6 sm:p-7 rounded-2xl bg-surface-1/90 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all duration-300 group flex flex-col justify-between relative shadow-lg motion-reveal"
             >
               <div>
                 {/* Step Number Badge */}
@@ -106,7 +106,7 @@ export function ServicesWorkflowAndFAQ() {
                   <span className="font-heading text-2xl sm:text-3xl font-black text-primary-container/90 group-hover:text-primary transition-colors">
                     {step.step}
                   </span>
-                  <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-2.5 py-0.5 rounded-full bg-white/5">
+              <span className="text-[11px] font-heading font-semibold uppercase tracking-wider text-on-surface/70 px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/5">
                     Phase 0{idx + 1}
                   </span>
                 </div>
@@ -123,7 +123,7 @@ export function ServicesWorkflowAndFAQ() {
               </div>
 
               {/* Progress Indicator line */}
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2 text-primary-container">
+            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 flex items-center gap-2 text-primary-container">
                 <Icon name="check_circle" size={14} />
                 <span className="text-[11px] font-heading font-semibold uppercase tracking-wider">
                   Deliverable Sprint
@@ -169,7 +169,7 @@ export function ServicesWorkflowAndFAQ() {
                 className={`rounded-2xl border transition-all duration-300 motion-reveal ${
                   isOpen
                     ? 'bg-surface-1 border-primary-container/40 shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
-                    : 'bg-surface-1/70 border-white/10 hover:border-white/20'
+                      : 'bg-surface-1/70 border-black/10 hover:border-black/20 dark:border-white/10 dark:hover:border-white/20'
                 }`}
               >
                 <button
@@ -187,7 +187,7 @@ export function ServicesWorkflowAndFAQ() {
                     className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${
                       isOpen
                         ? 'rotate-180 bg-primary-container text-on-primary-container'
-                        : 'bg-white/5 text-on-surface/70'
+                      : 'bg-black/5 text-on-surface/70 dark:bg-white/5'
                     }`}
                     aria-hidden="true"
                   >
@@ -213,7 +213,7 @@ export function ServicesWorkflowAndFAQ() {
                   className={`faq-content-grid ${isOpen ? 'is-open' : ''}`}
                 >
                   <div className="faq-content-inner">
-                    <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-on-surface/80 font-sans text-sm sm:text-base leading-relaxed border-t border-white/5 mt-1">
+                  <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 text-on-surface/80 font-sans text-sm sm:text-base leading-relaxed border-t border-black/5 dark:border-white/5 mt-1">
                       {faq.answer}
                     </div>
                   </div>

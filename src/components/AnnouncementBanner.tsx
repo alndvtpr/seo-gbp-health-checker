@@ -1,35 +1,45 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { Sparkles, ArrowRight, X } from 'lucide-react'
 
 const STORAGE_KEY = 'gbp_announcement_banner_2026_v2_dismissed'
+const DISMISS_EVENT = 'announcement-banner-dismissed'
+
+const subscribeToDismissal = (onStoreChange: () => void) => {
+  window.addEventListener('storage', onStoreChange)
+  window.addEventListener(DISMISS_EVENT, onStoreChange)
+
+  return () => {
+    window.removeEventListener('storage', onStoreChange)
+    window.removeEventListener(DISMISS_EVENT, onStoreChange)
+  }
+}
+
+const getDismissalSnapshot = () => {
+  try {
+    return localStorage.getItem(STORAGE_KEY) === 'true'
+  } catch {
+    return false
+  }
+}
 
 export const AnnouncementBanner = () => {
-  const [dismissed, setDismissed] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    try {
-      const isDismissed = localStorage.getItem(STORAGE_KEY) === 'true'
-      setDismissed(isDismissed)
-    } catch {
-      setDismissed(false)
-    }
-  }, [])
+  const storedDismissal = useSyncExternalStore(subscribeToDismissal, getDismissalSnapshot, () => true)
+  const [dismissedThisSession, setDismissedThisSession] = useState(false)
 
   const handleDismiss = () => {
-    setDismissed(true)
+    setDismissedThisSession(true)
     try {
       localStorage.setItem(STORAGE_KEY, 'true')
+      window.dispatchEvent(new Event(DISMISS_EVENT))
     } catch {
       // ignore storage error
     }
   }
 
-  if (!mounted || dismissed) return null
+  if (storedDismissal || dismissedThisSession) return null
 
   return (
     <aside
@@ -55,7 +65,7 @@ export const AnnouncementBanner = () => {
 
           <Link
             href="/tools/"
-            className="inline-flex items-center gap-1 font-heading font-bold text-[11px] sm:text-xs text-primary-container hover:text-primary hover:underline transition-colors shrink-0 ml-auto sm:ml-1 group whitespace-nowrap min-h-[36px] sm:min-h-auto py-1 px-1.5"
+            className="inline-flex min-h-[44px] items-center gap-1 px-1.5 py-1 font-heading text-[11px] font-bold text-primary-container transition-colors hover:text-primary hover:underline sm:ml-1 sm:text-xs ml-auto shrink-0 group whitespace-nowrap"
           >
             <span>Try Free</span>
             <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
@@ -65,7 +75,7 @@ export const AnnouncementBanner = () => {
         <button
           type="button"
           onClick={handleDismiss}
-          className="p-1.5 rounded-lg text-on-surface/60 hover:text-on-surface hover:bg-white/10 transition-colors shrink-0 cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+          className="flex min-h-[44px] min-w-[44px] shrink-0 cursor-pointer items-center justify-center rounded-lg p-1.5 text-on-surface/60 transition-colors hover:bg-black/5 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:hover:bg-white/10"
           aria-label="Dismiss announcement banner"
         >
           <X className="w-4 h-4" aria-hidden="true" />

@@ -16,9 +16,9 @@ type TabType = 'desktop' | 'mobile' | 'compare'
 
 export function PerformanceAuditProof({
   className = '',
-  eyebrow = '02. Empirical Validation & Audit Proof',
+  eyebrow = '02. Dated Lab Evidence',
   title = 'Google PageSpeed Insights Audit Scores',
-  subtitle = 'Empirical Lighthouse and PageSpeed Insights lab benchmarks for alaintapiru.com demonstrating fast load velocity, 0ms Total Blocking Time in lab testing, and 100/100 SEO health.',
+  subtitle = 'August 2026 Lighthouse and PageSpeed Insights screenshots for alaintapiru.com. These simulated lab results are dated evidence, not field Core Web Vitals or a guarantee of current real-user performance.',
   compact = false,
 }: PerformanceAuditProofProps) {
   const [activeTab, setActiveTab] = useState<TabType>('compare')
@@ -40,7 +40,7 @@ export function PerformanceAuditProof({
             {eyebrow}
           </span>
           <span className="text-on-surface/40 text-xs hidden sm:inline">•</span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
             PageSpeed Insights Lab Report (Aug 2026)
           </span>
         </div>
@@ -59,40 +59,40 @@ export function PerformanceAuditProof({
       {/* Metric Highlight Pills */}
       <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 mb-6 sm:mb-8">
         <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-amber-500/20 hover:border-amber-500/40 transition-all flex flex-col justify-between">
-          <span className="text-[10px] sm:text-xs font-heading font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+          <span className="text-[10px] sm:text-xs font-heading font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider flex items-center gap-1">
             ⚡ Desktop Score
           </span>
           <div className="flex items-baseline gap-1 mt-1">
             <span className="text-xl sm:text-2xl font-black font-heading text-on-surface">99</span>
-            <span className="text-[11px] text-emerald-400 font-bold">/ 100</span>
+            <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">/ 100</span>
           </div>
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0ms Total Blocking Time (Lab)</span>
         </div>
 
         <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-emerald-500/20 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
-          <span className="text-[10px] sm:text-xs font-heading font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+          <span className="text-[10px] sm:text-xs font-heading font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1">
             📱 Mobile Score
           </span>
           <div className="flex items-baseline gap-1 mt-1">
             <span className="text-xl sm:text-2xl font-black font-heading text-on-surface">96</span>
-            <span className="text-[11px] text-emerald-400 font-bold">/ 100</span>
+            <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">/ 100</span>
           </div>
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">Moto G Power Emulation</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-black/10 hover:border-black/20 dark:border-white/10 dark:hover:border-white/20 transition-all flex flex-col justify-between">
           <span className="text-[10px] sm:text-xs font-heading font-bold text-primary-container uppercase tracking-wider flex items-center gap-1">
-            🟢 Lab Performance Vitals
+            🟢 Lab Performance Metrics
           </span>
           <div className="flex items-baseline gap-1 mt-1">
             <span className="text-xl sm:text-2xl font-black font-heading text-on-surface">100%</span>
-            <span className="text-[11px] text-emerald-400 font-bold">Passed</span>
+            <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">Recorded</span>
           </div>
           <span className="text-[10px] text-on-surface/50 font-sans mt-0.5">0.000 CLS &bull; Sub-1.2s LCP (Lab)</span>
         </div>
 
-        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
-          <span className="text-[10px] sm:text-xs font-heading font-bold text-sky-400 uppercase tracking-wider flex items-center gap-1">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-surface-1/65 backdrop-blur-sm border border-black/10 hover:border-black/20 dark:border-white/10 dark:hover:border-white/20 transition-all flex flex-col justify-between">
+          <span className="text-[10px] sm:text-xs font-heading font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider flex items-center gap-1">
             🛡️ SEO &amp; Best Practices
           </span>
           <div className="flex items-baseline gap-1 mt-1">
@@ -103,15 +103,15 @@ export function PerformanceAuditProof({
       </div>
 
       {/* Interactive Responsive Tab Switcher */}
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
-        <div className="inline-flex p-1 rounded-xl bg-surface-2 border border-white/10 w-full sm:w-auto justify-center sm:justify-start">
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-black/10 dark:border-white/10">
+        <div className="inline-flex p-1 rounded-xl bg-surface-2 border border-black/10 dark:border-white/10 w-full sm:w-auto justify-center sm:justify-start">
           <button
             type="button"
             onClick={() => setActiveTab('compare')}
             className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-[0.06em] transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'compare'
                 ? 'bg-primary-container text-on-primary-container shadow-md'
-                : 'text-on-surface/70 hover:text-white hover:bg-white/5'
+                : 'text-on-surface/70 hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5'
             }`}
           >
             <span className="hidden sm:inline">⚖️</span>
@@ -123,7 +123,7 @@ export function PerformanceAuditProof({
             className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-[0.06em] transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'desktop'
                 ? 'bg-primary-container text-on-primary-container shadow-md'
-                : 'text-on-surface/70 hover:text-white hover:bg-white/5'
+                : 'text-on-surface/70 hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5'
             }`}
           >
             <span>⚡ Desktop (99)</span>
@@ -134,7 +134,7 @@ export function PerformanceAuditProof({
             className={`px-3 sm:px-4 py-1.5 rounded-lg text-xs font-heading font-bold uppercase tracking-[0.06em] transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'mobile'
                 ? 'bg-primary-container text-on-primary-container shadow-md'
-                : 'text-on-surface/70 hover:text-white hover:bg-white/5'
+                : 'text-on-surface/70 hover:text-on-surface hover:bg-black/5 dark:hover:bg-white/5'
             }`}
           >
             <span>📱 Mobile (96)</span>
@@ -143,7 +143,7 @@ export function PerformanceAuditProof({
 
         <div className="text-xs font-sans text-on-surface/50 flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400" />
-          <span>Audit Engine: Lighthouse 12.2.0</span>
+          <span>Evidence type: simulated lab test</span>
         </div>
       </div>
 
@@ -157,39 +157,39 @@ export function PerformanceAuditProof({
       >
         {/* Desktop Audit Card */}
         {(activeTab === 'compare' || activeTab === 'desktop') && (
-          <div className="rounded-2xl bg-surface-1 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
+          <div className="rounded-2xl bg-surface-1 border border-black/10 dark:border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
             {/* Mockup Top Window Bar */}
-            <div className="px-4 py-3 bg-surface-2 border-b border-white/10 flex items-center justify-between gap-3">
+            <div className="px-4 py-3 bg-surface-2 border-b border-black/10 dark:border-white/10 flex items-center justify-between gap-3">
               <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
               </div>
-              <div className="flex-1 max-w-sm px-3 py-1 rounded-md bg-black/50 border border-white/5 text-[10px] font-mono text-on-surface/60 truncate text-center flex items-center justify-center gap-1">
+              <div className="flex-1 max-w-sm px-3 py-1 rounded-md bg-black/75 border border-white/10 text-[10px] font-mono text-slate-300 truncate text-center flex items-center justify-center gap-1">
                 <span className="text-emerald-400">🔒</span>
                 <span>pagespeed.web.dev/analysis/https-www-alaintapiru-com</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-heading font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
+              <span className="px-2 py-0.5 rounded text-[10px] font-heading font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 shrink-0">
                 Desktop Environment
               </span>
             </div>
 
             {/* Scoreboard Badges */}
-            <div className="p-4 sm:p-5 bg-gradient-to-b from-[#1b1e1f] to-[#181a1b] border-b border-white/5 grid grid-cols-4 gap-2 text-center">
+            <div className="p-4 sm:p-5 bg-gradient-to-b from-surface-3 to-surface-2 border-b border-black/5 dark:border-white/5 grid grid-cols-4 gap-2 text-center">
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">99</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">99</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Performance</div>
               </div>
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">96</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">96</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Accessibility</div>
               </div>
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">100</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">100</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Best Practices</div>
               </div>
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">100</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">100</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">SEO</div>
               </div>
             </div>
@@ -209,9 +209,9 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Card Footer Breakdown */}
-            <div className="p-4 sm:p-5 border-t border-white/5 bg-surface-2 flex items-center justify-between text-xs font-sans">
+            <div className="p-4 sm:p-5 border-t border-black/5 dark:border-white/5 bg-surface-2 flex items-center justify-between text-xs font-sans">
               <div className="flex items-center gap-2">
-                <Icon name="check_circle" size={16} className="text-emerald-400" />
+                <Icon name="check_circle" size={16} className="text-emerald-700 dark:text-emerald-400" />
                 <span className="text-on-surface/80 font-medium">Desktop Speed Index: &lt; 0.9s</span>
               </div>
               <span className="text-primary-container font-heading font-bold">0ms TBT</span>
@@ -221,39 +221,39 @@ export function PerformanceAuditProof({
 
         {/* Mobile Audit Card */}
         {(activeTab === 'compare' || activeTab === 'mobile') && (
-          <div className="rounded-2xl bg-surface-1 border border-white/10 hover:border-emerald-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
+          <div className="rounded-2xl bg-surface-1 border border-black/10 dark:border-white/10 hover:border-emerald-500/40 transition-all duration-300 overflow-hidden shadow-2xl flex flex-col justify-between group">
             {/* Mockup Top Window Bar */}
-            <div className="px-4 py-3 bg-surface-2 border-b border-white/10 flex items-center justify-between gap-3">
+            <div className="px-4 py-3 bg-surface-2 border-b border-black/10 dark:border-white/10 flex items-center justify-between gap-3">
               <div className="flex items-center gap-1.5 shrink-0">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
               </div>
-              <div className="flex-1 max-w-sm px-3 py-1 rounded-md bg-black/50 border border-white/5 text-[10px] font-mono text-on-surface/60 truncate text-center flex items-center justify-center gap-1">
+              <div className="flex-1 max-w-sm px-3 py-1 rounded-md bg-black/75 border border-white/10 text-[10px] font-mono text-slate-300 truncate text-center flex items-center justify-center gap-1">
                 <span className="text-emerald-400">🔒</span>
                 <span>pagespeed.web.dev/analysis/https-www-alaintapiru-com</span>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] font-heading font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+              <span className="px-2 py-0.5 rounded text-[10px] font-heading font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 shrink-0">
                 Mobile Environment
               </span>
             </div>
 
             {/* Scoreboard Badges */}
-            <div className="p-4 sm:p-5 bg-gradient-to-b from-surface-3 to-surface-2 border-b border-white/5 grid grid-cols-4 gap-2 text-center">
+            <div className="p-4 sm:p-5 bg-gradient-to-b from-surface-3 to-surface-2 border-b border-black/5 dark:border-white/5 grid grid-cols-4 gap-2 text-center">
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">96</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">96</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Performance</div>
               </div>
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">96</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">96</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Accessibility</div>
               </div>
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">100</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">100</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">Best Practices</div>
               </div>
               <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
-                <div className="text-lg sm:text-xl font-black font-heading text-emerald-400">100</div>
+                <div className="text-lg sm:text-xl font-black font-heading text-emerald-700 dark:text-emerald-400">100</div>
                 <div className="text-[10px] font-heading uppercase text-on-surface/70">SEO</div>
               </div>
             </div>
@@ -273,12 +273,12 @@ export function PerformanceAuditProof({
             </div>
 
             {/* Card Footer Breakdown */}
-            <div className="p-4 sm:p-5 border-t border-white/5 bg-surface-2 flex items-center justify-between text-xs font-sans">
+            <div className="p-4 sm:p-5 border-t border-black/5 dark:border-white/5 bg-surface-2 flex items-center justify-between text-xs font-sans">
               <div className="flex items-center gap-2">
-                <Icon name="check_circle" size={16} className="text-emerald-400" />
+                <Icon name="check_circle" size={16} className="text-emerald-700 dark:text-emerald-400" />
                 <span className="text-on-surface/80 font-medium">Mobile Simulated Slow 4G</span>
               </div>
-              <span className="text-emerald-400 font-heading font-bold">Passed Lab Vitals</span>
+              <span className="text-emerald-700 dark:text-emerald-400 font-heading font-bold">Recorded Lab Result</span>
             </div>
           </div>
         )}
@@ -286,45 +286,45 @@ export function PerformanceAuditProof({
 
       {/* Technical Optimizations Bento Bar */}
       {!compact && (
-        <div className="relative z-10 mt-8 pt-6 border-t border-white/10 space-y-4">
+        <div className="relative z-10 mt-8 pt-6 border-t border-black/10 dark:border-white/10 space-y-4">
           <span className="font-heading text-[11px] text-primary-container uppercase tracking-[0.08em] font-semibold block">
             How These Scores Were Engineered
           </span>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+            <div className="p-4 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 space-y-1.5">
               <div className="font-heading text-xs font-bold text-on-surface flex items-center gap-1.5">
-                <span className="text-amber-400">⚡</span> Zero-CPU CSS Ambient Layer
+                <span className="text-amber-700 dark:text-amber-400">⚡</span> Interaction-Deferred WebGL
               </div>
               <p className="font-sans text-[11px] text-on-surface/70 leading-relaxed">
-                Replaced blocking WebGL animation loops with GPU-composited CSS gradients, eliminating 4.5s of desktop CPU blocking.
+                The WebGL canvas initializes only after user interaction, caps its render buffer and frame rate, sleeps after four idle seconds, and bypasses animation for reduced motion.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+            <div className="p-4 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 space-y-1.5">
               <div className="font-heading text-xs font-bold text-on-surface flex items-center gap-1.5">
-                <span className="text-emerald-400">⏱️</span> Interaction-Deferred Analytics
+                <span className="text-emerald-700 dark:text-emerald-400">⏱️</span> Real-User Measurement Path
               </div>
               <p className="font-sans text-[11px] text-on-surface/70 leading-relaxed">
-                Google Analytics and third-party tags defer to idle callbacks (8000ms fallback) or first user pointer interaction.
+                GA4 loads after hydration and receives browser Web Vitals events. Field conclusions require enough post-deployment real-user data and percentile analysis.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+            <div className="p-4 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 space-y-1.5">
               <div className="font-heading text-xs font-bold text-on-surface flex items-center gap-1.5">
-                <span className="text-primary-container">📐</span> Explicit Image Aspect Reserves
+                <span className="text-primary-container">📐</span> Reserved Image Layout Space
               </div>
               <p className="font-sans text-[11px] text-on-surface/70 leading-relaxed">
-                Every visual asset uses static dimensions and fixed aspect ratio wrappers, achieving a pristine 0.000 CLS score.
+                Key Next.js image paths use intrinsic dimensions, fill containers with reserved aspect ratios, or both. This is repository evidence that reduces layout-shift risk, not field CLS proof.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+            <div className="p-4 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 space-y-1.5">
               <div className="font-heading text-xs font-bold text-on-surface flex items-center gap-1.5">
-                <span className="text-sky-400">🛡️</span> Complete Schema Graph
+                <span className="text-sky-700 dark:text-sky-400">🛡️</span> Static Regression Coverage
               </div>
               <p className="font-sans text-[11px] text-on-surface/70 leading-relaxed">
-                Automated JSON-LD schemas (`WebSite`, `Person`, `Article`, `BreadcrumbList`) ensuring 100/100 SEO &amp; Rich Snippet health.
+                Repository checks verify image reserves, measurement wiring, deferred shader safeguards, and honest lab-versus-field labels on every run.
               </p>
             </div>
           </div>

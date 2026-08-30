@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
   title: 'Local SEO Services Philippines | Google Business Profile Optimization | Alain Dave Tapiru',
   description:
-    'Professional Local SEO services in the Philippines. Google Business Profile setup & optimization, 10-point signal diagnostics, local landing page architecture, and citation consistency.',
+    'Practical Local SEO support in the Philippines. Google Business Profile review, 10-point signal diagnostics, local landing page structure, and citation consistency.',
   url: 'https://www.alaintapiru.com/services/local-seo/',
 })
 
@@ -20,7 +20,7 @@ const LOCAL_OPTIMIZATION_AREAS = [
       'Audit and optimize your Google Business Profile to ensure primary categories, attributes, operating hours, and photo assets send strong local trust signals.',
     deliverables: [
       'Primary & secondary category taxonomy alignment',
-      '100% profile attribute completeness & description optimization',
+      'Profile attribute completeness and description review',
       'High-resolution geotag-safe photo uploads & visual guidelines',
       'Special hours, holiday schedules & operational status verification',
     ],
@@ -34,7 +34,7 @@ const LOCAL_OPTIMIZATION_AREAS = [
     deliverables: [
       'NAP consistency audit across websites, socials & directories',
       'Duplicate listing identification & resolution guidance',
-      'High-authority local directory citation setup',
+      'Relevant local directory citation setup',
       'Google Maps pin placement & service area boundary verification',
     ],
   },
@@ -43,9 +43,9 @@ const LOCAL_OPTIMIZATION_AREAS = [
     title: 'Geo-Targeted Landing Pages & Schema',
     icon: 'dataset',
     description:
-      'Build localized service pages equipped with Schema.org LocalBusiness structured data, geo-coordinates, and localized content to rank across targeted service areas.',
+      'Build useful local service pages with appropriate structured data when the business details and schema eligibility are verified.',
     deliverables: [
-      'LocalBusiness & GeoCoordinates JSON-LD schema implementation',
+      'Eligible local business markup using verified location details',
       'City/municipality-specific service area landing page outlines',
       'Localized heading structure and geographic keyword integration',
       'Interactive Google Maps embed integration with zero performance penalty',
@@ -70,17 +70,17 @@ const PROBLEMS_SOLVED = [
   {
     title: 'Missing from the Google Maps 3-Pack',
     problem: 'Nearby customers search for your exact services, but your business does not appear in the top 3 Map Pack results due to category mismatches or weak profile signals.',
-    solution: 'We diagnose your 10 core GBP ranking signals, select the optimal primary category, and optimize profile completeness to elevate local pack visibility.',
+    solution: 'I review 10 public GBP signals, check the primary category, and identify profile fields that may need correction or completion.',
   },
   {
     title: 'Inconsistent Address & Phone Information',
     problem: 'Conflicting phone numbers, old addresses, or mismatched business names across web directories confuse search engines and damage local trust.',
-    solution: 'We conduct a full NAP audit, standardize your core business identity, and align all external citations to reflect exact verified data.',
+    solution: 'I conduct a NAP audit, standardize the verified business details, and identify external citations that need correction.',
   },
   {
     title: 'Serving Multiple Locations with Only One Generic Page',
     problem: 'A business serves several nearby cities or regions but attempts to rank with a single generic homepage without location-specific signals.',
-    solution: 'We architect localized service area pages with dedicated GeoCoordinates and PostalAddress schema for each target city or service area.',
+    solution: 'I structure local service-area pages and add location markup only when the business details and eligibility are verified.',
   },
 ]
 
@@ -88,7 +88,7 @@ const WORKFLOW_STEPS = [
   {
     step: '01',
     title: '10-Point GBP Diagnostic Scan',
-    desc: 'Scanning your live Google Business Profile using our custom diagnostic engine to evaluate status, ratings, reviews, photos, and categories.',
+    desc: 'Scanning your live Google Business Profile with my diagnostic tool to review status, ratings, reviews, photos, and categories.',
   },
   {
     step: '02',
@@ -98,12 +98,12 @@ const WORKFLOW_STEPS = [
   {
     step: '03',
     title: 'Local Schema & Page Architecture',
-    desc: 'Implementing LocalBusiness JSON-LD schema with precise geo-coordinates, opening hours, and accepted payment specifications.',
+    desc: 'Implementing appropriate local structured data only when verified details and schema eligibility support it.',
   },
   {
     step: '04',
     title: 'Citation & Review Roadmap',
-    desc: 'Delivering a structured 30-day action plan for high-authority citations, review momentum, and local prominence growth.',
+    desc: 'Delivering a structured 30-day action plan for relevant citations, review responses, and profile improvements.',
   },
 ]
 
@@ -111,12 +111,12 @@ const FAQS = [
   {
     question: 'Can you guarantee a #1 ranking in Google Maps or the Local Pack?',
     answer:
-      'No legitimate SEO specialist can guarantee #1 rankings on Google Maps. Local search results depend on three core algorithmic factors: Proximity (how close the searcher is to your business), Relevance (how well your categories match), and Prominence (your reviews and citations). We optimize every controllable technical and profile signal to maximize your visibility.',
+      'No legitimate SEO specialist can guarantee #1 rankings on Google Maps. Local results depend on proximity, relevance, and prominence. I can improve controllable profile and website signals, but location, competition, and Google’s systems still affect what each searcher sees.',
   },
   {
     question: 'How does the free GBP Health Checker tool work?',
     answer:
-      'Our self-built GBP Health Checker connects to the Google Places API to analyze 10 public trust indicators (operational status, website link, phone, address, operating hours, categories, rating, review count, photos, and map pack presence) and produces a calibrated 100-point score with an action plan.',
+      'My self-built GBP Health Checker uses public Places data to review 10 profile indicators: operational status, website link, phone, address, operating hours, categories, rating, review count, photos, and map pack presence. It produces a heuristic 100-point score and action plan.',
   },
   {
     question: 'Do I need a physical storefront address to do Local SEO?',
@@ -178,7 +178,7 @@ const LOCAL_SEO_SCHEMA = {
             '@type': 'Offer',
             itemOffered: {
               '@type': 'Service',
-              name: 'LocalBusiness Schema & Geo-Targeted Landing Pages',
+              name: 'Eligible Local Business Markup & Local Landing Pages',
             },
           },
           {
@@ -236,7 +236,7 @@ export default function LocalSeoPage() {
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_SEO_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(LOCAL_SEO_SCHEMA) }}
       />
 
       {/* 1. Hero Section */}
@@ -274,7 +274,7 @@ export default function LocalSeoPage() {
 
         {/* Subhead */}
         <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-          Turn nearby searchers into direct customer phone calls, store visits, and local inquiries. We optimize your Google Business Profile, fix category and NAP inconsistencies, and build geo-targeted landing page architectures.
+          Help nearby searchers find clearer, more consistent business information. I review your Google Business Profile, identify category and NAP inconsistencies, and structure useful local landing pages.
         </p>
 
         {/* Action Row */}
@@ -289,14 +289,14 @@ export default function LocalSeoPage() {
 
           <Link
             href="/contact/?service=Local%20SEO%20Optimization"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             Inquire About Local SEO Sprints
           </Link>
         </div>
 
         {/* 3-Item Trust Bar */}
-        <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div className="pt-8 border-t border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {[
             '10-Point Live Signal Diagnostic',
             'Primary & Secondary Category Tuning',
@@ -305,7 +305,7 @@ export default function LocalSeoPage() {
             <div
               key={point}
               style={{ transitionDelay: `${idx * 60}ms` }}
-              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
+              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
             >
               <Icon name="check_circle" size={18} className="text-primary-container shrink-0" />
               <span>{point}</span>
@@ -384,10 +384,10 @@ export default function LocalSeoPage() {
             id="optimization-areas-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
-            What We Optimize for Maximum Local Reach
+            What I Review for Local Search Visibility
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            From your Google Maps presence to on-site LocalBusiness Schema graphs, we ensure every local signal is accurate.
+            From your Google Maps presence to eligible on-site local business markup, I check that published details are supported and consistent.
           </p>
         </div>
 
@@ -514,7 +514,7 @@ export default function LocalSeoPage() {
               Local SEO &amp; Google Business Profile Health Checker
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-              Experience our live, interactive Google Business Profile signal checker built on Next.js, Serper Places API, and Google AI Studio. Analyzes 10 core trust indicators and generates instant 30-day dynamic SEO roadmaps.
+              Try my live Google Business Profile signal checker built with Next.js, Serper Places API, and Google AI Studio. It reviews 10 public profile indicators and prepares a 30-day action plan.
             </p>
 
             <div className="grid grid-cols-3 gap-3 pt-4 border-t border-black/10 dark:border-white/10 text-center max-w-lg">
@@ -641,12 +641,12 @@ export default function LocalSeoPage() {
             className="p-6 rounded-2xl bg-surface-1/95 border border-black/10 dark:border-white/10 hover:border-primary-container/40 transition-all group flex flex-col justify-between shadow-sm motion-reveal"
           >
             <div>
-              <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-primary-container mb-2 block">LocalBusiness Schema</span>
+              <span className="text-[10px] font-heading font-bold uppercase tracking-wider text-primary-container mb-2 block">Local Business Markup</span>
               <h3 className="font-heading text-lg font-bold text-on-surface group-hover:text-primary transition-colors mb-1">
                 Technical SEO &amp; Schema Architecture
               </h3>
               <p className="font-sans text-xs text-on-surface/70 leading-relaxed">
-                Structured LocalBusiness JSON-LD markup, geo-coordinates, and sub-second mobile speed.
+                Structured local-search markup, privacy-appropriate location data, and measured mobile performance.
               </p>
             </div>
             <div className="pt-3 mt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between font-heading text-xs font-bold text-primary-container">
@@ -664,7 +664,7 @@ export default function LocalSeoPage() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto"
       >
         <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
             <span>Turn Local Searches Into Inquiries • Direct Discovery Call</span>
           </div>
@@ -677,7 +677,7 @@ export default function LocalSeoPage() {
           </h2>
 
           <p className="font-sans text-base sm:text-lg md:text-xl text-on-surface/80 max-w-2xl mx-auto leading-relaxed">
-            Let&apos;s audit your Google Business Profile signals, calibrate your categories, and implement clean LocalBusiness schema across your web presence.
+            Let&apos;s review your Google Business Profile signals, check your categories, and add appropriate local structured data where the verified business details support it.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
@@ -692,7 +692,7 @@ export default function LocalSeoPage() {
 
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
             >
               <span>Back to Services Hub</span>
             </Link>

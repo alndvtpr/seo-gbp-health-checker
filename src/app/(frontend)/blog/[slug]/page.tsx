@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
+import { generateMetadata as buildSeoMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { TableOfContents } from '@/components/TableOfContents'
@@ -53,13 +53,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         headline: post.title,
         description: post.excerpt,
         datePublished: post.datePublished,
-        dateModified: post.datePublished,
+        ...(post.dateModified ? { dateModified: post.dateModified } : {}),
         inLanguage: 'en-US',
         author: {
           '@id': 'https://www.alaintapiru.com/#person',
         },
         publisher: {
-          '@id': 'https://www.alaintapiru.com/#business',
+          '@id': 'https://www.alaintapiru.com/#person',
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <article className="pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-16 max-w-6xl mx-auto relative z-20 space-y-10 sm:space-y-14">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleSchema) }}
       />
 
       {/* Breadcrumb Navigation */}
@@ -290,7 +290,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           {/* Quick Tool Diagnostic Card */}
           <div className="p-5 rounded-2xl bg-surface-1/90 border border-primary-container/30 space-y-3 shadow-lg">
-            <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-emerald-400 font-semibold flex items-center gap-1.5">
+            <span className="font-heading text-[10px] uppercase tracking-[0.08em] text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Live Diagnostic
             </span>
@@ -314,7 +314,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             const relService = post.slug.includes('pagespeed') || post.slug.includes('nextjs')
               ? {
                   title: 'Technical SEO & Core Web Vitals',
-                  desc: 'Sub-second LCP, zero-CLS Next.js engineering, and clean crawlability.',
+                  desc: 'Reserved layout space, dated lab evidence, and clean crawlability.',
                   href: '/services/technical-seo/',
                   badge: 'Technical SEO',
                 }

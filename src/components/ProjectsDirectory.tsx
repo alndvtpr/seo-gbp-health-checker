@@ -1,49 +1,50 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useSyncExternalStore } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { createPortal } from 'react-dom'
 import { Icon } from '@/components/icons'
 import { PROJECTS, type Project } from '@/data/projects'
+import { useModalFocus } from '@/hooks/useModalFocus'
 
 const CATEGORIES = ['All', 'WordPress', 'Technical SEO', 'Local SEO'] as const
+const subscribe = () => () => {}
+const getSnapshot = () => true
+const getServerSnapshot = () => false
 
 export function ProjectsDirectory() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null)
   const [activeGalleryImage, setActiveGalleryImage] = useState<string | null>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const modalTitleRef = useRef<HTMLHeadingElement>(null)
 
   const closeModal = useCallback(() => {
     setActiveModalProject(null)
     setActiveGalleryImage(null)
   }, [])
 
-  // Keyboard navigation & body scroll lock
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeModal()
-      }
-    }
+  useModalFocus({
+    active: Boolean(activeModalProject),
+    containerRef: modalRef,
+    initialFocusRef: modalTitleRef,
+    onEscape: closeModal,
+  })
 
+  // Body scroll lock while the modal is active.
+  useEffect(() => {
     if (activeModalProject) {
-      window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [activeModalProject, closeModal])
+  }, [activeModalProject])
 
   const filteredProjects =
     selectedCategory === 'All'
@@ -57,6 +58,7 @@ export function ProjectsDirectory() {
 
     return createPortal(
       <div
+        ref={modalRef}
         id="project-detail-modal"
         role="dialog"
         aria-modal="true"
@@ -66,7 +68,7 @@ export function ProjectsDirectory() {
         onClick={closeModal}
       >
         <div
-          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col bg-surface-1 border border-black/10 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-auto animate-in fade-in zoom-in-95 duration-200"
+          className="relative my-auto flex max-h-[calc(100dvh-1.5rem)] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-black/10 bg-surface-1 shadow-2xl animate-in fade-in zoom-in-95 duration-200 sm:max-h-[92dvh] sm:rounded-3xl dark:border-white/15"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
@@ -78,7 +80,7 @@ export function ProjectsDirectory() {
                   {activeModalProject.proofLabel}
                 </span>
                 {activeModalProject.status === 'Ongoing' && (
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-heading font-medium bg-amber-500/10 text-amber-700 dark:text-amber-500 border border-amber-500/20">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                     Ongoing Build
                   </span>
@@ -88,7 +90,9 @@ export function ProjectsDirectory() {
                 </span>
               </div>
               <h2
+                ref={modalTitleRef}
                 id="project-modal-title"
+                tabIndex={-1}
                 className="font-heading text-lg sm:text-2xl md:text-3xl font-extrabold text-on-surface"
               >
                 {activeModalProject.title}
@@ -102,7 +106,7 @@ export function ProjectsDirectory() {
               type="button"
               onClick={closeModal}
               aria-label="Close project modal"
-              className="w-9 h-9 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/15 text-on-surface border border-black/10 dark:border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/15 text-on-surface border border-black/10 dark:border-white/10 transition-colors shrink-0 cursor-pointer shadow-sm"
             >
               <Icon name="close" size={20} />
             </button>
@@ -133,6 +137,8 @@ export function ProjectsDirectory() {
                       key={idx}
                       type="button"
                       onClick={() => setActiveGalleryImage(img)}
+                      aria-label={`Show ${activeModalProject.title} preview image ${idx + 1}`}
+                      aria-pressed={currentImage === img}
                       className={`relative h-16 sm:h-20 rounded-lg sm:rounded-xl overflow-hidden border transition-all cursor-pointer ${
                         currentImage === img
                           ? 'border-primary-container ring-2 ring-primary-container/40'
@@ -214,7 +220,7 @@ export function ProjectsDirectory() {
 
             {/* 5. Empirical Validation & Benchmarks */}
             <div className="space-y-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
-              <span className="font-heading text-[11px] text-emerald-500 font-bold uppercase tracking-wider block">
+              <span className="font-heading text-[11px] text-emerald-700 dark:text-emerald-500 font-bold uppercase tracking-wider block">
                 05. Practical Validation &amp; Link
               </span>
               <p className="font-sans text-xs sm:text-sm text-on-surface/85 leading-relaxed">
@@ -272,6 +278,7 @@ export function ProjectsDirectory() {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
+              aria-pressed={isActive}
               className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-heading tracking-[0.04em] transition-colors cursor-pointer ${
                 isActive
                   ? 'bg-primary-container text-on-primary-container font-bold shadow-[0_0_25px_rgba(224,123,32,0.35)]'
@@ -294,8 +301,10 @@ export function ProjectsDirectory() {
           >
             <div>
               {/* Project Card Image Preview */}
-              <div
-                className="relative w-full h-48 sm:h-52 bg-black/40 overflow-hidden cursor-pointer"
+              <button
+                type="button"
+                aria-label={`Open ${proj.title} project breakdown`}
+                className="relative block w-full h-48 sm:h-52 bg-black/40 overflow-hidden cursor-pointer text-left"
                 onClick={() => setActiveModalProject(proj)}
               >
                 <Image
@@ -314,13 +323,13 @@ export function ProjectsDirectory() {
                     {proj.proofLabel}
                   </span>
                   {proj.status === 'Ongoing' && (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-amber-500 border border-amber-500/40 backdrop-blur-md shadow-md">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-surface-1/90 text-amber-700 dark:text-amber-500 border border-amber-500/40 backdrop-blur-md shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                       Ongoing Build
                     </span>
                   )}
                 </div>
-              </div>
+              </button>
 
               {/* Card Meta Content */}
               <div className="p-5 sm:p-6 space-y-2.5">
@@ -333,11 +342,14 @@ export function ProjectsDirectory() {
                   </span>
                 </div>
 
-                <h2
-                  className="font-heading text-lg sm:text-xl font-bold text-on-surface group-hover:text-primary transition-colors cursor-pointer"
-                  onClick={() => setActiveModalProject(proj)}
-                >
-                  {proj.title}
+                <h2 className="font-heading text-lg sm:text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalProject(proj)}
+                    className="text-left hover:text-primary-container"
+                  >
+                    {proj.title}
+                  </button>
                 </h2>
 
                 <p className="font-sans text-xs sm:text-sm text-primary-container/90 italic">

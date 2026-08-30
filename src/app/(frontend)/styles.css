@@ -5,6 +5,7 @@
 :root,
 html.light,
 html[data-theme="light"] {
+  color-scheme: light;
   --color-background: #fafaf8;
   --color-on-background: #1c1b1f;
   --color-surface: #fafaf8;
@@ -26,6 +27,7 @@ html[data-theme="light"] {
 
 html.dark,
 html[data-theme="dark"] {
+  color-scheme: dark;
   --color-background: #0f1111;
   --color-on-background: #e8e8e8;
   --color-surface: #0f1111;
@@ -321,7 +323,7 @@ html {
   overflow-x: clip;
   color: var(--color-on-background);
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 8.5rem;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
@@ -457,6 +459,38 @@ body {
   outline: 3px solid var(--color-primary);
   outline-offset: 3px;
   box-shadow: 0 0 0 2px var(--color-background);
+}
+
+input,
+select,
+textarea {
+  color-scheme: inherit;
+  accent-color: var(--color-primary-container);
+  caret-color: var(--color-primary-container);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000001;
+  transform: translateY(-200%);
+  border-radius: 0.75rem;
+  background: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform var(--motion-fast) var(--ease-organic);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+#main-content:focus {
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

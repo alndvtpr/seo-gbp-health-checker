@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Icon } from '@/components/icons'
-import { generateMetadata as buildSeoMetadata } from '@/lib/seo'
+import { generateMetadata as buildSeoMetadata, serializeJsonLd } from '@/lib/seo'
 import { getProjectBySlug, PROJECTS } from '@/data/projects'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { PerformanceAuditProof } from '@/components/PerformanceAuditProof'
@@ -63,7 +63,7 @@ export default async function ProjectDetailPage({
           '@id': 'https://www.alaintapiru.com/#person',
         },
         publisher: {
-          '@id': 'https://www.alaintapiru.com/#business',
+          '@id': 'https://www.alaintapiru.com/#person',
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -109,7 +109,7 @@ export default async function ProjectDetailPage({
       {/* Dynamic JSON-LD Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(projectJsonLd) }}
       />
 
       {/* Breadcrumb Navigation & Back Link */}
@@ -137,7 +137,7 @@ export default async function ProjectDetailPage({
             {project.proofLabel}
           </span>
           {project.status === 'Ongoing' && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-medium bg-amber-500/10 text-amber-400 border border-amber-500/30">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-medium bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/30">
               <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
               Ongoing Staging Build
             </span>
@@ -192,7 +192,7 @@ export default async function ProjectDetailPage({
           <span className="font-heading text-[10px] text-on-surface/70 uppercase tracking-[0.08em] block mb-1 font-semibold">
             Status
           </span>
-          <span className="font-heading text-xs sm:text-sm font-bold text-amber-500 dark:text-amber-400">
+          <span className="font-heading text-xs sm:text-sm font-bold text-amber-700 dark:text-amber-400">
             {project.status === 'Ongoing' ? 'Active Staging Build' : 'Production'}
           </span>
         </div>
@@ -272,7 +272,7 @@ export default async function ProjectDetailPage({
 
         {/* 5. Empirical Validation & Benchmarks */}
         <section className="space-y-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-emerald-500/5 border border-emerald-500/25 motion-reveal shadow-sm">
-          <span className="font-heading text-xs text-emerald-500 font-bold uppercase tracking-[0.08em] block">
+          <span className="font-heading text-xs text-emerald-700 dark:text-emerald-500 font-bold uppercase tracking-[0.08em] block">
             05. Practical Validation &amp; Live Link
           </span>
           <h2 className="font-heading text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
@@ -302,9 +302,9 @@ export default async function ProjectDetailPage({
         {/* PageSpeed Audit Proof Component for alaintapiru-portfolio */}
         {project.slug === 'alaintapiru-portfolio' && (
           <PerformanceAuditProof
-            eyebrow="Empirical Validation & Audit Proof"
+            eyebrow="Dated Lab Evidence"
             title="Google PageSpeed Insights Audit Scores"
-            subtitle="Google PageSpeed Insights and Lighthouse lab audit scores (August 2026) for alaintapiru.com across Desktop and Mobile devices, demonstrating sub-second load velocity, 0ms Total Blocking Time in lab testing, and 100/100 SEO health."
+            subtitle="Repository screenshots record August 2026 Google PageSpeed Insights and Lighthouse lab results for alaintapiru.com across desktop and mobile. They are simulated lab evidence, not field Core Web Vitals or a guarantee of current real-user performance."
           />
         )}
 
@@ -418,7 +418,7 @@ export default async function ProjectDetailPage({
             className="p-5 rounded-2xl bg-gradient-to-br from-primary-container/15 via-surface-1 to-surface-1 border border-primary-container/30 hover:border-primary-container transition-all duration-300 group flex flex-col justify-between shadow-sm"
           >
             <div>
-              <span className="font-heading text-[10px] text-emerald-500 dark:text-emerald-400 uppercase tracking-[0.08em] block mb-1 font-semibold">
+              <span className="font-heading text-[10px] text-emerald-700 dark:text-emerald-400 uppercase tracking-[0.08em] block mb-1 font-semibold">
                 Live Diagnostic Suite
               </span>
               <h3 className="font-heading text-base font-bold text-on-surface group-hover:text-primary transition-colors mb-2">
@@ -451,7 +451,7 @@ export default async function ProjectDetailPage({
           </h2>
           <p className="font-sans text-xs sm:text-sm text-on-surface/70 max-w-xl mx-auto leading-relaxed">
             {project.slug === 'alaintapiru-portfolio'
-              ? 'Achieve fast loading speeds, clean semantic HTML, and verified 99+ PageSpeed scores on Next.js.'
+              ? 'Build with clean semantic HTML, reserved layout space, and performance checks across lab and real-user measurement paths.'
               : project.slug === 'local-seo-gbp-checker'
               ? 'Diagnose ranking signals, optimize Google Business Profile categories, and improve local search visibility.'
               : 'From custom WordPress development to technical SEO implementations, let’s build search-ready digital foundations.'}

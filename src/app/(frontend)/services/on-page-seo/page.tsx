@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
@@ -43,7 +43,7 @@ const ON_PAGE_OPTIMIZATION_AREAS = [
     title: 'Click-Optimized Title Tags & Metadata',
     icon: 'travel_explore',
     description:
-      'Craft compelling, snippet-safe title tags and meta descriptions that stand out on SERPs to maximize organic click-through rates (CTR).',
+      'Write clear, snippet-safe title tags and meta descriptions that match the page intent and support more relevant clicks.',
     deliverables: [
       'Pixel-width safe title tags (55–60 characters) with brand anchors',
       'Action-oriented meta descriptions (150–160 characters)',
@@ -70,17 +70,17 @@ const PROBLEMS_SOLVED = [
   {
     title: 'High Impressions but Weak Click-Through Rates (CTR)',
     problem: 'Your pages rank in search results, but users scroll past due to generic, automated, or truncated title tags and vague meta descriptions.',
-    solution: 'We craft human-first, value-focused metadata designed to match searcher psychology and capture higher click volume from existing rankings.',
+    solution: 'I write clear metadata that matches the page intent, explains the value, and gives searchers a useful reason to click.',
   },
   {
     title: 'Targeting Keywords with the Wrong Search Intent',
     problem: 'Publishing blog posts for commercial buying terms, or product pages for broad research queries, causing immediate visitor bounce.',
-    solution: 'We classify query intent accurately (informational vs. commercial) and align each target page format to what Google expects to rank.',
+    solution: 'I classify each query by intent and align the target page format with the kinds of results already serving that search.',
   },
   {
     title: 'Content Cannibalization & Scattered Link Equity',
     problem: 'Multiple pages targeting overlapping keywords, confusing search bots and diluting rankings between competing internal URLs.',
-    solution: 'We audit your keyword matrix, consolidate duplicate topics, assign distinct canonical targets, and establish a clear parent-child linking silo.',
+    solution: 'I audit the keyword map, consolidate overlapping topics, assign distinct canonical targets, and create clear parent-child internal links.',
   },
 ]
 
@@ -116,12 +116,12 @@ const FAQS = [
   {
     question: 'Will you rewrite all of my website copy?',
     answer:
-      'No. We optimize existing copy surgically, adjusting headings, introductory hooks, keyword placements, and metadata while preserving your brand voice and authentic tone.',
+      'No. I can improve existing copy by adjusting headings, opening sections, keyword placement, and metadata while preserving your brand voice.',
   },
   {
     question: 'How do you prevent keyword cannibalization?',
     answer:
-      'We create a centralized keyword mapping matrix ensuring every URL on your site has one distinct primary search intent. If two pages target the exact same query, we recommend consolidating them or differentiating their topical focus.',
+      'I create a keyword map that gives each URL a distinct primary search intent. If two pages target the same query, I recommend consolidating them or separating their focus.',
   },
   {
     question: 'How long does it take for on-page SEO changes to show results?',
@@ -140,7 +140,7 @@ const ON_PAGE_SEO_SCHEMA = {
       url: 'https://www.alaintapiru.com/services/on-page-seo/',
       serviceType: 'On-Page Search Engine Optimization',
       description:
-        'Professional On-Page SEO services in the Philippines. Search intent mapping, keyword clustering, semantic heading architecture, metadata CTR optimization, and internal linking.',
+        'Practical On-Page SEO support in the Philippines. Search intent mapping, keyword clustering, semantic heading structure, metadata improvements, and internal linking.',
       provider: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
@@ -222,7 +222,7 @@ export default function OnPageSeoPage() {
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ON_PAGE_SEO_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(ON_PAGE_SEO_SCHEMA) }}
       />
 
       {/* 1. Hero Section */}
@@ -260,7 +260,7 @@ export default function OnPageSeoPage() {
 
         {/* Subhead */}
         <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-          Align your website content directly with real user search intent. We optimize keyword mapping, semantic heading structures, click-focused metadata, and internal linking to turn search visibility into qualified inquiries.
+          Align your website content with real search intent. I improve keyword mapping, semantic heading structure, metadata, and internal linking so the right pages can support relevant searches and inquiries.
         </p>
 
         {/* Action Row */}
@@ -275,14 +275,14 @@ export default function OnPageSeoPage() {
 
           <a
             href="#what-we-optimize"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             Explore Optimization Scope ↓
           </a>
         </div>
 
         {/* 3-Item Trust Bar */}
-        <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div className="pt-8 border-t border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {[
             'Search Intent-Aligned Mapping',
             'Zero Keyword Stuffing (Natural Copy)',
@@ -291,7 +291,7 @@ export default function OnPageSeoPage() {
             <div
               key={point}
               style={{ transitionDelay: `${idx * 60}ms` }}
-              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
+              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
             >
               <Icon name="check_circle" size={18} className="text-primary-container shrink-0" />
               <span>{point}</span>
@@ -322,7 +322,7 @@ export default function OnPageSeoPage() {
             Why Good Content Fails to Rank and Convert
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            Traffic without commercial intent produces zero inquiries. We fix search alignment, snippet presentation, and content structure.
+            Traffic that misses commercial intent is less likely to produce useful inquiries. I improve search alignment, snippet presentation, and content structure.
           </p>
         </div>
 
@@ -370,7 +370,7 @@ export default function OnPageSeoPage() {
             id="optimization-areas-heading"
             className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold text-on-surface mb-3 sm:mb-4 tracking-tight"
           >
-            What We Optimize on Every Target Page
+            What I Review on Each Target Page
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
             Every on-page sprint combines granular search intent modeling with structured HTML semantic elements.
@@ -500,13 +500,13 @@ export default function OnPageSeoPage() {
               AngatSikat Studio Content &amp; Theme Architecture
             </h3>
             <p className="font-sans text-xs sm:text-sm text-on-surface/80 leading-relaxed mb-6">
-              Explore how on-page search intent and semantic HTML5 headings were unified in a custom WordPress theme build without bloated templates: 98+ mobile lab speed, clean crawl paths, and distinct service landing page silos.
+              Explore how on-page search intent and semantic HTML5 headings were unified in a custom WordPress theme build without bloated templates: clean crawl paths, distinct service landing page silos, and no exact performance claim without a maintained dated report.
             </p>
 
             <div className="grid grid-cols-3 gap-3 pt-4 border-t border-black/10 dark:border-white/10 text-center max-w-lg">
               <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
-                <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">98+</span>
-                <span className="font-sans text-[10px] text-on-surface/70">Mobile Lab Speed</span>
+                <span className="font-heading text-sm sm:text-base font-extrabold text-primary-container block">Not maintained</span>
+                <span className="font-sans text-[10px] text-on-surface/70">Dated Performance Report</span>
               </div>
               <div className="p-2.5 rounded-xl bg-black/5 dark:bg-white/5">
                 <span className="font-heading text-lg sm:text-xl font-extrabold text-primary-container block">100%</span>
@@ -643,7 +643,7 @@ export default function OnPageSeoPage() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto"
       >
         <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
             <span>Targeted Search Relevance • Free 20-Minute Strategy Call</span>
           </div>
@@ -671,7 +671,7 @@ export default function OnPageSeoPage() {
 
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
             >
               <span>Back to Services Hub</span>
             </Link>

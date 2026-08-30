@@ -4,7 +4,6 @@ import { BLOG_POSTS } from '@/data/posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.alaintapiru.com'
-  const currentDate = new Date()
 
   const coreRoutes = [
     '/',
@@ -25,15 +24,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/web-development/',
   ]
 
-  const projectRoutes = PROJECTS.map((p) => `/projects/${p.slug}/`)
-  const blogRoutes = BLOG_POSTS.map((b) => `/blog/${b.slug}/`)
-
-  const allRoutes = [...coreRoutes, ...serviceRoutes, ...projectRoutes, ...blogRoutes]
-
-  return allRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: currentDate,
-    changeFrequency: route.startsWith('/blog/') || route.startsWith('/projects/') ? 'weekly' : 'daily',
-    priority: route === '/' ? 1.0 : route.startsWith('/services/') || route.startsWith('/tools/') ? 0.9 : 0.8,
+  const projectRoutes = PROJECTS.map((project) => `/projects/${project.slug}/`)
+  const blogRoutes = BLOG_POSTS.map((post) => ({
+    route: `/blog/${post.slug}/`,
+    lastModified: post.dateModified ?? post.datePublished,
   }))
+
+  const stableRoutes = [...coreRoutes, ...serviceRoutes, ...projectRoutes]
+
+  return [
+    ...stableRoutes.map((route) => ({
+      url: `${baseUrl}${route}`,
+      changeFrequency: route.startsWith('/projects/') ? ('monthly' as const) : ('weekly' as const),
+      priority:
+        route === '/' ? 1.0 : route.startsWith('/services/') || route.startsWith('/tools/') ? 0.9 : 0.8,
+    })),
+    ...blogRoutes.map(({ route, lastModified }) => ({
+      url: `${baseUrl}${route}`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+  ]
 }

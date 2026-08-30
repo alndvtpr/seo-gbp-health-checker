@@ -1,9 +1,9 @@
 import React from 'react'
+import { serializeJsonLd } from '@/lib/seo'
 
-export const JsonLd = () => {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@graph': [
+export const GLOBAL_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
       {
         '@type': 'WebSite',
         '@id': 'https://www.alaintapiru.com/#website',
@@ -12,24 +12,9 @@ export const JsonLd = () => {
         description:
           'Technical SEO, Local Search Optimization, Core Web Vitals, and Next.js / WordPress development services.',
         publisher: {
-          '@id': 'https://www.alaintapiru.com/#business',
+          '@id': 'https://www.alaintapiru.com/#person',
         },
         inLanguage: 'en-US',
-      },
-      {
-        '@type': 'ProfilePage',
-        '@id': 'https://www.alaintapiru.com/#profilepage',
-        url: 'https://www.alaintapiru.com/',
-        name: 'Alain Dave G. Tapiru - Profile',
-        isPartOf: {
-          '@id': 'https://www.alaintapiru.com/#website',
-        },
-        about: {
-          '@id': 'https://www.alaintapiru.com/#person',
-        },
-        mainEntity: {
-          '@id': 'https://www.alaintapiru.com/#person',
-        },
       },
       {
         '@type': 'Person',
@@ -43,15 +28,10 @@ export const JsonLd = () => {
           'SEO Specialist and Technical Web Developer in the Philippines specializing in technical SEO, local SEO, Core Web Vitals, and Next.js development.',
         email: 'mailto:alaintapiru@gmail.com',
         telephone: '+63-906-324-9560',
-        worksFor: {
-          '@id': 'https://www.alaintapiru.com/#business',
-        },
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '10231 Everlasting Street, Dau',
           addressLocality: 'Mabalacat City',
           addressRegion: 'Pampanga',
-          postalCode: '2010',
           addressCountry: 'PH',
         },
         knowsAbout: [
@@ -62,7 +42,6 @@ export const JsonLd = () => {
           'Local SEO & Google Business Profile (GBP)',
           'Core Web Vitals Optimization',
           'Web Design & Web Development',
-          'Off-page Search Engine Optimization(SEO)',
           'Answer Engine Optimization(AEO)',
           'Generative Engine Optimization (GEO)',
           'AI Workflow Automation',
@@ -74,95 +53,14 @@ export const JsonLd = () => {
           'https://wa.me/639063249560',
         ],
       },
-      {
-        '@type': ['ProfessionalService', 'LocalBusiness'],
-        '@id': 'https://www.alaintapiru.com/#business',
-        name: 'Alain Tapiru - SEO & Web Development',
-        alternateName: 'Alain Dave Tapiru Freelance & Consulting',
-        url: 'https://www.alaintapiru.com/',
-        logo: 'https://www.alaintapiru.com/logo.png',
-        image: 'https://www.alaintapiru.com/alain-dave-tapiru-seo-specialist-philippines.avif',
-        description:
-          'Professional Technical SEO, Local Search Optimization, Google Business Profile management, and custom Next.js/WordPress web development.',
-        telephone: '+63-906-324-9560',
-        email: 'alaintapiru@gmail.com',
-        priceRange: '$$',
-        currenciesAccepted: 'USD, PHP',
-        paymentAccepted: 'Cash, Credit Card, Bank Transfer, PayPal, Wise, GCash',
-        founder: {
-          '@id': 'https://www.alaintapiru.com/#person',
-        },
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '10231 Everlasting Street, Dau',
-          addressLocality: 'Mabalacat City',
-          addressRegion: 'Pampanga',
-          postalCode: '2010',
-          addressCountry: 'PH',
-        },
-        geo: {
-          '@type': 'GeoCoordinates',
-          latitude: 15.1788,
-          longitude: 120.5843,
-        },
-        hasMap:
-          'https://www.google.com/maps/search/?api=1&query=10231+Everlasting+Street+Dau+Mabalacat+City+Pampanga',
-        openingHoursSpecification: [
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: [
-              'Monday',
-              'Tuesday',
-              'Wednesday',
-              'Thursday',
-              'Friday',
-            ],
-            opens: '09:00',
-            closes: '18:00',
-          },
-          {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Saturday'],
-            opens: '09:00',
-            closes: '13:00',
-          },
-        ],
-        areaServed: [
-          {
-            '@type': 'City',
-            name: 'Mabalacat City',
-          },
-          {
-            '@type': 'AdministrativeArea',
-            name: 'Pampanga',
-          },
-          {
-            '@type': 'AdministrativeArea',
-            name: 'Central Luzon',
-          },
-          {
-            '@type': 'Country',
-            name: 'Philippines',
-          },
-          {
-            '@type': 'AdministrativeArea',
-            name: 'Worldwide',
-          },
-        ],
-        sameAs: [
-          'https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/',
-          'https://github.com/alndvtpr',
-          'https://www.facebook.com/dcrazedave',
-          'https://wa.me/639063249560',
-        ],
-      },
-    ],
-  }
+  ],
+}
 
+export const JsonLd = () => {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(GLOBAL_JSON_LD) }}
     />
   )
 }

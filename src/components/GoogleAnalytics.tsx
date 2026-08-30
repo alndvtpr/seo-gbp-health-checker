@@ -1,39 +1,34 @@
 'use client'
 
-import React, { useEffect, Suspense } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
-import { GoogleAnalytics as NextGoogleAnalytics } from '@next/third-parties/google'
+import React from 'react'
+import { useReportWebVitals } from 'next/web-vitals'
+import {
+  GoogleAnalytics as NextGoogleAnalytics,
+  sendGAEvent,
+} from '@next/third-parties/google'
 
 const DEFAULT_GA_MEASUREMENT_ID = 'G-2VK6KQNJGH'
 
-function PageViewTracker({ gaId }: { gaId: string }) {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+type ReportWebVitalsCallback = Parameters<typeof useReportWebVitals>[0]
 
-  useEffect(() => {
-    if (!pathname || typeof window === 'undefined') return
-
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
-
-    if (typeof (window as any).gtag === 'function') {
-      ;(window as any).gtag('config', gaId, {
-        page_path: url,
-      })
-    }
-  }, [pathname, searchParams, gaId])
-
-  return null
+const reportWebVitals: ReportWebVitalsCallback = (metric) => {
+  window.dataLayer = window.dataLayer || []
+  sendGAEvent('event', 'web_vital', {
+    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+    metric_name: metric.name,
+    metric_id: metric.id,
+    metric_value: metric.value,
+    metric_delta: metric.delta,
+    metric_rating: metric.rating,
+    navigation_type: metric.navigationType,
+    page_path: window.location.pathname,
+    non_interaction: true,
+  })
 }
 
 export const GoogleAnalytics: React.FC = () => {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || DEFAULT_GA_MEASUREMENT_ID
+  useReportWebVitals(reportWebVitals)
 
-  return (
-    <>
-      <NextGoogleAnalytics gaId={gaId} />
-      <Suspense fallback={null}>
-        <PageViewTracker gaId={gaId} />
-      </Suspense>
-    </>
-  )
+  return <NextGoogleAnalytics gaId={gaId} />
 }

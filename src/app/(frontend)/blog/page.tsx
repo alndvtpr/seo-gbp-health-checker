@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { RssButton } from '@/components/RssButton'
@@ -70,7 +70,7 @@ export default function BlogPage() {
       {/* Structured JSON-LD Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(blogJsonLd) }}
       />
 
       {/* Breadcrumb Navigation */}

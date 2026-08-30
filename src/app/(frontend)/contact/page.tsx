@@ -1,5 +1,5 @@
 import React from 'react'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { ContactForm } from '@/components/ContactForm'
 import { CalendlyScheduler } from '@/components/CalendlyScheduler'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -25,22 +25,20 @@ const jsonLd = {
         '@type': 'WebSite',
         '@id': 'https://www.alaintapiru.com/#website',
         name: 'Alain Dave Tapiru',
-        url: 'https://www.alaintapiru.com',
+        url: 'https://www.alaintapiru.com/',
       },
       mainEntity: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
         name: 'Alain Dave Tapiru',
         jobTitle: 'SEO Specialist & Web Developer',
-        url: 'https://www.alaintapiru.com',
+        url: 'https://www.alaintapiru.com/',
         email: 'alaintapiru@gmail.com',
         telephone: '+63-906-324-9560',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '10231 Everlasting Street, Dau',
           addressLocality: 'Mabalacat City',
           addressRegion: 'Pampanga',
-          postalCode: '2010',
           addressCountry: 'PH',
         },
       },
@@ -72,7 +70,7 @@ export default function ContactPage() {
       {/* Structured JSON-LD Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       {/* Breadcrumb Navigation */}
@@ -101,7 +99,7 @@ export default function ContactPage() {
             Book a 20-Minute Call
           </h2>
           <p className="font-sans text-xs sm:text-sm text-on-surface/75 leading-relaxed max-w-xl mx-auto">
-            Pick a time that works for you. We can talk through your website, SEO priorities, or project requirements and figure out the most practical next step.
+            Pick a time that works for you. I can talk through your website, SEO priorities, or project requirements with you and help identify the most practical next step.
           </p>
         </div>
 
@@ -168,7 +166,7 @@ export default function ContactPage() {
                     href="https://wa.me/639063249560"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.06em] bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-heading font-bold uppercase tracking-[0.06em] bg-emerald-500/15 text-emerald-700 dark:text-emerald-500 border border-emerald-500/30 hover:bg-emerald-500/25 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 dark:focus-visible:ring-emerald-400"
                     title="Message on WhatsApp"
                     aria-label="Message on WhatsApp (opens in new tab)"
                   >
@@ -207,7 +205,7 @@ export default function ContactPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-heading font-bold text-primary-container shrink-0">3.</span>
-                  <span><strong>Transparent Agreement:</strong> If we move forward, deliverables and pricing are agreed upon upfront. No obligations.</span>
+                  <span><strong>Transparent Agreement:</strong> If you decide to move forward, we agree on deliverables and pricing upfront. No obligation.</span>
                 </li>
               </ul>
             </div>
@@ -223,7 +221,7 @@ export default function ContactPage() {
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=alaintapiru@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                  className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-sm transition-all hover:bg-primary-container hover:text-on-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:bg-white/5"
                   title="Gmail"
                   aria-label="Gmail (opens compose in new tab)"
                 >
@@ -237,7 +235,7 @@ export default function ContactPage() {
                   href="https://wa.me/639063249560"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                  className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-sm transition-all hover:bg-primary-container hover:text-on-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:bg-white/5"
                   title="WhatsApp"
                   aria-label="WhatsApp (opens in new tab)"
                 >
@@ -251,7 +249,7 @@ export default function ContactPage() {
                   href="https://www.facebook.com/dcrazedave"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                  className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-sm transition-all hover:bg-primary-container hover:text-on-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:bg-white/5"
                   title="Facebook"
                   aria-label="Facebook Profile (opens in new tab)"
                 >
@@ -265,7 +263,7 @@ export default function ContactPage() {
                   href="https://www.linkedin.com/in/alain-dave-tapiru-seo-specialist-philippines/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                  className="flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-sm transition-all hover:bg-primary-container hover:text-on-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:bg-white/5"
                   title="LinkedIn"
                   aria-label="LinkedIn Profile (opens in new tab)"
                 >

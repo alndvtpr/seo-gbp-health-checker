@@ -10,8 +10,10 @@ export const ThemeToggle = ({ className = '' }: { className?: string }) => {
     return (
       <button
         type="button"
+        disabled
+        aria-disabled="true"
         aria-label="Toggle Day and Dark Mode"
-        className={`w-8 h-8 rounded-full bg-white/5 border border-primary-container/30 text-primary-container flex items-center justify-center transition-all ${className}`}
+        className={`icon-control flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container transition-all dark:bg-white/5 ${className}`}
       >
         <span className="w-3.5 h-3.5 block rounded-full bg-primary-container/40" />
       </button>
@@ -25,8 +27,9 @@ export const ThemeToggle = ({ className = '' }: { className?: string }) => {
       type="button"
       onClick={toggleTheme}
       aria-label={isDark ? 'Switch to Day Mode' : 'Switch to Dark Mode'}
+      aria-pressed={isDark}
       title={isDark ? 'Switch to Day Mode' : 'Switch to Dark Mode'}
-      className={`icon-control w-8 h-8 rounded-full bg-black/5 dark:bg-white/5 border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center shadow-[0_0_10px_rgba(230,126,34,0.1)] hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] btn-motion cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container shrink-0 ${className}`}
+      className={`icon-control flex h-11 w-11 min-h-[44px] min-w-[44px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-primary-container/30 bg-black/5 text-primary-container shadow-[0_0_10px_rgba(230,126,34,0.1)] transition-all hover:bg-primary-container hover:text-on-primary-container hover:shadow-[0_0_15px_rgba(230,126,34,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:bg-white/5 btn-motion ${className}`}
     >
       {isDark ? (
         // Sun icon for switching to Day Mode

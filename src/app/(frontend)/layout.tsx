@@ -1,6 +1,5 @@
 import React from 'react'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
-import Script from 'next/script'
 import './styles.css'
 
 import { ThemeProvider } from '@/components/ThemeProvider'
@@ -45,12 +44,16 @@ const themeInitScript = `
       document.documentElement.classList.add('dark');
       document.documentElement.setAttribute('data-theme', 'dark');
       document.documentElement.style.backgroundColor = '#0f1111';
+      document.documentElement.style.colorScheme = 'dark';
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
       document.documentElement.setAttribute('data-theme', 'light');
       document.documentElement.style.backgroundColor = '#fafaf8';
+      document.documentElement.style.colorScheme = 'light';
     }
+    var themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#0f1111' : '#fafaf8');
   } catch (e) {}
 })();
 `
@@ -69,6 +72,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#fafaf8" />
+        <meta name="color-scheme" content="light dark" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/logo.webp" type="image/webp" />
         <link rel="icon" href="/logo.png" type="image/png" />
@@ -90,7 +94,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       </head>
       <body className="bg-transparent text-on-background font-sans min-h-screen min-h-[100dvh] flex flex-col relative antialiased selection:bg-primary/30 selection:text-primary">
         <ThemeProvider>
-          {/* Interaction and idle-deferred Google Analytics (Zero TBT impact) */}
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          {/* GA4 loads after hydration and receives browser Web Vitals as real-user measurements. */}
           <GoogleAnalytics />
           {/* Global Scroll Reveal Initializer (Zero TBT impact) */}
           <ScrollRevealInit />
@@ -102,7 +109,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           
           <Navbar />
           
-          <main className="flex-1 relative z-20 w-full">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1 relative z-20 w-full">
+            {children}
+          </main>
           
           <Footer />
         </ThemeProvider>

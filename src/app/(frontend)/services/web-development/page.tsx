@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({
   title: 'SEO-Ready Web Design & Development | Next.js & WordPress | Alain Dave Tapiru',
   description:
-    'High-performance, SEO-ready web design and development. Code-first Next.js App Router architectures and bespoke WordPress themes engineered for speed, clean code, and search crawlability.',
+    'Practical, SEO-ready web design and development. Code-first Next.js App Router builds and custom WordPress themes with clean code and search crawlability.',
   url: 'https://www.alaintapiru.com/services/web-development/',
 })
 
@@ -17,22 +17,22 @@ const WEB_DEV_CAPABILITIES = [
     title: 'Custom Next.js & React Development',
     icon: 'code_blocks',
     description:
-      'Code-first web applications built with the modern Next.js App Router, React 19, and Server Components for fast navigation, sub-second TTFB, and streamlined search crawlability.',
+      'Code-first web applications built with the modern Next.js App Router, React 19, and Server Components for efficient navigation, server rendering, and streamlined search crawlability.',
     deliverables: [
       'Static Site Generation (SSG) & Server-Side Rendering (SSR)',
       'Clean modular TypeScript component architecture',
-      'Interaction-deferred hydration for 0ms Total Blocking Time',
+      'Interaction-deferred code and main-thread performance profiling',
       'API route handlers & secure server action pipelines',
     ],
   },
   {
     id: 'custom-wordpress-themes',
-    title: 'Bespoke WordPress Theme Development',
+    title: 'Custom WordPress Theme Development',
     icon: 'edit_note',
     description:
       'Custom PHP and responsive WordPress themes developed from scratch without reliance on slow, bloated third-party page builders or heavy plugin stacks.',
     deliverables: [
-      'Lightweight bespoke theme development (no bloated templates)',
+      'Lightweight custom theme development without bloated templates',
       'Intuitive WordPress dashboard for easy non-technical publishing',
       'Semantic HTML5 markup with native block editor compatibility',
       'Hardened security configuration & database optimization',
@@ -40,12 +40,12 @@ const WEB_DEV_CAPABILITIES = [
   },
   {
     id: 'speed-core-web-vitals',
-    title: 'Zero-CLS & Core Web Vitals Engineering',
+    title: 'Layout Stability & Core Web Vitals',
     icon: 'monitoring',
     description:
-      'Every web page is engineered from the first line of code to achieve 95+ PageSpeed scores, zero visual layout shift, and immediate interactive responsiveness.',
+      'Every web page is engineered with reserved layout space, optimized asset delivery, and separate lab and real-user performance measurement.',
     deliverables: [
-      'Intrinsic aspect-ratio image containers eliminating CLS',
+      'Intrinsic aspect-ratio image containers that reduce CLS risk',
       'Modern AVIF & WebP image compression pipelines',
       'Critical CSS inlining & asynchronous font preloading',
       'Composite-only GPU micro-animations with reduced-motion safety',
@@ -69,18 +69,18 @@ const WEB_DEV_CAPABILITIES = [
 const COMMON_DEV_PITFALLS = [
   {
     title: 'Bloated Drag-and-Drop Page Builders',
-    problem: 'Generic templates and visual builders inject massive CSS/JS payloads, hundreds of nested DIVs, and unoptimized assets that destroy Core Web Vitals.',
-    solution: 'We handcraft clean, modular code using modern semantic HTML5 and streamlined CSS tokens that load in under 1 second.',
+    problem: 'Some generic templates and visual builders add unnecessary CSS, JavaScript, nested markup, and unoptimized assets that can hurt page performance.',
+    solution: 'I build clean, modular templates with semantic HTML and focused CSS, then measure the result against an agreed performance budget.',
   },
   {
     title: 'SEO Treated as a Post-Launch Add-on',
     problem: 'Websites designed purely for visuals without considering URL hierarchy, heading structure, or schema often require expensive post-launch rewrites.',
-    solution: 'We architect crawlable URL silos, single-H1 semantic outlines, and structured JSON-LD graphs directly into the core templates before launch.',
+    solution: 'I plan crawlable URL groups, clear heading outlines, and supported JSON-LD relationships in the core templates before launch.',
   },
   {
     title: 'Mobile Unfriendliness & Visual Layout Shifts',
     problem: 'Images loading without explicit width/height dimensions cause content to jump around (high CLS), frustrating mobile users and failing Google audits.',
-    solution: 'We enforce responsive intrinsic aspect-ratio containers, optimized touch targets (≥44px), and fluid mobile navigation out of the box.',
+    solution: 'I use reserved image ratios, touch targets of at least 44px, and responsive navigation as part of the base implementation.',
   },
 ]
 
@@ -93,12 +93,12 @@ const WORKFLOW_STEPS = [
   {
     step: '02',
     title: 'Component & Theme Engineering',
-    desc: 'Developing custom Next.js components or bespoke WordPress templates with clean code standards.',
+    desc: 'Developing custom Next.js components or WordPress templates with clear code standards.',
   },
   {
     step: '03',
     title: 'SEO & Performance Hardening',
-    desc: 'Integrating structured JSON-LD schema, optimizing image pipelines, and tuning for 95+ Core Web Vitals.',
+    desc: 'Integrating structured JSON-LD schema, optimizing image pipelines, and measuring lab results separately from real-user Core Web Vitals.',
   },
   {
     step: '04',
@@ -112,12 +112,12 @@ const FAQS = [
   {
     question: 'Should I choose Next.js or WordPress for my project?',
     answer:
-      'Choose Next.js if you want maximum speed, zero layout shift, modern React component architecture, and a code-first foundation. Choose WordPress if you need a flexible content management dashboard where non-technical team members can easily create and update blog posts and pages. I build both with high-performance standards.',
+      'Choose Next.js if you want tighter control over asset delivery, layout stability, modern React component architecture, and a code-first foundation. Choose WordPress if you need a flexible content management dashboard where non-technical team members can easily create and update blog posts and pages. I build both with performance measurement and clear scope boundaries.',
   },
   {
     question: 'Do you use pre-made commercial WordPress templates or build from scratch?',
     answer:
-      'I build bespoke WordPress themes from scratch. This eliminates the heavy code bloat, slow page builder plugins, and unnecessary scripts that typical off-the-shelf themes introduce.',
+      'I build custom WordPress themes from scratch when the project needs that level of control. This avoids unnecessary template code and keeps the implementation focused on the agreed features.',
   },
   {
     question: 'Will I be able to easily update and manage my website content?',
@@ -127,7 +127,7 @@ const FAQS = [
   {
     question: 'How do you ensure the website achieves fast loading speeds on mobile?',
     answer:
-      'We optimize images with next-gen AVIF/WebP formats, define explicit container aspect ratios to eliminate layout shifts, inline critical styles, defer non-essential JavaScript, and maintain clean semantic HTML.',
+      'I optimize images with AVIF/WebP formats, define explicit container aspect ratios to reduce layout movement, defer non-essential JavaScript, and maintain semantic HTML.',
   },
 ]
 
@@ -141,7 +141,7 @@ const WEB_DEV_SCHEMA = {
       url: 'https://www.alaintapiru.com/services/web-development/',
       serviceType: 'Web Design & Development',
       description:
-        'High-performance, SEO-ready web design and development. Code-first Next.js App Router architectures and bespoke WordPress themes engineered for speed, clean code, and search crawlability.',
+        'Practical, SEO-ready web design and development. Code-first Next.js App Router builds and custom WordPress themes with clean code and search crawlability.',
       provider: {
         '@type': 'Person',
         '@id': 'https://www.alaintapiru.com/#person',
@@ -223,7 +223,7 @@ export default function WebDevelopmentPage() {
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEB_DEV_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(WEB_DEV_SCHEMA) }}
       />
 
       {/* 1. Hero Section */}
@@ -261,7 +261,7 @@ export default function WebDevelopmentPage() {
 
         {/* Subhead */}
         <p className="font-sans text-on-surface/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10 font-normal motion-reveal">
-          Build fast, accessible, and easily discoverable websites. We build code-first Next.js architectures and bespoke WordPress themes engineered with clean semantics, sub-second load times, and built-in search crawlability.
+          Build an accessible, search-friendly website with clear technical boundaries. I create code-first Next.js builds and custom WordPress themes with semantic markup, performance budgets, and crawlable structure.
         </p>
 
         {/* Action Row */}
@@ -276,23 +276,23 @@ export default function WebDevelopmentPage() {
 
           <a
             href="#what-we-build"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
           >
             Explore Capabilities ↓
           </a>
         </div>
 
         {/* 3-Item Trust Bar */}
-        <div className="pt-8 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        <div className="pt-8 border-t border-black/10 dark:border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {[
             'Next.js & Custom WordPress Themes',
-            'Core Web Vitals & Zero-CLS Engineering',
+            'Core Web Vitals & Layout Stability',
             'Built-in Schema & Analytics Tracking',
           ].map((point, idx) => (
             <div
               key={point}
               style={{ transitionDelay: `${idx * 60}ms` }}
-              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
+              className="flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-black/[0.03] dark:bg-white/[0.03] border border-black/5 dark:border-white/5 text-on-surface/90 font-sans text-xs sm:text-sm font-medium motion-reveal"
             >
               <Icon name="check_circle" size={18} className="text-primary-container shrink-0" />
               <span>{point}</span>
@@ -343,7 +343,7 @@ export default function WebDevelopmentPage() {
                   {item.problem}
                 </div>
                 <p className="font-sans text-xs sm:text-sm text-on-surface/85 leading-relaxed">
-                  <strong className="font-semibold text-primary-container block mb-0.5">Our Solution:</strong>
+                  <strong className="font-semibold text-primary-container block mb-0.5">My Approach:</strong>
                   {item.solution}
                 </p>
               </div>
@@ -374,7 +374,7 @@ export default function WebDevelopmentPage() {
             Engineering Fast, SEO-First Web Experiences
           </h2>
           <p className="font-sans text-on-surface/75 text-sm sm:text-base leading-relaxed">
-            From modern React/Next.js applications to custom bespoke WordPress themes, built cleanly from scratch.
+            From React and Next.js applications to custom WordPress themes, built around the project scope.
           </p>
         </div>
 
@@ -509,7 +509,7 @@ export default function WebDevelopmentPage() {
                   Next.js &bull; Self-Initiated Build
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  99 Desktop Lab &bull; 0.000 CLS
+                  Aug 2026 Lab: 99 Desktop &bull; 0.000 CLS
                 </span>
               </div>
 
@@ -517,11 +517,11 @@ export default function WebDevelopmentPage() {
                 AlainTapiru.com Custom Next.js Architecture
               </h3>
               <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-6">
-                Engineered with Next.js App Router, React 19 Server Components, Tailwind CSS variables, structured JSON-LD entity graphs, and zero layout shift.
+                Engineered with Next.js App Router, React 19 Server Components, Tailwind CSS variables, structured JSON-LD entity graphs, and reserved layout space for key assets.
               </p>
 
               <div className="flex flex-wrap gap-2 pt-2 border-t border-black/10 dark:border-white/10 mb-6">
-                {['App Router', 'React 19', 'Tailwind CSS', 'Payload CMS', 'Zero CLS'].map((tag) => (
+                {['App Router', 'React 19', 'Tailwind CSS', 'Payload CMS', 'Layout Stability'].map((tag) => (
                   <span key={tag} className="px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/5 text-[11px] font-mono text-on-surface/75">
                     {tag}
                   </span>
@@ -547,12 +547,12 @@ export default function WebDevelopmentPage() {
                   WordPress &bull; Staging Build
                 </span>
                 <span className="text-xs font-heading font-bold text-primary-container">
-                  98+ Mobile Lab Score
+                  Staging Build &bull; Field Data Unavailable
                 </span>
               </div>
 
               <h3 className="font-heading text-xl sm:text-2xl font-bold text-on-surface mb-2">
-                AngatSikat Studio Bespoke Theme
+                AngatSikat Studio Custom Theme
               </h3>
               <p className="font-sans text-sm text-on-surface/80 leading-relaxed mb-6">
                 Custom PHP WordPress theme developed from scratch without slow page builders, featuring clean semantic markup and fast mobile loading speeds.
@@ -691,7 +691,7 @@ export default function WebDevelopmentPage() {
         className="relative z-20 px-4 sm:px-6 md:px-16 max-w-7xl mx-auto"
       >
         <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-gradient-to-r from-primary-container/20 via-surface-1 to-surface-1 border-2 border-primary-container/40 text-center space-y-6 sm:space-y-8 shadow-[0_0_50px_rgba(224,123,32,0.15)] motion-reveal">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-on-surface/80 font-heading text-xs font-semibold uppercase tracking-[0.08em]">
             <Icon name="check_circle" size={14} className="text-primary-container" />
             <span>Built Fast • Built to Rank • Free 20-Minute Discovery Call</span>
           </div>
@@ -719,7 +719,7 @@ export default function WebDevelopmentPage() {
 
             <Link
               href="/services/"
-              className="inline-flex items-center justify-center gap-2 border border-white/15 hover:border-primary-container/50 bg-white/5 hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
+              className="inline-flex items-center justify-center gap-2 border border-black/15 dark:border-white/15 hover:border-primary-container/50 bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-on-surface font-heading text-xs sm:text-sm font-semibold uppercase tracking-[0.06em] px-8 py-4 rounded-full btn-motion min-h-[48px]"
             >
               <span>Back to Services Hub</span>
             </Link>

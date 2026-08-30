@@ -32,7 +32,7 @@ export function TrustCommitment() {
         {/* Column 1: What You Can Expect (Emerald / Positive) */}
         <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-emerald-500/30 hover:border-emerald-500/50 transition-all flex flex-col justify-between shadow-lg motion-reveal">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-heading font-semibold uppercase tracking-[0.08em] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-heading font-semibold uppercase tracking-[0.08em] mb-4">
               <Icon name="check_circle" size={14} />
               <span>What You Can Expect</span>
             </div>
@@ -43,7 +43,7 @@ export function TrustCommitment() {
 
             <div className="space-y-4 font-sans text-xs sm:text-sm text-on-surface/85">
               <div className="flex items-start gap-3">
-                <Icon name="check_circle" size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+                <Icon name="check_circle" size={18} className="text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     Clearly Defined Scope
@@ -55,7 +55,7 @@ export function TrustCommitment() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Icon name="check_circle" size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+                <Icon name="check_circle" size={18} className="text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     Direct Communication
@@ -67,7 +67,7 @@ export function TrustCommitment() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Icon name="check_circle" size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+                <Icon name="check_circle" size={18} className="text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     Clean Handoff Documentation
@@ -79,7 +79,7 @@ export function TrustCommitment() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Icon name="check_circle" size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+                <Icon name="check_circle" size={18} className="text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     Honest Technical Reporting
@@ -96,7 +96,7 @@ export function TrustCommitment() {
         {/* Column 2: What I Do Not Promise (Amber / Boundaries) */}
         <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 backdrop-blur-md border border-amber-500/30 hover:border-amber-500/50 transition-all flex flex-col justify-between shadow-lg motion-reveal">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-heading font-semibold uppercase tracking-[0.08em] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs font-heading font-semibold uppercase tracking-[0.08em] mb-4">
               <Icon name="verified_user" size={14} />
               <span>What I Do Not Promise</span>
             </div>
@@ -107,7 +107,7 @@ export function TrustCommitment() {
 
             <div className="space-y-4 font-sans text-xs sm:text-sm text-on-surface/85">
               <div className="flex items-start gap-3">
-                <Icon name="close" size={18} className="text-amber-400 shrink-0 mt-0.5" />
+                <Icon name="close" size={18} className="text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     No Guaranteed #1 Rankings
@@ -119,7 +119,7 @@ export function TrustCommitment() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Icon name="close" size={18} className="text-amber-400 shrink-0 mt-0.5" />
+                <Icon name="close" size={18} className="text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     No Overnight / Instant Traffic Spikes
@@ -131,7 +131,7 @@ export function TrustCommitment() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Icon name="close" size={18} className="text-amber-400 shrink-0 mt-0.5" />
+                <Icon name="close" size={18} className="text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     No Guaranteed AI Citations
@@ -143,7 +143,7 @@ export function TrustCommitment() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Icon name="close" size={18} className="text-amber-400 shrink-0 mt-0.5" />
+                <Icon name="close" size={18} className="text-amber-700 dark:text-amber-400 shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-on-surface font-semibold block text-sm mb-0.5">
                     No Proprietary &lsquo;Secret Formulas&rsquo;

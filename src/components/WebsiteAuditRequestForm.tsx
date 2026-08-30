@@ -71,7 +71,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
 
   if (isSuccess) {
     return (
-      <div className="py-6 sm:py-8 text-center space-y-5 animate-in fade-in zoom-in-95 duration-300">
+      <div role="status" aria-live="polite" className="py-6 sm:py-8 text-center space-y-5 animate-in fade-in zoom-in-95 duration-300">
         <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary-container/15 border border-primary-container/35 text-primary-container flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(224,123,32,0.25)]">
           <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-primary-container" />
         </div>
@@ -100,7 +100,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           </div>
           <div className="flex items-start justify-between gap-2 pt-0.5">
             <span className="text-on-surface/60 font-heading text-[11px] uppercase tracking-wider">Turnaround</span>
-            <span className="text-emerald-500 dark:text-emerald-400 font-semibold">Within 24–48 Hours</span>
+            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">Within 24–48 Hours</span>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate aria-busy={isSubmitting}>
       {/* Hidden honeypot anti-spam field */}
       <input
         type="text"
@@ -131,12 +131,12 @@ export const WebsiteAuditRequestForm: React.FC = () => {
       {serverError && (
         <div
           role="alert"
-          className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 flex items-start gap-2.5 text-xs animate-in fade-in duration-200"
+          className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-300 flex items-start gap-2.5 text-xs animate-in fade-in duration-200"
         >
-          <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+          <AlertCircle className="w-4 h-4 text-red-700 dark:text-red-400 shrink-0 mt-0.5" />
           <div className="space-y-0.5">
-            <p className="font-heading font-semibold text-red-200">Submission Error</p>
-            <p className="text-red-300/90 leading-relaxed">{serverError}</p>
+            <p className="font-heading font-semibold text-red-800 dark:text-red-200">Submission Error</p>
+            <p className="text-red-700/90 dark:text-red-300/90 leading-relaxed">{serverError}</p>
           </div>
         </div>
       )}
@@ -157,6 +157,11 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           id="audit-website"
           type="text"
           placeholder="https://yourwebsite.com"
+          autoComplete="url"
+          required
+          aria-required="true"
+          aria-invalid={errors.website ? 'true' : 'false'}
+          aria-describedby={errors.website ? 'audit-website-error' : undefined}
           disabled={isSubmitting}
           {...register('website')}
           className={`w-full bg-surface-2/70 dark:bg-white/5 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
@@ -166,8 +171,8 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           }`}
         />
         {errors.website && (
-          <p className="font-sans text-xs text-red-500 dark:text-red-400 mt-1 flex items-center gap-1">
-            <span>&bull;</span> {errors.website.message}
+          <p id="audit-website-error" role="alert" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1">
+            <span aria-hidden="true">&bull;</span> {errors.website.message}
           </p>
         )}
       </div>
@@ -188,6 +193,11 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           id="audit-email"
           type="email"
           placeholder="john@example.com"
+          autoComplete="email"
+          required
+          aria-required="true"
+          aria-invalid={errors.email ? 'true' : 'false'}
+          aria-describedby={errors.email ? 'audit-email-error' : undefined}
           disabled={isSubmitting}
           {...register('email')}
           className={`w-full bg-surface-2/70 dark:bg-white/5 border rounded-xl px-4 py-3 text-base sm:text-sm text-on-surface placeholder:text-on-surface/40 focus:outline-none focus:ring-1 transition-all min-h-[46px] disabled:opacity-50 ${
@@ -197,8 +207,8 @@ export const WebsiteAuditRequestForm: React.FC = () => {
           }`}
         />
         {errors.email && (
-          <p className="font-sans text-xs text-red-500 dark:text-red-400 mt-1 flex items-center gap-1">
-            <span>&bull;</span> {errors.email.message}
+          <p id="audit-email-error" role="alert" className="font-sans text-xs text-red-700 dark:text-red-400 mt-1 flex items-center gap-1">
+            <span aria-hidden="true">&bull;</span> {errors.email.message}
           </p>
         )}
       </div>
@@ -276,7 +286,7 @@ export const WebsiteAuditRequestForm: React.FC = () => {
       </button>
 
       <p className="font-sans text-[11px] text-on-surface/60 text-center leading-normal pt-1">
-        🔒 100% Free manual preliminary audit. A copy will be emailed to your inbox.
+        🔒 Free preliminary manual audit. A copy will be emailed to your inbox.
       </p>
     </form>
   )

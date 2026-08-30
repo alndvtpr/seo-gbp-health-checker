@@ -16,6 +16,7 @@ export interface BlogPost {
   category: string
   date: string
   datePublished: string
+  dateModified?: string
   readTime: string
   excerpt: string
   heroImage?: BlogImage
@@ -48,6 +49,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'SEO Strategy & GEO',
     date: 'August 2026',
     datePublished: '2026-08-22',
+    dateModified: '2026-08-29',
     readTime: '8 min read',
     excerpt:
       'Over the past year of hands-on SEO practice, training through PinoySEO Bootcamp, and building practical implementations, I dug into data from SparkToro, Google, and independent research to analyze what is dying, what still works, and what changed.',
@@ -183,7 +185,7 @@ export const BLOG_POSTS: BlogPost[] = [
             'Tier 1: Technical & Crawl Foundation. Solidify crawl efficiency, structured JSON-LD schemas, Core Web Vitals, mobile usability, and clean site architecture. These foundational elements remain non-negotiable. If search engine crawlers encounter rendering bottlenecks, slow response times, or broken indexability, higher-level content optimizations cannot succeed.',
             'Tier 2: Entity Validation & Brand Authority. Implement interconnected Schema.org graphs linking Person, Organization, and Service nodes. Maintain consistent profiles across reputable third-party platforms. Build topical depth through structured clusters and showcase verifiable credentials and original work.',
             'Tier 3: AI-Ready Content & Generative Discovery. Format key content sections using direct answer blocks, structured tables, and explicit factual summaries. Maintain optional machine-readable /llms.txt endpoints to assist LLM retrieval, and monitor brand citations across emerging generative answer engines.',
-            'I structured my own digital portfolio around these exact principles: sub-1.4s mobile performance, unified Schema.org @graph markup connecting author and services, answer-first blog sections, and an interactive 10-point Google Business Profile diagnostic tool. These steps prioritize verified technical rigor over speculative shortcuts.',
+            'I structured my own digital portfolio around these exact principles: August 2026 PageSpeed screenshots recording 99 desktop and 96 mobile lab scores, unified Schema.org @graph markup connecting author and services, answer-first blog sections, and an interactive 10-point Google Business Profile diagnostic tool. The screenshots are simulated lab evidence, not field Core Web Vitals. These steps prioritize documented technical work over speculative shortcuts.',
           ],
           image: {
             src: '/images/blog/three-tier-seo-geo-priority-framework.svg',
@@ -217,4 +219,3 @@ export const BLOG_POSTS: BlogPost[] = [
     },
   },
 ]
-

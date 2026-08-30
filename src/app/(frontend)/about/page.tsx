@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { generateMetadata } from '@/lib/seo'
+import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
 import { AboutCredentials } from '@/components/AboutCredentials'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -63,11 +63,11 @@ export default function AboutPage() {
       {/* Structured JSON-LD Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(aboutJsonLd) }}
       />
 
       {/* Breadcrumb Navigation */}
-      <Breadcrumbs items={[{ name: 'About', url: '/about/' }]} />
+      <Breadcrumbs items={[{ name: 'About', url: '/about/' }]} showJsonLd={false} />
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto motion-reveal">
@@ -112,7 +112,7 @@ export default function AboutPage() {
                     SEO Specialist &amp; Web Developer
                   </p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 shrink-0">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-heading font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-500 border border-emerald-500/30 shrink-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Available
                 </span>
@@ -223,11 +223,11 @@ export default function AboutPage() {
           {/* Best Fit For */}
           <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-emerald-500/30 shadow-lg space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-500 flex items-center justify-center shrink-0">
                 <Icon name="check_circle" size={20} />
               </div>
               <div>
-                <span className="font-heading text-[11px] text-emerald-500 font-bold uppercase tracking-wider block">
+                <span className="font-heading text-[11px] text-emerald-700 dark:text-emerald-500 font-bold uppercase tracking-wider block">
                   Ideal Collaboration
                 </span>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface">
@@ -238,25 +238,25 @@ export default function AboutPage() {
 
             <ul className="space-y-3.5 font-sans text-xs sm:text-sm text-on-surface/80">
               <li className="flex items-start gap-2.5">
-                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <Icon name="check" size={16} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Small Service Businesses &amp; Founders:</strong> Need clear technical SEO audits, on-page content optimization, or Google Business Profile setup without complicated contracts or agency overhead.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <Icon name="check" size={16} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Digital Marketing Agencies:</strong> Need a dependable, communicative contractor to handle technical audit backlogs, site fixes, and schema tasks at fixed sprint or hourly rates (₱500/hr).
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <Icon name="check" size={16} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>WordPress &amp; Next.js Website Owners:</strong> Want faster loading speeds, clean semantic structure, mobile usability fixes, and improved crawlability and clearer indexation signals for search engines.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="check" size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                <Icon name="check" size={16} className="text-emerald-700 dark:text-emerald-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Clients Valuing Direct Communication:</strong> Prefer working one-on-one with the person actually auditing and coding the site, with clear deliverables and documentation.
                 </span>
@@ -267,11 +267,11 @@ export default function AboutPage() {
           {/* Not the Right Fit Yet */}
           <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-surface-1/95 border border-amber-500/30 shadow-lg space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-500 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-500 flex items-center justify-center shrink-0">
                 <Icon name="close" size={20} />
               </div>
               <div>
-                <span className="font-heading text-[11px] text-amber-500 font-bold uppercase tracking-wider block">
+                <span className="font-heading text-[11px] text-amber-700 dark:text-amber-500 font-bold uppercase tracking-wider block">
                   Honest Scope Boundaries
                 </span>
                 <h3 className="font-heading text-lg sm:text-xl font-bold text-on-surface">
@@ -282,25 +282,25 @@ export default function AboutPage() {
 
             <ul className="space-y-3.5 font-sans text-xs sm:text-sm text-on-surface/80">
               <li className="flex items-start gap-2.5">
-                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <Icon name="close" size={16} className="text-amber-700 dark:text-amber-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Enterprise Scale &amp; High-Risk Migrations:</strong> Websites with hundreds of thousands of dynamic URLs, complex database migrations, or multi-region enterprise IT stacks.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <Icon name="close" size={16} className="text-amber-700 dark:text-amber-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Guaranteed #1 Rankings Demands:</strong> Anyone seeking contractual guarantees on search positions or overnight traffic spikes that violate search engine guidelines.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <Icon name="close" size={16} className="text-amber-700 dark:text-amber-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Mass PBN / Aggressive Link Building Schemes:</strong> Automated link networks, spammy directory blasts, or manipulative backlink schemes.
                 </span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Icon name="close" size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                <Icon name="close" size={16} className="text-amber-700 dark:text-amber-500 shrink-0 mt-0.5" />
                 <span>
                   <strong>Full-Service Paid Advertising Agencies:</strong> Large-scale Google Ads / Meta Ads budget management outside of organic search and website technical support.
                 </span>

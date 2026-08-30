@@ -1,4 +1,7 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
+import { Pause, Play } from 'lucide-react'
 
 const TECHNICAL_TOOLS = [
   {
@@ -117,6 +120,8 @@ const TECHNICAL_TOOLS = [
 ] as const
 
 export function ToolsMarquee() {
+  const [isPaused, setIsPaused] = useState(false)
+
   return (
     <section
       id="tools-marquee"
@@ -140,6 +145,20 @@ export function ToolsMarquee() {
           <p className="mx-auto mt-3 max-w-xl font-sans text-sm leading-relaxed text-on-surface/75 sm:text-base">
             A practical toolkit for research, optimization, analytics, content, and modern web development.
           </p>
+          <button
+            type="button"
+            onClick={() => setIsPaused((paused) => !paused)}
+            aria-pressed={isPaused}
+            aria-controls="tools-marquee-track"
+            className="mx-auto mt-5 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-black/10 bg-surface-1 px-4 py-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:text-primary-container dark:border-white/10"
+          >
+            {isPaused ? (
+              <Play className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Pause className="h-4 w-4" aria-hidden="true" />
+            )}
+            <span>{isPaused ? 'Resume tools animation' : 'Pause tools animation'}</span>
+          </button>
         </div>
       </div>
 
@@ -152,7 +171,11 @@ export function ToolsMarquee() {
         }}
       >
         {/* Single-line Row (Scroll Left, pause on hover) */}
-        <div className="marquee-row animate-marquee-left flex w-max">
+        <div
+          id="tools-marquee-track"
+          className="marquee-row animate-marquee-left flex w-max"
+          style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+        >
           {/* Primary Track */}
           <div className="flex shrink-0 items-center gap-3.5 pr-3.5 sm:gap-5 sm:pr-5">
             {TECHNICAL_TOOLS.map((tool, idx) => (

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback, useSyncExternalStore } from 'react'
 import { createPortal } from 'react-dom'
 import { Icon } from '@/components/icons'
+import { useModalFocus } from '@/hooks/useModalFocus'
 
 const RESUME_URL = '/Alain_Dave_Tapiru_Resume.pdf'
 const RESUME_FILENAME = 'Alain_Dave_Tapiru_Resume.pdf'
@@ -17,31 +18,32 @@ export function ResumePdfPreview() {
   const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
   const inlineIframeRef = useRef<HTMLIFrameElement>(null)
   const modalIframeRef = useRef<HTMLIFrameElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
+  const modalTitleRef = useRef<HTMLHeadingElement>(null)
 
   const closeModal = useCallback(() => {
     setModalOpen(false)
   }, [])
 
-  // Keyboard navigation & body scroll lock for modal
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && modalOpen) {
-        closeModal()
-      }
-    }
+  useModalFocus({
+    active: modalOpen && mounted,
+    containerRef: modalRef,
+    initialFocusRef: modalTitleRef,
+    onEscape: closeModal,
+  })
 
+  // Body scroll lock for modal.
+  useEffect(() => {
     if (modalOpen) {
-      window.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [modalOpen, closeModal])
+  }, [modalOpen])
 
   const handlePrint = (targetIframe: HTMLIFrameElement | null) => {
     if (targetIframe && targetIframe.contentWindow) {
@@ -55,7 +57,16 @@ export function ResumePdfPreview() {
     }
     const printWindow = window.open(RESUME_URL, '_blank')
     if (printWindow) {
-      printWindow.focus()
+      printWindow.opener = null
+      const openPrintDialog = () => {
+        printWindow.focus()
+        printWindow.print()
+      }
+      if (printWindow.document.readyState === 'complete') {
+        window.setTimeout(openPrintDialog, 250)
+      } else {
+        printWindow.addEventListener('load', openPrintDialog, { once: true })
+      }
     }
   }
 
@@ -98,7 +109,7 @@ export function ResumePdfPreview() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex min-h-[38px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-primary-container px-3.5 sm:px-4 py-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-primary-container transition-colors hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container shadow-xs"
+              className="inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-primary-container px-3.5 py-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-primary-container shadow-xs transition-colors hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container sm:px-4"
             >
               <Icon name="visibility" size={15} />
               <span>Preview PDF</span>
@@ -107,7 +118,7 @@ export function ResumePdfPreview() {
             <a
               href={RESUME_URL}
               download={RESUME_FILENAME}
-              className="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 sm:px-3.5 py-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:border-white/15"
+              className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 py-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:border-white/15 sm:px-3.5"
             >
               <Icon name="download" size={14} />
               <span>Download</span>
@@ -116,7 +127,8 @@ export function ResumePdfPreview() {
             <button
               type="button"
               onClick={() => handlePrint(inlineIframeRef.current)}
-              className="inline-flex min-h-[38px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 sm:px-3.5 py-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:border-white/15"
+              aria-label="Print resume PDF"
+              className="inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 py-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:border-white/15 sm:px-3.5"
             >
               <Icon name="print" size={14} />
               <span className="hidden sm:inline">Print</span>
@@ -126,7 +138,8 @@ export function ResumePdfPreview() {
               href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 sm:px-3.5 py-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:border-white/15"
+              aria-label="Open resume PDF in a new tab"
+              className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 py-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container dark:border-white/15 sm:px-3.5"
             >
               <Icon name="north_east" size={13} />
               <span className="hidden sm:inline">Open Tab</span>
@@ -155,7 +168,7 @@ export function ResumePdfPreview() {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="flex-1 sm:flex-none inline-flex min-h-[36px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-primary-container px-4 py-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-primary-container transition-colors hover:bg-primary shadow-xs"
+                className="flex-1 sm:flex-none inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-xl bg-primary-container px-4 py-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-primary-container transition-colors hover:bg-primary shadow-xs"
               >
                 <Icon name="fullscreen" size={15} />
                 <span>Fullscreen View</span>
@@ -163,7 +176,7 @@ export function ResumePdfPreview() {
               <button
                 type="button"
                 onClick={() => setInlineOpen(true)}
-                className="flex-1 sm:flex-none inline-flex min-h-[36px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-1 px-3.5 py-2 font-heading text-xs font-semibold text-on-surface transition-colors hover:border-primary-container/40 hover:text-primary-container dark:border-white/15"
+                className="flex-1 sm:flex-none inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-1 px-3.5 py-2 font-heading text-xs font-semibold text-on-surface transition-colors hover:border-primary-container/40 hover:text-primary-container dark:border-white/15"
               >
                 <Icon name="expand_more" size={15} />
                 <span>Load In-Page</span>
@@ -212,15 +225,16 @@ export function ResumePdfPreview() {
         mounted &&
         createPortal(
           <div
+            ref={modalRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-resume-title"
-            className="fixed inset-0 z-[999999] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-hidden animate-in fade-in duration-200"
+            className="fixed inset-0 z-[999999] flex items-center justify-center overflow-hidden bg-black/85 p-2 backdrop-blur-md animate-in fade-in duration-200 sm:p-4 md:p-6"
             onClick={(e) => {
               if (e.target === e.currentTarget) closeModal()
             }}
           >
-            <div className="flex flex-col w-full max-w-5xl h-[92vh] max-h-[92vh] rounded-2xl sm:rounded-3xl border border-black/10 dark:border-white/15 bg-surface-1 shadow-2xl overflow-hidden">
+            <div className="flex h-[calc(100dvh-1rem)] max-h-[calc(100dvh-1rem)] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-black/10 bg-surface-1 shadow-2xl sm:h-[92dvh] sm:max-h-[92dvh] sm:rounded-3xl dark:border-white/15">
               {/* Modal Header Bar matching Jordan video */}
               <div className="flex flex-col gap-3 border-b border-black/10 bg-surface-1 p-3.5 sm:p-4 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between shrink-0">
                 {/* Left side details */}
@@ -232,7 +246,9 @@ export function ResumePdfPreview() {
                   <div className="min-w-0 space-y-0.5">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3
+                        ref={modalTitleRef}
                         id="modal-resume-title"
+                        tabIndex={-1}
                         className="font-heading text-sm sm:text-base font-bold tracking-tight text-on-surface"
                       >
                         Alain_Dave_Tapiru_Resume.pdf
@@ -248,40 +264,43 @@ export function ResumePdfPreview() {
                 </div>
 
                 {/* Right side buttons: Download, Print, Open Tab, Close */}
-                <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 self-end sm:self-auto">
+                <div className="grid w-full shrink-0 grid-cols-4 items-center gap-1.5 self-end sm:flex sm:w-auto sm:self-auto sm:gap-2">
                   <a
                     href={RESUME_URL}
                     download={RESUME_FILENAME}
-                    className="inline-flex h-9 sm:h-10 items-center justify-center gap-1.5 rounded-xl bg-primary-container px-3.5 sm:px-4 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-primary-container transition-colors hover:bg-primary shadow-xs"
+                    aria-label="Download resume PDF"
+                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl bg-primary-container px-2 font-heading text-xs font-bold uppercase tracking-[0.06em] text-on-primary-container shadow-xs transition-colors hover:bg-primary sm:px-4"
                   >
                     <Icon name="download" size={14} />
-                    <span>Download</span>
+                    <span className="hidden min-[400px]:inline">Download</span>
                   </a>
 
                   <button
                     type="button"
                     onClick={() => handlePrint(modalIframeRef.current)}
-                    className="inline-flex h-9 sm:h-10 cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 sm:px-3.5 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container dark:border-white/15"
+                    aria-label="Print resume PDF"
+                    className="inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container dark:border-white/15 sm:px-3.5"
                   >
                     <Icon name="print" size={14} />
-                    <span>Print</span>
+                    <span className="hidden min-[400px]:inline">Print</span>
                   </button>
 
                   <a
                     href={RESUME_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-9 sm:h-10 items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-3 sm:px-3.5 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container dark:border-white/15"
+                    aria-label="Open resume PDF in a new tab"
+                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border border-black/10 bg-surface-2 px-2 font-heading text-xs font-semibold uppercase tracking-[0.06em] text-on-surface transition-colors hover:border-primary-container/40 hover:bg-surface-3 hover:text-primary-container dark:border-white/15 sm:px-3.5"
                   >
                     <Icon name="north_east" size={13} />
-                    <span>Open Tab</span>
+                    <span className="hidden min-[400px]:inline">Open Tab</span>
                   </a>
 
                   <button
                     type="button"
                     onClick={closeModal}
                     aria-label="Close modal preview"
-                    className="inline-flex h-9 w-9 sm:h-10 sm:w-10 cursor-pointer items-center justify-center rounded-xl border border-black/10 bg-surface-2 text-on-surface transition-colors hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-500 dark:border-white/15 ml-1"
+                    className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-xl border border-black/10 bg-surface-2 text-on-surface transition-colors hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-700 sm:ml-1 dark:border-white/15 dark:hover:text-red-400"
                   >
                     <Icon name="close" size={18} />
                   </button>

@@ -302,7 +302,7 @@ function generateAuditEmailHtml(data: AuditEmailData): string {
   const deliverablesHtml = `
     <div style="margin-bottom: 24px;">
       <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #e07b20; margin-bottom: 12px;">
-        ✨ Alain's AI Strategic Growth Arsenal
+        ✨ AI-Assisted Draft Deliverables
       </div>
 
       <!-- Deliverable 1: 30-Day Sprint Roadmap -->
@@ -311,7 +311,7 @@ function generateAuditEmailHtml(data: AuditEmailData): string {
           ? `
         <div style="background-color: #171b24; border: 1px solid #2d3340; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;">
           <div style="font-size: 12px; font-weight: 800; color: #e07b20; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;">
-            Deliverable 01 • 30-Day Strategic Sprint Roadmap
+            Deliverable 01 • 30-Day Roadmap
           </div>
           <div style="font-size: 13px; color: #d1d5db; line-height: 1.6;">
             ${formatMarkdownToHtml(aiRecommendations)}

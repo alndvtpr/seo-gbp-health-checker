@@ -32,7 +32,7 @@ const PILLAR_1_SERVICES: ServiceCardData[] = [
     icon: 'dataset',
     ctaText: 'Implement Schema Markup',
     deliverables: [
-      'Custom JSON-LD Schema (Organization, LocalBusiness, Person, FAQPage, Article)',
+      'Supported JSON-LD types based on verified entities and visible page content',
       'Entity linking to relevant Knowledge Graph sources',
       'Structured data validation for standard schema types (FAQs, Breadcrumbs, Articles)',
       'Google Rich Results validation and syntax error cleanup',

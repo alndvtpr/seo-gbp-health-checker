@@ -77,11 +77,12 @@ export function TableOfContents({ items, className = '' }: TableOfContentsProps)
       className={`space-y-4 ${className}`}
     >
       {/* Mobile Collapsible TOC Toggle */}
-      <div className="lg:hidden rounded-2xl bg-surface-1/90 border border-white/10 p-4 shadow-lg">
+      <div className="lg:hidden rounded-2xl bg-surface-1/90 border border-black/10 dark:border-white/10 p-4 shadow-lg">
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
+          aria-controls="mobile-table-of-contents"
           className="w-full flex items-center justify-between font-heading text-xs font-bold uppercase tracking-[0.08em] text-on-surface hover:text-primary-container transition-colors cursor-pointer"
         >
           <div className="flex items-center gap-2">
@@ -96,7 +97,7 @@ export function TableOfContents({ items, className = '' }: TableOfContentsProps)
         </button>
 
         {isOpen && (
-          <ul className="mt-4 pt-3 border-t border-white/10 space-y-2.5 font-sans text-xs">
+          <ul id="mobile-table-of-contents" className="mt-4 pt-3 border-t border-black/10 dark:border-white/10 space-y-2.5 font-sans text-xs">
             {items.map((item) => (
               <li key={item.id}>
                 <a
@@ -117,7 +118,7 @@ export function TableOfContents({ items, className = '' }: TableOfContentsProps)
       </div>
 
       {/* Desktop Sticky Table of Contents Card */}
-      <div className="hidden lg:block sticky top-32 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-white/10 p-6 shadow-xl space-y-4">
+      <div className="hidden lg:block sticky top-32 rounded-2xl sm:rounded-3xl bg-surface-1/90 border border-black/10 dark:border-white/10 p-6 shadow-xl space-y-4">
         {/* Reading Progress Indicator */}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-[11px] font-heading font-semibold uppercase tracking-[0.08em] text-on-surface/70">
@@ -129,7 +130,7 @@ export function TableOfContents({ items, className = '' }: TableOfContentsProps)
               {Math.round(scrollProgress)}%
             </span>
           </div>
-          <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+          <div className="w-full h-1 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-primary-container to-primary transition-all duration-150 ease-out rounded-full"
               style={{ width: `${scrollProgress}%` }}
@@ -138,7 +139,7 @@ export function TableOfContents({ items, className = '' }: TableOfContentsProps)
         </div>
 
         {/* Links List */}
-        <ul className="space-y-3 font-sans text-xs pt-2 border-l border-white/10">
+        <ul className="space-y-3 font-sans text-xs pt-2 border-l border-black/10 dark:border-white/10">
           {items.map((item) => {
             const isActive = activeId === item.id
             return (
@@ -160,7 +161,7 @@ export function TableOfContents({ items, className = '' }: TableOfContentsProps)
         </ul>
 
         {/* Quick Share / Back to Top CTA */}
-        <div className="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-sans text-on-surface/60">
+        <div className="pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-[11px] font-sans text-on-surface/60">
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

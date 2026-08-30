@@ -27,7 +27,7 @@ ${result.businessName} has an active local presence in ${result.location}. Execu
 - **750-Character Description**: Deploy the keyword-optimized description generated in Deliverable 02.
 
 #### 🗓️ Week 2: Review Velocity & Social Proof (Days 8–14)
-- **100% Review Response Coverage**: Reply to all customer reviews using the tailored response templates in Deliverable 03.
+- **Review Response Checklist**: Work through unanswered customer reviews using the adaptable templates in Deliverable 03.
 - **Automated Review Link Flow**: Send direct review shortlinks to recent satisfied customers.
 
 #### 🗓️ Week 3: Service Menu & Google Updates (Days 15–21)

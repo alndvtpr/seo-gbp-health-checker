@@ -54,7 +54,7 @@ export const HomepageFAQ = () => {
           Frequently Asked Questions
         </h2>
         <p className="font-sans text-sm sm:text-base text-on-surface/75 leading-relaxed">
-          Straightforward answers about scope, collaboration, and how we work together.
+          Straightforward answers about scope, collaboration, and what it is like to work with me.
         </p>
       </div>
 
