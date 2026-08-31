@@ -21,7 +21,9 @@ interface Certification {
 
 interface EducationItem {
   degree: string
-  details: string
+  details?: string
+  specialization?: string
+  statusHighlight?: string
   timeline?: string
   badge: string
   badgeVariant?: 'primary' | 'muted'
@@ -78,7 +80,8 @@ const CERTIFICATIONS: Certification[] = [
 const EDUCATION_HISTORY: EducationItem[] = [
   {
     degree: 'Bachelor of Science in Information Technology',
-    details: 'Network & Cybersecurity Specialization • Currently Studying Part-Time',
+    specialization: 'Network & Cybersecurity Specialization',
+    statusHighlight: 'Currently Studying Part-Time',
     badge: 'In Progress',
     badgeVariant: 'primary',
   },
@@ -352,18 +355,37 @@ export function AboutCredentials() {
               <div
                 key={idx}
                 style={{ transitionDelay: `${idx * 80}ms` }}
-                className="p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm border border-black/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-surface-2 transition-colors motion-reveal shadow-sm"
+                className="p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm border border-black/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 hover:bg-surface-2 transition-colors motion-reveal shadow-sm"
               >
-                <div className="space-y-1">
+                <div className="space-y-1.5 min-w-0">
                   <h4 className="font-heading text-sm font-bold text-on-surface">
                     {edu.degree}
                   </h4>
-                  <p className="font-sans text-xs text-on-surface/60">
-                    {edu.details}
-                    {edu.timeline && (
-                      <span className="text-on-surface/65"> • {edu.timeline}</span>
-                    )}
-                  </p>
+                  {edu.specialization || edu.statusHighlight ? (
+                    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs">
+                      {edu.specialization && (
+                        <span className="font-sans text-on-surface/70 font-medium">
+                          {edu.specialization}
+                        </span>
+                      )}
+                      {edu.specialization && edu.statusHighlight && (
+                        <span className="text-on-surface/30 hidden sm:inline">•</span>
+                      )}
+                      {edu.statusHighlight && (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-heading text-[11px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.2)] dark:shadow-[0_0_16px_rgba(16,185,129,0.3)]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                          {edu.statusHighlight}
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="font-sans text-xs text-on-surface/60">
+                      {edu.details}
+                      {edu.timeline && (
+                        <span className="text-on-surface/65"> • {edu.timeline}</span>
+                      )}
+                    </p>
+                  )}
                 </div>
 
                 <div className="self-start sm:self-auto shrink-0">
