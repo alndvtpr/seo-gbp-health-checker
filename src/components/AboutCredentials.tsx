@@ -78,7 +78,7 @@ const CERTIFICATIONS: Certification[] = [
 const EDUCATION_HISTORY: EducationItem[] = [
   {
     degree: 'Bachelor of Science in Information Technology',
-    details: 'Specialization in Network & Cybersecurity',
+    details: 'Network & Cybersecurity Specialization • Currently Studying Part-Time',
     badge: 'In Progress',
     badgeVariant: 'primary',
   },
