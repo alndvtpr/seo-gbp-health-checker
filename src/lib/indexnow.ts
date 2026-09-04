@@ -7,7 +7,9 @@
  * Spec: https://www.indexnow.org/documentation
  */
 
-export const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'a8f9c1b2d3e4f5061728394a5b6c7d8e'
+import { env } from './env'
+
+export const INDEXNOW_KEY = env.INDEXNOW_KEY
 export const DEFAULT_HOST = 'www.alaintapiru.com'
 export const DEFAULT_BASE_URL = `https://${DEFAULT_HOST}`
 
@@ -27,7 +29,7 @@ export interface IndexNowResponse {
 }
 
 export function getCanonicalHost(): string {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const siteUrl = env.NEXT_PUBLIC_SITE_URL
   if (siteUrl && !siteUrl.includes('localhost') && !siteUrl.includes('127.0.0.1')) {
     try {
       return new URL(siteUrl).host

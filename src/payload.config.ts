@@ -14,6 +14,7 @@ import { Tags } from './collections/Tags'
 import { Pages } from './collections/Pages'
 import { AIMemory } from './collections/AIMemory'
 import { aiSeoPlugin } from './plugins/ai-seo'
+import { env } from './lib/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,13 +28,13 @@ export default buildConfig({
   },
   collections: [Users, Media, Folders, Tags, Pages, AIMemory],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL_NON_POOLING || process.env.POSTGRES_URL || '',
+      connectionString: env.DATABASE_URI,
     },
     push: true,
   }),
@@ -51,7 +52,7 @@ export default buildConfig({
     }),
     aiSeoPlugin({
       llmProvider: 'openai',
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: env.OPENAI_API_KEY,
     }),
   ],
 })

@@ -1,5 +1,6 @@
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { env } from '@/lib/env'
 
 export async function GET(
   req: Request,
@@ -16,7 +17,7 @@ export async function GET(
     return new Response('No secret provided', { status: 401 })
   }
 
-  if (secret !== process.env.PREVIEW_SECRET) {
+  if (secret !== env.PREVIEW_SECRET) {
     return new Response('Invalid token', { status: 401 })
   }
 

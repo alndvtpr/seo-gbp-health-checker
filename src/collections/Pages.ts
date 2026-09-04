@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { CodeInjection } from '../blocks/CodeInjection'
 import { pingIndexNow } from '../lib/indexnow'
+import { env } from '../lib/env'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -8,8 +9,8 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     livePreview: {
       url: ({ data }) => {
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-        return `${baseUrl}/api/preview?url=${data.slug || ''}&secret=${process.env.PREVIEW_SECRET || 'secret'}`
+        const baseUrl = env.NEXT_PUBLIC_SITE_URL
+        return `${baseUrl}/api/preview?url=${data.slug || ''}&secret=${env.PREVIEW_SECRET}`
       },
     },
   },

@@ -5,7 +5,9 @@
  * Standard Google / Superfeedr PubSubHubbub Hub URL: https://pubsubhubbub.appspot.com/
  */
 
-export const WEBSUB_HUB_URL = process.env.WEBSUB_HUB_URL || 'https://pubsubhubbub.appspot.com/'
+import { env } from './env'
+
+export const WEBSUB_HUB_URL = env.WEBSUB_HUB_URL
 export const DEFAULT_RSS_URL = 'https://www.alaintapiru.com/rss.xml'
 
 export interface WebSubResponse {
