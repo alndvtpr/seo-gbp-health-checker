@@ -225,99 +225,129 @@ interface CertificationItem {
   badge: string
 }
 
-const CERTIFICATIONS: CertificationItem[] = [
+interface CertificationGroup {
+  category: string
+  items: CertificationItem[]
+}
+
+const CERTIFICATION_GROUPS: CertificationGroup[] = [
   {
-    title: 'SEO Bootcamp Completion',
-    issuer: 'Pinoy SEO & SOVA Training (Batch 32)',
-    date: 'Issued Sept 2025',
-    verifyUrl:
-      'https://www.sova.ph/search-engine-optimization-bootcamp-graduates/search-engine-optimization-graduates-batch-32/#:~:text=Alain%20Dave%20Tapiru',
-    badge: 'Verified Credential',
+    category: 'SEO, Inbound & Digital Marketing',
+    items: [
+      {
+        title: 'SEO Bootcamp Completion',
+        issuer: 'Pinoy SEO & SOVA Training (Batch 32)',
+        date: 'Issued Sept 2025',
+        verifyUrl:
+          'https://www.sova.ph/search-engine-optimization-bootcamp-graduates/search-engine-optimization-graduates-batch-32/#:~:text=Alain%20Dave%20Tapiru',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'Inbound Certification',
+        issuer: 'HubSpot Academy',
+        date: 'Issued Sept 2026',
+        verifyUrl:
+          'https://app.hubspot.com/academy/achievements/8453e7bb6ba841ba814f77c8a976d34c/inbound',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'Introduction to Social Media Marketing',
+        issuer: 'Meta | Coursera',
+        date: 'Issued Dec 2020',
+        verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',
+        badge: 'Verified Credential',
+      },
+    ],
   },
   {
-    title: 'Google AI Professional Certificate',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/professional-cert/YIC92ES1TX9D',
-    badge: 'Professional Certificate',
+    category: 'Google AI & Practical Automation',
+    items: [
+      {
+        title: 'Google AI Professional Certificate',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/professional-cert/YIC92ES1TX9D',
+        badge: 'Professional Certificate',
+      },
+      {
+        title: 'AI Fundamentals',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/NXBZIK64UH68',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for Brainstorming and Planning',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/9V7CXE9TY9Q3',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for Research and Insights',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/WZ8JT0GOU77C',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for Writing and Communicating',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/CDKORGFE2FYM',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for Content Creation',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/WAIC1EUCYM0N',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for Data Analysis',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/PJ7VK0VXUH3D',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for App Building',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/DKD3F3CDN9SB',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'AI for App Deployment',
+        issuer: 'Google | Coursera',
+        date: 'Issued Sept 2026',
+        verifyUrl: 'https://coursera.org/verify/XMTWQX3OZ7I4',
+        badge: 'Verified Credential',
+      },
+    ],
   },
   {
-    title: 'AI Fundamentals',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/NXBZIK64UH68',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for Brainstorming and Planning',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/9V7CXE9TY9Q3',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for Research and Insights',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/WZ8JT0GOU77C',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for Writing and Communicating',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/CDKORGFE2FYM',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for Content Creation',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/WAIC1EUCYM0N',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for Data Analysis',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/PJ7VK0VXUH3D',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for App Building',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/DKD3F3CDN9SB',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'AI for App Deployment',
-    issuer: 'Google | Coursera',
-    date: 'Issued Sept 2026',
-    verifyUrl: 'https://coursera.org/verify/XMTWQX3OZ7I4',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'Introduction to Social Media Marketing',
-    issuer: 'Meta | Coursera',
-    date: 'Issued Dec 2020',
-    verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'Grammar and Punctuation',
-    issuer: 'UC Irvine | Coursera',
-    date: 'Issued Oct 2020',
-    verifyUrl: 'https://coursera.org/verify/P4ZJK54AY7WD',
-    badge: 'Verified Credential',
-  },
-  {
-    title: 'English Communications',
-    issuer: 'ERC Global',
-    date: 'Issued 2023',
-    badge: 'Corporate Training',
+    category: 'Communications & Professional Foundations',
+    items: [
+      {
+        title: 'Grammar and Punctuation',
+        issuer: 'UC Irvine | Coursera',
+        date: 'Issued Oct 2020',
+        verifyUrl: 'https://coursera.org/verify/P4ZJK54AY7WD',
+        badge: 'Verified Credential',
+      },
+      {
+        title: 'English Communications',
+        issuer: 'ERC Global',
+        date: 'Issued 2023',
+        badge: 'Corporate Training',
+      },
+    ],
   },
 ]
+
+const CERTIFICATIONS: CertificationItem[] = CERTIFICATION_GROUPS.flatMap((group) => group.items)
 
 export default function ResumePage() {
   return (
@@ -606,102 +636,144 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Education & Verified Certifications (Balanced 2-Column Grid) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 motion-reveal">
-        {/* Education */}
-        <section className="space-y-3" aria-labelledby="education-heading">
-          <div className="flex items-center gap-2">
-            <Icon name="school" size={18} className="text-primary-container" />
-            <h2 id="education-heading" className="font-heading text-lg font-bold text-on-surface tracking-tight">
-              Education
-            </h2>
-          </div>
+      {/* Education */}
+      <section className="space-y-4 motion-reveal" aria-labelledby="education-heading">
+        <div className="flex items-center gap-2">
+          <Icon name="school" size={18} className="text-primary-container" />
+          <h2 id="education-heading" className="font-heading text-lg sm:text-xl font-bold text-on-surface tracking-tight">
+            Education
+          </h2>
+        </div>
 
-          <div className="space-y-3">
-            <div className="bg-surface-1 rounded-2xl border border-cyan-500/20 dark:border-cyan-400/25 p-5 space-y-1.5 shadow-xs">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-[10px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/30">
-                  Ongoing Degree
-                </span>
-                <span className="text-xs font-sans text-on-surface/60">Expected 2029</span>
-              </div>
-              <h3 className="font-heading text-sm font-bold text-on-surface pt-1">
-                BS in Information Technology
-              </h3>
-              <p className="font-sans text-xs text-primary-container font-medium">
-                Major in Network and Cybersecurity
-              </p>
-              <p className="font-sans text-xs text-on-surface/70">
-                Mapua Malayan Digital College
-              </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-surface-1 rounded-2xl border border-cyan-500/20 dark:border-cyan-400/25 p-5 space-y-1.5 shadow-xs">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[10px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/30">
+                Ongoing Degree
+              </span>
+              <span className="text-xs font-sans text-on-surface/60">Expected 2029</span>
             </div>
+            <h3 className="font-heading text-sm font-bold text-on-surface pt-1">
+              BS in Information Technology
+            </h3>
+            <p className="font-sans text-xs text-primary-container font-medium">
+              Major in Network and Cybersecurity
+            </p>
+            <p className="font-sans text-xs text-on-surface/70">
+              Mapua Malayan Digital College
+            </p>
+          </div>
 
-            <div className="bg-surface-1 rounded-2xl border border-black/10 dark:border-white/10 p-5 space-y-1.5 shadow-xs">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-[10px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-surface-2 text-on-surface/70 border border-black/5 dark:border-white/5">
-                  Undergraduate
-                </span>
-                <span className="text-xs font-sans text-on-surface/60">2014 – 2017</span>
-              </div>
-              <h3 className="font-heading text-sm font-bold text-on-surface pt-1">
-                BS in Information Technology (Undergraduate)
-              </h3>
-              <p className="font-sans text-xs text-on-surface/70">
-                Saint Mary&apos;s University, Bayombong, Nueva Vizcaya, Philippines
-              </p>
+          <div className="bg-surface-1 rounded-2xl border border-black/10 dark:border-white/10 p-5 space-y-1.5 shadow-xs">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[10px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-surface-2 text-on-surface/70 border border-black/5 dark:border-white/5">
+                Undergraduate
+              </span>
+              <span className="text-xs font-sans text-on-surface/60">2014 – 2017</span>
             </div>
+            <h3 className="font-heading text-sm font-bold text-on-surface pt-1">
+              BS in Information Technology (Undergraduate)
+            </h3>
+            <p className="font-sans text-xs text-on-surface/70">
+              Saint Mary&apos;s University, Bayombong, Nueva Vizcaya, Philippines
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Certifications */}
-        <section className="space-y-3" aria-labelledby="certifications-heading">
+      {/* Verified Certifications & Specialized Training */}
+      <section className="space-y-6 motion-reveal" aria-labelledby="certifications-heading">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Icon name="verified" size={18} className="text-primary-container" />
-            <h2 id="certifications-heading" className="font-heading text-lg font-bold text-on-surface tracking-tight">
-              Certifications
+            <Icon name="check_circle" size={18} className="text-primary-container" />
+            <h2 id="certifications-heading" className="font-heading text-lg sm:text-xl font-bold text-on-surface tracking-tight">
+              Certifications &amp; Specialized Training
             </h2>
+            <span className="text-xs font-sans px-2.5 py-0.5 rounded-full bg-surface-2 text-on-surface/70 border border-black/5 dark:border-white/5">
+              {CERTIFICATIONS.length} Total
+            </span>
           </div>
 
-          <div className="space-y-2.5">
-            {CERTIFICATIONS.map((cert) => (
-              <div
-                key={cert.title}
-                className="bg-surface-1 rounded-2xl border border-black/10 dark:border-white/10 p-4 space-y-1 shadow-xs"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-heading text-xs font-bold text-on-surface">
-                    {cert.title}
-                  </h3>
-                  <span className="text-[10px] font-heading font-medium px-2 py-0.5 rounded-full bg-surface-2 text-on-surface/70 border border-black/5 dark:border-white/5 shrink-0">
-                    {cert.badge}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-2 pt-0.5">
-                  <p className="font-sans text-xs text-primary-container font-medium">
-                    {cert.issuer}
-                  </p>
-                  <span className="font-sans text-[11px] text-on-surface/50 shrink-0">
-                    {cert.date}
-                  </span>
-                </div>
-                {cert.verifyUrl && (
-                  <div className="pt-1">
-                    <a
-                      href={cert.verifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-heading font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
+          <Link
+            href="/about/"
+            className="text-xs font-heading font-bold text-primary-container hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
+          >
+            View Certificate Previews on About Page <Icon name="arrow_forward" size={13} />
+          </Link>
+        </div>
+
+        <div className="space-y-6">
+          {CERTIFICATION_GROUPS.map((group) => (
+            <div key={group.category} className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-container inline-block" />
+                <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/80">
+                  {group.category}
+                </h3>
+                <span className="text-[11px] font-sans text-on-surface/50">
+                  ({group.items.length})
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {group.items.map((cert) => {
+                  const isProfessional = cert.badge === 'Professional Certificate'
+                  return (
+                    <div
+                      key={cert.title}
+                      className={`bg-surface-1 rounded-2xl border p-4 space-y-2.5 shadow-xs hover:border-primary-container/40 transition-colors flex flex-col justify-between ${
+                        isProfessional
+                          ? 'border-primary-container/40 dark:border-primary-container/50 sm:col-span-2 lg:col-span-3 bg-gradient-to-r from-primary-container/[0.04] to-transparent'
+                          : 'border-black/10 dark:border-white/10'
+                      }`}
                     >
-                      <Icon name="check_circle" size={12} />
-                      Verify Official Registry
-                    </a>
-                  </div>
-                )}
+                      <div className="space-y-1.5">
+                        <div className="flex items-start justify-between gap-2">
+                          <h4 className="font-heading text-xs sm:text-sm font-bold text-on-surface">
+                            {cert.title}
+                          </h4>
+                          <span
+                            className={`text-[10px] font-heading font-medium px-2 py-0.5 rounded-full shrink-0 ${
+                              isProfessional
+                                ? 'bg-primary-container/15 text-primary-container border border-primary-container/30'
+                                : 'bg-surface-2 text-on-surface/70 border border-black/5 dark:border-white/5'
+                            }`}
+                          >
+                            {cert.badge}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between gap-2 pt-0.5">
+                          <p className="font-sans text-xs text-primary-container font-medium">
+                            {cert.issuer}
+                          </p>
+                          <span className="font-sans text-[11px] text-on-surface/50 shrink-0">
+                            {cert.date}
+                          </span>
+                        </div>
+                      </div>
+
+                      {cert.verifyUrl && (
+                        <div className="pt-2 border-t border-black/5 dark:border-white/5">
+                          <a
+                            href={cert.verifyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Verify Alain Dave Tapiru's ${cert.title} on official registry (opens in new tab)`}
+                            className="inline-flex items-center gap-1 text-[11px] font-heading font-semibold text-emerald-700 hover:text-emerald-800 dark:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
+                          >
+                            <Icon name="check_circle" size={12} />
+                            Verify Official Registry
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Hire / Contact Callout Banner */}
       <div className="bg-surface-1 rounded-2xl sm:rounded-3xl border border-primary-container/30 p-6 sm:p-8 text-center space-y-4 shadow-md relative overflow-hidden motion-reveal">
