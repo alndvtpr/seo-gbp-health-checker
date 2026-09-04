@@ -149,9 +149,10 @@
 - [x] **Homepage Hero SEO Positioning Alignment (2026-08-30)**: Integrated geo-targeted phrase "in the Philippines" into the main `<ScrollHero />` H1 headline ("SEO Specialist & Web Developer in the Philippines for Small Businesses & Agencies") targeting primary high-intent geo commercial search keywords while preserving semantic hierarchy, theme tokens, and visual contrast; verified 17/17 automated SEO CI checks, TypeScript compile (0 errors), and HTTP 200 on localhost.
 - [x] **Education Card Subtitle & Status Glow Refinement (2026-08-31)**: Enhanced the Education card in `AboutCredentials.tsx` with a dedicated glowing emerald availability status badge ("Currently Studying Part-Time") featuring an active animated pulse indicator to draw employer attention to part-time capacity, while cleanly separating the specialization and preserving the "Bachelor of Science in Information Technology" title and "In Progress" badge; passed all 65/65 static tests, content checks, SEO CI, TypeScript compilation, and verified HTTP 200 on localhost.
 - [x] **Resume Header Alignment Across Web and PDF (2026-09-04)**: Aligned resume header title and subtitle across the web resume page, document metadata/schema, in-page PDF preview component, and the downloadable PDF file to "Junior SEO Specialist | Technical & On-Page SEO"; updated `src/app/(frontend)/resume/page.tsx`, `src/components/ResumePdfPreview.tsx`, and `public/Alain_Dave_Tapiru_Resume.pdf` (preserving standard incremental xref trailer and ATS compatibility); verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 10/10 theme checks, 9/9 responsive checks, 7/7 performance checks, TypeScript compile (0 errors), and live preview HTTP 200.
+- [x] **Resume PDF Preview & Framing Policy Repair (2026-09-04)**: Resolved PDF modal preview load failure (Chrome gray sad document icon) by patching the PDF binary in-place to exact byte size 177,724 with matching xref offsets, and configuring next.config.ts with a dedicated header rule for `/(.*\.pdf)` permitting same-origin framing (`X-Frame-Options: SAMEORIGIN`, `Content-Security-Policy: frame-ancestors 'self'`) while preserving strict `DENY`/`'none'` framing protection for all HTML routes; verified 65/65 CI checks, clean Chromium visual rendering without CSP blocks, TypeScript compilation (0 errors), and live HTTP 200 responses.
 
 #### Master Plan Status
-**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, Homepage Hero SEO positioning alignment, Education Card Subtitle & Status Glow Refinement, and Resume Header Alignment Across Web and PDF are complete.
+**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, Homepage Hero SEO positioning alignment, Education Card Subtitle & Status Glow Refinement, Resume Header Alignment Across Web and PDF, and Resume PDF Preview & Framing Policy Repair are complete.
 
 Durable phase handoff rule: At the end of every completed phase, update this roadmap and the applicable controlled records, refresh the Current handoff, and create one fresh Codex project task using the same saved project when task creation is available. The new task must explicitly use gpt-5.6-sol with high reasoning, read the recorded context, and respect unresolved gates before editing. payload-website/AGENTS.md contains the authoritative operating procedure.
 
@@ -171,14 +172,16 @@ Architecture & Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-09-04)**: `feat(resume): align resume header to Junior SEO Specialist across web and PDF`
+- **Commit `HEAD` (Current - 2026-09-04)**: `fix(resume): allow same-origin framing for PDF and restore in-place PDF preview`
+  - Configured `next.config.ts` with a dedicated header override for `/(.*\.pdf)` setting `X-Frame-Options: SAMEORIGIN` and `Content-Security-Policy: frame-ancestors 'self'` to allow same-origin modal iframe embedding while keeping strict framing denial for HTML pages.
+  - Replaced stream in `public/Alain_Dave_Tapiru_Resume.pdf` in place to exact byte length 177,724, preserving all xref offsets and eliminating incremental loop.
+  - Verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 10/10 theme checks, 9/9 responsive checks, 7/7 performance checks, TypeScript compile (0 errors), visual Chromium rendering without CSP errors, and live preview HTTP 200.
+- **Commit `HEAD~1` (2026-09-04)**: `feat(resume): align resume header to Junior SEO Specialist across web and PDF` (`319fc56`)
   - Updated resume header subtitle, page metadata title, and JSON-LD schema entity name in `src/app/(frontend)/resume/page.tsx` to "Junior SEO Specialist | Technical & On-Page SEO".
   - Updated downloadable `public/Alain_Dave_Tapiru_Resume.pdf` and its preview card descriptions in `src/components/ResumePdfPreview.tsx`.
   - Verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 10/10 theme checks, 9/9 responsive checks, 7/7 performance checks, TypeScript compile (0 errors), and live preview HTTP 200.
-- **Commit `HEAD~1` (2026-08-31)**: `feat(about): add glowing status badge to part-time education card` (`a3af31a`)
+- **Commit `HEAD~2` (2026-08-31)**: `feat(about): add glowing status badge to part-time education card` (`a3af31a`)
   - Integrated glowing emerald status badge (`bg-emerald-500/10`, `border-emerald-500/30`, green ambient glow shadow, live animated pulse dot) for "Currently Studying Part-Time" in `AboutCredentials.tsx`.
-- **Commit `HEAD~2` (2026-08-31)**: `fix(about): update education card subtitle to reflect part-time study status` (`65fd9e4`)
-  - Updated Education card subtitle in `AboutCredentials.tsx` to "Network & Cybersecurity Specialization • Currently Studying Part-Time" while preserving degree title, "In Progress" badge, and design tokens.
 
 ---
 
