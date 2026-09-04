@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { generateMetadata, serializeJsonLd } from '@/lib/seo'
 import { Icon } from '@/components/icons'
-import { AboutCredentials } from '@/components/AboutCredentials'
+import { AboutCredentials } from '@/features/credentials'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const metadata = generateMetadata({

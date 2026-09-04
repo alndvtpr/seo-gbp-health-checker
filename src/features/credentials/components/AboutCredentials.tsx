@@ -5,268 +5,19 @@ import { createPortal } from 'react-dom'
 import { Icon } from '@/components/icons'
 import { useModalFocus } from '@/hooks/useModalFocus'
 
-interface Certification {
-  id: string
-  title: string
-  issuer: string
-  issuedDate: string
-  badge: string
-  imageSrc: string
-  imageAlt?: string
-  downloadUrl: string
-  downloadFilename: string
-  verifyUrl?: string
-  buttonText: string
-}
-
-interface EducationItem {
-  degree: string
-  details?: string
-  specialization?: string
-  statusHighlight?: string
-  timeline?: string
-  badge: string
-  badgeVariant?: 'primary' | 'muted'
-}
-
-const GOOGLE_AI_CERTIFICATIONS: Certification[] = [
-  {
-    id: 'google-ai-professional',
-    title: 'Google AI Professional Certificate',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Professional Certificate (8 Courses)',
-    imageSrc: '/assets/certificates/alain-dave-tapiru-google-ai-professional-certificate-2026.webp',
-    imageAlt:
-      'Google AI Professional Certificate awarded to Alain Dave Gallo Tapiru in September 2026',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-professional-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-professional-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/professional-cert/YIC92ES1TX9D',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-fundamentals',
-    title: 'AI Fundamentals',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc: '/assets/certificates/alain-dave-tapiru-google-ai-fundamentals-certificate-2026.webp',
-    imageAlt:
-      'Google AI Fundamentals certificate awarded to Alain Dave Gallo Tapiru in September 2026',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-fundamentals-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-fundamentals-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/NXBZIK64UH68',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-brainstorming-planning',
-    title: 'AI for Brainstorming and Planning',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-brainstorming-planning-certificate-2026.webp',
-    imageAlt:
-      'Google AI for Brainstorming and Planning certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-brainstorming-planning-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-brainstorming-planning-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/9V7CXE9TY9Q3',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-research-insights',
-    title: 'AI for Research and Insights',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-research-insights-certificate-2026.webp',
-    imageAlt:
-      'Google AI for Research and Insights certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-research-insights-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-research-insights-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/WZ8JT0GOU77C',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-writing-communicating',
-    title: 'AI for Writing and Communicating',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-writing-communicating-certificate-2026.webp',
-    imageAlt:
-      'Google AI for Writing and Communicating certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-writing-communicating-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-writing-communicating-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/CDKORGFE2FYM',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-content-creation',
-    title: 'AI for Content Creation',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-content-creation-certificate-2026.webp',
-    imageAlt:
-      'Google AI for Content Creation certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-content-creation-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-content-creation-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/WAIC1EUCYM0N',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-data-analysis',
-    title: 'AI for Data Analysis',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-data-analysis-certificate-2026.webp',
-    imageAlt:
-      'Google AI for Data Analysis certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-data-analysis-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-data-analysis-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/PJ7VK0VXUH3D',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-app-building',
-    title: 'AI for App Building',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-app-building-certificate-2026.webp',
-    imageAlt:
-      'Google AI for App Building certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-app-building-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-app-building-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/DKD3F3CDN9SB',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'google-ai-app-deployment',
-    title: 'AI for App Deployment',
-    issuer: 'Google | Coursera',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc:
-      '/assets/certificates/alain-dave-tapiru-google-ai-app-deployment-certificate-2026.webp',
-    imageAlt:
-      'Google AI for App Deployment certificate awarded to Alain Dave Gallo Tapiru',
-    downloadUrl:
-      '/assets/certificates/alain-dave-tapiru-google-ai-app-deployment-certificate-2026.pdf',
-    downloadFilename:
-      'alain-dave-tapiru-google-ai-app-deployment-certificate-2026.pdf',
-    verifyUrl: 'https://coursera.org/verify/XMTWQX3OZ7I4',
-    buttonText: 'View / Verify',
-  },
-]
-
-const SEO_CERTIFICATIONS: Certification[] = [
-  {
-    id: 'seo-bootcamp',
-    title: 'Online SEO Bootcamp (Batch 32)',
-    issuer: 'PinoySEO & SOVA Training',
-    issuedDate: 'Issued Sept 2025',
-    badge: 'Verified Credential',
-    imageSrc: '/assets/certificates/Alain Dave Tapiru -SEO Specialist Philippines Certificate.webp',
-    imageAlt:
-      'Online SEO Bootcamp Batch 32 certificate earned by Alain Dave Tapiru from PinoySEO and SOVA Training',
-    downloadUrl: '/assets/certificates/Alain Dave Tapiru -SEO Specialist Philippines Certificate.webp',
-    downloadFilename: 'Alain Dave Tapiru - SEO Specialist Philippines Certificate.webp',
-    verifyUrl:
-      'https://www.sova.ph/search-engine-optimization-bootcamp-graduates/search-engine-optimization-graduates-batch-32/#:~:text=Alain%20Dave%20Tapiru',
-    buttonText: 'View Certificate',
-  },
-  {
-    id: 'hubspot-inbound',
-    title: 'Inbound Certification',
-    issuer: 'HubSpot Academy',
-    issuedDate: 'Issued Sept 2026',
-    badge: 'Verified Credential',
-    imageSrc: '/assets/certificates/hubspot-inbound-certification-alain-dave-tapiru.avif',
-    imageAlt: 'HubSpot Academy Inbound Certification awarded to Alain Dave Tapiru',
-    downloadUrl: '/assets/certificates/hubspot-inbound-certification-alain-dave-tapiru.avif',
-    downloadFilename: 'hubspot-inbound-certification-alain-dave-tapiru.avif',
-    verifyUrl: 'https://app.hubspot.com/academy/achievements/8453e7bb6ba841ba814f77c8a976d34c/inbound',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'meta-social-media',
-    title: 'Introduction to Social Media Marketing',
-    issuer: 'Meta | Coursera',
-    issuedDate: 'Issued Dec 2020',
-    badge: 'Verified Credential',
-    imageSrc: '/assets/certificates/Introduction to Social Media Marketing.avif',
-    imageAlt:
-      'Introduction to Social Media Marketing Coursera certificate from Meta earned by Alain Dave Tapiru',
-    downloadUrl: '/assets/certificates/Introduction to Social Media Marketing.pdf',
-    downloadFilename: 'Introduction to Social Media Marketing - Alain Dave Tapiru.pdf',
-    verifyUrl: 'https://www.coursera.org/verify/D48TRWWUSJJZ',
-    buttonText: 'View / Verify',
-  },
-  {
-    id: 'grammar-punctuation-uci',
-    title: 'Grammar and Punctuation',
-    issuer: 'UC Irvine | Coursera',
-    issuedDate: 'Issued Oct 2020',
-    badge: 'Verified Credential',
-    imageSrc: '/assets/certificates/Grammar and Punctuation Certificate Alain Dave Tapiru.avif',
-    imageAlt:
-      'Grammar and Punctuation Coursera certificate from UCI earned by Alain Dave Tapiru',
-    downloadUrl:
-      '/assets/certificates/Grammar and Punctuation Coursera Certificate - Alain Dave Tapiru.pdf',
-    downloadFilename:
-      'Grammar and Punctuation Coursera Certificate - Alain Dave Tapiru.pdf',
-    verifyUrl: 'https://coursera.org/verify/P4ZJK54AY7WD',
-    buttonText: 'View / Verify',
-  },
-]
-
-const EDUCATION_HISTORY: EducationItem[] = [
-  {
-    degree: 'Bachelor of Science in Information Technology',
-    specialization: 'Network & Cybersecurity Specialization',
-    statusHighlight: 'Currently Studying Part-Time',
-    badge: 'In Progress',
-    badgeVariant: 'primary',
-  },
-  {
-    degree: 'Bachelor of Science in Information Technology (Undergraduate Coursework)',
-    details: "Saint Mary's University, Bayombong, Nueva Vizcaya",
-    timeline: '2014 – 2017',
-    badge: 'Undergraduate Studies',
-    badgeVariant: 'muted',
-  },
-]
+import {
+  GOOGLE_AI_CERTIFICATIONS,
+  SEO_CERTIFICATIONS,
+} from '../data/certifications'
+import { CANONICAL_EDUCATION } from '../data/education'
+import type { CanonicalCertification } from '../types'
 
 const subscribe = () => () => {}
 const getSnapshot = () => true
 const getServerSnapshot = () => false
 
 export function AboutCredentials() {
-  const [selectedCert, setSelectedCert] = useState<Certification | null>(null)
+  const [selectedCert, setSelectedCert] = useState<CanonicalCertification | null>(null)
   const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
   const modalRef = useRef<HTMLDivElement>(null)
   const modalTitleRef = useRef<HTMLHeadingElement>(null)
@@ -595,9 +346,9 @@ export function AboutCredentials() {
           </div>
 
           <div className="space-y-3 sm:space-y-4">
-            {EDUCATION_HISTORY.map((edu, idx) => (
+            {CANONICAL_EDUCATION.map((edu, idx) => (
               <div
-                key={idx}
+                key={edu.id}
                 style={{ transitionDelay: `${idx * 80}ms` }}
                 className={`p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm border flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 hover:bg-surface-2 transition-colors motion-reveal shadow-sm ${
                   edu.statusHighlight

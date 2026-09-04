@@ -29,14 +29,14 @@ const styles = source('src/app/(frontend)/styles.css')
 const navbar = source('src/components/Navbar.tsx')
 const marquee = source('src/components/ToolsMarquee.tsx')
 const projects = source('src/components/ProjectsDirectory.tsx')
-const resume = source('src/components/ResumePdfPreview.tsx')
+const resume = source('src/features/credentials/components/ResumePdfPreview.tsx')
 const gbp = source('src/components/GBPHealthChecker.tsx') + source('src/components/gbp/EmailReportDialog.tsx')
 const websiteAudit = source('src/components/WebsiteAuditRequestForm.tsx')
 const contact = source('src/components/ContactForm.tsx')
 const tableOfContents = source('src/components/TableOfContents.tsx')
 const modalFocus = source('src/hooks/useModalFocus.ts')
 const focusManagedDialogs = [
-  source('src/components/AboutCredentials.tsx'),
+  source('src/features/credentials/components/AboutCredentials.tsx'),
   projects,
   resume,
   gbp,
