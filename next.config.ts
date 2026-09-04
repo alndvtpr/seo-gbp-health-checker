@@ -149,7 +149,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: '/(hero-frames|_next/static|media|images|branding)/(.*)',
+        source: '/(_next/static|media|images|branding)/(.*)',
         headers: [
           {
             key: 'Cache-Control',
