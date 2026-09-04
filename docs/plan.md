@@ -188,16 +188,24 @@ Architecture & Master Implementation Program supporting records:
   - Refactored `src/app/(frontend)/about/page.tsx` and `src/app/(frontend)/resume/page.tsx` to consume canonical feature exports, eliminating 373 lines of duplicate credential definitions.
   - Updated verification test fixtures in `scripts/verify-accessibility.ts` and `scripts/verify-responsive.ts`.
   - Strictly preserved all certificate titles, dates, URLs, asset paths, downloads, modal dialog behaviors, accessibility, ATS resume presentation, and PDF same-origin framing exception.
-  - Verified 65/65 static CI tests (17 SEO, 12 a11y, 7 performance, 9 responsive, 10 theme, 10 content), clean lint (0 errors, 12 baseline warnings), Next.js Turbopack build (29/29 routes in 4.9s), and Vitest integration test (1/1 passed); committed locally as `e6ea54c`.
-- **Commit `HEAD~1` (2026-09-04)**: `docs: update plan.md with Stage 1 and Stage 2 architectural milestones` (`db4e4f3`)
-  - Updated `docs/plan.md` active roadmap and rolling session log documenting completion of Architectural Refactor Stage 1 (Environment Validation, Migration Strategy, Trust Boundaries) and Stage 2 (Confirmed Non-Database Dead-Code Cleanup).
-- **Commit `HEAD~2` (2026-09-04)**: `chore(cleanup): execute Stage 2 confirmed non-database dead-code removal` (`8bbcf1f`)
+  - Verified 65/65 static CI tests (17 SEO, 12 a11y, 7 performance, 9 responsive, 10 theme, 10 content), clean lint (0 errors, 12 baseline warnings), Next.js Turbopack build (29/29 routes in 4.9s), and Vitest integration test (1/1 passed).
+  - Committed as `e6ea54c` and pushed live to `origin/main` and `seo-gbp/main`.
+- **Commit `HEAD~1` (2026-09-04)**: `chore(cleanup): execute Stage 2 confirmed non-database dead-code removal` (`8bbcf1f`)
   - Executed safe cleanup of confirmed non-database dead code following full codebase reference audit.
   - Removed 6 unused legacy components: `TrustCommitment.tsx`, `HomepageFAQ.tsx`, `ServicesPillar1.tsx`, `ServicesPillar2.tsx`, `ServicesPillars3And4.tsx`, and `OpenToOpportunities.tsx`.
   - Removed unrouted private duplicate directory and page: `src/app/(frontend)/projects/_[slug]/page.tsx`.
   - Purged 121 unused legacy WebP animation frames (~3.2 MB) in `public/hero-frames/` and cleaned static cache header regex in `next.config.ts`.
   - Strictly preserved `SEOSalaryCalculator.tsx` (actively used by `tools/page.tsx`), `AIMemory` collection, `push: true`, and all 29 routes.
-  - Verified 0 ESLint errors (12 baseline warnings), 65/65 static CI tests, Turbopack build (29/29 routes in 4.7s), and Vitest integration test (1/1 passed); committed locally as `8bbcf1f` (unpushed per Rule 10).
+  - Verified 0 ESLint errors (12 baseline warnings), 65/65 static CI tests, Turbopack build (29/29 routes in 4.7s), and Vitest integration test (1/1 passed).
+  - Committed as `8bbcf1f` and pushed live to `origin/main` and `seo-gbp/main`.
+- **Commit `HEAD~2` (2026-09-04)**: `feat(arch): establish Stage 1 environment validation, migration strategy, and foundation directories` (`322cf1c`)
+  - Established runtime environment and secret validation via `src/lib/env.ts` with Zod schema enforcement, server-only secret guards, and client boundary protections.
+  - Replaced unsafe fallback expressions (`PAYLOAD_SECRET || ''`, `PREVIEW_SECRET || 'secret'`) in `src/payload.config.ts`, `src/collections/Pages.ts`, `src/app/(frontend)/api/preview/route.ts`, `src/lib/indexnow.ts`, and `src/lib/websub.ts`.
+  - Synchronized `.env.example` with `PREVIEW_SECRET` and documented database migration safety in `docs/DATABASE_MIGRATION_STRATEGY.md` and trust boundaries in `docs/PAYLOAD_TRUST_BOUNDARIES.md`.
+  - Created foundation scaffolding directories (`src/features/`, `src/components/shell/`, `src/components/ui/`, `src/components/cms/` with `.gitkeep`).
+  - Added `hookTimeout: 30000` to `vitest.config.mts` to handle remote Supabase PostgreSQL latency during integration tests.
+  - Verified 65/65 static CI tests, clean lint baseline, 29/29 routes, and Vitest integration test (1/1 passed).
+  - Committed as `322cf1c` and pushed live to `origin/main` and `seo-gbp/main`.
 
 ---
 
