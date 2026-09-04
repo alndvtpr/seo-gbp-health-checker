@@ -29,7 +29,161 @@ interface EducationItem {
   badgeVariant?: 'primary' | 'muted'
 }
 
-const CERTIFICATIONS: Certification[] = [
+const GOOGLE_AI_CERTIFICATIONS: Certification[] = [
+  {
+    id: 'google-ai-professional',
+    title: 'Google AI Professional Certificate',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Professional Certificate (8 Courses)',
+    imageSrc: '/assets/certificates/alain-dave-tapiru-google-ai-professional-certificate-2026.webp',
+    imageAlt:
+      'Google AI Professional Certificate awarded to Alain Dave Gallo Tapiru in September 2026',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-professional-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-professional-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/professional-cert/YIC92ES1TX9D',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-fundamentals',
+    title: 'AI Fundamentals',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc: '/assets/certificates/alain-dave-tapiru-google-ai-fundamentals-certificate-2026.webp',
+    imageAlt:
+      'Google AI Fundamentals certificate awarded to Alain Dave Gallo Tapiru in September 2026',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-fundamentals-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-fundamentals-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/NXBZIK64UH68',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-brainstorming-planning',
+    title: 'AI for Brainstorming and Planning',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-brainstorming-planning-certificate-2026.webp',
+    imageAlt:
+      'Google AI for Brainstorming and Planning certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-brainstorming-planning-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-brainstorming-planning-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/9V7CXE9TY9Q3',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-research-insights',
+    title: 'AI for Research and Insights',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-research-insights-certificate-2026.webp',
+    imageAlt:
+      'Google AI for Research and Insights certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-research-insights-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-research-insights-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/WZ8JT0GOU77C',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-writing-communicating',
+    title: 'AI for Writing and Communicating',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-writing-communicating-certificate-2026.webp',
+    imageAlt:
+      'Google AI for Writing and Communicating certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-writing-communicating-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-writing-communicating-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/CDKORGFE2FYM',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-content-creation',
+    title: 'AI for Content Creation',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-content-creation-certificate-2026.webp',
+    imageAlt:
+      'Google AI for Content Creation certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-content-creation-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-content-creation-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/WAIC1EUCYM0N',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-data-analysis',
+    title: 'AI for Data Analysis',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-data-analysis-certificate-2026.webp',
+    imageAlt:
+      'Google AI for Data Analysis certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-data-analysis-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-data-analysis-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/PJ7VK0VXUH3D',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-app-building',
+    title: 'AI for App Building',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-app-building-certificate-2026.webp',
+    imageAlt:
+      'Google AI for App Building certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-app-building-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-app-building-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/DKD3F3CDN9SB',
+    buttonText: 'View / Verify',
+  },
+  {
+    id: 'google-ai-app-deployment',
+    title: 'AI for App Deployment',
+    issuer: 'Google | Coursera',
+    issuedDate: 'Issued Sept 2026',
+    badge: 'Verified Credential',
+    imageSrc:
+      '/assets/certificates/alain-dave-tapiru-google-ai-app-deployment-certificate-2026.webp',
+    imageAlt:
+      'Google AI for App Deployment certificate awarded to Alain Dave Gallo Tapiru',
+    downloadUrl:
+      '/assets/certificates/alain-dave-tapiru-google-ai-app-deployment-certificate-2026.pdf',
+    downloadFilename:
+      'alain-dave-tapiru-google-ai-app-deployment-certificate-2026.pdf',
+    verifyUrl: 'https://coursera.org/verify/XMTWQX3OZ7I4',
+    buttonText: 'View / Verify',
+  },
+]
+
+const SEO_CERTIFICATIONS: Certification[] = [
   {
     id: 'seo-bootcamp',
     title: 'Online SEO Bootcamp (Batch 32)',
@@ -268,7 +422,84 @@ export function AboutCredentials() {
       </div>
 
       <div className="space-y-8 sm:space-y-10 relative z-10">
-        {/* Category 1: SEO Training & Verified Credentials */}
+        {/* Category 1: Google AI & Practical Automation Credentials */}
+        <div className="motion-reveal">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="h-2 w-2 rounded-full bg-primary-container inline-block" />
+            <h3 className="font-heading text-xs uppercase tracking-[0.08em] font-semibold text-on-surface/90">
+              Google AI &amp; Practical Automation Credentials
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+            {GOOGLE_AI_CERTIFICATIONS.map((cert, idx) => (
+              <div
+                key={cert.id}
+                style={{ transitionDelay: `${idx * 50}ms` }}
+                className={`group p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm hover:bg-surface-2 border transition-all duration-300 flex flex-col justify-between gap-4 motion-reveal shadow-sm ${
+                  cert.id === 'google-ai-professional'
+                    ? 'md:col-span-2 lg:col-span-3 border-primary-container/40 hover:border-primary-container/60 shadow-[0_0_20px_rgba(224,123,32,0.06)]'
+                    : 'border-black/10 dark:border-white/10 hover:border-primary-container/40'
+                }`}
+              >
+                <div className="space-y-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <h4 className="font-heading text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors">
+                      {cert.title}
+                    </h4>
+                    {cert.verifyUrl ? (
+                      <a
+                        href={cert.verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Verify Alain Dave Tapiru's ${cert.title} certification on official registry (opens in new tab)`}
+                        className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                      >
+                        <Icon name="check_circle" size={12} className="text-emerald-700 dark:text-emerald-400" />
+                        {cert.badge}
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full text-[10px] font-heading font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                        <Icon name="check_circle" size={12} className="text-emerald-700 dark:text-emerald-400" />
+                        {cert.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="font-sans text-xs text-on-surface/60">
+                    {cert.issuer} • {cert.issuedDate}
+                  </p>
+                </div>
+
+                <div className="pt-2 border-t border-black/10 dark:border-white/10 flex items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCert(cert)}
+                    aria-label={`View ${cert.title} certificate image preview`}
+                    className="inline-flex items-center gap-1.5 text-xs font-heading font-bold text-primary-container hover:text-primary transition-colors py-1 px-2.5 rounded-lg bg-primary-container/10 hover:bg-primary-container/20 border border-primary-container/20 cursor-pointer"
+                  >
+                    <span>{cert.buttonText}</span>
+                    <Icon name="north_east" size={13} />
+                  </button>
+
+                  {cert.verifyUrl && (
+                    <a
+                      href={cert.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Verify Alain Dave Tapiru's ${cert.title} on official registry (opens in new tab)`}
+                      className="text-xs font-sans text-on-surface/60 hover:text-primary-container underline underline-offset-2 transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>Direct Verification Link</span>
+                      <Icon name="north_east" size={11} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Category 2: SEO Training & Verified Credentials */}
         <div className="motion-reveal">
           <div className="flex items-center gap-2 mb-4">
             <span className="h-2 w-2 rounded-full bg-primary-container inline-block" />
@@ -278,7 +509,7 @@ export function AboutCredentials() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
-            {CERTIFICATIONS.map((cert, idx) => (
+            {SEO_CERTIFICATIONS.map((cert, idx) => (
               <div
                 key={cert.id}
                 style={{ transitionDelay: `${idx * 80}ms` }}
@@ -355,7 +586,11 @@ export function AboutCredentials() {
               <div
                 key={idx}
                 style={{ transitionDelay: `${idx * 80}ms` }}
-                className="p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm border border-black/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 hover:bg-surface-2 transition-colors motion-reveal shadow-sm"
+                className={`p-4 sm:p-5 rounded-xl bg-surface-1/95 backdrop-blur-sm border flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 hover:bg-surface-2 transition-colors motion-reveal shadow-sm ${
+                  edu.statusHighlight
+                    ? 'border-cyan-500/25 dark:border-cyan-400/30 hover:border-cyan-500/50'
+                    : 'border-black/10 dark:border-white/10'
+                }`}
               >
                 <div className="space-y-1.5 min-w-0">
                   <h4 className="font-heading text-sm font-bold text-on-surface">
@@ -372,8 +607,8 @@ export function AboutCredentials() {
                         <span className="text-on-surface/30 hidden sm:inline">•</span>
                       )}
                       {edu.statusHighlight && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-heading text-[11px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.2)] dark:shadow-[0_0_16px_rgba(16,185,129,0.3)]">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-heading text-[11px] font-semibold bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 dark:border-cyan-400/40 shadow-[0_0_14px_rgba(6,182,212,0.25)] dark:shadow-[0_0_18px_rgba(6,182,212,0.35)]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-300 animate-pulse shrink-0 shadow-[0_0_8px_rgba(6,182,212,0.9)]" />
                           {edu.statusHighlight}
                         </span>
                       )}
