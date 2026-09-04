@@ -175,12 +175,13 @@ Architecture & Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-09-04)**: `feat(credentials): add HubSpot Academy Inbound Certification and reorganize resume certifications into structured categories` (`d9ca2cd`)
+- **Commit `HEAD` (Current - 2026-09-04)**: `feat(credentials): add HubSpot Academy Inbound Certification and reorganize resume certifications into structured categories` (`ad367e2`)
   - Integrated the official HubSpot Academy Inbound Certification into `AboutCredentials.tsx` (with modal preview, download, and official achievement verification link `https://app.hubspot.com/academy/achievements/8453e7bb6ba841ba814f77c8a976d34c/inbound`) and `src/app/(frontend)/resume/page.tsx`.
   - Reorganized `/resume/` certifications into 3 structured categories (SEO & Inbound Marketing, Google AI & Practical Automation, Communications & Foundations) with responsive grid layouts, highlighting the flagship Google AI Professional Certificate and balancing Education into a dedicated 2-column section.
   - Optimized high-resolution PNG source into SEO-canonical AVIF (`hubspot-inbound-certification-alain-dave-tapiru.avif`, 53.5 KB) and WebP fallback (55.0 KB) with 4:4:4 chroma subsampling for pristine typography.
   - Verified 65/65 static CI tests (17 SEO, 10 content, 12 a11y, 7 performance, 9 responsive, 10 theme), clean TypeScript compilation (0 errors), and HTTP 200 responses on localhost.
-- **Commit `HEAD~1` (2026-09-04)**: `feat(credentials): add Google AI certificates to about and resume pages and update ongoing education badge to neon blue`
+  - Committed as `ad367e2` and pushed to `origin/main` (live Vercel deployment triggered and running).
+- **Commit `HEAD~1` (2026-09-04)**: `feat(credentials): add Google AI certificates to about and resume pages and update ongoing education badge to neon blue` (`16d120d`)
   - Integrated the Google AI Professional Certificate and all 8 constituent modular course certificates into `AboutCredentials.tsx` (with modal preview, PDF downloads, and direct Coursera verification links) and `src/app/(frontend)/resume/page.tsx`.
   - Converted high-DPI PDFs into SEO-optimized WebP (~70–111 KB) and AVIF assets in `public/assets/certificates/` using standard kebab-case stems and exact descriptive alt text.
   - Updated the ongoing education status badge ("Currently Studying Part-Time") in `AboutCredentials.tsx` and the "Ongoing Degree" badge in `resume/page.tsx` from emerald green to an electric neon blue/cyan palette (`bg-cyan-500/10`, `border-cyan-500/30`, neon glow shadow, and animated pulse dot).
