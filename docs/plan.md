@@ -12,6 +12,7 @@
 | `GEMINI_API_KEY` | Google AI Studio (`AQ.` key format) | Active |
 | `DATABASE_URI` | Supabase PostgreSQL Connection | Active |
 | `PAYLOAD_SECRET` | Payload CMS Auth Secret | Active |
+| `PREVIEW_SECRET` | Draft Mode & Live Preview Auth Secret | Active |
 | `RESEND_API_KEY` | Resend Direct Email & Audit Dispatch | Supported |
 | `GOOGLE_SHEET_WEBHOOK_URL` | Lead Submission Google Sheet Webhook | Active |
 
@@ -153,14 +154,18 @@
 - [x] **Google AI & Workflow Certificates Integration (2026-09-04)**: Integrated the Google AI Professional Certificate and all 8 constituent modular course certificates into `AboutCredentials.tsx` (with modal preview, PDF downloads, and direct Coursera verification links) and the `/resume/` page; converted high-DPI PDFs into SEO-optimized WebP (~70–111 KB) and AVIF assets using standard kebab-case stems and exact descriptive alt text; verified 65/65 static tests, clean TypeScript compilation (0 errors), and HTTP 200 on local server.
 - [x] **Ongoing Education Neon Blue Highlight Refinement (2026-09-04)**: Updated the ongoing education status badge ("Currently Studying Part-Time") in `AboutCredentials.tsx` and the "Ongoing Degree" badge in `resume/page.tsx` from emerald green to an electric neon blue/cyan palette (`bg-cyan-500/10`, `border-cyan-500/30`, neon glow shadow, and animated pulse dot), enhancing visual hierarchy and contrast across both day and dark modes; verified 65/65 static tests, clean TypeScript compilation, and HTTP 200 responses.
 - [x] **HubSpot Academy Inbound Certification Integration (2026-09-04)**: Integrated the official HubSpot Academy Inbound Certification (`hubspot-inbound-certification-alain-dave-tapiru.avif` and WebP fallback) into `AboutCredentials.tsx` under SEO & Verified Credentials (with modal preview, direct download, and official achievement verification link `https://app.hubspot.com/academy/achievements/8453e7bb6ba841ba814f77c8a976d34c/inbound`) and `src/app/(frontend)/resume/page.tsx`; optimized asset down from 108.6 KB PNG to 53.5 KB AVIF (51% reduction) with lossless-grade chroma subsampling preserving razor-sharp text and badge details; verified 65/65 static CI tests (17 SEO, 10 content, 12 a11y, 7 performance, 9 responsive, 10 theme), clean TypeScript compilation (0 errors), and HTTP 200 responses on localhost.
+- [x] **Architectural Refactor Stage 1: Environment & Secret Validation, Database Migration Strategy, and Trust Boundaries (2026-09-04)**: Established safe architectural foundation before large-scale restructuring; created `src/lib/env.ts` with strict Zod validation, server-only secret enforcement, and client boundary guards; eliminated unsafe fallbacks across `payload.config.ts`, `Pages.ts`, `api/preview/route.ts`, `indexnow.ts`, and `websub.ts`; synchronized `.env.example` with `PREVIEW_SECRET`; authored `docs/DATABASE_MIGRATION_STRATEGY.md` (defining schema safety and `push: true` phase-out protocol) and `docs/PAYLOAD_TRUST_BOUNDARIES.md` (documenting Server/Client boundaries and data trust rules); created low-risk foundation folders (`src/features/`, `src/components/shell/`, `src/components/ui/`, `src/components/cms/`); added `hookTimeout: 30000` to `vitest.config.mts` for reliable Supabase PostgreSQL handshakes; verified 65/65 CI tests, clean lint baseline, 29/29 routes, and passing integration test; committed as `322cf1c`.
+- [x] **Architectural Refactor Stage 2: Confirmed Non-Database Dead-Code Cleanup (2026-09-04)**: Executed safe removal of confirmed unused non-database dead code following repository-wide reference analysis; removed 6 unreferenced legacy components (`TrustCommitment.tsx`, `HomepageFAQ.tsx`, `ServicesPillar1.tsx`, `ServicesPillar2.tsx`, `ServicesPillars3And4.tsx`, `OpenToOpportunities.tsx`); removed unrouted private duplicate directory `src/app/(frontend)/projects/_[slug]/`; purged 121 unused legacy WebP animation frames (~3.2 MB) in `public/hero-frames/` and cleaned static cache headers in `next.config.ts`; preserved `SEOSalaryCalculator.tsx` (actively consumed by `/tools`), `AIMemory` collection, `push: true`, and all 29 routes; verified 65/65 static CI tests (17 SEO, 10 content, 12 a11y, 7 performance, 9 responsive, 10 theme), clean lint (0 errors, 12 warnings), Turbopack build (29/29 routes in 4.7s), and Vitest integration test (1/1 passed); committed as `8bbcf1f`.
 
 #### Master Plan Status
-**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, Homepage Hero SEO positioning alignment, Education Card Subtitle & Status Glow Refinement, Resume Header Alignment Across Web and PDF, Resume PDF Preview & Framing Policy Repair, Google AI & Workflow Certificates Integration, Ongoing Education Neon Blue Highlight Refinement, and HubSpot Academy Inbound Certification Integration are complete.
+**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, Homepage Hero SEO positioning alignment, Education Card Subtitle & Status Glow Refinement, Resume Header Alignment Across Web and PDF, Resume PDF Preview & Framing Policy Repair, Google AI & Workflow Certificates Integration, Ongoing Education Neon Blue Highlight Refinement, HubSpot Academy Inbound Certification Integration, Architectural Refactor Stage 1 (Environment Validation, Migration Strategy, Trust Boundaries), and Architectural Refactor Stage 2 (Confirmed Non-Database Dead-Code Cleanup) are complete.
 
 Durable phase handoff rule: At the end of every completed phase, update this roadmap and the applicable controlled records, refresh the Current handoff, and create one fresh Codex project task using the same saved project when task creation is available. The new task must explicitly use gpt-5.6-sol with high reasoning, read the recorded context, and respect unresolved gates before editing. payload-website/AGENTS.md contains the authoritative operating procedure.
 
 Architecture & Master Implementation Program supporting records:
 
+- [`docs/DATABASE_MIGRATION_STRATEGY.md`](DATABASE_MIGRATION_STRATEGY.md) - Database migration safety protocol, Drizzle/PostgreSQL safeguards, and `push: true` phase-out strategy.
+- [`docs/PAYLOAD_TRUST_BOUNDARIES.md`](PAYLOAD_TRUST_BOUNDARIES.md) - Server/Client boundaries, Payload CMS data access patterns, and trust model documentation.
 - [`docs/architecture/CURRENT_STATE.md`](architecture/CURRENT_STATE.md) - Forensic architecture audit, dependency map, and system state baseline.
 - [`docs/architecture/RISK_REGISTER.md`](architecture/RISK_REGISTER.md) - Prioritized architectural risk matrix and recommended directions.
 - [`docs/architecture/ROUTE_MAP.md`](architecture/ROUTE_MAP.md) - Complete route, handler, action, redirect, and boundary inventory.
@@ -175,21 +180,23 @@ Architecture & Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-09-04)**: `feat(credentials): add HubSpot Academy Inbound Certification and reorganize resume certifications into structured categories` (`ad367e2`)
-  - Integrated the official HubSpot Academy Inbound Certification into `AboutCredentials.tsx` (with modal preview, download, and official achievement verification link `https://app.hubspot.com/academy/achievements/8453e7bb6ba841ba814f77c8a976d34c/inbound`) and `src/app/(frontend)/resume/page.tsx`.
-  - Reorganized `/resume/` certifications into 3 structured categories (SEO & Inbound Marketing, Google AI & Practical Automation, Communications & Foundations) with responsive grid layouts, highlighting the flagship Google AI Professional Certificate and balancing Education into a dedicated 2-column section.
-  - Optimized high-resolution PNG source into SEO-canonical AVIF (`hubspot-inbound-certification-alain-dave-tapiru.avif`, 53.5 KB) and WebP fallback (55.0 KB) with 4:4:4 chroma subsampling for pristine typography.
-  - Verified 65/65 static CI tests (17 SEO, 10 content, 12 a11y, 7 performance, 9 responsive, 10 theme), clean TypeScript compilation (0 errors), and HTTP 200 responses on localhost.
-  - Committed as `ad367e2` and pushed to `origin/main` (live Vercel deployment triggered and running).
-- **Commit `HEAD~1` (2026-09-04)**: `feat(credentials): add Google AI certificates to about and resume pages and update ongoing education badge to neon blue` (`16d120d`)
-  - Integrated the Google AI Professional Certificate and all 8 constituent modular course certificates into `AboutCredentials.tsx` (with modal preview, PDF downloads, and direct Coursera verification links) and `src/app/(frontend)/resume/page.tsx`.
-  - Converted high-DPI PDFs into SEO-optimized WebP (~70–111 KB) and AVIF assets in `public/assets/certificates/` using standard kebab-case stems and exact descriptive alt text.
-  - Updated the ongoing education status badge ("Currently Studying Part-Time") in `AboutCredentials.tsx` and the "Ongoing Degree" badge in `resume/page.tsx` from emerald green to an electric neon blue/cyan palette (`bg-cyan-500/10`, `border-cyan-500/30`, neon glow shadow, and animated pulse dot).
-  - Verified 65/65 static tests, clean TypeScript compilation (0 errors), and live preview HTTP 200.
-- **Commit `HEAD~2` (2026-09-04)**: `fix(resume): allow same-origin framing for PDF and restore in-place PDF preview` (`b343c4f`)
-  - Configured `next.config.ts` with a dedicated header override for `/(.*\.pdf)` setting `X-Frame-Options: SAMEORIGIN` and `Content-Security-Policy: frame-ancestors 'self'` to allow same-origin modal iframe embedding while keeping strict framing denial for HTML pages.
-  - Replaced stream in `public/Alain_Dave_Tapiru_Resume.pdf` in place to exact byte length 177,724, preserving all xref offsets and eliminating incremental loop.
-  - Verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 10/10 theme checks, 9/9 responsive checks, 7/7 performance checks, TypeScript compile (0 errors), visual Chromium rendering without CSP errors, and live preview HTTP 200.
+- **Commit `HEAD` (Current - 2026-09-04)**: `chore(cleanup): execute Stage 2 confirmed non-database dead-code removal` (`8bbcf1f`)
+  - Executed safe cleanup of confirmed non-database dead code following full codebase reference audit.
+  - Removed 6 unused legacy components: `TrustCommitment.tsx`, `HomepageFAQ.tsx`, `ServicesPillar1.tsx`, `ServicesPillar2.tsx`, `ServicesPillars3And4.tsx`, and `OpenToOpportunities.tsx`.
+  - Removed unrouted private duplicate directory and page: `src/app/(frontend)/projects/_[slug]/page.tsx`.
+  - Purged 121 unused legacy WebP animation frames (~3.2 MB) in `public/hero-frames/` and cleaned static cache header regex in `next.config.ts`.
+  - Strictly preserved `SEOSalaryCalculator.tsx` (actively used by `tools/page.tsx`), `AIMemory` collection, `push: true`, and all 29 routes.
+  - Verified 0 ESLint errors (12 baseline warnings), 65/65 static CI tests (SEO, a11y, performance, responsive, theme, content), Turbopack build (29/29 routes in 4.7s), and Vitest integration test (`test:int` 1/1 passed).
+  - Committed locally as `8bbcf1f` (unpushed per Rule 10).
+- **Commit `HEAD~1` (2026-09-04)**: `feat(arch): establish Stage 1 environment validation, migration strategy, and foundation directories` (`322cf1c`)
+  - Established runtime environment and secret validation via `src/lib/env.ts` with Zod schema enforcement, server-only secret guards, and client boundary protections.
+  - Replaced unsafe fallback expressions (`PAYLOAD_SECRET || ''`, `PREVIEW_SECRET || 'secret'`) in `src/payload.config.ts`, `src/collections/Pages.ts`, `src/app/(frontend)/api/preview/route.ts`, `src/lib/indexnow.ts`, and `src/lib/websub.ts`.
+  - Synchronized `.env.example` with `PREVIEW_SECRET` and documented database migration safety in `docs/DATABASE_MIGRATION_STRATEGY.md` and trust boundaries in `docs/PAYLOAD_TRUST_BOUNDARIES.md`.
+  - Created foundation scaffolding directories (`src/features/`, `src/components/shell/`, `src/components/ui/`, `src/components/cms/` with `.gitkeep`).
+  - Added `hookTimeout: 30000` to `vitest.config.mts` to handle remote Supabase PostgreSQL latency during integration tests.
+  - Verified 65/65 static CI tests, clean lint baseline, 29/29 routes, and Vitest integration test (1/1 passed); committed locally as `322cf1c` (unpushed per Rule 10).
+- **Commit `HEAD~2` (2026-09-04)**: `docs: update plan.md with commit ad367e2 and remote deployment records` (`9574910`)
+  - Updated `docs/plan.md` rolling session log and active roadmap reflecting commit `ad367e2` (HubSpot Academy Inbound Certification integration and category reorganization) and recorded remote Vercel deployment status.
 
 ---
 
