@@ -6,7 +6,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { ResumePdfPreview } from '@/components/ResumePdfPreview'
 
 export const metadata = generateMetadata({
-  title: 'Resume | Alain Dave Tapiru — SEO Specialist & Technical Virtual Assistant',
+  title: 'Resume | Alain Dave Tapiru — Junior SEO Specialist | Technical & On-Page SEO',
   description:
     'Professional resume of Alain Dave Tapiru, SEO Specialist and Technical Virtual Assistant in the Philippines. Hands-on experience in technical SEO, web development, BPO customer support, and AI workflows.',
   url: 'https://www.alaintapiru.com/resume/',
@@ -19,7 +19,7 @@ const resumeJsonLd = {
       '@type': 'ProfilePage',
       '@id': 'https://www.alaintapiru.com/resume/#webpage',
       url: 'https://www.alaintapiru.com/resume/',
-      name: 'Resume | Alain Dave Tapiru — SEO Specialist & Technical Virtual Assistant',
+      name: 'Resume | Alain Dave Tapiru — Junior SEO Specialist | Technical & On-Page SEO',
       description:
         'Professional resume of Alain Dave Tapiru. Technical SEO, web design, BPO support, and client-facing digital operations.',
       isPartOf: {
@@ -287,7 +287,7 @@ export default function ResumePage() {
             </h1>
 
             <p className="font-heading text-base sm:text-lg font-bold text-primary-container">
-              SEO SPECIALIST &amp; Technical Virtual Assistant
+              Junior SEO Specialist | Technical &amp; On-Page SEO
             </p>
 
             <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs font-sans text-on-surface/70 pt-0.5">

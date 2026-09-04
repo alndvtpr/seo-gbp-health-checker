@@ -148,9 +148,10 @@
 
 - [x] **Homepage Hero SEO Positioning Alignment (2026-08-30)**: Integrated geo-targeted phrase "in the Philippines" into the main `<ScrollHero />` H1 headline ("SEO Specialist & Web Developer in the Philippines for Small Businesses & Agencies") targeting primary high-intent geo commercial search keywords while preserving semantic hierarchy, theme tokens, and visual contrast; verified 17/17 automated SEO CI checks, TypeScript compile (0 errors), and HTTP 200 on localhost.
 - [x] **Education Card Subtitle & Status Glow Refinement (2026-08-31)**: Enhanced the Education card in `AboutCredentials.tsx` with a dedicated glowing emerald availability status badge ("Currently Studying Part-Time") featuring an active animated pulse indicator to draw employer attention to part-time capacity, while cleanly separating the specialization and preserving the "Bachelor of Science in Information Technology" title and "In Progress" badge; passed all 65/65 static tests, content checks, SEO CI, TypeScript compilation, and verified HTTP 200 on localhost.
+- [x] **Resume Header Alignment Across Web and PDF (2026-09-04)**: Aligned resume header title and subtitle across the web resume page, document metadata/schema, in-page PDF preview component, and the downloadable PDF file to "Junior SEO Specialist | Technical & On-Page SEO"; updated `src/app/(frontend)/resume/page.tsx`, `src/components/ResumePdfPreview.tsx`, and `public/Alain_Dave_Tapiru_Resume.pdf` (preserving standard incremental xref trailer and ATS compatibility); verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 10/10 theme checks, 9/9 responsive checks, 7/7 performance checks, TypeScript compile (0 errors), and live preview HTTP 200.
 
 #### Master Plan Status
-**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, Homepage Hero SEO positioning alignment, and Education Card Subtitle & Status Glow Refinement are complete.
+**Legacy phases 1-43 and Roadmap A-E remain historical completed milestones.** Master Implementation Program Phases 01-20, the 2026-08-28 resume maintenance release, Tasks 00-12, the post-Phase 20 architecture reconciliation, the release-gate follow-up, Homepage Hero SEO positioning alignment, Education Card Subtitle & Status Glow Refinement, and Resume Header Alignment Across Web and PDF are complete.
 
 Durable phase handoff rule: At the end of every completed phase, update this roadmap and the applicable controlled records, refresh the Current handoff, and create one fresh Codex project task using the same saved project when task creation is available. The new task must explicitly use gpt-5.6-sol with high reasoning, read the recorded context, and respect unresolved gates before editing. payload-website/AGENTS.md contains the authoritative operating procedure.
 
@@ -170,13 +171,14 @@ Architecture & Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-08-31)**: `feat(about): add glowing status badge to part-time education card`
+- **Commit `HEAD` (Current - 2026-09-04)**: `feat(resume): align resume header to Junior SEO Specialist across web and PDF`
+  - Updated resume header subtitle, page metadata title, and JSON-LD schema entity name in `src/app/(frontend)/resume/page.tsx` to "Junior SEO Specialist | Technical & On-Page SEO".
+  - Updated downloadable `public/Alain_Dave_Tapiru_Resume.pdf` and its preview card descriptions in `src/components/ResumePdfPreview.tsx`.
+  - Verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 10/10 theme checks, 9/9 responsive checks, 7/7 performance checks, TypeScript compile (0 errors), and live preview HTTP 200.
+- **Commit `HEAD~1` (2026-08-31)**: `feat(about): add glowing status badge to part-time education card` (`a3af31a`)
   - Integrated glowing emerald status badge (`bg-emerald-500/10`, `border-emerald-500/30`, green ambient glow shadow, live animated pulse dot) for "Currently Studying Part-Time" in `AboutCredentials.tsx`.
-  - Verified 17/17 SEO checks, 10/10 content checks, 12/12 a11y checks, 9/9 responsive checks, 10/10 theme checks, TypeScript compile (0 errors), and live preview HTTP 200.
-- **Commit `HEAD~1` (2026-08-31)**: `fix(about): update education card subtitle to reflect part-time study status` (`65fd9e4`)
+- **Commit `HEAD~2` (2026-08-31)**: `fix(about): update education card subtitle to reflect part-time study status` (`65fd9e4`)
   - Updated Education card subtitle in `AboutCredentials.tsx` to "Network & Cybersecurity Specialization • Currently Studying Part-Time" while preserving degree title, "In Progress" badge, and design tokens.
-- **Commit `HEAD~2` (2026-08-30)**: `feat(seo): add Philippines geo-targeting to homepage hero headline` (`1f66dd2`)
-  - Integrated "in the Philippines" into the primary `<ScrollHero />` H1 headline for geo-targeted search intent while preserving semantic hierarchy, theme tokens, and typography rhythm.
 
 ---
 

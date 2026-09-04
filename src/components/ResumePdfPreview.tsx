@@ -99,7 +99,7 @@ export function ResumePdfPreview() {
                 </span>
               </div>
               <p className="truncate font-sans text-xs text-on-surface/65 sm:text-sm">
-                Alain Dave G. Tapiru &bull; SEO Specialist &amp; Web Developer &bull; 1-Page PDF
+                Alain Dave G. Tapiru &bull; Junior SEO Specialist | Technical &amp; On-Page SEO &bull; 1-Page PDF
               </p>
             </div>
           </div>
@@ -258,7 +258,7 @@ export function ResumePdfPreview() {
                       </span>
                     </div>
                     <p className="truncate font-sans text-xs text-on-surface/65">
-                      Alain Dave G. Tapiru &bull; SEO Specialist &amp; Web Developer &bull; 1 Page
+                      Alain Dave G. Tapiru &bull; Junior SEO Specialist | Technical &amp; On-Page SEO &bull; 1 Page
                     </p>
                   </div>
                 </div>
