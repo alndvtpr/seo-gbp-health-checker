@@ -101,7 +101,7 @@ const checks: Check[] = [
     run: () => {
       assert(homepage.includes('Request a Website Health Check'), 'approved primary CTA text changed')
       assert(homepage.includes('/tools/#website-audit'), 'approved primary CTA destination changed')
-      assert(read('src/components/WebsiteAuditRequestForm.tsx').includes('Free preliminary manual audit.'), 'free entry-point wording changed')
+      assert(read('src/features/tools/components/WebsiteAuditRequestForm.tsx').includes('Free preliminary manual audit.'), 'free entry-point wording changed')
     },
   },
   {
