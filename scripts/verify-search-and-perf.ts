@@ -13,7 +13,7 @@ import { GET as getLlmsTxt } from '../src/app/llms.txt/route'
 import { GET as getLlmsFullTxt } from '../src/app/llms-full.txt/route'
 import { GET as getRssFeed } from '../src/app/rss.xml/route'
 import { GLOBAL_JSON_LD } from '../src/components/JsonLd'
-import { SERVICES_JSON_LD } from '../src/components/ServicesFinalCta'
+import { SERVICES_JSON_LD } from '../src/features/services/components/ServicesFinalCta'
 import { normalizeCanonicalUrl, serializeJsonLd } from '../src/lib/seo'
 
 interface CheckResult {

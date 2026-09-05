@@ -40,9 +40,14 @@ const services = [
   read('src/app/(frontend)/services/local-seo/page.tsx'),
   read('src/app/(frontend)/services/ai-search-optimization/page.tsx'),
   read('src/app/(frontend)/services/web-development/page.tsx'),
+  read('src/features/services/data/technicalSeoData.ts'),
+  read('src/features/services/data/onPageSeoData.ts'),
+  read('src/features/services/data/localSeoData.ts'),
+  read('src/features/services/data/aiSearchData.ts'),
+  read('src/features/services/data/webDevData.ts'),
 ].join('\n')
-const packages = read('src/components/ServicesPackages.tsx')
-const estimator = read('src/components/ServicesScopeEstimator.tsx')
+const packages = read('src/features/services/components/ServicesPackages.tsx')
+const estimator = read('src/features/services/components/ServicesScopeEstimator.tsx')
 const contact = read('src/components/ContactForm.tsx')
 const gbp = read('src/components/GBPHealthChecker.tsx')
 const projects = read('src/features/projects/data/projects.ts')

@@ -1,11 +1,14 @@
 import React from 'react'
 import { generateMetadata } from '@/lib/seo'
-import { ServicesHero } from '@/components/ServicesHero'
-import { ServicesHubGrid } from '@/components/ServicesHubGrid'
-import { ServicesScopeEstimator } from '@/components/ServicesScopeEstimator'
-import { ServicesPackages } from '@/components/ServicesPackages'
-import { ServicesWorkflowAndFAQ } from '@/components/ServicesWorkflowAndFAQ'
-import { ServicesFinalCta } from '@/components/ServicesFinalCta'
+import {
+  ServicesHero,
+  ServicesHubGrid,
+  ServicesScopeEstimator,
+  ServicesPackages,
+  ServicesWorkflowAndFAQ,
+  ServicesFinalCta,
+  ServiceSectionDivider,
+} from '@/features/services'
 
 export const metadata = generateMetadata({
   title: 'Practical SEO Services & Website Support | Alain Dave Tapiru',
@@ -21,33 +24,25 @@ export default function ServicesPage() {
       <ServicesHero />
 
       {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
+      <ServiceSectionDivider />
 
       {/* 2. Approved Engagement Packages */}
       <ServicesPackages />
 
       {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
+      <ServiceSectionDivider />
 
       {/* 3. Core Service Capabilities & Connected Proofs */}
       <ServicesHubGrid />
 
       {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
+      <ServiceSectionDivider />
 
       {/* 4. Interactive Scope & Timeline Estimator */}
       <ServicesScopeEstimator />
 
       {/* Ambient Section Divider */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
-      </div>
+      <ServiceSectionDivider />
 
       {/* 5. 4-Step Delivery Workflow & FAQ Accordion */}
       <ServicesWorkflowAndFAQ />
