@@ -10,12 +10,14 @@ import {
   ServiceRelatedLinks,
   ServiceSubpageCta,
   ServiceSectionDivider,
+} from '@/features/services'
+import {
   TECHNICAL_AUDIT_AREAS,
   PROBLEMS_SOLVED,
   WORKFLOW_STEPS,
   FAQS,
   TECHNICAL_SEO_SCHEMA,
-} from '@/features/services'
+} from '@/features/services/data/technicalSeoData'
 
 export const metadata = generateMetadata({
   title: 'Technical SEO Services Philippines | Crawlability & Speed | Alain Dave Tapiru',

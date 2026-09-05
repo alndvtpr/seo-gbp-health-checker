@@ -10,12 +10,14 @@ import {
   ServiceRelatedLinks,
   ServiceSubpageCta,
   ServiceSectionDivider,
+} from '@/features/services'
+import {
   AI_OPTIMIZATION_AREAS,
   AI_PARADIGM_SHIFTS,
   WORKFLOW_STEPS,
   FAQS,
   AI_SEARCH_SCHEMA,
-} from '@/features/services'
+} from '@/features/services/data/aiSearchData'
 
 export const metadata = generateMetadata({
   title: 'AI Search Optimization (AEO & GEO) | Modern Search Readiness | Alain Dave Tapiru',

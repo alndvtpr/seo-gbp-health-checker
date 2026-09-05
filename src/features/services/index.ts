@@ -26,9 +26,3 @@ export * from './components/OnPageSeoProof'
 export * from './components/AiSearchProof'
 export * from './components/WebDevProof'
 
-// Subpage Data
-export * from './data/technicalSeoData'
-export * from './data/localSeoData'
-export * from './data/onPageSeoData'
-export * from './data/aiSearchData'
-export * from './data/webDevData'

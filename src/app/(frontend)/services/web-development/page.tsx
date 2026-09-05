@@ -10,12 +10,14 @@ import {
   ServiceRelatedLinks,
   ServiceSubpageCta,
   ServiceSectionDivider,
+} from '@/features/services'
+import {
   WEB_DEV_CAPABILITIES,
   COMMON_DEV_PITFALLS,
   WORKFLOW_STEPS,
   FAQS,
   WEB_DEV_SCHEMA,
-} from '@/features/services'
+} from '@/features/services/data/webDevData'
 
 export const metadata = generateMetadata({
   title: 'SEO-Ready Web Design & Development | Next.js & WordPress | Alain Dave Tapiru',

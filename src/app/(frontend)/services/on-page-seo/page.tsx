@@ -10,12 +10,14 @@ import {
   ServiceRelatedLinks,
   ServiceSubpageCta,
   ServiceSectionDivider,
+} from '@/features/services'
+import {
   ON_PAGE_OPTIMIZATION_AREAS,
   PROBLEMS_SOLVED,
   WORKFLOW_STEPS,
   FAQS,
   ON_PAGE_SEO_SCHEMA,
-} from '@/features/services'
+} from '@/features/services/data/onPageSeoData'
 
 export const metadata = generateMetadata({
   title: 'On-Page SEO Services Philippines | Content & Keyword Optimization | Alain Dave Tapiru',

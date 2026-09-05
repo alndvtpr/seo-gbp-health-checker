@@ -10,12 +10,14 @@ import {
   ServiceRelatedLinks,
   ServiceSubpageCta,
   ServiceSectionDivider,
+} from '@/features/services'
+import {
   LOCAL_OPTIMIZATION_AREAS,
   PROBLEMS_SOLVED,
   WORKFLOW_STEPS,
   FAQS,
   LOCAL_SEO_SCHEMA,
-} from '@/features/services'
+} from '@/features/services/data/localSeoData'
 
 export const metadata = generateMetadata({
   title: 'Local SEO Services Philippines | Google Business Profile Optimization | Alain Dave Tapiru',
