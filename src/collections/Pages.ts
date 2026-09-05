@@ -1,16 +1,28 @@
-import type { CollectionConfig } from 'payload'
+import type { Access, CollectionConfig } from 'payload'
 import { CodeInjection } from '../blocks/CodeInjection'
 import { pingIndexNow } from '../lib/indexnow'
 import { env } from '../lib/env'
 
+const authenticatedOnly: Access = ({ req: { user } }) => Boolean(user)
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  access: {
+    admin: ({ req: { user } }) => Boolean(user),
+    create: authenticatedOnly,
+    delete: authenticatedOnly,
+    read: authenticatedOnly,
+    readVersions: authenticatedOnly,
+    update: authenticatedOnly,
+  },
   admin: {
     useAsTitle: 'title',
     livePreview: {
       url: ({ data }) => {
         const baseUrl = env.NEXT_PUBLIC_SITE_URL
-        return `${baseUrl}/api/preview?url=${data.slug || ''}&secret=${env.PREVIEW_SECRET}`
+        const slug = data?.slug || ''
+        const path = slug === 'home' || slug === 'index' ? '/' : slug.startsWith('/') ? slug : `/${slug}`
+        return `${baseUrl}/api/preview?url=${encodeURIComponent(path)}&secret=${env.PREVIEW_SECRET}`
       },
     },
   },
