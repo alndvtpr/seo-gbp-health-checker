@@ -28,8 +28,8 @@ const assert: (condition: unknown, message: string) => asserts condition = (cond
 }
 
 const analyticsSource = read('src/components/GoogleAnalytics.tsx')
-const proofSource = read('src/components/PerformanceAuditProof.tsx')
-const projectSource = read('src/data/projects.ts')
+const proofSource = read('src/features/projects/components/PerformanceAuditProof.tsx')
+const projectSource = read('src/features/projects/data/projects.ts')
 const machineSource = read('src/app/llms-full.txt/route.ts')
 const shaderSource = read('src/components/ShaderBackground.tsx')
 const calendlySource = read('src/components/CalendlyScheduler.tsx')

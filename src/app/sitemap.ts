@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { STATIC_SITEMAP_ROUTES } from '@/config/site'
 import { BLOG_POSTS } from '@/data/posts'
-import { PROJECTS } from '@/data/projects'
+import { PROJECTS } from '@/features/projects'
 import { SITE_ORIGIN } from '@/lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {

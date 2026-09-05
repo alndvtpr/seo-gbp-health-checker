@@ -45,7 +45,7 @@ const packages = read('src/components/ServicesPackages.tsx')
 const estimator = read('src/components/ServicesScopeEstimator.tsx')
 const contact = read('src/components/ContactForm.tsx')
 const gbp = read('src/components/GBPHealthChecker.tsx')
-const projects = read('src/data/projects.ts')
+const projects = read('src/features/projects/data/projects.ts')
 const llms = `${read('src/app/llms.txt/route.ts')}\n${read('src/app/llms-full.txt/route.ts')}`
 const activePublicCopy = [homepage, services, packages, estimator, contact, gbp, projects, llms].join('\n')
 

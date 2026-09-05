@@ -5,7 +5,7 @@
  */
 
 import { readFileSync } from 'node:fs'
-import { PROJECTS } from '../src/data/projects'
+import { PROJECTS } from '../src/features/projects/data/projects'
 import { BLOG_POSTS } from '../src/data/posts'
 import robots from '../src/app/robots'
 import sitemap from '../src/app/sitemap'

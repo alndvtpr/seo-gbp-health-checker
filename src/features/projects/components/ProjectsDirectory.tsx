@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { createPortal } from 'react-dom'
 import { Icon } from '@/components/icons'
-import { PROJECTS, type Project } from '@/data/projects'
+import { PROJECTS, type Project } from '../data/projects'
 import { useModalFocus } from '@/hooks/useModalFocus'
 
 const CATEGORIES = ['All', 'WordPress', 'Technical SEO', 'Local SEO'] as const

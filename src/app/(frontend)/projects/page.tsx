@@ -1,8 +1,7 @@
 import React from 'react'
 import { generateMetadata, serializeJsonLd } from '@/lib/seo'
-import { ProjectsDirectory } from '@/components/ProjectsDirectory'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { PROJECTS } from '@/data/projects'
+import { ProjectsDirectory, PROJECTS } from '@/features/projects'
 
 export const metadata = generateMetadata({
   title: 'SEO Portfolio & Web Development Projects | Alain Dave Tapiru',

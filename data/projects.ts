@@ -1,1 +1,1 @@
-export * from '../src/data/projects'
+export * from '../src/features/projects/data/projects'
