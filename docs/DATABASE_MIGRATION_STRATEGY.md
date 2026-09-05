@@ -44,9 +44,6 @@ Payload CMS 3.x provides a first-class, Drizzle-backed CLI migration system:
 | `pnpm payload migrate:create <name>` | Generate SQL/TS migration comparing schema diff | Local development only |
 | `pnpm payload migrate` | Execute pending migrations in sequence | CI/CD deployment pipeline |
 | `pnpm payload migrate:down` | Revert the most recently applied migration batch | Emergency disaster recovery |
-| `pnpm payload migrate:refresh` | Roll back all migrations and re-apply them | Local development only (Destructive) |
-| `pnpm payload migrate:reset` | Roll back all migrations | Local development only (Destructive) |
-| `pnpm payload migrate:fresh` | Drop all tables and re-run all migrations | Local development only (Destructive) |
 
 ---
 
@@ -149,3 +146,50 @@ No database schema change may be applied to production without:
 3. Verified clean execution on staging.
 4. Pre-deployment backup verification.
 5. Zero downtime compatibility (expand and contract pattern).
+
+---
+
+## 8. Stage 6E Migration Readiness Verification & Baseline Proof
+
+During Stage 6E, migration readiness was empirically tested and proved using an empty, isolated disposable PostgreSQL database (`payload_migration_disposable`), keeping production completely untouched.
+
+### A. Generated Baseline Migration Artifacts
+* Generated from the active Payload CMS schema via `payload migrate:create init`:
+  * [`src/migrations/20260905_050909_init.ts`](file:///c:/Users/Alain%20Dave%20G.%20Tapiru/Desktop/My%20Main%20Website%20Portfolio%20Project/payload-website/src/migrations/20260905_050909_init.ts) (14.9 KB TypeScript migration defining `up` and `down` DDL)
+  * `src/migrations/20260905_050909_init.json` (52.6 KB Drizzle snapshot)
+  * [`src/migrations/index.ts`](file:///c:/Users/Alain%20Dave%20G.%20Tapiru/Desktop/My%20Main%20Website%20Portfolio%20Project/payload-website/src/migrations/index.ts) (manifest exporting the migrations array)
+
+### B. Verification Against Empty Disposable Database
+* An empty disposable PostgreSQL database was initialized with 0 tables.
+* `payload migrate` was executed targeting the disposable database:
+  * Migration executed successfully in **558ms**.
+* `payload migrate:status` verified the migration batch:
+  ```text
+  ┌──────────────────────┬───────┬─────┐
+  │                 Name │ Batch │ Ran │
+  ├──────────────────────┼───────┼─────┤
+  │ 20260905_050909_init │     1 │ Yes │
+  └──────────────────────┴───────┴─────┘
+  ```
+
+### C. Semantic Schema Comparison (Production vs. Disposable)
+A read-only deep inspection comparing `information_schema.tables`, `information_schema.columns`, constraints, and indexes between production (`postgres`) and the disposable database yielded:
+* **Table Count Parity**: 18 tables in Production, 18 tables in Disposable (0 tables only in production, 0 tables only in disposable).
+* **Tables Managed**:
+  1. `users_sessions`
+  2. `users`
+  3. `media`
+  4. `folders`
+  5. `tags`
+  6. `pages_blocks_code_injection`
+  7. `pages`
+  8. `ai_memory_target_keyword_clusters`
+  9. `ai_memory`
+  10. `payload_locked_documents`
+  11. `payload_locked_documents_rels`
+  12. `payload_preferences`
+  13. `payload_preferences_rels`
+  14. `payload_migrations`
+* **Column Parity**: **0 column differences** across all Payload-managed tables. All data types, nullability, and defaults match.
+* **Production Protection**: Production `payload_migrations` table remained completely untouched (1 row: `{ name: 'dev', batch: '-1' }`). No DDL or migrations were executed against the live production database.
+
