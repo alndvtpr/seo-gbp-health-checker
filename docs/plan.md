@@ -182,7 +182,13 @@ Architecture & Master Implementation Program supporting records:
 ## 5. Rolling Session Log (Strict Last 3 Commits Only)
 *Older entries are permanently archived in Git history and synthesized into Section 3.*
 
-- **Commit `HEAD` (Current - 2026-09-05)**: `feat(arch): implement Stage 4 homepage and navbar architecture refactor`
+- **Commit `HEAD` (Current - 2026-09-05)**: `refactor(arch): complete Stage 5 canonical feature architecture across all 7 domains`
+  - Decomposed all seven remaining routes and domains into canonical feature modules under `src/features/`: About, Resume, Projects, Services (Hub + 5 Subpages), Blog (Index + Article), Contact, and Tools.
+  - Slashed line counts across all route files by 36%–91% (all route files now under 155 lines, most under 100 lines), converting them into thin composition layers.
+  - Eliminated all legacy forwarding shims; updated all imports and verification scripts to canonical paths.
+  - Preserved active `SEOSalaryCalculator` in `src/features/tools/components/` with identical calculations, copy, and client behavior.
+  - Verified 0 ESLint errors (12 baseline warnings), 65/65 static CI checks, Turbopack build (29/29 routes in 6.0s), and Vitest integration test (1/1 passed).
+- **Commit `HEAD~1` (2026-09-05)**: `feat(arch): implement Stage 4 homepage and navbar architecture refactor` (`588f9d4`)
   - Decomposed homepage into canonical feature domain `src/features/home/` with `types.ts`, `data/homeData.ts`, and discrete section components (`ScrollHero.tsx`, `PersonalFitSection.tsx`, `StartingOffersSection.tsx`, `SampleDeliverableSection.tsx`, `SelectedWorkSection.tsx`, `EngagementProcessSection.tsx`, `HomeFinalCta.tsx`).
   - Streamlined `src/app/(frontend)/page.tsx` into thin section composition.
   - Relocated global navigation to `src/components/shell/` and decomposed monolithic `Navbar.tsx` (572 lines down to 202 lines) into cohesive `DesktopNav.tsx` and `MobileMenu.tsx` with explicit props and single-orchestrator state ownership.
@@ -190,7 +196,7 @@ Architecture & Master Implementation Program supporting records:
   - Updated verification test fixtures in `scripts/verify-accessibility.ts`, `scripts/verify-responsive.ts`, and `scripts/verify-content.ts`.
   - Strictly preserved all UI/UX copy, routes, SEO, dropdowns, scroll behavior, body scroll lock, mobile accordions, touch targets (≥44px), themes, and accessibility.
   - Verified 65/65 static CI tests, clean lint (0 errors, 12 baseline warnings), Next.js Turbopack build (29/29 routes), and Vitest integration test (1/1 passed).
-- **Commit `HEAD~1` (2026-09-04)**: `feat(credentials): implement Stage 3 credentials shared-domain architecture refactor` (`e6ea54c`)
+- **Commit `HEAD~2` (2026-09-04)**: `feat(credentials): implement Stage 3 credentials shared-domain architecture refactor` (`e6ea54c`)
   - Centralized credentials and education data, types, and presentation into canonical shared feature domain `src/features/credentials/`.
   - Created `types.ts` (`Certification`, `CertificationCategory`, `EducationRecord`), `data/certifications.ts` (14 canonical certificates across 4 categories + selector helpers for About and Resume), and `data/education.ts` (Mapua Malayan Digital College & Saint Mary's University).
   - Relocated `AboutCredentials.tsx` and `ResumePdfPreview.tsx` to `src/features/credentials/components/`.
@@ -199,14 +205,6 @@ Architecture & Master Implementation Program supporting records:
   - Strictly preserved all certificate titles, dates, URLs, asset paths, downloads, modal dialog behaviors, accessibility, ATS resume presentation, and PDF same-origin framing exception.
   - Verified 65/65 static CI tests (17 SEO, 12 a11y, 7 performance, 9 responsive, 10 theme, 10 content), clean lint (0 errors, 12 baseline warnings), Next.js Turbopack build (29/29 routes in 4.9s), and Vitest integration test (1/1 passed).
   - Committed as `e6ea54c` and pushed live to `origin/main` and `seo-gbp/main`.
-- **Commit `HEAD~2` (2026-09-04)**: `chore(cleanup): execute Stage 2 confirmed non-database dead-code removal` (`8bbcf1f`)
-  - Executed safe cleanup of confirmed non-database dead code following full codebase reference audit.
-  - Removed 6 unused legacy components: `TrustCommitment.tsx`, `HomepageFAQ.tsx`, `ServicesPillar1.tsx`, `ServicesPillar2.tsx`, `ServicesPillars3And4.tsx`, and `OpenToOpportunities.tsx`.
-  - Removed unrouted private duplicate directory and page: `src/app/(frontend)/projects/_[slug]/page.tsx`.
-  - Purged 121 unused legacy WebP animation frames (~3.2 MB) in `public/hero-frames/` and cleaned static cache header regex in `next.config.ts`.
-  - Strictly preserved `SEOSalaryCalculator.tsx` (actively used by `tools/page.tsx`), `AIMemory` collection, `push: true`, and all 29 routes.
-  - Verified 0 ESLint errors (12 baseline warnings), 65/65 static CI tests, Turbopack build (29/29 routes in 4.7s), and Vitest integration test (1/1 passed).
-  - Committed as `8bbcf1f` and pushed live to `origin/main` and `seo-gbp/main`.
 
 ---
 
