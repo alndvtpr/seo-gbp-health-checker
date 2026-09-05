@@ -1,7 +1,7 @@
 {
-  "name": "blank",
+  "name": "portfolio-cms",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
+  "description": "Official website and portfolio for Alain Dave Tapiru — SEO Specialist & Web Developer",
   "license": "MIT",
   "type": "module",
   "scripts": {

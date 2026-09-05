@@ -1,67 +1,115 @@
-# Payload Blank Template
+# AlainTapiru.com — Portfolio & Technical SEO Platform
 
-This template comes configured with the bare minimum to get started on anything you need.
+Official web application, portfolio, and Content Management System for **Alain Dave Tapiru — SEO Specialist & Web Developer**.
 
-## Quick start
+Repository: [`alndvtpr/portfolio-cms`](https://github.com/alndvtpr/portfolio-cms)  
+Dual-Synchronized Remote: [`alndvtpr/seo-gbp-health-checker`](https://github.com/alndvtpr/seo-gbp-health-checker)
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+---
 
-## Quick Start - local setup
+## 1. Technology Stack
 
-To spin up this template locally, follow these steps:
+- **Framework:** Next.js 16.3.0 (App Router, React 19.2.8, Turbopack)
+- **Styling:** Tailwind CSS v4.3.3
+- **CMS & Backend:** Payload CMS 3.88.0
+- **Database:** Supabase PostgreSQL (pg 17.6)
+- **AI & Diagnostics:** Google Gemini 2.5 Flash (`@google/genai`), Serper Places API
+- **Email & CRM:** Resend API, Google Sheets Leads Webhook
+- **Hosting & Edge:** Vercel (Production)
 
-### Clone
+---
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+## 2. Architecture & Design Principles
 
-### Development
+The application enforces a clean unidirectional architectural flow:
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URL` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+```text
+config / lib / types / shared UI
+               ↓
+            features (src/features/*)
+               ↓
+              app (src/app/*)
+```
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+- **Feature Domains (`src/features/`):** Cohesive, domain-owned features (`home`, `about`, `services`, `projects`, `tools`, `resume`, `blog`, `contact`, `credentials`).
+- **Thin App Router Layer (`src/app/`):** Route handlers and `page.tsx` files serve strictly as composition, server data loading, and metadata boundaries.
+- **Shared Shell (`src/components/shell/`):** Unified navigation (`Navbar`, `DesktopNav`, `MobileMenu`) and global layout framing.
+- **Strict Framing Contract:**
+  - Standard HTML & Application Routes: `X-Frame-Options: DENY`, `Content-Security-Policy: frame-ancestors 'none';`
+  - Resume PDF Resource (`/Alain_Dave_Tapiru_Resume.pdf`): `X-Frame-Options: SAMEORIGIN`, `Content-Security-Policy: frame-ancestors 'self';` (embedded same-origin preview).
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+---
 
-#### Docker (Optional)
+## 3. Getting Started
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+### Prerequisites
 
-To do so, follow these steps:
+- **Node.js:** `>= 24.15.0`
+- **Package Manager:** `pnpm` (`>= 9`)
 
-- Modify the `MONGODB_URL` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URL` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+### Installation
 
-## How it works
+```bash
+git clone https://github.com/alndvtpr/portfolio-cms.git
+cd portfolio-cms
+pnpm install
+```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+### Environment Variables
 
-### Collections
+Copy the example environment file and configure required keys:
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+```bash
+cp .env.example .env.local
+```
 
-- #### Users (Authentication)
+Key environment variables:
+- `DATABASE_URI`: Connection string to PostgreSQL (Supabase).
+- `PAYLOAD_SECRET`: Secret key for Payload CMS authentication.
+- `PREVIEW_SECRET`: Secret token for Next.js draft mode and live preview.
+- `E2E_DATABASE_URI`: **Required for Playwright E2E testing.** Must point to an isolated disposable or staging database to protect production data.
 
-  Users are auth-enabled collections that have access to the admin panel.
+### Development Server
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+```bash
+pnpm dev
+```
 
-- #### Media
+Visit [`http://localhost:3000`](http://localhost:3000) in your browser.
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+---
 
-### Docker
+## 4. Verification & Testing
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+The repository maintains an automated quality verification suite:
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+```bash
+# Code style and linting (0 errors, baseline warnings only)
+pnpm run lint
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+# Automated static CI regression suite (65 checks across 6 dimensions)
+pnpm run test:seo          # 17/17 checks (routes, sitemap, robots, JSON-LD)
+pnpm run test:a11y         # 12/12 checks (landmarks, dialogs, focus traps, aria)
+pnpm run test:performance  # 7/7 checks (assets, layout, lab evidence separation)
+pnpm run test:responsive   # 9/9 checks (viewports, touch targets >= 44px)
+pnpm run test:theme        # 10/10 checks (contrast, tokens, light/dark state)
+pnpm run test:content      # 10/10 checks (facts, credentials, package pricing)
 
-## Questions
+# Database integration test (Supabase PostgreSQL connectivity)
+pnpm run test:int
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+# End-to-end browser tests (requires E2E_DATABASE_URI)
+E2E_DATABASE_URI="postgresql://..." pnpm run test:e2e
+
+# Production build compilation (Turbopack)
+pnpm run build
+```
+
+---
+
+## 5. Deployment
+
+Production builds deploy automatically to Vercel upon merging into `main`. The live website is reachable at:
+- **Primary:** [`https://www.alaintapiru.com`](https://www.alaintapiru.com)
+- **Apex redirect:** [`https://alaintapiru.com`](https://alaintapiru.com)
+
