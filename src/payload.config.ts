@@ -36,7 +36,7 @@ export default buildConfig({
     pool: {
       connectionString: env.DATABASE_URI,
     },
-    push: true,
+    push: false,
   }),
   sharp,
   localization: {
