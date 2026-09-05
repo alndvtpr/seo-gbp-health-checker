@@ -28,7 +28,7 @@ const gbp = read('src/components/GBPHealthChecker.tsx')
 const ring = read('src/components/gbp/CircularProgressRing.tsx')
 const codeBlock = read('src/components/CodeBlock.tsx')
 const calendly = read('src/components/CalendlyScheduler.tsx')
-const contactForm = read('src/components/ContactForm.tsx')
+const contactForm = read('src/features/contact/components/ContactForm.tsx')
 const auditForm = read('src/components/WebsiteAuditRequestForm.tsx')
 
 const themeBlock = (theme: 'light' | 'dark') => {

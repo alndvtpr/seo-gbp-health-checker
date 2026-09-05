@@ -48,7 +48,7 @@ const services = [
 ].join('\n')
 const packages = read('src/features/services/components/ServicesPackages.tsx')
 const estimator = read('src/features/services/components/ServicesScopeEstimator.tsx')
-const contact = read('src/components/ContactForm.tsx')
+const contact = read('src/features/contact/components/ContactForm.tsx')
 const gbp = read('src/components/GBPHealthChecker.tsx')
 const projects = read('src/features/projects/data/projects.ts')
 const llms = `${read('src/app/llms.txt/route.ts')}\n${read('src/app/llms-full.txt/route.ts')}`
