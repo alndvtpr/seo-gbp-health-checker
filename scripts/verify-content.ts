@@ -27,7 +27,13 @@ const homepage = [
   read('src/features/home/components/HomeFinalCta.tsx'),
   read('src/features/home/data/homeData.ts'),
 ].join('\n')
-const about = read('src/app/(frontend)/about/page.tsx')
+const about = [
+  read('src/app/(frontend)/about/page.tsx'),
+  read('src/features/about/components/AboutHeader.tsx'),
+  read('src/features/about/components/AboutStorySection.tsx'),
+  read('src/features/about/components/AboutFitSection.tsx'),
+  read('src/features/about/components/AboutCtaSection.tsx'),
+].join('\n')
 const services = [
   read('src/app/(frontend)/services/technical-seo/page.tsx'),
   read('src/app/(frontend)/services/on-page-seo/page.tsx'),
