@@ -26,7 +26,7 @@ function check(area: string, name: string, condition: boolean) {
 
 const layout = source('src/app/(frontend)/layout.tsx')
 const styles = source('src/app/(frontend)/styles.css')
-const navbar = source('src/components/Navbar.tsx')
+const navbar = source('src/components/shell/Navbar.tsx') + '\n' + source('src/components/shell/DesktopNav.tsx')
 const marquee = source('src/components/ToolsMarquee.tsx')
 const projects = source('src/components/ProjectsDirectory.tsx')
 const resume = source('src/features/credentials/components/ResumePdfPreview.tsx')

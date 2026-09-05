@@ -4,9 +4,16 @@ import config from '@payload-config'
 import type { Page as PayloadPage } from '@/payload-types'
 import { RenderBlocks } from '@/components/RenderBlocks'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { ScrollHero } from '@/components/ScrollHero'
 import { ToolsMarquee } from '@/components/ToolsMarquee'
-import { HomeSections } from '@/components/home/HomeSections'
+import {
+  ScrollHero,
+  PersonalFitSection,
+  StartingOffersSection,
+  SampleDeliverableSection,
+  SelectedWorkSection,
+  EngagementProcessSection,
+  HomeFinalCta,
+} from '@/features/home'
 import {
   PERSON_ID,
   PROFILE_PAGE_ID,
@@ -69,7 +76,23 @@ export default async function Page() {
       {/* 2. Tools & Infinite Marquee */}
       <ToolsMarquee />
 
-      <HomeSections />
+      {/* 3. Personal fit */}
+      <PersonalFitSection />
+
+      {/* 4. Starting offers */}
+      <StartingOffersSection />
+
+      {/* 5. Sample deliverable */}
+      <SampleDeliverableSection />
+
+      {/* 6. Selected work */}
+      <SelectedWorkSection />
+
+      {/* 7. Engagement process and objections */}
+      <EngagementProcessSection />
+
+      {/* 8. Final CTA */}
+      <HomeFinalCta />
 
       {/* Preserve any approved CMS-managed homepage blocks without adding another semantic section. */}
       {page?.layout != null && page.layout.length > 0 && (

@@ -18,7 +18,14 @@ const assert: (condition: unknown, message: string) => asserts condition = (cond
 
 const homepage = [
   read('src/app/(frontend)/page.tsx'),
-  read('src/components/home/HomeSections.tsx'),
+  read('src/features/home/components/ScrollHero.tsx'),
+  read('src/features/home/components/PersonalFitSection.tsx'),
+  read('src/features/home/components/StartingOffersSection.tsx'),
+  read('src/features/home/components/SampleDeliverableSection.tsx'),
+  read('src/features/home/components/SelectedWorkSection.tsx'),
+  read('src/features/home/components/EngagementProcessSection.tsx'),
+  read('src/features/home/components/HomeFinalCta.tsx'),
+  read('src/features/home/data/homeData.ts'),
 ].join('\n')
 const about = read('src/app/(frontend)/about/page.tsx')
 const services = [

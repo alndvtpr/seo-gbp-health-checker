@@ -25,7 +25,12 @@ const readTree = (directory: string): string[] =>
 
 const layout = read('src/app/(frontend)/layout.tsx')
 const styles = read('src/app/(frontend)/styles.css')
-const navbar = read('src/components/Navbar.tsx')
+const navbar =
+  read('src/components/shell/Navbar.tsx') +
+  '\n' +
+  read('src/components/shell/DesktopNav.tsx') +
+  '\n' +
+  read('src/components/shell/MobileMenu.tsx')
 const announcement = read('src/components/AnnouncementBanner.tsx')
 const footer = read('src/components/Footer.tsx')
 const resume = read('src/features/credentials/components/ResumePdfPreview.tsx')

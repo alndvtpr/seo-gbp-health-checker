@@ -1,0 +1,7 @@
+export { ScrollHero } from './components/ScrollHero'
+export { PersonalFitSection } from './components/PersonalFitSection'
+export { StartingOffersSection } from './components/StartingOffersSection'
+export { SampleDeliverableSection } from './components/SampleDeliverableSection'
+export { SelectedWorkSection } from './components/SelectedWorkSection'
+export { EngagementProcessSection } from './components/EngagementProcessSection'
+export { HomeFinalCta } from './components/HomeFinalCta'
