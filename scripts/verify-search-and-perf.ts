@@ -6,7 +6,7 @@
 
 import { readFileSync } from 'node:fs'
 import { PROJECTS } from '../src/features/projects/data/projects'
-import { BLOG_POSTS } from '../src/data/posts'
+import { BLOG_POSTS } from '../src/features/blog/data/posts'
 import robots from '../src/app/robots'
 import sitemap from '../src/app/sitemap'
 import { GET as getLlmsTxt } from '../src/app/llms.txt/route'

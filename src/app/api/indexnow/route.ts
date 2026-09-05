@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { pingIndexNow, DEFAULT_BASE_URL } from '@/lib/indexnow'
 import { PROJECTS } from '@/features/projects'
-import { BLOG_POSTS } from '@/data/posts'
+import { BLOG_POSTS } from '@/features/blog'
 
 export const dynamic = 'force-dynamic'
 

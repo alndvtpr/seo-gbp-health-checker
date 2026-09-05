@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { BLOG_POSTS } from '@/data/posts'
+import { BLOG_POSTS } from '@/features/blog'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 3600

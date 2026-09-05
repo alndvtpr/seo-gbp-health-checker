@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { STATIC_SITEMAP_ROUTES } from '@/config/site'
-import { BLOG_POSTS } from '@/data/posts'
+import { BLOG_POSTS } from '@/features/blog'
 import { PROJECTS } from '@/features/projects'
 import { SITE_ORIGIN } from '@/lib/seo'
 
