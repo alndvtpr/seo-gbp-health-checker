@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon } from '@/components/icons'
-import { GBPHealthChecker } from '@/components/GBPHealthChecker'
+import { GBPHealthChecker } from './gbp/GBPHealthChecker'
 
 export function GbpCheckerCard() {
   return (

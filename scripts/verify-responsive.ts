@@ -34,7 +34,11 @@ const navbar =
 const announcement = read('src/components/AnnouncementBanner.tsx')
 const footer = read('src/components/Footer.tsx')
 const resume = read('src/features/credentials/components/ResumePdfPreview.tsx')
-const gbp = read('src/components/GBPHealthChecker.tsx')
+const gbp = [
+  read('src/features/tools/components/gbp/GBPHealthChecker.tsx'),
+  read('src/features/tools/components/gbp/GbpAiArsenalTabs.tsx'),
+  read('src/features/tools/components/gbp/GbpConsultationBanner.tsx'),
+].join('\n')
 const emailDialog = read('src/components/gbp/EmailReportDialog.tsx')
 const projects = read('src/features/projects/components/ProjectsDirectory.tsx')
 const credentials = read('src/features/credentials/components/AboutCredentials.tsx')

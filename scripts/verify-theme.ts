@@ -24,7 +24,10 @@ const shader = read('src/components/ShaderBackground.tsx')
 const servicesHero = read('src/features/services/components/ServicesHero.tsx')
 const workflow = read('src/features/services/components/ServicesWorkflowAndFAQ.tsx')
 const tableOfContents = read('src/components/TableOfContents.tsx')
-const gbp = read('src/components/GBPHealthChecker.tsx')
+const gbp = [
+  read('src/features/tools/components/gbp/GBPHealthChecker.tsx'),
+  read('src/features/tools/components/gbp/GbpScoreOverview.tsx'),
+].join('\n')
 const ring = read('src/components/gbp/CircularProgressRing.tsx')
 const codeBlock = read('src/components/CodeBlock.tsx')
 const calendly = read('src/components/CalendlyScheduler.tsx')

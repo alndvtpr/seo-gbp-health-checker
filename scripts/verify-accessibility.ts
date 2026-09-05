@@ -30,7 +30,13 @@ const navbar = source('src/components/shell/Navbar.tsx') + '\n' + source('src/co
 const marquee = source('src/components/ToolsMarquee.tsx')
 const projects = source('src/features/projects/components/ProjectsDirectory.tsx')
 const resume = source('src/features/credentials/components/ResumePdfPreview.tsx')
-const gbp = source('src/components/GBPHealthChecker.tsx') + source('src/components/gbp/EmailReportDialog.tsx')
+const gbp = [
+  source('src/features/tools/components/gbp/GBPHealthChecker.tsx'),
+  source('src/features/tools/components/gbp/GbpAuditForm.tsx'),
+  source('src/features/tools/components/gbp/GbpAiArsenalTabs.tsx'),
+  source('src/features/tools/components/gbp/GbpDeepCheckSection.tsx'),
+  source('src/components/gbp/EmailReportDialog.tsx'),
+].join('\n')
 const websiteAudit = source('src/features/tools/components/WebsiteAuditRequestForm.tsx')
 const contact = source('src/features/contact/components/ContactForm.tsx')
 const tableOfContents = source('src/components/TableOfContents.tsx')

@@ -49,7 +49,17 @@ const services = [
 const packages = read('src/features/services/components/ServicesPackages.tsx')
 const estimator = read('src/features/services/components/ServicesScopeEstimator.tsx')
 const contact = read('src/features/contact/components/ContactForm.tsx')
-const gbp = read('src/components/GBPHealthChecker.tsx')
+const gbp = [
+  read('src/features/tools/components/gbp/GBPHealthChecker.tsx'),
+  read('src/features/tools/components/gbp/GbpAuditForm.tsx'),
+  read('src/features/tools/components/gbp/GbpScoreOverview.tsx'),
+  read('src/features/tools/components/gbp/GbpPublicChecksGrid.tsx'),
+  read('src/features/tools/components/gbp/GbpCompetitorRadar.tsx'),
+  read('src/features/tools/components/gbp/GbpActionPlanMatrix.tsx'),
+  read('src/features/tools/components/gbp/GbpAiArsenalTabs.tsx'),
+  read('src/features/tools/components/gbp/GbpDeepCheckSection.tsx'),
+  read('src/features/tools/components/gbp/GbpConsultationBanner.tsx'),
+].join('\n')
 const projects = read('src/features/projects/data/projects.ts')
 const llms = `${read('src/app/llms.txt/route.ts')}\n${read('src/app/llms-full.txt/route.ts')}`
 const activePublicCopy = [homepage, services, packages, estimator, contact, gbp, projects, llms].join('\n')
